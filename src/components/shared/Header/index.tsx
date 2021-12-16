@@ -1,33 +1,28 @@
 import React from 'react';
+import shortid from 'shortid';
 
 import {Logo, SearchIcon, LikIt} from '~/assets';
+import {routes} from '~/utils';
 
-import Input from '../Input';
 import Link from '../Link';
+import Input from '../Input';
 
 import styles from './Header.module.scss';
 
 const Header: React.FC = () => {
+  const headerTablick = routes.map(({routeName, pageName, linkCLasses}) => (
+    <Link key={shortid.generate()} className={linkCLasses} to={routeName}>
+      {pageName}
+    </Link>
+  ));
+
   return (
     <header className={styles.wrapper}>
       <div className={`${styles.wrapper_content} container`}>
         <Link to="/">
           <Logo />
         </Link>
-        <nav className={styles.wrapper_content_menu}>
-          <Link className={styles.wrapper_content_menu_page} to="categories">
-            Categories
-          </Link>
-          <Link className={styles.wrapper_content_menu_page} to="favorites">
-            Top Rated
-          </Link>
-          <Link className={styles.wrapper_content_menu_page} to="most-liked">
-            Most Liked
-          </Link>
-          <Link className={styles.wrapper_content_menu_page} to="new">
-            New
-          </Link>
-        </nav>
+        <nav className={styles.wrapper_content_menu}>{headerTablick}</nav>
         <div className={styles.wrapper_content_other}>
           <Input
             type="text"

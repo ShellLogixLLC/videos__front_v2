@@ -2739,6 +2739,11 @@
     "@typescript-eslint/types" "4.31.2"
     eslint-visitor-keys "^2.0.0"
 
+"@vercel/next@^2.7.9":
+  version "2.7.9"
+  resolved "https://registry.yarnpkg.com/@vercel/next/-/next-2.7.9.tgz#e95c8099b21a42d86e8542ea439c7f5bc4e6369e"
+  integrity sha512-I7u2IzRR3ssmvItLhx2lGPYrric2v74g+ArDBCxYwm1eGt9ARVIsg9/Q59U/0rjtv+DD8D24wjD+UW58uKfaJQ==
+
 "@webassemblyjs/ast@1.9.0":
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.9.0.tgz#bd850604b4042459a5a41cd7d338cbed695ed964"

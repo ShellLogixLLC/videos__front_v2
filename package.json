@@ -1,5 +1,5 @@
 {
-  "name": "secro",
+  "name": "prn__front_v2",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -23,6 +23,7 @@
   "dependencies": {
     "@hookform/resolvers": "^2.8.0",
     "@reduxjs/toolkit": "^1.6.1",
+    "@vercel/next": "^2.7.9",
     "axios": "^0.21.4",
     "axios-auth-refresh": "^3.2.1",
     "classnames": "^2.3.1",

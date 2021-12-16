@@ -27,7 +27,7 @@
   font-weight: 600;
   font-size: 20px;
   line-height: 33px;
-  color: $black;
+  color: $white;
 }
 
 %heading_medium {
@@ -35,7 +35,7 @@
   font-weight: 600;
   font-size: 14px;
   line-height: 19px;
-  color: $black;
+  color: $white;
 }
 
 %heading_small {
@@ -43,14 +43,14 @@
   font-weight: 600;
   font-size: 16px;
   line-height: 24px;
-  color: $black;
+  color: $white;
 }
 
 %text_regular {
   font-family: $montserrat_family;
   font-size: 16px;
   line-height: 24px;
-  color: $black;
+  color: $white;
 }
 
 %text_semibold {
@@ -58,14 +58,14 @@
   font-weight: 600;
   font-size: 14px;
   line-height: 22px;
-  color: $black;
+  color: $white;
 }
 
 %text_small {
   font-family: $montserrat_family;
   font-size: 12px;
   line-height: 16px;
-  color: $black;
+  color: $white;
 }
 
 %text_medium {
@@ -113,7 +113,6 @@
   font-weight: 600;
   font-size: 14px;
   line-height: 22px;
-  // color: $main;
 }
 
 %project_title {
