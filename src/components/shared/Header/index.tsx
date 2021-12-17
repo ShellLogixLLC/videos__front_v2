@@ -6,6 +6,7 @@ import {routes} from '~/utils';
 
 import Link from '../Link';
 import Input from '../Input';
+import LanguageDropDown from '../LanguageDropDown';
 
 import styles from './Header.module.scss';
 
@@ -19,7 +20,7 @@ const Header: React.FC = () => {
   return (
     <header className={styles.wrapper}>
       <div className={`${styles.wrapper_content} container`}>
-        <Link to="/">
+        <Link className={styles.wrapper_content_logo} to="/">
           <Logo />
         </Link>
         <nav className={styles.wrapper_content_menu}>{headerTablick}</nav>
@@ -31,7 +32,8 @@ const Header: React.FC = () => {
             RightIcon={SearchIcon}
             className={styles.wrapper_content_other__search}
           />
-          <LikIt className={styles.wrapper_content_other_language} />
+          <LikIt />
+          <LanguageDropDown />
         </div>
       </div>
     </header>

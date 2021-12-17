@@ -1,0 +1,43 @@
+.wrapper {
+  @extend %flex-between;
+  cursor: pointer;
+  position: relative;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    font-weight: unset;
+    border-radius: unset;
+    background-color: unset;
+
+    &:hover {
+      background-color: unset;
+
+      .wrapper__header_arrow {
+        transform: rotate(180deg);
+      }
+    }
+
+    &__language {
+      width: 33px;
+    }
+
+    &_arrow {
+      width: 48px;
+      height: 48px;
+      padding: 0 0 0 10px;
+      transition: transform 0.3s ease-in;
+    }
+  }
+
+  &__content {
+    position: absolute;
+    top: 69px;
+    right: 0;
+    width: 105px;
+    height: 150px;
+    padding: 0 16px;
+    border: 1px solid red;
+  }
+}

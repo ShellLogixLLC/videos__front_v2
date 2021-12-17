@@ -11,3 +11,4 @@ export {default as DatePicker} from './shared/DatePicker';
 export {default as Header} from './shared/Header';
 export {default as Footer} from './shared/Footer';
 export {default as PageContent} from './shared/PageContent';
+export {default as LanguageDropDown} from './shared/LanguageDropDown';
