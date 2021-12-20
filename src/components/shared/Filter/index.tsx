@@ -2,8 +2,8 @@ import React, {useState, useMemo, useRef} from 'react';
 
 import {useOnClickOutside} from '~/hooks';
 
-import Typography from '../Typography';
 import Link from '../Link';
+import Typography from '../Typography';
 
 import {FilterProps} from './types';
 import styles from './Filter.module.scss';

@@ -2,9 +2,9 @@ import React, {useState} from 'react';
 import classNames from 'classnames';
 
 import {HeartLikes, FilmLikeIcon, ViewsCount, CommentsCount} from '~/assets';
-import {Typography} from '~/components';
 
 import Button from '../Button';
+import Typography from '../Typography';
 
 import {FilmCardTypes} from './types';
 import styles from './FilmCard.module.scss';
