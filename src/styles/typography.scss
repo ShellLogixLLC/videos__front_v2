@@ -14,6 +14,34 @@
   text-align: right;
 }
 
+%box-shadow {
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+}
+
+%brd-rad_10 {
+  border-radius: 10px;
+}
+
+%brd-rad-top_10 {
+  border-radius: 10px 10px 0 0;
+}
+
+%brd-rad-bottom_10 {
+  border-radius: 0 0 10px 10px;
+}
+
+%brd-rad_8 {
+  border-radius: 8px;
+}
+
+%brd-rad-top_8 {
+  border-radius: 8px 8px 0 0;
+}
+
+%brd-rad-bottom_8 {
+  border-radius: 0 0 8px 8px;
+}
+
 %heading_extra {
   font-family: $montserrat_family;
   font-weight: 600;
@@ -125,7 +153,6 @@
   font-family: $montserrat_family;
   font-weight: 500;
   font-size: 20px;
-  padding: 13px 34px;
   line-height: 24px;
 }
 

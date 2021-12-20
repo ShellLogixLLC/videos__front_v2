@@ -33,6 +33,7 @@ export interface IInputProps {
   className?: string;
   disabled?: boolean;
   placeholder?: string;
+  rightIconStyle?: string;
   innerClassName?: string;
   labelClassName?: string;
   onChange?: (event: React.ChangeEvent) => void;

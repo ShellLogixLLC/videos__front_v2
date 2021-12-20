@@ -1,0 +1,49 @@
+.container {
+  padding: 24px;
+  cursor: pointer;
+  max-width: 320px;
+  max-height: 536px;
+  @extend %brd-rad_10;
+  background: $black;
+  @extend %box-shadow;
+  position: relative;
+
+  &__header {
+    @extend %flex-between;
+
+    svg {
+      path {
+        fill: #f32d36;
+      }
+    }
+
+    &__title {
+      @extend %category-buttons;
+    }
+  }
+
+  &__content {
+    width: 100%;
+    padding: 0 24px;
+    margin-top: 16px;
+    max-height: 432px;
+    overflow: auto;
+    background: $black;
+    @extend %flex-column;
+    @include custom-scroll;
+    @extend %brd-rad-bottom_10;
+    @extend %box-shadow;
+    position: absolute;
+    z-index: 5;
+    left: 0;
+
+    &__box {
+      padding: 13px 16px 13px 0px;
+      @extend %search-styling;
+
+      &:not(:first-of-type) {
+        margin-top: 16px;
+      }
+    }
+  }
+}

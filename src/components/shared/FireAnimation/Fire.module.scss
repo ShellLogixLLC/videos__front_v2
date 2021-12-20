@@ -1,0 +1,54 @@
+$fireColor: rgb(255, 80, 0);
+$fireColorT: rgba(255, 80, 0, 0);
+$dur: 1s;
+$blur: 0.02em;
+$fireRad: 1em;
+$parts: 100;
+$partSize: 35px;
+
+.fire {
+  filter: blur($blur);
+  -webkit-filter: blur($blur);
+  position: relative;
+
+  &__title {
+    text-align: center;
+    @extend %film_name;
+    position: relative;
+    color: $red;
+  }
+}
+
+.particle {
+  opacity: 0;
+  width: 50px;
+  height: $partSize;
+  border-radius: 50%;
+  mix-blend-mode: screen;
+  background-image: radial-gradient($fireColor 20%, $fireColorT 70%);
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  animation: rise $dur ease-in infinite;
+
+  @for $p from 1 through $parts {
+    &:nth-of-type(#{$p}) {
+      animation-delay: $dur * random();
+      left: calc((100% - #{$partSize}) * #{($p - 1) / $parts});
+    }
+  }
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(0) scale(1);
+  }
+  25% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-40px) scale(0);
+  }
+}
