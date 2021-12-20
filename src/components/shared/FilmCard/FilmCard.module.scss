@@ -109,16 +109,16 @@
       @extend %flex-align;
       margin-right: 24px;
 
+      @include breakpoint(mobile) {
+        margin-right: 8px;
+      }
+
       p {
         margin-right: 16px;
 
         @include breakpoint(mobile) {
           margin-right: 5px;
         }
-      }
-
-      @include breakpoint(mobile) {
-        margin-right: 10px;
       }
 
       &:last-of-type {
