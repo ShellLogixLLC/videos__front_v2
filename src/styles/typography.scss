@@ -101,7 +101,6 @@
   font-weight: 600;
   font-size: 16px;
   line-height: 22px;
-  // color: $main;
 }
 
 %button_medium {
@@ -133,7 +132,6 @@
   font-weight: 600;
   font-size: 12px;
   line-height: 22px;
-  // color: $main;
 }
 
 %link_medium {
@@ -149,16 +147,15 @@
   line-height: 78px;
 }
 
-%category-buttons {
+%film_name {
   font-family: $montserrat_family;
   font-weight: 500;
   font-size: 20px;
   line-height: 24px;
 }
 
-%film_name {
+%language_sizes {
   font-family: $montserrat_family;
-  font-weight: 500;
   font-size: 20px;
   line-height: 24px;
 }
@@ -175,20 +172,6 @@
   font-size: 18px;
   line-height: 22px;
   color: $red;
-}
-
-%film_likes_views_comments {
-  font-family: $montserrat_family;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 24px;
-}
-
-%actor_name {
-  font-family: $montserrat_family;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 24px;
 }
 
 %separate_page_film_name {

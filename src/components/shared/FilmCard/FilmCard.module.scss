@@ -111,6 +111,14 @@
 
       p {
         margin-right: 16px;
+
+        @include breakpoint(mobile) {
+          margin-right: 5px;
+        }
+      }
+
+      @include breakpoint(mobile) {
+        margin-right: 10px;
       }
 
       &:last-of-type {

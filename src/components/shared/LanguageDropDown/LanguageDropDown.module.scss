@@ -4,8 +4,7 @@
   position: relative;
 
   &__header {
-    display: flex;
-    align-items: center;
+    @extend %flex-align;
     padding: 0;
     font-weight: unset;
     border-radius: unset;
@@ -21,22 +20,44 @@
 
     &__language {
       width: 33px;
+      @extend %language_sizes;
     }
 
     &_arrow {
       width: 48px;
       height: 48px;
+      border-radius: 0;
       transition: transform 0.3s ease-in;
     }
   }
 
-  &__content {
+  &__language {
+    cursor: default;
+    background-color: $black;
+    height: 96px;
+    @extend %flex-column;
+    justify-content: space-evenly;
     position: absolute;
     top: 69px;
     right: 0;
     width: 105px;
-    height: 150px;
-    padding: 0 16px;
-    border: 1px solid red;
+    border: unset;
+    @extend %box-shadow;
+
+    &__item {
+      width: 100%;
+      margin: 0;
+      @extend %language_sizes;
+      @extend %text_left;
+      @extend %flex-align;
+      padding: 0 0 0 16px;
+      background-color: transparent;
+      color: $red;
+
+      &:hover {
+        border-radius: 0;
+        background-color: transparent;
+      }
+    }
   }
 }
