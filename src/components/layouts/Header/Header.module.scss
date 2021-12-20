@@ -17,8 +17,19 @@
       width: 100%;
       @extend %flex-between;
 
+      @include breakpoint(wide) {
+        margin: 0 15px;
+      }
+
+      &__default {
+        font-weight: unset;
+        font-size: unset;
+      }
+
       &__disabled {
-        animation: disabledPage 1s forwards;
+        font-size: unset;
+        font-weight: unset;
+        animation: disabledPage 0.35s alternate;
       }
     }
 
@@ -41,6 +52,12 @@
       &__right_icon {
         width: 20px;
         height: 20px;
+      }
+
+      &__wishlist {
+        @include breakpoint(wide) {
+          margin: 0 10px;
+        }
       }
     }
   }

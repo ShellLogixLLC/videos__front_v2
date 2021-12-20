@@ -29,10 +29,9 @@ const HomePage: NextPage = () => {
       <CategoryCard>Name</CategoryCard>
       <FireAnimation width="100%" count={105}>
         <CreepingLineForText>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque
-          esse, alias corrupti dignissimos, minima illum pariatur nesciunt totam
-          fugit, repellat asperiores veniam laudantium quaerat ipsum et laborum
-          molestiae libero sequi!
+          Lorem ipsum dolor sit, esse, alias, minima , fugit, ipsum et, libero!
+          Lorem ipsum dolor sit, esse, alias, minima , fugit, ipsum et, libero!
+          Lorem ipsum dolor sit, esse, alias, minima fugit, ipsum et, libero!
         </CreepingLineForText>
       </FireAnimation>
     </Seo>

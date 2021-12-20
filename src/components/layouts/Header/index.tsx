@@ -18,9 +18,12 @@ const Header: React.FC = () => {
   };
 
   const headerTable = routes.map(({id, routeName, pageName}) => {
-    const isPreviousOrDisabledClasses = classNames({
-      [styles.wrapper__content_menu__disabled]: ifPreviousRouteActive(id),
-    });
+    const isPreviousOrDisabledClasses = classNames(
+      styles.wrapper__content_menu__default,
+      {
+        [styles.wrapper__content_menu__disabled]: ifPreviousRouteActive(id),
+      },
+    );
 
     return (
       <Link

@@ -18,7 +18,7 @@ $animationSpeed: 23s;
 }
 
 .slider {
-  background: white;
+  background: $white;
   height: 100%;
   margin: auto;
   overflow: hidden;
@@ -38,7 +38,6 @@ $animationSpeed: 23s;
   &::after {
     right: 0;
     top: 0;
-    // transform: rotateZ(180deg);
   }
 
   &::before {
@@ -50,8 +49,9 @@ $animationSpeed: 23s;
     animation: scroll $animationSpeed linear infinite;
     display: flex;
     position: relative;
+    padding-left: 15vw;
     z-index: 465;
-    color: red;
+    color: $red;
     width: calc(250px * 14);
   }
 }

@@ -1,22 +1,15 @@
 .container {
   &_active {
-    font-weight: bold;
-    animation: activePage 0.5s forwards;
-  }
-
-  &_disabled {
-    opacity: 0.6;
-    pointer-events: none;
-    font-weight: 100;
-    font-size: 100%;
-    animation: disabledPage 0.5s forwards;
+    font-weight: unset;
+    font-size: unset;
+    animation: activePage 0.35s forwards;
   }
 }
 
 @keyframes activePage {
   0% {
-    font-weight: 100;
-    font-size: 100%;
+    font-weight: unset;
+    font-size: unset;
   }
   100% {
     font-size: 18px;
