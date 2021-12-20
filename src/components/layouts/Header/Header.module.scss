@@ -17,12 +17,8 @@
       width: 100%;
       @extend %flex-between;
 
-      &_page {
-        animation: disabledPage 0.5s alternate;
-      }
-
-      &_active {
-        background-color: red;
+      &__disabled {
+        animation: disabledPage 1s forwards;
       }
     }
 
@@ -47,5 +43,16 @@
         height: 20px;
       }
     }
+  }
+}
+
+@keyframes disabledPage {
+  0% {
+    font-size: 18px;
+    font-weight: 900;
+  }
+  100% {
+    font-weight: 100;
+    font-size: 100%;
   }
 }

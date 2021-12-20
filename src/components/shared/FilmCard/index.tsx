@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
+import classNames from 'classnames';
 
-import {LikeIt, FilmLikeIcon, ViewsCount, CommentsCount} from '~/assets';
+import {HeartLikes, FilmLikeIcon, ViewsCount, CommentsCount} from '~/assets';
 import {Typography} from '~/components';
+
+import Button from '../Button';
 
 import {FilmCardTypes} from './types';
 import styles from './FilmCard.module.scss';
@@ -15,10 +18,23 @@ const FilmCard: React.FC<FilmCardTypes> = ({
   descriptionText,
   globalTime,
 }) => {
+  const [isLiked, setIsLiked] = useState(false);
+
+  const isLikeIt = () => {
+    setIsLiked(!isLiked);
+  };
+
+  const isLikedClasses = classNames({
+    [styles.wrapper__film_like_it]: isLiked,
+    [styles.wrapper__film_not_like_it]: !isLiked,
+  });
+
   return (
     <section className={styles.wrapper}>
       <div className={styles.wrapper__film}>
-        <LikeIt className={styles.wrapper__film_like_it} />
+        <Button className={isLikedClasses} onClick={isLikeIt}>
+          <HeartLikes />
+        </Button>
         <Typography tagName="span" className={styles.wrapper__film__time}>
           {globalTime}
         </Typography>

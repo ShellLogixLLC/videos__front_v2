@@ -13,7 +13,6 @@ const LanguageDropDown: React.FC = () => {
         <span className={styles.wrapper__header__language}>Eng</span>
         <LanguageArrowBottom className={styles.wrapper__header_arrow} />
       </Button>
-      {/* <div className={styles.wrapper__content}>My COntent</div> */}
     </div>
   );
 };
