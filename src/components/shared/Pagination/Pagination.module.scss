@@ -1,13 +1,12 @@
 .container {
-  margin-left: 50px;
-  margin-top: 50px;
+  margin-top: 50px 0 0 50px;
 
   &__list {
-    color: #84878d;
+    color: $grey_color;
     margin-right: 8px;
     padding: 6px 10px;
-    border-radius: 8px;
-    background: #ffffff;
+    @extend %border-rad_8;
+    background-color: $white;
     border: 1px solid #e6e6e6;
   }
   &__inner {
@@ -15,15 +14,15 @@
   }
 
   &_active {
-    border: 1px solid red;
-    border-radius: 8px;
+    border: 1px solid $red;
+    @extend %border-rad_8;
 
     &__link {
-      color: red !important;
+      color: $red !important;
     }
   }
 
   &__link {
-    color: #84878d;
+    color: $grey_color;
   }
 }

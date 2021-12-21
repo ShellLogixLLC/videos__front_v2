@@ -2,13 +2,13 @@
   width: 100%;
   display: flex;
   padding: 14px 16px;
-  border-radius: 8px;
+  @extend %border-rad_8;
   color: #1a1b1e;
   transition: all 0.1s;
   border: 1px solid #e4e6eb;
 
   &::placeholder {
-    color: #84878d;
+    color: $grey_color;
   }
 
   &:hover {
@@ -17,7 +17,7 @@
 
   &:active,
   &:focus {
-    border-color: red;
+    border-color: $red;
   }
 
   &_with_icon {
@@ -39,20 +39,20 @@
 
   &__label {
     font-weight: 600;
-    color: #84878d;
+    color: $grey_color;
   }
 
   &__error {
-    border-color: #d63842 !important;
+    border-color: $dark-red !important;
 
     &__text {
-      color: #d63842;
+      color: $dark-red;
     }
   }
 
   &__right_icon {
-    right: 16px;
     cursor: pointer;
     position: absolute;
+    right: 16px;
   }
 }

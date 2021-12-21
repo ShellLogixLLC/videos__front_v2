@@ -9,7 +9,7 @@
   cursor: pointer;
   height: 36px;
   padding: 9px 0 8px 12px;
-  border-radius: 8px;
+  @extend %border-rad_8;
   max-width: 237px;
   width: 100%;
 
@@ -18,7 +18,7 @@
   }
 
   &__text {
-    color: #84878d;
+    color: $grey_color;
   }
 
   &__active {

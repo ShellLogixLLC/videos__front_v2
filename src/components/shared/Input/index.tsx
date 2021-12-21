@@ -14,6 +14,7 @@ const Input = forwardRef<any, IInputProps>(
       error,
       disabled,
       RightIcon,
+      rightIconStyle = '',
       RightToggledIcon,
       placeholder,
       type = 'text',
@@ -24,6 +25,8 @@ const Input = forwardRef<any, IInputProps>(
     },
     ref,
   ) => {
+    const [isToggledIcon, setIsToggledIcon] = useState<boolean>(false);
+
     const inputClasses = classNames(styles.container, {
       [className]: className,
       [styles.container__error]: !!error,
@@ -40,9 +43,11 @@ const Input = forwardRef<any, IInputProps>(
       [labelClassName]: labelClassName,
     });
 
-    const [isToggledIcon, setIsToggledIcon] = useState(false);
+    const rightIconCLasses = classNames(styles.container__right_icon, {
+      [rightIconStyle]: rightIconStyle,
+    });
 
-    const togglePasswordVisiblity = useCallback(() => {
+    const togglePasswordVisibility = useCallback(() => {
       if (RightToggledIcon) {
         setIsToggledIcon(!isToggledIcon);
       }
@@ -76,8 +81,8 @@ const Input = forwardRef<any, IInputProps>(
           {RightIcon && (
             <RightIconComponent
               role="button"
-              className={styles.container__right_icon}
-              onClick={togglePasswordVisiblity}
+              className={rightIconCLasses}
+              onClick={togglePasswordVisibility}
               style={{
                 cursor: RightToggledIcon ? 'pointer' : 'auto',
               }}

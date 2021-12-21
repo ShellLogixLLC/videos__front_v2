@@ -1,7 +1,7 @@
 .container {
   font-weight: bold;
-  border-radius: 8px;
-  background-color: red;
+  @extend %border-rad_8;
+  background-color: $red;
 
   &__left {
     @extend %flex-align;
@@ -17,7 +17,7 @@
   }
 
   &:disabled {
-    color: #84878d;
+    color: $grey_color;
     background-color: #e4e6eb;
   }
 
@@ -32,8 +32,9 @@
   &_ghost {
     background-color: transparent;
     color: #5b708f;
+
     &:hover {
-      background: none;
+      background-color: none;
     }
   }
 }

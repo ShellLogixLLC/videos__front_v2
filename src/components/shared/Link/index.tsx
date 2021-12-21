@@ -16,6 +16,7 @@ const Link: React.FC<ILinkProps> = ({
   queryValue,
   anchorProps,
   queryKey = '',
+  previousClasses = '',
   activeClassName = '',
   ...linkProps
 }) => {
@@ -35,6 +36,7 @@ const Link: React.FC<ILinkProps> = ({
   const anchorClasses = classNames(className, {
     [styles.container_disabled]: disabled,
     [styles.container_active]: activeClasses,
+    [previousClasses]: previousClasses,
     [activeClassName]: activeClasses && activeClassName,
   });
 

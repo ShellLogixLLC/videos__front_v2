@@ -1,28 +1,26 @@
-export type RoutesProps = {
-  routeName: string;
-  pageName?: string;
-  linkCLasses?: string;
-};
+import {Route} from '~/constants';
+
+import {RoutesProps} from './type';
 
 export const routes: RoutesProps[] = [
   {
-    routeName: '/categories',
+    id: 1,
     pageName: 'Categories',
-    linkCLasses: 'wrapper_content_menu_page',
+    routeName: Route.Categories,
   },
   {
+    id: 2,
     pageName: 'Top Rated',
-    routeName: '/favorites',
-    linkCLasses: 'wrapper_content_menu_page',
+    routeName: Route.Favorites,
   },
   {
+    id: 3,
     pageName: 'Most Liked',
-    routeName: '/most-liked',
-    linkCLasses: 'wrapper_content_menu_page',
+    routeName: Route.MostLiked,
   },
   {
+    id: 4,
     pageName: 'New',
-    routeName: '/new',
-    linkCLasses: 'wrapper_content_menu_page',
+    routeName: Route.New,
   },
 ];
