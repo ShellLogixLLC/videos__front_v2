@@ -3,15 +3,15 @@
   width: 100%;
   height: 207px;
   padding: 16px;
-  background: $black;
+  background-color: $black;
   @extend %box-shadow;
-  @extend %brd-rad_10;
+  @extend %border-rad_10;
 
   &__content {
     max-width: 175px;
     width: 100%;
     height: 145px;
-    background: $dark-white;
+    background-color: $dark-white;
   }
 
   &__name {

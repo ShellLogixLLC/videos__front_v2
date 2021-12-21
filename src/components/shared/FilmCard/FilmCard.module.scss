@@ -2,7 +2,7 @@
   max-width: 433px;
   width: 100%;
   padding: 16px;
-  @extend %brd-rad_10;
+  @extend %border-rad_10;
   background-color: $black;
   @extend %box-shadow;
   min-height: 386px;
@@ -69,8 +69,8 @@
     &__time {
       width: 70px;
       padding: 5px 16px;
-      background: $grey;
-      @extend %brd-rad_10;
+      background-color: $grey;
+      @extend %border-rad_10;
       @extend %flex-center;
       @extend %film_info_text;
       position: absolute;

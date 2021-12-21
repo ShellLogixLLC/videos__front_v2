@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import {routes} from '~/utils';
+import {Route} from '~/constants';
 import {useHistory} from '~/context';
 import {Logo, SearchIcon, LikeIt} from '~/assets';
 import {Link, Input, LanguageDropDown} from '~/components';
@@ -52,7 +53,7 @@ const Header: React.FC = () => {
             className={styles.wrapper__content__other__search}
             rightIconStyle={styles.wrapper__content__other__right_icon}
           />
-          <Link to="/my_favorites">
+          <Link to={Route.MyFavorite}>
             <LikeIt className={styles.wrapper__content__other__wishlist} />
           </Link>
           <LanguageDropDown />

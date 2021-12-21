@@ -3,3 +3,8 @@ export type RoutesProps = {
   pageName: string;
   id: number;
 };
+
+export type FilteredProp = {
+  nameRoute: string;
+  id: number;
+};

@@ -3,8 +3,8 @@
   cursor: pointer;
   max-width: 320px;
   max-height: 536px;
-  @extend %brd-rad_10;
-  background: $black;
+  @extend %border-rad_10;
+  background-color: $black;
   @extend %box-shadow;
   position: relative;
 
@@ -28,10 +28,10 @@
     margin-top: 16px;
     max-height: 432px;
     overflow: auto;
-    background: $black;
+    background-color: $black;
     @extend %flex-column;
     @include custom-scroll;
-    @extend %brd-rad-bottom_10;
+    @extend %border-bottom-rad_10;
     @extend %box-shadow;
     position: absolute;
     z-index: 5;

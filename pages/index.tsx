@@ -8,6 +8,7 @@ import {
   Filter,
   FilmCard,
   CategoryCard,
+  CreepingLine,
   FireAnimation,
   CreepingLineForText,
 } from '~/components';
@@ -15,6 +16,7 @@ import {
 const HomePage: NextPage = () => {
   return (
     <Seo title="Home page" metaDescription="Home page description">
+      <CreepingLine />
       <Filter
         filterTitle="Sort By"
         options={filteredMass}

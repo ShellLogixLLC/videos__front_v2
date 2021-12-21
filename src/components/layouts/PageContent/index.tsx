@@ -1,7 +1,12 @@
 import React from 'react';
+import classNames from 'classnames';
 
-const PageContent: React.FC = ({children}) => (
-  <div className="container project_body">{children}</div>
-);
+import {PageContentClasses} from './type';
+
+const PageContent: React.FC<PageContentClasses> = ({children, className}) => {
+  const pageContentClasses = classNames('container project_body', className);
+
+  return <div className={pageContentClasses}>{children}</div>;
+};
 
 export default PageContent;

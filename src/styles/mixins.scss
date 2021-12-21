@@ -36,8 +36,8 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background: $red;
-    @extend %brd-rad_10;
+    background-color: $red;
+    @extend %border-rad_10;
     @extend %box-shadow;
   }
 }

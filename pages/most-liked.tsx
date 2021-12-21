@@ -3,9 +3,9 @@ import {NextPage} from 'next';
 
 import {Seo, Typography} from '~/components';
 
-const HomePage: NextPage = () => {
+const MostLikedPage: NextPage = () => {
   return (
-    <Seo title="Home page" metaDescription="Home page description">
+    <Seo title="Most liked page" metaDescription="Most liked page description">
       <Typography tagName="div" align="right" variant="Text">
         CATEGORY
       </Typography>
@@ -13,4 +13,4 @@ const HomePage: NextPage = () => {
   );
 };
 
-export default HomePage;
+export default MostLikedPage;

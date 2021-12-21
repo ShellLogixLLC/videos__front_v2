@@ -3,9 +3,9 @@ import {NextPage} from 'next';
 
 import {Seo, Typography} from '~/components';
 
-const HomePage: NextPage = () => {
+const NewPage: NextPage = () => {
   return (
-    <Seo title="Home page" metaDescription="Home page description">
+    <Seo title="New page" metaDescription="New page description">
       <Typography tagName="div" align="right" variant="Text">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga ducimus
         accusantium quibusdam consequuntur recusandae soluta amet nostrum non,
@@ -16,4 +16,4 @@ const HomePage: NextPage = () => {
   );
 };
 
-export default HomePage;
+export default NewPage;

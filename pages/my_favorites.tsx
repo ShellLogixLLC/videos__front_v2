@@ -3,9 +3,11 @@ import {NextPage} from 'next';
 
 import {Seo, FilmCard} from '~/components';
 
-const HomePage: NextPage = () => {
+const MyFavoritesPage: NextPage = () => {
   return (
-    <Seo title="Home page" metaDescription="Home page description">
+    <Seo
+      title="My favorites page"
+      metaDescription="My favorites page description">
       <FilmCard
         globalTime="05:00"
         filmName="HHH"
@@ -16,4 +18,4 @@ const HomePage: NextPage = () => {
   );
 };
 
-export default HomePage;
+export default MyFavoritesPage;

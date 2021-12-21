@@ -1,9 +1,12 @@
 import {useRouter} from 'next/router';
 import React, {createContext, useState, useEffect, useContext} from 'react';
 
-import {HValidation, HistoryProps} from './types';
+import {HistoryValidation, HistoryProps} from './types';
 
-const HistoryContext = createContext<HValidation>({} as HValidation);
+const HistoryContext = createContext<HistoryValidation>(
+  {} as HistoryValidation,
+);
+
 export const HistoryProvider: React.FC<HistoryProps> = ({children}) => {
   const {asPath, push, pathname} = useRouter();
   const [history, setHistory] = useState<string[]>([]);
@@ -38,7 +41,7 @@ export const HistoryProvider: React.FC<HistoryProps> = ({children}) => {
   );
 };
 
-export function useHistory(): HValidation {
+export function useHistory(): HistoryValidation {
   const context = useContext(HistoryContext);
   return context;
 }

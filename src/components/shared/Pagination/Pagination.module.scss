@@ -5,8 +5,8 @@
     color: $grey_color;
     margin-right: 8px;
     padding: 6px 10px;
-    @extend %brd-rad_8;
-    background: $white;
+    @extend %border-rad_8;
+    background-color: $white;
     border: 1px solid #e6e6e6;
   }
   &__inner {
@@ -15,7 +15,7 @@
 
   &_active {
     border: 1px solid $red;
-    @extend %brd-rad_8;
+    @extend %border-rad_8;
 
     &__link {
       color: $red !important;

@@ -1,8 +1,13 @@
 enum Route {
   Home = '/',
+  New = '/new',
   Error = '/404',
   Terms = '/terms-of-service',
   Privacy = '/privacy-policy',
+  Favorites = '/favorites',
+  MostLiked = '/most-liked',
+  Categories = '/categories',
+  MyFavorite = '/my_favorites',
 
   // Contract manager routes
   Vault = '/vault',

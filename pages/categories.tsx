@@ -3,12 +3,12 @@ import {NextPage} from 'next';
 
 import {Seo} from '~/components';
 
-const HomePage: NextPage = () => {
+const CategoriesPage: NextPage = () => {
   return (
-    <Seo title="Home page" metaDescription="Home page description">
+    <Seo title="Categories page" metaDescription="Categories page description">
       CATEGORY
     </Seo>
   );
 };
 
-export default HomePage;
+export default CategoriesPage;

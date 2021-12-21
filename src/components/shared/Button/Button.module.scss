@@ -1,6 +1,6 @@
 .container {
   font-weight: bold;
-  @extend %brd-rad_8;
+  @extend %border-rad_8;
   background-color: $red;
 
   &__left {
@@ -34,7 +34,7 @@
     color: #5b708f;
 
     &:hover {
-      background: none;
+      background-color: none;
     }
   }
 }
