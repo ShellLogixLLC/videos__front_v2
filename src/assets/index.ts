@@ -111,7 +111,7 @@ export {default as MapPaperGPS} from './icons/mapPaperGPS.svg';
 export {default as ShoppingBag} from './icons/shoppingBag.svg';
 export {default as DisketteIcon} from './icons/diskette.svg';
 export {default as FilmLikeIcon} from './icons/filmLikeIcon.svg';
-export {default as GlobalFilter} from './icons/globalFilter.svg';
+export {default as MobileFilter} from './icons/globalFilter.svg';
 export {default as RefreshRound} from './icons/refreshRound.svg';
 export {default as MusicTwoNota} from './icons/musicTwoNota.svg';
 export {default as LinkInBorder} from './icons/linkInBorder.svg';

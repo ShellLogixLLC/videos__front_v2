@@ -1,18 +1,20 @@
 .container {
   &_active {
-    font-weight: unset;
-    font-size: unset;
+    color: $red;
+    @extend %film_name;
     animation: activePage 0.35s forwards;
   }
 }
 
 @keyframes activePage {
   0% {
-    font-weight: unset;
-    font-size: unset;
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
   }
   100% {
-    font-size: 18px;
+    font-size: 22px;
     font-weight: 900;
   }
 }

@@ -22,13 +22,11 @@
       }
 
       &__default {
-        font-weight: unset;
-        font-size: unset;
+        @extend %film_name;
       }
 
       &__disabled {
-        font-size: unset;
-        font-weight: unset;
+        @extend %film_name;
         animation: disabledPage 0.35s alternate;
       }
     }
@@ -65,11 +63,15 @@
 
 @keyframes disabledPage {
   0% {
+    color: $red;
     font-size: 18px;
     font-weight: 900;
   }
   100% {
-    font-weight: unset;
-    font-size: unset;
+    color: $white;
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
   }
 }

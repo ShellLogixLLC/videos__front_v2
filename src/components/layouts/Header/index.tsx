@@ -40,7 +40,7 @@ const Header: React.FC = () => {
   return (
     <header className={styles.wrapper}>
       <div className={`${styles.wrapper__content} container`}>
-        <Link className={styles.wrapper__content_logo} to="/">
+        <Link className={styles.wrapper__content_logo} to={Route.Home}>
           <Logo />
         </Link>
         <nav className={styles.wrapper__content_menu}>{headerTable}</nav>
