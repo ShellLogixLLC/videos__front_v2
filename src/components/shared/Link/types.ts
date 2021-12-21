@@ -8,6 +8,7 @@ export interface ILinkProps {
   className?: string;
   queryValue?: string;
   onClick?: () => void;
+  previousClasses?: string;
   activeClassName?: string;
   anchorProps?: React.AnchorHTMLAttributes<HTMLAnchorElement>;
 }

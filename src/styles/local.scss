@@ -84,6 +84,7 @@ figcaption {
 
 body {
   height: 100%;
+  @include custom-scroll;
   background-color: $light-black;
   font-family: $montserrat_family;
 }
@@ -127,6 +128,7 @@ img {
   padding: 0;
   outline: none;
   color: black;
+  user-select: none;
   list-style-type: none;
   text-decoration: none;
   box-sizing: border-box;
@@ -135,5 +137,5 @@ img {
 }
 
 ::selection {
-  background-color: #c4c4c4;
+  background-color: $dark-white;
 }

@@ -1,0 +1,149 @@
+.wrapper {
+  max-width: 433px;
+  width: 100%;
+  padding: 16px;
+  @extend %border-rad_10;
+  background-color: $black;
+  @extend %box-shadow;
+  min-height: 386px;
+
+  &__film {
+    width: 100%;
+    height: 200px;
+    position: relative;
+    margin-bottom: 16px;
+    background-color: $dark-white;
+
+    &_not_like_it {
+      padding: unset;
+      background-color: unset;
+      position: absolute;
+      top: 13px;
+      right: 28px;
+
+      svg {
+        path {
+          &:first-child {
+            fill: $red !important;
+          }
+        }
+
+        path {
+          &:last-child {
+            animation: animationAllBackgroundDisabled 0.5s forwards;
+          }
+        }
+      }
+
+      &:hover {
+        background-color: unset;
+      }
+    }
+
+    &_like_it {
+      padding: unset;
+      background-color: unset;
+      position: absolute;
+      top: 13px;
+      right: 28px;
+
+      svg {
+        path {
+          &:first-child {
+            fill: $red;
+          }
+        }
+
+        path {
+          &:last-child {
+            animation: animationAllBackground 0.5s forwards;
+          }
+        }
+      }
+
+      &:hover {
+        background-color: unset;
+      }
+    }
+
+    &__time {
+      width: 70px;
+      padding: 5px 16px;
+      background-color: $grey;
+      @extend %border-rad_10;
+      @extend %flex-center;
+      @extend %film_info_text;
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+    }
+  }
+
+  &__other {
+    @extend %flex-between;
+    margin-bottom: 8px;
+
+    &_name {
+      @extend %film_name;
+      user-select: text;
+      text-transform: capitalize;
+    }
+
+    &__dw_date {
+      @extend %film_date;
+    }
+  }
+
+  &__pr_description {
+    @extend %film_info_text;
+    min-height: 64px;
+    user-select: text;
+    margin-bottom: 8px;
+    @extend %film_name;
+  }
+
+  &__card_footer {
+    @extend %flex-align;
+
+    &_item {
+      @extend %flex-align;
+      margin-right: 24px;
+
+      @include breakpoint(mobile) {
+        margin-right: 8px;
+      }
+
+      p {
+        margin-right: 16px;
+
+        @include breakpoint(mobile) {
+          margin-right: 5px;
+        }
+      }
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+@keyframes animationAllBackground {
+  0% {
+    fill: transparent;
+  }
+
+  100% {
+    fill: $red;
+  }
+}
+
+@keyframes animationAllBackgroundDisabled {
+  0% {
+    fill: $red;
+  }
+
+  100% {
+    fill: transparent;
+  }
+}

@@ -8,8 +8,11 @@ import {ISeoProps} from './types';
 const Seo: React.FC<ISeoProps> = ({
   title,
   children,
+  className,
   metaDescription,
   showHeader = true,
+  showFooter = true,
+  showPageContent = true,
 }) => (
   <React.Fragment>
     <Head>
@@ -18,8 +21,10 @@ const Seo: React.FC<ISeoProps> = ({
       <meta name="viewport" content="width=device-width, user-scalable=no" />
     </Head>
     {showHeader && <Header />}
-    <PageContent>{children}</PageContent>
-    <Footer />
+    {showPageContent && (
+      <PageContent className={className}>{children}</PageContent>
+    )}
+    {showFooter && <Footer />}
   </React.Fragment>
 );
 
