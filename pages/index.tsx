@@ -18,7 +18,7 @@ const HomePage: NextPage = () => {
       <Filter
         filterTitle="Sort By"
         options={filteredMass}
-        iconProp={<FilterLamp />}
+        IconProp={FilterLamp}
       />
       <FilmCard
         globalTime="05:00"
@@ -26,13 +26,9 @@ const HomePage: NextPage = () => {
         descriptionText="COOL"
         uploadDate="21/21/12"
       />
-      <CategoryCard>Name</CategoryCard>
+      <CategoryCard text="Name" />
       <FireAnimation width="100%" count={105}>
-        <CreepingLineForText>
-          Lorem ipsum dolor sit, esse, alias, minima , fugit, ipsum et, libero!
-          Lorem ipsum dolor sit, esse, alias, minima , fugit, ipsum et, libero!
-          Lorem ipsum dolor sit, esse, alias, minima fugit, ipsum et, libero!
-        </CreepingLineForText>
+        <CreepingLineForText text="Lorem ipsum dolor sit, esse, alias, minima , fugit, ipsum et, libero! Lorem ipsum dolor sit, esse, alias, minima , fugit, ipsum et, libero! Lorem ipsum dolor sit, esse, alias, minima fugit, ipsum et, libero!" />{' '}
       </FireAnimation>
     </Seo>
   );

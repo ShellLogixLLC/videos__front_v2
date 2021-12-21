@@ -46,7 +46,7 @@ const Header: React.FC = () => {
         <div className={styles.wrapper__content__other}>
           <Input
             type="text"
-            name="Global search"
+            name="globalSearch"
             placeholder="Search"
             RightIcon={SearchIcon}
             className={styles.wrapper__content__other__search}

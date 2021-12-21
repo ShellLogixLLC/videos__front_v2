@@ -5,7 +5,7 @@ export type FilterType = {
 };
 
 export type FilterProps = {
-  iconProp: any;
+  IconProp: any;
   filterTitle: string;
   //
   options: FilterType[];

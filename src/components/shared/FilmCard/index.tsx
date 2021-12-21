@@ -18,9 +18,9 @@ const FilmCard: React.FC<FilmCardTypes> = ({
   descriptionText,
   globalTime,
 }) => {
-  const [isLiked, setIsLiked] = useState(false);
+  const [isLiked, setIsLiked] = useState<boolean>(false);
 
-  const isLikeIt = () => {
+  const toggleLike = () => {
     setIsLiked(!isLiked);
   };
 
@@ -32,7 +32,7 @@ const FilmCard: React.FC<FilmCardTypes> = ({
   return (
     <section className={styles.wrapper}>
       <div className={styles.wrapper__film}>
-        <Button className={isLikedClasses} onClick={isLikeIt}>
+        <Button className={isLikedClasses} onClick={toggleLike}>
           <HeartLikes />
         </Button>
         <Typography tagName="span" className={styles.wrapper__film__time}>

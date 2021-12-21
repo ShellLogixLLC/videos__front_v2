@@ -8,9 +8,9 @@ import Typography from '../Typography';
 import {FilterProps} from './types';
 import styles from './Filter.module.scss';
 
-const Filter: React.FC<FilterProps> = ({options, filterTitle, iconProp}) => {
+const Filter: React.FC<FilterProps> = ({options, filterTitle, IconProp}) => {
   const filterRef = useRef(null);
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState<boolean>(false);
 
   const handleOpener = () => {
     setExpanded(true);
@@ -42,7 +42,7 @@ const Filter: React.FC<FilterProps> = ({options, filterTitle, iconProp}) => {
         <Typography className={styles.container__header__title}>
           {filterTitle}
         </Typography>
-        {iconProp}
+        <IconProp />
       </div>
       {expanded && (
         <div className={styles.container__content}>{renderFilteredTable}</div>

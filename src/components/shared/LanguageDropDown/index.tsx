@@ -9,8 +9,8 @@ import styles from './LanguageDropDown.module.scss';
 
 const LanguageDropDown: React.FC = () => {
   const filterRef = useRef(null);
-  const [expanded, setExpanded] = useState(false);
-  const [activeLanguage, setActiveLanguage] = useState('Eng');
+  const [expanded, setExpanded] = useState<boolean>(false);
+  const [activeLanguage, setActiveLanguage] = useState<string>('Eng');
 
   const handleOpener = () => {
     setExpanded(true);

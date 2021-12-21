@@ -25,6 +25,8 @@ const Input = forwardRef<any, IInputProps>(
     },
     ref,
   ) => {
+    const [isToggledIcon, setIsToggledIcon] = useState<boolean>(false);
+
     const inputClasses = classNames(styles.container, {
       [className]: className,
       [styles.container__error]: !!error,
@@ -44,8 +46,6 @@ const Input = forwardRef<any, IInputProps>(
     const rightIconCLasses = classNames(styles.container__right_icon, {
       [rightIconStyle]: rightIconStyle,
     });
-
-    const [isToggledIcon, setIsToggledIcon] = useState(false);
 
     const togglePasswordVisibility = useCallback(() => {
       if (RightToggledIcon) {
