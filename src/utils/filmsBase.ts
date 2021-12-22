@@ -1,6 +1,6 @@
-const staticBasa = [
+const filmsBase = [
   {
-    filmName: 'Coll film',
+    filmName: '1 Coll film',
     viewsCount: '777',
     likeCount: '156',
     uploadDate: '22/15/26',
@@ -10,7 +10,17 @@ const staticBasa = [
   },
 
   {
-    filmName: 'Bad film',
+    filmName: 'Film qwerty',
+    viewsCount: '777',
+    likeCount: '156',
+    uploadDate: '22/15/26',
+    commentsCount: '999',
+    descriptionText: 'This video is property IDEO',
+    globalTime: '5.00',
+  },
+
+  {
+    filmName: '2 Bad film',
     viewsCount: '156',
     likeCount: '753',
     uploadDate: '22/15/26',
@@ -20,7 +30,7 @@ const staticBasa = [
   },
 
   {
-    filmName: 'Light film',
+    filmName: '3 Light film',
     viewsCount: '753',
     likeCount: '456',
     uploadDate: '22/15/26',
@@ -30,7 +40,7 @@ const staticBasa = [
   },
 
   {
-    filmName: 'Coll light film',
+    filmName: '4 Coll light film',
     viewsCount: '159',
     likeCount: '753',
     uploadDate: '22/15/26',
@@ -39,7 +49,7 @@ const staticBasa = [
     globalTime: '0.55',
   },
   {
-    filmName: 'Coll film',
+    filmName: '5 Coll film',
     viewsCount: '654',
     likeCount: '456',
     uploadDate: '22/15/26',
@@ -48,7 +58,7 @@ const staticBasa = [
     globalTime: '5.00',
   },
   {
-    filmName: 'Coll film',
+    filmName: '6 Coll film',
     viewsCount: '777',
     likeCount: '156',
     uploadDate: '22/15/26',
@@ -57,7 +67,7 @@ const staticBasa = [
     globalTime: '5.00',
   },
   {
-    filmName: 'Coll film',
+    filmName: '7 Coll film',
     viewsCount: '777',
     likeCount: '156',
     uploadDate: '22/15/26',
@@ -66,7 +76,7 @@ const staticBasa = [
     globalTime: '5.00',
   },
   {
-    filmName: 'Coll film',
+    filmName: '8 Coll film',
     viewsCount: '777',
     likeCount: '156',
     uploadDate: '22/15/26',
@@ -75,7 +85,7 @@ const staticBasa = [
     globalTime: '5.00',
   },
   {
-    filmName: 'Coll film',
+    filmName: '9 Coll film',
     viewsCount: '777',
     likeCount: '156',
     uploadDate: '22/15/26',
@@ -84,44 +94,7 @@ const staticBasa = [
     globalTime: '5.00',
   },
   {
-    filmName: 'Coll film',
-    viewsCount: '777',
-    likeCount: '156',
-    uploadDate: '22/15/26',
-    commentsCount: '999',
-    descriptionText: 'This video is property IDEO',
-    globalTime: '5.00',
-  },
-
-  {
-    filmName: 'Coll film',
-    viewsCount: '777',
-    likeCount: '156',
-    uploadDate: '22/15/26',
-    commentsCount: '999',
-    descriptionText: 'This video is property IDEO',
-    globalTime: '5.00',
-  },
-  {
-    filmName: 'Coll film',
-    viewsCount: '777',
-    likeCount: '156',
-    uploadDate: '22/15/26',
-    commentsCount: '999',
-    descriptionText: 'This video is property IDEO',
-    globalTime: '5.00',
-  },
-  {
-    filmName: 'Coll film',
-    viewsCount: '777',
-    likeCount: '156',
-    uploadDate: '22/15/26',
-    commentsCount: '999',
-    descriptionText: 'This video is property IDEO',
-    globalTime: '5.00',
-  },
-  {
-    filmName: 'Coll film',
+    filmName: '10 Coll film',
     viewsCount: '777',
     likeCount: '156',
     uploadDate: '22/15/26',
@@ -131,7 +104,7 @@ const staticBasa = [
   },
 
   {
-    filmName: 'Coll film',
+    filmName: '11 Coll film',
     viewsCount: '777',
     likeCount: '156',
     uploadDate: '22/15/26',
@@ -140,7 +113,25 @@ const staticBasa = [
     globalTime: '5.00',
   },
   {
-    filmName: 'Coll film',
+    filmName: '12 Coll film',
+    viewsCount: '777',
+    likeCount: '156',
+    uploadDate: '22/15/26',
+    commentsCount: '999',
+    descriptionText: 'This video is property IDEO',
+    globalTime: '5.00',
+  },
+  {
+    filmName: '13 Coll film',
+    viewsCount: '777',
+    likeCount: '156',
+    uploadDate: '22/15/26',
+    commentsCount: '999',
+    descriptionText: 'This video is property IDEO',
+    globalTime: '5.00',
+  },
+  {
+    filmName: '14 Coll film',
     viewsCount: '777',
     likeCount: '156',
     uploadDate: '22/15/26',
@@ -150,7 +141,7 @@ const staticBasa = [
   },
 
   {
-    filmName: 'Coll film',
+    filmName: '15 Coll film',
     viewsCount: '777',
     likeCount: '156',
     uploadDate: '22/15/26',
@@ -159,7 +150,17 @@ const staticBasa = [
     globalTime: '5.00',
   },
   {
-    filmName: 'Coll film',
+    filmName: '16 Coll film',
+    viewsCount: '777',
+    likeCount: '156',
+    uploadDate: '22/15/26',
+    commentsCount: '999',
+    descriptionText: 'This video is property IDEO',
+    globalTime: '5.00',
+  },
+
+  {
+    filmName: '17 Coll film',
     viewsCount: '777',
     likeCount: '156',
     uploadDate: '22/15/26',
@@ -168,7 +169,7 @@ const staticBasa = [
     globalTime: '5.00',
   },
   {
-    filmName: 'Coll film',
+    filmName: '18 Coll film',
     viewsCount: '777',
     likeCount: '156',
     uploadDate: '22/15/26',
@@ -177,7 +178,16 @@ const staticBasa = [
     globalTime: '5.00',
   },
   {
-    filmName: 'Coll film',
+    filmName: '19 Coll film',
+    viewsCount: '777',
+    likeCount: '156',
+    uploadDate: '22/15/26',
+    commentsCount: '999',
+    descriptionText: 'This video is property IDEO',
+    globalTime: '5.00',
+  },
+  {
+    filmName: '20 Coll film',
     viewsCount: '777',
     likeCount: '156',
     uploadDate: '22/15/26',
@@ -187,4 +197,4 @@ const staticBasa = [
   },
 ];
 
-export default staticBasa;
+export default filmsBase;

@@ -1,6 +1,6 @@
 import {FilteredProp} from './type';
 
-export const staticFilterSortBase: FilteredProp[] = [
+export const sortBase: FilteredProp[] = [
   {id: 1, nameRoute: 'All'},
   {id: 2, nameRoute: 'New'},
   {id: 3, nameRoute: 'Big'},
@@ -17,7 +17,7 @@ export const staticFilterSortBase: FilteredProp[] = [
   {id: 12365, nameRoute: 'QQQQQ'},
 ];
 
-export const staticFilterCategoryBase: FilteredProp[] = [
+export const categoryBase: FilteredProp[] = [
   {id: 1, nameRoute: 'CAT'},
   {id: 2, nameRoute: 'Dog'},
   {id: 3, nameRoute: 'Qwerty'},
