@@ -121,6 +121,7 @@ export {default as LinkCubeIcon} from './icons/linkCubeIcon.svg';
 export {default as DownloadIcon} from './icons/downloadIcon.svg';
 export {default as MusicOneNota} from './icons/musicOneNota.svg';
 export {default as HourglassIcon} from './icons/hourglass.svg';
+export {default as RightRedArrow} from './icons/rightRedArrow.svg';
 export {default as NewsPaperBold} from './icons/newsPaperBold.svg';
 export {default as CommentsCount} from './icons/commentsCount.svg';
 export {default as ClipboardIcon} from './icons/clipboardIcon.svg';

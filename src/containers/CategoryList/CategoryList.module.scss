@@ -1,0 +1,40 @@
+.wrapper {
+  position: relative;
+  @extend %flex-justify-between;
+
+  &__film {
+    max-width: 74.627%;
+    width: 100%;
+    position: relative;
+
+    &__back {
+      background-color: transparent;
+      color: $white;
+      padding: 0;
+      margin: 0;
+      @extend %flex-align;
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
+
+    &__title {
+      margin: 24px 0 32px;
+      @extend %project_title;
+    }
+
+    &__container {
+      @extend %flex-between;
+      flex-wrap: wrap;
+    }
+  }
+
+  &__sort_block {
+    max-width: 24%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    height: 170px;
+  }
+}

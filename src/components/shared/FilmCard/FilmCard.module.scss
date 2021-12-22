@@ -1,11 +1,12 @@
 .wrapper {
-  max-width: 433px;
+  max-width: 320px;
   width: 100%;
   padding: 16px;
   @extend %border-rad_10;
   background-color: $black;
   @extend %box-shadow;
   min-height: 386px;
+  margin-bottom: 32px;
 
   &__film {
     width: 100%;

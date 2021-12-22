@@ -30,7 +30,7 @@ const FilmCard: React.FC<FilmCardTypes> = ({
   });
 
   return (
-    <section className={styles.wrapper}>
+    <div className={styles.wrapper}>
       <div className={styles.wrapper__film}>
         <Button className={isLikedClasses} onClick={toggleLike}>
           <HeartLikes />
@@ -59,7 +59,7 @@ const FilmCard: React.FC<FilmCardTypes> = ({
           <CommentsCount />
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

@@ -12,6 +12,7 @@
 .project_body {
   min-height: calc(100vh - 180px);
   padding: 40px 50px 76px;
+  position: relative;
 
   @include breakpoint(desktop) {
     padding: 40px 16px 76px;

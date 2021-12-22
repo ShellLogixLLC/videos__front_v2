@@ -1,34 +1,64 @@
-import React, {useState} from 'react';
-import PaginationComponent from 'react-js-pagination';
+import React, {useRef} from 'react';
+import ReactPaginate from 'react-paginate';
 
-import {AlarmIcon} from '~/assets';
+import {LeftArrow, RightArrow} from '~/assets';
 
+import ShowItem from './showItem';
+import {IPagination} from './types';
 import styles from './Pagination.module.scss';
 
-const Pagination: React.FC = () => {
-  const [activePage, setActivePage] = useState<number>(1);
+const Pagination: React.FC<IPagination> = ({
+  rowsPerPage = 5,
+  setRowsPerPage = (e) => e,
+  rowsPerPageArray = [5, 10, 15, 20],
+  activePage = 0,
+  setActivePage = (e) => e,
+  dataLength = 1,
+}) => {
+  const pagination = useRef<any>();
 
-  const handleChange = (pageNumber: number) => {
-    setActivePage({activePage: pageNumber} as any);
+  const setPage = ({selected}: any) => setActivePage(selected);
+
+  const setPerPage = (perPage: any) => {
+    if (activePage * perPage > dataLength) {
+      setActivePage(0);
+      setRowsPerPage(perPage);
+    } else {
+      setRowsPerPage(perPage);
+    }
   };
+
   return (
-    <div className={styles.container}>
-      <PaginationComponent
-        innerClass={styles.container__inner}
-        itemClass={styles.container__list}
-        activeClass={styles.container_active}
-        activeLinkClass={styles.container_active__link}
-        linkClass={styles.container__link}
-        hideNavigation={true}
-        firstPageText={<AlarmIcon />}
-        lastPageText={<AlarmIcon />}
-        activePage={activePage}
-        itemsCountPerPage={10}
-        totalItemsCount={450}
-        pageRangeDisplayed={5}
-        onChange={handleChange}
-      />
-    </div>
+    <>
+      <div className={styles.container__wrapper__show}>
+        <ShowItem
+          rowsPerPage={rowsPerPage}
+          setRowsPerPage={setPerPage}
+          rowsPerPageArray={rowsPerPageArray}
+        />
+      </div>
+      <div className={styles.container__wrapper}>
+        <div>
+          <ReactPaginate
+            ref={pagination}
+            onPageChange={setPage}
+            forcePage={activePage}
+            pageRangeDisplayed={2}
+            marginPagesDisplayed={1}
+            nextLabel={<RightArrow />}
+            previousLabel={<LeftArrow />}
+            disabledClassName={styles.disabled}
+            containerClassName={styles.container}
+            pageClassName={styles.container__break}
+            breakClassName={styles.container__break}
+            activeClassName={styles.container_active}
+            nextLinkClassName={styles.container__tick}
+            previousLinkClassName={styles.container__tick}
+            pageCount={Math.ceil(dataLength / rowsPerPage)}
+          />
+        </div>
+      </div>
+    </>
   );
 };
 
