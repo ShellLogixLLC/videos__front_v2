@@ -13,6 +13,7 @@
       padding: 0;
       margin: 0;
       @extend %flex-align;
+      @extend %film_name;
 
       &:hover {
         background-color: transparent;
