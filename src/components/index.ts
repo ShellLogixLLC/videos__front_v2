@@ -10,6 +10,7 @@ export {default as Input} from './shared/Input';
 export {default as Button} from './shared/Button';
 export {default as Filter} from './shared/Filter';
 export {default as FilmCard} from './shared/FilmCard';
+export {default as BackButton} from './shared/BackButton';
 export {default as Pagination} from './shared/Pagination';
 export {default as DatePicker} from './shared/DatePicker';
 export {default as Typography} from './shared/Typography';
