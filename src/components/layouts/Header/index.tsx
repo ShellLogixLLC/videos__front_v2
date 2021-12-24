@@ -1,41 +1,56 @@
-import React from 'react';
+import React, {useState} from 'react';
 import classNames from 'classnames';
 
-import {routes} from '~/utils';
+import {routes, routesBurger, RoutesProps} from '~/utils';
 import {Route} from '~/constants';
 import {useHistory} from '~/context';
 import {Logo, SearchIcon, LikeIt} from '~/assets';
-import {Link, Input, LanguageDropDown} from '~/components';
+import {Link, HeaderBurger, HeaderNavbar} from '~/components';
 
 import styles from './Header.module.scss';
 
 const Header: React.FC = () => {
   const {history} = useHistory();
 
+  const [isTablet] = useState<boolean>(false);
+
   const prevRouteValue = history[history.length - 2];
 
-  const ifPreviousRouteActive = (id: any) => {
-    return routes[id - 1].routeName === prevRouteValue;
+  const ifPreviousRouteActive = (id: number, routesElem: RoutesProps[]) => {
+    return routesElem[id - 1].routeName === prevRouteValue;
   };
 
-  const headerTable = routes.map(({id, routeName, pageName}) => {
-    const isPreviousOrDisabledClasses = classNames(
-      styles.wrapper__content_menu__default,
-      {
-        [styles.wrapper__content_menu__disabled]: ifPreviousRouteActive(id),
-      },
-    );
+  const isPreviousOrDisabledClasses = (
+    id: number,
+    routesProp: RoutesProps[],
+  ) => {
+    return classNames(styles.wrapper__content_menu__default, {
+      [styles.wrapper__content_menu__disabled]: ifPreviousRouteActive(
+        id,
+        routesProp,
+      ),
+    });
+  };
 
-    return (
-      <Link
-        key={id}
-        to={routeName}
-        previousClasses={isPreviousOrDisabledClasses}
-        activeClassName={styles.wrapper__content_menu_active}>
-        {pageName}
-      </Link>
-    );
-  });
+  const headerTable = routes.map(({id, routeName, pageName}) => (
+    <Link
+      key={id}
+      to={routeName}
+      previousClasses={isPreviousOrDisabledClasses(id, routes)}
+      activeClassName={styles.wrapper__content_menu_active}>
+      {pageName}
+    </Link>
+  ));
+
+  const headerBurger = routesBurger.map(({id, routeName, pageName}) => (
+    <Link
+      key={id}
+      to={routeName}
+      previousClasses={isPreviousOrDisabledClasses(id, routesBurger)}
+      activeClassName={styles.wrapper__content_menu_active}>
+      {pageName}
+    </Link>
+  ));
 
   return (
     <header className={styles.wrapper}>
@@ -43,21 +58,16 @@ const Header: React.FC = () => {
         <Link className={styles.wrapper__content_logo} to={Route.Home}>
           <Logo />
         </Link>
-        <nav className={styles.wrapper__content_menu}>{headerTable}</nav>
-        <div className={styles.wrapper__content__other}>
-          <Input
-            type="text"
-            name="globalSearch"
-            placeholder="Search"
-            RightIcon={SearchIcon}
-            className={styles.wrapper__content__other__search}
-            rightIconStyle={styles.wrapper__content__other__right_icon}
+        {!isTablet ? (
+          <HeaderBurger styles={styles} headerBurger={headerBurger} />
+        ) : (
+          <HeaderNavbar
+            styles={styles}
+            LikeIt={LikeIt}
+            SearchIcon={SearchIcon}
+            headerTable={headerTable}
           />
-          <Link to={Route.MyFavorite}>
-            <LikeIt className={styles.wrapper__content__other__wishlist} />
-          </Link>
-          <LanguageDropDown />
-        </div>
+        )}
       </div>
     </header>
   );
