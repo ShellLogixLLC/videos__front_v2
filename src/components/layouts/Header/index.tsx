@@ -13,7 +13,8 @@ import styles from './Header.module.scss';
 const Header: React.FC = () => {
   const {history} = useHistory();
 
-  const detectWidthSize = useWindowSize().isMinTablet;
+  const globalWindowSize = useWindowSize();
+  const detectWidthSize = globalWindowSize.isMinTablet;
 
   const [isOpen, setIsOpen] = useState<boolean>(true);
 
