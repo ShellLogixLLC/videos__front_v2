@@ -12,3 +12,8 @@ export type UseWindowSizeProps = {
   windowWidth?: number;
   windowHeight?: number;
 };
+
+export type GetSizeType = {
+  width: number;
+  height: number;
+};
