@@ -7,7 +7,7 @@ import ShowItem from './showItem';
 import {Pagination} from './types';
 import styles from './Pagination.module.scss';
 
-const Pagination: React.FC<Pagination> = ({
+const PaginationIndex: React.FC<Pagination> = ({
   rowsPerPage = 5,
   setRowsPerPage = (e) => e,
   rowsPerPageArray = [5, 10, 15, 20],
@@ -62,4 +62,4 @@ const Pagination: React.FC<Pagination> = ({
   );
 };
 
-export default Pagination;
+export default PaginationIndex;
