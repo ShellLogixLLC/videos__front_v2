@@ -1,4 +1,4 @@
-export type UseWindowSizeProps = {
+export type UseWindowSizeReturn = {
   isWide?: boolean;
   isMobile?: boolean;
   isTablet?: boolean;
@@ -13,7 +13,7 @@ export type UseWindowSizeProps = {
   windowHeight?: number;
 };
 
-export type GetSizeType = {
+export type WindowSize = {
   width: number;
   height: number;
 };

@@ -1,3 +1,5 @@
+import {SVGIconProp} from '~/types/common/index';
+
 type Size = 'large' | 'medium' | 'small';
 type Variant = 'primary' | 'secondary' | 'ghost';
 type ButtonType = 'submit' | 'reset' | 'button';
@@ -10,5 +12,5 @@ export interface IButtonProps {
   className?: string;
   onClick?: () => void;
   containerLeftClasses?: string;
-  LeftIcon?: React.FC<React.SVGProps<SVGSVGElement>>;
+  LeftIcon?: SVGIconProp;
 }

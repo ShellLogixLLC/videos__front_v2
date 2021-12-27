@@ -1,37 +1,40 @@
 import React, {useState} from 'react';
-import classNames from 'classnames';
+// import classNames from 'classnames';
 
 import {Logo} from '~/assets';
 import {Route} from '~/constants';
-import {useHistory} from '~/context';
+// import {useHistory} from '~/context';
 import {useWindowSize} from '~/hooks';
 import {Link, HeaderBurger, HeaderNavbar} from '~/components';
-import {routes, routesBurger, RoutesProps} from '~/utils';
+import {
+  routes,
+  routesBurger,
+  // RoutesProps
+} from '~/utils';
 
 import styles from './Header.module.scss';
 
 const Header: React.FC = () => {
-  const {history} = useHistory();
+  // const {history} = useHistory();
 
-  const globalWindowSize = useWindowSize();
-  const detectWidthSize = globalWindowSize.isMinTablet;
+  const {isMinTablet} = useWindowSize();
 
   const [isOpen, setIsOpen] = useState<boolean>(true);
 
-  const prevRouteValue = history[history.length - 2];
+  // const prevRouteValue = history[history.length - 2];
 
-  const ifPreviousRouteActive = (id: number, routesElem: RoutesProps[]) => {
-    return routesElem[id - 1].routeName === prevRouteValue;
-  };
+  // const ifPreviousRouteActive = (id: number, routesElem: RoutesProps[]) => {
+  //   return routesElem[id - 1].routeName === prevRouteValue;
+  // };
 
-  const previousStyleOrDisabled = (id: number, routesProp: RoutesProps[]) => {
-    return classNames(styles.wrapper__content_menu__default, {
-      [styles.wrapper__content_menu__disabled]: ifPreviousRouteActive(
-        id,
-        routesProp,
-      ),
-    });
-  };
+  // const previousStyleOrDisabled = (id: number, routesProp: RoutesProps[]) => {
+  //   return classNames(styles.wrapper__content_menu__default, {
+  //     [styles.wrapper__content_menu__disabled]: ifPreviousRouteActive(
+  //       id,
+  //       routesProp,
+  //     ),
+  //   });
+  // };
 
   const closeHandler = () => {
     setIsOpen(!isOpen);
@@ -56,7 +59,8 @@ const Header: React.FC = () => {
       activeClassName={
         styles.wrapper__content__burger__container__nav__items_active
       }
-      previousClasses={previousStyleOrDisabled(id, routesBurger)}>
+      // previousClasses={previousStyleOrDisabled(id, routesBurger)}
+    >
       {pageName}
     </Link>
   ));
@@ -67,7 +71,7 @@ const Header: React.FC = () => {
         <Link className={styles.wrapper__content_logo} to={Route.Home}>
           <Logo />
         </Link>
-        {detectWidthSize ? (
+        {isMinTablet ? (
           <HeaderBurger isOpen={isOpen} closeHandler={closeHandler}>
             {headerBurger}
           </HeaderBurger>

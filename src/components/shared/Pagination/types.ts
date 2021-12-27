@@ -1,6 +1,6 @@
 import Pagination from '.';
 
-export interface IPagination {
+export interface Pagination {
   rowsPerPage?: number;
   activePage?: number;
   dataLength?: number;

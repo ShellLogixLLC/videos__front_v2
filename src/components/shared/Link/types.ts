@@ -1,4 +1,4 @@
-export interface ILinkProps {
+export interface LinkProps {
   to: string;
   blank?: boolean;
   queryKey?: string;

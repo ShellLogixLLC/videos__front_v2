@@ -6,10 +6,10 @@ import {HeartLikes, FilmLikeIcon, ViewsCount, CommentsCount} from '~/assets';
 import Button from '../Button';
 import Typography from '../Typography';
 
-import {FilmCardTypes} from './types';
+import {FilmCardProps} from './types';
 import styles from './FilmCard.module.scss';
 
-const FilmCard: React.FC<FilmCardTypes> = ({
+const FilmCard: React.FC<FilmCardProps> = ({
   filmName,
   likeCount = 0,
   viewsCount = 0,

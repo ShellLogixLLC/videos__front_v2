@@ -2,15 +2,15 @@ import {useState, useEffect} from 'react';
 
 import useEventListener from '../useEventListener';
 
-import {UseWindowSizeProps, GetSizeType} from './types';
+import {UseWindowSizeReturn, WindowSize} from './types';
 
-const useWindowSize = (): UseWindowSizeProps => {
+const useWindowSize = (): UseWindowSizeReturn => {
   const getSize = () => ({
     width: 0,
     height: 0,
   });
 
-  const [windowSize, setWindowSize] = useState<GetSizeType>(getSize);
+  const [windowSize, setWindowSize] = useState<WindowSize>(getSize);
 
   const resizeHandler = () => {
     if (window && window.innerWidth && window.innerHeight) {

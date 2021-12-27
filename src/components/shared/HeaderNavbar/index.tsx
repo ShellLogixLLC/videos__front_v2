@@ -8,7 +8,7 @@ import Input from '../Input';
 import LanguageDropDown from '../LanguageDropDown';
 import styles from '../../layouts/Header/Header.module.scss';
 
-const Navbar: React.FC = ({children}) => (
+const HeaderNavbar: React.FC = ({children}) => (
   <>
     <nav className={styles.wrapper__content_menu}>{children}</nav>
     <div className={styles.wrapper__content__other}>
@@ -28,4 +28,4 @@ const Navbar: React.FC = ({children}) => (
   </>
 );
 
-export default Navbar;
+export default HeaderNavbar;
