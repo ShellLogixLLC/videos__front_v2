@@ -3,9 +3,9 @@ import NextLink from 'next/link';
 import classNames from 'classnames';
 import {useRouter} from 'next/router';
 
-import {ILinkProps} from './types';
+import {LinkProps} from './types';
 
-const Link: React.FC<ILinkProps> = ({
+const Link: React.FC<LinkProps> = ({
   to,
   blank,
   onClick,

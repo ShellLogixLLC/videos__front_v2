@@ -3,10 +3,10 @@ import classNames from 'classnames';
 
 import Typography from '../Typography';
 
-import {IInputProps} from './types';
+import {InputProps} from './types';
 import styles from './Input.module.scss';
 
-const Input = forwardRef<any, IInputProps>(
+const Input = forwardRef<any, InputProps>(
   (
     {
       name,

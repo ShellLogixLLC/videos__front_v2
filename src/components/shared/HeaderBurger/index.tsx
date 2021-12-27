@@ -8,7 +8,7 @@ import styles from '../../layouts/Header/Header.module.scss';
 
 import {HeaderBurgerProps} from './types';
 
-const Burger: React.FC<HeaderBurgerProps> = ({
+const HeaderBurger: React.FC<HeaderBurgerProps> = ({
   isOpen,
   children,
   closeHandler,
@@ -33,4 +33,4 @@ const Burger: React.FC<HeaderBurgerProps> = ({
   </>
 );
 
-export default Burger;
+export default HeaderBurger;

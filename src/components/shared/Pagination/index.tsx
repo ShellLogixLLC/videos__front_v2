@@ -4,10 +4,10 @@ import ReactPaginate from 'react-paginate';
 import {LeftArrow, RightArrow} from '~/assets';
 
 import ShowItem from './showItem';
-import {IPagination} from './types';
+import {Pagination} from './types';
 import styles from './Pagination.module.scss';
 
-const Pagination: React.FC<IPagination> = ({
+const Pagination: React.FC<Pagination> = ({
   rowsPerPage = 5,
   setRowsPerPage = (e) => e,
   rowsPerPageArray = [5, 10, 15, 20],
