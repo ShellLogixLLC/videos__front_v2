@@ -1,9 +1,6 @@
 .container {
   width: 100%;
   display: flex;
-  padding: 14px 16px;
-  @extend %border-rad_8;
-  color: #1a1b1e;
   transition: all 0.1s;
   border: 1px solid #e4e6eb;
 
@@ -12,16 +9,12 @@
   }
 
   &:hover {
-    border-color: #bec0c4;
+    border-color: red;
   }
 
   &:active,
   &:focus {
     border-color: $red;
-  }
-
-  &_with_icon {
-    padding-right: 50px;
   }
 
   &__inner {
@@ -31,10 +24,6 @@
     &__error {
       margin-bottom: 0;
     }
-
-    &_disabled {
-      background-color: #f5f7fa;
-    }
   }
 
   &__label {
@@ -43,8 +32,6 @@
   }
 
   &__error {
-    border-color: $dark-red !important;
-
     &__text {
       color: $dark-red;
     }
