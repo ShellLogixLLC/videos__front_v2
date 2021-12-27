@@ -13,7 +13,7 @@ import styles from './Header.module.scss';
 const Header: React.FC = () => {
   const {history} = useHistory();
 
-  const detectWiDthSize = useWindowSize().isMinTablet;
+  const detectWidthSize = useWindowSize().isMinTablet;
 
   const [isOpen, setIsOpen] = useState<boolean>(true);
 
@@ -34,6 +34,7 @@ const Header: React.FC = () => {
 
   const closeHandler = () => {
     setIsOpen(!isOpen);
+    document.body.style.overflowY = isOpen ? 'hidden' : 'visible';
   };
 
   const headerTable = routes.map(({id, routeName, pageName}) => (
@@ -65,7 +66,7 @@ const Header: React.FC = () => {
         <Link className={styles.wrapper__content_logo} to={Route.Home}>
           <Logo />
         </Link>
-        {detectWiDthSize ? (
+        {detectWidthSize ? (
           <HeaderBurger isOpen={isOpen} closeHandler={closeHandler}>
             {headerBurger}
           </HeaderBurger>
