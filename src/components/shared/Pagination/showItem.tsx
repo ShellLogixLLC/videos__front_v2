@@ -7,9 +7,9 @@ import {useOnClickOutside} from '~/hooks';
 import Typography from '../Typography';
 
 import styles from './Pagination.module.scss';
-import {IPagination} from './types';
+import {Pagination} from './types';
 
-const ShowItem: React.FC<IPagination> = ({
+const ShowItem: React.FC<Pagination> = ({
   rowsPerPage = 5,
   setRowsPerPage = (e) => e,
   rowsPerPageArray = [5, 10, 15, 20],
