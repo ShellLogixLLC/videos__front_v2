@@ -30,7 +30,6 @@ const Input = forwardRef<any, IInputProps>(
     const inputClasses = classNames(styles.container, {
       [className]: className,
       [styles.container__error]: !!error,
-      [styles.container_with_icon]: !!RightIcon,
     });
 
     const inputInnerClasses = classNames(styles.container__inner, {

@@ -1,6 +1,6 @@
 import {Route} from '~/constants';
 
-import {RoutesProps} from './type';
+import {RoutesProps} from './types';
 
 export const routes: RoutesProps[] = [
   {

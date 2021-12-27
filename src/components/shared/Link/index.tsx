@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import {useRouter} from 'next/router';
 
 import {ILinkProps} from './types';
-import styles from './Link.module.scss';
 
 const Link: React.FC<ILinkProps> = ({
   to,
@@ -16,6 +15,7 @@ const Link: React.FC<ILinkProps> = ({
   queryValue,
   anchorProps,
   queryKey = '',
+  disabledClasses = '',
   previousClasses = '',
   activeClassName = '',
   ...linkProps
@@ -31,11 +31,10 @@ const Link: React.FC<ILinkProps> = ({
     : anchorProps;
   const activeClasses = query[queryKey]
     ? query[queryKey] === queryValue
-    : asPath.includes(to);
+    : asPath === to;
 
   const anchorClasses = classNames(className, {
-    [styles.container_disabled]: disabled,
-    [styles.container_active]: activeClasses,
+    [disabledClasses]: disabled,
     [previousClasses]: previousClasses,
     [activeClassName]: activeClasses && activeClassName,
   });

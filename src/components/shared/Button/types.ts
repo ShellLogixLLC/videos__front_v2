@@ -9,5 +9,6 @@ export interface IButtonProps {
   disabled?: boolean;
   className?: string;
   onClick?: () => void;
+  containerLeftClasses?: string;
   LeftIcon?: React.FC<React.SVGProps<SVGSVGElement>>;
 }

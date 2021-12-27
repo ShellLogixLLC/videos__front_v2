@@ -78,6 +78,12 @@
   color: $white;
 }
 
+%burger-fonts {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+}
+
 %text_regular {
   font-family: $montserrat_family;
   font-size: 16px;

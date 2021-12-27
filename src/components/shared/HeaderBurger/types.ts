@@ -1,4 +1,4 @@
 export type HeaderBurgerProps = {
-  styles: any;
-  headerBurger?: any;
+  isOpen: boolean;
+  closeHandler: () => void;
 };

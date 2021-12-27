@@ -84,6 +84,7 @@ figcaption {
 
 body {
   height: 100%;
+  overflow-x: hidden;
   @include custom-scroll;
   background-color: $light-black;
   font-family: $montserrat_family;

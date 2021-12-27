@@ -2,7 +2,7 @@ export * from './routes';
 export * from './staticFilterBase';
 
 // type static base
-export * from './type';
+export * from './types';
 
 // static base
 
