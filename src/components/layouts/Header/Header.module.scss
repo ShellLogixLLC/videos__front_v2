@@ -78,11 +78,10 @@
     }
 
     &__close {
-      width: 48px;
-      height: 48px;
-      z-index: 9;
-      background-color: transparent;
-      cursor: pointer;
+      width: 48px !important;
+      height: 48px !important;
+      z-index: 9 !important;
+      background-color: transparent !important;
 
       svg {
         path {

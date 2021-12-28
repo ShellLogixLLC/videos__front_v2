@@ -27,7 +27,7 @@ export type InputType =
   | 'week';
 
 export type InputProps = {
-  value?: any;
+  value?: string | number;
   name: string;
   label?: string;
   error?: string;
