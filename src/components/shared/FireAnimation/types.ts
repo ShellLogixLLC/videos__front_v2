@@ -1,4 +1,4 @@
 export type Burn = {
-  count?: number;
+  count: number;
   width?: string;
 };

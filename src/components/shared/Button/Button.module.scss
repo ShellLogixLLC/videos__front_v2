@@ -1,0 +1,10 @@
+.container {
+  max-width: 288px;
+  width: 100%;
+  border-radius: 48px;
+  background-color: $red;
+  cursor: pointer;
+  padding: 13px 0;
+  @extend %search-styling;
+  color: $white;
+}
