@@ -3,10 +3,10 @@ import classNames from 'classnames';
 
 import {FontStyles} from '~/constants';
 
-import {ITypographyProps} from './types';
+import {TypographyProps} from './types';
 
 const Typography: React.FC<
-  ITypographyProps & React.HTMLAttributes<HTMLOrSVGElement>
+  TypographyProps & React.HTMLAttributes<HTMLOrSVGElement>
 > = ({
   children,
   tagName = 'p',

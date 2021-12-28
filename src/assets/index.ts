@@ -71,6 +71,7 @@ export {default as ArrowNext} from './icons/arrowNext.svg';
 export {default as MegaPhone} from './icons/megaPhone.svg';
 export {default as CloudIcon} from './icons/cloudIcon.svg';
 export {default as PiggyBank} from './icons/piggyBank.svg';
+export {default as CloseIcon} from './icons/closeIcon.svg';
 export {default as IfLikeIcon} from './icons/ifLike.svg';
 export {default as ExportIcon} from './icons/export.svg';
 export {default as CursorIcon} from './icons/cursor.svg';

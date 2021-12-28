@@ -15,12 +15,12 @@ type Variant = 'Text' | 'Heading' | 'Button' | 'Link';
 
 type Align = 'right' | 'left' | 'center' | 'justify';
 
-export interface ITypographyProps {
+export type TypographyProps = {
   align?: Align;
   type?: TypoType;
   variant?: Variant;
   className?: string;
   tagName?: keyof JSX.IntrinsicElements;
-}
+};
 
 export type TypographyTypeof = typeof Typography;

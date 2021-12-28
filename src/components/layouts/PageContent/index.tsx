@@ -1,9 +1,9 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import {PageContentClasses} from './type';
+import {PageContentProps} from './type';
 
-const PageContent: React.FC<PageContentClasses> = ({children, className}) => {
+const PageContent: React.FC<PageContentProps> = ({children, className}) => {
   const pageContentClasses = classNames('container project_body', className);
 
   return <section className={pageContentClasses}>{children}</section>;

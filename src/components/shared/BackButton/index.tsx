@@ -5,9 +5,9 @@ import {Route} from '~/constants';
 
 import Button from '../Button';
 
-import {BackButtonProp} from './types';
+import {BackButtonProps} from './types';
 
-const BackButton: React.FC<BackButtonProp> = ({text, LeftIcon, className}) => {
+const BackButton: React.FC<BackButtonProps> = ({text, LeftIcon, className}) => {
   const router = useRouter();
 
   const backHandler = () => {

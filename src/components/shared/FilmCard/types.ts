@@ -1,4 +1,4 @@
-export interface FilmCardTypes {
+export interface FilmCardProps {
   filmName: string;
   viewsCount?: string;
   likeCount?: string;
