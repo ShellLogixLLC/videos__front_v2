@@ -1,4 +1,4 @@
-import {FilteredProp} from './type';
+import {FilteredProp} from './types';
 
 export const sortBase: FilteredProp[] = [
   {id: 1, nameRoute: 'All'},

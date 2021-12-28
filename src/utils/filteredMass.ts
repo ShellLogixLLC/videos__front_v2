@@ -1,4 +1,4 @@
-import {FilteredProp} from './type';
+import {FilteredProp} from './types';
 
 const filteredMass: FilteredProp[] = [
   {id: 1, nameRoute: 'CAT'},

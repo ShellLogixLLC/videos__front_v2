@@ -3,10 +3,10 @@ import classNames from 'classnames';
 
 import Typography from '../Typography';
 
-import {IInputProps} from './types';
+import {InputProps} from './types';
 import styles from './Input.module.scss';
 
-const Input = forwardRef<any, IInputProps>(
+const Input = forwardRef<any, InputProps>(
   (
     {
       name,
@@ -30,7 +30,6 @@ const Input = forwardRef<any, IInputProps>(
     const inputClasses = classNames(styles.container, {
       [className]: className,
       [styles.container__error]: !!error,
-      [styles.container_with_icon]: !!RightIcon,
     });
 
     const inputInnerClasses = classNames(styles.container__inner, {

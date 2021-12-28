@@ -13,6 +13,7 @@ const Button: React.FC<IButtonProps> = ({
   size = 'medium',
   type = 'button',
   variant = 'primary',
+  containerLeftClasses = '',
 }) => {
   const buttonClasses = classNames(
     styles.container,
@@ -21,7 +22,7 @@ const Button: React.FC<IButtonProps> = ({
 
     {
       [className]: className,
-      [styles.container__left]: !!LeftIcon,
+      [containerLeftClasses]: !!LeftIcon,
     },
   );
 

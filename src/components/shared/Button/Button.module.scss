@@ -1,40 +1,10 @@
 .container {
-  font-weight: bold;
-  @extend %border-rad_8;
+  max-width: 288px;
+  width: 100%;
+  border-radius: 48px;
   background-color: $red;
-
-  &__left {
-    @extend %flex-align;
-    padding: 10px 32px;
-
-    svg {
-      margin-right: 8px;
-    }
-  }
-
-  &:hover {
-    background-color: #11a3a6;
-  }
-
-  &:disabled {
-    color: $grey_color;
-    background-color: #e4e6eb;
-  }
-
-  &_medium {
-    padding: 11px 40px;
-  }
-
-  &_large {
-    padding: 18px 40px;
-  }
-
-  &_ghost {
-    background-color: transparent;
-    color: #5b708f;
-
-    &:hover {
-      background-color: none;
-    }
-  }
+  cursor: pointer;
+  padding: 13px 0;
+  @extend %search-styling;
+  color: $white;
 }

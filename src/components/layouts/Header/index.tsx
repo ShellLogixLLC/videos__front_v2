@@ -1,41 +1,69 @@
-import React from 'react';
-import classNames from 'classnames';
+import React, {useState} from 'react';
+// import classNames from 'classnames';
 
-import {routes} from '~/utils';
+import {Logo} from '~/assets';
 import {Route} from '~/constants';
-import {useHistory} from '~/context';
-import {Logo, SearchIcon, LikeIt} from '~/assets';
-import {Link, Input, LanguageDropDown} from '~/components';
+// import {useHistory} from '~/context';
+import {useWindowSize} from '~/hooks';
+import {Link, HeaderBurger, HeaderNavbar} from '~/components';
+import {
+  routes,
+  routesBurger,
+  // RoutesProps
+} from '~/utils';
 
 import styles from './Header.module.scss';
 
 const Header: React.FC = () => {
-  const {history} = useHistory();
+  // const {history} = useHistory();
 
-  const prevRouteValue = history[history.length - 2];
+  const {isMinTablet} = useWindowSize();
 
-  const ifPreviousRouteActive = (id: any) => {
-    return routes[id - 1].routeName === prevRouteValue;
+  const [isOpen, setIsOpen] = useState<boolean>(true);
+
+  // const prevRouteValue = history[history.length - 2];
+
+  // const ifPreviousRouteActive = (id: number, routesElem: RoutesProps[]) => {
+  //   return routesElem[id - 1].routeName === prevRouteValue;
+  // };
+
+  // const previousStyleOrDisabled = (id: number, routesProp: RoutesProps[]) => {
+  //   return classNames(styles.wrapper__content_menu__default, {
+  //     [styles.wrapper__content_menu__disabled]: ifPreviousRouteActive(
+  //       id,
+  //       routesProp,
+  //     ),
+  //   });
+  // };
+
+  const closeHandler = () => {
+    setIsOpen(!isOpen);
+    document.body.style.overflowY = isOpen ? 'hidden' : 'visible';
   };
 
-  const headerTable = routes.map(({id, routeName, pageName}) => {
-    const isPreviousOrDisabledClasses = classNames(
-      styles.wrapper__content_menu__default,
-      {
-        [styles.wrapper__content_menu__disabled]: ifPreviousRouteActive(id),
-      },
-    );
+  const headerTable = routes.map(({id, routeName, pageName}) => (
+    <Link
+      key={id}
+      to={routeName}
+      className={styles.wrapper__content_menu__link}
+      activeClassName={styles.wrapper__content_menu__link_active}>
+      {pageName}
+    </Link>
+  ));
 
-    return (
-      <Link
-        key={id}
-        to={routeName}
-        previousClasses={isPreviousOrDisabledClasses}
-        activeClassName={styles.wrapper__content_menu_active}>
-        {pageName}
-      </Link>
-    );
-  });
+  const headerBurger = routesBurger.map(({id, routeName, pageName}) => (
+    <Link
+      key={id}
+      to={routeName}
+      className={styles.wrapper__content__burger__container__nav__items}
+      activeClassName={
+        styles.wrapper__content__burger__container__nav__items_active
+      }
+      // previousClasses={previousStyleOrDisabled(id, routesBurger)}
+    >
+      {pageName}
+    </Link>
+  ));
 
   return (
     <header className={styles.wrapper}>
@@ -43,21 +71,13 @@ const Header: React.FC = () => {
         <Link className={styles.wrapper__content_logo} to={Route.Home}>
           <Logo />
         </Link>
-        <nav className={styles.wrapper__content_menu}>{headerTable}</nav>
-        <div className={styles.wrapper__content__other}>
-          <Input
-            type="text"
-            name="globalSearch"
-            placeholder="Search"
-            RightIcon={SearchIcon}
-            className={styles.wrapper__content__other__search}
-            rightIconStyle={styles.wrapper__content__other__right_icon}
-          />
-          <Link to={Route.MyFavorite}>
-            <LikeIt className={styles.wrapper__content__other__wishlist} />
-          </Link>
-          <LanguageDropDown />
-        </div>
+        {isMinTablet ? (
+          <HeaderBurger isOpen={isOpen} closeHandler={closeHandler}>
+            {headerBurger}
+          </HeaderBurger>
+        ) : (
+          <HeaderNavbar>{headerTable}</HeaderNavbar>
+        )}
       </div>
     </header>
   );

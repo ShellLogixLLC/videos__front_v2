@@ -1,5 +1,7 @@
-export type BackButtonProp = {
+import {SVGIconProp} from '~/types/common/index';
+
+export type BackButtonProps = {
   text: string;
-  LeftIcon?: any;
+  LeftIcon: SVGIconProp;
   className?: string;
 };

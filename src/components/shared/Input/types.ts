@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {SVGIconProp} from '~/types/common/index';
+
 export type InputType =
   | 'button'
   | 'checkbox'
@@ -24,8 +26,8 @@ export type InputType =
   | 'url'
   | 'week';
 
-export interface IInputProps {
-  value?: any;
+export type InputProps = {
+  value?: string | number;
   name: string;
   label?: string;
   error?: string;
@@ -37,9 +39,9 @@ export interface IInputProps {
   innerClassName?: string;
   labelClassName?: string;
   onChange?: (event: React.ChangeEvent) => void;
-  RightIcon?: React.FC<React.SVGProps<SVGSVGElement>>;
-  RightToggledIcon?: React.FC<React.SVGProps<SVGSVGElement>>;
+  RightIcon?: SVGIconProp;
+  RightToggledIcon?: SVGIconProp;
   onFocus?: () => void;
   onBlur?: () => void;
   onClick?: () => void;
-}
+};
