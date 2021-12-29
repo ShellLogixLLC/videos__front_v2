@@ -1,6 +1,4 @@
-import React from 'react';
-
-export interface ILinkProps {
+export interface LinkProps {
   to: string;
   blank?: boolean;
   queryKey?: string;
@@ -8,6 +6,7 @@ export interface ILinkProps {
   className?: string;
   queryValue?: string;
   onClick?: () => void;
+  disabledClasses?: string;
   previousClasses?: string;
   activeClassName?: string;
   anchorProps?: React.AnchorHTMLAttributes<HTMLAnchorElement>;

@@ -1,4 +1,3 @@
-export type PageContentClasses = {
-  children: React.ReactNode;
+export type PageContentProps = {
   className?: string;
 };

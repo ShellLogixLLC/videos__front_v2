@@ -1,3 +1,3 @@
-export type CreepingLineForTextProp = {
+export type CreepingLineProps = {
   text: string;
 };

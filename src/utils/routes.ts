@@ -1,6 +1,6 @@
 import {Route} from '~/constants';
 
-import {RoutesProps} from './type';
+import {RoutesProps} from './types';
 
 export const routes: RoutesProps[] = [
   {
@@ -21,6 +21,40 @@ export const routes: RoutesProps[] = [
   {
     id: 4,
     pageName: 'new',
+    routeName: Route.New,
+  },
+];
+
+export const routesBurger: RoutesProps[] = [
+  {
+    id: 1,
+    pageName: 'Home',
+    routeName: Route.Home,
+  },
+
+  {
+    id: 2,
+    pageName: 'Favorites',
+    routeName: Route.MyFavorite,
+  },
+  {
+    id: 3,
+    pageName: 'Categories',
+    routeName: Route.Categories,
+  },
+  {
+    id: 4,
+    pageName: 'Top Rated',
+    routeName: Route.Favorites,
+  },
+  {
+    id: 5,
+    pageName: 'Most Liked',
+    routeName: Route.MostLiked,
+  },
+  {
+    id: 6,
+    pageName: 'New',
     routeName: Route.New,
   },
 ];
