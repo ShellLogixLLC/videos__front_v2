@@ -1,7 +1,7 @@
 import React from 'react';
-import {NextPage} from 'next';
+import { NextPage } from 'next';
 
-import {Seo} from '~/components';
+import { Seo } from '~/components';
 
 const CategoriesPage: NextPage = () => (
   <Seo

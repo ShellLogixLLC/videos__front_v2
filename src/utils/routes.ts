@@ -5,22 +5,22 @@ import {RoutesProps} from './type';
 export const routes: RoutesProps[] = [
   {
     id: 1,
-    pageName: 'Categories',
+    pageName: 'categories',
     routeName: Route.Categories,
   },
   {
     id: 2,
-    pageName: 'Top Rated',
+    pageName: 'topRated',
     routeName: Route.Favorites,
   },
   {
     id: 3,
-    pageName: 'Most Liked',
+    pageName: 'mostLiked',
     routeName: Route.MostLiked,
   },
   {
     id: 4,
-    pageName: 'New',
+    pageName: 'new',
     routeName: Route.New,
   },
 ];

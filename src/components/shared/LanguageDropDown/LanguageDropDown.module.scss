@@ -38,6 +38,7 @@
     @extend %flex-column;
     justify-content: space-evenly;
     position: absolute;
+    z-index: 10;
     top: 69px;
     right: 0;
     width: 105px;

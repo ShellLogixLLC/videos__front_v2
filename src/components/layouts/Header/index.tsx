@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
+// import {I18nContext} from '~/context';
 import {routes} from '~/utils';
 import {Route} from '~/constants';
 import {useHistory} from '~/context';
@@ -10,6 +11,7 @@ import {Link, Input, LanguageDropDown} from '~/components';
 import styles from './Header.module.scss';
 
 const Header: React.FC = () => {
+  // const t = useContext(I18nContext);
   const {history} = useHistory();
 
   const prevRouteValue = history[history.length - 2];

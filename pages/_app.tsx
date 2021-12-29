@@ -1,17 +1,26 @@
 import {Provider} from 'react-redux';
 import {AppProps} from 'next/app';
+import {appWithTranslation, withTranslation} from 'next-i18next';
 
 import '~/styles/index.scss';
 
 import store, {wrapper} from '~/store';
-import {HistoryProvider} from '~/context';
+import {I18nContext, HistoryProvider} from '~/context';
 
-const ProdApp: React.FC<AppProps> = ({Component, pageProps}) => (
-  <Provider store={store}>
-    <HistoryProvider>
-      <Component {...pageProps} />
-    </HistoryProvider>
-  </Provider>
+interface ProdAppProps extends AppProps {
+  t: any;
+}
+
+const ProdApp: React.FC<ProdAppProps> = ({Component, pageProps, t}) => (
+  <I18nContext.Provider value={t}>
+    <Provider store={store}>
+      <HistoryProvider>
+        <Component {...pageProps} />
+      </HistoryProvider>
+    </Provider>
+  </I18nContext.Provider>
 );
 
-export default wrapper.withRedux(ProdApp);
+export default wrapper.withRedux(
+  appWithTranslation(withTranslation('common')(ProdApp)),
+);
