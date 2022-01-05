@@ -1,11 +1,11 @@
 import React from 'react';
 import {NextPage} from 'next';
 
-import {Seo, Button} from '~/components';
+import {Seo, Comments} from '~/components';
 
 const HomePage: NextPage = () => (
   <Seo title="Home page" metaDescription="Home page description">
-    <Button>PPP</Button>
+    <Comments />
   </Seo>
 );
 

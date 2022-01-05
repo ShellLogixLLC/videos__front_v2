@@ -1,6 +1,8 @@
 import {Provider} from 'react-redux';
 import {AppProps} from 'next/app';
 
+import 'emoji-mart/css/emoji-mart.css';
+
 import '~/styles/index.scss';
 
 import store, {wrapper} from '~/store';

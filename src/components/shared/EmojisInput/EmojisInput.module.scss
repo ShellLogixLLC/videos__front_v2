@@ -1,0 +1,13 @@
+.container {
+  &__modal {
+    & > div {
+      position: relative;
+    }
+
+    &__picker {
+      position: absolute;
+      bottom: 16px;
+      right: 18px;
+    }
+  }
+}

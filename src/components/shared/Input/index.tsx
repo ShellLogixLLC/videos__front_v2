@@ -17,6 +17,7 @@ const Input = forwardRef<any, InputProps>(
       rightIconStyle = '',
       RightToggledIcon,
       placeholder,
+      onMouseOver,
       type = 'text',
       className = '',
       innerClassName = '',
@@ -26,7 +27,6 @@ const Input = forwardRef<any, InputProps>(
     ref,
   ) => {
     const [isToggledIcon, setIsToggledIcon] = useState<boolean>(false);
-
     const inputClasses = classNames(styles.container, {
       [className]: className,
       [styles.container__error]: !!error,
@@ -71,6 +71,7 @@ const Input = forwardRef<any, InputProps>(
             id={name}
             ref={ref}
             name={name}
+            onMouseOver={onMouseOver}
             autoComplete="off"
             disabled={disabled}
             className={inputClasses}
