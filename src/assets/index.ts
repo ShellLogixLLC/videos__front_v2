@@ -145,7 +145,7 @@ export {default as ExpandFullScreen} from './icons/expandFullScreen.svg';
 export {default as CheckedAllowIcon} from './icons/checkedAllow.svg';
 export {default as BellNotification} from './icons/bellNotification.svg';
 export {default as LanguageArrowTop} from './icons/languageArrowTop.svg';
-export {default as Love} from './icons/Love.svg';
+export {default as Love} from './icons/love.svg';
 export {default as ImagePictureIcon} from './icons/imagePictureIcon.svg';
 export {default as RandomRightArrows} from './icons/randomRightArrows.svg';
 export {default as MicrophoneThreeDot} from './icons/microphoneThreeDot.svg';
