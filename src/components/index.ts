@@ -9,6 +9,8 @@ export {default as Link} from './shared/Link';
 export {default as Input} from './shared/Input';
 export {default as Button} from './shared/Button';
 export {default as Filter} from './shared/Filter';
+export {default as Comments} from './shared/Comments';
+export {default as EmojisInput} from './shared/EmojisInput';
 export {default as FilmCard} from './shared/FilmCard';
 export {default as BackButton} from './shared/BackButton';
 export {default as Pagination} from './shared/Pagination';
