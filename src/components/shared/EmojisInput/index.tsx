@@ -43,11 +43,15 @@ const EmojisInput = forwardRef<any, InputProps>(
       [inputStyles.container__error]: !!error,
     });
 
-    const inputInnerClasses = classNames(inputStyles.container__inner, {
-      [innerClassName]: innerClassName,
-      [inputStyles.container__inner__error]: !!error,
-      [inputStyles.container__inner_disabled]: disabled,
-    });
+    const inputInnerClasses = classNames(
+      inputStyles.container__inner,
+      styles.emojis,
+      {
+        [innerClassName]: innerClassName,
+        [inputStyles.container__inner__error]: !!error,
+        [inputStyles.container__inner_disabled]: disabled,
+      },
+    );
 
     const labelClasses = classNames(inputStyles.container__label, {
       [labelClassName]: labelClassName,
@@ -75,7 +79,10 @@ const EmojisInput = forwardRef<any, InputProps>(
             placeholder={placeholder}
             onMouseOver={onMouseOver}
           />
-          <div onClick={openPortal} onMouseOver={mouseOver}>
+          <div
+            onClick={openPortal}
+            onMouseOver={mouseOver}
+            className={styles.random_emojis}>
             {currentEmoji}
           </div>
 

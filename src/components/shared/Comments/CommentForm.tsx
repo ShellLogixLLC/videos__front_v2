@@ -9,6 +9,7 @@ const CommentForm: React.FC = () => {
   const {handleSubmit, register, formState} = useForm({
     mode: 'onChange',
   });
+
   const onSubmit = (values: any) => {
     // eslint-disable-next-line no-console
     console.log(values, 'asd');

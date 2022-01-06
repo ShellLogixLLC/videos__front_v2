@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 
 import {LanguageArrowTop} from '~/assets';
+import {useOnClickOutside} from '~/hooks';
 
 import Typography from '../Typography';
 
@@ -15,8 +16,12 @@ const Comments: React.FC = () => {
     setExpanded(!expanded);
   };
 
+  const refInput = useRef<HTMLHeadingElement>(null);
+
+  useOnClickOutside(refInput, () => setExpanded(false));
+
   return (
-    <div className={styles.container}>
+    <div ref={refInput} className={styles.container}>
       <div
         onClick={handleClick}
         role="button"

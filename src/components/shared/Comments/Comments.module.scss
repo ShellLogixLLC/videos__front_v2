@@ -1,10 +1,10 @@
 .container {
   max-width: 660px;
   width: 100%;
-  background-color: $black;
   padding: 18px 16px;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
+  background-color: $black;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
 
   &__content {
     cursor: pointer;
@@ -15,17 +15,12 @@
 
       &__text {
         margin-right: 8px;
-        font-size: 36px;
-        line-height: 44px;
+        @extend %separate_page_film_name;
       }
 
       &__count {
         color: $red;
-        font-family: Montserrat;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 20px;
-        line-height: 24px;
+        @extend %burger-fonts;
       }
     }
 
@@ -43,14 +38,16 @@
     max-height: 300px;
     overflow-y: scroll;
     @include custom-scroll;
-    border-radius: 0 0 0 10px;
+    padding-right: 16px;
+    border-radius: 10px;
 
     &__comment {
-      background-color: $light_black;
       padding: 16px;
-      box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
-      border-radius: 10px;
       max-width: 608px;
+      width: 100%;
+      border-radius: 10px;
+      background-color: $light_black;
+      box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
 
       &:not(:first-child) {
         margin-top: 25px;
@@ -69,20 +66,12 @@
         }
 
         &__name {
-          font-family: Montserrat;
-          font-style: normal;
-          font-weight: 500;
-          font-size: 20px;
-          line-height: 24px;
+          @extend %burger-fonts;
         }
       }
 
       &__description {
-        font-family: Montserrat;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 18px;
-        line-height: 22px;
+        @extend %film_info_text;
       }
     }
   }
@@ -92,23 +81,22 @@
 
     &__box {
       height: 180px;
-      display: flex;
-      flex-direction: column;
+      @extend %flex-column;
       justify-content: space-between;
+
       input {
         background: none;
-        border: 1px solid #c4c4c4;
+        border: 1px solid $dark-white;
         box-sizing: border-box;
         border-radius: 50px;
-        padding: 13px 16px;
+        padding: 13px 40px 13px 16px;
+        width: 100%;
+        color: $white;
+        @extend %film_info_text;
 
         &::placeholder {
-          font-family: Montserrat;
-          font-style: normal;
-          font-weight: 500;
-          font-size: 18px;
-          line-height: 22px;
-          color: #ffffff;
+          @extend %film_info_text;
+          color: $white;
         }
       }
 
