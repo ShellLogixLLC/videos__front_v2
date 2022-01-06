@@ -3,6 +3,7 @@ export {default as OvalImage} from './images/Oval.png';
 
 // Icons
 export {default as GPS} from './icons/GPS.svg';
+export {default as Love} from './icons/love.svg';
 export {default as Logo} from './icons/Logo.svg';
 export {default as WiFi} from './icons/wifi.svg';
 export {default as View} from './icons/view.svg';
@@ -145,7 +146,6 @@ export {default as ExpandFullScreen} from './icons/expandFullScreen.svg';
 export {default as CheckedAllowIcon} from './icons/checkedAllow.svg';
 export {default as BellNotification} from './icons/bellNotification.svg';
 export {default as LanguageArrowTop} from './icons/languageArrowTop.svg';
-export {default as Love} from './icons/love.svg';
 export {default as ImagePictureIcon} from './icons/imagePictureIcon.svg';
 export {default as RandomRightArrows} from './icons/randomRightArrows.svg';
 export {default as MicrophoneThreeDot} from './icons/microphoneThreeDot.svg';
