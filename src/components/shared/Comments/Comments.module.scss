@@ -67,6 +67,8 @@
 
         &__name {
           @extend %burger-fonts;
+          user-select: text;
+          cursor: text;
         }
       }
 

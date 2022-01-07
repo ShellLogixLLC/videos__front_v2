@@ -63,6 +63,11 @@ const EmojisInput = forwardRef<any, InputProps>(
       setCurrentEmoji(emojiList[Math.floor(Math.random() * emojiList.length)]);
     };
 
+    const addEmoji = (even: any) => {
+      // eslint-disable-next-line no-console
+      console.log(even.native);
+    };
+
     return (
       <label htmlFor={name} className={labelClasses}>
         {label}
@@ -94,6 +99,7 @@ const EmojisInput = forwardRef<any, InputProps>(
                   ref={emojiPickerRef}>
                   <Picker
                     set="apple"
+                    onSelect={addEmoji}
                     theme="dark"
                     title="Heart <3"
                     emoji="green_heart"

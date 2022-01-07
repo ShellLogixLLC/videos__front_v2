@@ -93,6 +93,7 @@
     &_name {
       @extend %film_name;
       user-select: text;
+      cursor: text;
       text-transform: capitalize;
     }
 
@@ -105,6 +106,7 @@
     @extend %film_info_text;
     min-height: 64px;
     user-select: text;
+    cursor: text;
     margin-bottom: 8px;
     @extend %film_name;
   }
