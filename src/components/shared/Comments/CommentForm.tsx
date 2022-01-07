@@ -1,7 +1,7 @@
 import React from 'react';
 import {useForm} from 'react-hook-form';
 
-import {Input, Button, EmojisInput} from '~/components';
+import {Button, EmojisInput} from '~/components';
 
 import styles from './Comments.module.scss';
 
@@ -16,17 +16,15 @@ const CommentForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className={styles.block__form__box}>
-        <Input placeholder="Lora" {...register('nameInput')} />
-        <EmojisInput
-          {...register('commentInput')}
-          placeholder="Type your text here..."
-        />
-        <Button disabled={!formState.isValid} type="submit">
-          Comment
-        </Button>
-      </div>
+    <form className={styles.block__form__box} onSubmit={handleSubmit(onSubmit)}>
+      <input placeholder="Lora" {...register('nameInput')} />
+      <EmojisInput
+        {...register('commentInput')}
+        placeholder="Type your text here..."
+      />
+      <Button disabled={!formState.isValid} type="submit">
+        Comment
+      </Button>
     </form>
   );
 };
