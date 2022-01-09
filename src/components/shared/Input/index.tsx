@@ -12,11 +12,14 @@ const Input = forwardRef<any, InputProps>(
       name,
       label,
       error,
+      inpValue,
       disabled,
       RightIcon,
+      onChange,
       rightIconStyle = '',
       RightToggledIcon,
       placeholder,
+      onMouseOver,
       type = 'text',
       className = '',
       innerClassName = '',
@@ -26,7 +29,6 @@ const Input = forwardRef<any, InputProps>(
     ref,
   ) => {
     const [isToggledIcon, setIsToggledIcon] = useState<boolean>(false);
-
     const inputClasses = classNames(styles.container, {
       [className]: className,
       [styles.container__error]: !!error,
@@ -71,7 +73,10 @@ const Input = forwardRef<any, InputProps>(
             id={name}
             ref={ref}
             name={name}
+            value={inpValue}
+            onMouseOver={onMouseOver}
             autoComplete="off"
+            onChange={onChange}
             disabled={disabled}
             className={inputClasses}
             placeholder={placeholder}

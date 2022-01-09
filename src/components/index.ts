@@ -7,13 +7,16 @@ export {default as PageContent} from './layouts/PageContent';
 // Shared
 export {default as Link} from './shared/Link';
 export {default as Input} from './shared/Input';
+export {default as Search} from './shared/Search';
 export {default as Button} from './shared/Button';
 export {default as Filter} from './shared/Filter';
+export {default as Comments} from './shared/Comments';
 export {default as FilmCard} from './shared/FilmCard';
 export {default as BackButton} from './shared/BackButton';
 export {default as Pagination} from './shared/Pagination';
 export {default as DatePicker} from './shared/DatePicker';
 export {default as Typography} from './shared/Typography';
+export {default as EmojisInput} from './shared/EmojisInput';
 export {default as HeaderNavbar} from './shared/HeaderNavbar';
 export {default as HeaderBurger} from './shared/HeaderBurger';
 export {default as CategoryCard} from './shared/CategoryCard';

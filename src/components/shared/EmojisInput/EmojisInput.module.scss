@@ -1,0 +1,28 @@
+.container {
+  &__modal {
+    & > div {
+      position: relative;
+    }
+
+    &__picker {
+      position: absolute;
+      bottom: 16px;
+      right: 18px;
+    }
+  }
+}
+
+.emojis {
+  position: relative;
+  @extend %flex-between;
+}
+
+.random_emojis {
+  cursor: pointer;
+  position: absolute;
+  right: 15px;
+  width: 25px;
+  margin-left: 5px;
+  height: 25px;
+  @extend %flex-center;
+}

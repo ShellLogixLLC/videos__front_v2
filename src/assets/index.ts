@@ -3,6 +3,7 @@ export {default as OvalImage} from './images/Oval.png';
 
 // Icons
 export {default as GPS} from './icons/GPS.svg';
+export {default as Love} from './icons/love.svg';
 export {default as Logo} from './icons/Logo.svg';
 export {default as WiFi} from './icons/wifi.svg';
 export {default as View} from './icons/view.svg';

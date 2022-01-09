@@ -54,22 +54,6 @@
         display: none;
       }
 
-      &__search {
-        @extend %search-styling;
-        border-radius: 50px !important;
-        max-width: 270px;
-        width: 100%;
-        color: $red !important;
-        padding: 8px 37px 8px 24px !important;
-        border: 1px solid $white;
-        background-color: transparent;
-      }
-
-      &__right_icon {
-        width: 20px;
-        height: 20px;
-      }
-
       &__wishlist {
         @include breakpoint(wide) {
           margin: 0 10px;
