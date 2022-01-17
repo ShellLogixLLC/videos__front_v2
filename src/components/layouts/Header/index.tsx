@@ -1,23 +1,16 @@
 import React, {useState} from 'react';
-// import classNames from 'classnames';
+import {useTranslation} from 'next-i18next';
 
-// import {I18nContext} from '~/context';
 import {Logo} from '~/assets';
 import {Route} from '~/constants';
-// import {useHistory} from '~/context';
 import {useWindowSize} from '~/hooks';
+import {routes, routesBurger} from '~/utils';
 import {Link, HeaderBurger, HeaderNavbar} from '~/components';
-import {
-  routes,
-  routesBurger,
-  // RoutesProps
-} from '~/utils';
 
 import styles from './Header.module.scss';
 
 const Header: React.FC = () => {
-  // const t = useContext(I18nContext);
-  // const {history} = useHistory();
+  const {t} = useTranslation();
 
   const {isMinTablet} = useWindowSize();
 
@@ -49,7 +42,7 @@ const Header: React.FC = () => {
       to={routeName}
       className={styles.wrapper__content_menu__link}
       activeClassName={styles.wrapper__content_menu__link_active}>
-      {pageName}
+      {t(pageName)}
     </Link>
   ));
 
@@ -60,9 +53,7 @@ const Header: React.FC = () => {
       className={styles.wrapper__content__burger__container__nav__items}
       activeClassName={
         styles.wrapper__content__burger__container__nav__items_active
-      }
-      // previousClasses={previousStyleOrDisabled(id, routesBurger)}
-    >
+      }>
       {pageName}
     </Link>
   ));

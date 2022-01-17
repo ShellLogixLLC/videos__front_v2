@@ -1,15 +1,10 @@
 const path = require('path');
 
-const {nextI18NextRewrites} = require('next-i18next/rewrites');
-
-const localeSubpaths = {};
+const {i18n} = require('./next-i18next.config');
 
 module.exports = {
   reactStrictMode: true,
-  rewrites: async () => nextI18NextRewrites(localeSubpaths),
-  publicRuntimeConfig: {
-    localeSubpaths,
-  },
+  i18n,
   sassOptions: {
     includePaths: [path.resolve(__dirname, 'src/styles')],
     prependData: `@import "resources.scss";`,

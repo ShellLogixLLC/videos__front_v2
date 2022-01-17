@@ -12,6 +12,8 @@ export {default as Menu} from './icons/menu.svg';
 export {default as Plus} from './icons/plus.svg';
 export {default as Close} from './icons/close.svg';
 export {default as Minus} from './icons/minus.svg';
+export {default as RuIcon} from './icons/ru-flag.svg';
+export {default as EnIcon} from './icons/en-flag.svg';
 export {default as LikeIt} from './icons/likIt.svg';
 export {default as WebCam} from './icons/webcam.svg';
 export {default as Upload} from './icons/upload.svg';

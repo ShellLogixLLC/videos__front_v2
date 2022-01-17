@@ -8,3 +8,8 @@ export type FilteredProp = {
   nameRoute: string;
   id: number;
 };
+
+export type LangData = {
+  name: string;
+  locale: string;
+};

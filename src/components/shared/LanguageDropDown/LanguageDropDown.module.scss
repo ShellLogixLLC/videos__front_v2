@@ -2,7 +2,6 @@
   @extend %flex-between;
   cursor: pointer;
   position: relative;
-
   @include breakpoint(tablet) {
     padding-left: 32px;
   }
@@ -23,38 +22,24 @@
     }
 
     &__language {
-      width: 33px;
-      @extend %language_sizes;
-
-      @include breakpoint(tablet) {
-        font-weight: 500;
-        font-size: 20px;
-        line-height: 24px;
-        text-align: right;
-      }
-    }
-
-    &_arrow {
-      width: 48px;
-      height: 48px;
-      border-radius: 0;
-      transition: transform 0.3s ease-in;
+      width: 23px;
     }
   }
 
   &__language {
+    @extend %flex-column;
+    @extend %box-shadow;
     cursor: default;
     background-color: $black;
-    height: 96px;
-    @extend %flex-column;
+    height: 95px;
+    width: 132px;
     justify-content: space-evenly;
     position: absolute;
     z-index: 10;
     top: 69px;
-    right: 0;
-    width: 105px;
+    right: -40px;
     border: unset;
-    @extend %box-shadow;
+    border-radius: 7px;
 
     @include breakpoint(tablet) {
       right: unset;
@@ -63,18 +48,20 @@
     }
 
     &__item {
-      width: 100%;
-      margin: 0;
-      @extend %language_sizes;
-      @extend %text_left;
-      @extend %flex-align;
-      padding: 0 0 0 16px;
-      background-color: transparent;
-      color: $red;
+      @extend %flex-between;
+      margin: 0 24px;
 
-      &:hover {
-        border-radius: 0;
-        background-color: transparent;
+      svg {
+        width: 23px;
+      }
+
+      &__text {
+        @extend %language_sizes;
+        color: $dark-white;
+
+        &_active {
+          color: $white;
+        }
       }
     }
   }
