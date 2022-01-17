@@ -10,9 +10,19 @@ const NewPage: NextPage = () => (
   <Seo title="New page" metaDescription="New page description"></Seo>
 );
 
-export const getStaticProps: GetStaticProps = async ({locale}: any) => ({
+type GetStaticPropsArgs = {
+  locale?: string;
+};
+
+export const getStaticProps: GetStaticProps = async ({
+  locale,
+}: GetStaticPropsArgs) => ({
   props: {
-    ...(await serverSideTranslations(locale, ['common'], nextI18NextConfig)),
+    ...(await serverSideTranslations(
+      locale as string,
+      ['common'],
+      nextI18NextConfig,
+    )),
   },
 });
 
