@@ -54,9 +54,17 @@ const Header: React.FC = () => {
       activeClassName={
         styles.wrapper__content__burger__container__nav__items_active
       }>
-      {pageName}
+      {t(pageName)}
     </Link>
   ));
+
+  const navbar = !isMinTablet ? (
+    <HeaderNavbar>{headerTable}</HeaderNavbar>
+  ) : (
+    <HeaderBurger isOpen={isOpen} closeHandler={closeHandler}>
+      {headerBurger}
+    </HeaderBurger>
+  );
 
   return (
     <header className={styles.wrapper}>
@@ -64,13 +72,7 @@ const Header: React.FC = () => {
         <Link className={styles.wrapper__content_logo} to={Route.Home}>
           <Logo />
         </Link>
-        {isMinTablet ? (
-          <HeaderBurger isOpen={isOpen} closeHandler={closeHandler}>
-            {headerBurger}
-          </HeaderBurger>
-        ) : (
-          <HeaderNavbar>{headerTable}</HeaderNavbar>
-        )}
+        {navbar}
       </div>
     </header>
   );

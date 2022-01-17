@@ -10,13 +10,13 @@ export const routes: RoutesProps[] = [
   },
   {
     id: 2,
-    pageName: 'Top Rated',
+    pageName: 'topRated',
     // pageName: 'Popular',
     routeName: Route.Favorites,
   },
   {
     id: 3,
-    pageName: 'Most Liked',
+    pageName: 'mostLiked',
     // pageName: 'Favorites',
     routeName: Route.MostLiked,
   },
@@ -41,22 +41,22 @@ export const routesBurger: RoutesProps[] = [
   },
   {
     id: 3,
-    pageName: 'Categories',
+    pageName: 'categories',
     routeName: Route.Categories,
   },
   {
     id: 4,
-    pageName: 'Top Rated',
+    pageName: 'topRated',
     routeName: Route.Favorites,
   },
   {
     id: 5,
-    pageName: 'Most Liked',
+    pageName: 'mostLiked',
     routeName: Route.MostLiked,
   },
   {
     id: 6,
-    pageName: 'New',
+    pageName: 'new',
     routeName: Route.New,
   },
 ];
