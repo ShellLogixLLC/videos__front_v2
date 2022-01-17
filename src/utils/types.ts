@@ -13,3 +13,9 @@ export type LangData = {
   name: string;
   locale: string;
 };
+
+export type Comment = {
+  id: number;
+  name: string;
+  comment: string;
+};

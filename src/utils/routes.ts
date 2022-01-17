@@ -10,12 +10,14 @@ export const routes: RoutesProps[] = [
   },
   {
     id: 2,
-    pageName: 'topRated',
+    pageName: 'Top Rated',
+    // pageName: 'Popular',
     routeName: Route.Favorites,
   },
   {
     id: 3,
-    pageName: 'mostLiked',
+    pageName: 'Most Liked',
+    // pageName: 'Favorites',
     routeName: Route.MostLiked,
   },
   {

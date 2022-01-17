@@ -2,7 +2,7 @@ import {Provider} from 'react-redux';
 import {AppProps} from 'next/app';
 import {appWithTranslation} from 'next-i18next';
 
-// import nextI18NextConfig from '../next-i18next.config';
+import 'emoji-mart/css/emoji-mart.css';
 
 import '~/styles/index.scss';
 
