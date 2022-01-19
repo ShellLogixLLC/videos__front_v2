@@ -6,12 +6,14 @@ export {default as PageContent} from './layouts/PageContent';
 
 // Shared
 export {default as Link} from './shared/Link';
+export {default as Form} from './shared/forms/Form';
 export {default as Input} from './shared/Input';
 export {default as Search} from './shared/Search';
 export {default as Button} from './shared/Button';
 export {default as Filter} from './shared/Filter';
 export {default as Comments} from './shared/Comments';
 export {default as FilmCard} from './shared/FilmCard';
+export {default as VideoItem} from './shared/VideoItem';
 export {default as BackButton} from './shared/BackButton';
 export {default as Pagination} from './shared/Pagination';
 export {default as DatePicker} from './shared/DatePicker';

@@ -14,8 +14,9 @@ const Input = forwardRef<any, InputProps>(
       error,
       inpValue,
       disabled,
-      RightIcon,
       onChange,
+      RightIcon,
+      labelText = '',
       rightIconStyle = '',
       RightToggledIcon,
       placeholder,
@@ -44,6 +45,8 @@ const Input = forwardRef<any, InputProps>(
       [labelClassName]: labelClassName,
     });
 
+    const labelTextClasses = classNames({[labelText]: labelText});
+
     const rightIconCLasses = classNames(styles.container__right_icon, {
       [rightIconStyle]: rightIconStyle,
     });
@@ -66,7 +69,7 @@ const Input = forwardRef<any, InputProps>(
 
     return (
       <label htmlFor={name} className={labelClasses}>
-        {label}
+        <span className={labelTextClasses}>{label}</span>
         <div className={inputInnerClasses}>
           <input
             {...rest}

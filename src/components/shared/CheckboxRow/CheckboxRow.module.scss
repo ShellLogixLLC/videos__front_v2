@@ -1,0 +1,20 @@
+.container {
+  @extend %flex-align;
+  margin-left: 13px;
+
+  span {
+    @extend %text_semibold;
+    color: #bec0c4;
+  }
+
+  &__first {
+    color: #5b708f !important;
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+
+  &__second {
+    color: #5b708f !important;
+    margin-left: 6px;
+  }
+}

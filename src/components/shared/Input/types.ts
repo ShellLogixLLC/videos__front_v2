@@ -34,14 +34,14 @@ export type InputProps = {
   inpValue?: string | number;
   disabled?: boolean;
   onChange?: (
-    e?:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLTextAreaElement>,
+    e?: React.ChangeEvent<HTMLInputElement>,
+    // | React.ChangeEvent<HTMLTextAreaElement>,
   ) => void;
   placeholder?: string;
   rightIconStyle?: string;
   innerClassName?: string;
   labelClassName?: string;
+  labelText?: string;
   RightIcon?: SVGIconProp;
   RightComponent?: any;
   RightToggledIcon?: SVGIconProp;

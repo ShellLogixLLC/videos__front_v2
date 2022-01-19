@@ -1,0 +1,64 @@
+.container {
+  &__top {
+    @extend %flex-center;
+    flex-direction: column;
+
+    &_img {
+      width: 122px;
+      height: 82px;
+    }
+
+    &__step {
+      color: gray;
+      margin-bottom: 24px;
+    }
+
+    &__title {
+      margin: {
+        top: 79px;
+        bottom: 2px;
+      }
+
+      @include breakpoint(tablet) {
+        margin-top: 40px;
+      }
+    }
+  }
+
+  &__forgot {
+    width: 100%;
+    &_text {
+      @extend %flex-justify-center;
+      color: #5b708f;
+      font-weight: 700;
+      margin: {
+        top: 35px;
+        bottom: 65px;
+      }
+
+      @include breakpoint(tablet) {
+        margin: {
+          top: 40px;
+          bottom: 40px;
+        }
+      }
+    }
+  }
+
+  &__account {
+    @extend %flex-align;
+    flex-direction: column;
+    border-top: 1px solid #e5e5e5;
+
+    &_reg {
+      color: gray;
+      margin-top: 22px;
+    }
+
+    &_sign {
+      color: #5b708f;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  }
+}

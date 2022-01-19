@@ -1,0 +1,45 @@
+import React, {useRef} from 'react';
+
+import {Logo} from '~/assets';
+import {RouterService} from '~/services';
+import {Typography, Form} from '~/components';
+import {registrationForm, Route} from '~/constants';
+
+import styles from './RegistrationPersonalInformation.module.scss';
+
+const RegistrationPersonalInformation: React.FC = () => {
+  const registrationRef = useRef<any>(null);
+
+  const handlePersonalInformationFormSubmit = () => {
+    RouterService.push(Route.RegistrationSetupPassword);
+  };
+
+  return (
+    <div className="container_without-header">
+      <div className={styles.container__top}>
+        <Logo className={styles.container__top_img} />
+        <Typography
+          type="Extra"
+          variant="Heading"
+          className={styles.container__top__title}>
+          Registration
+        </Typography>
+        <Typography
+          type="Medium"
+          variant="Text"
+          className={styles.container__top__step}>
+          Step 1 of 3
+        </Typography>
+      </div>
+
+      <Form
+        ref={registrationRef}
+        submitText="Proceed"
+        form={registrationForm}
+        onSubmit={handlePersonalInformationFormSubmit}
+      />
+    </div>
+  );
+};
+
+export default RegistrationPersonalInformation;

@@ -1,0 +1,15 @@
+.container {
+  @extend %flex-column;
+
+  &__button {
+    margin: 32px auto 0;
+    border-radius: 8px;
+
+    &_disabled {
+      background: $white;
+      color: $red;
+      margin: 32px auto 0;
+      cursor: not-allowed;
+    }
+  }
+}

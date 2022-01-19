@@ -166,3 +166,28 @@
     @include custom-scroll;
   }
 }
+
+.container_without-header {
+  max-width: 376px;
+  width: 100%;
+  margin: {
+    top: 88px;
+    left: auto;
+    right: auto;
+    bottom: 69px;
+  }
+
+  @include breakpoint(wide) {
+    padding: {
+      right: 16px;
+      left: 16px;
+    }
+  }
+
+  @include breakpoint(tablet) {
+    margin: {
+      top: 24px;
+      bottom: 24px;
+    }
+  }
+}
