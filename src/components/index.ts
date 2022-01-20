@@ -22,5 +22,6 @@ export {default as HeaderBurger} from './shared/HeaderBurger';
 export {default as CategoryCard} from './shared/CategoryCard';
 export {default as CreepingLine} from './shared/CreepingLine';
 export {default as FireAnimation} from './shared/FireAnimation';
+export {default as VideoDescription} from './shared/VideoDescription';
 export {default as LanguageDropDown} from './shared/LanguageDropDown';
 export {default as CreepingLineForText} from './shared/CreepingLineForText';
