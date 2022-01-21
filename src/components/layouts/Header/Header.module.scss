@@ -6,6 +6,13 @@
     @extend %flex-between;
     height: 100%;
 
+    &__container {
+      max-width: 100px;
+      width: 100%;
+      position: relative;
+      @extend %flex-between;
+    }
+
     &_logo {
       max-width: 153px;
       width: 100%;
@@ -47,16 +54,21 @@
 
     &__other {
       @extend %flex-between;
-      max-width: 413px;
+      max-width: 210px;
       width: 100%;
+      position: relative;
 
       @include breakpoint(tablet) {
         display: none;
       }
 
+      &__empty__block {
+        width: 24px;
+      }
+
       &__wishlist {
         @include breakpoint(wide) {
-          margin: 0 10px;
+          margin: 0 10px 0 25px;
         }
       }
     }
@@ -64,8 +76,10 @@
     &__close {
       width: 48px !important;
       height: 48px !important;
-      z-index: 9 !important;
+      z-index: 4 !important;
       background-color: transparent !important;
+      position: absolute;
+      right: 0;
 
       svg {
         path {

@@ -16,6 +16,7 @@ const Input = forwardRef<any, InputProps>(
       disabled,
       RightIcon,
       onChange,
+      onClick,
       rightIconStyle = '',
       RightToggledIcon,
       placeholder,
@@ -77,6 +78,7 @@ const Input = forwardRef<any, InputProps>(
             onMouseOver={onMouseOver}
             autoComplete="off"
             onChange={onChange}
+            onClick={onClick}
             disabled={disabled}
             className={inputClasses}
             placeholder={placeholder}

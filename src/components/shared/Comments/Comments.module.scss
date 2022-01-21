@@ -2,7 +2,7 @@
   max-width: 660px;
   width: 100%;
   padding: 18px 16px;
-  border-radius: 10px;
+  @extend %border-rad_8;
   background-color: $black;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
 
@@ -39,13 +39,13 @@
     overflow-y: scroll;
     @include custom-scroll;
     padding-right: 16px;
-    border-radius: 10px;
+    @extend %border-rad_8;
 
     &__comment {
       padding: 16px;
       max-width: 608px;
       width: 100%;
-      border-radius: 10px;
+      @extend %border-rad_8;
       background-color: $light_black;
       box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
 
@@ -90,7 +90,7 @@
         background: none;
         border: 1px solid $dark-white;
         box-sizing: border-box;
-        border-radius: 50px;
+        @extend %border-rad_8;
         padding: 13px 40px 13px 16px;
         width: 100%;
         color: $white;
