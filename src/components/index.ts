@@ -16,6 +16,7 @@ export {default as BackButton} from './shared/BackButton';
 export {default as Pagination} from './shared/Pagination';
 export {default as DatePicker} from './shared/DatePicker';
 export {default as Typography} from './shared/Typography';
+export {default as CategoryNav} from './shared/CategoryNav';
 export {default as EmojisInput} from './shared/EmojisInput';
 export {default as HeaderNavbar} from './shared/HeaderNavbar';
 export {default as HeaderBurger} from './shared/HeaderBurger';
