@@ -14,9 +14,8 @@ const Search: React.FC<SearchProps> = ({searchValue, searchChange}) => {
   const [expanded, setExpanded] = useState(false);
 
   const handleClick = () => {
-    setExpanded(true);
-    if (expanded) {
-      return;
+    if (!expanded) {
+      setExpanded(true);
     }
   };
 
