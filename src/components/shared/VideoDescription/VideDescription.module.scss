@@ -1,0 +1,94 @@
+.wrapper {
+  max-width: 330px;
+  padding: 10px;
+
+  &__title_block {
+    @extend %flex-between;
+    margin-bottom: 16px;
+
+    &__name {
+      @extend %separate_page_film_name;
+    }
+
+    &__heart_like {
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+
+      path {
+        &:first-child {
+          fill: $red;
+        }
+      }
+
+      path {
+        &:last-child {
+          animation: animationAllBackground 0.5s forwards;
+        }
+      }
+    }
+
+    &__heart_dislike {
+      path {
+        &:first-child {
+          fill: $red !important;
+        }
+      }
+
+      path {
+        &:last-child {
+          animation: animationAllBackgroundDisabled 0.5s forwards;
+        }
+      }
+    }
+  }
+
+  &__date {
+    color: $red;
+    margin-bottom: 16px;
+    @extend %separate_page_film_info_description;
+  }
+
+  &__description {
+    min-height: 110px;
+    margin-bottom: 24px;
+    @extend %film_info_text;
+  }
+
+  &__views_liked {
+    @extend %flex-align;
+
+    &__like {
+      @extend %flex-between;
+      max-width: 60px;
+      width: 100%;
+      margin-right: 20px;
+    }
+
+    &__view {
+      @extend %flex-between;
+      max-width: 60px;
+      width: 100%;
+    }
+  }
+}
+
+@keyframes animationAllBackground {
+  0% {
+    fill: transparent;
+  }
+
+  100% {
+    fill: $red;
+  }
+}
+
+@keyframes animationAllBackgroundDisabled {
+  0% {
+    fill: $red;
+  }
+
+  100% {
+    fill: transparent;
+  }
+}
