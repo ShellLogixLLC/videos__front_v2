@@ -46,7 +46,7 @@
   &__date {
     color: $red;
     margin-bottom: 16px;
-    @extend %separate_page_film_info_description;
+    @extend %film_info_text;
   }
 
   &__description {
