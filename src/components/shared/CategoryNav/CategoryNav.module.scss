@@ -1,0 +1,32 @@
+.wrapper {
+  @extend %flex-align;
+  overflow-x: scroll;
+  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.125);
+
+  &::-webkit-scrollbar {
+    height: 0px;
+  }
+
+  &__buttons {
+    margin-right: 24px;
+    white-space: nowrap;
+    width: unset;
+    max-width: 170px;
+    padding: 13px 34px;
+    border: 1px solid #c4c4c4;
+    border-radius: 48px;
+    box-sizing: border-box;
+    background-color: $black;
+    @extend %search-styling;
+
+    &__active {
+      border: none;
+      padding: 13px 35px;
+      background-color: $red;
+    }
+  }
+
+  :last-child {
+    margin-right: 0;
+  }
+}

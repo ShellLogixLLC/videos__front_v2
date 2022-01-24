@@ -21,5 +21,4 @@ const HeaderNavbar: React.FC = ({children}) => (
     </div>
   </>
 );
-
 export default HeaderNavbar;

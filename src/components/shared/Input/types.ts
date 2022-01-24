@@ -34,8 +34,9 @@ export type InputProps = {
   inpValue?: string | number;
   disabled?: boolean;
   onChange?: (
-    e?: React.ChangeEvent<HTMLInputElement>,
-    // | React.ChangeEvent<HTMLTextAreaElement>,
+    e?:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>,
   ) => void;
   placeholder?: string;
   rightIconStyle?: string;

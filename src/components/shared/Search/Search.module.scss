@@ -13,3 +13,43 @@
   width: 20px;
   height: 20px;
 }
+.wrapper {
+  position: absolute;
+  left: 0;
+  background-color: $black;
+  z-index: 5;
+
+  &__container {
+    position: relative;
+
+    &__search {
+      @extend %search-styling;
+      max-width: 24px;
+      width: 100%;
+      color: $red !important;
+      background-color: transparent;
+      border: none;
+      border-radius: 8px !important;
+      padding: 0 !important;
+      transition: 0.5s all ease;
+
+      &_expanded {
+        max-width: 270px;
+        border: 1px solid $white;
+        padding: 4px 40px 8px 10px !important;
+      }
+    }
+
+    &__right_icon {
+      width: 24px;
+      height: 34px;
+      right: 0;
+      background-color: $black;
+      cursor: pointer !important;
+
+      &_open {
+        right: 10px;
+      }
+    }
+  }
+}
