@@ -3,13 +3,6 @@
 
 echo '🏗️👷 Styling, testing and building your project before committing'
 
-npm run check-format ||
-(
-    echo '🤢🤮🤢🤮 Its F**KING RAW - Your styling looks disgusting. 🤢🤮🤢🤮
-            Prettier Check Failed. Run npm run format, add changes and try commit again.';
-    false;
-)
-
 npm run check-lint ||
 (
         echo '😤🏀👋😤 Get that weak s**t out of here! 😤🏀👋😤 

@@ -26,7 +26,10 @@ const RegistrationStepPage: NextPage<IRegistrationStepsPageProps> = ({
   const ContainerComponent = RegistrationContainers[containerComponent];
 
   return (
-    <Seo showHeader={false} title={title} metaDescription={metaDescription}>
+    <Seo
+      title={title}
+      showHeaderFooter={false}
+      metaDescription={metaDescription}>
       <ContainerComponent />
     </Seo>
   );

@@ -66,10 +66,13 @@
         width: 24px;
       }
 
-      &__wishlist {
-        @include breakpoint(wide) {
-          margin: 0 10px 0 25px;
-        }
+      // &__wishlist {  }
+
+      &__skeleton {
+        width: 24px;
+        height: 0;
+        background-color: transparent;
+        color: transparent;
       }
     }
 

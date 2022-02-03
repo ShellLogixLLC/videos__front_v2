@@ -23,11 +23,12 @@ export type Form = {
 
 export interface IFormProps<TFieldValues extends FieldValues = FieldValues> {
   form: Form;
-  inputClassName?: string;
-  innerClassName?: string;
-  labelClassName?: string;
   labelText?: string;
   submitText: string;
   className?: string;
+  inputClassName?: string;
+  innerClassName?: string;
+  labelClassName?: string;
+  addFormBtnClasses?: string;
   onSubmit: SubmitHandler<TFieldValues>;
 }

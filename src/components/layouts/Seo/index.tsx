@@ -10,21 +10,26 @@ const Seo: React.FC<ISeoProps> = ({
   children,
   className,
   metaDescription,
-  showHeader = true,
-  showFooter = true,
+  showHeaderFooter = true,
   showPageContent = true,
 }) => (
   <React.Fragment>
     <Head>
       <title>{title}</title>
       <meta name="description" content={metaDescription} />
+      <meta name="mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-title" content="FRONT" />
+      <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="viewport" content="width=device-width, user-scalable=no" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     </Head>
-    {showHeader && <Header />}
+    {showHeaderFooter && <Header />}
     {showPageContent && (
-      <PageContent className={className}>{children}</PageContent>
+      <PageContent showHeaderFooter={showHeaderFooter} className={className}>
+        {children}
+      </PageContent>
     )}
-    {showFooter && <Footer />}
+    {showHeaderFooter && <Footer />}
   </React.Fragment>
 );
 

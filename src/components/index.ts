@@ -1,13 +1,15 @@
 // Layouts
-export {default as Seo} from './layouts/Seo';
-export {default as Header} from './layouts/Header';
-export {default as Footer} from './layouts/Footer';
-export {default as PageContent} from './layouts/PageContent';
+
+export * from './layouts';
+// Seo, Header, Footer, PageContent
+
+export {default as Form} from './shared/forms/Form';
+// Forms
 
 // Shared
 export {default as Link} from './shared/Link';
-export {default as Form} from './shared/forms/Form';
 export {default as Input} from './shared/Input';
+export {default as Timer} from './shared/StopWatch';
 export {default as Search} from './shared/Search';
 export {default as Button} from './shared/Button';
 export {default as Filter} from './shared/Filter';
@@ -19,6 +21,7 @@ export {default as DatePicker} from './shared/DatePicker';
 export {default as Typography} from './shared/Typography';
 export {default as CategoryNav} from './shared/CategoryNav';
 export {default as EmojisInput} from './shared/EmojisInput';
+export {default as Verification} from './shared/Verification';
 export {default as HeaderNavbar} from './shared/HeaderNavbar';
 export {default as HeaderBurger} from './shared/HeaderBurger';
 export {default as CategoryCard} from './shared/CategoryCard';

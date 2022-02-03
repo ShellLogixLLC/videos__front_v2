@@ -1,7 +1,9 @@
 .container {
+  width: 100%;
   @extend %flex-column;
 
   &__button {
+    max-width: 100%;
     margin: 32px auto 0;
     border-radius: 8px;
 

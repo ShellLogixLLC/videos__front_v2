@@ -1,4 +1,11 @@
 .container {
+  @extend %flex-center-direction;
+  max-width: 376px;
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
+
   &__top {
     @extend %flex-center;
     flex-direction: column;
@@ -22,28 +29,31 @@
   }
 
   &__forgot {
-    width: 100%;
+    width: 134px;
+    color: #5b708f;
+    font-weight: 700;
+    margin: 35px auto;
+    display: block;
+
     &_text {
       @extend %flex-justify-center;
+      width: 100%;
       color: #5b708f;
       font-weight: 700;
-      margin: {
-        top: 35px;
-        bottom: 65px;
-      }
+      margin: 0 auto;
 
-      @include breakpoint(tablet) {
-        margin: {
-          top: 40px;
-          bottom: 40px;
-        }
-      }
+      // @include breakpoint(tablet) {
+      //   margin: {
+      //     top: 40px;
+      //     bottom: 40px;
+      //   }
+      // }
     }
   }
 
   &__account {
-    @extend %flex-align;
-    flex-direction: column;
+    width: 100%;
+    @extend %flex-center-direction;
     border-top: 1px solid #e5e5e5;
 
     &_reg {
@@ -61,7 +71,7 @@
 
 .sign_in {
   &__block {
-    min-height: 82px;
+    min-height: 83px;
     @extend %text_small;
     font-weight: 600;
     margin-bottom: 6px;

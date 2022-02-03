@@ -1,9 +1,9 @@
-export {default as CategoryList} from './CategoryList';
-
-export {default as SignIn} from './authentication/SignIn';
-export {default as ForgotPassword} from './authentication/ForgotPassword';
+export * from './authentication';
+// SignIn, ResetPassword, ForgotPassword, Registration, Verification
 
 // Registration
 export {default as RegistrationSetupPasswordContainer} from './registration/RegistrationSetupPassword';
 export {default as RegistrationContactInformationContainer} from './registration/RegistrationContactInformation';
 export {default as RegistrationPersonalInformationContainer} from './registration/RegistrationPersonalInformation';
+
+export {default as Category} from './Category';

@@ -1,20 +1,23 @@
 .container {
-  @extend %flex-align;
-  margin-left: 13px;
+  width: 100%;
+  @extend %flex-between;
+  position: absolute;
+  flex-wrap: wrap;
+  justify-content: unset;
+  min-height: 44px;
 
   span {
     @extend %text_semibold;
     color: #bec0c4;
+    font-size: 13px;
+    white-space: pre;
   }
 
   &__first {
     color: #5b708f !important;
-    margin-left: 4px;
-    margin-right: 4px;
   }
 
   &__second {
     color: #5b708f !important;
-    margin-left: 6px;
   }
 }

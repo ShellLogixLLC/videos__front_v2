@@ -6,6 +6,8 @@ type ButtonType = 'submit' | 'reset' | 'button';
 
 export interface IButtonProps {
   size?: Size;
+  name?: string;
+  title?: string;
   type?: ButtonType;
   variant?: Variant;
   disabled?: boolean;

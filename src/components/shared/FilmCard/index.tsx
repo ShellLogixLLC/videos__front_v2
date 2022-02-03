@@ -11,6 +11,7 @@ import styles from './FilmCard.module.scss';
 
 const FilmCard: React.FC<FilmCardProps> = ({
   filmName,
+  cardClasses = '',
   likeCount = 0,
   viewsCount = 0,
   uploadDate,
@@ -29,8 +30,12 @@ const FilmCard: React.FC<FilmCardProps> = ({
     [styles.wrapper__film_not_like_it]: !isLiked,
   });
 
+  const filmCardClasses = classNames(styles.wrapper, {
+    [cardClasses]: cardClasses,
+  });
+
   return (
-    <div className={styles.wrapper}>
+    <div className={filmCardClasses}>
       <div className={styles.wrapper__film}>
         <Button className={isLikedClasses} onClick={toggleLike}>
           <HeartLikes />

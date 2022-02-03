@@ -19,6 +19,15 @@
   }
 }
 
+.project_body_height {
+  min-height: 100vh;
+  padding: 50px;
+
+  @include breakpoint(desktop) {
+    padding: 50px 16px 50px;
+  }
+}
+
 .text_center {
   @extend %text_center;
 }
@@ -168,8 +177,8 @@
 }
 
 .container_without-header {
-  max-width: 376px;
   width: 100%;
+
   margin: {
     top: 88px;
     left: auto;

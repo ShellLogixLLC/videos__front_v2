@@ -5,6 +5,7 @@ export type InputType =
   | 'checkbox'
   | 'color'
   | 'date'
+  | 'verification'
   | 'datetime-local'
   | 'email'
   | 'file'
@@ -29,16 +30,23 @@ export type InputProps = {
   name?: string;
   label?: string;
   error?: string;
+  readOnly?: boolean;
+  maxLength?: number;
+  autoFocus?: any;
+  // onFocus?: any;
+  onKeyUp?: any;
   type?: InputType;
   className?: string;
+  onKeyDown?: any;
   inpValue?: string | number;
   disabled?: boolean;
-  onChange?: (
-    e?:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLTextAreaElement>,
-  ) => void;
-  placeholder?: string;
+  // onChange?: (
+  //   e?:
+  //     | React.ChangeEvent<HTMLInputElement>
+  //     | React.ChangeEvent<HTMLTextAreaElement>,
+  // ) => void;
+  onChange?: any;
+  placeholder?: any;
   rightIconStyle?: string;
   innerClassName?: string;
   labelClassName?: string;

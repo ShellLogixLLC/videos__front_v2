@@ -14,6 +14,7 @@ const HeaderNavbar: React.FC = ({children}) => (
     <nav className={styles.wrapper__content_menu}>{children}</nav>
     <div className={styles.wrapper__content__other}>
       <Search />
+      <div className={styles.wrapper__content__other__skeleton} />
       <Link to={Route.MyFavorite}>
         <LikeIt className={styles.wrapper__content__other__wishlist} />
       </Link>

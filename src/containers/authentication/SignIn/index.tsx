@@ -2,9 +2,9 @@ import React, {useCallback, useRef} from 'react';
 
 // import {useAppDispatch} from '~/hooks';
 // import {authActions} from '~/store/auth';
+import {Logo} from '~/assets';
 import {Route, signInForm} from '~/constants';
 import {Typography, Form, Link} from '~/components';
-import {Logo} from '~/assets';
 
 import styles from './SignIn.module.scss';
 
@@ -19,7 +19,7 @@ const SignIn: React.FC = () => {
   }, []);
 
   return (
-    <div className="container_without-header">
+    <div className={`container_without-header ${styles.container}`}>
       <div className={styles.container__top}>
         <Logo className={styles.container__top_img} />
         <Typography

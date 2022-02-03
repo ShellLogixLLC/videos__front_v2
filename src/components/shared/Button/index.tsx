@@ -5,6 +5,8 @@ import {IButtonProps} from './types';
 import styles from './Button.module.scss';
 
 const Button: React.FC<IButtonProps> = ({
+  name,
+  title,
   onClick,
   children,
   LeftIcon,
@@ -28,6 +30,8 @@ const Button: React.FC<IButtonProps> = ({
 
   return (
     <button
+      name={name}
+      title={title}
       type={type}
       disabled={disabled}
       className={buttonClasses}

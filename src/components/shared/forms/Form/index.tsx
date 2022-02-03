@@ -3,9 +3,12 @@ import classNames from 'classnames';
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 
+// import {Verification} from '~/components/index';
+
 import Input from '../../Input';
 import Button from '../../Button';
 import CheckboxRow from '../../CheckboxRow';
+import Verification from '../../Verification';
 
 import {IFormProps} from './types';
 import styles from './Form.module.scss';
@@ -17,10 +20,11 @@ const Form = forwardRef<any, IFormProps>(
       onSubmit,
       submitText,
       className = '',
-      inputClassName = '',
       labelText = '',
+      inputClassName = '',
       labelClassName = '',
       innerClassName = '',
+      addFormBtnClasses = '',
     },
     ref,
   ) => {
@@ -41,7 +45,13 @@ const Form = forwardRef<any, IFormProps>(
 
     const disabledButtonClasses = classNames(styles.container__button, {
       [styles.container__button_disabled]: !isValid,
+      [addFormBtnClasses]: addFormBtnClasses,
     });
+
+    // const clickHandler = () => {
+    //   // eslint-disable-next-line no-console
+    //   console.log('waerty');
+    // };
 
     const renderField = useCallback(
       (name, {labelOptions, ...rest}) => {
@@ -61,6 +71,8 @@ const Form = forwardRef<any, IFormProps>(
                 labelOptions={labelOptions}
               />
             );
+          case 'verification':
+            return <Verification key={name} inputProps={commonProps} />;
           default:
             return (
               <Input
