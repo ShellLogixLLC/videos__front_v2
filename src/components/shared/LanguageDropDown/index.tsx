@@ -17,9 +17,9 @@ const LanguageDropDown: React.FC = () => {
 
   const filterRef = useRef(null);
   const [expanded, setExpanded] = useState<boolean>(false);
-  const activelang = locale === 'en' ? <EnIcon /> : <RuIcon />;
+  const initialLanguage = locale === 'en' ? <EnIcon /> : <RuIcon />;
   const [activeLanguage, setActiveLanguage] =
-    useState<ReactElement>(activelang);
+    useState<ReactElement>(initialLanguage);
   const [activeIndex, setActiveIndex] = useState(locale === 'en' ? 0 : 1);
 
   const handleOpener = () => {
@@ -31,12 +31,9 @@ const LanguageDropDown: React.FC = () => {
   });
 
   const changeLang = (name: string, idx: number) => {
-    if (name === 'en') {
-      setActiveLanguage(<EnIcon />);
-    } else {
-      setActiveLanguage(<RuIcon />);
-    }
+    const icon = name === 'en' ? <EnIcon /> : <RuIcon />;
 
+    setActiveLanguage(icon);
     setExpanded(false);
     setActiveIndex(idx);
   };

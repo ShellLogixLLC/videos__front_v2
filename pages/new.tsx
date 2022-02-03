@@ -7,16 +7,12 @@ import {Seo} from '~/components';
 import nextI18NextConfig from '../next-i18next.config.js';
 
 const NewPage: NextPage = () => (
-  <Seo title="New page" metaDescription="New page description"></Seo>
+  <Seo title="New page" metaDescription="New page description">
+    <h1>New Page</h1>
+  </Seo>
 );
 
-type GetStaticPropsArgs = {
-  locale?: string;
-};
-
-export const getStaticProps: GetStaticProps = async ({
-  locale,
-}: GetStaticPropsArgs) => ({
+export const getStaticProps: GetStaticProps = async ({locale}) => ({
   props: {
     ...(await serverSideTranslations(
       locale as string,

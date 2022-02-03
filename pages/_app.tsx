@@ -1,3 +1,4 @@
+import React from 'react';
 import {Provider} from 'react-redux';
 import {AppProps} from 'next/app';
 import {appWithTranslation} from 'next-i18next';

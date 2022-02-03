@@ -12,13 +12,7 @@ const HomePage: NextPage = () => (
   </Seo>
 );
 
-type GetStaticPropsArgs = {
-  locale?: string;
-};
-
-export const getStaticProps: GetStaticProps = async ({
-  locale,
-}: GetStaticPropsArgs) => ({
+export const getStaticProps: GetStaticProps = async ({locale}) => ({
   props: {
     ...(await serverSideTranslations(
       locale as string,

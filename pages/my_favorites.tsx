@@ -9,16 +9,12 @@ import nextI18NextConfig from '../next-i18next.config.js';
 const MyFavoritesPage: NextPage = () => (
   <Seo
     title="My favorites page"
-    metaDescription="My favorites page description"></Seo>
+    metaDescription="My favorites page description">
+    <h1>My Favorites Page</h1>
+  </Seo>
 );
 
-type GetStaticPropsArgs = {
-  locale?: string;
-};
-
-export const getStaticProps: GetStaticProps = async ({
-  locale,
-}: GetStaticPropsArgs) => ({
+export const getStaticProps: GetStaticProps = async ({locale}) => ({
   props: {
     ...(await serverSideTranslations(
       locale as string,
