@@ -6,6 +6,7 @@ export {default as PageContent} from './layouts/PageContent';
 
 // Shared
 export {default as Link} from './shared/Link';
+export {default as Video} from './shared/Video';
 export {default as Input} from './shared/Input';
 export {default as Search} from './shared/Search';
 export {default as Button} from './shared/Button';
