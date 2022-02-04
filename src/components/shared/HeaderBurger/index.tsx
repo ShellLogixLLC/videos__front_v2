@@ -15,9 +15,9 @@ const HeaderBurger: React.FC<HeaderBurgerProps> = ({
   closeHandler,
 }) => (
   <>
-    <Button onClick={closeHandler} className={styles.wrapper__content__close}>
+    {/* <Button onClick={closeHandler} className={styles.wrapper__content__close}>
       <Menu className={styles.wrapper__content__close__icon} />
-    </Button>
+    </Button> */}
     <div className={styles.wrapper__content__container}>
       <Search />
       <Button onClick={closeHandler} className={styles.wrapper__content__close}>
