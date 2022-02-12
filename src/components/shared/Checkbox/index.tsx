@@ -1,6 +1,7 @@
 import React, {forwardRef} from 'react';
 
 import {ICheckboxProps} from './types';
+//
 import styles from './Checkbox.module.scss';
 
 const Checkbox = forwardRef<any, ICheckboxProps>(

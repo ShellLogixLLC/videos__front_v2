@@ -1,8 +1,12 @@
 import React, {useCallback, useRef} from 'react';
 
 import {Logo} from '~/assets';
-import {registrationForm} from '~/constants';
-import {Form, BackButton, Typography} from '~/components';
+import {RouterService} from '~/services';
+import {registrationForm, Route} from '~/constants';
+
+import Form from '../../shared/forms/Form';
+import BackButton from '../../shared/BackButton';
+import Typography from '../../shared/Typography';
 
 import styles from './Registration.module.scss';
 
@@ -10,9 +14,11 @@ const Registration: React.FC = () => {
   const signInRef = useRef<any>(null);
 
   const handleResetPassFormSubmit = useCallback((values) => {
-    // dispatch(authActions.login(values));
-    // eslint-disable-next-line no-console
-    console.log(values, 'signIn');
+    if (values.verification) {
+      RouterService.push(Route.RegistrationSetupPassword);
+    } else {
+      RouterService.push(Route.Home);
+    }
   }, []);
 
   return (
@@ -33,7 +39,6 @@ const Registration: React.FC = () => {
         submitText="Proceed"
         form={registrationForm}
         onSubmit={handleResetPassFormSubmit}
-        //
         // className={styles.container__registration}
         // addFormBtnClasses={styles.register_button}
         labelClassName={styles.container__registration__block}

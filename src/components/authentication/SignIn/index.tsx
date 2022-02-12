@@ -1,10 +1,14 @@
 import React, {useCallback, useRef} from 'react';
-
 // import {useAppDispatch} from '~/hooks';
 // import {authActions} from '~/store/auth';
+
 import {Logo} from '~/assets';
+import {RouterService} from '~/services';
 import {Route, signInForm} from '~/constants';
-import {Typography, Form, Link} from '~/components';
+
+import Form from '../../shared/forms/Form';
+import Link from '../../shared/Link';
+import Typography from '../../shared/Typography';
 
 import styles from './SignIn.module.scss';
 
@@ -14,8 +18,10 @@ const SignIn: React.FC = () => {
 
   const handleSignInFormSubmit = useCallback((values) => {
     // dispatch(authActions.login(values));
+    RouterService.push(Route.Home);
     // eslint-disable-next-line no-console
     console.log(values, 'signIn');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

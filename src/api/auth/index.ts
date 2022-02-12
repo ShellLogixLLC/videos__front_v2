@@ -7,9 +7,9 @@ import endpoints from '../endpoints';
 
 import {IUseUsersReturn} from './types';
 
-const useUsers = (): IUseUsersReturn => {
+const useCategories = (): IUseUsersReturn => {
   const {data, mutate, error} = useAppRequest({
-    url: endpoints.AuthService.getUsers(),
+    url: endpoints.AuthService.getCategories(),
   });
 
   useEffect(() => {
@@ -20,14 +20,14 @@ const useUsers = (): IUseUsersReturn => {
 
   return {
     isError: !!error,
-    users: data || [],
+    categories: data || [],
     mutateUsers: mutate,
     isLoading: !error && !data,
   };
 };
 
 const AuthService = {
-  useUsers,
+  useCategories,
 };
 
 export default AuthService;

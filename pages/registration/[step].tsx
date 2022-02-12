@@ -5,18 +5,20 @@ import {
   IRegistrationStepsPageProps,
   IRegistrationStepsPageParams,
 } from '~/types';
-import {Seo} from '~/components';
-import {registrationSteps} from '~/constants';
 import {
-  RegistrationSetupPasswordContainer,
-  RegistrationContactInformationContainer,
-  RegistrationPersonalInformationContainer,
-} from '~/containers';
+  Seo,
+  VerifyPage,
+  Registration,
+  ResetPassword,
+  ForgotPassword,
+} from '~/components';
+import {registrationSteps} from '~/constants';
 
 export const RegistrationContainers = {
-  RegistrationSetupPasswordContainer,
-  RegistrationContactInformationContainer,
-  RegistrationPersonalInformationContainer,
+  VerifyPage,
+  Registration,
+  ResetPassword,
+  ForgotPassword,
 };
 
 const RegistrationStepPage: NextPage<IRegistrationStepsPageProps> = ({

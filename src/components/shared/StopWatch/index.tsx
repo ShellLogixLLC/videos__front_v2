@@ -1,7 +1,7 @@
 import React, {useState, useRef, useEffect} from 'react';
 import classNames from 'classnames';
 
-import {Button} from '~/components';
+import Button from '../Button';
 
 import styles from './Timer.module.scss';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {Route} from '~/constants';
-import {LikeIt} from '~/assets';
+import {LikeIt, UserIcon} from '~/assets';
 
 import Link from '../Link';
 import Search from '../Search';
@@ -17,6 +17,9 @@ const HeaderNavbar: React.FC = ({children}) => (
       <div className={styles.wrapper__content__other__skeleton} />
       <Link to={Route.MyFavorite}>
         <LikeIt className={styles.wrapper__content__other__wishlist} />
+      </Link>
+      <Link to="/sign-in" className={styles.wrapper__content__other__sign_in}>
+        <UserIcon />
       </Link>
       <LanguageDropDown />
     </div>

@@ -66,13 +66,18 @@
         width: 24px;
       }
 
-      // &__wishlist {  }
-
       &__skeleton {
         width: 24px;
         height: 0;
         background-color: transparent;
         color: transparent;
+      }
+
+      &__sign_in {
+        width: 36px;
+        height: 24px;
+        padding: 0;
+        background-color: transparent;
       }
     }
 
@@ -145,7 +150,7 @@
             width: 100%;
             height: 50px;
             @extend %flex-align;
-            @extend %burger-fonts;
+            @extend %film_name;
 
             &_active {
               color: $red;

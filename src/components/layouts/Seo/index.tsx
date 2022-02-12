@@ -15,13 +15,14 @@ const Seo: React.FC<ISeoProps> = ({
 }) => (
   <React.Fragment>
     <Head>
-      <title>{title}</title>
       <meta name="description" content={metaDescription} />
       <meta name="mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-title" content="FRONT" />
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="viewport" content="width=device-width, user-scalable=no" />
       <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+      <title>{title}</title>
     </Head>
     {showHeaderFooter && <Header />}
     {showPageContent && (

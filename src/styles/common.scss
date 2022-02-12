@@ -194,9 +194,14 @@
   }
 
   @include breakpoint(tablet) {
+    padding: 0;
     margin: {
       top: 24px;
       bottom: 24px;
     }
   }
+}
+input {
+  user-select: text !important;
+  -webkit-user-select: text !important;
 }

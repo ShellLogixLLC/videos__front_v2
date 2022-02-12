@@ -1,3 +1,3 @@
 export type VerifyProps = {
-  myAccount?: string;
+  my_account?: string;
 };

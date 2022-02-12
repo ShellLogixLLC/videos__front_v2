@@ -3,7 +3,9 @@ import React, {useState, useRef, useMemo} from 'react';
 import {AlarmIcon} from '~/assets';
 import {userSelect} from '~/constants';
 import {useOnClickOutside} from '~/hooks';
-import {Input, Button} from '~/components';
+
+import Input from '../../Input';
+import Button from '../../Button';
 
 import {IExternalUser} from './types';
 import styles from './ExternalUsersForm.module.scss';

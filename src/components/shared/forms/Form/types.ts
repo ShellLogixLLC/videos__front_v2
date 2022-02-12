@@ -14,6 +14,7 @@ export type LabelOptions = {
 
 export type Field = InputProps & {
   labelOptions?: LabelOptions;
+  defaultValue?: string | boolean;
 };
 
 export type Form = {
@@ -23,6 +24,7 @@ export type Form = {
 
 export interface IFormProps<TFieldValues extends FieldValues = FieldValues> {
   form: Form;
+  formHandler?: () => void;
   labelText?: string;
   submitText: string;
   className?: string;

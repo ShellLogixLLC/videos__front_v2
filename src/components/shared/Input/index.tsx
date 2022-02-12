@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import Typography from '../Typography';
 
 import {InputProps} from './types';
+//
 import styles from './Input.module.scss';
 
 const Input = forwardRef<any, InputProps>(
@@ -40,6 +41,7 @@ const Input = forwardRef<any, InputProps>(
 
     const inputClasses = classNames(styles.container, {
       [className]: className,
+      [styles.container_right_icon]: RightIcon,
       [styles.container__error]: !!error,
     });
 
@@ -99,7 +101,8 @@ const Input = forwardRef<any, InputProps>(
             onMouseOver={onMouseOver}
             placeholder={placeholder}
             type={isToggledIcon ? 'text' : type}
-            pattern={type === 'number' ? '[0-9]*' : ''}
+            pattern={type === 'number' ? '[0-9]*' : undefined}
+            // pattern={type === 'number' ? '[0-9]*' : ''}
             inputMode={type === 'number' ? 'numeric' : 'text'}
             data-dt-idx="1"
           />

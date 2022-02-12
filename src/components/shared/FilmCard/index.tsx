@@ -7,6 +7,7 @@ import Button from '../Button';
 import Typography from '../Typography';
 
 import {FilmCardProps} from './types';
+//
 import styles from './FilmCard.module.scss';
 
 const FilmCard: React.FC<FilmCardProps> = ({

@@ -5,6 +5,7 @@ import {LeftArrow, RightArrow} from '~/assets';
 
 import ShowItem from './showItem';
 import {Pagination} from './types';
+//
 import styles from './Pagination.module.scss';
 
 const PaginationIndex: React.FC<Pagination> = ({

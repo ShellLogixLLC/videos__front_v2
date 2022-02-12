@@ -2,7 +2,8 @@ import * as yup from 'yup';
 
 import {Route} from '~/constants';
 import {EyeShowIcon, EyeHideIcon} from '~/assets';
-import {Field, Form} from '~/components/shared/forms/Form/types';
+// import {Field, Form} from '~/components/shared/forms/Form/types';
+import {Field, Form} from '~/types';
 
 const fields: Field[] = [
   {
@@ -11,32 +12,36 @@ const fields: Field[] = [
     label: 'Username',
     placeholder: 'Enter your username',
   },
+
   {
     name: 'email',
     type: 'email',
     label: 'Email',
     placeholder: 'Enter your email address',
   },
+
   {
     name: 'create_password',
     type: 'password',
     label: 'Create password',
     placeholder: 'Enter password',
-    RightIcon: EyeShowIcon,
-    RightToggledIcon: EyeHideIcon,
+    RightIcon: EyeHideIcon,
+    RightToggledIcon: EyeShowIcon,
   },
+
   {
     name: 'confirm_password',
     type: 'password',
     label: 'Confirm password',
     placeholder: 'Enter the same password',
-    RightIcon: EyeShowIcon,
-    RightToggledIcon: EyeHideIcon,
+    RightIcon: EyeHideIcon,
+    RightToggledIcon: EyeShowIcon,
   },
   {
     name: 'verification',
     type: 'verification',
     label: 'Verification account',
+    defaultValue: true,
   },
   {
     name: 'agreed',
@@ -66,16 +71,13 @@ const schema = yup.object().shape({
     .min(3, 'Last name is too short - should be 3 chars minimum.'),
   confirm_password: yup
     .string()
-    .required('The Last name is required')
-    .min(3, 'Last name is too short - should be 3 chars minimum.'),
-  verification: yup
-    .string()
-    .required('The Last name is required')
-    .min(3, 'Last name is too short - should be 3 chars minimum.'),
-
+    .oneOf(
+      [yup.ref('create_password'), null],
+      'Password is too short or does not match the previous one',
+    ),
+  verification: yup.boolean().oneOf([true, false]),
   agreed: yup
     .boolean()
-    .required('The terms and conditions must be accepted.')
     .oneOf([true], 'The terms and conditions must be accepted.'),
 });
 

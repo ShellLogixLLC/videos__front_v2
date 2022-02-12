@@ -1,14 +1,14 @@
 import React from 'react';
 
-import {Seo} from '~/components';
-import {VerifyPage} from '~/containers';
+import {Seo, SignIn, Registration} from '~/components';
 
 const HomePage: React.FC = () => (
   <Seo
     title="Home page"
-    showHeaderFooter={false}
+    // showHeaderFooter={false}
     metaDescription="Home page description">
-    <VerifyPage />
+    <SignIn />
+    <Registration />
   </Seo>
 );
 

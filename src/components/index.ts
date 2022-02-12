@@ -1,15 +1,18 @@
-// Layouts
+// layouts
+export * from './layouts'; // Seo, Header, Footer, PageContent
 
-export * from './layouts';
-// Seo, Header, Footer, PageContent
+// views
+export * from './views'; // Modal, CreepingLine, FireAnimation, CreepingLineForText
 
-export {default as Form} from './shared/forms/Form';
-// Forms
+// authentication
+export * from './authentication'; // SignIn, ResetPassword, ForgotPassword, Registration, Verification
 
 // Shared
+export {default as Form} from './shared/forms/Form';
 export {default as Link} from './shared/Link';
 export {default as Input} from './shared/Input';
 export {default as Timer} from './shared/StopWatch';
+export {default as Loader} from './shared/Loader';
 export {default as Search} from './shared/Search';
 export {default as Button} from './shared/Button';
 export {default as Filter} from './shared/Filter';
@@ -25,8 +28,6 @@ export {default as Verification} from './shared/Verification';
 export {default as HeaderNavbar} from './shared/HeaderNavbar';
 export {default as HeaderBurger} from './shared/HeaderBurger';
 export {default as CategoryCard} from './shared/CategoryCard';
-export {default as CreepingLine} from './shared/CreepingLine';
-export {default as FireAnimation} from './shared/FireAnimation';
 export {default as VideoDescription} from './shared/VideoDescription';
 export {default as LanguageDropDown} from './shared/LanguageDropDown';
-export {default as CreepingLineForText} from './shared/CreepingLineForText';
+// Shared

@@ -1,6 +1,7 @@
 import * as yup from 'yup';
 
-import {Field, Form} from '~/components/shared/forms/Form/types';
+// import {Field, Form} from '~/components/shared/forms/Form/types';
+import {Field, Form} from '~/types';
 
 const fields: Field[] = [
   {

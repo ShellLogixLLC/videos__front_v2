@@ -1,41 +1,28 @@
-import React, {useState} from 'react';
+import React from 'react';
 import classNames from 'classnames';
 
 import Button from '../Button';
 
 import {VerificationProps} from './types';
+//
 import styles from './Verification.module.scss';
 
-const Verification: React.FC<VerificationProps> = ({inputProps}) => {
-  const [isVerification, setIsVerification] = useState<boolean>(true);
-
-  const verifiedRegister = () => {
-    if (!isVerification) {
-      setIsVerification(true);
-    }
-  };
-
-  const unVerifiedRegister = () => {
-    if (isVerification) {
-      setIsVerification(!isVerification);
-    }
-  };
-
+const Verification: React.FC<VerificationProps> = ({value, onChange}) => {
   const verifiedClasses = classNames(styles.wrapper__buttons, {
-    [styles.wrapper__buttons_verified]: isVerification,
+    [styles.wrapper__buttons_verified]: value,
   });
 
   const dontVerifiedClasses = classNames(styles.wrapper__buttons, {
-    [styles.wrapper__buttons_not_verified]: !isVerification,
+    [styles.wrapper__buttons_not_verified]: !value,
   });
 
   return (
-    <label className={styles.wrapper} {...inputProps}>
+    <label className={styles.wrapper}>
       <span className={styles.wrapper__title}>Account verification</span>
-      <Button onClick={verifiedRegister} className={verifiedClasses}>
+      <Button onClick={() => onChange(true)} className={verifiedClasses}>
         Verified
       </Button>
-      <Button onClick={unVerifiedRegister} className={dontVerifiedClasses}>
+      <Button onClick={() => onChange(false)} className={dontVerifiedClasses}>
         Unverified
       </Button>
     </label>

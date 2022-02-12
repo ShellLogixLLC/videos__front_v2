@@ -1,8 +1,9 @@
 import React, {useCallback, useMemo, useState} from 'react';
 import shortid from 'shortid';
 
-import {Button} from '~/components';
 import {AlarmIcon} from '~/assets';
+
+import Button from '../../Button';
 
 import {IExternalUsers} from './types';
 import ExternalUser from './ExternalUser';

@@ -6,8 +6,9 @@ import {useOnClickOutside} from '~/hooks';
 
 import Typography from '../Typography';
 
-import styles from './Pagination.module.scss';
 import {Pagination} from './types';
+//
+import styles from './Pagination.module.scss';
 
 const ShowItem: React.FC<Pagination> = ({
   rowsPerPage = 5,

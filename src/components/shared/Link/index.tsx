@@ -8,6 +8,7 @@ import {LinkProps} from './types';
 const Link: React.FC<LinkProps> = ({
   to,
   blank,
+  target,
   onClick,
   children,
   disabled,
@@ -44,6 +45,7 @@ const Link: React.FC<LinkProps> = ({
       <a
         role="button"
         className={anchorClasses}
+        target={target}
         {...anchorModifiedProps}
         onClick={onClick}>
         {children}

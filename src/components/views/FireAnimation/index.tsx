@@ -2,6 +2,7 @@ import React from 'react';
 import shortid from 'shortid';
 
 import {Burn} from './types';
+//
 import styles from './Fire.module.scss';
 
 const FireAnimation: React.FC<Burn> = ({children, count, width}) => (

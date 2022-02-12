@@ -1,7 +1,8 @@
 import * as yup from 'yup';
 
 import {EyeShowIcon, EyeHideIcon} from '~/assets';
-import {Field, Form} from '~/components/shared/forms/Form/types';
+// import {Field, Form} from '~/components/shared/forms/Form/types';
+import {Field, Form} from '~/types';
 
 const fields: Field[] = [
   {
@@ -15,8 +16,8 @@ const fields: Field[] = [
     type: 'password',
     label: 'Password',
     placeholder: 'Enter your password',
-    RightIcon: EyeShowIcon,
-    RightToggledIcon: EyeHideIcon,
+    RightIcon: EyeHideIcon,
+    RightToggledIcon: EyeShowIcon,
   },
 ];
 
@@ -28,7 +29,7 @@ const schema = yup.object().shape({
   password: yup
     .string()
     .required('The Password is required')
-    .min(5, 'Password is too short - should be 8 chars minimum.'),
+    .min(6, 'Password is too short - should be 6 chars minimum.'),
 });
 
 const signInForm: Form = {

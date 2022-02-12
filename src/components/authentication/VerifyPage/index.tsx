@@ -2,11 +2,19 @@ import React, {useEffect, useMemo, useRef, useState} from 'react';
 import classNames from 'classnames';
 
 import {Logo} from '~/assets';
-import {Link, Input, Timer, Button} from '~/components';
+import {AuthService} from '~/api';
 
+import Link from '../../shared/Link';
+import Timer from '../../shared/StopWatch';
+import Input from '../../shared/Input';
+import Button from '../../shared/Button';
+
+import {VerifyProps} from './types';
 import styles from './VerifyPage.module.scss';
 
-const ContractSign: React.FC = () => {
+const ContractSign: React.FC<VerifyProps> = ({
+  my_account = 'my_account@gmail.com',
+}) => {
   const initialState = {
     1: '',
     2: '',
@@ -17,6 +25,12 @@ const ContractSign: React.FC = () => {
   };
 
   const [codes, setCodes] = useState<{[key: number]: string}>(initialState);
+  const {
+    categories: {categories},
+  } = AuthService.useCategories();
+
+  // eslint-disable-next-line no-console
+  console.log(categories);
 
   const [isValid, setIsValid] = useState(false);
   const [isResend, setIsResend] = useState(false);
@@ -194,10 +208,11 @@ const ContractSign: React.FC = () => {
   }, [codes]);
 
   const proceedHandler = () => {
-    // eslint-disable-next-line no-console
-    console.log(codes);
     setIsResend(true);
   };
+
+  // eslint-disable-next-line no-console
+  console.log(codes);
 
   const inputClasses = classNames(
     styles.container__top__number_verification__item__inp,
@@ -278,7 +293,7 @@ const ContractSign: React.FC = () => {
           blank
           to="https://gmail.com/"
           className={styles.container__footer__my_account}>
-          my_account@gmail.com
+          {my_account}
         </Link>
       </div>
     </div>

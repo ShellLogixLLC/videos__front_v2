@@ -1,7 +1,8 @@
 import React from 'react';
 import {useForm} from 'react-hook-form';
 
-import {Button, EmojisInput} from '~/components';
+import Button from '../../shared/Button';
+import EmojisInput from '../../shared/EmojisInput';
 
 import styles from './Comments.module.scss';
 

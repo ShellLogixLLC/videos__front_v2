@@ -5,6 +5,7 @@ import Checkbox from '../Checkbox';
 import Typography from '../Typography';
 
 import {ICheckboxRowProps} from './types';
+//
 import styles from './CheckboxRow.module.scss';
 
 const CheckboxRow: React.FC<ICheckboxRowProps> = ({

@@ -1,25 +1,35 @@
-import React, {useRef, useCallback, useState} from 'react';
+import React, {useRef, useCallback, useState, useContext} from 'react';
 import classNames from 'classnames';
+import {toast} from 'react-toastify';
+// import usePortal from 'react-useportal';
 
 import {Logo} from '~/assets';
 import {Route} from '~/constants';
+import {ModalContext} from '~/context';
 import {forgotPasswordForm} from '~/constants';
-import {Link, Form, Typography} from '~/components';
 
+import Link from '../../shared/Link';
+import Form from '../../shared/forms/Form';
+import Typography from '../../shared/Typography';
+
+import Modal from './modal';
 import styles from './ForgotPassword.module.scss';
 
 const ForgotPassword: React.FC = () => {
+  const {openModal} = useContext(ModalContext);
+
   const forgotPasswordRef = useRef<any>(null);
 
   const [isValid, setIsValid] = useState<string>('');
 
   const handleForgotPasswordSubmit = useCallback((values) => {
-    // eslint-disable-next-line no-console
-    console.log(values);
     setIsValid(values);
+    openModal(<Modal />);
+    toast.dark(<p className={styles.toast_style}>You are not registered</p>);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const routeHome = Route.Home;
+  const routeHome = Route.SignIn;
 
   const isEmpty = isValid !== '';
 

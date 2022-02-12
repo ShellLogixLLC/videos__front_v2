@@ -2,7 +2,9 @@ import React, {useCallback, useRef} from 'react';
 
 import {Logo} from '~/assets';
 import {resetForm} from '~/constants';
-import {Typography, Form} from '~/components';
+
+import Form from '../../shared/forms/Form';
+import Typography from '../../shared/Typography';
 
 import styles from './ResetPassword.module.scss';
 

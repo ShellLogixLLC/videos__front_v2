@@ -1,6 +1,3 @@
-export * from './authentication';
-// SignIn, ResetPassword, ForgotPassword, Registration, Verification
-
 // Registration
 export {default as RegistrationSetupPasswordContainer} from './registration/RegistrationSetupPassword';
 export {default as RegistrationContactInformationContainer} from './registration/RegistrationContactInformation';

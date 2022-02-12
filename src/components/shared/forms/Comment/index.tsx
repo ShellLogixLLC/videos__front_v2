@@ -1,7 +1,8 @@
 import Image from 'next/image';
 
 import {OvalImage} from '~/assets';
-import {Comments} from '~/components';
+
+import Comments from '../../Comments';
 
 import styles from './CommentForm.module.scss';
 
