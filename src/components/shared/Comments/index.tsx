@@ -7,7 +7,6 @@ import Typography from '../Typography';
 
 import CommentBlock from './CommentBlock';
 import CommentForm from './CommentForm';
-//
 import styles from './Comments.module.scss';
 
 const Comments: React.FC = () => {

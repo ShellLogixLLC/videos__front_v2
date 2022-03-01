@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import Typography from '../Typography';
 
 import {InputProps} from './types';
-//
 import styles from './Input.module.scss';
 
 const Input = forwardRef<any, InputProps>(

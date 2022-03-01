@@ -1,7 +1,6 @@
 import React, {useRef, useCallback, useState, useContext} from 'react';
 import classNames from 'classnames';
 import {toast} from 'react-toastify';
-// import usePortal from 'react-useportal';
 
 import {Logo} from '~/assets';
 import {Route} from '~/constants';
@@ -20,43 +19,43 @@ const ForgotPassword: React.FC = () => {
 
   const forgotPasswordRef = useRef<any>(null);
 
-  const [isValid, setIsValid] = useState<string>('');
+  const [validValues, setValidValues] = useState<string>('');
 
   const handleForgotPasswordSubmit = useCallback((values) => {
-    setIsValid(values);
+    setValidValues(values);
     openModal(<Modal />);
     toast.dark(<p className={styles.toast_style}>You are not registered</p>);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const routeHome = Route.SignIn;
+  const routeSignIn = Route.SignIn;
 
-  const isEmpty = isValid !== '';
+  const isEmpty = validValues === '';
 
-  const ifResetButton = isEmpty ? 'Resend link' : 'Reset Password';
+  const ifResetButton = !isEmpty ? 'Resend link' : 'Reset Password';
 
-  const ifSubmitText = isEmpty
+  const ifSubmitText = !isEmpty
     ? 'We’ve sent a password reset link to your email. Email should be received within 5 minutes.'
     : 'Enter your email address and we’ll send you instructions to reset your password.';
 
-  const isCloseForm = classNames(styles.container__content__sign_in__block, {
-    [styles.container__content__sign_in__block_close]: isEmpty,
+  const isFormClosed = classNames(styles.container__content__sign_in__block, {
+    [styles.container__content__sign_in__block_close]: !isEmpty,
   });
 
   const formBtnClasses = classNames({
-    [styles.container__content__sign_in__block_btn]: isEmpty,
+    [styles.container__content__sign_in__block_btn]: !isEmpty,
   });
 
   const formInputClasses = classNames(
     styles.container__content__sign_in__block__input__inp,
     {
-      [styles.container__content__sign_in__block__input__inp_close]: isEmpty,
+      [styles.container__content__sign_in__block__input__inp_close]: !isEmpty,
     },
   );
 
   return (
     <div className={`container_without-header ${styles.container}`}>
-      <Link to={routeHome} className={styles.container__route}>
+      <Link to={routeSignIn} className={styles.container__route}>
         Back to sign in
       </Link>
       <div className={styles.container__content}>
@@ -80,7 +79,7 @@ const ForgotPassword: React.FC = () => {
           ref={forgotPasswordRef}
           form={forgotPasswordForm}
           submitText={ifResetButton}
-          labelClassName={isCloseForm}
+          labelClassName={isFormClosed}
           inputClassName={formInputClasses}
           addFormBtnClasses={formBtnClasses}
           className={styles.container__content__sign_in}

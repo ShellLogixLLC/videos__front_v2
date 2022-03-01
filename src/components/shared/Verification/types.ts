@@ -1,6 +1,6 @@
 export type VerificationProps = {
   inputProps: any;
   value?: any;
-  onChange?: any;
+  onClick?: any;
   verifyValue?: boolean;
 };

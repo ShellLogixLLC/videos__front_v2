@@ -39,8 +39,6 @@ const Registration: React.FC = () => {
         submitText="Proceed"
         form={registrationForm}
         onSubmit={handleResetPassFormSubmit}
-        // className={styles.container__registration}
-        // addFormBtnClasses={styles.register_button}
         labelClassName={styles.container__registration__block}
         innerClassName={styles.container__registration__block__input}
         inputClassName={styles.container__registration__block__input__inp}

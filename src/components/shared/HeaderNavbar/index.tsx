@@ -6,7 +6,6 @@ import {LikeIt, UserIcon} from '~/assets';
 import Link from '../Link';
 import Search from '../Search';
 import LanguageDropDown from '../LanguageDropDown';
-//
 import styles from '../../layouts/Header/Header.module.scss';
 
 const HeaderNavbar: React.FC = ({children}) => (

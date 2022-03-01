@@ -19,7 +19,7 @@ const ExternalUser: React.FC<IExternalUser> = ({
 }) => {
   const userExpandedRef = useRef(null);
 
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
   const handleSelectOutsideClick = () => {
     setIsExpanded(false);

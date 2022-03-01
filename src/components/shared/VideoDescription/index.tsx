@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import {HeartLikes, FilmLikeIcon, ViewsCount} from '~/assets/index';
 
 import {VideDescriptionTypes} from './types';
-//
 import styles from './VideDescription.module.scss';
 
 const videDescriptionTextDefault = 'Have problems with the internet !';

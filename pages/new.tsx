@@ -7,7 +7,8 @@ const NewPage: NextPage = () => (
   <Seo
     title="New page"
     showHeaderFooter={false}
-    metaDescription="New page description"></Seo>
+    metaDescription="New page description"
+  />
 );
 
 export default NewPage;

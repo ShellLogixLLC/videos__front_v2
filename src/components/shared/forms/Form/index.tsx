@@ -99,7 +99,7 @@ const Form = forwardRef<any, IFormProps>(
                     key={name}
                     value={props.field.value}
                     inputProps={commonProps}
-                    onChange={props.field.onChange}
+                    onClick={props.field.onChange}
                   />
                 )}
               />

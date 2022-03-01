@@ -2,7 +2,6 @@ import React from 'react';
 import classNames from 'classnames';
 
 import {LoaderTypes} from './types';
-//
 import styles from './Loader.module.scss';
 
 const VerticalLoader: React.FC<LoaderTypes> = (isSection) => {
@@ -13,9 +12,6 @@ const VerticalLoader: React.FC<LoaderTypes> = (isSection) => {
   return (
     <div className={loaderClasses}>
       <div className={styles.spinner}>
-        {/* {Array.from(Array(5), (item: any, index: number) => (
-          <div key={`${item}${index}`} className={`styles.rect${index + 1}`} />
-        ))} */}
         <div className={styles.rect1} />
         <div className={styles.rect2} />
         <div className={styles.rect3} />

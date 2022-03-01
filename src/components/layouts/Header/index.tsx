@@ -1,16 +1,10 @@
 import React, {useState} from 'react';
-// import classNames from 'classnames';
 
 import {Logo} from '~/assets';
 import {Route} from '~/constants';
-// import {useHistory} from '~/context';
 import {useWindowSize} from '~/hooks';
 import {Link, HeaderBurger, HeaderNavbar} from '~/components';
-import {
-  routes,
-  routesBurger,
-  // RoutesProps
-} from '~/utils';
+import {routes, routesBurger} from '~/utils';
 
 import styles from './Header.module.scss';
 

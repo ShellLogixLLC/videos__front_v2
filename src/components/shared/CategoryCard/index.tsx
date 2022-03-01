@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {CategoryCardProps} from './types';
-//
 import styles from './CategoryCard.module.scss';
 
 const CategoryCard: React.FC<CategoryCardProps> = ({text}) => (

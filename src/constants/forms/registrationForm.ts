@@ -2,7 +2,6 @@ import * as yup from 'yup';
 
 import {Route} from '~/constants';
 import {EyeShowIcon, EyeHideIcon} from '~/assets';
-// import {Field, Form} from '~/components/shared/forms/Form/types';
 import {Field, Form} from '~/types';
 
 const fields: Field[] = [

@@ -12,7 +12,6 @@ const ResetPassword: React.FC = () => {
   const signInRef = useRef<any>(null);
 
   const handleResetPassFormSubmit = useCallback((values) => {
-    // dispatch(authActions.login(values));
     // eslint-disable-next-line no-console
     console.log(values, 'signIn');
   }, []);

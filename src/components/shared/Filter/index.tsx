@@ -6,7 +6,6 @@ import Link from '../Link';
 import Typography from '../Typography';
 
 import {FilterProps} from './types';
-//
 import styles from './Filter.module.scss';
 
 const Filter: React.FC<FilterProps> = ({options, filterTitle, IconProp}) => {

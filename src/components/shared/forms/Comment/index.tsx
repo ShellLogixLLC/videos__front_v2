@@ -13,12 +13,7 @@ const CommentForm: React.FC = () => {
         <Image src={OvalImage} alt="user" />
       </div>
       <div className={styles.container__input}>
-        <Comments
-        // name="comment"
-        // placeholder="Leave comment"
-        // className={styles.container__input_fill}
-        // innerClassName={styles.container__input__erase}
-        />
+        <Comments />
       </div>
     </div>
   );

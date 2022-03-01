@@ -19,7 +19,7 @@ const BackButton: React.FC<BackButtonProps> = ({text, LeftIcon, className}) => {
 
   return (
     <Button className={className} onClick={backHandler}>
-      {LeftIcon ? <LeftIcon /> : null}
+      {LeftIcon && <LeftIcon />}
       {text}
     </Button>
   );
