@@ -36,6 +36,19 @@
   height: 60px;
   text-align: center;
   font-size: 10px;
+
+  :nth-child(2) {
+    animation-delay: -1.1s;
+  }
+  :nth-child(3) {
+    animation-delay: -1s;
+  }
+  :nth-child(4) {
+    animation-delay: -0.9s;
+  }
+  :nth-child(5) {
+    animation-delay: -0.8s;
+  }
 }
 
 .spinner > div {
@@ -45,22 +58,6 @@
   display: inline-block;
   animation: sk-stretchDelay 1.2s infinite ease-in-out;
   margin: 0 1px;
-}
-
-.spinner .rect2 {
-  animation-delay: -1.1s;
-}
-
-.spinner .rect3 {
-  animation-delay: -1s;
-}
-
-.spinner .rect4 {
-  animation-delay: -0.9s;
-}
-
-.spinner .rect5 {
-  animation-delay: -0.8s;
 }
 
 @keyframes sk-stretchDelay {
@@ -75,18 +72,15 @@
 }
 
 .loader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  z-index: 1000;
-  background: $black;
-  @extend %flex-center;
-
   &__content {
-    display: inline-block;
-    position: relative;
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    margin: auto;
     width: 80px;
     height: 80px;
 
@@ -176,6 +170,24 @@
           left: 12px;
         }
       }
+
+      &:nth-child(9) {
+        animation-delay: -0.324s;
+
+        &::after {
+          top: 48px;
+          left: 9px;
+        }
+      }
+
+      &:nth-child(10) {
+        animation-delay: -0.36s;
+
+        &::after {
+          top: 39px;
+          left: 9px;
+        }
+      }
     }
 
     @keyframes lds-roller {
@@ -183,6 +195,7 @@
         transform: rotate(0deg);
       }
       100% {
+        transform: rotate(0deg);
         transform: rotate(360deg);
       }
     }

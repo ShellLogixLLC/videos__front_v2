@@ -14,23 +14,23 @@ const Input = forwardRef<any, InputProps>(
       label,
       error,
       value,
+      onFocus,
+      onClick,
+      onKeyUp,
       disabled,
       onChange,
+      readOnly,
       RightIcon,
       maxLength,
       autoFocus,
-      readOnly,
       onKeyDown,
-      onKeyUp,
-      onFocus,
-      labelText = '',
-      onClick,
-      rightIconStyle = '',
-      RightToggledIcon,
       placeholder,
       onMouseOver,
       type = 'text',
+      labelText = '',
       className = '',
+      RightToggledIcon,
+      rightIconStyle = '',
       innerClassName = '',
       labelClassName = '',
       ...rest
@@ -88,21 +88,20 @@ const Input = forwardRef<any, InputProps>(
             name={name}
             value={value}
             onClick={onClick}
-            maxLength={maxLength}
-            readOnly={readOnly}
-            onKeyDown={onKeyDown}
             onKeyUp={onKeyUp}
+            onFocus={onFocus}
             autoComplete="off"
+            readOnly={readOnly}
             onChange={onChange}
             disabled={disabled}
+            onKeyDown={onKeyDown}
             autoFocus={autoFocus}
-            onFocus={onFocus}
+            maxLength={maxLength}
             className={inputClasses}
             onMouseOver={onMouseOver}
             placeholder={placeholder}
             type={isToggledIcon ? 'text' : type}
             pattern={type === 'number' ? '[0-9]*' : undefined}
-            // pattern={type === 'number' ? '[0-9]*' : ''}
             inputMode={type === 'number' ? 'numeric' : 'text'}
             data-dt-idx="1"
           />

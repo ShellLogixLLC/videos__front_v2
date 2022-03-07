@@ -44,10 +44,10 @@ const Link: React.FC<LinkProps> = ({
     <NextLink href={to} {...linkProps}>
       <a
         role="button"
-        className={anchorClasses}
         target={target}
+        onClick={onClick}
         {...anchorModifiedProps}
-        onClick={onClick}>
+        className={anchorClasses}>
         {children}
       </a>
     </NextLink>

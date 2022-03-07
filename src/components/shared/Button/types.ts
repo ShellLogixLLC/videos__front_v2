@@ -1,8 +1,8 @@
 import {SVGIconProp} from '~/types/common/index';
 
 type Size = 'large' | 'medium' | 'small';
-type Variant = 'primary' | 'secondary' | 'ghost';
 type ButtonType = 'submit' | 'reset' | 'button';
+type Variant = 'primary' | 'secondary' | 'ghost';
 
 export interface IButtonProps {
   size?: Size;
@@ -13,6 +13,8 @@ export interface IButtonProps {
   disabled?: boolean;
   className?: string;
   onClick?: () => void;
-  containerLeftClasses?: string;
   LeftIcon?: SVGIconProp;
+  RightIcon?: SVGIconProp;
+  containerLeftClasses?: string;
+  containerRightClasses?: string;
 }

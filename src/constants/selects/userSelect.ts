@@ -1,4 +1,3 @@
-// import {IOption} from '~/components/dropdowns/Select/types';
 export type IOption = {
   id: number;
   name: string;

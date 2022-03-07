@@ -1,14 +1,11 @@
 import React from 'react';
+import {NextPage} from 'next';
 
-import {Seo, SignIn, Registration} from '~/components';
+import {Seo, Loader} from '~/components';
 
-const HomePage: React.FC = () => (
-  <Seo
-    title="Home page"
-    // showHeaderFooter={false}
-    metaDescription="Home page description">
-    <SignIn />
-    <Registration />
+const HomePage: NextPage = () => (
+  <Seo title="Home page" metaDescription="Home page description">
+    <Loader isVertical />
   </Seo>
 );
 

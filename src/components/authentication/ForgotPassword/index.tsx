@@ -1,4 +1,4 @@
-import React, {useRef, useCallback, useState, useContext} from 'react';
+import React, {useCallback, useState, useContext} from 'react';
 import classNames from 'classnames';
 import {toast} from 'react-toastify';
 // import usePortal from 'react-useportal';
@@ -18,16 +18,16 @@ import styles from './ForgotPassword.module.scss';
 const ForgotPassword: React.FC = () => {
   const {openModal} = useContext(ModalContext);
 
-  const forgotPasswordRef = useRef<any>(null);
-
   const [isValid, setIsValid] = useState<string>('');
 
-  const handleForgotPasswordSubmit = useCallback((values) => {
-    setIsValid(values);
-    openModal(<Modal />);
-    toast.dark(<p className={styles.toast_style}>You are not registered</p>);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const handleForgotPasswordSubmit = useCallback(
+    (values) => {
+      setIsValid(values);
+      openModal(<Modal />);
+      toast.dark(<p className={styles.toast_style}>You are not registered</p>);
+    },
+    [openModal],
+  );
 
   const routeHome = Route.SignIn;
 
@@ -77,7 +77,7 @@ const ForgotPassword: React.FC = () => {
           </Typography>
         </div>
         <Form
-          ref={forgotPasswordRef}
+          // ref={forgotPasswordRef}
           form={forgotPasswordForm}
           submitText={ifResetButton}
           labelClassName={isCloseForm}

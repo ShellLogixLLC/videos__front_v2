@@ -1,6 +1,4 @@
-import React, {useCallback, useRef} from 'react';
-// import {useAppDispatch} from '~/hooks';
-// import {authActions} from '~/store/auth';
+import React, {useCallback} from 'react';
 
 import {Logo} from '~/assets';
 import {RouterService} from '~/services';
@@ -13,11 +11,9 @@ import Typography from '../../shared/Typography';
 import styles from './SignIn.module.scss';
 
 const SignIn: React.FC = () => {
-  // const dispatch = useAppDispatch();
-  const signInRef = useRef<any>(null);
+  // const signInRef = useRef<any>(null);
 
   const handleSignInFormSubmit = useCallback((values) => {
-    // dispatch(authActions.login(values));
     RouterService.push(Route.Home);
     // eslint-disable-next-line no-console
     console.log(values, 'signIn');
@@ -36,7 +32,7 @@ const SignIn: React.FC = () => {
         </Typography>
       </div>
       <Form
-        ref={signInRef}
+        // ref={signInRef}
         form={signInForm}
         className={styles.sign_in}
         inputClassName={styles.sign_in__block__input__inp}

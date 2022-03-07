@@ -7,7 +7,13 @@ import Button from '../Button';
 
 import {BackButtonProps} from './types';
 
-const BackButton: React.FC<BackButtonProps> = ({text, LeftIcon, className}) => {
+const BackButton: React.FC<BackButtonProps> = ({
+  text = 'Back',
+  children,
+  LeftIcon,
+  RightIcon,
+  className,
+}) => {
   const router = useRouter();
 
   const backHandler = () => {
@@ -20,7 +26,8 @@ const BackButton: React.FC<BackButtonProps> = ({text, LeftIcon, className}) => {
   return (
     <Button className={className} onClick={backHandler}>
       {LeftIcon ? <LeftIcon /> : null}
-      {text}
+      {text} {children}
+      {RightIcon ? <RightIcon /> : null}
     </Button>
   );
 };

@@ -9,8 +9,8 @@ const Checkbox = forwardRef<any, ICheckboxProps>(
     <label htmlFor={name} className={styles.container}>
       <input
         id={name}
-        name={name}
         ref={ref}
+        name={name}
         type="checkbox"
         checked={value}
         className={styles.container__input}

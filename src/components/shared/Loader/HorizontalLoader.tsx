@@ -10,15 +10,18 @@ const HorizontalLoader: React.FC = () => {
 
   useLockedBody();
 
+  const renderHorizontalLoaderItems = Array.from(
+    Array(10),
+    (item: any, index: number) => <div key={`${item}${index}`} />,
+  );
+
   return (
     <Portal>
-      <div className={styles.loader}>
-        <div className={styles.loader__content}>
-          {Array.from(Array(8), (item: any, index: number) => (
-            <div key={`${item}${index}`} />
-          ))}
-        </div>
+      {/* <div className={styles.loader}> */}
+      <div className={styles.loader__content}>
+        {renderHorizontalLoaderItems}
       </div>
+      {/* </div> */}
     </Portal>
   );
 };

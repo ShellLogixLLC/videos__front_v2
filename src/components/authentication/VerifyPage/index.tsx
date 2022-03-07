@@ -34,7 +34,6 @@ const ContractSign: React.FC<VerifyProps> = ({
 
   const [isValid, setIsValid] = useState(false);
   const [isResend, setIsResend] = useState(false);
-  // const [isNotValid, setIsNotValid] = useState(true);
 
   const handleClear = () => {
     setCodes(initialState);

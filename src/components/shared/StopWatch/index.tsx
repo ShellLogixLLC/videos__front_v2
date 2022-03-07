@@ -9,9 +9,19 @@ const Timer: React.FC = () => {
   const [timer, setTimer] = useState<number>(0);
 
   const countRef = useRef<any>(null);
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
   const [isNotValid, setIsNotValid] = useState(true);
 
-  const formatTime = (timer: any) => {
+  const formatTime = (timer: number) => {
     const getSeconds = `0${timer % 60}`.slice(-2);
     const minutes: number | bigint | any = `${Math.floor(timer / 60)}`;
     const getMinutes = `0${minutes % 60}`.slice(-2);

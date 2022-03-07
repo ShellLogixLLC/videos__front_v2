@@ -1,4 +1,4 @@
-import React, {useCallback, useRef} from 'react';
+import React, {useCallback} from 'react';
 
 import {Logo} from '~/assets';
 import {resetForm} from '~/constants';
@@ -9,10 +9,7 @@ import Typography from '../../shared/Typography';
 import styles from './ResetPassword.module.scss';
 
 const ResetPassword: React.FC = () => {
-  const signInRef = useRef<any>(null);
-
   const handleResetPassFormSubmit = useCallback((values) => {
-    // dispatch(authActions.login(values));
     // eslint-disable-next-line no-console
     console.log(values, 'signIn');
   }, []);
@@ -27,7 +24,6 @@ const ResetPassword: React.FC = () => {
         Reset Password
       </Typography>
       <Form
-        ref={signInRef}
         form={resetForm}
         className={styles.reset}
         inputClassName={styles.reset__block__input__inp}

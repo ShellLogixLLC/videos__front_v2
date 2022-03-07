@@ -1,5 +1,5 @@
-export {default as useSticky} from './useSticky';
 export {default as useModal} from './useModal';
+export {default as useSticky} from './useSticky';
 export {default as useLockedBody} from './useLockedBody';
 export {default as useAppRequest} from './useAppRequest';
 export {default as useWindowSize} from './useWindowSize';

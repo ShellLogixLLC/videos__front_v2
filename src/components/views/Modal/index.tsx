@@ -15,8 +15,8 @@ const Modal: React.FC<ModalProps> = (
   containerStyles = '',
   backgroundClasses = '',
 ) => {
-  const contentRef = useRef(null);
-  const [isOut, setIsOut] = useState(false);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [isOut, setIsOut] = useState<boolean>(false);
   const {modal, modalContent, closeModal} = useContext(ModalContext);
 
   const animationKey = `container__${animation}`;

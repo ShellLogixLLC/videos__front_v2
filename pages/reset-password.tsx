@@ -1,8 +1,9 @@
 import React from 'react';
+import {NextPage} from 'next';
 
 import {Seo, ResetPassword} from '~/components';
 
-const ResetPasswordPage: React.FC = () => (
+const ResetPasswordPage: NextPage = () => (
   <Seo
     showHeaderFooter={false}
     title="Reset password page"

@@ -12,13 +12,13 @@ import styles from './FilmCard.module.scss';
 
 const FilmCard: React.FC<FilmCardProps> = ({
   filmName,
-  cardClasses = '',
+  uploadDate,
+  globalTime,
   likeCount = 0,
   viewsCount = 0,
-  uploadDate,
-  commentsCount = 0,
   descriptionText,
-  globalTime,
+  cardClasses = '',
+  commentsCount = 0,
 }) => {
   const [isLiked, setIsLiked] = useState<boolean>(false);
 

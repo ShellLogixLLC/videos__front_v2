@@ -8,7 +8,7 @@ import {RouterService} from '~/services';
 import styles from './RegistrationContactInformation.module.scss';
 
 const RegistrationContactInformation: React.FC = () => {
-  const emailRef = useRef<any>(null);
+  const emailRef = useRef<HTMLFormElement>(null);
 
   const handlePasswordFormSubmit = () => {
     RouterService.push(Route.RegistrationContactInformation);

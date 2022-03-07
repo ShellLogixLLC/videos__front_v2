@@ -1,11 +1,10 @@
-import {ChangeEvent} from 'react';
+import {ChangeEvent, FormEvent} from 'react';
 
 export interface ICheckboxProps {
   name: string;
   value?: boolean;
-  children?: any;
   className?: string;
   useCustomOnChange?: boolean;
-  onChange?: (event: any) => void;
+  onChange?: (event: FormEvent<HTMLInputElement> | boolean) => void;
   customOnChange?: (event: ChangeEvent) => void;
 }

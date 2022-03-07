@@ -1,3 +1,5 @@
+import React from 'react';
+
 import {useWindowSize} from '~/hooks/index';
 
 import Link from '../Link';

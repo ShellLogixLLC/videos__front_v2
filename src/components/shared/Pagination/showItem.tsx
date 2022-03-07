@@ -17,7 +17,7 @@ const ShowItem: React.FC<Pagination> = ({
 }) => {
   const [expanded, setExpanded] = useState(false);
 
-  const paginationRef = useRef(null);
+  const paginationRef = useRef<HTMLDivElement>(null);
 
   const memoizedRotate = useMemo(() => (expanded ? 180 : 0), [expanded]);
 

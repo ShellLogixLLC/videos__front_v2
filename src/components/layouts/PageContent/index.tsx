@@ -4,9 +4,9 @@ import classNames from 'classnames';
 import {PageContentProps} from './type';
 
 const PageContent: React.FC<PageContentProps> = ({
-  showHeaderFooter,
   children,
   className,
+  showHeaderFooter,
 }) => {
   const pageContentClasses = classNames('container project_body', className, {
     ['project_body_height']: !showHeaderFooter,

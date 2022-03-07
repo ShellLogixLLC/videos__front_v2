@@ -8,7 +8,7 @@ import {registrationForm, Route} from '~/constants';
 import styles from './RegistrationPersonalInformation.module.scss';
 
 const RegistrationPersonalInformation: React.FC = () => {
-  const registrationRef = useRef<any>(null);
+  const registrationRef = useRef<HTMLFormElement>(null);
 
   const handlePersonalInformationFormSubmit = () => {
     RouterService.push(Route.RegistrationSetupPassword);

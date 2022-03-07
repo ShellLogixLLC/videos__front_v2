@@ -11,12 +11,14 @@ const Button: React.FC<IButtonProps> = ({
   onClick,
   children,
   LeftIcon,
+  RightIcon,
   disabled,
   className = '',
   size = 'medium',
   type = 'button',
   variant = 'primary',
   containerLeftClasses = '',
+  containerRightClasses = '',
 }) => {
   const buttonClasses = classNames(
     styles.container,
@@ -26,20 +28,21 @@ const Button: React.FC<IButtonProps> = ({
     {
       [className]: className,
       [containerLeftClasses]: !!LeftIcon,
+      [containerRightClasses]: !!RightIcon,
     },
   );
 
   return (
     <button
       name={name}
-      title={title}
       type={type}
+      title={title}
+      onClick={onClick}
       disabled={disabled}
-      className={buttonClasses}
-      onClick={onClick}>
+      className={buttonClasses}>
       {!!LeftIcon && <LeftIcon />}
-
       {children}
+      {!!RightIcon && <RightIcon />}
     </button>
   );
 };

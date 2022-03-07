@@ -1,4 +1,4 @@
-import React, {useCallback, useRef} from 'react';
+import React, {useCallback} from 'react';
 
 import {Logo} from '~/assets';
 import {RouterService} from '~/services';
@@ -11,8 +11,6 @@ import Typography from '../../shared/Typography';
 import styles from './Registration.module.scss';
 
 const Registration: React.FC = () => {
-  const signInRef = useRef<any>(null);
-
   const handleResetPassFormSubmit = useCallback((values) => {
     if (values.verification) {
       RouterService.push(Route.RegistrationSetupPassword);
@@ -35,12 +33,10 @@ const Registration: React.FC = () => {
         Registration
       </Typography>
       <Form
-        ref={signInRef}
+        // ref={signInRef}
         submitText="Proceed"
         form={registrationForm}
         onSubmit={handleResetPassFormSubmit}
-        // className={styles.container__registration}
-        // addFormBtnClasses={styles.register_button}
         labelClassName={styles.container__registration__block}
         innerClassName={styles.container__registration__block__input}
         inputClassName={styles.container__registration__block__input__inp}
