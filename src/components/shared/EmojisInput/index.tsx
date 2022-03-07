@@ -10,7 +10,6 @@ import Typography from '../Typography';
 import inputStyles from '../Input/Input.module.scss';
 
 import {InputProps} from './types';
-//
 import styles from './EmojisInput.module.scss';
 
 const EmojisInput = forwardRef<any, InputProps>(

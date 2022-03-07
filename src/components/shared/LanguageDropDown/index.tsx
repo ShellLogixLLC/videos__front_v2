@@ -1,7 +1,6 @@
 import React, {useState, useRef} from 'react';
 
 import {useOnClickOutside} from '~/hooks';
-// import {LanguageArrowBottom} from '~/assets';
 
 import Button from '../Button';
 

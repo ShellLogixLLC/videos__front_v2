@@ -9,17 +9,7 @@ const Timer: React.FC = () => {
   const [timer, setTimer] = useState<number>(0);
 
   const countRef = useRef<any>(null);
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  const [isNotValid, setIsNotValid] = useState(true);
+  const [isNotValid, setIsNotValid] = useState<boolean>(true);
 
   const formatTime = (timer: number) => {
     const getSeconds = `0${timer % 60}`.slice(-2);
@@ -43,8 +33,6 @@ const Timer: React.FC = () => {
     setInterval(() => {
       setIsNotValid(false);
     }, 120000);
-
-    // return clearInterval(countRef.current);
   }, [isNotValid]);
 
   const resendHandler = () => {

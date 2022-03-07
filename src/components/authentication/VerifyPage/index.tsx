@@ -32,8 +32,8 @@ const ContractSign: React.FC<VerifyProps> = ({
   // eslint-disable-next-line no-console
   console.log(categories);
 
-  const [isValid, setIsValid] = useState(false);
-  const [isResend, setIsResend] = useState(false);
+  const [isValid, setIsValid] = useState<boolean>(false);
+  const [isResend, setIsResend] = useState<boolean>(false);
 
   const handleClear = () => {
     setCodes(initialState);

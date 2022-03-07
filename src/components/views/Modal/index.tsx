@@ -6,7 +6,6 @@ import {ModalContext} from '~/context';
 import {useOnClickOutside} from '~/hooks';
 
 import {ModalProps} from './types';
-//
 import styles from './Modal.module.scss';
 
 const Modal: React.FC<ModalProps> = (

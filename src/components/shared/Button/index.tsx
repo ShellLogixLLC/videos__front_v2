@@ -2,7 +2,6 @@ import React from 'react';
 import classNames from 'classnames';
 
 import {IButtonProps} from './types';
-//
 import styles from './Button.module.scss';
 
 const Button: React.FC<IButtonProps> = ({

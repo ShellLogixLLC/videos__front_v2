@@ -18,7 +18,7 @@ const CommentForm: React.FC = () => {
 
   return (
     <form className={styles.block__form__box} onSubmit={handleSubmit(onSubmit)}>
-      <input placeholder="Lora" {...register('nameInput')} />
+      <input placeholder="Lora" autoComplete="off" {...register('nameInput')} />
       <EmojisInput
         {...register('commentInput')}
         placeholder="Type your text here..."

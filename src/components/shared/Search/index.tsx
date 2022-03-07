@@ -7,7 +7,6 @@ import {useOnClickOutside} from '~/hooks';
 import Input from '../Input';
 
 import {SearchProps} from './types';
-//
 import styles from './Search.module.scss';
 
 const Search: React.FC<SearchProps> = ({searchValue, searchChange}) => {

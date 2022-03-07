@@ -5,7 +5,7 @@ import {IModalContext} from '~/context/Modal/types';
 import useLockedBody from '../useLockedBody';
 
 const useModal = (): IModalContext => {
-  const [modal, setModal] = useState(false);
+  const [modal, setModal] = useState<boolean>(false);
   const [modalContent, setModalContent] =
     useState<IModalContext['modalContent']>(null);
 

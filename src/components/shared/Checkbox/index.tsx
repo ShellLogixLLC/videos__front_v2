@@ -1,7 +1,6 @@
 import React, {forwardRef} from 'react';
 
 import {ICheckboxProps} from './types';
-//
 import styles from './Checkbox.module.scss';
 
 const Checkbox = forwardRef<any, ICheckboxProps>(
@@ -13,6 +12,7 @@ const Checkbox = forwardRef<any, ICheckboxProps>(
         name={name}
         type="checkbox"
         checked={value}
+        autoComplete="off"
         className={styles.container__input}
         onChange={(event) =>
           onChange(useCustomOnChange ? event : event.target.checked)

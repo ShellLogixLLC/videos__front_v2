@@ -97,9 +97,9 @@ const Form = forwardRef<any, IFormProps>(
                 render={(props) => (
                   <Verification
                     key={name}
-                    value={props.field.value}
                     inputProps={commonProps}
-                    onChange={props.field.onChange}
+                    value={props.field.value}
+                    onClick={props.field.onChange}
                   />
                 )}
               />
@@ -146,7 +146,10 @@ const Form = forwardRef<any, IFormProps>(
     );
 
     return (
-      <form className={formClasses} onSubmit={handleSubmit(onSubmit)}>
+      <form
+        autoComplete="off"
+        className={formClasses}
+        onSubmit={handleSubmit(onSubmit)}>
         {renderFields()}
         <Button
           size="large"

@@ -11,13 +11,10 @@ import Typography from '../../shared/Typography';
 import styles from './SignIn.module.scss';
 
 const SignIn: React.FC = () => {
-  // const signInRef = useRef<any>(null);
-
   const handleSignInFormSubmit = useCallback((values) => {
     RouterService.push(Route.Home);
     // eslint-disable-next-line no-console
     console.log(values, 'signIn');
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
