@@ -1,18 +1,38 @@
 import {Provider} from 'react-redux';
 import {AppProps} from 'next/app';
+import NextNprogress from 'nextjs-progressbar';
 
 import 'emoji-mart/css/emoji-mart.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 import '~/styles/index.scss';
 
 import store, {wrapper} from '~/store';
-import {HistoryProvider} from '~/context';
+import {
+  HistoryProvider,
+  ModalContextProvider,
+  ToastContextProvider,
+} from '~/context';
 
 const ProdApp: React.FC<AppProps> = ({Component, pageProps}) => (
   <Provider store={store}>
-    <HistoryProvider>
-      <Component {...pageProps} />
-    </HistoryProvider>
+    <ModalContextProvider>
+      <ToastContextProvider>
+        <HistoryProvider>
+          <NextNprogress
+            height={3}
+            color="#f32d36"
+            stopDelayMs={200}
+            startPosition={0.3}
+            showOnShallow={true}
+            options={{
+              showSpinner: false,
+            }}
+          />
+          <Component {...pageProps} />
+        </HistoryProvider>
+      </ToastContextProvider>
+    </ModalContextProvider>
   </Provider>
 );
 

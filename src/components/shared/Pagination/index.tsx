@@ -19,7 +19,7 @@ const PaginationIndex: React.FC<Pagination> = ({
 
   const setPage = ({selected}: any) => setActivePage(selected);
 
-  const setPerPage = (perPage: any) => {
+  const setPerPage = (perPage: number) => {
     if (activePage * perPage > dataLength) {
       setActivePage(0);
       setRowsPerPage(perPage);

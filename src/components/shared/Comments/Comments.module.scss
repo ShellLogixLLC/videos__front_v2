@@ -20,7 +20,7 @@
 
       &__count {
         color: $red;
-        @extend %burger-fonts;
+        @extend %film_name;
       }
     }
 
@@ -66,7 +66,7 @@
         }
 
         &__name {
-          @extend %burger-fonts;
+          @extend %film_name;
           user-select: text;
           cursor: text;
         }

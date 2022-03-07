@@ -46,154 +46,7 @@
   border-radius: 0 0 8px 8px;
 }
 
-%heading_extra {
-  font-family: $montserrat_family;
-  font-weight: 600;
-  font-size: 32px;
-  line-height: 130%;
-  color: red;
-}
-
-%heading_large {
-  font-family: $montserrat_family;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 33px;
-  color: $white;
-}
-
-%heading_medium {
-  font-family: $montserrat_family;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 19px;
-  color: $white;
-}
-
-%heading_small {
-  font-family: $montserrat_family;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 24px;
-  color: $white;
-}
-
-%burger-fonts {
-  font-family: $montserrat_family;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 24px;
-}
-
-%text_regular {
-  font-family: $montserrat_family;
-  font-size: 16px;
-  line-height: 24px;
-  color: $white;
-}
-
-%text_semibold {
-  font-family: $montserrat_family;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 22px;
-  color: $white;
-}
-
-%text_small {
-  font-family: $montserrat_family;
-  font-size: 12px;
-  line-height: 16px;
-  color: $white;
-}
-
-%text_medium {
-  font-family: $montserrat_family;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 22px;
-}
-
-%button_medium {
-  font-family: $montserrat_family;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 22px;
-  color: $white;
-}
-
-%button_small {
-  font-family: $montserrat_family;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 19px;
-  color: $white;
-}
-
-%button_small {
-  font-family: $montserrat_family;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 16px;
-  // color: $gray_scale_55;
-}
-
-%link_small {
-  font-family: $montserrat_family;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 22px;
-}
-
-%link_medium {
-  font-family: $montserrat_family;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 22px;
-}
-
-%project_title {
-  font-family: $montserrat_family;
-  font-size: 64px;
-  line-height: 78px;
-}
-
-%film_name {
-  font-family: $montserrat_family;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 24px;
-}
-
-%language_sizes {
-  font-family: $montserrat_family;
-  font-size: 20px;
-  line-height: 24px;
-}
-
-%film_info_text {
-  font-family: $montserrat_family;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 22px;
-}
-
-%film_date {
-  font-family: $montserrat_family;
-  font-size: 18px;
-  line-height: 22px;
-  color: $red;
-}
-
-%separate_page_film_name {
-  font-family: $montserrat_family;
-  font-weight: normal;
-  font-size: 36px;
-  line-height: 44px;
-}
-
 %button-styles {
-  font-family: $montserrat_family;
   background-color: $light-black;
   font-weight: 500;
   font-size: 18px;
@@ -203,16 +56,136 @@
   border-radius: 48px;
 }
 
+%project_title {
+  font-size: 64px;
+  line-height: 78px;
+}
+
+%separate_page_film_name {
+  font-size: 36px;
+  line-height: 44px;
+}
+
+%heading_extra {
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 130%;
+  color: $red;
+}
+
+%heading_large {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 33px;
+  color: $white;
+}
+
+%film_name {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+%language_sizes {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+%film_info_text {
+  font-size: 18px;
+  line-height: 22px;
+}
+
+%film_date {
+  font-size: 18px;
+  line-height: 22px;
+  color: $red;
+}
+
+%search-styling {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+%heading_small {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: $white;
+}
+
+%text_medium {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+%button_medium {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  color: $white;
+}
+
 %footer_text {
-  font-family: $montserrat_family;
-  font-weight: normal;
   font-size: 16px;
   line-height: 20px;
 }
 
-%search-styling {
-  font-family: $montserrat_family;
-  font-weight: 500;
-  font-size: 18px;
+%text_regular {
+  font-size: 16px;
+  line-height: 24px;
+  color: $white;
+}
+
+%text_semibold {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 22px;
+  color: $white;
+}
+
+%heading_medium {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 19px;
+  color: $white;
+}
+
+%button_small {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 19px;
+  color: $white;
+}
+
+%link_medium {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+%modal_text {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+%text_small {
+  font-size: 12px;
+  line-height: 16px;
+  color: $white;
+}
+
+%button_small {
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  color: gray;
+}
+
+%link_small {
+  font-weight: 600;
+  font-size: 12px;
   line-height: 22px;
 }

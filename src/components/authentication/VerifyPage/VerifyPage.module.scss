@@ -1,0 +1,144 @@
+.container {
+  max-width: 376px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  @extend %flex-center;
+  flex-direction: column;
+
+  &__cancel {
+    position: absolute;
+    top: 0;
+    right: -50%;
+    max-width: 195px;
+    width: 100%;
+    padding: 0;
+    background-color: transparent;
+
+    @include breakpoint(tablet) {
+      top: 3%;
+      right: -20%;
+    }
+
+    @include breakpoint(tablet-m) {
+      top: -2%;
+      right: 0px;
+    }
+  }
+
+  &__top {
+    @extend %flex-center;
+    flex-direction: column;
+
+    &__img {
+      width: 122px;
+      height: 82px;
+    }
+
+    &__title {
+      color: $white;
+      text-align: center;
+      font-weight: 600;
+      font-size: 32px;
+      line-height: 130%;
+      margin: {
+        top: 54px;
+        right: auto;
+        bottom: 50px;
+        left: auto;
+      }
+
+      @include breakpoint(tablet) {
+        margin-top: 40px;
+      }
+    }
+
+    &__number_verification {
+      height: 52px;
+      width: 100%;
+      @extend %flex-between;
+
+      &__item {
+        width: 43px;
+        height: 52px;
+        border: 1px solid $white;
+        @extend %border-rad_8;
+
+        @include breakpoint(tablet-m) {
+          width: 33px;
+          height: 42px;
+        }
+
+        &__inp {
+          font-size: 30px;
+          font-weight: 600;
+          line-height: 51px;
+          @extend %border-rad_8;
+          @extend %flex-center;
+          text-align: center;
+          color: $red;
+          background-color: transparent;
+          border: none;
+
+          &_valid {
+            color: $black;
+          }
+
+          @include breakpoint(tablet-m) {
+            font-size: 26px;
+            line-height: 40px;
+          }
+        }
+      }
+    }
+  }
+
+  &_proceed {
+    margin-top: 5vh;
+    max-width: 100%;
+    width: 100%;
+
+    &_valid {
+      @extend %flex-between;
+    }
+
+    &_clear {
+      max-width: 100%;
+
+      &_valid {
+        max-width: 30%;
+      }
+    }
+
+    &_allow {
+      max-width: 50%;
+    }
+  }
+
+  &_wrong_otp {
+    color: $red;
+    margin-top: 7vh;
+    text-align: center;
+    @extend %text_semibold;
+  }
+
+  &__footer {
+    margin-top: 20vh;
+
+    &_valid {
+      margin-top: 10vh;
+    }
+
+    &__name {
+      text-align: center;
+      @extend %text_regular;
+    }
+
+    &__my_account {
+      text-align: center;
+      user-select: text;
+      @extend %text_regular;
+      text-decoration: underline;
+    }
+  }
+}

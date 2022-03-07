@@ -1,6 +1,6 @@
 const endpoints = {
   AuthService: {
-    getUsers: (): string => '/users',
+    getCategories: (): string => '/videos?offset=0&limit=20',
   },
 };
 

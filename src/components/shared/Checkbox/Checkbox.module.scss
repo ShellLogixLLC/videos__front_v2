@@ -1,0 +1,62 @@
+.container {
+  display: flex;
+  position: relative;
+  margin: 35px auto 0;
+  cursor: pointer;
+  max-width: 376px;
+  width: 100%;
+  height: 20px;
+
+  &:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+
+  input:checked ~ .checkmark {
+    background-color: #f32d36;
+  }
+
+  &__input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+
+  &__after {
+    position: absolute;
+    top: -10px;
+    left: 0px;
+    height: 18px;
+    width: 18px;
+    border: 2px solid #e4e6eb;
+    border-radius: 3px;
+
+    @include breakpoint(tablet-m) {
+      top: -20px;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      display: none;
+    }
+  }
+
+  input:checked ~ &__after {
+    background: #f32d36;
+    border-radius: 3px;
+    border: none;
+
+    &:after {
+      display: block;
+      left: 6px;
+      top: 3px;
+      width: 5px;
+      height: 8px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+  }
+}

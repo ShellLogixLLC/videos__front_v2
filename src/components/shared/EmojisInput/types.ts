@@ -1,3 +1,5 @@
+import {MouseEvent} from 'react';
+
 import {SVGIconProp} from '~/types/common/index';
 
 export type InputType =
@@ -5,7 +7,6 @@ export type InputType =
   | 'checkbox'
   | 'color'
   | 'date'
-  | 'datetime-local'
   | 'email'
   | 'file'
   | 'hidden'
@@ -22,7 +23,8 @@ export type InputType =
   | 'text'
   | 'time'
   | 'url'
-  | 'week';
+  | 'week'
+  | 'datetime-local';
 
 export type InputProps = {
   value?: string | number;
@@ -33,13 +35,12 @@ export type InputProps = {
   className?: string;
   disabled?: boolean;
   placeholder?: string;
+  onFocus?: () => void;
+  onClick?: () => void;
   rightIconStyle?: string;
   innerClassName?: string;
   labelClassName?: string;
   RightIcon?: SVGIconProp;
-  RightComponent?: any;
   RightToggledIcon?: SVGIconProp;
-  onFocus?: () => void;
-  onClick?: () => void;
-  onMouseOver?: any;
+  onMouseOver?: (e: MouseEvent<HTMLInputElement>) => void;
 };

@@ -5,5 +5,15 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true,
     "source.fixAll.format": true
-  }
+  },
+  "cSpell.words": [
+    "dropzone",
+    "hookform",
+    "nextjs",
+    "progressbar",
+    "reduxjs",
+    "svgr",
+    "useportal",
+    "vercel"
+  ]
 }

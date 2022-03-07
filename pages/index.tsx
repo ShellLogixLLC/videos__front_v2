@@ -1,7 +1,7 @@
 import React from 'react';
 import {NextPage} from 'next';
 
-import {Seo, VideoDescription, Video} from '~/components';
+import {Seo, Video} from '~/components';
 
 // Temporary
 const VIDEO_LENGTH = 15.5;
@@ -11,7 +11,6 @@ const VIDEO_SRC =
 const HomePage: NextPage = () => {
   return (
     <Seo title="Home page" metaDescription="Home page description">
-      <VideoDescription />
       <Video videoDuration={VIDEO_LENGTH} videoSrc={VIDEO_SRC} />
     </Seo>
   );

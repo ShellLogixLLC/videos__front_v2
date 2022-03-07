@@ -1,9 +1,10 @@
 export interface FilmCardProps {
-  filmName: string;
-  viewsCount?: string;
+  filmName?: string;
   likeCount?: string;
+  viewsCount?: string;
   uploadDate?: string;
+  globalTime?: string;
+  cardClasses?: string;
   commentsCount?: string;
   descriptionText?: string;
-  globalTime: string;
 }

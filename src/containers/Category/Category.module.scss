@@ -1,0 +1,21 @@
+.new_container {
+  margin-top: 40px;
+  &__title {
+    @extend %separate_page_film_name;
+    margin-bottom: 24px;
+  }
+
+  &__wrapper {
+    @extend %flex-between;
+    @include custom-scroll;
+    overflow-x: scroll;
+
+    * {
+      margin-right: 25px;
+    }
+
+    :last-child {
+      margin-right: 0;
+    }
+  }
+}

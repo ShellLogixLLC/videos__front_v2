@@ -1,7 +1,8 @@
 import React from 'react';
 import {useForm} from 'react-hook-form';
 
-import {Button, EmojisInput} from '~/components';
+import Button from '../../shared/Button';
+import EmojisInput from '../../shared/EmojisInput';
 
 import styles from './Comments.module.scss';
 
@@ -17,7 +18,7 @@ const CommentForm: React.FC = () => {
 
   return (
     <form className={styles.block__form__box} onSubmit={handleSubmit(onSubmit)}>
-      <input placeholder="Lora" {...register('nameInput')} />
+      <input placeholder="Lora" autoComplete="off" {...register('nameInput')} />
       <EmojisInput
         {...register('commentInput')}
         placeholder="Type your text here..."

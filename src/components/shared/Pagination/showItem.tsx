@@ -6,8 +6,8 @@ import {useOnClickOutside} from '~/hooks';
 
 import Typography from '../Typography';
 
-import styles from './Pagination.module.scss';
 import {Pagination} from './types';
+import styles from './Pagination.module.scss';
 
 const ShowItem: React.FC<Pagination> = ({
   rowsPerPage = 5,
@@ -16,7 +16,7 @@ const ShowItem: React.FC<Pagination> = ({
 }) => {
   const [expanded, setExpanded] = useState(false);
 
-  const paginationRef = useRef(null);
+  const paginationRef = useRef<HTMLDivElement>(null);
 
   const memoizedRotate = useMemo(() => (expanded ? 180 : 0), [expanded]);
 

@@ -1,6 +1,7 @@
 export interface LinkProps {
   to: string;
   blank?: boolean;
+  target?: string;
   queryKey?: string;
   disabled?: boolean;
   className?: string;

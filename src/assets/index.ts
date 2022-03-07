@@ -1,5 +1,7 @@
 // Images
 export {default as OvalImage} from './images/Oval.png';
+export {default as AmericanFlag} from './images/america.png';
+export {default as RussianFlag} from './images/russian.png';
 
 // Icons
 export {default as GPS} from './icons/GPS.svg';

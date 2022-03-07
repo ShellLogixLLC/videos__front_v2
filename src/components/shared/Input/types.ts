@@ -1,51 +1,55 @@
+import {KeyboardEvent, MouseEvent} from 'react';
+
 import {SVGIconProp} from '~/types/common/index';
 
 export type InputType =
-  | 'button'
-  | 'checkbox'
-  | 'color'
+  | 'url'
+  | 'tel'
   | 'date'
-  | 'datetime-local'
-  | 'email'
+  | 'week'
+  | 'text'
+  | 'time'
   | 'file'
-  | 'hidden'
+  | 'color'
   | 'image'
+  | 'email'
   | 'month'
-  | 'number'
-  | 'password'
   | 'radio'
   | 'range'
   | 'reset'
+  | 'button'
+  | 'hidden'
+  | 'number'
   | 'search'
   | 'submit'
-  | 'tel'
-  | 'text'
-  | 'time'
-  | 'url'
-  | 'week';
+  | 'checkbox'
+  | 'password'
+  | 'verification'
+  | 'datetime-local';
 
 export type InputProps = {
-  value?: string | number;
   name?: string;
   label?: string;
   error?: string;
+  autoFocus?: any;
   type?: InputType;
-  className?: string;
-  inpValue?: string | number;
-  disabled?: boolean;
-  onChange?: (
-    e?:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLTextAreaElement>,
-  ) => void;
   placeholder?: string;
+  readOnly?: boolean;
+  maxLength?: number;
+  className?: string;
+  disabled?: boolean;
+  labelText?: string;
+  onFocus?: () => void;
+  onClick?: () => void;
+  value?: string | number;
   rightIconStyle?: string;
   innerClassName?: string;
   labelClassName?: string;
   RightIcon?: SVGIconProp;
-  RightComponent?: any;
+  inpValue?: string | number;
   RightToggledIcon?: SVGIconProp;
-  onFocus?: () => void;
-  onClick?: () => void;
-  onMouseOver?: any;
+  onKeyUp?: (e: KeyboardEvent<HTMLInputElement>) => void;
+  onMouseOver?: (e: MouseEvent<HTMLInputElement>) => void;
+  onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
