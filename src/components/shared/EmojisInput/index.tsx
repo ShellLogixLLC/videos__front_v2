@@ -63,9 +63,9 @@ const EmojisInput = forwardRef<any, InputProps>(
       setCurrentEmoji(emojiList[Math.floor(Math.random() * emojiList.length)]);
     };
 
-    const addEmoji = (even: any) => {
+    const addEmoji = (event: any) => {
       // eslint-disable-next-line no-console
-      console.log(even.native);
+      console.log(event.native);
     };
 
     return (

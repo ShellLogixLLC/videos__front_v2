@@ -4,6 +4,10 @@
   transition: all 0.1s;
   border: 1px solid #e4e6eb;
 
+  &_right_icon {
+    padding-right: 42px !important;
+  }
+
   &::placeholder {
     color: $grey_color;
   }
@@ -34,6 +38,7 @@
   &__error {
     &__text {
       color: $dark-red;
+      margin-top: 5px;
     }
   }
 

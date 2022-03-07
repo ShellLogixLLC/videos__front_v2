@@ -43,6 +43,13 @@ $montserrat_family: 'Montserrat', sans-serif;
   justify-content: space-between;
 }
 
+%flex-center-direction {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
 %text-elypsis {
   overflow: hidden;
   white-space: nowrap;

@@ -4,24 +4,24 @@ import * as setCookie from 'set-cookie-parser';
 import createAuthRefreshInterceptor from 'axios-auth-refresh';
 
 const defaultOptions = {
-  baseURL: process.env.NEXT_PUBLIC_ENV_API_URL,
+  baseURL: 'https://lit-crag-36859.herokuapp.com/api',
 };
 
-const client = axios.create(defaultOptions);
+const api = axios.create(defaultOptions);
 
-createAuthRefreshInterceptor(client, (failedRequest) =>
-  client.get('/api/refreshToken').then((resp) => {
-    if (client.defaults.headers.setCookie) {
-      delete client.defaults.headers.setCookie;
+createAuthRefreshInterceptor(api, (failedRequest) =>
+  api.get('/api/refreshToken').then((resp) => {
+    if (api.defaults.headers.setCookie) {
+      delete api.defaults.headers.setCookie;
     }
     const {accessToken} = resp.data;
 
     const bearer = `Bearer ${accessToken}`;
-    client.defaults.headers.Authorization = bearer;
+    api.defaults.headers.Authorization = bearer;
 
     const responseCookie = setCookie.parse(resp.headers['set-cookie'])[0];
-    client.defaults.headers.setCookie = resp.headers['set-cookie'];
-    client.defaults.headers.cookie = cookie.serialize(
+    api.defaults.headers.setCookie = resp.headers['set-cookie'];
+    api.defaults.headers.cookie = cookie.serialize(
       responseCookie.name,
       responseCookie.value,
     );
@@ -32,4 +32,4 @@ createAuthRefreshInterceptor(client, (failedRequest) =>
   }),
 );
 
-export default client;
+export default api;

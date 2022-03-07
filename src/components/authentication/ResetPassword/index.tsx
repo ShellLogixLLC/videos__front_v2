@@ -1,0 +1,39 @@
+import React, {useCallback} from 'react';
+
+import {Logo} from '~/assets';
+import {resetForm} from '~/constants';
+
+import Form from '../../shared/forms/Form';
+import Typography from '../../shared/Typography';
+
+import styles from './ResetPassword.module.scss';
+
+const ResetPassword: React.FC = () => {
+  const handleResetPassFormSubmit = useCallback((values) => {
+    // eslint-disable-next-line no-console
+    console.log(values, 'signIn');
+  }, []);
+
+  return (
+    <div className={`container_without-header ${styles.container}`}>
+      <Logo className={styles.container__top_img} />
+      <Typography
+        type="Extra"
+        variant="Heading"
+        className={styles.container__top__title}>
+        Reset Password
+      </Typography>
+      <Form
+        form={resetForm}
+        className={styles.reset}
+        inputClassName={styles.reset__block__input__inp}
+        labelClassName={styles.reset__block}
+        innerClassName={styles.reset__block__input}
+        submitText="Reset Password"
+        onSubmit={handleResetPassFormSubmit}
+      />
+    </div>
+  );
+};
+
+export default ResetPassword;

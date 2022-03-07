@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Typography from '../Typography';
+import Typography from '../../shared/Typography';
 
 import {CreepingLineProps} from './types';
 import styles from './CreepingLineForText.module.scss';

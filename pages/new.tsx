@@ -4,7 +4,11 @@ import {NextPage} from 'next';
 import {Seo} from '~/components';
 
 const NewPage: NextPage = () => (
-  <Seo title="New page" metaDescription="New page description"></Seo>
+  <Seo
+    title="New page"
+    showHeaderFooter={false}
+    metaDescription="New page description"
+  />
 );
 
 export default NewPage;

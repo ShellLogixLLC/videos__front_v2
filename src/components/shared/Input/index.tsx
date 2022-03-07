@@ -12,17 +12,24 @@ const Input = forwardRef<any, InputProps>(
       name,
       label,
       error,
-      inpValue,
-      disabled,
-      RightIcon,
-      onChange,
+      value,
+      onFocus,
       onClick,
-      rightIconStyle = '',
-      RightToggledIcon,
+      onKeyUp,
+      disabled,
+      onChange,
+      readOnly,
+      RightIcon,
+      maxLength,
+      autoFocus,
+      onKeyDown,
       placeholder,
       onMouseOver,
       type = 'text',
+      labelText = '',
       className = '',
+      RightToggledIcon,
+      rightIconStyle = '',
       innerClassName = '',
       labelClassName = '',
       ...rest
@@ -30,8 +37,10 @@ const Input = forwardRef<any, InputProps>(
     ref,
   ) => {
     const [isToggledIcon, setIsToggledIcon] = useState<boolean>(false);
+
     const inputClasses = classNames(styles.container, {
       [className]: className,
+      [styles.container_right_icon]: RightIcon,
       [styles.container__error]: !!error,
     });
 
@@ -44,6 +53,8 @@ const Input = forwardRef<any, InputProps>(
     const labelClasses = classNames(styles.container__label, {
       [labelClassName]: labelClassName,
     });
+
+    const labelTextClasses = classNames({[labelText]: labelText});
 
     const rightIconCLasses = classNames(styles.container__right_icon, {
       [rightIconStyle]: rightIconStyle,
@@ -67,22 +78,31 @@ const Input = forwardRef<any, InputProps>(
 
     return (
       <label htmlFor={name} className={labelClasses}>
-        {label}
+        <span className={labelTextClasses}>{label}</span>
         <div className={inputInnerClasses}>
           <input
             {...rest}
             id={name}
             ref={ref}
             name={name}
-            value={inpValue}
-            onMouseOver={onMouseOver}
-            autoComplete="off"
-            onChange={onChange}
+            value={value}
             onClick={onClick}
+            onKeyUp={onKeyUp}
+            onFocus={onFocus}
+            autoComplete="off"
+            readOnly={readOnly}
+            onChange={onChange}
             disabled={disabled}
+            onKeyDown={onKeyDown}
+            autoFocus={autoFocus}
+            maxLength={maxLength}
             className={inputClasses}
+            onMouseOver={onMouseOver}
             placeholder={placeholder}
             type={isToggledIcon ? 'text' : type}
+            pattern={type === 'number' ? '[0-9]*' : undefined}
+            inputMode={type === 'number' ? 'numeric' : 'text'}
+            data-dt-idx="1"
           />
           {RightIcon && (
             <RightIconComponent

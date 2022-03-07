@@ -19,6 +19,15 @@
   }
 }
 
+.project_body_height {
+  min-height: 100vh;
+  padding: 50px;
+
+  @include breakpoint(desktop) {
+    padding: 50px 16px 50px;
+  }
+}
+
 .text_center {
   @extend %text_center;
 }
@@ -165,4 +174,35 @@
   &-scroll {
     @include custom-scroll;
   }
+}
+
+.container_without-header {
+  width: 100%;
+
+  margin: {
+    top: 88px;
+    left: auto;
+    right: auto;
+    bottom: 69px;
+  }
+
+  @include breakpoint(wide) {
+    padding: {
+      right: 16px;
+      left: 16px;
+    }
+  }
+
+  @include breakpoint(tablet) {
+    padding: 0;
+    margin: {
+      top: 24px;
+      bottom: 24px;
+    }
+  }
+}
+
+input {
+  user-select: text !important;
+  -webkit-user-select: text !important;
 }

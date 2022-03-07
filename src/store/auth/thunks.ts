@@ -13,7 +13,7 @@ export const login = createAsyncThunk(
     try {
       const response = await client.post('api/login', credentials);
 
-      RouterService.push(Route.Home);
+      await RouterService.push(Route.Home);
 
       return {
         accessToken: response.data.accessToken,

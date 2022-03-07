@@ -35,7 +35,7 @@ const Search: React.FC<SearchProps> = ({searchValue, searchChange}) => {
       ref={filterRef}
       name="globalSearch"
       value={searchValue}
-      placeholder="Search porno"
+      placeholder="Search"
       onClick={handleClick}
       onChange={searchChange}
       RightIcon={SearchIcon}

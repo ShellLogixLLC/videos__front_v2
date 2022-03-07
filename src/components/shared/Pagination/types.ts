@@ -5,8 +5,8 @@ export interface Pagination {
   activePage?: number;
   dataLength?: number;
   rowsPerPageArray?: number[];
-  setActivePage?: (arg: any) => void;
-  setRowsPerPage?: (arg: any) => void;
+  setActivePage?: (arg: number) => void;
+  setRowsPerPage?: (arg: number) => void;
 }
 
 export type PaginationTypeof = typeof Pagination;

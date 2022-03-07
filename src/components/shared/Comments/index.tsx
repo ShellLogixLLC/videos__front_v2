@@ -5,8 +5,9 @@ import {useOnClickOutside} from '~/hooks';
 
 import Typography from '../Typography';
 
-import CommentBlock from './CommentBlock';
 import CommentForm from './CommentForm';
+import CommentBlock from './CommentBlock';
+//
 import styles from './Comments.module.scss';
 
 const Comments: React.FC = () => {

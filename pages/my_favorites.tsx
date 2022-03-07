@@ -6,7 +6,8 @@ import {Seo} from '~/components';
 const MyFavoritesPage: NextPage = () => (
   <Seo
     title="My favorites page"
-    metaDescription="My favorites page description"></Seo>
+    metaDescription="My favorites page description"
+  />
 );
 
 export default MyFavoritesPage;
