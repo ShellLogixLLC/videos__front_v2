@@ -10,6 +10,7 @@ export * from './authentication'; // SignIn, ResetPassword, ForgotPassword, Regi
 // Shared
 export {default as Form} from './shared/forms/Form';
 export {default as Link} from './shared/Link';
+export {default as Video} from './shared/Video';
 export {default as Input} from './shared/Input';
 export {default as Timer} from './shared/StopWatch';
 export {default as Loader} from './shared/Loader';
