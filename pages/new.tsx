@@ -1,14 +1,14 @@
 import React from 'react';
 import {NextPage} from 'next';
 
-import {Seo} from '~/components';
+import {AlarmIcon} from '~/assets';
+import {filteredMass} from '~/utils';
+import {Seo, Filter} from '~/components';
 
 const NewPage: NextPage = () => (
-  <Seo
-    title="New page"
-    showHeaderFooter={false}
-    metaDescription="New page description"
-  />
+  <Seo title="New page" metaDescription="New page description">
+    <Filter filterTitle="FILTER" IconProp={AlarmIcon} options={filteredMass} />
+  </Seo>
 );
 
 export default NewPage;

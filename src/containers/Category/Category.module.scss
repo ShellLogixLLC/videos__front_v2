@@ -1,5 +1,6 @@
 .new_container {
   margin-top: 40px;
+
   &__title {
     @extend %separate_page_film_name;
     margin-bottom: 24px;

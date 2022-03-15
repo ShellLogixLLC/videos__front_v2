@@ -40,9 +40,9 @@ const Search: React.FC<SearchProps> = ({searchValue, searchChange}) => {
       onChange={searchChange}
       RightIcon={SearchIcon}
       className={inputClasses}
+      rightIconStyle={iconClasses}
       labelClassName={styles.wrapper}
       innerClassName={styles.wrapper__container}
-      rightIconStyle={iconClasses}
     />
   );
 };

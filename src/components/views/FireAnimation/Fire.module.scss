@@ -10,11 +10,13 @@ $partSize: 35px;
   filter: blur($blur);
   -webkit-filter: blur($blur);
   position: relative;
+  display: inline-block;
 
   &__title {
     text-align: center;
     @extend %film_name;
     position: relative;
+    min-height: 50px;
     color: $red;
   }
 }
@@ -35,6 +37,8 @@ $partSize: 35px;
   @for $p from 1 through $parts {
     &:nth-of-type(#{$p}) {
       animation-delay: $dur * random();
+      // don't allowed this conflict
+      //  #{($p - 1) / $parts} -_-  math.div($p - 1), $parts
       left: calc((100% - #{$partSize}) * #{($p - 1) / $parts});
     }
   }

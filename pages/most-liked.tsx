@@ -1,10 +1,14 @@
 import React from 'react';
 import {NextPage} from 'next';
 
-import {Seo} from '~/components';
+import {Seo, Comments, Pagination, VideoDescription} from '~/components';
 
 const MostLikedPage: NextPage = () => (
-  <Seo title="Most liked page" metaDescription="Most liked page description" />
+  <Seo title="Most liked page" metaDescription="Most liked page description">
+    <Pagination />
+    <Comments />
+    <VideoDescription />
+  </Seo>
 );
 
 export default MostLikedPage;
