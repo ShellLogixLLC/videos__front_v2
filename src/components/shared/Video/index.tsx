@@ -2,13 +2,13 @@ import React, {useState, useEffect, useRef} from 'react';
 import moment from 'moment';
 import classNames from 'classnames';
 
-import {useWindowSize} from '~/hooks/index';
-import PlayIcon from '~/assets/icons/play-video.svg';
 import PauseIcon from '~/assets/icons/pause.svg';
 import VolumeIcon from '~/assets/icons/volume.svg';
+import PlayIcon from '~/assets/icons/play-video.svg';
 import NextVideoIcon from '~/assets/icons/next-video.svg';
 import FullScreenIcon from '~/assets/icons/full-screen.svg';
 import MutedVolumeIcon from '~/assets/icons/muted-volume.svg';
+import {useWindowSize, useEventListener} from '~/hooks/index';
 
 import VideoSlider from './VideoSlider';
 import VolumeSlider from './VolumeSlider';
@@ -27,9 +27,45 @@ const Video: React.FC<Props> = ({videoDuration, videoSrc}) => {
   const [muted, setMuted] = useState<boolean>(false);
   const [cachedVolume, setCachedVolume] = useState<number>(1);
   const [wasPlaying, setWasPlaying] = useState(false);
+  const [keyStatus, setKeyStatus] = useState({
+    backward: false,
+    forward: false,
+  });
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const {isMaxTablet} = useWindowSize();
+
+  const handleSpace = (event: any) => {
+    if (event.keyCode === 32) {
+      if (wasPlaying) {
+        videoRef.current?.pause();
+        setWasPlaying(false);
+      } else {
+        videoRef.current?.play();
+        setWasPlaying(true);
+      }
+    }
+  };
+
+  useEventListener('keydown', (event) => handleSpace(event));
+
+  const handleSecAhead = (event: any) => {
+    if (
+      videoDuration - 5 >= currentTime &&
+      currentTime + 5 < videoDuration - 1 &&
+      event.keyCode === 39
+    ) {
+      setCurrentTime(currentTime + 5);
+      setKeyStatus({backward: true, forward: false});
+    }
+
+    if (currentTime > 5 && event.keyCode === 37) {
+      setCurrentTime(currentTime - 5);
+      setKeyStatus({backward: false, forward: true});
+    }
+  };
+
+  useEventListener('keyup', (event) => handleSecAhead(event));
 
   useEffect(() => {
     const video = videoRef.current;
@@ -49,6 +85,19 @@ const Video: React.FC<Props> = ({videoDuration, videoSrc}) => {
       }
     };
   }, []);
+
+  useEffect(() => {
+    const offAnimation = setTimeout(() => {
+      setKeyStatus({backward: false, forward: false});
+    }, 500);
+    if (keyStatus.backward || keyStatus.forward) {
+      offAnimation;
+    }
+
+    return () => {
+      clearTimeout(offAnimation);
+    };
+  }, [keyStatus.backward, keyStatus.forward]);
 
   const handlePlayPauseClick = () => {
     if (videoElement) {
@@ -141,8 +190,13 @@ const Video: React.FC<Props> = ({videoDuration, videoSrc}) => {
     100,
   );
 
+  const videoClasses = classNames(styles.video, {
+    [styles.video__backward]: keyStatus.backward,
+    [styles.video__forward]: keyStatus.forward,
+  });
+
   return (
-    <div className={styles.video}>
+    <div className={videoClasses}>
       {isMaxTablet && (
         <>
           <div className={styles.video__controls}>
@@ -206,8 +260,8 @@ const Video: React.FC<Props> = ({videoDuration, videoSrc}) => {
             </div>
           </div>
           <div
-            style={{width: `${videoProgressPercentage}%`}}
             className={styles.video__progress}
+            style={{width: `${videoProgressPercentage}%`}}
           />
         </>
       )}
