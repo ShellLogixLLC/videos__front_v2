@@ -27,10 +27,11 @@ const DatePicker: FC = () => {
 
   const rangePickerProps = useMemo(
     () => ({
-      numberOfMonths: 1,
-      autoResponsive: true,
+      numberOfMonths: 2,
+      autoResponsive: false,
       disabledBeforeToday: true,
       selectedDays: rangeValues,
+      disabledBeforeDate: dayjs().add(1, 'day'),
       components: {
         titleOfWeek: {
           titles: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
