@@ -13,29 +13,35 @@ import {HeaderBurgerProps} from './types';
 const HeaderBurger: React.FC<HeaderBurgerProps> = ({
   isOpen,
   children,
+  expanded,
+  setExpanded,
   closeHandler,
-}) => (
-  <>
-    <div className={styles.wrapper__content__container}>
-      <Search />
-      <Button onClick={closeHandler} className={styles.wrapper__content__close}>
-        <Menu className={styles.wrapper__content__close__icon} />
-      </Button>
-    </div>
-    <div
-      style={{
-        transform: `scaleX(${isOpen ? 0 : 1})`,
-        backdropFilter: `blur(${isOpen ? 0 : 2}px)`,
-      }}
-      className={styles.wrapper__content__burger}>
-      <div className={styles.wrapper__content__burger__container}>
-        <div className={styles.wrapper__content__burger__container__nav}>
-          {children}
-        </div>
-        <LanguageDropDown />
+}) => {
+  return (
+    <>
+      <div className={styles.wrapper__content__container}>
+        <Search setExpanded={setExpanded} expanded={expanded} />
+        <Button
+          onClick={closeHandler}
+          className={styles.wrapper__content__close}>
+          <Menu className={styles.wrapper__content__close__icon} />
+        </Button>
       </div>
-    </div>
-  </>
-);
+      <div
+        style={{
+          transform: `scaleX(${isOpen ? 0 : 1})`,
+          backdropFilter: `blur(${isOpen ? 0 : 2}px)`,
+        }}
+        className={styles.wrapper__content__burger}>
+        <div className={styles.wrapper__content__burger__container}>
+          <div className={styles.wrapper__content__burger__container__nav}>
+            {children}
+          </div>
+          <LanguageDropDown />
+        </div>
+      </div>
+    </>
+  );
+};
 
 export default HeaderBurger;

@@ -1,19 +1,21 @@
 import React, {useState} from 'react';
+import classNames from 'classnames';
 
 import {Logo} from '~/assets';
 import {Route} from '~/constants';
 import {useWindowSize} from '~/hooks';
-import {Link, HeaderBurger, HeaderNavbar} from '~/components';
 import {routes, routesBurger} from '~/utils';
+import {Link, HeaderBurger, HeaderNavbar} from '~/components';
 
 import styles from './Header.module.scss';
 
 const Header: React.FC = () => {
   // const {history} = useHistory();
 
-  const {isMinTablet} = useWindowSize();
+  const {isDesktop} = useWindowSize();
 
   const [isOpen, setIsOpen] = useState<boolean>(true);
+  const [expanded, setExpanded] = useState<boolean>(false);
 
   // const prevRouteValue = history[history.length - 2];
 
@@ -59,18 +61,28 @@ const Header: React.FC = () => {
     </Link>
   ));
 
+  const logoClassNames = classNames(styles.wrapper__content_logo, {
+    [styles.wrapper__content_logo_hidden]: expanded && !isDesktop,
+  });
+
   return (
     <header className={styles.wrapper}>
       <div className={`${styles.wrapper__content} container`}>
-        <Link className={styles.wrapper__content_logo} to={Route.Home}>
+        <Link className={logoClassNames} to={Route.Home}>
           <Logo />
         </Link>
-        {isMinTablet ? (
-          <HeaderBurger isOpen={isOpen} closeHandler={closeHandler}>
+        {!isDesktop ? (
+          <HeaderBurger
+            isOpen={isOpen}
+            expanded={expanded}
+            setExpanded={setExpanded}
+            closeHandler={closeHandler}>
             {headerBurger}
           </HeaderBurger>
         ) : (
-          <HeaderNavbar>{headerTable}</HeaderNavbar>
+          <HeaderNavbar expanded={expanded} setExpanded={setExpanded}>
+            {headerTable}
+          </HeaderNavbar>
         )}
       </div>
     </header>
