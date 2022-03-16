@@ -1,35 +1,43 @@
 .wrapper {
   position: relative;
-  margin-right: 16px;
+  height: 80px;
+  cursor: pointer;
+  overflow: hidden;
+  padding: 28px 24px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  transition: all 0.3s ease-in;
+  @extend %border-rad_10;
+
+  &__active {
+    height: 460px;
+  }
 }
 
 .header {
   @extend %flex-between;
-  border: 1px solid #e6e6e6;
-  cursor: pointer;
-  height: 36px;
-  padding: 9px 0 8px 12px;
-  @extend %border-rad_8;
-  max-width: 237px;
-  width: 100%;
 
   svg {
     transition: all 0.3s;
+
+    path {
+      fill: $red;
+    }
   }
 
   &__text {
-    color: $grey_color;
-  }
-
-  &__active {
-    border-color: #048f92;
-
-    svg {
-      transform: rotate(180deg);
-    }
+    @extend %film_name;
   }
 }
 
 .content {
+  left: 0;
+  width: 100%;
+  z-index: 5;
+  padding: 0 24px;
   position: absolute;
+  margin-top: 16px;
+  height: 380px;
+  background-color: $light-black;
+  @extend %border-bottom-rad_10;
 }
