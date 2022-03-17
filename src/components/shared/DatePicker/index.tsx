@@ -4,18 +4,19 @@ import {useToggle} from 'react-use';
 import {RangePicker} from 'react-trip-date';
 import {RangePickerSelectedDays} from 'react-trip-date/dist/rangePicker/rangePicker.type';
 
-import {CalendarOne, LeftArrow, RightArrow} from '~/assets';
 import {useOnClickOutside} from '~/hooks';
+import {CalendarOne, LeftArrow, RightArrow} from '~/assets';
 
 import Typography from '../Typography';
 
 import styles from './DatePicker.module.scss';
 
 const DatePicker: FC = () => {
-  const calendarRef = useRef<HTMLHeadingElement>(null);
+  const calendarRef = useRef<HTMLHeadingElement | null>(null);
 
   const [isOpen, toggleIsOpen] = useToggle(false);
   const [rangeValues, setRangeValues] = useState<RangePickerSelectedDays>();
+
   const togglerClasses = classNames(styles.wrapper, {
     [styles.wrapper__active]: isOpen,
   });
