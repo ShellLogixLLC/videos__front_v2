@@ -13,7 +13,7 @@ const Header: React.FC = () => {
 
   const {isMinTablet} = useWindowSize();
 
-  const [isOpen, setIsOpen] = useState<boolean>(true);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   // const prevRouteValue = history[history.length - 2];
 
@@ -29,11 +29,6 @@ const Header: React.FC = () => {
   //     ),
   //   });
   // };
-
-  const closeHandler = () => {
-    setIsOpen(!isOpen);
-    document.body.style.overflowY = isOpen ? 'hidden' : 'visible';
-  };
 
   const headerTable = routes.map(({id, routeName, pageName}) => (
     <Link
@@ -66,7 +61,7 @@ const Header: React.FC = () => {
           <Logo />
         </Link>
         {isMinTablet ? (
-          <HeaderBurger isOpen={isOpen} closeHandler={closeHandler}>
+          <HeaderBurger isOpen={isOpen} setIsOpen={setIsOpen}>
             {headerBurger}
           </HeaderBurger>
         ) : (
