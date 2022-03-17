@@ -14,13 +14,14 @@ const Search: React.FC<SearchProps> = ({expanded, setExpanded}) => {
   const [searchValue, setSearchValue] = useState('');
 
   const searchChangeHandle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
     setSearchValue(e.target.value);
   };
 
   const {isDesktop} = useWindowSize();
 
-  const handleClick = () => setExpanded(!expanded);
+  const toggleHandle = () => setExpanded(!expanded);
+
+  useOnClickOutside(filterRef, () => setExpanded(false));
 
   const labelClassName = classNames(styles.wrapper, {
     [styles.wrapper_expanded]: expanded,
@@ -29,8 +30,6 @@ const Search: React.FC<SearchProps> = ({expanded, setExpanded}) => {
   const inputClasses = classNames(styles.wrapper__container__search, {
     [styles.wrapper__container__search_expanded]: expanded,
   });
-
-  useOnClickOutside(filterRef, () => setExpanded(false));
 
   const backArrowClassName = classNames(styles.wrapper__container__back, {
     [styles.wrapper__container__back_expand]: expanded,
@@ -48,7 +47,7 @@ const Search: React.FC<SearchProps> = ({expanded, setExpanded}) => {
         RightIcon={SearchIcon}
         wrapperRef={filterRef}
         placeholder="Search"
-        toggleHandle={handleClick}
+        toggleHandle={toggleHandle}
         rightIconStyle={styles.wrapper__container__right_icon}
         labelClassName={labelClassName}
         innerClassName={styles.wrapper__container}

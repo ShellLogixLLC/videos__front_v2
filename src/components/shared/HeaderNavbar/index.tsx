@@ -20,6 +20,7 @@ const HeaderNavbar: React.FC<HeaderNavbarProps> = ({
   const navClassName = classNames(styles.wrapper__content_menu, {
     [styles.wrapper__content_menu_hidden]: expanded,
   });
+
   return (
     <>
       <nav className={navClassName}>{children}</nav>

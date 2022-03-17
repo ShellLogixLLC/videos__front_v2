@@ -3,13 +3,11 @@ import {NextPage} from 'next';
 
 import {Seo, Loader, DatePicker} from '~/components';
 
-// Temporary
-
 const HomePage: NextPage = () => {
   return (
     <Seo title="Home page" metaDescription="Home page description">
       <Loader />
-     <DatePicker/>
+      <DatePicker />
     </Seo>
   );
 };
