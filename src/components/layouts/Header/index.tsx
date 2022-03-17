@@ -1,5 +1,4 @@
-import React from 'react';
-import {useToggle} from 'react-use';
+import React, {useState} from 'react';
 
 import {Logo} from '~/assets';
 import {Route} from '~/constants';
@@ -10,7 +9,7 @@ import {Link, HeaderBurger, HeaderNavbar} from '~/components';
 import styles from './Header.module.scss';
 
 const Header: React.FC = () => {
-  const [isOpen, toggleIsOpen] = useToggle(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const {isMinTablet} = useWindowSize();
 
@@ -43,7 +42,7 @@ const Header: React.FC = () => {
           <Logo />
         </Link>
         {isMinTablet ? (
-          <HeaderBurger isOpen={isOpen} toggleIsOpen={toggleIsOpen}>
+          <HeaderBurger isOpen={isOpen} setIsOpen={setIsOpen}>
             {headerBurger}
           </HeaderBurger>
         ) : (

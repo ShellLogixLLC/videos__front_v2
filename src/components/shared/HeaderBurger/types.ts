@@ -1,4 +1,4 @@
 export type HeaderBurgerProps = {
   isOpen: boolean;
-  toggleIsOpen: (nextValue?: boolean) => void
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
