@@ -6,8 +6,24 @@
 
     &__picker {
       position: absolute;
-      bottom: 16px;
+      bottom: 25px;
       right: 18px;
+      section:first-child {
+        box-shadow: 0 3px 10px rgb(8 8 8 / 40%);
+        border: none;
+        background-color: $light-black;
+        max-width: 338px;
+        width: 100%;
+        @include breakpoint(tablet-m) {
+          max-width: 224px;
+        }
+        path {
+          fill: $white;
+        }
+        span {
+          text-shadow: none;
+        }
+      }
     }
   }
 }
