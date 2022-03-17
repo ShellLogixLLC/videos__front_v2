@@ -20,7 +20,7 @@ const DatePicker: FC = () => {
     [styles.wrapper__active]: isOpen,
   });
 
-  useOnClickOutside(calendarRef, toggleIsOpen);
+  useOnClickOutside(calendarRef, () => toggleIsOpen(false));
 
   const rangePickerProps = {
     numberOfMonths: 1,
