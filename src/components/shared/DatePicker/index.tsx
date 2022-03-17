@@ -1,6 +1,6 @@
-import React, {FC, useState, useRef, useCallback, useMemo} from 'react';
-// import dayjs from 'dayjs';
+import React, {FC, useState, useRef, useMemo} from 'react';
 import classNames from 'classnames';
+import {useToggle} from 'react-use';
 import {RangePicker} from 'react-trip-date';
 import {RangePickerSelectedDays} from 'react-trip-date/dist/rangePicker/rangePicker.type';
 
@@ -14,17 +14,13 @@ import styles from './DatePicker.module.scss';
 const DatePicker: FC = () => {
   const calendarRef = useRef<HTMLHeadingElement>(null);
 
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpen, toggleIsOpen] = useToggle(false);
   const [rangeValues, setRangeValues] = useState<RangePickerSelectedDays>();
   const togglerClasses = classNames(styles.wrapper, {
     [styles.wrapper__active]: isOpen,
   });
 
-  const datePickerToggler = useCallback(() => {
-    setIsOpen(!isOpen);
-  }, [isOpen]);
-
-  useOnClickOutside(calendarRef, () => setIsOpen(false));
+  useOnClickOutside(calendarRef, () => toggleIsOpen());
 
   const rangePickerProps = useMemo(
     () => ({
@@ -33,9 +29,6 @@ const DatePicker: FC = () => {
       disabledBeforeToday: false,
       selectedDays: rangeValues,
       components: {
-        titleOfWeek: {
-          titles: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
-        },
         header: {
           monthIcons: {
             right: <RightArrow />,
@@ -47,20 +40,9 @@ const DatePicker: FC = () => {
     [rangeValues],
   );
 
-  // const selectedDateRange = useMemo(() => {
-  //   const fromDate = rangeValues?.from || 'DD.MM.YY - DD.MM.YY';
-  //   const toDate = rangeValues?.to
-  //     ? `- ${rangeValues?.to}`
-  //     : rangeValues?.from
-  //     ? '- DD.MM.YY'
-  //     : '';
-
-  //   return `${fromDate}  ${toDate}`;
-  // }, [rangeValues?.from, rangeValues?.to]);
-
   return (
     <div ref={calendarRef} className={togglerClasses}>
-      <div role="button" onClick={datePickerToggler} className={styles.header}>
+      <div role="button" onClick={toggleIsOpen} className={styles.header}>
         <Typography className={styles.header__text}>Calendar</Typography>
         <CalendarOne />
       </div>

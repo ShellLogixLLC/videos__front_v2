@@ -233,7 +233,7 @@ input {
         }
       }
     }
-    //calendar content
+    // Calendar content
     & > div:last-child {
       .range-select {
         background-color: $black;
@@ -246,6 +246,9 @@ input {
         &:last-child {
           border-radius: 0 25% 25% 0;
         }
+      }
+      & > div {
+        background-color: $light-black;
       }
 
       .start-date {
@@ -278,7 +281,6 @@ input {
 
       & > div {
         height: unset;
-
         & > div:first-child {
           display: flex;
           margin: 0;
@@ -291,17 +293,13 @@ input {
             margin: 0 0 5px;
           }
         }
+        & > div > div {
+          color: $white;
+          &:hover {
+            background-color: $black;
+          }
+        }
       }
     }
-  }
-
-  .kejBXf {
-    color: $white;
-    &:hover {
-      background-color: $black;
-    }
-  }
-  .kmoCcx > div {
-    background-color: unset;
   }
 }
