@@ -1,4 +1,5 @@
 import React, {useState, useRef} from 'react';
+import classNames from 'classnames';
 
 import {LanguageArrowTop} from '~/assets';
 import {useOnClickOutside} from '~/hooks';
@@ -21,8 +22,16 @@ const Comments: React.FC = () => {
 
   useOnClickOutside(refInput, () => setExpanded(false));
 
+  const blockClassNames = classNames(styles.block, {
+    [styles.block_hiden]: !expanded,
+  });
+
+  const containerClassNames = classNames(styles.container, {
+    [styles.container_close]: !expanded,
+  });
+
   return (
-    <div ref={refInput} className={styles.container}>
+    <div ref={refInput} className={containerClassNames}>
       <div
         onClick={handleClick}
         role="button"
@@ -35,16 +44,15 @@ const Comments: React.FC = () => {
         </div>
         <LanguageArrowTop className={styles.container__content__icon} />
       </div>
-      {expanded && (
-        <div className={styles.block}>
-          <div className={styles.block__wrapper}>
-            <CommentBlock />
-          </div>
-          <div className={styles.block__form}>
-            <CommentForm />
-          </div>
+
+      <div className={blockClassNames}>
+        <div className={styles.block__wrapper}>
+          <CommentBlock />
         </div>
-      )}
+        <div className={styles.block__form}>
+          <CommentForm />
+        </div>
+      </div>
     </div>
   );
 };
