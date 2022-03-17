@@ -16,7 +16,6 @@ const DatePicker: FC = () => {
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [rangeValues, setRangeValues] = useState<RangePickerSelectedDays>();
-  const weekDay = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
   const togglerClasses = classNames(styles.wrapper, {
     [styles.wrapper__active]: isOpen,
   });
@@ -35,7 +34,7 @@ const DatePicker: FC = () => {
       selectedDays: rangeValues,
       components: {
         titleOfWeek: {
-          titles: weekDay,
+          titles: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
         },
         header: {
           monthIcons: {
@@ -45,7 +44,7 @@ const DatePicker: FC = () => {
         },
       },
     }),
-    [rangeValues, weekDay],
+    [rangeValues],
   );
 
   // const selectedDateRange = useMemo(() => {

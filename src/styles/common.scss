@@ -209,39 +209,42 @@ input {
 
 .calendar__trip {
   .tp-calendar {
-    max-width: 268px;
     margin: 16px auto 20px;
     width: 100%;
 
+    // Header
     & > div:first-child {
       display: flex;
       align-items: center;
       background-color: unset;
       justify-content: center;
+
       p {
         width: unset;
         margin: 0 18px;
       }
+
       svg {
         width: 20px;
         height: 20px;
+
         path {
           fill: $red;
         }
       }
     }
-
+    //calendar content
     & > div:last-child {
       .range-select {
         background-color: $black;
         box-shadow: unset;
 
         &:first-child {
-          border-radius: 16px 0 0 16px;
+          border-radius: 25% 0 0 25%;
         }
 
         &:last-child {
-          border-radius: 0 16px 16px 0;
+          border-radius: 0 25% 25% 0;
         }
       }
 
@@ -266,13 +269,11 @@ input {
           border-radius: 32px;
         }
       }
-
+      .inactive,
       .today {
+        visibility: visible;
+        color: $white;
         border: unset;
-      }
-
-      .bPMuAu {
-        border-radius: 32px;
       }
 
       & > div {
@@ -280,10 +281,11 @@ input {
 
         & > div:first-child {
           display: flex;
-          width: 100%;
           margin: 0;
           border: unset;
           justify-content: space-between;
+          font-weight: 700;
+          line-height: 12px;
 
           p {
             margin: 0 0 5px;
@@ -292,9 +294,9 @@ input {
       }
     }
   }
+
   .kejBXf {
     color: $white;
-
     &:hover {
       background-color: $black;
     }
