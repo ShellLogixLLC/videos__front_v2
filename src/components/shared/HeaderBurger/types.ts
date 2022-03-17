@@ -1,4 +1,4 @@
 export type HeaderBurgerProps = {
   isOpen: boolean;
-  setIsOpen: (argument: boolean) => void;
+  toggleIsOpen: (nextValue?: boolean) => void
 };

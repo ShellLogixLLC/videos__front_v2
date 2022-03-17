@@ -49,6 +49,7 @@
     "react-redux": "7.2.5",
     "react-toastify": "8.0.2",
     "react-trip-date": "1.8.2",
+    "react-use": "^17.3.2",
     "react-useportal": "1.0.14",
     "sass": "1.39.0",
     "set-cookie-parser": "2.4.8",

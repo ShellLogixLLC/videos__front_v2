@@ -15,35 +15,29 @@ import {HeaderBurgerProps} from './types';
 const HeaderBurger: React.FC<HeaderBurgerProps> = ({
   isOpen,
   children,
-  setIsOpen,
+  toggleIsOpen,
 }) => {
-  const burgerContainerRef = useRef<HTMLDivElement>(null);
-
-  useOnClickOutside(burgerContainerRef, () => setIsOpen(false));
+  const burgerContainerRef = useRef<HTMLDivElement | null>(null);
 
   const burgerClassNames = classNames(styles.wrapper__content__burger, {
     [styles.wrapper__content__burger_anima]: isOpen,
   });
 
-  const toggleHandler = (boolean: boolean) => {
-    return () => {
-      setIsOpen(boolean);
-    };
-  };
+  useOnClickOutside(burgerContainerRef, () => toggleIsOpen());
 
   return (
     <>
       <div className={styles.wrapper__content__container}>
         <Search />
         <Button
-          onClick={toggleHandler(true)}
+          onClick={() => toggleIsOpen(true)}
           className={styles.wrapper__content__burger_icon}>
           <Menu />
         </Button>
       </div>
       <div className={burgerClassNames}>
         <Close
-          onClick={toggleHandler(false)}
+          onClick={() => toggleIsOpen(false)}
           className={styles.wrapper__content__close_icon}
         />
         <div

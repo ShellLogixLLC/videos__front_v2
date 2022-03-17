@@ -1,34 +1,18 @@
-import React, {useState} from 'react';
+import React from 'react';
+import {useToggle} from 'react-use';
 
 import {Logo} from '~/assets';
 import {Route} from '~/constants';
 import {useWindowSize} from '~/hooks';
-import {Link, HeaderBurger, HeaderNavbar} from '~/components';
 import {routes, routesBurger} from '~/utils';
+import {Link, HeaderBurger, HeaderNavbar} from '~/components';
 
 import styles from './Header.module.scss';
 
 const Header: React.FC = () => {
-  // const {history} = useHistory();
+  const [isOpen, toggleIsOpen] = useToggle(false);
 
   const {isMinTablet} = useWindowSize();
-
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-
-  // const prevRouteValue = history[history.length - 2];
-
-  // const ifPreviousRouteActive = (id: number, routesElem: RoutesProps[]) => {
-  //   return routesElem[id - 1].routeName === prevRouteValue;
-  // };
-
-  // const previousStyleOrDisabled = (id: number, routesProp: RoutesProps[]) => {
-  //   return classNames(styles.wrapper__content_menu__default, {
-  //     [styles.wrapper__content_menu__disabled]: ifPreviousRouteActive(
-  //       id,
-  //       routesProp,
-  //     ),
-  //   });
-  // };
 
   const headerTable = routes.map(({id, routeName, pageName}) => (
     <Link
@@ -47,9 +31,7 @@ const Header: React.FC = () => {
       className={styles.wrapper__content__burger__container__nav__items}
       activeClassName={
         styles.wrapper__content__burger__container__nav__items_active
-      }
-      // previousClasses={previousStyleOrDisabled(id, routesBurger)}
-    >
+      }>
       {pageName}
     </Link>
   ));
@@ -61,7 +43,7 @@ const Header: React.FC = () => {
           <Logo />
         </Link>
         {isMinTablet ? (
-          <HeaderBurger isOpen={isOpen} setIsOpen={setIsOpen}>
+          <HeaderBurger isOpen={isOpen} toggleIsOpen={toggleIsOpen}>
             {headerBurger}
           </HeaderBurger>
         ) : (
