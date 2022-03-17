@@ -1,6 +1,7 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import ReactPaginate from 'react-paginate';
 
+import {useWindowSize} from '~/hooks/index';
 import {LeftArrow, RightArrow} from '~/assets';
 
 import ShowItem from './showItem';
@@ -8,53 +9,46 @@ import {Pagination} from './types';
 import styles from './Pagination.module.scss';
 
 const PaginationIndex: React.FC<Pagination> = ({
-  rowsPerPage = 5,
-  setRowsPerPage = (e) => e,
-  rowsPerPageArray = [5, 10, 15, 20],
   activePage = 0,
   setActivePage = (e) => e,
-  dataLength = 1,
+  dataLength = 30,
 }) => {
   const pagination = useRef<any>();
+  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
+  const {isMaxTablet} = useWindowSize();
 
   const setPage = ({selected}: any) => setActivePage(selected);
+  const pageCount = Math.ceil(dataLength / rowsPerPage);
 
-  const setPerPage = (perPage: number) => {
-    if (activePage * perPage > dataLength) {
-      setActivePage(0);
-      setRowsPerPage(perPage);
-    } else {
-      setRowsPerPage(perPage);
+  useEffect(() => {
+    if (activePage * rowsPerPage > pageCount) {
+      setActivePage(pageCount - 1);
     }
-  };
+  }, [rowsPerPage]);
 
   return (
     <>
       <div className={styles.container__wrapper__show}>
-        <ShowItem
-          rowsPerPage={rowsPerPage}
-          setRowsPerPage={setPerPage}
-          rowsPerPageArray={rowsPerPageArray}
-        />
+        <ShowItem rowsPerPage={rowsPerPage} setRowsPerPage={setRowsPerPage} />
       </div>
       <div className={styles.container__wrapper}>
         <div>
           <ReactPaginate
             ref={pagination}
-            onPageChange={setPage}
             forcePage={activePage}
-            pageRangeDisplayed={2}
-            marginPagesDisplayed={1}
             nextLabel={<RightArrow />}
+            pageCount={pageCount}
+            onPageChange={setPage}
             previousLabel={<LeftArrow />}
-            disabledClassName={styles.disabled}
-            containerClassName={styles.container}
             pageClassName={styles.container__break}
             breakClassName={styles.container__break}
             activeClassName={styles.container_active}
+            disabledClassName={styles.disabled}
             nextLinkClassName={styles.container__tick}
+            pageRangeDisplayed={2}
+            containerClassName={styles.container}
+            marginPagesDisplayed={1}
             previousLinkClassName={styles.container__tick}
-            pageCount={Math.ceil(dataLength / rowsPerPage)}
           />
         </div>
       </div>

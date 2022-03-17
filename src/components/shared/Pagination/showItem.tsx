@@ -10,13 +10,13 @@ import {Pagination} from './types';
 import styles from './Pagination.module.scss';
 
 const ShowItem: React.FC<Pagination> = ({
-  rowsPerPage = 5,
+  rowsPerPage,
   setRowsPerPage = (e) => e,
-  rowsPerPageArray = [5, 10, 15, 20],
 }) => {
   const [expanded, setExpanded] = useState(false);
-
   const paginationRef = useRef<HTMLDivElement>(null);
+
+  const rowsPerPageArray = [5, 10, 15, 20];
 
   const memoizedRotate = useMemo(() => (expanded ? 180 : 0), [expanded]);
 
