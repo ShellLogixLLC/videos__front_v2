@@ -248,6 +248,9 @@ input {
           border-radius: 0 25% 25% 0;
         }
       }
+      & > div {
+        background-color: $light-black;
+      }
 
       & > div {
         background-color: $light-black;
