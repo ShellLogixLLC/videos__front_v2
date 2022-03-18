@@ -17,22 +17,25 @@ import styles from './Video.module.scss';
 interface Props {
   videoSrc: string;
   videoDuration: number;
+  posterSrc: string;
 }
 
-const Video: React.FC<Props> = ({videoDuration, videoSrc}) => {
+const Video: React.FC<Props> = ({videoDuration, videoSrc, posterSrc}) => {
   const [videoElement, setVideoElement] = useState<HTMLVideoElement | null>(
     null,
   );
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [muted, setMuted] = useState<boolean>(false);
   const [cachedVolume, setCachedVolume] = useState<number>(1);
-  const [wasPlaying, setWasPlaying] = useState(false);
+  const [wasPlaying, setWasPlaying] = useState<boolean>(false);
+  const [isMouseOver, setIsMouseOver] = useState<boolean>(false);
   const [keyStatus, setKeyStatus] = useState({
     backward: false,
     forward: false,
   });
 
   const videoRef = useRef<HTMLVideoElement>(null);
+  const videoControlsRef = useRef<HTMLDivElement>(null);
   const {isMaxTablet} = useWindowSize();
 
   const handleSpace = (event: any) => {
@@ -49,18 +52,48 @@ const Video: React.FC<Props> = ({videoDuration, videoSrc}) => {
 
   useEventListener('keydown', (event) => handleSpace(event));
 
+  const handleMouseOver = () => {
+    setIsMouseOver(true);
+  };
+
+  const handleMouseOut = () => {
+    setIsMouseOver(false);
+  };
+
+  useEventListener('mouseover', handleMouseOver, videoRef.current);
+  useEventListener('mouseout', handleMouseOut, videoRef.current);
+
+  useEventListener('mouseover', handleMouseOver, videoControlsRef.current);
+  useEventListener('mouseout', handleMouseOut, videoControlsRef.current);
+
   const handleSecAhead = (event: any) => {
     if (
       videoDuration - 5 >= currentTime &&
       currentTime + 5 < videoDuration - 1 &&
       event.keyCode === 39
     ) {
-      setCurrentTime(currentTime + 5);
+      if (videoElement) {
+        const isPaused = videoElement.paused;
+        videoElement.pause();
+        videoElement.currentTime = currentTime + 5;
+        setCurrentTime(currentTime + 5);
+        if (!isPaused) {
+          videoElement.play();
+        }
+      }
       setKeyStatus({backward: true, forward: false});
     }
 
     if (currentTime > 5 && event.keyCode === 37) {
-      setCurrentTime(currentTime - 5);
+      if (videoElement) {
+        const isPaused = videoElement.paused;
+        videoElement.pause();
+        videoElement.currentTime = currentTime - 5;
+        setCurrentTime(currentTime - 5);
+        if (!isPaused) {
+          videoElement.play();
+        }
+      }
       setKeyStatus({backward: false, forward: true});
     }
   };
@@ -199,7 +232,7 @@ const Video: React.FC<Props> = ({videoDuration, videoSrc}) => {
     <div className={videoClasses}>
       {isMaxTablet && (
         <>
-          <div className={styles.video__controls}>
+          <div ref={videoControlsRef} className={styles.video__controls}>
             <div
               role="button"
               onClick={handlePlayPauseClick}
@@ -268,11 +301,17 @@ const Video: React.FC<Props> = ({videoDuration, videoSrc}) => {
       <video
         ref={videoRef}
         muted={muted}
+        poster={posterSrc}
         onClick={handleVideoClick}
         controls={!isMaxTablet}>
         <source src={videoSrc} type="video/mp4" />
         <track kind="captions" />
       </video>
+      {videoElement?.paused && !isMouseOver && (
+        <button onClick={handlePlayPauseClick}>
+          <PlayIcon />
+        </button>
+      )}
     </div>
   );
 };

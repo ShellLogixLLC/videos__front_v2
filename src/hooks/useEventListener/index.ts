@@ -7,7 +7,7 @@ import {EventName, HandleType, ElementType} from './types';
 const useEventListener: (
   eventName: EventName,
   handler: HandleType,
-  element?: ElementType,
+  element?: ElementType | HTMLElement | null,
 ) => void = (eventName, handler, element = global) => {
   const savedHandler: any = useRef(null);
 
@@ -21,10 +21,10 @@ const useEventListener: (
 
     const eventListener = (event: any) => savedHandler.current(event);
 
-    element.addEventListener(eventName, eventListener);
+    element?.addEventListener(eventName, eventListener);
 
     return () => {
-      element.removeEventListener(eventName, eventListener);
+      element?.removeEventListener(eventName, eventListener);
     };
   }, [eventName, element]);
 };
