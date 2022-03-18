@@ -15,7 +15,7 @@ import styles from '../../layouts/Header/Header.module.scss';
 const HeaderNavbar: React.FC<HeaderNavbarProps> = ({
   children,
   expanded,
-  setExpanded,
+  toggleExpanded,
 }) => {
   const navClassName = classNames(styles.wrapper__content_menu, {
     [styles.wrapper__content_menu_hidden]: expanded,
@@ -25,7 +25,7 @@ const HeaderNavbar: React.FC<HeaderNavbarProps> = ({
     <>
       <nav className={navClassName}>{children}</nav>
       <div className={styles.wrapper__content__other}>
-        <Search setExpanded={setExpanded} expanded={expanded} />
+        <Search toggleExpanded={toggleExpanded} expanded={expanded} />
         <div className={styles.wrapper__content__other__skeleton} />
         <Link to={Route.MyFavorite}>
           <LikeIt className={styles.wrapper__content__other__wishlist} />

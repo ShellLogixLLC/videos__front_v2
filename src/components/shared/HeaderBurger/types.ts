@@ -1,6 +1,6 @@
 export type HeaderBurgerProps = {
   isOpen: boolean;
   expanded: boolean;
-  setExpanded: (argument: boolean) => void;
+  toggleExpanded: (nextValue?: boolean) => void;
   closeHandler: () => void;
 };

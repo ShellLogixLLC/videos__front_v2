@@ -12,7 +12,7 @@ import styles from './Header.module.scss';
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useToggle(true);
-  const [expanded, setExpanded] = useToggle(false);
+  const [expanded, toggleExpanded] = useToggle(false);
 
   const {isDesktop} = useWindowSize();
 
@@ -57,12 +57,12 @@ const Header: React.FC = () => {
           <HeaderBurger
             isOpen={isOpen}
             expanded={expanded}
-            setExpanded={setExpanded}
+            toggleExpanded={toggleExpanded}
             closeHandler={closeHandler}>
             {headerBurger}
           </HeaderBurger>
         ) : (
-          <HeaderNavbar expanded={expanded} setExpanded={setExpanded}>
+          <HeaderNavbar expanded={expanded} toggleExpanded={toggleExpanded}>
             {headerTable}
           </HeaderNavbar>
         )}

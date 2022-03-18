@@ -1,4 +1,4 @@
 export type HeaderNavbarProps = {
     expanded: boolean;
-    setExpanded: (argument: boolean) => void;
+    toggleExpanded: (nextValue?: boolean) => void;
 };

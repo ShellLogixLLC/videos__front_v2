@@ -9,7 +9,7 @@ import Input from '../Input';
 import {SearchProps} from './types';
 import styles from './Search.module.scss';
 
-const Search: React.FC<SearchProps> = ({expanded, setExpanded}) => {
+const Search: React.FC<SearchProps> = ({expanded, toggleExpanded}) => {
   const filterRef = useRef<HTMLDivElement>(null);
   const [searchValue, setSearchValue] = useState('');
 
@@ -19,9 +19,7 @@ const Search: React.FC<SearchProps> = ({expanded, setExpanded}) => {
 
   const {isDesktop} = useWindowSize();
 
-  const toggleHandle = () => setExpanded(!expanded);
-
-  useOnClickOutside(filterRef, () => setExpanded(false));
+  useOnClickOutside(filterRef, () => toggleExpanded(false));
 
   const labelClassName = classNames(styles.wrapper, {
     [styles.wrapper_expanded]: expanded,
@@ -47,7 +45,7 @@ const Search: React.FC<SearchProps> = ({expanded, setExpanded}) => {
         RightIcon={SearchIcon}
         wrapperRef={filterRef}
         placeholder="Search"
-        toggleHandle={toggleHandle}
+        toggleHandle={toggleExpanded}
         rightIconStyle={styles.wrapper__container__right_icon}
         labelClassName={labelClassName}
         innerClassName={styles.wrapper__container}

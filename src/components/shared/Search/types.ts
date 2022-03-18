@@ -1,4 +1,4 @@
 export type SearchProps = {
   expanded: boolean;
-  setExpanded: (argument: boolean) => void;
+  toggleExpanded: (nextValue?: boolean) => void;
 };
