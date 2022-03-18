@@ -1,9 +1,10 @@
 import Pagination from '.';
 
 export interface Pagination {
-  rowsPerPage?: number;
+  isRigh?: boolean;
   activePage?: number;
   dataLength?: number;
+  rowsPerPage?: number;
   setActivePage?: (arg: number) => void;
   setRowsPerPage?: (arg: number) => void;
 }

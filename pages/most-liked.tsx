@@ -15,6 +15,7 @@ const MostLikedPage: NextPage = () => (
 =======
 const MostLikedPage: NextPage = () => {
   const [activePage, setActivePage] = useState<number>(5);
+
   return (
     <Seo title="Most liked page" metaDescription="Most liked page description">
       <Pagination
@@ -22,6 +23,8 @@ const MostLikedPage: NextPage = () => {
         setActivePage={setActivePage}
         dataLength={30}
       />
+
+      <Pagination isRigh dataLength={30} />
       <Comments />
       <VideoDescription />
     </Seo>
