@@ -14,3 +14,7 @@ export type Comment = {
   name: string;
   comment: string;
 };
+
+export type ILangData = {
+  locale: string;
+};

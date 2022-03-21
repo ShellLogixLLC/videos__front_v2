@@ -1,34 +1,19 @@
 import React, {useState} from 'react';
+import {useTranslation} from 'next-i18next';
 
 import {Logo} from '~/assets';
 import {Route} from '~/constants';
 import {useWindowSize} from '~/hooks';
-import {Link, HeaderBurger, HeaderNavbar} from '~/components';
 import {routes, routesBurger} from '~/utils';
+import {Link, HeaderBurger, HeaderNavbar} from '~/components';
 
 import styles from './Header.module.scss';
 
 const Header: React.FC = () => {
-  // const {history} = useHistory();
-
+  const {t} = useTranslation();
   const {isMinTablet} = useWindowSize();
 
   const [isOpen, setIsOpen] = useState<boolean>(true);
-
-  // const prevRouteValue = history[history.length - 2];
-
-  // const ifPreviousRouteActive = (id: number, routesElem: RoutesProps[]) => {
-  //   return routesElem[id - 1].routeName === prevRouteValue;
-  // };
-
-  // const previousStyleOrDisabled = (id: number, routesProp: RoutesProps[]) => {
-  //   return classNames(styles.wrapper__content_menu__default, {
-  //     [styles.wrapper__content_menu__disabled]: ifPreviousRouteActive(
-  //       id,
-  //       routesProp,
-  //     ),
-  //   });
-  // };
 
   const closeHandler = () => {
     setIsOpen(!isOpen);
@@ -41,7 +26,7 @@ const Header: React.FC = () => {
       to={routeName}
       className={styles.wrapper__content_menu__link}
       activeClassName={styles.wrapper__content_menu__link_active}>
-      {pageName}
+      {t(pageName)}
     </Link>
   ));
 
@@ -52,10 +37,8 @@ const Header: React.FC = () => {
       className={styles.wrapper__content__burger__container__nav__items}
       activeClassName={
         styles.wrapper__content__burger__container__nav__items_active
-      }
-      // previousClasses={previousStyleOrDisabled(id, routesBurger)}
-    >
-      {pageName}
+      }>
+      {t(pageName)}
     </Link>
   ));
 

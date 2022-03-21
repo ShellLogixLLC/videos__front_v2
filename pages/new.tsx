@@ -5,10 +5,14 @@ import {AlarmIcon} from '~/assets';
 import {filteredMass} from '~/utils';
 import {Seo, Filter} from '~/components';
 
+import {getStaticProps} from './_app';
+
 const NewPage: NextPage = () => (
   <Seo title="New page" metaDescription="New page description">
     <Filter filterTitle="FILTER" IconProp={AlarmIcon} options={filteredMass} />
   </Seo>
 );
+
+export {getStaticProps};
 
 export default NewPage;

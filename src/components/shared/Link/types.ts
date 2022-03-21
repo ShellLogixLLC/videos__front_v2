@@ -2,6 +2,7 @@ export interface LinkProps {
   to: string;
   blank?: boolean;
   target?: string;
+  locale?: string;
   queryKey?: string;
   disabled?: boolean;
   className?: string;

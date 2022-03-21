@@ -8,6 +8,8 @@ import {
   CreepingLineForText,
 } from '~/components';
 
+import {getStaticProps} from './_app';
+
 const MyFavoritesPage: NextPage = () => (
   <Seo
     title="My favorites page"
@@ -20,5 +22,7 @@ const MyFavoritesPage: NextPage = () => (
     </FireAnimation>
   </Seo>
 );
+
+export {getStaticProps};
 
 export default MyFavoritesPage;

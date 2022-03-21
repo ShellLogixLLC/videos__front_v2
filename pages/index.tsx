@@ -3,15 +3,15 @@ import {NextPage} from 'next';
 
 import {Seo, Loader} from '~/components';
 
-// Temporary
+import {getStaticProps} from './_app';
 
-const HomePage: NextPage = () => {
-  return (
-    <Seo title="Home page" metaDescription="Home page description">
-      <Loader />
-      <Loader isVertical />
-    </Seo>
-  );
-};
+const HomePage: NextPage = () => (
+  <Seo title="Home page" metaDescription="Home page description">
+    <Loader />
+    <Loader isVertical />
+  </Seo>
+);
+
+export {getStaticProps};
 
 export default HomePage;
