@@ -8,10 +8,10 @@ import {INITIAL_PAGINATION_ROWS_ARR} from '~/constants';
 
 import Typography from '../Typography';
 
-import {PerPage} from './types';
+import {IPerPageProps} from './types';
 import styles from './Pagination.module.scss';
 
-const ShowItem: React.FC<PerPage> = ({rowsPerPage, setRowsPerPage}) => {
+const ShowItem: React.FC<IPerPageProps> = ({rowsPerPage, setRowsPerPage}) => {
   const [expanded, toggleExpanded] = useToggle(false);
 
   const paginationRef = useRef<HTMLDivElement>(null);
@@ -43,7 +43,6 @@ const ShowItem: React.FC<PerPage> = ({rowsPerPage, setRowsPerPage}) => {
       {rows}
     </Typography>
   ));
-  styles.container__wrapper__show__content__wrapper;
 
   return (
     <div ref={paginationRef} className={styles.block}>

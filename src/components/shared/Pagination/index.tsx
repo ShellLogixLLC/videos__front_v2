@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react';
 import classNames from 'classnames';
 import ReactPaginate from 'react-paginate';
@@ -15,10 +16,10 @@ import {
 import Button from '../Button';
 
 import PerPage from './PerPage';
-import {Pagination} from './types';
+import {IPaginationProps} from './types';
 import styles from './Pagination.module.scss';
 
-const PaginationIndex: React.FC<Pagination> = ({
+const PaginationIndex: React.FC<IPaginationProps> = ({
   isRight = false,
   dataLength,
   activePage = INITIAL_PAGINATION_ACTIVE_PAGE,
