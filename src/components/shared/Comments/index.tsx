@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useRef} from 'react';
 import {useToggle} from 'react-use';
 import classNames from 'classnames';
 
@@ -9,13 +9,12 @@ import Typography from '../Typography';
 
 import CommentForm from './CommentForm';
 import CommentBlock from './CommentBlock';
-
 import styles from './Comments.module.scss';
 
 const Comments: React.FC = () => {
   const [expanded, toggleExpanded] = useToggle(false);
 
-  const refInput = useRef<HTMLHeadingElement>(null);
+  const refInput = useRef<HTMLHeadingElement | null>(null);
 
   const blockClassNames = classNames(styles.block, {
     [styles.block_hiden]: !expanded,
