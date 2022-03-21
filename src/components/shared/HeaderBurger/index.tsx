@@ -7,7 +7,6 @@ import {useOnClickOutside} from '~/hooks';
 import Button from '../Button';
 import Search from '../Search';
 import LanguageDropDown from '../LanguageDropDown';
-
 import styles from '../../layouts/Header/Header.module.scss';
 
 import {HeaderBurgerProps} from './types';
@@ -23,11 +22,11 @@ const HeaderBurger: React.FC<HeaderBurgerProps> = ({
     [styles.wrapper__content__burger_anima]: isOpen,
   });
 
-  useOnClickOutside(burgerContainerRef, () => setIsOpen(false));
-
   const handleOpenMenu = () => setIsOpen(true);
 
   const handleCloseMenu = () => setIsOpen(false);
+
+  useOnClickOutside(burgerContainerRef, handleCloseMenu);
 
   return (
     <>

@@ -1,4 +1,4 @@
-import { SVGIconProp } from '~/types/common';
+import {SVGIconProp} from '~/types/common';
 
 type Size = 'large' | 'medium' | 'small';
 type ButtonType = 'submit' | 'reset' | 'button';
