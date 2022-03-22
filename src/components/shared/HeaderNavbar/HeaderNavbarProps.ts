@@ -1,4 +1,4 @@
-export type SearchProps = {
+export type HeaderNavbarProps = {
   expanded: boolean;
   toggleExpanded: (nextValue?: boolean) => void;
 };

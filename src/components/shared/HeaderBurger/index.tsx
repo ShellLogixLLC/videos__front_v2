@@ -4,17 +4,19 @@ import classNames from 'classnames';
 import {Menu, Close} from '~/assets';
 import {useOnClickOutside} from '~/hooks';
 
+import styles from '../../layouts/Header/Header.module.scss';
 import Button from '../Button';
 import Search from '../Search';
 import LanguageDropDown from '../LanguageDropDown';
-import styles from '../../layouts/Header/Header.module.scss';
 
-import {HeaderBurgerProps} from './types';
+import {IHeaderBurgerProps} from './types';
 
-const HeaderBurger: React.FC<HeaderBurgerProps> = ({
+const HeaderBurger: React.FC<IHeaderBurgerProps> = ({
   isOpen,
   children,
+  expanded,
   setIsOpen,
+  toggleExpanded,
 }) => {
   const burgerContainerRef = useRef<HTMLDivElement | null>(null);
 
@@ -31,11 +33,11 @@ const HeaderBurger: React.FC<HeaderBurgerProps> = ({
   return (
     <>
       <div className={styles.wrapper__content__container}>
-        <Search />
+        <Search toggleExpanded={toggleExpanded} expanded={expanded} />
         <Button
           onClick={handleOpenMenu}
           className={styles.wrapper__content__burger_icon}>
-          <Menu />
+          <Menu className={styles.wrapper__content__close__icon} />
         </Button>
       </div>
       <div className={burgerClassNames}>
