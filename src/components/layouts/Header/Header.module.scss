@@ -14,6 +14,7 @@
 
       @include breakpoint(tablet) {
         max-width: 52px;
+        margin-right: -7px;
       }
     }
 
@@ -102,12 +103,17 @@
       }
     }
 
-    &__burger_icon {
+    &__burger_btn {
+      @extend %box-shadow;
+      @extend %flex-center;
       width: 48px !important;
       height: 48px !important;
+      padding: 0;
+      background: $light-black !important;
+      border-radius: 10px;
       z-index: 4 !important;
-      background-color: transparent !important;
       position: absolute;
+      bottom: -80vh;
       right: 0;
 
       svg {
@@ -115,6 +121,12 @@
           fill: $red;
         }
       }
+    }
+
+    &__burger_icon {
+      width: 48px !important;
+      height: 48px !important;
+      padding: 2px 6px;
     }
 
     &__close_icon {

@@ -1,0 +1,17 @@
+.wrapper {
+  &__icon {
+    width: 48px !important;
+    height: 48px !important;
+    padding: 12px;
+    margin-left: 12px;
+
+    @include breakpoint(tablet) {
+      padding: 8px;
+    }
+
+    svg {
+      width: 24px !important;
+      height: 24px !important;
+    }
+  }
+}
