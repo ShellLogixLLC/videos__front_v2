@@ -23,11 +23,13 @@ const Input = forwardRef<any, InputProps>(
       maxLength,
       autoFocus,
       onKeyDown,
+      wrapperRef,
       placeholder,
       onMouseOver,
       type = 'text',
       labelText = '',
       className = '',
+      toggleHandle,
       RightToggledIcon,
       rightIconStyle = '',
       innerClassName = '',
@@ -79,7 +81,7 @@ const Input = forwardRef<any, InputProps>(
     return (
       <label htmlFor={name} className={labelClasses}>
         <span className={labelTextClasses}>{label}</span>
-        <div className={inputInnerClasses}>
+        <div ref={wrapperRef} className={inputInnerClasses}>
           <input
             {...rest}
             id={name}
@@ -108,7 +110,9 @@ const Input = forwardRef<any, InputProps>(
             <RightIconComponent
               role="button"
               className={rightIconCLasses}
-              onClick={togglePasswordVisibility}
+              onClick={
+                type === 'text' ? toggleHandle : togglePasswordVisibility
+              }
               style={{
                 cursor: RightToggledIcon ? 'pointer' : 'auto',
               }}

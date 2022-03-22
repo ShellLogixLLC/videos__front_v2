@@ -5,7 +5,7 @@ import {Menu} from '~/assets';
 import Button from '../Button';
 import Search from '../Search';
 import LanguageDropDown from '../LanguageDropDown';
-//
+
 import styles from '../../layouts/Header/Header.module.scss';
 
 import {HeaderBurgerProps} from './types';
@@ -13,11 +13,13 @@ import {HeaderBurgerProps} from './types';
 const HeaderBurger: React.FC<HeaderBurgerProps> = ({
   isOpen,
   children,
+  expanded,
   closeHandler,
+  toggleExpanded,
 }) => (
   <>
     <div className={styles.wrapper__content__container}>
-      <Search />
+      <Search toggleExpanded={toggleExpanded} expanded={expanded} />
       <Button onClick={closeHandler} className={styles.wrapper__content__close}>
         <Menu className={styles.wrapper__content__close__icon} />
       </Button>

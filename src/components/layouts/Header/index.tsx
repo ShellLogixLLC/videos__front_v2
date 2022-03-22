@@ -1,34 +1,24 @@
-import React, {useState} from 'react';
+import React from 'react';
+import {useToggle} from 'react-use';
+import classNames from 'classnames';
 
 import {Logo} from '~/assets';
 import {Route} from '~/constants';
 import {useWindowSize} from '~/hooks';
-import {Link, HeaderBurger, HeaderNavbar} from '~/components';
 import {routes, routesBurger} from '~/utils';
+import {Link, HeaderBurger, HeaderNavbar} from '~/components';
 
 import styles from './Header.module.scss';
 
 const Header: React.FC = () => {
-  // const {history} = useHistory();
+  const [isOpen, setIsOpen] = useToggle(true);
+  const [expanded, toggleExpanded] = useToggle(false);
 
-  const {isMinTablet} = useWindowSize();
+  const {isDesktop} = useWindowSize();
 
-  const [isOpen, setIsOpen] = useState<boolean>(true);
-
-  // const prevRouteValue = history[history.length - 2];
-
-  // const ifPreviousRouteActive = (id: number, routesElem: RoutesProps[]) => {
-  //   return routesElem[id - 1].routeName === prevRouteValue;
-  // };
-
-  // const previousStyleOrDisabled = (id: number, routesProp: RoutesProps[]) => {
-  //   return classNames(styles.wrapper__content_menu__default, {
-  //     [styles.wrapper__content_menu__disabled]: ifPreviousRouteActive(
-  //       id,
-  //       routesProp,
-  //     ),
-  //   });
-  // };
+  const logoClassNames = classNames(styles.wrapper__content_logo, {
+    [styles.wrapper__content_logo_hidden]: expanded && !isDesktop,
+  });
 
   const closeHandler = () => {
     setIsOpen(!isOpen);
@@ -52,9 +42,7 @@ const Header: React.FC = () => {
       className={styles.wrapper__content__burger__container__nav__items}
       activeClassName={
         styles.wrapper__content__burger__container__nav__items_active
-      }
-      // previousClasses={previousStyleOrDisabled(id, routesBurger)}
-    >
+      }>
       {pageName}
     </Link>
   ));
@@ -62,15 +50,21 @@ const Header: React.FC = () => {
   return (
     <header className={styles.wrapper}>
       <div className={`${styles.wrapper__content} container`}>
-        <Link className={styles.wrapper__content_logo} to={Route.Home}>
+        <Link className={logoClassNames} to={Route.Home}>
           <Logo />
         </Link>
-        {isMinTablet ? (
-          <HeaderBurger isOpen={isOpen} closeHandler={closeHandler}>
+        {!isDesktop ? (
+          <HeaderBurger
+            isOpen={isOpen}
+            expanded={expanded}
+            toggleExpanded={toggleExpanded}
+            closeHandler={closeHandler}>
             {headerBurger}
           </HeaderBurger>
         ) : (
-          <HeaderNavbar>{headerTable}</HeaderNavbar>
+          <HeaderNavbar expanded={expanded} toggleExpanded={toggleExpanded}>
+            {headerTable}
+          </HeaderNavbar>
         )}
       </div>
     </header>
