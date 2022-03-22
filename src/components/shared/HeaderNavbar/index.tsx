@@ -4,13 +4,12 @@ import classNames from 'classnames';
 import {Route} from '~/constants';
 import {LikeIt, UserIcon} from '~/assets';
 
-import {HeaderNavbarProps} from './HeaderNavbarProps';
-
 import Link from '../Link';
 import Search from '../Search';
 import LanguageDropDown from '../LanguageDropDown';
-
 import styles from '../../layouts/Header/Header.module.scss';
+
+import {HeaderNavbarProps} from './HeaderNavbarProps';
 
 const HeaderNavbar: React.FC<HeaderNavbarProps> = ({
   children,

@@ -1,6 +1,6 @@
-import { KeyboardEvent, MouseEvent } from 'react';
+import {KeyboardEvent, MouseEvent} from 'react';
 
-import { SVGIconProp } from '~/types/common';
+import {SVGIconProp} from '~/types/common';
 
 export type InputType =
   | 'url'

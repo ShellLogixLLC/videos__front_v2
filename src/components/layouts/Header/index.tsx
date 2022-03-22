@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useToggle} from 'react-use';
 import classNames from 'classnames';
 
@@ -11,7 +11,7 @@ import {Link, HeaderBurger, HeaderNavbar} from '~/components';
 import styles from './Header.module.scss';
 
 const Header: React.FC = () => {
-  const [isOpen, setIsOpen] = useToggle(true);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [expanded, toggleExpanded] = useToggle(false);
 
   const {isDesktop} = useWindowSize();
@@ -19,11 +19,6 @@ const Header: React.FC = () => {
   const logoClassNames = classNames(styles.wrapper__content_logo, {
     [styles.wrapper__content_logo_hidden]: expanded && !isDesktop,
   });
-
-  const closeHandler = () => {
-    setIsOpen(!isOpen);
-    document.body.style.overflowY = isOpen ? 'hidden' : 'visible';
-  };
 
   const headerTable = routes.map(({id, routeName, pageName}) => (
     <Link
@@ -57,8 +52,8 @@ const Header: React.FC = () => {
           <HeaderBurger
             isOpen={isOpen}
             expanded={expanded}
-            toggleExpanded={toggleExpanded}
-            closeHandler={closeHandler}>
+            setIsOpen={setIsOpen}
+            toggleExpanded={toggleExpanded}>
             {headerBurger}
           </HeaderBurger>
         ) : (
