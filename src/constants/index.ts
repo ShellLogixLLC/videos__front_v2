@@ -13,3 +13,7 @@ export {default as FontStyles} from './fontStyles';
 export {default as userSelect} from './selects/userSelect';
 
 export {default as registrationSteps} from './steps/registrationSteps';
+
+// Video constants
+
+export * from './video';
