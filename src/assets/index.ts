@@ -156,6 +156,7 @@ export {default as MicrophoneThreeDot} from './icons/microphoneThreeDot.svg';
 export {default as LanguageArrowBottom} from './icons/languageArrowBottom.svg';
 export {default as RepeatRightLeftIcon} from './icons/repeatRightLeftIcon.svg';
 export {default as TelegramMessageIcon} from './icons/telegramMessageIcon.svg';
+export {default as SearchBackArrowIcon} from './icons/searchBackArrow.svg';
 export {default as FlashLightningsBottom} from './icons/flashLightningsBottom.svg';
 export {default as RepeatRoundRightLeftIcon} from './icons/repeatRoundRightLeft.svg';
 export {default as QuadrangleTwoHorizontalLine} from './icons/quadrangleTwoHorizontalLine.svg';

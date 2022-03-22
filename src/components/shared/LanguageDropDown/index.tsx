@@ -1,9 +1,9 @@
-import React, {useState, useRef, ReactElement, useEffect} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {i18n} from 'next-i18next';
+import {useToggle} from 'react-use';
 import {useRouter} from 'next/router';
 
 import {langData} from '~/utils';
-import {EnIcon, RuIcon} from '~/assets';
 import {useOnClickOutside} from '~/hooks';
 
 import Link from '../Link';
@@ -13,40 +13,36 @@ import styles from './LanguageDropDown.module.scss';
 
 const LanguageDropDown: React.FC = () => {
   const {asPath, locale} = useRouter();
-  const initialIcon = locale === 'en' ? <EnIcon /> : <RuIcon />;
+  const activeItem = locale === 'en' ? langData[0] : langData[1];
 
-  const [expanded, setExpanded] = useState<boolean>(false);
-  const [activeIcon, setActiveIcon] = useState<ReactElement>(initialIcon);
-  const [activeLang, setActiveLang] = useState<string | undefined>(locale);
+  const [expanded, toggleExpanded] = useToggle(false);
+  const [activeIcon, setActiveIcon] = useState<React.Component>(
+    activeItem.icon,
+  );
+  const [activeLang, setActiveLang] = useState<string>(locale as string);
 
   const filterRef = useRef<HTMLDivElement | null>(null);
 
-  const handleOpener = () => setExpanded(true);
+  useOnClickOutside(filterRef, () => toggleExpanded(false));
 
-  const handleClose = () => setExpanded(false);
-
-  useOnClickOutside(filterRef, handleClose);
-
-  const changeLang = (name: string) => {
-    const icon = name === 'en' ? <EnIcon /> : <RuIcon />;
-
+  const changeLang = (name: string, icon: React.Component) => {
     setActiveIcon(icon);
     setActiveLang(name);
-    handleClose();
+    toggleExpanded;
   };
 
   useEffect(() => {
-    i18n.addResourceBundle(activeLang, 'Lang-name', {key: activeLang});
+    i18n?.addResourceBundle(activeLang, 'Lang-name', {key: activeLang});
   }, [activeLang]);
 
-  const renderLangData = langData.map(({locale}, idx) => (
+  const renderLangData = langData.map(({locale, icon: Icon}) => (
     <Link
       key={locale}
-      onClick={() => changeLang(locale)}
+      onClick={() => changeLang(locale, Icon)}
       className={styles.wrapper__languages__item}
       to={asPath}
       locale={locale}>
-      {idx === 0 ? <EnIcon /> : <RuIcon />}
+      <Icon />
     </Link>
   ));
 
@@ -56,7 +52,7 @@ const LanguageDropDown: React.FC = () => {
 
   return (
     <div ref={filterRef} className={styles.wrapper}>
-      <Button onClick={handleOpener} className={styles.wrapper__header}>
+      <Button onClick={toggleExpanded} className={styles.wrapper__header}>
         <span className={styles.wrapper__header__icon}>{activeIcon}</span>
       </Button>
       {expandedData}

@@ -4,7 +4,7 @@ import {NextPage} from 'next';
 import {Seo} from '~/components';
 import {Category} from '~/containers';
 
-import {getStaticProps} from './_app';
+import {getStaticProps} from './index';
 
 const CategoriesPage: NextPage = () => (
   <Seo title="Categories page" metaDescription="Categories page description">

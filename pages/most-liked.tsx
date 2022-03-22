@@ -3,7 +3,7 @@ import {NextPage} from 'next';
 
 import {Seo, Comments, Pagination, VideoDescription} from '~/components';
 
-import {getStaticProps} from './_app';
+import {getStaticProps} from './index';
 
 const MostLikedPage: NextPage = () => (
   <Seo title="Most liked page" metaDescription="Most liked page description">

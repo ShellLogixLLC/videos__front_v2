@@ -5,7 +5,7 @@ import {AlarmIcon} from '~/assets';
 import {filteredMass} from '~/utils';
 import {Seo, Filter} from '~/components';
 
-import {getStaticProps} from './_app';
+import {getStaticProps} from './index';
 
 const NewPage: NextPage = () => (
   <Seo title="New page" metaDescription="New page description">

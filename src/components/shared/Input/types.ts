@@ -1,6 +1,6 @@
 import {KeyboardEvent, MouseEvent} from 'react';
 
-import {SVGIconProp} from '~/types/common/index';
+import {SVGIconProp} from '~/types/common';
 
 export type InputType =
   | 'url'
@@ -42,10 +42,12 @@ export type InputProps = {
   onFocus?: () => void;
   onClick?: () => void;
   value?: string | number;
+  wrapperRef?: React.ForwardedRef<HTMLDivElement>;
   rightIconStyle?: string;
   innerClassName?: string;
   labelClassName?: string;
   RightIcon?: SVGIconProp;
+  toggleHandle?: () => void;
   inpValue?: string | number;
   RightToggledIcon?: SVGIconProp;
   onKeyUp?: (e: KeyboardEvent<HTMLInputElement>) => void;

@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import classNames from 'classnames';
+import {useToggle} from 'react-use';
 import {useTranslation} from 'next-i18next';
 
 import {Logo} from '~/assets';
@@ -11,14 +13,14 @@ import styles from './Header.module.scss';
 
 const Header: React.FC = () => {
   const {t} = useTranslation();
-  const {isMinTablet} = useWindowSize();
+  const {isDesktop} = useWindowSize();
 
-  const [isOpen, setIsOpen] = useState<boolean>(true);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [expanded, toggleExpanded] = useToggle(false);
 
-  const closeHandler = () => {
-    setIsOpen(!isOpen);
-    document.body.style.overflowY = isOpen ? 'hidden' : 'visible';
-  };
+  const logoClassNames = classNames(styles.wrapper__content_logo, {
+    [styles.wrapper__content_logo_hidden]: expanded && !isDesktop,
+  });
 
   const headerTable = routes.map(({id, routeName, pageName}) => (
     <Link
@@ -45,15 +47,21 @@ const Header: React.FC = () => {
   return (
     <header className={styles.wrapper}>
       <div className={`${styles.wrapper__content} container`}>
-        <Link className={styles.wrapper__content_logo} to={Route.Home}>
+        <Link className={logoClassNames} to={Route.Home}>
           <Logo />
         </Link>
-        {isMinTablet ? (
-          <HeaderBurger isOpen={isOpen} closeHandler={closeHandler}>
+        {!isDesktop ? (
+          <HeaderBurger
+            isOpen={isOpen}
+            expanded={expanded}
+            setIsOpen={setIsOpen}
+            toggleExpanded={toggleExpanded}>
             {headerBurger}
           </HeaderBurger>
         ) : (
-          <HeaderNavbar>{headerTable}</HeaderNavbar>
+          <HeaderNavbar expanded={expanded} toggleExpanded={toggleExpanded}>
+            {headerTable}
+          </HeaderNavbar>
         )}
       </div>
     </header>

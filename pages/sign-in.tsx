@@ -2,7 +2,7 @@ import {NextPage} from 'next';
 
 import {Seo, SignIn} from '~/components';
 
-import {getStaticProps} from './_app';
+import {getStaticProps} from './index';
 
 const SignInPage: NextPage = () => (
   <Seo

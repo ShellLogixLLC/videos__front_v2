@@ -8,7 +8,7 @@ import {
   CreepingLineForText,
 } from '~/components';
 
-import {getStaticProps} from './_app';
+import {getStaticProps} from './index';
 
 const MyFavoritesPage: NextPage = () => (
   <Seo

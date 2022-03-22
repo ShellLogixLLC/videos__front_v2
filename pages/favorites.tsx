@@ -3,7 +3,7 @@ import {NextPage} from 'next';
 
 import {Seo, Video} from '~/components';
 
-import {getStaticProps} from './_app';
+import {getStaticProps} from './index';
 
 const VIDEO_LENGTH = 15.5;
 const VIDEO_SRC =

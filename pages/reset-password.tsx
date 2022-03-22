@@ -3,7 +3,7 @@ import {NextPage} from 'next';
 
 import {Seo, ResetPassword} from '~/components';
 
-import {getStaticProps} from './_app';
+import {getStaticProps} from './index';
 
 const ResetPasswordPage: NextPage = () => (
   <Seo

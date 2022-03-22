@@ -3,7 +3,7 @@
   cursor: pointer;
   position: relative;
 
-  @include breakpoint(tablet) {
+  @include breakpoint(desktop) {
     padding-left: 32px;
   }
 
@@ -13,6 +13,11 @@
     font-weight: unset;
     border-radius: unset;
     background-color: unset;
+
+    @include breakpoint(desktop) {
+      height: 48px;
+      width: 48px;
+    }
 
     &:hover {
       background-color: unset;
@@ -33,7 +38,6 @@
     cursor: default;
     background-color: $black;
     height: 95px;
-    width: 80px;
     justify-content: space-evenly;
     position: absolute;
     z-index: 10;
@@ -42,7 +46,7 @@
     border: unset;
     border-radius: 7px;
 
-    @include breakpoint(tablet) {
+    @include breakpoint(desktop) {
       right: unset;
       left: 25px;
       top: 50px;
@@ -53,12 +57,7 @@
 
     &__item {
       @extend %flex-align;
-      justify-content: flex-end;
-      margin: 0 24px;
-
-      @include breakpoint(tablet) {
-        justify-content: flex-start;
-      }
+      padding: 0 24px;
 
       svg {
         width: 23px;

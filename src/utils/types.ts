@@ -16,5 +16,6 @@ export type Comment = {
 };
 
 export type ILangData = {
+  icon: React.Component | any;
   locale: string;
 };
