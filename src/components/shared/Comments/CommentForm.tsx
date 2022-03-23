@@ -3,17 +3,19 @@ import {useForm} from 'react-hook-form';
 
 import Button from '../../shared/Button';
 import EmojisInput from '../../shared/EmojisInput';
+import {EmojiType} from '../EmojisInput/types';
 
 import styles from './Comments.module.scss';
 
 const CommentForm: React.FC = () => {
-  const {handleSubmit, register, formState} = useForm({
+  const {handleSubmit, register, formState, setValue, getValues} = useForm({
     mode: 'onChange',
   });
 
-  const onSubmit = (values: any) => {
-    // eslint-disable-next-line no-console
-    console.log(values, 'asd');
+  const onSubmit = () => {};
+
+  const addEmoji = (emoji: EmojiType) => {
+    setValue('commentInput', getValues('commentInput') + emoji.native);
   };
 
   return (
@@ -22,6 +24,7 @@ const CommentForm: React.FC = () => {
       <EmojisInput
         {...register('commentInput')}
         placeholder="Type your text here..."
+        addEmoji={addEmoji}
       />
       <Button disabled={!formState.isValid} type="submit">
         Comment

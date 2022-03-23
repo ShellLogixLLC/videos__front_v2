@@ -24,12 +24,14 @@ const EmojisInput = forwardRef<any, InputProps>(
       className = '',
       innerClassName = '',
       labelClassName = '',
+      addEmoji,
       ...rest
     },
     ref,
   ) => {
     const modalRef = useRef(null);
     const emojiPickerRef = useRef(null);
+
     const {Portal, openPortal, closePortal, isOpen} = usePortal(
       modalRef.current
         ? {
@@ -37,6 +39,7 @@ const EmojisInput = forwardRef<any, InputProps>(
           }
         : {},
     );
+
     const [currentEmoji, setCurrentEmoji] = useState(emojiList[0]);
     const inputClasses = classNames(styles.container, inputStyles.container, {
       [className]: className,
@@ -61,11 +64,6 @@ const EmojisInput = forwardRef<any, InputProps>(
 
     const mouseOver = () => {
       setCurrentEmoji(emojiList[Math.floor(Math.random() * emojiList.length)]);
-    };
-
-    const addEmoji = (event: any) => {
-      // eslint-disable-next-line no-console
-      console.log(event.native);
     };
 
     return (
@@ -100,7 +98,7 @@ const EmojisInput = forwardRef<any, InputProps>(
                   <Picker
                     set="apple"
                     onSelect={addEmoji}
-                    theme="dark"
+                    theme="light"
                     title="Heart <3"
                     emoji="green_heart"
                   />
