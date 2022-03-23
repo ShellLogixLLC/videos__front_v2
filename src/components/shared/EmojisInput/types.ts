@@ -41,7 +41,11 @@ export type InputProps = {
   innerClassName?: string;
   labelClassName?: string;
   RightIcon?: SVGIconProp;
-  addEmoji: (e: any) => void;
+  addEmoji: (e: emojiType) => void;
   RightToggledIcon?: SVGIconProp;
   onMouseOver?: (e: MouseEvent<HTMLInputElement>) => void;
+};
+
+export type emojiType = {
+  native: string;
 };

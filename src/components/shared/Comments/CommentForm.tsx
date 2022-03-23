@@ -3,6 +3,7 @@ import {useForm} from 'react-hook-form';
 
 import Button from '../../shared/Button';
 import EmojisInput from '../../shared/EmojisInput';
+import {emojiType} from '../EmojisInput/types';
 
 import styles from './Comments.module.scss';
 
@@ -11,10 +12,12 @@ const CommentForm: React.FC = () => {
     mode: 'onChange',
   });
 
-  const onSubmit = (values: any) => {};
-  const addEmoji = (emoji: any) => {
+  const onSubmit = () => {};
+
+  const addEmoji = (emoji: emojiType) => {
     setValue('commentInput', getValues('commentInput') + emoji.native);
   };
+
   return (
     <form className={styles.block__form__box} onSubmit={handleSubmit(onSubmit)}>
       <input placeholder="Lora" autoComplete="off" {...register('nameInput')} />
