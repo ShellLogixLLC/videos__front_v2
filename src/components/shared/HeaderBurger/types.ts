@@ -1,4 +1,6 @@
-export type HeaderBurgerProps = {
+export type IHeaderBurgerProps = {
   isOpen: boolean;
-  closeHandler: () => void;
+  expanded: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  toggleExpanded: (nextValue?: boolean) => void;
 };

@@ -1,4 +1,6 @@
-import React, {useState, useRef} from 'react';
+import React, {useRef} from 'react';
+import {useToggle} from 'react-use';
+import classNames from 'classnames';
 
 import {LanguageArrowTop} from '~/assets';
 import {useOnClickOutside} from '~/hooks';
@@ -7,24 +9,27 @@ import Typography from '../Typography';
 
 import CommentForm from './CommentForm';
 import CommentBlock from './CommentBlock';
-//
 import styles from './Comments.module.scss';
 
 const Comments: React.FC = () => {
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, toggleExpanded] = useToggle(false);
 
-  const handleClick = () => {
-    setExpanded(!expanded);
-  };
+  const refInput = useRef<HTMLHeadingElement | null>(null);
 
-  const refInput = useRef<HTMLHeadingElement>(null);
+  const blockClassNames = classNames(styles.block, {
+    [styles.block_hiden]: !expanded,
+  });
 
-  useOnClickOutside(refInput, () => setExpanded(false));
+  const containerClassNames = classNames(styles.container, {
+    [styles.container_close]: !expanded,
+  });
+
+  useOnClickOutside(refInput, () => toggleExpanded(false));
 
   return (
-    <div ref={refInput} className={styles.container}>
+    <div ref={refInput} className={containerClassNames}>
       <div
-        onClick={handleClick}
+        onClick={toggleExpanded}
         role="button"
         className={styles.container__content}>
         <div className={styles.container__content__title}>
@@ -35,16 +40,15 @@ const Comments: React.FC = () => {
         </div>
         <LanguageArrowTop className={styles.container__content__icon} />
       </div>
-      {expanded && (
-        <div className={styles.block}>
-          <div className={styles.block__wrapper}>
-            <CommentBlock />
-          </div>
-          <div className={styles.block__form}>
-            <CommentForm />
-          </div>
+
+      <div className={blockClassNames}>
+        <div className={styles.block__wrapper}>
+          <CommentBlock />
         </div>
-      )}
+        <div className={styles.block__form}>
+          <CommentForm />
+        </div>
+      </div>
     </div>
   );
 };
