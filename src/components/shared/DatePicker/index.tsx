@@ -22,7 +22,7 @@ const DatePicker: FC = () => {
 
   useOnClickOutside(calendarRef, toggleIsOpen);
 
-  const rangePickerProps = () => ({
+  const rangePickerProps = {
     numberOfMonths: 1,
     autoResponsive: false,
     disabledBeforeToday: false,
@@ -35,7 +35,7 @@ const DatePicker: FC = () => {
         },
       },
     },
-  });
+  };
 
   return (
     <div ref={calendarRef} className={togglerClasses}>
