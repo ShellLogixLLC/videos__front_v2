@@ -206,3 +206,106 @@ input {
   user-select: text !important;
   -webkit-user-select: text !important;
 }
+
+.calendar__trip {
+  .tp-calendar {
+    margin: 16px auto 20px;
+    width: 100%;
+
+    // Header
+    & > div:first-child {
+      display: flex;
+      align-items: center;
+      background-color: unset;
+      justify-content: center;
+
+      p {
+        width: unset;
+        margin: 0 18px;
+      }
+
+      svg {
+        width: 20px;
+        height: 20px;
+
+        path {
+          fill: $red;
+        }
+      }
+    }
+
+    // Calendar content
+    & > div:last-child {
+      .range-select {
+        background-color: $black;
+        box-shadow: unset;
+
+        &:first-child {
+          border-radius: 25% 0 0 25%;
+        }
+
+        &:last-child {
+          border-radius: 0 25% 25% 0;
+        }
+      }
+
+      & > div {
+        background-color: $light-black;
+      }
+
+      .start-date {
+        border-radius: 25% 0 0 25%;
+      }
+
+      .end-date {
+        border-radius: 0 25% 25% 0;
+      }
+
+      .start-date,
+      .end-date {
+        position: relative;
+
+        &::after {
+          content: '';
+          border: 2px solid $red;
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          border-radius: 32px;
+        }
+      }
+
+      .inactive,
+      .today {
+        visibility: visible;
+        color: $white;
+        border: unset;
+      }
+
+      & > div {
+        height: unset;
+
+        & > div:first-child {
+          display: flex;
+          margin: 0;
+          border: unset;
+          justify-content: space-between;
+          font-weight: 700;
+          line-height: 12px;
+
+          p {
+            margin: 0 0 5px;
+          }
+        }
+
+        & > div > div {
+          color: $white;
+
+          &:hover {
+            background-color: $black;
+          }
+        }
+      }
+    }
+  }
+}

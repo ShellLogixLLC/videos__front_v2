@@ -1,68 +1,51 @@
-import React, {FC, useState, useRef, useCallback, useMemo} from 'react';
-import dayjs from 'dayjs';
+import React, {FC, useState, useRef} from 'react';
 import classNames from 'classnames';
+import {useToggle} from 'react-use';
 import {RangePicker} from 'react-trip-date';
 import {RangePickerSelectedDays} from 'react-trip-date/dist/rangePicker/rangePicker.type';
 
-import {AlarmIcon} from '~/assets';
+import {CalendarOne, LeftArrow, RightArrow} from '~/assets';
 import {useOnClickOutside} from '~/hooks';
+
+import Typography from '../Typography';
 
 import styles from './DatePicker.module.scss';
 
 const DatePicker: FC = () => {
   const calendarRef = useRef<HTMLHeadingElement>(null);
 
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpen, toggleIsOpen] = useToggle(false);
   const [rangeValues, setRangeValues] = useState<RangePickerSelectedDays>();
-
-  const togglerClasses = classNames(styles.header, {
-    [styles.header__active]: isOpen,
+  const togglerClasses = classNames(styles.wrapper, {
+    [styles.wrapper__active]: isOpen,
   });
 
-  const datePickerToggler = useCallback(() => {
-    setIsOpen(!isOpen);
-  }, [isOpen]);
+  useOnClickOutside(calendarRef, toggleIsOpen);
 
-  useOnClickOutside(calendarRef, () => setIsOpen(false));
-
-  const rangePickerProps = useMemo(
-    () => ({
-      numberOfMonths: 2,
-      autoResponsive: false,
-      disabledBeforeToday: true,
-      selectedDays: rangeValues,
-      disabledBeforeDate: dayjs().add(1, 'day'),
-      components: {
-        titleOfWeek: {
-          titles: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+  const rangePickerProps = {
+    numberOfMonths: 1,
+    autoResponsive: false,
+    disabledBeforeToday: false,
+    selectedDays: rangeValues,
+    components: {
+      header: {
+        monthIcons: {
+          right: <RightArrow />,
+          left: <LeftArrow />,
         },
       },
-    }),
-    [rangeValues],
-  );
-
-  const selectedDateRange = useMemo(() => {
-    const fromDate = rangeValues?.from || 'DD.MM.YY - DD.MM.YY';
-    const toDate = rangeValues?.to
-      ? `- ${rangeValues?.to}`
-      : rangeValues?.from
-      ? '- DD.MM.YY'
-      : '';
-
-    return `${fromDate}  ${toDate}`;
-  }, [rangeValues?.from, rangeValues?.to]);
+    },
+  };
 
   return (
-    <div ref={calendarRef} className={styles.wrapper}>
-      <div role="button" onClick={datePickerToggler} className={togglerClasses}>
-        <p className={styles.header__text}>{selectedDateRange}</p>
-        <AlarmIcon />
+    <div ref={calendarRef} className={togglerClasses}>
+      <div role="button" onClick={toggleIsOpen} className={styles.header}>
+        <Typography className={styles.header__text}>Calendar</Typography>
+        <CalendarOne />
       </div>
-      {isOpen && (
-        <div className={`${styles.content} calendar__trip`}>
-          <RangePicker {...rangePickerProps} onChange={setRangeValues} />
-        </div>
-      )}
+      <div className={`${styles.content} calendar__trip`}>
+        <RangePicker {...rangePickerProps} onChange={setRangeValues} />
+      </div>
     </div>
   );
 };
