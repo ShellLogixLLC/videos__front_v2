@@ -3,7 +3,7 @@ import {useForm} from 'react-hook-form';
 
 import Button from '../../shared/Button';
 import EmojisInput from '../../shared/EmojisInput';
-import {emojiType} from '../EmojisInput/types';
+import {EmojiType} from '../EmojisInput/types';
 
 import styles from './Comments.module.scss';
 
@@ -14,7 +14,7 @@ const CommentForm: React.FC = () => {
 
   const onSubmit = () => {};
 
-  const addEmoji = (emoji: emojiType) => {
+  const addEmoji = (emoji: EmojiType) => {
     setValue('commentInput', getValues('commentInput') + emoji.native);
   };
 
