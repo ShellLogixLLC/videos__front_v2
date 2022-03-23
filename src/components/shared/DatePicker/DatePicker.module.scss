@@ -17,6 +17,7 @@
 .header {
   @extend %flex-between;
   cursor: pointer;
+
   svg {
     transition: all 0.3s;
 

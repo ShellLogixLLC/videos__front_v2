@@ -233,6 +233,7 @@ input {
         }
       }
     }
+
     // Calendar content
     & > div:last-child {
       .range-select {
@@ -272,6 +273,7 @@ input {
           border-radius: 32px;
         }
       }
+
       .inactive,
       .today {
         visibility: visible;
@@ -281,6 +283,7 @@ input {
 
       & > div {
         height: unset;
+
         & > div:first-child {
           display: flex;
           margin: 0;
@@ -295,6 +298,7 @@ input {
         }
         & > div > div {
           color: $white;
+
           &:hover {
             background-color: $black;
           }

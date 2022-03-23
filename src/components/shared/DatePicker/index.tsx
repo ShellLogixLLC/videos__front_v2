@@ -1,4 +1,4 @@
-import React, {FC, useState, useRef, useMemo} from 'react';
+import React, {FC, useState, useRef} from 'react';
 import classNames from 'classnames';
 import {useToggle} from 'react-use';
 import {RangePicker} from 'react-trip-date';
@@ -20,25 +20,22 @@ const DatePicker: FC = () => {
     [styles.wrapper__active]: isOpen,
   });
 
-  useOnClickOutside(calendarRef, () => toggleIsOpen());
+  useOnClickOutside(calendarRef, toggleIsOpen);
 
-  const rangePickerProps = useMemo(
-    () => ({
-      numberOfMonths: 1,
-      autoResponsive: false,
-      disabledBeforeToday: false,
-      selectedDays: rangeValues,
-      components: {
-        header: {
-          monthIcons: {
-            right: <RightArrow />,
-            left: <LeftArrow />,
-          },
+  const rangePickerProps = () => ({
+    numberOfMonths: 1,
+    autoResponsive: false,
+    disabledBeforeToday: false,
+    selectedDays: rangeValues,
+    components: {
+      header: {
+        monthIcons: {
+          right: <RightArrow />,
+          left: <LeftArrow />,
         },
       },
-    }),
-    [rangeValues],
-  );
+    },
+  });
 
   return (
     <div ref={calendarRef} className={togglerClasses}>
