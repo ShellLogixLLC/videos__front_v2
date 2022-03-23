@@ -17,11 +17,15 @@ const Comments: React.FC = () => {
   const refInput = useRef<HTMLHeadingElement | null>(null);
 
   const blockClassNames = classNames(styles.block, {
-    [styles.block_hiden]: !expanded,
+    [styles.block_hidden]: !expanded,
   });
 
   const containerClassNames = classNames(styles.container, {
     [styles.container_close]: !expanded,
+  });
+
+  const arrowIconClasses = classNames(styles.container__content__icon, {
+    [styles.container__content__icon__open]: expanded,
   });
 
   useOnClickOutside(refInput, () => toggleExpanded(false));
@@ -38,7 +42,7 @@ const Comments: React.FC = () => {
           </Typography>
           <span className={styles.container__content__title__count}>(20)</span>
         </div>
-        <LanguageArrowTop className={styles.container__content__icon} />
+        <LanguageArrowTop className={arrowIconClasses} />
       </div>
 
       <div className={blockClassNames}>

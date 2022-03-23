@@ -1,23 +1,30 @@
-import React, {useState, useMemo, useRef} from 'react';
+import React, {useMemo, useRef} from 'react';
+import {useToggle} from 'react-use';
+import classNames from 'classnames';
 
+import {FilterLamp} from '~/assets';
 import {useOnClickOutside} from '~/hooks';
 
 import Link from '../Link';
 import Typography from '../Typography';
 
-import {FilterProps} from './types';
+import {IFilterProps} from './types';
 import styles from './Filter.module.scss';
 
-const Filter: React.FC<FilterProps> = ({options, filterTitle, IconProp}) => {
-  const filterRef = useRef(null);
-  const [expanded, setExpanded] = useState<boolean>(false);
+const Filter: React.FC<IFilterProps> = ({options}) => {
+  const filterRef = useRef<HTMLDivElement | null>(null);
+  const [expanded, toggleExpanded] = useToggle(false);
 
-  const handleOpener = () => {
-    setExpanded(true);
-  };
+  const contentClasses = classNames(styles.container__content, {
+    [styles.container__content_open]: expanded,
+  });
+
+  const containerClasses = classNames(styles.container, {
+    [styles.container__expand]: expanded,
+  });
 
   useOnClickOutside(filterRef, () => {
-    setExpanded(false);
+    toggleExpanded(false);
   });
 
   const renderFilteredTable = useMemo(
@@ -37,16 +44,18 @@ const Filter: React.FC<FilterProps> = ({options, filterTitle, IconProp}) => {
   );
 
   return (
-    <div ref={filterRef} onClick={handleOpener} className={styles.container}>
+    <div ref={filterRef} onClick={toggleExpanded} className={containerClasses}>
       <div className={styles.container__header}>
         <Typography className={styles.container__header__title}>
-          {filterTitle}
+          Sort by
         </Typography>
-        <IconProp />
+        <FilterLamp className={styles.container__header__icon} />
       </div>
-      {expanded && (
-        <div className={styles.container__content}>{renderFilteredTable}</div>
-      )}
+      <div className={contentClasses}>
+        <div className={styles.container__content__child}>
+          {renderFilteredTable}
+        </div>
+      </div>
     </div>
   );
 };

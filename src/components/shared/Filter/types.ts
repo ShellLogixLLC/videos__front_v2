@@ -1,14 +1,9 @@
-import {SVGIconProp} from '~/types/common/index';
-
-export type FilterType = {
+export type IFilterType = {
   id: number;
   routes?: string;
   nameRoute: string;
 };
 
-export type FilterProps = {
-  IconProp: SVGIconProp;
-  filterTitle: string;
-  //
-  options: FilterType[];
+export type IFilterProps = {
+  options: IFilterType[];
 };
