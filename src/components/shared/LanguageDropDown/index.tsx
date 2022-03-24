@@ -13,36 +13,33 @@ import styles from './LanguageDropDown.module.scss';
 
 const LanguageDropDown: React.FC = () => {
   const {asPath, locale} = useRouter();
-  const activeItem = locale === 'en' ? langData[0] : langData[1];
+  const {Icon} = locale === 'en' ? langData[0] : langData[1];
 
   const [expanded, toggleExpanded] = useToggle(false);
-  const [activeIcon, setActiveIcon] = useState<React.Component>(
-    activeItem.icon,
-  );
+
   const [activeLang, setActiveLang] = useState<string>(locale as string);
 
   const filterRef = useRef<HTMLDivElement | null>(null);
 
   useOnClickOutside(filterRef, () => toggleExpanded(false));
 
-  const changeLang = (name: string, icon: React.Component) => {
-    setActiveIcon(icon);
+  const changeLang = (name: string) => {
     setActiveLang(name);
-    toggleExpanded;
+    toggleExpanded();
   };
 
   useEffect(() => {
     i18n?.addResourceBundle(activeLang, 'Lang-name', {key: activeLang});
   }, [activeLang]);
 
-  const renderLangData = langData.map(({locale, icon: Icon}) => (
+  const renderLangData = langData.map(({locale, Icon: LangIcon}) => (
     <Link
       key={locale}
-      onClick={() => changeLang(locale, Icon)}
+      onClick={() => changeLang(locale)}
       className={styles.wrapper__languages__item}
       to={asPath}
       locale={locale}>
-      <Icon />
+      <LangIcon />
     </Link>
   ));
 
@@ -53,7 +50,9 @@ const LanguageDropDown: React.FC = () => {
   return (
     <div ref={filterRef} className={styles.wrapper}>
       <Button onClick={toggleExpanded} className={styles.wrapper__header}>
-        <span className={styles.wrapper__header__icon}>{activeIcon}</span>
+        <span className={styles.wrapper__header__icon}>
+          <Icon />
+        </span>
       </Button>
       {expandedData}
     </div>

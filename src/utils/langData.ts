@@ -4,11 +4,11 @@ import {ILangData} from './types';
 
 const langData: ILangData[] = [
   {
-    icon: EnIcon,
+    Icon: EnIcon,
     locale: 'en',
   },
   {
-    icon: RuIcon,
+    Icon: RuIcon,
     locale: 'ru',
   },
 ];
