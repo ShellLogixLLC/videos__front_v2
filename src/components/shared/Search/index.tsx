@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import classNames from 'classnames';
 
 import {SearchBackArrowIcon, SearchIcon} from '~/assets';
@@ -10,16 +10,14 @@ import {SearchProps} from './types';
 import styles from './Search.module.scss';
 
 const Search: React.FC<SearchProps> = ({expanded, toggleExpanded}) => {
-  const filterRef = useRef<HTMLDivElement>(null);
-  const [searchValue, setSearchValue] = useState('');
+  const filterRef = useRef<HTMLDivElement | null>(null);
+  const [searchValue, setSearchValue] = useState<string>('');
 
   const searchChangeHandle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
 
   const {isDesktop} = useWindowSize();
-
-  useOnClickOutside(filterRef, () => toggleExpanded(false));
 
   const labelClassName = classNames(styles.wrapper, {
     [styles.wrapper_expanded]: expanded,
@@ -32,6 +30,12 @@ const Search: React.FC<SearchProps> = ({expanded, toggleExpanded}) => {
   const backArrowClassName = classNames(styles.wrapper__container__back, {
     [styles.wrapper__container__back_expand]: expanded,
   });
+
+  useOnClickOutside(filterRef, () => toggleExpanded(false));
+
+  useEffect(() => {
+    setSearchValue('');
+  }, [expanded]);
 
   return (
     <>
