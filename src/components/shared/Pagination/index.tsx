@@ -1,30 +1,34 @@
-import React, {useRef, useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import classNames from 'classnames';
 import ReactPaginate from 'react-paginate';
 
-import {useWindowSize} from '~/hooks/index';
+import {useWindowSize} from '~/hooks';
 import {LeftArrow, RightArrow} from '~/assets';
-
-import ShowItem from './showItem';
-import {Pagination} from './types';
+import {
+  INITIAL_PAGINATION_MORE_COUNT,
+  INITIAL_PAGINATION_ACTIVE_PAGE,
+  INITIAL_PAGINATION_ROWS_PER_PAGE,
+  INITIAL_PAGINATION_RANGE_DISPLAYED,
+  INITIAL_PAGINATION_MARGIN_DISPLAYED,
+} from '~/constants';
 
 import Button from '../Button';
 
+import PerPage from './PerPage';
+import {Pagination} from './types';
 import styles from './Pagination.module.scss';
 
 const PaginationIndex: React.FC<Pagination> = ({
-  isRigh,
-  activePage = 0,
-  dataLength = 30,
+  isRight = false,
+  dataLength,
+  activePage = INITIAL_PAGINATION_ACTIVE_PAGE,
   setActivePage = (e) => e,
 }) => {
-  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
-
-  const pagination = useRef<any>(null);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(
+    INITIAL_PAGINATION_ROWS_PER_PAGE,
+  );
 
   const {isMaxTablet} = useWindowSize();
-
-  const moreCount = 4;
 
   const setPage = (selectedItem: {selected: number}) =>
     setActivePage(selectedItem.selected);
@@ -36,12 +40,14 @@ const PaginationIndex: React.FC<Pagination> = ({
   });
 
   const leftArrowClasses = classNames(styles.right_block__arrow, {
-    [styles.disabled]: rowsPerPage === 5,
+    [styles.disabled]: rowsPerPage === INITIAL_PAGINATION_ROWS_PER_PAGE,
   });
 
-  const handleClickMore = () => setRowsPerPage(rowsPerPage + moreCount);
+  const handleClickMore = () =>
+    setRowsPerPage(rowsPerPage + INITIAL_PAGINATION_MORE_COUNT);
 
-  const handleClickLeftArrow = () => setRowsPerPage(rowsPerPage - moreCount);
+  const handleClickLeftArrow = () =>
+    setRowsPerPage(rowsPerPage - INITIAL_PAGINATION_MORE_COUNT);
 
   useEffect(() => {
     if (activePage * rowsPerPage > pageCount) {
@@ -50,8 +56,8 @@ const PaginationIndex: React.FC<Pagination> = ({
 
     if (rowsPerPage >= dataLength) {
       setRowsPerPage(dataLength);
-    } else if (rowsPerPage <= 5) {
-      setRowsPerPage(5);
+    } else if (rowsPerPage <= INITIAL_PAGINATION_ROWS_PER_PAGE) {
+      setRowsPerPage(INITIAL_PAGINATION_ROWS_PER_PAGE);
     }
   }, [rowsPerPage]);
 
@@ -59,20 +65,19 @@ const PaginationIndex: React.FC<Pagination> = ({
     <Button onClick={handleClickMore}>More</Button>
   ) : null;
 
-  const paginationPerPage = !isRigh && isMaxTablet && (
+  const paginationPerPage = !isRight && isMaxTablet && (
     <div className={styles.container__wrapper__show}>
-      <ShowItem rowsPerPage={rowsPerPage} setRowsPerPage={setRowsPerPage} />
+      <PerPage rowsPerPage={rowsPerPage} setRowsPerPage={setRowsPerPage} />
     </div>
   );
 
-  const activePagination = isRigh ? (
+  const activePagination = isRight ? (
     <div className={styles.right_block}>
       <RightArrow onClick={handleClickMore} className={rightArrowClasses} />
       <LeftArrow onClick={handleClickLeftArrow} className={leftArrowClasses} />
     </div>
   ) : (
     <ReactPaginate
-      ref={pagination}
       forcePage={activePage}
       nextLabel={<RightArrow />}
       pageCount={pageCount}
@@ -83,9 +88,9 @@ const PaginationIndex: React.FC<Pagination> = ({
       activeClassName={styles.container_active}
       disabledClassName={styles.disabled}
       nextLinkClassName={styles.container__tick}
-      pageRangeDisplayed={2}
+      pageRangeDisplayed={INITIAL_PAGINATION_RANGE_DISPLAYED}
       containerClassName={styles.container}
-      marginPagesDisplayed={1}
+      marginPagesDisplayed={INITIAL_PAGINATION_MARGIN_DISPLAYED}
       previousLinkClassName={styles.container__tick}
     />
   );
@@ -94,7 +99,7 @@ const PaginationIndex: React.FC<Pagination> = ({
     <>
       {paginationPerPage}
       <div className={styles.container__wrapper}>
-        {!isMaxTablet ? moreBtn : <div>{activePagination}</div>}
+        {!isMaxTablet ? moreBtn : activePagination}
       </div>
     </>
   );
