@@ -1,7 +1,6 @@
 .container {
   width: 100%;
   @extend %flex-between;
-  position: absolute;
   flex-wrap: wrap;
   justify-content: unset;
   min-height: 44px;

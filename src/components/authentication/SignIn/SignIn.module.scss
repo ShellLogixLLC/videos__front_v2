@@ -6,6 +6,15 @@
   margin-bottom: 0;
   padding-bottom: 0;
 
+  @include breakpoint(tablet-m) {
+    padding-top: 80px;
+  }
+  &__route {
+    position: absolute;
+    right: 2vh;
+    top: 70px;
+  }
+
   &__top {
     @extend %flex-center;
     flex-direction: column;

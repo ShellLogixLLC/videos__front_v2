@@ -2,7 +2,6 @@
   @extend %flex-center-direction;
   max-width: 376px;
   width: 100%;
-  position: relative;
   padding-top: 0px;
   padding-bottom: 0px;
   margin-top: 0;
@@ -14,21 +13,12 @@
 
   &__cancel {
     position: absolute;
-    top: 0;
-    right: -50%;
+    top: 70px;
+    right: 2vh;
     max-width: 170px;
     width: 100%;
     padding: 0;
     background-color: transparent;
-
-    @include breakpoint(tablet) {
-      top: 3%;
-      right: -20%;
-    }
-
-    @include breakpoint(tablet-m) {
-      right: 0px;
-    }
   }
 
   &__top {

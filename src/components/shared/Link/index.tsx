@@ -43,7 +43,6 @@ const Link: React.FC<LinkProps> = ({
   return (
     <NextLink href={to} {...linkProps}>
       <a
-        role="button"
         target={target}
         onClick={onClick}
         {...anchorModifiedProps}
