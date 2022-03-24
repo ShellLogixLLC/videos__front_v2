@@ -9,34 +9,39 @@ import NextVideoIcon from '~/assets/icons/next-video.svg';
 import FullScreenIcon from '~/assets/icons/full-screen.svg';
 import MutedVolumeIcon from '~/assets/icons/muted-volume.svg';
 import {useWindowSize, useEventListener} from '~/hooks/index';
+import {
+  AHEAD_SECONDS,
+  SKIP_SECONDS,
+  ARROW_RIGHT_KEY_CODE,
+  ARROW_LEFT_KEY_CODE,
+  SPACE_KEY_CODE,
+} from '~/constants';
 
+import {IVideoProps} from './types';
 import VideoSlider from './VideoSlider';
 import VolumeSlider from './VolumeSlider';
 import styles from './Video.module.scss';
 
-interface Props {
-  videoSrc: string;
-  videoDuration: number;
-}
-
-const Video: React.FC<Props> = ({videoDuration, videoSrc}) => {
+const Video: React.FC<IVideoProps> = ({videoDuration, videoSrc, posterSrc}) => {
   const [videoElement, setVideoElement] = useState<HTMLVideoElement | null>(
     null,
   );
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [muted, setMuted] = useState<boolean>(false);
   const [cachedVolume, setCachedVolume] = useState<number>(1);
-  const [wasPlaying, setWasPlaying] = useState(false);
+  const [wasPlaying, setWasPlaying] = useState<boolean>(false);
+  const [isMouseOver, setIsMouseOver] = useState<boolean>(false);
   const [keyStatus, setKeyStatus] = useState({
     backward: false,
     forward: false,
   });
 
   const videoRef = useRef<HTMLVideoElement>(null);
+  const videoControlsRef = useRef<HTMLDivElement>(null);
   const {isMaxTablet} = useWindowSize();
 
   const handleSpace = (event: any) => {
-    if (event.keyCode === 32) {
+    if (event.keyCode === SPACE_KEY_CODE) {
       if (wasPlaying) {
         videoRef.current?.pause();
         setWasPlaying(false);
@@ -49,18 +54,48 @@ const Video: React.FC<Props> = ({videoDuration, videoSrc}) => {
 
   useEventListener('keydown', (event) => handleSpace(event));
 
+  const handleMouseOver = () => {
+    setIsMouseOver(true);
+  };
+
+  const handleMouseOut = () => {
+    setIsMouseOver(false);
+  };
+
+  useEventListener('mouseover', handleMouseOver, videoRef);
+  useEventListener('mouseout', handleMouseOut, videoRef);
+
+  useEventListener('mouseover', handleMouseOver, videoControlsRef);
+  useEventListener('mouseout', handleMouseOut, videoControlsRef);
+
   const handleSecAhead = (event: any) => {
     if (
-      videoDuration - 5 >= currentTime &&
-      currentTime + 5 < videoDuration - 1 &&
-      event.keyCode === 39
+      videoDuration - AHEAD_SECONDS >= currentTime &&
+      currentTime + AHEAD_SECONDS < videoDuration - 1 &&
+      event.keyCode === ARROW_RIGHT_KEY_CODE
     ) {
-      setCurrentTime(currentTime + 5);
+      if (videoElement) {
+        const isPaused = videoElement.paused;
+        videoElement.pause();
+        videoElement.currentTime = currentTime + AHEAD_SECONDS;
+        setCurrentTime(currentTime + AHEAD_SECONDS);
+        if (!isPaused) {
+          videoElement.play();
+        }
+      }
       setKeyStatus({backward: true, forward: false});
     }
 
-    if (currentTime > 5 && event.keyCode === 37) {
-      setCurrentTime(currentTime - 5);
+    if (currentTime > AHEAD_SECONDS && event.keyCode === ARROW_LEFT_KEY_CODE) {
+      if (videoElement) {
+        const isPaused = videoElement.paused;
+        videoElement.pause();
+        videoElement.currentTime = currentTime - AHEAD_SECONDS;
+        setCurrentTime(currentTime - AHEAD_SECONDS);
+        if (!isPaused) {
+          videoElement.play();
+        }
+      }
       setKeyStatus({backward: false, forward: true});
     }
   };
@@ -138,8 +173,8 @@ const Video: React.FC<Props> = ({videoDuration, videoSrc}) => {
     if (videoElement) {
       const isPaused = videoElement.paused;
       videoElement.pause();
-      videoElement.currentTime = currentTime + 15;
-      setCurrentTime(currentTime + 15);
+      videoElement.currentTime = currentTime + SKIP_SECONDS;
+      setCurrentTime(currentTime + SKIP_SECONDS);
       if (!isPaused) {
         videoElement.play();
       }
@@ -199,7 +234,7 @@ const Video: React.FC<Props> = ({videoDuration, videoSrc}) => {
     <div className={videoClasses}>
       {isMaxTablet && (
         <>
-          <div className={styles.video__controls}>
+          <div ref={videoControlsRef} className={styles.video__controls}>
             <div
               role="button"
               onClick={handlePlayPauseClick}
@@ -268,11 +303,17 @@ const Video: React.FC<Props> = ({videoDuration, videoSrc}) => {
       <video
         ref={videoRef}
         muted={muted}
+        poster={posterSrc}
         onClick={handleVideoClick}
         controls={!isMaxTablet}>
         <source src={videoSrc} type="video/mp4" />
         <track kind="captions" />
       </video>
+      {videoElement?.paused && !isMouseOver && (
+        <button onClick={handlePlayPauseClick}>
+          <PlayIcon />
+        </button>
+      )}
     </div>
   );
 };
