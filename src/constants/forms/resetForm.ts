@@ -38,10 +38,12 @@ const schema = yup.object().shape({
     .min(5, 'Write the current password.'),
   new_password: yup
     .string()
+    .trim()
     .required('The Password is required')
     .min(5, 'New password.'),
   allow_password: yup
     .string()
+    .trim()
     .required('The Password is required')
     .min(5, 'Password is too short - should be 8 chars minimum.'),
 });

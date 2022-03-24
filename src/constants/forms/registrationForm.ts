@@ -66,10 +66,12 @@ const schema = yup.object().shape({
     .email('The Email must be a valid email address'),
   create_password: yup
     .string()
+    .trim()
     .required('The Last name is required')
     .min(3, 'Last name is too short - should be 3 chars minimum.'),
   confirm_password: yup
     .string()
+    .trim()
     .oneOf(
       [yup.ref('create_password'), null],
       'Password is too short or does not match the previous one',
