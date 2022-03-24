@@ -1,9 +1,9 @@
 import React from 'react';
 import {useForm} from 'react-hook-form';
+import {BaseEmoji} from 'emoji-mart';
 
 import Button from '../../shared/Button';
 import EmojisInput from '../../shared/EmojisInput';
-import {EmojiType} from '../EmojisInput/types';
 
 import styles from './Comments.module.scss';
 
@@ -14,9 +14,8 @@ const CommentForm: React.FC = () => {
 
   const onSubmit = () => {};
 
-  const addEmoji = (emoji: EmojiType) => {
+  const addEmoji = (emoji: BaseEmoji) =>
     setValue('commentInput', getValues('commentInput') + emoji.native);
-  };
 
   return (
     <form className={styles.block__form__box} onSubmit={handleSubmit(onSubmit)}>

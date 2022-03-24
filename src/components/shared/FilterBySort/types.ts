@@ -4,6 +4,6 @@ export type IFilterType = {
   nameRoute: string;
 };
 
-export type IFilterProps = {
+export type IFilterBySortProps = {
   options: IFilterType[];
 };

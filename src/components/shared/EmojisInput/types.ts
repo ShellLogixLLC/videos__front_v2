@@ -1,4 +1,5 @@
 import {MouseEvent} from 'react';
+import {BaseEmoji} from 'emoji-mart';
 
 import {SVGIconProp} from '~/types/common/index';
 
@@ -41,11 +42,7 @@ export type InputProps = {
   innerClassName?: string;
   labelClassName?: string;
   RightIcon?: SVGIconProp;
-  addEmoji: (e: EmojiType) => void;
+  addEmoji: (e: BaseEmoji) => void;
   RightToggledIcon?: SVGIconProp;
   onMouseOver?: (e: MouseEvent<HTMLInputElement>) => void;
-};
-
-export type EmojiType = {
-  native: string;
 };

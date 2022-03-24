@@ -6,8 +6,8 @@ import {filteredMass} from '~/utils';
 import {useLockedBody} from '~/hooks';
 import {Button, Typography} from '~/components';
 
-import Filter from '../Filter';
 import DatePicker from '../DatePicker';
+import FilterBySort from '../FilterBySort';
 
 import {IMobileFilterProps} from './types';
 import styles from './MobileFilter.module.scss';
@@ -20,7 +20,7 @@ const MobileFilter: React.FC<IMobileFilterProps> = ({
     [styles.wrapper_open]: isFilter,
   });
 
-  useLockedBody();
+  useLockedBody(isFilter);
 
   return (
     <div className={wrapperClasses}>
@@ -32,7 +32,7 @@ const MobileFilter: React.FC<IMobileFilterProps> = ({
       </div>
       <div className={styles.wrapper__content}>
         <DatePicker />
-        <Filter options={filteredMass} />
+        <FilterBySort options={filteredMass} />
         <Button className={styles.wrapper__content__btn}>Filter</Button>
       </div>
     </div>

@@ -15,14 +15,13 @@
   &_open {
     visibility: visible;
     opacity: 1;
-    height: 100vh;
+    height: 100%;
     transition: all 0.3s;
   }
 
   &__top_block {
     @extend %flex-between;
-    padding: 12px 8px 12px 24px;
-    margin-bottom: 24px;
+    padding: 16px 8px 16px 24px;
 
     &__text {
       @extend %language_sizes;
@@ -39,11 +38,19 @@
     @extend %flex-align;
     flex-direction: column;
     padding: 24px 24px;
-    height: calc(100vh- 80px);
+    height: calc(100% - 80px);
+
+    @include breakpoint(tablet-m) {
+      padding: 24px 16px;
+    }
 
     &__btn {
       margin-top: 32px;
       background: $dark-red;
+
+      @include breakpoint(tablet-m) {
+        margin-top: 80px;
+      }
     }
   }
 }

@@ -8,10 +8,10 @@ import {useOnClickOutside} from '~/hooks';
 import Link from '../Link';
 import Typography from '../Typography';
 
-import {IFilterProps} from './types';
-import styles from './Filter.module.scss';
+import {IFilterBySortProps} from './types';
+import styles from './FilterBySort.module.scss';
 
-const Filter: React.FC<IFilterProps> = ({options}) => {
+const FilterBySort: React.FC<IFilterBySortProps> = ({options}) => {
   const filterRef = useRef<HTMLDivElement | null>(null);
   const [expanded, toggleExpanded] = useToggle(false);
 
@@ -60,4 +60,4 @@ const Filter: React.FC<IFilterProps> = ({options}) => {
   );
 };
 
-export default Filter;
+export default FilterBySort;
