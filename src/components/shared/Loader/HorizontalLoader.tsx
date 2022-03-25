@@ -1,14 +1,14 @@
 import React from 'react';
 import usePortal from 'react-useportal';
 
-import {useLockedBody} from '~/hooks';
+import {useLockBodyScroll} from '~/hooks';
 
 import styles from './Loader.module.scss';
 
 const HorizontalLoader: React.FC = () => {
   const {Portal} = usePortal();
 
-  useLockedBody();
+  useLockBodyScroll();
 
   const renderHorizontalLoaderItems = Array.from(
     Array(10),

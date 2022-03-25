@@ -3,11 +3,18 @@ import classNames from 'classnames';
 import {useToggle} from 'react-use';
 import {useTranslation} from 'next-i18next';
 
-import {Logo} from '~/assets';
 import {Route} from '~/constants';
 import {useWindowSize} from '~/hooks';
 import {routes, routesBurger} from '~/utils';
-import {Link, HeaderBurger, HeaderNavbar} from '~/components';
+import {Menu, Logo, MobileFilterIcon} from '~/assets';
+import {
+  Link,
+  Button,
+  Search,
+  MobileMenu,
+  MobileFilter,
+  HeaderNavbar,
+} from '~/components';
 
 import styles from './Header.module.scss';
 
@@ -16,11 +23,14 @@ const Header: React.FC = () => {
   const {isDesktop} = useWindowSize();
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isFilter, toggleFilter] = useToggle(false);
   const [expanded, toggleExpanded] = useToggle(false);
 
   const logoClassNames = classNames(styles.wrapper__content_logo, {
     [styles.wrapper__content_logo_hidden]: expanded && !isDesktop,
   });
+
+  const handleOpenMenu = () => setIsOpen(true);
 
   const headerTable = routes.map(({id, routeName, pageName}) => (
     <Link
@@ -32,7 +42,7 @@ const Header: React.FC = () => {
     </Link>
   ));
 
-  const headerBurger = routesBurger.map(({id, routeName, pageName}) => (
+  const renderMobileMenu = routesBurger.map(({id, routeName, pageName}) => (
     <Link
       key={id}
       to={routeName}
@@ -44,26 +54,41 @@ const Header: React.FC = () => {
     </Link>
   ));
 
+  const headerMenu = !isDesktop ? (
+    <>
+      <div className={styles.wrapper__content__container}>
+        <Search toggleExpanded={toggleExpanded} expanded={expanded} />
+        <MobileFilterIcon
+          onClick={toggleFilter}
+          className={styles.wrapper__content__filter_icon}
+        />
+        <Button
+          onClick={handleOpenMenu}
+          className={styles.wrapper__content__burger_btn}>
+          <Menu className={styles.wrapper__content__burger_icon} />
+        </Button>
+      </div>
+      <MobileMenu isOpen={isOpen} setIsOpen={setIsOpen}>
+        {renderMobileMenu}
+      </MobileMenu>
+    </>
+  ) : (
+    <HeaderNavbar expanded={expanded} toggleExpanded={toggleExpanded}>
+      {headerTable}
+    </HeaderNavbar>
+  );
+
   return (
     <header className={styles.wrapper}>
       <div className={`${styles.wrapper__content} container`}>
         <Link className={logoClassNames} to={Route.Home}>
           <Logo />
         </Link>
-        {!isDesktop ? (
-          <HeaderBurger
-            isOpen={isOpen}
-            expanded={expanded}
-            setIsOpen={setIsOpen}
-            toggleExpanded={toggleExpanded}>
-            {headerBurger}
-          </HeaderBurger>
-        ) : (
-          <HeaderNavbar expanded={expanded} toggleExpanded={toggleExpanded}>
-            {headerTable}
-          </HeaderNavbar>
-        )}
+        {headerMenu}
       </div>
+      {!isDesktop && (
+        <MobileFilter isFilter={isFilter} toggleFilter={toggleFilter} />
+      )}
     </header>
   );
 };
