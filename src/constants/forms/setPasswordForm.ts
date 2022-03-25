@@ -29,6 +29,7 @@ const schema = yup.object().shape({
     .min(5, 'Password is too short - should be 5 chars minimum.'),
   passwordConfirmation: yup
     .string()
+    .trim()
     .oneOf([yup.ref('password'), null], 'Passwords must match'),
 });
 

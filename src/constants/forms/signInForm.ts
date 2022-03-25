@@ -27,6 +27,7 @@ const schema = yup.object().shape({
     .email('The Email must be a valid email address'),
   password: yup
     .string()
+    .trim()
     .required('The Password is required')
     .min(6, 'Password is too short - should be 6 chars minimum.'),
 });
