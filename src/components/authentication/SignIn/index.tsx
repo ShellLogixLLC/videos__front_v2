@@ -16,7 +16,6 @@ const SignIn: React.FC = () => {
     // eslint-disable-next-line no-console
     console.log(values, 'signIn');
   }, []);
-
   return (
     <div className={`container_without-header ${styles.container}`}>
       <div className={styles.container__top}>
@@ -63,6 +62,9 @@ const SignIn: React.FC = () => {
           </Typography>
         </Link>
       </div>
+      <Link to={Route.Home} className={styles.container__route}>
+        Back to Home
+      </Link>
     </div>
   );
 };
