@@ -1,12 +1,11 @@
-import Pagination from '.';
-
-export interface Pagination {
-  rowsPerPage?: number;
+export type IPaginationProps = {
+  isRight?: boolean;
   activePage?: number;
-  dataLength?: number;
-  rowsPerPageArray?: number[];
+  dataLength: number;
   setActivePage?: (arg: number) => void;
-  setRowsPerPage?: (arg: number) => void;
-}
+};
 
-export type PaginationTypeof = typeof Pagination;
+export type IPerPageProps = {
+  rowsPerPage: number;
+  setRowsPerPage: (arg: number) => void;
+};
