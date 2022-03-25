@@ -29,7 +29,10 @@ const schema = yup.object().shape({
     .min(5, 'Password is too short - should be 5 chars minimum.'),
   passwordConfirmation: yup
     .string()
-    .trim()
+    .matches(
+      /^[^\s]+(\s+[^\s]+)*$/,
+      `Password can't start or end with a blank space`,
+    )
     .oneOf([yup.ref('password'), null], 'Passwords must match'),
 });
 

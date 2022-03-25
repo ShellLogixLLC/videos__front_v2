@@ -38,12 +38,18 @@ const schema = yup.object().shape({
     .min(5, 'Write the current password.'),
   new_password: yup
     .string()
-    .trim()
+    .matches(
+      /^[^\s]+(\s+[^\s]+)*$/,
+      `Password can't start or end with a blank space`,
+    )
     .required('The Password is required')
     .min(5, 'New password.'),
   allow_password: yup
     .string()
-    .trim()
+    .matches(
+      /^[^\s]+(\s+[^\s]+)*$/,
+      `Password can't start or end with a blank space`,
+    )
     .required('The Password is required')
     .min(5, 'Password is too short - should be 8 chars minimum.'),
 });

@@ -66,12 +66,18 @@ const schema = yup.object().shape({
     .email('The Email must be a valid email address'),
   create_password: yup
     .string()
-    .trim()
+    .matches(
+      /^[^\s]+(\s+[^\s]+)*$/,
+      `Password can't start or end with a blank space`,
+    )
     .required('The Last name is required')
     .min(3, 'Last name is too short - should be 3 chars minimum.'),
   confirm_password: yup
     .string()
-    .trim()
+    .matches(
+      /^[^\s]+(\s+[^\s]+)*$/,
+      `Password can't start or end with a blank space`,
+    )
     .oneOf(
       [yup.ref('create_password'), null],
       'Password is too short or does not match the previous one',
