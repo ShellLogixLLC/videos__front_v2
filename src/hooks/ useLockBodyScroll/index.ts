@@ -4,7 +4,7 @@ import useIsomorphicLayoutEffect from '../useIsomorphicLayoutEffect';
 
 import {UseLockedBodyReturn} from './types';
 
-const useLockedBody = (initialLocked = false): UseLockedBodyReturn => {
+const useLockBodyScroll = (initialLocked = false): UseLockedBodyReturn => {
   const [locked, setLocked] = useState(initialLocked);
 
   useIsomorphicLayoutEffect(() => {
@@ -42,4 +42,4 @@ const useLockedBody = (initialLocked = false): UseLockedBodyReturn => {
   return [locked, setLocked];
 };
 
-export default useLockedBody;
+export default useLockBodyScroll;

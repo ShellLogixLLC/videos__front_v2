@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import {Close} from '~/assets';
 import {filteredMass} from '~/utils';
-import {useLockedBody} from '~/hooks';
+import {useLockBodyScroll} from '~/hooks';
 import {Button, Typography} from '~/components';
 
 import DatePicker from '../DatePicker';
@@ -20,7 +20,7 @@ const MobileFilter: React.FC<IMobileFilterProps> = ({
     [styles.wrapper_open]: isFilter,
   });
 
-  useLockedBody(isFilter);
+  useLockBodyScroll(isFilter);
 
   return (
     <div className={wrapperClasses}>
