@@ -2,14 +2,14 @@ import {useState} from 'react';
 
 import {IModalContext} from '~/context/Modal/types';
 
-import useLockedBody from '../useLockedBody';
+import useLockBodyScroll from '../ useLockBodyScroll';
 
 const useModal = (): IModalContext => {
   const [modal, setModal] = useState<boolean>(false);
   const [modalContent, setModalContent] =
     useState<IModalContext['modalContent']>(null);
 
-  useLockedBody(modal);
+  useLockBodyScroll(modal);
 
   const openModal = (content: IModalContext['modalContent']) => {
     setModal(true);
