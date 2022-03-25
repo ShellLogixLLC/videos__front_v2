@@ -14,3 +14,8 @@ export type Comment = {
   name: string;
   comment: string;
 };
+
+export type ILangData = {
+  Icon: React.FC;
+  locale: string;
+};

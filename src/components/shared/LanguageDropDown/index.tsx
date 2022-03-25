@@ -1,60 +1,60 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
+import {i18n} from 'next-i18next';
+import {useToggle} from 'react-use';
+import {useRouter} from 'next/router';
 
+import {langData} from '~/utils';
 import {useOnClickOutside} from '~/hooks';
 
+import Link from '../Link';
 import Button from '../Button';
 
 import styles from './LanguageDropDown.module.scss';
 
 const LanguageDropDown: React.FC = () => {
-  const filterRef = useRef(null);
-  const [expanded, setExpanded] = useState<boolean>(false);
-  const [activeLanguage, setActiveLanguage] = useState<string>('');
+  const {asPath, locale} = useRouter();
+  const {Icon} = locale === 'en' ? langData[0] : langData[1];
 
-  const handleOpener = () => {
-    setExpanded(true);
+  const [expanded, toggleExpanded] = useToggle(false);
+
+  const [activeLang, setActiveLang] = useState<string>(locale as string);
+
+  const filterRef = useRef<HTMLDivElement | null>(null);
+
+  useOnClickOutside(filterRef, () => toggleExpanded(false));
+
+  const changeLang = (name: string) => {
+    setActiveLang(name);
+    toggleExpanded();
   };
 
-  useOnClickOutside(filterRef, () => {
-    setExpanded(false);
-  });
+  useEffect(() => {
+    i18n?.addResourceBundle(activeLang, 'Lang-name', {key: activeLang});
+  }, [activeLang]);
 
-  const changeEng = () => {
-    if (activeLanguage !== 'Eng') {
-      setActiveLanguage('Eng');
-    }
-    setExpanded(false);
-  };
+  const renderLangData = langData.map(({locale, Icon: LangIcon}) => (
+    <Link
+      key={locale}
+      onClick={() => changeLang(locale)}
+      className={styles.wrapper__languages__item}
+      to={asPath}
+      locale={locale}>
+      <LangIcon />
+    </Link>
+  ));
 
-  const changeRu = () => {
-    if (activeLanguage !== 'Ru') {
-      setActiveLanguage('Ru');
-    }
-    setExpanded(false);
-  };
+  const expandedData = expanded && (
+    <div className={styles.wrapper__languages}>{renderLangData}</div>
+  );
 
   return (
     <div ref={filterRef} className={styles.wrapper}>
-      <Button onClick={handleOpener} className={styles.wrapper__header}>
-        <span className={styles.wrapper__header__language}>
-          {activeLanguage}
+      <Button onClick={toggleExpanded} className={styles.wrapper__header}>
+        <span className={styles.wrapper__header__icon}>
+          <Icon />
         </span>
-        {/* <LanguageArrowBottom className={styles.wrapper__header_arrow} /> */}
       </Button>
-      {expanded && (
-        <div className={styles.wrapper__language}>
-          <Button
-            onClick={changeEng}
-            className={styles.wrapper__language__item_en}>
-            {/* Eng */}
-          </Button>
-          <Button
-            onClick={changeRu}
-            className={styles.wrapper__language__item_ru}>
-            {/* Ru */}
-          </Button>
-        </div>
-      )}
+      {expandedData}
     </div>
   );
 };

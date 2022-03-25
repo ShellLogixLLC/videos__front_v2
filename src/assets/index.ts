@@ -23,6 +23,8 @@ export {default as MyFile} from './icons/myFile.svg';
 export {default as Unlock} from './icons/unlock.svg';
 export {default as Delete} from './icons/delete.svg';
 export {default as Broken} from './icons/broken.svg';
+export {default as EnIcon} from './icons/en-flag.svg';
+export {default as RuIcon} from './icons/ru-flag.svg';
 export {default as BoxIcon} from './icons/box.svg';
 export {default as BanIcon} from './icons/ban.svg';
 export {default as AddIcon} from './icons/add.svg';

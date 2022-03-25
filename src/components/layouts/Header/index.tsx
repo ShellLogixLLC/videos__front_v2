@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
-import {useToggle} from 'react-use';
 import classNames from 'classnames';
+import {useToggle} from 'react-use';
+import {useTranslation} from 'next-i18next';
 
 import {Logo} from '~/assets';
 import {Route} from '~/constants';
@@ -11,10 +12,11 @@ import {Link, HeaderBurger, HeaderNavbar} from '~/components';
 import styles from './Header.module.scss';
 
 const Header: React.FC = () => {
+  const {t} = useTranslation();
+  const {isDesktop} = useWindowSize();
+
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [expanded, toggleExpanded] = useToggle(false);
-
-  const {isDesktop} = useWindowSize();
 
   const logoClassNames = classNames(styles.wrapper__content_logo, {
     [styles.wrapper__content_logo_hidden]: expanded && !isDesktop,
@@ -26,7 +28,7 @@ const Header: React.FC = () => {
       to={routeName}
       className={styles.wrapper__content_menu__link}
       activeClassName={styles.wrapper__content_menu__link_active}>
-      {pageName}
+      {t(pageName)}
     </Link>
   ));
 
@@ -38,7 +40,7 @@ const Header: React.FC = () => {
       activeClassName={
         styles.wrapper__content__burger__container__nav__items_active
       }>
-      {pageName}
+      {t(pageName)}
     </Link>
   ));
 

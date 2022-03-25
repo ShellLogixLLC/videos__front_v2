@@ -3,6 +3,8 @@ import {NextPage} from 'next';
 
 import {Seo, ResetPassword} from '~/components';
 
+import {getStaticProps} from './index';
+
 const ResetPasswordPage: NextPage = () => (
   <Seo
     showHeaderFooter={false}
@@ -11,5 +13,7 @@ const ResetPasswordPage: NextPage = () => (
     <ResetPassword />
   </Seo>
 );
+
+export {getStaticProps};
 
 export default ResetPasswordPage;
