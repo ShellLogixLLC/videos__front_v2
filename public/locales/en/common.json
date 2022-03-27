@@ -1,6 +1,8 @@
 {
+  "common.home": "Home",
   "common.new": "New",
   "common.topRated": "Top Rated",
+  "common.favorites": "Favorites",
   "common.mostLiked": "Most Liked",
   "common.newVideos": "New Videos",
   "common.categories": "Categories"

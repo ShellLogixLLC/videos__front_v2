@@ -28,33 +28,33 @@ export const routes: RoutesProps[] = [
 export const routesBurger: RoutesProps[] = [
   {
     id: 1,
-    pageName: 'Home',
+    pageName: 'common.home',
     routeName: Route.Home,
   },
 
   {
     id: 2,
-    pageName: 'Favorites',
+    pageName: 'common.favorites',
     routeName: Route.MyFavorite,
   },
   {
     id: 3,
-    pageName: 'Categories',
+    pageName: 'common.categories',
     routeName: Route.Categories,
   },
   {
     id: 4,
-    pageName: 'Top Rated',
+    pageName: 'common.topRated',
     routeName: Route.Favorites,
   },
   {
     id: 5,
-    pageName: 'Most Liked',
+    pageName: 'common.mostLiked',
     routeName: Route.MostLiked,
   },
   {
     id: 6,
-    pageName: 'New',
+    pageName: 'common.new',
     routeName: Route.New,
   },
 ];
