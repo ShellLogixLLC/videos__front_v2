@@ -79,6 +79,7 @@
       height: 48px !important;
       padding: 12px;
       margin-left: 12px;
+      cursor: pointer;
 
       @include breakpoint(tablet) {
         padding: 8px;

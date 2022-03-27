@@ -1,13 +1,17 @@
 .wrapper {
-  min-width: 320px;
-  max-width: 320px;
+  @extend %border-rad_10;
+  @extend %box-shadow;
   width: 100%;
   padding: 16px;
-  @extend %border-rad_10;
-  background-color: $black;
-  @extend %box-shadow;
+  max-width: 320px;
+  min-width: 320px;
   min-height: 386px;
-  margin-bottom: 10px;
+  margin-right: 25px;
+  background-color: $black;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   &__film {
     width: 100%;
@@ -93,8 +97,10 @@
 
     &_name {
       @extend %film_name;
-      user-select: text;
+      @extend %text-elypsis;
+      width: 191px;
       cursor: text;
+      user-select: text;
       text-transform: capitalize;
     }
 
@@ -105,11 +111,13 @@
 
   &__pr_description {
     @extend %film_info_text;
-    min-height: 64px;
-    user-select: text;
-    cursor: text;
-    margin-bottom: 8px;
+    @extend %text-elypsis;
     @extend %film_name;
+    cursor: text;
+    width: 200px;
+    min-height: 64px;
+    margin-bottom: 8px;
+    user-select: text;
   }
 
   &__card_footer {

@@ -8,12 +8,11 @@
 
   &__wrapper {
     @extend %flex-between;
-    @include custom-scroll;
-    overflow-x: scroll;
 
-    * {
-      margin-right: 25px;
+    &::webkit-scrollbar {
+      display: none;
     }
+    overflow-x: scroll;
 
     :last-child {
       margin-right: 0;

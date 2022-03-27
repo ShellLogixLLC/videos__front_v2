@@ -3,4 +3,5 @@ export {default as RegistrationSetupPasswordContainer} from './registration/Regi
 export {default as RegistrationContactInformationContainer} from './registration/RegistrationContactInformation';
 export {default as RegistrationPersonalInformationContainer} from './registration/RegistrationPersonalInformation';
 
+export {default as HorizontalSlider} from './HorizontalSlider';
 export {default as Category} from './Category';

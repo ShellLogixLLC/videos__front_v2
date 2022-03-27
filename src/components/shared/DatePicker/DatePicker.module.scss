@@ -11,6 +11,8 @@
 
   &__active {
     height: 543px;
+    overflow-y: scroll;
+    @include custom-scroll;
   }
 }
 

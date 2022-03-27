@@ -62,6 +62,7 @@
       &_expand {
         visibility: visible;
         opacity: 1;
+        cursor: pointer;
         transition: all 0.6s;
       }
     }
@@ -117,7 +118,7 @@
     &__right_icon {
       width: 24px;
       height: 24px;
-      right: 10px;
+      right: 16px;
       background-color: $black;
       cursor: pointer !important;
     }

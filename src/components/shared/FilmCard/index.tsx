@@ -10,14 +10,14 @@ import {FilmCardProps} from './types';
 import styles from './FilmCard.module.scss';
 
 const FilmCard: React.FC<FilmCardProps> = ({
-  filmName,
-  uploadDate,
-  globalTime,
-  likeCount = 0,
-  viewsCount = 0,
-  descriptionText,
+  filmName = 'Video0000000000',
+  uploadDate = '20/07/21',
+  globalTime = '23:00',
+  likeCount = 34,
+  viewsCount = 33,
+  descriptionText = 'InformationInformationInformationInformationInformation',
   cardClasses = '',
-  commentsCount = 0,
+  commentsCount = 12,
 }) => {
   const [isLiked, setIsLiked] = useState<boolean>(false);
 

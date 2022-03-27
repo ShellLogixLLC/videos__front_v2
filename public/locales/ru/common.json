@@ -1,6 +1,7 @@
 {
-  "categories": "Категории",
-  "topRated": "Самые популярные",
-  "mostLiked": "Самые популярные",
-  "new": "Новый"
+  "common.new": "Новый",
+  "common.topRated": "Самые популярные",
+  "common.mostLiked": "Самые популярные",
+  "common.newVideos": "Новые видео",
+  "common.categories": "Категории"
 }

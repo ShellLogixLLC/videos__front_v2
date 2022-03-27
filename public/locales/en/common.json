@@ -1,6 +1,7 @@
 {
-  "categories": "Categories",
-  "topRated": "Top Rated",
-  "mostLiked": "Most Liked",
-  "new": "New"
+  "common.new": "New",
+  "common.topRated": "Top Rated",
+  "common.mostLiked": "Most Liked",
+  "common.newVideos": "New Videos",
+  "common.categories": "Categories"
 }
