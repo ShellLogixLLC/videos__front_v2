@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import classNames from 'classnames';
 
 import {Route} from '~/constants';
+import {ToggleContext} from '~/context';
 import {LikeIt, UserIcon} from '~/assets';
 
 import Link from '../Link';
@@ -9,13 +10,9 @@ import Search from '../Search';
 import LanguageDropDown from '../LanguageDropDown';
 import styles from '../../layouts/Header/Header.module.scss';
 
-import {HeaderNavbarProps} from './HeaderNavbarProps';
+const HeaderNavbar: React.FC = ({children}) => {
+  const {expanded} = useContext(ToggleContext);
 
-const HeaderNavbar: React.FC<HeaderNavbarProps> = ({
-  children,
-  expanded,
-  toggleExpanded,
-}) => {
   const navClassName = classNames(styles.wrapper__content_menu, {
     [styles.wrapper__content_menu_hidden]: expanded,
   });
@@ -24,7 +21,7 @@ const HeaderNavbar: React.FC<HeaderNavbarProps> = ({
     <>
       <nav className={navClassName}>{children}</nav>
       <div className={styles.wrapper__content__other}>
-        <Search toggleExpanded={toggleExpanded} expanded={expanded} />
+        <Search />
         <div className={styles.wrapper__content__other__skeleton} />
         <Link to={Route.MyFavorite}>
           <LikeIt className={styles.wrapper__content__other__wishlist} />

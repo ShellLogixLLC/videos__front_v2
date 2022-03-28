@@ -1,17 +1,19 @@
-import React, {useRef, useState, useEffect} from 'react';
+import React, {useRef, useState, useEffect, useContext} from 'react';
 import classNames from 'classnames';
 
+import {ToggleContext} from '~/context';
 import {SearchBackArrowIcon, SearchIcon} from '~/assets';
 import {useOnClickOutside, useWindowSize} from '~/hooks';
 
 import Input from '../Input';
 
-import {SearchProps} from './types';
 import styles from './Search.module.scss';
 
-const Search: React.FC<SearchProps> = ({expanded, toggleExpanded}) => {
+const Search: React.FC = () => {
   const filterRef = useRef<HTMLDivElement | null>(null);
   const [searchValue, setSearchValue] = useState<string>('');
+
+  const {expanded, toggleExpanded} = useContext(ToggleContext);
 
   const searchChangeHandle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);

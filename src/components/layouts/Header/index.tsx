@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import classNames from 'classnames';
 import {useToggle} from 'react-use';
 import {useTranslation} from 'next-i18next';
 
 import {Route} from '~/constants';
+import {ToggleContext} from '~/context';
 import {useWindowSize} from '~/hooks';
 import {routes, routesBurger} from '~/utils';
 import {Menu, Logo, MobileFilterIcon} from '~/assets';
@@ -20,11 +21,11 @@ import styles from './Header.module.scss';
 
 const Header: React.FC = () => {
   const {t} = useTranslation();
+  const {expanded} = useContext(ToggleContext);
   const {isDesktop} = useWindowSize();
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isFilter, toggleFilter] = useToggle(false);
-  const [expanded, toggleExpanded] = useToggle(false);
 
   const logoClassNames = classNames(styles.wrapper__content_logo, {
     [styles.wrapper__content_logo_hidden]: expanded && !isDesktop,
@@ -57,7 +58,7 @@ const Header: React.FC = () => {
   const headerMenu = !isDesktop ? (
     <>
       <div className={styles.wrapper__content__container}>
-        <Search toggleExpanded={toggleExpanded} expanded={expanded} />
+        <Search />
         <MobileFilterIcon
           onClick={toggleFilter}
           className={styles.wrapper__content__filter_icon}
@@ -73,9 +74,7 @@ const Header: React.FC = () => {
       </MobileMenu>
     </>
   ) : (
-    <HeaderNavbar expanded={expanded} toggleExpanded={toggleExpanded}>
-      {headerTable}
-    </HeaderNavbar>
+    <HeaderNavbar>{headerTable}</HeaderNavbar>
   );
 
   return (
