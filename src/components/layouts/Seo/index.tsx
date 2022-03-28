@@ -1,6 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 
+import {ToggleContextProvider} from '~/context';
 import {Header, Footer, PageContent} from '~/components';
 
 import {ISeoProps} from './types';
@@ -24,7 +25,9 @@ const Seo: React.FC<ISeoProps> = ({
 
       <title>{title}</title>
     </Head>
-    {showHeaderFooter && <Header />}
+    <ToggleContextProvider>
+      {showHeaderFooter && <Header />}
+    </ToggleContextProvider>
     {showPageContent && (
       <PageContent showHeaderFooter={showHeaderFooter} className={className}>
         {children}
