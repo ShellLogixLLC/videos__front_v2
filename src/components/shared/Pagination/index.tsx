@@ -1,5 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import classNames from 'classnames';
 import ReactPaginate from 'react-paginate';
 
@@ -23,12 +22,14 @@ const PaginationIndex: React.FC<IPaginationProps> = ({
   isRight = false,
   dataLength,
   activePage = INITIAL_PAGINATION_ACTIVE_PAGE,
+  rowsPerPage = INITIAL_PAGINATION_ROWS_PER_PAGE,
   setActivePage = (e) => e,
+  setRowsPerPage = (e) => e,
+  handleClickLeftArrow,
+  handleClickRightArrow,
+  transformXValue,
+  transformMaxWeight,
 }) => {
-  const [rowsPerPage, setRowsPerPage] = useState<number>(
-    INITIAL_PAGINATION_ROWS_PER_PAGE,
-  );
-
   const {isMaxTablet} = useWindowSize();
 
   const setPage = (selectedItem: {selected: number}) =>
@@ -37,18 +38,15 @@ const PaginationIndex: React.FC<IPaginationProps> = ({
   const pageCount = Math.ceil(dataLength / rowsPerPage);
 
   const rightArrowClasses = classNames(styles.right_block__arrow, {
-    [styles.disabled]: rowsPerPage === dataLength,
+    [styles.disabled]: transformXValue === transformMaxWeight,
   });
 
   const leftArrowClasses = classNames(styles.right_block__arrow, {
-    [styles.disabled]: rowsPerPage === INITIAL_PAGINATION_ROWS_PER_PAGE,
+    [styles.disabled]: transformXValue === 0,
   });
 
   const handleClickMore = () =>
     setRowsPerPage(rowsPerPage + INITIAL_PAGINATION_MORE_COUNT);
-
-  const handleClickLeftArrow = () =>
-    setRowsPerPage(rowsPerPage - INITIAL_PAGINATION_MORE_COUNT);
 
   useEffect(() => {
     if (activePage * rowsPerPage > pageCount) {
@@ -74,7 +72,10 @@ const PaginationIndex: React.FC<IPaginationProps> = ({
 
   const activePagination = isRight ? (
     <div className={styles.right_block}>
-      <RightArrow onClick={handleClickMore} className={rightArrowClasses} />
+      <RightArrow
+        onClick={handleClickRightArrow}
+        className={rightArrowClasses}
+      />
       <LeftArrow onClick={handleClickLeftArrow} className={leftArrowClasses} />
     </div>
   ) : (

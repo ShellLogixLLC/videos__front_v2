@@ -1,0 +1,27 @@
+.wrapper {
+  &__one_section {
+    max-width: 100%;
+    width: 100%;
+    height: 488px;
+    margin-bottom: 40px;
+
+    @include breakpoint(tablet) {
+      height: auto;
+    }
+
+    &__title {
+      @extend %project_title;
+      color: $white;
+      margin-bottom: 24px;
+
+      @include breakpoint(tablet) {
+        font-size: 32px;
+        line-height: 39px;
+      }
+
+      @include breakpoint(tablet-m) {
+        margin-bottom: 8px;
+      }
+    }
+  }
+}
