@@ -16,7 +16,6 @@ const LanguageDropDown: React.FC = () => {
   const {Icon} = locale === 'en' ? langData[0] : langData[1];
 
   const [expanded, toggleExpanded] = useToggle(false);
-
   const [activeLang, setActiveLang] = useState<string>(locale as string);
 
   const filterRef = useRef<HTMLDivElement | null>(null);
