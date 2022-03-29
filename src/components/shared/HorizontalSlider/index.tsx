@@ -1,6 +1,7 @@
 import React, {useState, useRef, useEffect} from 'react';
 
 import {useWindowSize} from '~/hooks';
+import {sliderDataList} from '~/utils';
 import {FilmCard, Pagination} from '~/components';
 import {PAGINATION_TRANSFORM_VALUE} from '~/constants';
 import {INITIAL_PAGINATION_MORE_COUNT} from '~/constants';
@@ -19,52 +20,23 @@ const HorizontalSlider: React.FC = () => {
     null,
   );
 
-  // it's data operating temporarily.
-  const dataList = [
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-  ];
-
-  const data = !isMaxTablet ? dataList.slice(0, rowsPerPage) : dataList;
-  console.log(data.length);
+  const data = !isMaxTablet
+    ? sliderDataList.slice(0, rowsPerPage)
+    : sliderDataList;
 
   const renderAllFim = data.map((item, index) => <FilmCard key={index} />);
 
   const handleClickRightArrow = () => {
     if (transformMaxWeight !== null)
-      if (transformXValue < transformMaxWeight - PAGINATION_TRANSFORM_VALUE) {
-        setTransformXValue(transformXValue + PAGINATION_TRANSFORM_VALUE);
-      } else {
-        setTransformXValue(transformMaxWeight);
-      }
+      transformXValue < transformMaxWeight - PAGINATION_TRANSFORM_VALUE
+        ? setTransformXValue(transformXValue + PAGINATION_TRANSFORM_VALUE)
+        : setTransformXValue(transformMaxWeight);
   };
 
-  const handleClickLeftArrow = () => {
-    if (transformXValue > 0) {
-      setTransformXValue(transformXValue - PAGINATION_TRANSFORM_VALUE);
-    } else {
-      setTransformXValue(0);
-    }
-  };
+  const handleClickLeftArrow = () =>
+    transformXValue > 0
+      ? setTransformXValue(transformXValue - PAGINATION_TRANSFORM_VALUE)
+      : setTransformXValue(0);
 
   useEffect(() => {
     if (contentRef.current) {
@@ -91,7 +63,7 @@ const HorizontalSlider: React.FC = () => {
         isRight
         rowsPerPage={rowsPerPage}
         setRowsPerPage={setRowsPerPage}
-        dataLength={dataList.length}
+        dataLength={sliderDataList.length}
         handleClickLeftArrow={handleClickLeftArrow}
         handleClickRightArrow={handleClickRightArrow}
         transformXValue={transformXValue}

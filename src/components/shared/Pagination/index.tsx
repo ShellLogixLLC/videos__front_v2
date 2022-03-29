@@ -32,9 +32,6 @@ const PaginationIndex: React.FC<IPaginationProps> = ({
 }) => {
   const {isMaxTablet} = useWindowSize();
 
-  const setPage = (selectedItem: {selected: number}) =>
-    setActivePage(selectedItem.selected);
-
   const pageCount = Math.ceil(dataLength / rowsPerPage);
 
   const rightArrowClasses = classNames(styles.right_block__arrow, {
@@ -44,6 +41,9 @@ const PaginationIndex: React.FC<IPaginationProps> = ({
   const leftArrowClasses = classNames(styles.right_block__arrow, {
     [styles.disabled]: transformXValue === 0,
   });
+
+  const setPage = (selectedItem: {selected: number}) =>
+    setActivePage(selectedItem.selected);
 
   const handleClickMore = () =>
     setRowsPerPage(rowsPerPage + INITIAL_PAGINATION_MORE_COUNT);
