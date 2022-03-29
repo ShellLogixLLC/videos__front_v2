@@ -37,7 +37,6 @@ const Video: React.FC<IVideoProps> = ({videoDuration, videoSrc, posterSrc}) => {
   });
 
   const videoRef = useRef<HTMLVideoElement>(null);
-  const videoControlsRef = useRef<HTMLDivElement>(null);
   const {isMaxTablet} = useWindowSize();
 
   const handleSpace = (event: any) => {
@@ -61,12 +60,6 @@ const Video: React.FC<IVideoProps> = ({videoDuration, videoSrc, posterSrc}) => {
   const handleMouseOut = () => {
     setIsMouseOver(false);
   };
-
-  useEventListener('mouseover', handleMouseOver, videoRef);
-  useEventListener('mouseout', handleMouseOut, videoRef);
-
-  useEventListener('mouseover', handleMouseOver, videoControlsRef);
-  useEventListener('mouseout', handleMouseOut, videoControlsRef);
 
   const handleSecAhead = (event: any) => {
     if (
@@ -234,7 +227,10 @@ const Video: React.FC<IVideoProps> = ({videoDuration, videoSrc, posterSrc}) => {
     <div className={videoClasses}>
       {isMaxTablet && (
         <>
-          <div ref={videoControlsRef} className={styles.video__controls}>
+          <div
+            className={styles.video__controls}
+            onMouseEnter={handleMouseOver}
+            onMouseLeave={handleMouseOut}>
             <div
               role="button"
               onClick={handlePlayPauseClick}
@@ -301,6 +297,8 @@ const Video: React.FC<IVideoProps> = ({videoDuration, videoSrc, posterSrc}) => {
         </>
       )}
       <video
+        onMouseEnter={handleMouseOver}
+        onMouseLeave={handleMouseOut}
         ref={videoRef}
         muted={muted}
         poster={posterSrc}
