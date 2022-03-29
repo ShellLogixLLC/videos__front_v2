@@ -118,9 +118,14 @@
     &__right_icon {
       width: 24px;
       height: 24px;
-      right: 16px;
+      right: 0;
       background-color: $black;
       cursor: pointer !important;
+      transition: 0.5s all ease;
+
+      &_active {
+        right: 16px;
+      }
     }
   }
 }
