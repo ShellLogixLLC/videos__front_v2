@@ -2,24 +2,22 @@ import React, {useRef, useState, useEffect, useContext} from 'react';
 import classNames from 'classnames';
 
 import {ToggleContext} from '~/context';
+import {useOnClickOutside} from '~/hooks';
 import {SearchBackArrowIcon, SearchIcon} from '~/assets';
-import {useOnClickOutside, useWindowSize} from '~/hooks';
 
 import Input from '../Input';
 
 import styles from './Search.module.scss';
 
 const Search: React.FC = () => {
+  const {expanded, toggleExpanded} = useContext(ToggleContext);
+
   const filterRef = useRef<HTMLDivElement | null>(null);
   const [searchValue, setSearchValue] = useState<string>('');
-
-  const {expanded, toggleExpanded} = useContext(ToggleContext);
 
   const searchChangeHandle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
-
-  const {isDesktop} = useWindowSize();
 
   const labelClassName = classNames(styles.wrapper, {
     [styles.wrapper_expanded]: expanded,
@@ -41,7 +39,7 @@ const Search: React.FC = () => {
 
   return (
     <>
-      {!isDesktop && <SearchBackArrowIcon className={backArrowClassName} />}
+      <SearchBackArrowIcon className={backArrowClassName} />
       <Input
         type="text"
         name="globalSearch"
