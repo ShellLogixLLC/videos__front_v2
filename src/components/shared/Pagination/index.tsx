@@ -58,6 +58,7 @@ const PaginationIndex: React.FC<IPaginationProps> = ({
     } else if (rowsPerPage <= INITIAL_PAGINATION_ROWS_PER_PAGE) {
       setRowsPerPage(INITIAL_PAGINATION_ROWS_PER_PAGE);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rowsPerPage]);
 
   const moreBtn = !(rowsPerPage >= dataLength) ? (
