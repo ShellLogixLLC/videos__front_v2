@@ -30,9 +30,11 @@ const Header: React.FC = () => {
   const logoClassNames = classNames(styles.wrapper__content_logo, {
     [styles.wrapper__content_logo_hidden]: expanded && !isDesktop,
   });
+  const bgClassName = classNames({
+    [styles.wrapper__active_bg]: isOpen,
+  });
 
   const handleOpenMenu = () => setIsOpen(true);
-
   const headerTable = routes.map(({id, routeName, pageName}) => (
     <Link
       key={id}
@@ -79,6 +81,7 @@ const Header: React.FC = () => {
 
   return (
     <header className={styles.wrapper}>
+      <div className={bgClassName} />
       <div className={`${styles.wrapper__content} container`}>
         <Link className={logoClassNames} to={Route.Home}>
           <Logo />
