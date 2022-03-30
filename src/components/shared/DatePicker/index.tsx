@@ -20,7 +20,9 @@ const DatePicker: FC = () => {
   const togglerClasses = classNames(styles.wrapper, {
     [styles.wrapper__active]: isOpen,
   });
-
+  const contentClasses = classNames(styles.content, {
+    [styles.content_open]: isOpen,
+  });
   useOnClickOutside(calendarRef, () => toggleIsOpen(false));
 
   const rangePickerProps = {
@@ -42,10 +44,12 @@ const DatePicker: FC = () => {
     <div ref={calendarRef} className={togglerClasses}>
       <div role="button" onClick={toggleIsOpen} className={styles.header}>
         <Typography className={styles.header__text}>Calendar</Typography>
-        <CalendarOne />
+        <CalendarOne className={styles.header__icon} />
       </div>
-      <div className={`${styles.content} calendar__trip`}>
-        <RangePicker {...rangePickerProps} onChange={setRangeValues} />
+      <div className={`${contentClasses} calendar__trip`}>
+        <div className={styles.content_inner}>
+          <RangePicker {...rangePickerProps} onChange={setRangeValues} />
+        </div>
       </div>
     </div>
   );
