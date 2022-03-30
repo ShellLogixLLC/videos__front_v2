@@ -9,6 +9,11 @@
   margin-right: 25px;
   background-color: $black;
 
+  @include breakpoint(tablet) {
+    max-width: 100%;
+    margin-right: 0;
+  }
+
   &::-webkit-scrollbar {
     display: none;
   }

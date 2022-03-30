@@ -32,9 +32,9 @@
     }
 
     &_menu {
+      @extend %flex-between;
       max-width: 530px;
       width: 100%;
-      @extend %flex-between;
       position: relative;
       visibility: visible;
       opacity: 1;
@@ -47,7 +47,7 @@
       }
 
       @include breakpoint(desktop) {
-        display: none;
+        display: none !important;
       }
 
       @include breakpoint(wide) {
@@ -82,15 +82,11 @@
       position: absolute;
       top: 100px;
       z-index: 4;
-      right: 0;
+      right: 16px;
       cursor: pointer;
 
       @include breakpoint(desktop) {
         display: block;
-      }
-
-      @include breakpoint(tablet) {
-        padding: 8px;
       }
 
       svg {
@@ -107,6 +103,10 @@
 
       @include breakpoint(desktop) {
         display: none;
+      }
+
+      &__link {
+        @extend %flex-center;
       }
 
       &__empty__block {
@@ -235,6 +235,7 @@
     right: 0;
     bottom: 0;
     height: 100%;
-    background-color: $grey;
+    z-index: 4;
+    background-color: $rgba-black;
   }
 }

@@ -4,13 +4,13 @@ import {GetStaticProps} from 'next';
 import {serverSideTranslations} from 'next-i18next/serverSideTranslations';
 
 import {Seo} from '~/components';
-import {HorizontalSlider} from '~/containers';
+import {Home} from '~/containers';
 
 import nextI18NextConfig from '../next-i18next.config';
 
 const HomePage: NextPage = () => (
   <Seo title="Home page" metaDescription="Home page description">
-    <HorizontalSlider />
+    <Home />
   </Seo>
 );
 

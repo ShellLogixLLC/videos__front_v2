@@ -2,11 +2,23 @@
   @extend %flex-align;
   max-width: 240px;
 
+  @include breakpoint(tablet) {
+    display: none;
+  }
+
   &__wrapper {
     @extend %flex-center;
 
     @include breakpoint(tablet) {
       margin: 32px 0;
+    }
+
+    &__more_btn {
+      display: none;
+
+      @include breakpoint(tablet) {
+        display: block;
+      }
     }
 
     &__show {
@@ -16,6 +28,10 @@
       width: 130px;
       right: 30px;
       top: 5px;
+
+      @include breakpoint(tablet) {
+        display: none;
+      }
 
       &__txt {
         color: $white;
@@ -129,6 +145,10 @@
   right: 0;
   width: 48px;
   background: $dark-grey;
+
+  @include breakpoint(tablet) {
+    display: none;
+  }
 
   &__arrow {
     @extend %flex-center;

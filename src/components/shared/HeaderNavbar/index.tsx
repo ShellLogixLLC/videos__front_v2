@@ -21,7 +21,9 @@ const HeaderNavbar: React.FC = ({children}) => {
       <nav className={navClassName}>{children}</nav>
       <div className={styles.wrapper__content__other}>
         <div className={styles.wrapper__content__other__skeleton} />
-        <Link to={Route.MyFavorite}>
+        <Link
+          className={styles.wrapper__content__other__link}
+          to={Route.MyFavorite}>
           <LikeIt className={styles.wrapper__content__other__wishlist} />
         </Link>
         <Link to="/sign-in" className={styles.wrapper__content__other__sign_in}>

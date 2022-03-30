@@ -32,3 +32,4 @@ export {default as MobileFilter} from './shared/MobileFilter';
 export {default as CategoryCard} from './shared/CategoryCard';
 export {default as VideoDescription} from './shared/VideoDescription';
 export {default as LanguageDropDown} from './shared/LanguageDropDown';
+export {default as HorizontalSlider} from './shared/HorizontalSlider';

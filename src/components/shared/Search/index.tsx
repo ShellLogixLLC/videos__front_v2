@@ -31,10 +31,6 @@ const Search: React.FC = () => {
     [styles.wrapper__container__back_expand]: expanded,
   });
 
-  const iconClassName = classNames(styles.wrapper__container__right_icon, {
-    [styles.wrapper__container__right_icon_active]: expanded,
-  });
-
   useOnClickOutside(filterRef, () => toggleExpanded(false));
 
   useEffect(() => {
@@ -54,7 +50,7 @@ const Search: React.FC = () => {
         wrapperRef={filterRef}
         placeholder="Search"
         toggleHandle={toggleExpanded}
-        rightIconStyle={iconClassName}
+        rightIconStyle={styles.wrapper__container__right_icon}
         labelClassName={labelClassName}
         innerClassName={styles.wrapper__container}
       />
