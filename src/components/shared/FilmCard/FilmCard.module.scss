@@ -1,11 +1,10 @@
 .wrapper {
   @extend %border-rad_10;
   @extend %box-shadow;
-  width: 100%;
-  padding: 16px;
+  padding: 16px 16px 28px 16px;
   max-width: 320px;
-  min-width: 320px;
-  min-height: 386px;
+  width: 100%;
+  height: 386px;
   margin-right: 25px;
   background-color: $black;
 
@@ -14,16 +13,34 @@
     margin-right: 0;
   }
 
+  @include breakpoint(tablet-m) {
+    height: 289px;
+    padding: 16px 16px 19px 16px;
+  }
+
   &::-webkit-scrollbar {
     display: none;
   }
 
+  &__video {
+    height: 200px;
+
+    @include breakpoint(tablet-m) {
+      height: 128px;
+    }
+  }
+
   &__film {
+    position: relative;
+    max-width: 100%;
     width: 100%;
     height: 200px;
-    position: relative;
     margin-bottom: 16px;
     background-color: $dark-white;
+
+    @include breakpoint(tablet-m) {
+      height: 128px;
+    }
 
     &_not_like_it {
       padding: unset;
@@ -34,6 +51,7 @@
       height: 24px;
       max-width: unset;
       width: unset;
+      z-index: 2;
 
       svg {
         path {
@@ -63,6 +81,7 @@
       height: 24px;
       max-width: unset;
       width: unset;
+      z-index: 2;
 
       svg {
         path {
@@ -93,6 +112,12 @@
       position: absolute;
       bottom: 16px;
       left: 16px;
+      z-index: 2;
+
+      @include breakpoint(tablet-m) {
+        bottom: 3px;
+        left: 8px;
+      }
     }
   }
 
@@ -103,45 +128,59 @@
     &_name {
       @extend %film_name;
       @extend %text-elypsis;
-      width: 191px;
+      max-width: 150px;
+      width: 100%;
       cursor: text;
       user-select: text;
       text-transform: capitalize;
+
+      @include breakpoint(tablet-m) {
+        font-size: 18px;
+        line-height: 22px;
+      }
     }
 
     &__dw_date {
+      @extend %film_info_text;
       @extend %film_date;
+
+      @include breakpoint(tablet-m) {
+        font-size: 14px;
+        line-height: 17px;
+      }
     }
   }
 
   &__pr_description {
     @extend %film_info_text;
     @extend %text-elypsis;
-    @extend %film_name;
     cursor: text;
     width: 200px;
-    min-height: 64px;
-    margin-bottom: 8px;
+    height: 44px;
+    margin-bottom: 28px;
     user-select: text;
+
+    @include breakpoint(tablet-m) {
+      font-size: 14px;
+      line-height: 17px;
+      margin-bottom: 12px;
+    }
   }
 
   &__card_footer {
     @extend %flex-align;
 
     &_item {
+      @extend %film_name;
       @extend %flex-align;
       margin-right: 24px;
 
-      @include breakpoint(mobile) {
-        margin-right: 8px;
+      @include breakpoint(tablet-m) {
+        margin-right: 20px;
       }
 
       p {
         margin-right: 16px;
-
-        @include breakpoint(mobile) {
-          margin-right: 5px;
-        }
       }
 
       &:last-of-type {
