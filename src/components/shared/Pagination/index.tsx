@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 import classNames from 'classnames';
 import ReactPaginate from 'react-paginate';
 
-import {useWindowSize} from '~/hooks';
 import {LeftArrow, RightArrow} from '~/assets';
 import {
   INITIAL_PAGINATION_MORE_COUNT,
@@ -30,8 +29,6 @@ const PaginationIndex: React.FC<IPaginationProps> = ({
   transformXValue,
   transformMaxWeight,
 }) => {
-  const {isMaxTablet} = useWindowSize();
-
   const pageCount = Math.ceil(dataLength / rowsPerPage);
 
   const rightArrowClasses = classNames(styles.right_block__arrow, {
@@ -62,10 +59,12 @@ const PaginationIndex: React.FC<IPaginationProps> = ({
   }, [rowsPerPage]);
 
   const moreBtn = !(rowsPerPage >= dataLength) ? (
-    <Button onClick={handleClickMore}>More</Button>
+    <Button className={styles.wrapper__more_btn} onClick={handleClickMore}>
+      More
+    </Button>
   ) : null;
 
-  const paginationPerPage = !isRight && isMaxTablet && (
+  const paginationPerPage = !isRight && (
     <div className={styles.container__wrapper__show}>
       <PerPage rowsPerPage={rowsPerPage} setRowsPerPage={setRowsPerPage} />
     </div>
@@ -102,7 +101,8 @@ const PaginationIndex: React.FC<IPaginationProps> = ({
     <>
       {paginationPerPage}
       <div className={styles.container__wrapper}>
-        {!isMaxTablet ? moreBtn : activePagination}
+        {moreBtn}
+        {activePagination}
       </div>
     </>
   );

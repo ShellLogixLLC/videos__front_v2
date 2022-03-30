@@ -10,11 +10,11 @@ import FullScreenIcon from '~/assets/icons/full-screen.svg';
 import MutedVolumeIcon from '~/assets/icons/muted-volume.svg';
 import {useWindowSize, useEventListener} from '~/hooks/index';
 import {
-  AHEAD_SECONDS,
   SKIP_SECONDS,
-  ARROW_RIGHT_KEY_CODE,
-  ARROW_LEFT_KEY_CODE,
+  AHEAD_SECONDS,
   SPACE_KEY_CODE,
+  ARROW_LEFT_KEY_CODE,
+  ARROW_RIGHT_KEY_CODE,
 } from '~/constants';
 
 import {IVideoProps} from './types';

@@ -30,6 +30,7 @@ const Header: React.FC = () => {
   const logoClassNames = classNames(styles.wrapper__content_logo, {
     [styles.wrapper__content_logo_hidden]: expanded && !isDesktop,
   });
+
   const bgClassName = classNames({
     [styles.wrapper__active_bg]: isOpen,
   });

@@ -20,11 +20,12 @@ const HorizontalSlider: React.FC = () => {
     null,
   );
 
+  // // it's code operating temporarily.
   const data = !isMaxTablet
     ? sliderDataList.slice(0, rowsPerPage)
     : sliderDataList;
 
-  const renderAllFim = data.map((item, index) => <FilmCard key={index} />);
+  const renderVideoList = data.map((item, index) => <FilmCard key={index} />);
 
   const handleClickRightArrow = () => {
     if (transformMaxWeight !== null)
@@ -57,7 +58,7 @@ const HorizontalSlider: React.FC = () => {
         style={{
           transform: `translate3d(-${transformXValue}px, 0px, 0px)`,
         }}>
-        {renderAllFim}
+        {renderVideoList}
       </div>
       <Pagination
         isRight
