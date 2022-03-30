@@ -1,7 +1,8 @@
 {
-  "common.home": "Главный",
-  "common.favorites": "Избранное",
   "common.new": "Новый",
+  "common.home": "Главный",
+  "common.search": "Поиск",
+  "common.favorites": "Избранное",
   "common.topRated": "Самые популярные",
   "common.mostLiked": "Самые популярные",
   "common.newVideos": "Новые видео",

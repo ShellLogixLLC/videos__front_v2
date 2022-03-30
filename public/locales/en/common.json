@@ -1,9 +1,21 @@
 {
-  "common.home": "Home",
   "common.new": "New",
+  "common.home": "Home",
+  "common.search": "Search",
+  "common.signIn": "Sign In",
+  "common.signUp": "Sign Up",
   "common.topRated": "Top Rated",
   "common.favorites": "Favorites",
   "common.mostLiked": "Most Liked",
   "common.newVideos": "New Videos",
-  "common.categories": "Categories"
+  "common.categories": "Categories",
+  "common.backToHome": "Back to Home",
+  "common.enterYourEmail": "Enter your email",
+  "connon.forgotPassword": "Forgot Password?",
+  "common.dontHaveAnAccount": "Don’t have an account?",
+  "common.enterYourPassword": "Enter your password",
+  "common.theEmailIsRequired": "The Email is required",
+  "common.theEmailMustBeAValidEmailAddress": "The Email must be a valid email address",
+  "common.passwordCantStartOrEndWwithABlankSpace": "Password can't start or end with a blank space",
+  "common.passwordIsTooShortShouldBe6CharsMinimum": "Password is too short - should be 6 chars minimum."
 }

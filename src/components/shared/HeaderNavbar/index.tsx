@@ -6,7 +6,6 @@ import {ToggleContext} from '~/context';
 import {LikeIt, UserIcon} from '~/assets';
 
 import Link from '../Link';
-import Search from '../Search';
 import LanguageDropDown from '../LanguageDropDown';
 import styles from '../../layouts/Header/Header.module.scss';
 
@@ -21,7 +20,6 @@ const HeaderNavbar: React.FC = ({children}) => {
     <>
       <nav className={navClassName}>{children}</nav>
       <div className={styles.wrapper__content__other}>
-        <Search />
         <div className={styles.wrapper__content__other__skeleton} />
         <Link to={Route.MyFavorite}>
           <LikeIt className={styles.wrapper__content__other__wishlist} />

@@ -57,28 +57,6 @@ const Header: React.FC = () => {
     </Link>
   ));
 
-  const headerMenu = !isDesktop ? (
-    <>
-      <div className={styles.wrapper__content__container}>
-        <Search />
-        <MobileFilterIcon
-          onClick={toggleFilter}
-          className={styles.wrapper__content__filter_icon}
-        />
-        <Button
-          onClick={handleOpenMenu}
-          className={styles.wrapper__content__burger_btn}>
-          <Menu className={styles.wrapper__content__burger_icon} />
-        </Button>
-      </div>
-      <MobileMenu isOpen={isOpen} setIsOpen={setIsOpen}>
-        {renderMobileMenu}
-      </MobileMenu>
-    </>
-  ) : (
-    <HeaderNavbar>{headerTable}</HeaderNavbar>
-  );
-
   return (
     <header className={styles.wrapper}>
       <div className={bgClassName} />
@@ -86,11 +64,24 @@ const Header: React.FC = () => {
         <Link className={logoClassNames} to={Route.Home}>
           <Logo />
         </Link>
-        {headerMenu}
+        <div className={styles.wrapper__content__container}>
+          <MobileFilterIcon
+            onClick={toggleFilter}
+            className={styles.wrapper__content__filter_icon}
+          />
+          <Button
+            onClick={handleOpenMenu}
+            className={styles.wrapper__content__burger_btn}>
+            <Menu className={styles.wrapper__content__burger_icon} />
+          </Button>
+        </div>
+        <MobileMenu isOpen={isOpen} setIsOpen={setIsOpen}>
+          {renderMobileMenu}
+        </MobileMenu>
+        <HeaderNavbar>{headerTable}</HeaderNavbar>
+        <Search />
       </div>
-      {!isDesktop && (
-        <MobileFilter isFilter={isFilter} toggleFilter={toggleFilter} />
-      )}
+      <MobileFilter isFilter={isFilter} toggleFilter={toggleFilter} />
     </header>
   );
 };
