@@ -252,13 +252,6 @@ input {
           border-radius: 0 25% 25% 0;
         }
       }
-      & > div {
-        background-color: $light-black;
-      }
-
-      & > div {
-        background-color: $light-black;
-      }
 
       .start-date {
         border-radius: 25% 0 0 25%;
@@ -292,6 +285,7 @@ input {
 
       & > div {
         height: unset;
+        background-color: $light-black;
 
         & > div:first-child {
           display: flex;
@@ -303,11 +297,14 @@ input {
 
           p {
             margin: 0 0 5px;
+            max-width: 32px;
           }
         }
 
         & > div > div {
           color: $white;
+          width: 32px;
+          height: 32px;
 
           &:hover {
             background-color: $black;
