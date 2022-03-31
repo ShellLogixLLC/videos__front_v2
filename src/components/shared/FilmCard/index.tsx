@@ -43,7 +43,6 @@ const FilmCard: React.FC<FilmCardProps> = ({
         <Typography tagName="span" className={styles.wrapper__film__time}>
           {globalTime}
         </Typography>
-        {/* VIDEO */}
       </div>
       <div className={styles.wrapper__other}>
         <h3 className={styles.wrapper__other_name}>{filmName}</h3>

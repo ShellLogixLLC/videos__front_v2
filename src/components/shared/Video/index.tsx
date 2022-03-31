@@ -22,7 +22,12 @@ import VideoSlider from './VideoSlider';
 import VolumeSlider from './VolumeSlider';
 import styles from './Video.module.scss';
 
-const Video: React.FC<IVideoProps> = ({videoDuration, videoSrc, posterSrc}) => {
+const Video: React.FC<IVideoProps> = ({
+  videoSrc,
+  posterSrc,
+  videoClass = '',
+  videoDuration,
+}) => {
   const [videoElement, setVideoElement] = useState<HTMLVideoElement | null>(
     null,
   );
@@ -218,7 +223,7 @@ const Video: React.FC<IVideoProps> = ({videoDuration, videoSrc, posterSrc}) => {
     100,
   );
 
-  const videoClasses = classNames(styles.video, {
+  const videoClasses = classNames(styles.video, videoClass, {
     [styles.video__backward]: keyStatus.backward,
     [styles.video__forward]: keyStatus.forward,
   });

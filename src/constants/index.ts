@@ -19,3 +19,6 @@ export * from './video';
 
 // Pagination
 export * from './pagination';
+
+//video url
+export * from './videoUrl';
