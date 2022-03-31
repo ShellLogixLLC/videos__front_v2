@@ -12,4 +12,5 @@ export {default as commentBlock} from './commentBlock';
 export {default as downloadFile} from './downloadFile';
 export {default as filteredMass} from './filteredMass';
 export {default as sliderDataList} from './sliderDataList';
+export {default as verifyPageState} from './verifyPageState';
 export {default as categoryNavigation} from './categoryNavigation';

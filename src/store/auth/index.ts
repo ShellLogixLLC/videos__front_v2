@@ -5,8 +5,11 @@ import {reducerName, AuthStates} from './constants';
 import {AuthSliceState, UpdateAccessTokenAction} from './types';
 
 const internalInitialState: AuthSliceState = {
+  user: null,
   error: null,
+  isVerify: false,
   accessToken: '',
+  emailVerify: '',
   loading: AuthStates.IDLE,
 };
 
@@ -39,10 +42,18 @@ const authSlice = createSlice({
     builder.addCase(authThunks.logout.fulfilled, () => internalInitialState);
 
     builder.addCase(authThunks.register.fulfilled, (state, action) => {
-      state.accessToken = action.payload.accessToken;
+      state.emailVerify = action.payload.emailVerify;
       state.loading = AuthStates.IDLE;
     });
     builder.addCase(authThunks.register.rejected, (state, action) => {
+      state.error = action.error;
+    });
+
+    builder.addCase(authThunks.userVerify.fulfilled, (state, action) => {
+      state.isVerify = action.payload.isVerify;
+      state.loading = AuthStates.IDLE;
+    });
+    builder.addCase(authThunks.userVerify.rejected, (state, action) => {
       state.error = action.error;
     });
   },

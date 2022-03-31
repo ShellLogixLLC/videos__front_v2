@@ -31,14 +31,37 @@ export const login = createAsyncThunk(
 export const register = createAsyncThunk(
   `${reducerName}/user/signup`,
   async (
-    credentials: {email: string; password: string; username: string},
+    credentials: {
+      email: string;
+      username: string;
+      password: string;
+      passwordConfirmation: string;
+    },
     thunkAPI,
   ) => {
     try {
-      const response = await client.post('/user/signup', credentials);
+      const {data} = await client.post('/user/signup', credentials);
 
       return {
-        accessToken: response.data.accessToken,
+        emailVerify: data.email,
+      };
+    } catch (error) {
+      const {message} = error as Error;
+
+      return thunkAPI.rejectWithValue({error: message});
+    }
+  },
+);
+
+export const userVerify = createAsyncThunk(
+  `${reducerName}/user/verify`,
+  async (credentials: {email: string; code: string}, thunkAPI) => {
+    try {
+      const {data} = await client.post('/user/verify', credentials);
+      console.log(data, 'userVerify');
+
+      return {
+        isVerify: data.success,
       };
     } catch (error) {
       const {message} = error as Error;

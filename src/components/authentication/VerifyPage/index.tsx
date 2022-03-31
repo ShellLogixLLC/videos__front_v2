@@ -3,6 +3,8 @@ import classNames from 'classnames';
 
 import {Logo} from '~/assets';
 import {AuthService} from '~/api';
+import {verifyPageState} from '~/utils';
+// import {useAppDispatch, useAppSelector} from '~/hooks';
 
 import Link from '../../shared/Link';
 import Timer from '../../shared/StopWatch';
@@ -15,16 +17,21 @@ import styles from './VerifyPage.module.scss';
 const ContractSign: React.FC<VerifyProps> = ({
   my_account = 'my_account@gmail.com',
 }) => {
-  const initialState = {
-    1: '',
-    2: '',
-    3: '',
-    4: '',
-    5: '',
-    6: '',
-  };
+  // const dispatch = useAppDispatch();
+  // const {state} = useAppSelector();
+  // console.log(useAppSelector());
 
-  const [codes, setCodes] = useState<{[key: number]: string}>(initialState);
+  const [codes, setCodes] = useState<{[key: number]: string}>(verifyPageState);
+  const [isValid, setIsValid] = useState<boolean>(false);
+  const [isResend, setIsResend] = useState<boolean>(false);
+
+  const ref1 = useRef<HTMLInputElement | null>(null);
+  const ref2 = useRef<HTMLInputElement | null>(null);
+  const ref3 = useRef<HTMLInputElement | null>(null);
+  const ref4 = useRef<HTMLInputElement | null>(null);
+  const ref5 = useRef<HTMLInputElement | null>(null);
+  const ref6 = useRef<HTMLInputElement | null>(null);
+  const ref7 = useRef<HTMLInputElement | null>(null);
   const {
     categories: {categories},
   } = AuthService.useCategories();
@@ -32,21 +39,15 @@ const ContractSign: React.FC<VerifyProps> = ({
   // eslint-disable-next-line no-console
   console.log(categories);
 
-  const [isValid, setIsValid] = useState<boolean>(false);
-  const [isResend, setIsResend] = useState<boolean>(false);
-
   const handleClear = () => {
-    setCodes(initialState);
+    setCodes(verifyPageState);
     setIsValid(false);
   };
 
-  const ref1 = useRef<any>();
-  const ref2 = useRef<any>();
-  const ref3 = useRef<any>();
-  const ref4 = useRef<any>();
-  const ref5 = useRef<any>();
-  const ref6 = useRef<any>();
-  const ref7 = useRef<any>();
+  const proceedHandler = () => {
+    setIsResend(true);
+    // dispatch(authActions.userVerify());
+  };
 
   const handleInput =
     (number: number) => (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -205,13 +206,6 @@ const ContractSign: React.FC<VerifyProps> = ({
       setIsValid(true);
     }
   }, [codes]);
-
-  const proceedHandler = () => {
-    setIsResend(true);
-  };
-
-  // eslint-disable-next-line no-console
-  console.log(codes);
 
   const inputClasses = classNames(
     styles.container__top__number_verification__item__inp,

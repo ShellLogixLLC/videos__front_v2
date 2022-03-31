@@ -3,9 +3,12 @@ import {SerializedError} from '@reduxjs/toolkit';
 import {AuthStates} from './constants';
 
 export type AuthSliceState = {
-  accessToken: string;
-  loading: AuthStates;
+  user: any;
   error?: SerializedError | null;
+  loading: AuthStates;
+  isVerify: boolean;
+  accessToken: string;
+  emailVerify: string;
 };
 
 export type UpdateAccessTokenAction = {

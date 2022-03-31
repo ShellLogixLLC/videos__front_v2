@@ -3,6 +3,8 @@ import React, {useCallback} from 'react';
 import {Logo} from '~/assets';
 import {RouterService} from '~/services';
 import {registrationForm, Route} from '~/constants';
+import {authActions} from '~/store/auth';
+import {useAppDispatch} from '~/hooks';
 
 import Form from '../../shared/forms/Form';
 import BackButton from '../../shared/BackButton';
@@ -11,8 +13,20 @@ import Typography from '../../shared/Typography';
 import styles from './Registration.module.scss';
 
 const Registration: React.FC = () => {
+  const dispatch = useAppDispatch();
   const handleResetPassFormSubmit = useCallback((values) => {
-    if (values.verification) {
+    const {email, username, create_password, confirm_password, verification} =
+      values;
+
+    const userInfo = {
+      email,
+      username,
+      password: create_password,
+      passwordConfirmation: confirm_password,
+    };
+
+    dispatch(authActions.register(userInfo));
+    if (verification) {
       RouterService.push(Route.RegistrationSetupPassword);
     } else {
       RouterService.push(Route.Home);
