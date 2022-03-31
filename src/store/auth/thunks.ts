@@ -29,13 +29,13 @@ export const login = createAsyncThunk(
 );
 
 export const register = createAsyncThunk(
-  `${reducerName}/register`,
+  `${reducerName}/user/signup`,
   async (
-    credentials: {email: string; password: string; name: string},
+    credentials: {email: string; password: string; username: string},
     thunkAPI,
   ) => {
     try {
-      const response = await client.post('api/register', credentials);
+      const response = await client.post('/user/signup', credentials);
 
       return {
         accessToken: response.data.accessToken,
