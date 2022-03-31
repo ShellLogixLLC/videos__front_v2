@@ -238,7 +238,6 @@ input {
       }
     }
 
-    // Calendar content
     & > div:last-child {
       .range-select {
         background-color: $black;
@@ -263,6 +262,7 @@ input {
 
       .start-date {
         border-radius: 50% 0 0 50%;
+
         &:hover {
           border-radius: none;
         }
@@ -270,6 +270,7 @@ input {
 
       .end-date {
         border-radius: 0 50% 50% 0;
+
         &:hover {
           border-radius: none;
         }
@@ -278,6 +279,7 @@ input {
       .start-date,
       .end-date {
         position: relative;
+
         &::after {
           content: '';
           border: 2px solid $red;
