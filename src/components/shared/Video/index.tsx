@@ -223,10 +223,9 @@ const Video: React.FC<IVideoProps> = ({
     100,
   );
 
-  const videoClasses = classNames(styles.video, {
+  const videoClasses = classNames(styles.video, videoClass, {
     [styles.video__backward]: keyStatus.backward,
     [styles.video__forward]: keyStatus.forward,
-    [videoClass]: videoClass,
   });
 
   return (
