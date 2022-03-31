@@ -215,8 +215,8 @@ input {
   .tp-calendar {
     margin: 16px auto 20px;
     width: 100%;
+    max-width: 268px;
 
-    // Header
     & > div:first-child {
       display: flex;
       align-items: center;
@@ -245,32 +245,45 @@ input {
         box-shadow: unset;
 
         &:first-child {
-          border-radius: 25% 0 0 25%;
+          border-radius: 50% 0 0 50%;
+
+          &.end-date {
+            border-radius: 50% !important;
+          }
         }
 
         &:last-child {
-          border-radius: 0 25% 25% 0;
+          border-radius: 0 50% 50% 0;
+
+          &.start-date {
+            border-radius: 50% !important;
+          }
         }
       }
 
       .start-date {
-        border-radius: 25% 0 0 25%;
+        border-radius: 50% 0 0 50%;
+        &:hover {
+          border-radius: none;
+        }
       }
 
       .end-date {
-        border-radius: 0 25% 25% 0;
+        border-radius: 0 50% 50% 0;
+        &:hover {
+          border-radius: none;
+        }
       }
 
       .start-date,
       .end-date {
         position: relative;
-
         &::after {
           content: '';
           border: 2px solid $red;
           position: absolute;
-          width: 100%;
-          height: 100%;
+          width: calc(100% - 2px);
+          height: calc(100% - 2px);
           border-radius: 50%;
         }
       }
@@ -278,14 +291,17 @@ input {
       .inactive,
       .today {
         visibility: visible;
-        color: $white;
+        color: $grey_color;
         border: unset;
-        border-radius: 50%;
       }
 
       & > div {
         height: unset;
         background-color: $light-black;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 17px;
 
         & > div:first-child {
           display: flex;
@@ -294,21 +310,32 @@ input {
           justify-content: space-between;
           font-weight: 700;
           line-height: 12px;
+          width: 100%;
 
           p {
-            margin: 0 0 5px;
-            max-width: 32px;
+            font-weight: 700;
+            font-size: 10px;
+            line-height: 12px;
+            margin: 8px 0;
           }
         }
+        & > div {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
 
-        & > div > div {
-          color: $white;
-          width: 32px;
-          height: 32px;
+          & > div {
+            color: $grey_color;
+            padding: 8px 0 7px;
+            margin: 5px 0 5px;
 
-          &:hover {
-            background-color: $black;
-            border-radius: 50%;
+            &:hover {
+              background-color: $black;
+
+              @include breakpoint(desktop) {
+                background-color: none;
+              }
+            }
           }
         }
       }
