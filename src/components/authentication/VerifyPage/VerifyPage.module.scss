@@ -116,10 +116,17 @@
   }
 
   &_wrong_otp {
+    @extend %text_semibold;
     color: $red;
     margin-top: 7vh;
     text-align: center;
+  }
+
+  &_resent_text {
     @extend %text_semibold;
+    color: $success;
+    margin-top: 7vh;
+    text-align: center;
   }
 
   &__footer {

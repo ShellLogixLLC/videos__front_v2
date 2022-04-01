@@ -1,5 +1,7 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
+import {RootState} from '~/types';
+
 import * as authThunks from './thunks';
 import {reducerName, AuthStates} from './constants';
 import {AuthSliceState, UpdateAccessTokenAction} from './types';
@@ -56,10 +58,22 @@ const authSlice = createSlice({
     builder.addCase(authThunks.userVerify.rejected, (state, action) => {
       state.error = action.error;
     });
+
+    builder.addCase(authThunks.userSentVerifyAgain.fulfilled, (state) => {
+      state.loading = AuthStates.IDLE;
+    });
+    builder.addCase(
+      authThunks.userSentVerifyAgain.rejected,
+      (state, action) => {
+        state.error = action.error;
+      },
+    );
   },
 });
 
 const {reducer, actions} = authSlice;
+
+export const authSelect = (state: RootState) => state.auth;
 
 export const authActions = {
   ...actions,

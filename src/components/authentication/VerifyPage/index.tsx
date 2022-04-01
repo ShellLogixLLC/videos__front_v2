@@ -4,7 +4,8 @@ import classNames from 'classnames';
 import {Logo} from '~/assets';
 import {AuthService} from '~/api';
 import {verifyPageState} from '~/utils';
-// import {useAppDispatch, useAppSelector} from '~/hooks';
+import {authActions, authSelect} from '~/store/auth';
+import {useAppDispatch, useAppSelector} from '~/hooks';
 
 import Link from '../../shared/Link';
 import Timer from '../../shared/StopWatch';
@@ -17,13 +18,16 @@ import styles from './VerifyPage.module.scss';
 const ContractSign: React.FC<VerifyProps> = ({
   my_account = 'my_account@gmail.com',
 }) => {
-  // const dispatch = useAppDispatch();
-  // const {state} = useAppSelector();
-  // console.log(useAppSelector());
+  const dispatch = useAppDispatch();
+  const {emailVerify, isVerify} = useAppSelector(authSelect);
 
+  const [timer, setTimer] = useState<number>(0);
   const [codes, setCodes] = useState<{[key: number]: string}>(verifyPageState);
   const [isValid, setIsValid] = useState<boolean>(false);
   const [isResend, setIsResend] = useState<boolean>(false);
+  const [isNotValid, setIsNotValid] = useState<boolean>(true);
+
+  // console.log(timer, isNotValid, '5555555');
 
   const ref1 = useRef<HTMLInputElement | null>(null);
   const ref2 = useRef<HTMLInputElement | null>(null);
@@ -32,6 +36,21 @@ const ContractSign: React.FC<VerifyProps> = ({
   const ref5 = useRef<HTMLInputElement | null>(null);
   const ref6 = useRef<HTMLInputElement | null>(null);
   const ref7 = useRef<HTMLInputElement | null>(null);
+
+  const isInputsEmpty = Object.values(codes).join('') === '';
+
+  const footerClasses = classNames(styles.container__footer, {
+    [styles.container__footer_valid]: isVerify,
+  });
+
+  const isProceedClasses = classNames(styles.container_proceed, {
+    [styles.container_proceed_valid]: isValid,
+  });
+
+  const isClearClasses = classNames(styles.container_proceed_clear, {
+    [styles.container_proceed_clear_valid]: isValid,
+  });
+
   const {
     categories: {categories},
   } = AuthService.useCategories();
@@ -44,9 +63,41 @@ const ContractSign: React.FC<VerifyProps> = ({
     setIsValid(false);
   };
 
+  useEffect(() => {
+    const date = new Date().getTime();
+    const isTime = localStorage.getItem('timer');
+    const time = !isTime ? Number(isTime) : 0;
+    const allTime = !!isTime ? date - Number(isTime) : 0;
+    console.log(allTime, time, !!isTime, 'localStorage.getItem');
+
+    setTimer(allTime);
+    if (!isTime) {
+      date - Number(time) >= 120000
+        ? setIsNotValid(true)
+        : setTimeout(() => {
+            setIsNotValid(true);
+          }, date - Number(time));
+    } else {
+      setIsNotValid(false);
+    }
+
+    if (isNotValid) localStorage.removeItem('timer');
+  }, []);
+
   const proceedHandler = () => {
-    setIsResend(true);
-    // dispatch(authActions.userVerify());
+    if (isResend) {
+      dispatch(authActions.userSentVerifyAgain({email: emailVerify}));
+    } else {
+      setIsResend(true);
+
+      const code = Object.values(codes).join('');
+      const requestData = {
+        code,
+        email: emailVerify,
+      };
+
+      dispatch(authActions.userVerify(requestData));
+    }
   };
 
   const handleInput =
@@ -214,18 +265,6 @@ const ContractSign: React.FC<VerifyProps> = ({
     },
   );
 
-  const footerClasses = classNames(styles.container__footer, {
-    [styles.container__footer_valid]: isResend,
-  });
-
-  const isProceedClasses = classNames(styles.container_proceed, {
-    [styles.container_proceed_valid]: isValid,
-  });
-
-  const isClearClasses = classNames(styles.container_proceed_clear, {
-    [styles.container_proceed_clear_valid]: isValid,
-  });
-
   const renderVerificationIsMail = inputRows.map(({ref, id, name}) => (
     <Input
       key={id}
@@ -255,8 +294,7 @@ const ContractSign: React.FC<VerifyProps> = ({
         </div>
       </div>
       <div className={isProceedClasses}>
-        {isResend ? <Timer /> : null}
-        {!isResend ? (
+        {!isInputsEmpty ? (
           <>
             {isValid && (
               <Button
@@ -270,14 +308,25 @@ const ContractSign: React.FC<VerifyProps> = ({
               Clear
             </Button>
           </>
-        ) : null}
+        ) : (
+          <Timer
+            timer={timer}
+            setTimer={setTimer}
+            isNotValid={isNotValid}
+            setIsNotValid={setIsNotValid}
+          />
+        )}
       </div>
-      {isResend && (
+      {!isVerify && isResend && (
         <span className={styles.container_wrong_otp}>
           Wrong OTP try again in 2 minutes.
         </span>
       )}
-
+      {isInputsEmpty && timer === 0 && (
+        <span className={styles.container_resent_text}>
+          You can resend OPT now !
+        </span>
+      )}
       <div className={footerClasses}>
         <span className={styles.container__footer__name}>
           We’ve sent an e-mail to

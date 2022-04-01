@@ -71,6 +71,22 @@ export const userVerify = createAsyncThunk(
   },
 );
 
+export const userSentVerifyAgain = createAsyncThunk(
+  `${reducerName}/user/send-verification`,
+  async (credentials: {email: string}, thunkAPI) => {
+    try {
+      const {data} = await client.post('/user/send-verification', credentials);
+      console.log(data, 'userTwoVerify');
+
+      return;
+    } catch (error) {
+      const {message} = error as Error;
+
+      return thunkAPI.rejectWithValue({error: message});
+    }
+  },
+);
+
 export const logout = createAsyncThunk(
   `${reducerName}/logout`,
   async (_, thunkAPI) => {
