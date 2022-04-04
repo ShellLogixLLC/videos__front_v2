@@ -1,10 +1,11 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useMemo} from 'react';
+import {toast} from 'react-toastify';
 
 import {Logo} from '~/assets';
 import {RouterService} from '~/services';
 import {registrationForm, Route} from '~/constants';
-import {authActions} from '~/store/auth';
-import {useAppDispatch} from '~/hooks';
+import {authActions, authSelect} from '~/store/auth';
+import {useAppDispatch, useAppSelector} from '~/hooks';
 
 import Form from '../../shared/forms/Form';
 import BackButton from '../../shared/BackButton';
@@ -14,6 +15,8 @@ import styles from './Registration.module.scss';
 
 const Registration: React.FC = () => {
   const dispatch = useAppDispatch();
+  const {error} = useAppSelector(authSelect);
+
   const handleResetPassFormSubmit = useCallback((values) => {
     const {email, username, create_password, confirm_password, verification} =
       values;
@@ -26,12 +29,21 @@ const Registration: React.FC = () => {
     };
 
     dispatch(authActions.register(userInfo));
-    if (verification) {
-      RouterService.push(Route.RegistrationSetupPassword);
-    } else {
-      RouterService.push(Route.Home);
-    }
   }, []);
+
+  const renderBackendErrors = useMemo(
+    () =>
+      error !== null &&
+      error.map((el: any, idx: number) => {
+        const val = Object.values(el);
+        toast.dark(
+          <p key={idx} className={styles.toast_style}>
+            {val}
+          </p>,
+        );
+      }),
+    [error],
+  );
 
   return (
     <div className={`container_without-header ${styles.container}`}>
@@ -55,6 +67,7 @@ const Registration: React.FC = () => {
         innerClassName={styles.container__registration__block__input}
         inputClassName={styles.container__registration__block__input__inp}
       />
+      {renderBackendErrors}
     </div>
   );
 };

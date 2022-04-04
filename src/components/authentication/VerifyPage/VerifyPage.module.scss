@@ -1,5 +1,5 @@
 .container {
-  max-width: 376px;
+  max-width: 399px;
   width: 100%;
   margin: 0 auto;
   position: relative;
@@ -123,10 +123,7 @@
   }
 
   &_resent_text {
-    @extend %text_semibold;
     color: $success;
-    margin-top: 7vh;
-    text-align: center;
   }
 
   &__footer {

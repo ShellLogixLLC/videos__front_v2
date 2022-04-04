@@ -2,10 +2,13 @@ import React, {useEffect, useMemo, useRef, useState} from 'react';
 import classNames from 'classnames';
 
 import {Logo} from '~/assets';
+import {Route} from '~/constants';
 import {AuthService} from '~/api';
+import {RouterService} from '~/services';
 import {verifyPageState} from '~/utils';
 import {authActions, authSelect} from '~/store/auth';
 import {useAppDispatch, useAppSelector} from '~/hooks';
+import {getCookieFromBrowser, removeCookie} from '~/libraries';
 
 import Link from '../../shared/Link';
 import Timer from '../../shared/StopWatch';
@@ -21,13 +24,14 @@ const ContractSign: React.FC<VerifyProps> = ({
   const dispatch = useAppDispatch();
   const {emailVerify, isVerify} = useAppSelector(authSelect);
 
-  const [timer, setTimer] = useState<number>(0);
+  const date = new Date().getTime();
+  const cookieTimer = Number(getCookieFromBrowser('timer')) - date;
+  const time = !!cookieTimer ? cookieTimer / 1000 : 120;
+
+  const [timer, setTimer] = useState<number>(time);
   const [codes, setCodes] = useState<{[key: number]: string}>(verifyPageState);
   const [isValid, setIsValid] = useState<boolean>(false);
-  const [isResend, setIsResend] = useState<boolean>(false);
   const [isNotValid, setIsNotValid] = useState<boolean>(true);
-
-  // console.log(timer, isNotValid, '5555555');
 
   const ref1 = useRef<HTMLInputElement | null>(null);
   const ref2 = useRef<HTMLInputElement | null>(null);
@@ -51,6 +55,10 @@ const ContractSign: React.FC<VerifyProps> = ({
     [styles.container_proceed_clear_valid]: isValid,
   });
 
+  const spanClasses = classNames(styles.container_wrong_otp, {
+    [styles.container_resent_text]: isNotValid,
+  });
+
   const {
     categories: {categories},
   } = AuthService.useCategories();
@@ -64,40 +72,31 @@ const ContractSign: React.FC<VerifyProps> = ({
   };
 
   useEffect(() => {
-    const date = new Date().getTime();
-    const isTime = localStorage.getItem('timer');
-    const time = !isTime ? Number(isTime) : 0;
-    const allTime = !!isTime ? date - Number(isTime) : 0;
-    console.log(allTime, time, !!isTime, 'localStorage.getItem');
-
-    setTimer(allTime);
-    if (!isTime) {
-      date - Number(time) >= 120000
-        ? setIsNotValid(true)
-        : setTimeout(() => {
-            setIsNotValid(true);
-          }, date - Number(time));
-    } else {
+    if (!!cookieTimer) {
+      if (cookieTimer >= 120000) {
+        setIsNotValid(true);
+        removeCookie('timer');
+        setTimer(120);
+      } else {
+        setTimeout(() => {
+          setIsNotValid(true);
+          removeCookie('timer');
+          setTimer(120);
+        }, cookieTimer);
+      }
       setIsNotValid(false);
     }
-
-    if (isNotValid) localStorage.removeItem('timer');
   }, []);
 
   const proceedHandler = () => {
-    if (isResend) {
-      dispatch(authActions.userSentVerifyAgain({email: emailVerify}));
-    } else {
-      setIsResend(true);
+    const code = Object.values(codes).join('');
+    const requestData = {
+      code,
+      email: emailVerify,
+    };
 
-      const code = Object.values(codes).join('');
-      const requestData = {
-        code,
-        email: emailVerify,
-      };
-
-      dispatch(authActions.userVerify(requestData));
-    }
+    dispatch(authActions.userVerify(requestData));
+    RouterService.push(Route.SignIn);
   };
 
   const handleInput =
@@ -281,6 +280,14 @@ const ContractSign: React.FC<VerifyProps> = ({
     />
   ));
 
+  const InformMessages = isInputsEmpty && (
+    <span className={spanClasses}>
+      {!!cookieTimer
+        ? 'Wrong OTP try again in 2 minutes.'
+        : 'You can resend OPT now !'}
+    </span>
+  );
+
   return (
     <div className={styles.container}>
       <Link to="/" className={styles.container__cancel}>
@@ -317,16 +324,7 @@ const ContractSign: React.FC<VerifyProps> = ({
           />
         )}
       </div>
-      {!isVerify && isResend && (
-        <span className={styles.container_wrong_otp}>
-          Wrong OTP try again in 2 minutes.
-        </span>
-      )}
-      {isInputsEmpty && timer === 0 && (
-        <span className={styles.container_resent_text}>
-          You can resend OPT now !
-        </span>
-      )}
+      {InformMessages}
       <div className={footerClasses}>
         <span className={styles.container__footer__name}>
           We’ve sent an e-mail to

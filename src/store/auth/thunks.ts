@@ -41,14 +41,17 @@ export const register = createAsyncThunk(
   ) => {
     try {
       const {data} = await client.post('/user/signup', credentials);
+      RouterService.push(Route.RegistrationSetupPassword);
 
       return {
         emailVerify: data.email,
       };
-    } catch (error) {
-      const {message} = error as Error;
+    } catch (error: any) {
+      if (!error.response) {
+        throw error;
+      }
 
-      return thunkAPI.rejectWithValue({error: message});
+      return thunkAPI.rejectWithValue(error.response.data.errors);
     }
   },
 );
@@ -58,14 +61,12 @@ export const userVerify = createAsyncThunk(
   async (credentials: {email: string; code: string}, thunkAPI) => {
     try {
       const {data} = await client.post('/user/verify', credentials);
-      console.log(data, 'userVerify');
 
       return {
         isVerify: data.success,
       };
     } catch (error) {
       const {message} = error as Error;
-
       return thunkAPI.rejectWithValue({error: message});
     }
   },
@@ -76,7 +77,6 @@ export const userSentVerifyAgain = createAsyncThunk(
   async (credentials: {email: string}, thunkAPI) => {
     try {
       const {data} = await client.post('/user/send-verification', credentials);
-      console.log(data, 'userTwoVerify');
 
       return;
     } catch (error) {

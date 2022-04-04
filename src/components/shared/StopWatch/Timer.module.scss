@@ -1,9 +1,10 @@
 .container {
   @extend %flex-between;
+  max-width: 399px;
   width: 100%;
 
   &__resend {
-    max-width: 240px;
+    max-width: 268px;
     width: 100%;
     margin-right: 10px;
 
@@ -12,20 +13,20 @@
       cursor: not-allowed;
     }
   }
+
   &__wrapper {
-    width: 102px;
     @extend %flex-between;
+    @extend %timer;
+    color: $white;
 
-    p {
-      font-weight: 100;
-      font-size: 25px;
-      width: 77px;
-      text-align: center;
-    }
-
-    span {
-      font-weight: bold;
-      font-size: 20px;
+    &_disable {
+      color: $grey_color !important;
     }
   }
+}
+
+.timer_block {
+  max-width: 118px;
+  width: 100%;
+  @extend %flex-between;
 }

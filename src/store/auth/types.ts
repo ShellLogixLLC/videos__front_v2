@@ -4,7 +4,7 @@ import {AuthStates} from './constants';
 
 export type AuthSliceState = {
   user: any;
-  error?: SerializedError | null;
+  error?: SerializedError | any;
   loading: AuthStates;
   isVerify: boolean;
   accessToken: string;

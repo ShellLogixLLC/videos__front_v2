@@ -45,10 +45,12 @@ const authSlice = createSlice({
 
     builder.addCase(authThunks.register.fulfilled, (state, action) => {
       state.emailVerify = action.payload.emailVerify;
+      state.error = null;
       state.loading = AuthStates.IDLE;
     });
     builder.addCase(authThunks.register.rejected, (state, action) => {
-      state.error = action.error;
+      state.loading = AuthStates.IDLE;
+      state.error = action.payload;
     });
 
     builder.addCase(authThunks.userVerify.fulfilled, (state, action) => {
