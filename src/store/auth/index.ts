@@ -81,6 +81,15 @@ const authSlice = createSlice({
       state.loading = AuthStates.IDLE;
       state.error = action.error;
     });
+
+    builder.addCase(authThunks.forgotPassword.fulfilled, (state, action) => {
+      state.error = null;
+      state.loading = AuthStates.IDLE;
+    });
+    builder.addCase(authThunks.forgotPassword.rejected, (state, action) => {
+      state.loading = AuthStates.IDLE;
+      state.error = action.error;
+    });
   },
 });
 

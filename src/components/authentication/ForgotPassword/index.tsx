@@ -21,8 +21,6 @@ const ForgotPassword: React.FC = () => {
 
   const [isLoading, toggleIsLoading] = useToggle(false);
 
-  const routeSignIn = Route.SignIn;
-
   const ifResetButton = isVerified ? 'Resend link' : 'Reset Password';
 
   const ifSubmitText = isVerified
@@ -60,7 +58,7 @@ const ForgotPassword: React.FC = () => {
 
   return (
     <div className={`container_without-header ${styles.container}`}>
-      <Link to={routeSignIn} className={styles.container__route}>
+      <Link to={Route.SignIn} className={styles.container__route}>
         Back to sign in
       </Link>
       <div className={styles.container__content}>
