@@ -3,16 +3,15 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {RootState} from '~/types';
 
 import * as authThunks from './thunks';
-import {reducerName, AuthStates} from './constants';
-import {AuthSliceState, UpdateAccessTokenAction} from './types';
+import {reducerName} from './constants';
+import {AuthSliceState, AuthStates, UpdateAccessTokenAction} from './types';
 
 const internalInitialState: AuthSliceState = {
-  user: null,
   error: null,
-  isVerify: false,
+  loading: AuthStates.IDLE,
+  isVerified: false,
   accessToken: '',
   emailVerify: '',
-  loading: AuthStates.IDLE,
 };
 
 const authSlice = createSlice({
@@ -54,7 +53,7 @@ const authSlice = createSlice({
     });
 
     builder.addCase(authThunks.userVerify.fulfilled, (state, action) => {
-      state.isVerify = action.payload.isVerify;
+      state.isVerified = action.payload.isVerified;
       state.loading = AuthStates.IDLE;
     });
     builder.addCase(authThunks.userVerify.rejected, (state, action) => {

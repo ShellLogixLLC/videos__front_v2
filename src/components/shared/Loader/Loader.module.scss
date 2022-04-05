@@ -72,15 +72,17 @@
 }
 
 .loader {
+  @extend %flex-center;
+  position: absolute;
+  background-color: $light-rgba;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+
   &__content {
     display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1000;
-    margin: auto;
     width: 80px;
     height: 80px;
 

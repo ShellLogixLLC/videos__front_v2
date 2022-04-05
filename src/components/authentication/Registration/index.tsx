@@ -1,7 +1,8 @@
-import React, {useCallback, useMemo} from 'react';
-import {toast} from 'react-toastify';
+import React, {useCallback, useEffect} from 'react';
+import {useToggle} from 'react-use';
 
 import {Logo} from '~/assets';
+import {Loader} from '~/components';
 import {registrationForm} from '~/constants';
 import {authActions, authSelect} from '~/store/auth';
 import {useAppDispatch, useAppSelector} from '~/hooks';
@@ -16,32 +17,28 @@ const Registration: React.FC = () => {
   const dispatch = useAppDispatch();
   const {error} = useAppSelector(authSelect);
 
-  const handleResetPassFormSubmit = useCallback((values) => {
-    const {email, username, create_password, confirm_password} = values;
+  const [isLoading, toggleIsLoading] = useToggle(false);
 
-    const userInfo = {
-      email,
-      username,
-      password: create_password,
-      passwordConfirmation: confirm_password,
-    };
+  const handleResetPassFormSubmit = useCallback(
+    (values) => {
+      const {email, username, create_password, confirm_password} = values;
 
-    dispatch(authActions.register(userInfo));
-  }, []);
+      const userInfo = {
+        email,
+        username,
+        password: create_password,
+        passwordConfirmation: confirm_password,
+      };
 
-  const renderBackendErrors = useMemo(
-    () =>
-      error !== null &&
-      error.map((el: any, idx: number) => {
-        const val = Object.values(el);
-        toast.dark(
-          <p key={idx} className={styles.toast_style}>
-            {val}
-          </p>,
-        );
-      }),
-    [error],
+      dispatch(authActions.register(userInfo));
+      toggleIsLoading();
+    },
+    [dispatch],
   );
+
+  useEffect(() => {
+    if (error) toggleIsLoading();
+  }, [isLoading, error]);
 
   return (
     <div className={`container_without-header ${styles.container}`}>
@@ -65,7 +62,7 @@ const Registration: React.FC = () => {
         innerClassName={styles.container__registration__block__input}
         inputClassName={styles.container__registration__block__input__inp}
       />
-      {renderBackendErrors}
+      {isLoading && <Loader isVertical />}
     </div>
   );
 };

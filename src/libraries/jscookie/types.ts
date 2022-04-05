@@ -1,3 +1,3 @@
-export interface Process {
+export interface IProcess {
   browser: boolean;
 }

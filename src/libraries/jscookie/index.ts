@@ -2,9 +2,9 @@ import cookie from 'js-cookie';
 
 import {Route} from '~/constants';
 
-import {Process} from './types';
+import {IProcess} from './types';
 
-declare const process: Process;
+declare const process: IProcess;
 
 export const setCookie = (key: string, value: string) => {
   if (process.browser) {

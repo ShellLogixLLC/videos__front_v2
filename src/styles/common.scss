@@ -180,6 +180,14 @@
   }
 }
 
+.toast_error_style {
+  color: $black;
+
+  &:first-letter {
+    text-transform: capitalize;
+  }
+}
+
 .container_without-header {
   width: 100%;
 

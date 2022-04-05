@@ -22,7 +22,7 @@ const ContractSign: React.FC<VerifyProps> = ({
   my_account = 'my_account@gmail.com',
 }) => {
   const dispatch = useAppDispatch();
-  const {emailVerify, isVerify} = useAppSelector(authSelect);
+  const {emailVerify, isVerified} = useAppSelector(authSelect);
 
   const date = new Date().getTime();
   const cookieTimer = Number(getCookieFromBrowser('timer')) - date;
@@ -44,7 +44,7 @@ const ContractSign: React.FC<VerifyProps> = ({
   const isInputsEmpty = Object.values(codes).join('') === '';
 
   const footerClasses = classNames(styles.container__footer, {
-    [styles.container__footer_valid]: isVerify,
+    [styles.container__footer_valid]: isVerified,
   });
 
   const isProceedClasses = classNames(styles.container_proceed, {

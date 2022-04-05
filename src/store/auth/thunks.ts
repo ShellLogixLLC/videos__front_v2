@@ -1,11 +1,13 @@
-import {createAsyncThunk} from '@reduxjs/toolkit';
 import {toast} from 'react-toastify';
+import {createAsyncThunk} from '@reduxjs/toolkit';
 
-import {client} from '~/api';
 import {Route} from '~/constants';
+import {client} from '~/api';
+import {errorToast} from '~/utils';
 import {RouterService} from '~/services';
 
 import {reducerName} from './constants';
+import {AxiosError} from 'axios';
 
 export const login = createAsyncThunk(
   `${reducerName}/login`,
@@ -50,6 +52,8 @@ export const register = createAsyncThunk(
       if (!error.response) {
         throw error;
       }
+      const {errors} = error.response.data;
+      if (errors) errorToast(errors);
 
       return thunkAPI.rejectWithValue(error.response.data.errors);
     }
@@ -63,7 +67,7 @@ export const userVerify = createAsyncThunk(
       const {data} = await client.post('/user/verify', credentials);
 
       return {
-        isVerify: data.success,
+        isVerified: data.success,
       };
     } catch (error) {
       const {message} = error as Error;
