@@ -10,8 +10,8 @@ const internalInitialState: AuthSliceState = {
   error: null,
   loading: AuthStates.IDLE,
   userInfo: null,
-  emailVerify: '',
   accessToken: '',
+  emailVerify: '',
   isVerified: false,
 };
 
