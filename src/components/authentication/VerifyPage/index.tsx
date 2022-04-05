@@ -26,7 +26,7 @@ const ContractSign: React.FC<VerifyProps> = ({
 
   const date = new Date().getTime();
   const cookieTimer = Number(getCookieFromBrowser('timer')) - date;
-  const time = !!cookieTimer ? cookieTimer / 1000 : 120;
+  const time = cookieTimer ? cookieTimer / 1000 : 120;
 
   const [timer, setTimer] = useState<number>(time);
   const [codes, setCodes] = useState<{[key: number]: string}>(verifyPageState);
@@ -72,7 +72,7 @@ const ContractSign: React.FC<VerifyProps> = ({
   };
 
   useEffect(() => {
-    if (!!cookieTimer) {
+    if (cookieTimer) {
       if (cookieTimer >= 120000) {
         setIsNotValid(true);
         removeCookie('timer');
@@ -282,7 +282,7 @@ const ContractSign: React.FC<VerifyProps> = ({
 
   const InformMessages = isInputsEmpty && (
     <span className={spanClasses}>
-      {!!cookieTimer
+      {cookieTimer
         ? 'Wrong OTP try again in 2 minutes.'
         : 'You can resend OPT now !'}
     </span>

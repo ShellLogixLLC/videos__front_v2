@@ -2,8 +2,7 @@ import React, {useCallback, useMemo} from 'react';
 import {toast} from 'react-toastify';
 
 import {Logo} from '~/assets';
-import {RouterService} from '~/services';
-import {registrationForm, Route} from '~/constants';
+import {registrationForm} from '~/constants';
 import {authActions, authSelect} from '~/store/auth';
 import {useAppDispatch, useAppSelector} from '~/hooks';
 
@@ -18,8 +17,7 @@ const Registration: React.FC = () => {
   const {error} = useAppSelector(authSelect);
 
   const handleResetPassFormSubmit = useCallback((values) => {
-    const {email, username, create_password, confirm_password, verification} =
-      values;
+    const {email, username, create_password, confirm_password} = values;
 
     const userInfo = {
       email,
