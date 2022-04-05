@@ -1,5 +1,5 @@
 .container {
-  max-width: 376px;
+  max-width: 399px;
   width: 100%;
   margin: 0 auto;
   position: relative;
@@ -116,10 +116,14 @@
   }
 
   &_wrong_otp {
+    @extend %text_semibold;
     color: $red;
     margin-top: 7vh;
     text-align: center;
-    @extend %text_semibold;
+  }
+
+  &_resent_text {
+    color: $success;
   }
 
   &__footer {

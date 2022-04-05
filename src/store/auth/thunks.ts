@@ -1,11 +1,13 @@
-import {createAsyncThunk} from '@reduxjs/toolkit';
 import {toast} from 'react-toastify';
+import {createAsyncThunk} from '@reduxjs/toolkit';
 
-import {client} from '~/api';
 import {Route} from '~/constants';
+import {client} from '~/api';
+import {errorToast} from '~/utils';
 import {RouterService} from '~/services';
 
 import {reducerName} from './constants';
+import {AxiosError} from 'axios';
 
 export const login = createAsyncThunk(
   `${reducerName}/login`,
@@ -29,17 +31,58 @@ export const login = createAsyncThunk(
 );
 
 export const register = createAsyncThunk(
-  `${reducerName}/register`,
+  `${reducerName}/user/signup`,
   async (
-    credentials: {email: string; password: string; name: string},
+    credentials: {
+      email: string;
+      username: string;
+      password: string;
+      passwordConfirmation: string;
+    },
     thunkAPI,
   ) => {
     try {
-      const response = await client.post('api/register', credentials);
+      const {data} = await client.post('/user/signup', credentials);
+      RouterService.push(Route.RegistrationSetupPassword);
 
       return {
-        accessToken: response.data.accessToken,
+        emailVerify: data.email,
       };
+    } catch (error: any) {
+      if (!error.response) {
+        throw error;
+      }
+      const {errors} = error.response.data;
+      if (errors) errorToast(errors);
+
+      return thunkAPI.rejectWithValue(error.response.data.errors);
+    }
+  },
+);
+
+export const userVerify = createAsyncThunk(
+  `${reducerName}/user/verify`,
+  async (credentials: {email: string; code: string}, thunkAPI) => {
+    try {
+      const {data} = await client.post('/user/verify', credentials);
+
+      return {
+        isVerified: data.success,
+      };
+    } catch (error) {
+      const {message} = error as Error;
+      return thunkAPI.rejectWithValue({error: message});
+    }
+  },
+);
+
+export const userSentVerifyAgain = createAsyncThunk(
+  `${reducerName}/user/send-verification`,
+  async (credentials: {email: string}, thunkAPI) => {
+    try {
+      const {data} = await client.post('/user/send-verification', credentials);
+
+      return;
     } catch (error) {
       const {message} = error as Error;
 

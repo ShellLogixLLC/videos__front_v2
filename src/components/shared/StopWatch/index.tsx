@@ -1,59 +1,70 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import classNames from 'classnames';
 
-import Button from '../Button';
+import {formatTimer} from '~/utils';
+import {removeCookie, setCookie} from '~/libraries';
+import {authActions, authSelect} from '~/store/auth';
+import {INITIAL_TIME_MILLISECONDS} from '~/constants';
+import {useAppDispatch, useAppSelector} from '~/hooks';
 
+import Button from '../Button';
+import Typography from '../Typography';
+
+import {ITimerProps} from './types';
 import styles from './Timer.module.scss';
 
-const Timer: React.FC = () => {
-  const [timer, setTimer] = useState<number>(0);
+const Timer: React.FC<ITimerProps> = ({
+  timer,
+  setTimer,
+  isNotValid,
+  setIsNotValid,
+}) => {
+  const dispatch = useAppDispatch();
+  const {emailVerify} = useAppSelector(authSelect);
 
-  const countRef = useRef<any>(null);
-  const [isNotValid, setIsNotValid] = useState<boolean>(true);
+  const wrapperClasses = classNames(styles.container__wrapper, {
+    [styles.container__wrapper_disable]: !isNotValid,
+  });
 
-  const formatTime = (timer: number) => {
-    const getSeconds = `0${timer % 60}`.slice(-2);
-    const minutes: number | bigint | any = `${Math.floor(timer / 60)}`;
-    const getMinutes = `0${minutes % 60}`.slice(-2);
-
-    return `${getMinutes}:${getSeconds}`;
-  };
-
-  useEffect(() => {
-    clearInterval(countRef.current);
-  }, []);
-
-  useEffect(() => {
-    countRef.current = setInterval(() => {
-      setTimer((timer) => timer + 1);
-    }, 1000);
-  }, []);
+  const resendClasses = classNames(styles.container__resend, {
+    [styles.container__resend_not_valid]: !isNotValid,
+  });
 
   useEffect(() => {
-    setInterval(() => {
-      setIsNotValid(false);
-    }, 120000);
+    if (!isNotValid) {
+      const intervalId = setInterval(() => {
+        setTimer((timer) => timer - 1);
+      }, 1000);
+
+      return () => clearInterval(intervalId);
+    }
   }, [isNotValid]);
 
   const resendHandler = () => {
-    setIsNotValid(true);
-  };
+    const date = new Date().getTime();
 
-  const resendClasses = classNames(styles.container__resend, {
-    [styles.container__resend_not_valid]: isNotValid,
-  });
+    setCookie('timer', String(date + INITIAL_TIME_MILLISECONDS));
+    setIsNotValid(false);
+    dispatch(authActions.userSentVerifyAgain({email: emailVerify}));
+
+    setTimeout(() => {
+      removeCookie('timer');
+    }, INITIAL_TIME_MILLISECONDS);
+  };
 
   return (
     <div className={styles.container}>
       <Button
         onClick={resendHandler}
-        disabled={isNotValid}
+        disabled={!isNotValid}
         className={resendClasses}>
         Resend OTP
       </Button>
-      <div className={styles.container__wrapper}>
-        <p>{formatTime(timer)}</p>
-        <span>m</span>
+      <div className={styles.timer_block}>
+        <Typography className={wrapperClasses}>{formatTimer(timer)}</Typography>
+        <Typography tagName="span" className={wrapperClasses}>
+          m
+        </Typography>
       </div>
     </div>
   );
