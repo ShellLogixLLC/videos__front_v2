@@ -9,9 +9,10 @@ import {AuthSliceState, AuthStates, UpdateAccessTokenAction} from './types';
 const internalInitialState: AuthSliceState = {
   error: null,
   loading: AuthStates.IDLE,
-  isVerified: false,
-  accessToken: '',
+  userInfo: null,
   emailVerify: '',
+  accessToken: '',
+  isVerified: false,
 };
 
 const authSlice = createSlice({
@@ -29,6 +30,7 @@ const authSlice = createSlice({
     });
     builder.addCase(authThunks.login.fulfilled, (state, action) => {
       state.error = null;
+      state.userInfo = action.payload.userInfo;
       state.accessToken = action.payload.accessToken;
       state.loading = AuthStates.IDLE;
     });
@@ -57,6 +59,7 @@ const authSlice = createSlice({
       state.loading = AuthStates.IDLE;
     });
     builder.addCase(authThunks.userVerify.rejected, (state, action) => {
+      state.loading = AuthStates.IDLE;
       state.error = action.error;
     });
 
@@ -66,9 +69,18 @@ const authSlice = createSlice({
     builder.addCase(
       authThunks.userSentVerifyAgain.rejected,
       (state, action) => {
+        state.loading = AuthStates.IDLE;
         state.error = action.error;
       },
     );
+    builder.addCase(authThunks.forgotPassword.fulfilled, (state, action) => {
+      state.isVerified = action.payload.isVerified;
+      state.loading = AuthStates.IDLE;
+    });
+    builder.addCase(authThunks.forgotPassword.rejected, (state, action) => {
+      state.loading = AuthStates.IDLE;
+      state.error = action.error;
+    });
   },
 });
 

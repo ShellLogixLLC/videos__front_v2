@@ -1,57 +1,62 @@
-import React, {useCallback, useState, useContext} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import classNames from 'classnames';
-import {toast} from 'react-toastify';
+import {useToggle} from 'react-use';
 
 import {Logo} from '~/assets';
 import {Route} from '~/constants';
-import {ModalContext} from '~/context';
+import {Loader} from '~/components';
 import {forgotPasswordForm} from '~/constants';
+import {authActions, authSelect} from '~/store/auth';
+import {useAppDispatch, useAppSelector} from '~/hooks';
 
 import Link from '../../shared/Link';
 import Form from '../../shared/forms/Form';
 import Typography from '../../shared/Typography';
 
-import Modal from './modal';
 import styles from './ForgotPassword.module.scss';
 
 const ForgotPassword: React.FC = () => {
-  const {openModal} = useContext(ModalContext);
+  const dispatch = useAppDispatch();
+  const {error, isVerified} = useAppSelector(authSelect);
 
-  const [isValid, setIsValid] = useState<string>('');
-
-  const handleForgotPasswordSubmit = useCallback(
-    (values) => {
-      setIsValid(values);
-      openModal(<Modal />);
-      toast.dark(<p className={styles.toast_style}>You are not registered</p>);
-    },
-    [openModal],
-  );
+  const [isLoading, toggleIsLoading] = useToggle(false);
 
   const routeSignIn = Route.SignIn;
 
-  const isEmpty = isValid === '';
+  const ifResetButton = isVerified ? 'Resend link' : 'Reset Password';
 
-  const ifResetButton = !isEmpty ? 'Resend link' : 'Reset Password';
-
-  const ifSubmitText = !isEmpty
+  const ifSubmitText = isVerified
     ? 'We’ve sent a password reset link to your email. Email should be received within 5 minutes.'
     : 'Enter your email address and we’ll send you instructions to reset your password.';
 
   const isFormClosed = classNames(styles.container__content__sign_in__block, {
-    [styles.container__content__sign_in__block_close]: !isEmpty,
+    [styles.container__content__sign_in__block_close]: isVerified,
   });
 
   const formBtnClasses = classNames({
-    [styles.container__content__sign_in__block_btn]: !isEmpty,
+    [styles.container__content__sign_in__block_btn]: isVerified,
   });
 
   const formInputClasses = classNames(
     styles.container__content__sign_in__block__input__inp,
     {
-      [styles.container__content__sign_in__block__input__inp_close]: !isEmpty,
+      [styles.container__content__sign_in__block__input__inp_close]: isVerified,
     },
   );
+
+  const handleForgotPasswordSubmit = useCallback(
+    (values) => {
+      dispatch(authActions.forgotPassword(values));
+      toggleIsLoading();
+    },
+    [dispatch],
+  );
+
+  useEffect(() => {
+    if (error || isVerified) {
+      toggleIsLoading();
+    }
+  }, [error, isVerified, isLoading]);
 
   return (
     <div className={`container_without-header ${styles.container}`}>
@@ -88,6 +93,7 @@ const ForgotPassword: React.FC = () => {
           onSubmit={handleForgotPasswordSubmit}
         />
       </div>
+      {isLoading && <Loader isVertical />}
     </div>
   );
 };
