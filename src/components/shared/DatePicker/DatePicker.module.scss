@@ -3,7 +3,7 @@
   @extend %border-rad_10;
   overflow: hidden;
   width: 100%;
-  height: 80px;
+  min-height: 80px;
   position: relative;
   transition: all 0.3s;
   padding: 16px 28px 16px 24px;
@@ -21,10 +21,12 @@
 
   &__active {
     @extend %box-shadow;
-    max-height: 536px;
-    height: 100%;
-    @include breakpoint(desktop) {
-      max-height: 70%;
+
+    height: 536px;
+    min-height: 70%;
+
+    @media all and (orientation: landscape) {
+      min-height: 100%;
     }
   }
 }

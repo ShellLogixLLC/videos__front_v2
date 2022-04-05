@@ -2,7 +2,7 @@ import React, {useRef} from 'react';
 import classNames from 'classnames';
 
 import {Close} from '~/assets';
-import {useOnClickOutside} from '~/hooks';
+import {useOnClickOutside, useLockBodyScroll} from '~/hooks';
 
 import styles from '../../layouts/Header/Header.module.scss';
 import LanguageDropDown from '../LanguageDropDown';
@@ -23,7 +23,7 @@ const MobileMenu: React.FC<IMobileMenuProps> = ({
   const handleCloseMenu = () => setIsOpen(false);
 
   useOnClickOutside(burgerContainerRef, handleCloseMenu);
-
+  useLockBodyScroll(isOpen);
   return (
     <div className={burgerClassNames}>
       <Close
