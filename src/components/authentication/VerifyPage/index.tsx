@@ -2,20 +2,19 @@ import React, {useEffect, useMemo, useRef, useState} from 'react';
 import classNames from 'classnames';
 
 import {Logo} from '~/assets';
-import {Route} from '~/constants';
-import {AuthService} from '~/api';
 import {RouterService} from '~/services';
 import {verifyPageState} from '~/utils';
 import {authActions, authSelect} from '~/store/auth';
 import {useAppDispatch, useAppSelector} from '~/hooks';
 import {getCookieFromBrowser, removeCookie} from '~/libraries';
+import {INITIAL_TIME, INITIAL_TIME_MILLISECONDS, Route} from '~/constants';
 
 import Link from '../../shared/Link';
 import Timer from '../../shared/StopWatch';
 import Input from '../../shared/Input';
 import Button from '../../shared/Button';
 
-import {VerifyProps} from './types';
+import {CodesProps, VerifyProps} from './types';
 import styles from './VerifyPage.module.scss';
 
 const ContractSign: React.FC<VerifyProps> = ({
@@ -26,10 +25,10 @@ const ContractSign: React.FC<VerifyProps> = ({
 
   const date = new Date().getTime();
   const cookieTimer = Number(getCookieFromBrowser('timer')) - date;
-  const time = cookieTimer ? cookieTimer / 1000 : 120;
+  const time = cookieTimer ? cookieTimer / 1000 : INITIAL_TIME;
 
   const [timer, setTimer] = useState<number>(time);
-  const [codes, setCodes] = useState<{[key: number]: string}>(verifyPageState);
+  const [codes, setCodes] = useState<CodesProps>(verifyPageState);
   const [isValid, setIsValid] = useState<boolean>(false);
   const [isNotValid, setIsNotValid] = useState<boolean>(true);
 
@@ -41,7 +40,7 @@ const ContractSign: React.FC<VerifyProps> = ({
   const ref6 = useRef<HTMLInputElement | null>(null);
   const ref7 = useRef<HTMLInputElement | null>(null);
 
-  const isInputsEmpty = Object.values(codes).join('') === '';
+  const areInputsEmpty = Object.values(codes).join('') === '';
 
   const footerClasses = classNames(styles.container__footer, {
     [styles.container__footer_valid]: isVerified,
@@ -59,13 +58,6 @@ const ContractSign: React.FC<VerifyProps> = ({
     [styles.container_resent_text]: isNotValid,
   });
 
-  const {
-    categories: {categories},
-  } = AuthService.useCategories();
-
-  // eslint-disable-next-line no-console
-  console.log(categories);
-
   const handleClear = () => {
     setCodes(verifyPageState);
     setIsValid(false);
@@ -73,20 +65,20 @@ const ContractSign: React.FC<VerifyProps> = ({
 
   useEffect(() => {
     if (cookieTimer) {
-      if (cookieTimer >= 120000) {
+      if (cookieTimer >= INITIAL_TIME_MILLISECONDS) {
         setIsNotValid(true);
         removeCookie('timer');
-        setTimer(120);
+        setTimer(INITIAL_TIME);
       } else {
         setTimeout(() => {
           setIsNotValid(true);
           removeCookie('timer');
-          setTimer(120);
+          setTimer(INITIAL_TIME);
         }, cookieTimer);
       }
       setIsNotValid(false);
     }
-  }, []);
+  }, [isNotValid]);
 
   const proceedHandler = () => {
     const code = Object.values(codes).join('');
@@ -280,7 +272,7 @@ const ContractSign: React.FC<VerifyProps> = ({
     />
   ));
 
-  const InformMessages = isInputsEmpty && (
+  const InformMessages = areInputsEmpty && (
     <span className={spanClasses}>
       {cookieTimer
         ? 'Wrong OTP try again in 2 minutes.'
@@ -301,7 +293,7 @@ const ContractSign: React.FC<VerifyProps> = ({
         </div>
       </div>
       <div className={isProceedClasses}>
-        {!isInputsEmpty ? (
+        {!areInputsEmpty ? (
           <>
             {isValid && (
               <Button

@@ -9,6 +9,7 @@ export * from './types';
 export {default as langData} from './langData';
 export {default as filmsBase} from './filmsBase';
 export {default as errorToast} from './errorToast';
+export {default as formatTimer} from './formatTimer';
 export {default as commentBlock} from './commentBlock';
 export {default as downloadFile} from './downloadFile';
 export {default as filteredMass} from './filteredMass';

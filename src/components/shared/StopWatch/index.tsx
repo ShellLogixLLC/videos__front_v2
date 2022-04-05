@@ -1,17 +1,19 @@
 import React, {useEffect} from 'react';
 import classNames from 'classnames';
 
+import {formatTimer} from '~/utils';
 import {removeCookie, setCookie} from '~/libraries';
 import {authActions, authSelect} from '~/store/auth';
+import {INITIAL_TIME_MILLISECONDS} from '~/constants';
 import {useAppDispatch, useAppSelector} from '~/hooks';
 
 import Button from '../Button';
 import Typography from '../Typography';
 
-import {ITimer} from './types';
+import {ITimerProps} from './types';
 import styles from './Timer.module.scss';
 
-const Timer: React.FC<ITimer> = ({
+const Timer: React.FC<ITimerProps> = ({
   timer,
   setTimer,
   isNotValid,
@@ -28,14 +30,6 @@ const Timer: React.FC<ITimer> = ({
     [styles.container__resend_not_valid]: !isNotValid,
   });
 
-  const formatTime = () => {
-    const seconds = Math.floor(timer % 60);
-    const getSeconds = seconds <= 9 ? `0${seconds}` : seconds;
-    const minutes: number | bigint | any = `0${Math.floor(timer / 60)}`;
-
-    return `${minutes}:${getSeconds}`;
-  };
-
   useEffect(() => {
     if (!isNotValid) {
       const intervalId = setInterval(() => {
@@ -47,15 +41,15 @@ const Timer: React.FC<ITimer> = ({
   }, [isNotValid]);
 
   const resendHandler = () => {
-    const d = new Date().getTime();
+    const date = new Date().getTime();
 
-    setCookie('timer', String(d + 120000));
+    setCookie('timer', String(date + INITIAL_TIME_MILLISECONDS));
     setIsNotValid(false);
     dispatch(authActions.userSentVerifyAgain({email: emailVerify}));
 
     setTimeout(() => {
       removeCookie('timer');
-    }, 120000);
+    }, INITIAL_TIME_MILLISECONDS);
   };
 
   return (
@@ -67,7 +61,7 @@ const Timer: React.FC<ITimer> = ({
         Resend OTP
       </Button>
       <div className={styles.timer_block}>
-        <Typography className={wrapperClasses}>{formatTime()}</Typography>
+        <Typography className={wrapperClasses}>{formatTimer(timer)}</Typography>
         <Typography tagName="span" className={wrapperClasses}>
           m
         </Typography>

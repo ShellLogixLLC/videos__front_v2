@@ -1,8 +1,4 @@
-export type StopWatch = {
-  isPaused?: boolean;
-};
-
-export interface ITimer {
+export interface ITimerProps {
   timer: number;
   setTimer: React.Dispatch<React.SetStateAction<number>>;
   isNotValid: boolean;

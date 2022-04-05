@@ -1,0 +1,3 @@
+export const INITIAL_TIME = 120;
+
+export const INITIAL_TIME_MILLISECONDS = 120000;
