@@ -4,7 +4,7 @@ import * as setCookie from 'set-cookie-parser';
 import createAuthRefreshInterceptor from 'axios-auth-refresh';
 
 const defaultOptions = {
-  baseURL: 'https://lit-crag-36859.herokuapp.com/api',
+  baseURL: 'https://protected-refuge-67749.herokuapp.com/api',
 };
 
 const api = axios.create(defaultOptions);

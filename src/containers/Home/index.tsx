@@ -12,10 +12,7 @@ const Home: React.FC = () => {
   return (
     <div className={styles.wrapper}>
       <section className={styles.wrapper__one_section}>
-        <Typography
-          variant="Heading"
-          type="Extra"
-          className={styles.wrapper__one_section__title}>
+        <Typography className={styles.wrapper__one_section__title}>
           {t('common.newVideos')}
         </Typography>
         <HorizontalSlider />

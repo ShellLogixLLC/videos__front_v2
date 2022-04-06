@@ -22,3 +22,6 @@ export * from './pagination';
 
 //video url
 export * from './videoUrl';
+
+// timer
+export * from './timer';

@@ -2,51 +2,94 @@ import React, {useEffect, useMemo, useRef, useState} from 'react';
 import classNames from 'classnames';
 
 import {Logo} from '~/assets';
-import {AuthService} from '~/api';
+import {RouterService} from '~/services';
+import {verifyPageState} from '~/utils';
+import {authActions, authSelect} from '~/store/auth';
+import {useAppDispatch, useAppSelector} from '~/hooks';
+import {getCookieFromBrowser, removeCookie} from '~/libraries';
+import {INITIAL_TIME, INITIAL_TIME_MILLISECONDS, Route} from '~/constants';
 
 import Link from '../../shared/Link';
 import Timer from '../../shared/StopWatch';
 import Input from '../../shared/Input';
 import Button from '../../shared/Button';
 
-import {VerifyProps} from './types';
+import {CodesProps, VerifyProps} from './types';
 import styles from './VerifyPage.module.scss';
 
 const ContractSign: React.FC<VerifyProps> = ({
   my_account = 'my_account@gmail.com',
 }) => {
-  const initialState = {
-    1: '',
-    2: '',
-    3: '',
-    4: '',
-    5: '',
-    6: '',
-  };
+  const dispatch = useAppDispatch();
+  const {emailVerify, isVerified} = useAppSelector(authSelect);
 
-  const [codes, setCodes] = useState<{[key: number]: string}>(initialState);
-  const {
-    categories: {categories},
-  } = AuthService.useCategories();
+  const date = new Date().getTime();
+  const cookieTimer = Number(getCookieFromBrowser('timer')) - date;
+  const time = cookieTimer ? cookieTimer / 1000 : INITIAL_TIME;
 
-  // eslint-disable-next-line no-console
-  console.log(categories);
-
+  const [timer, setTimer] = useState<number>(time);
+  const [codes, setCodes] = useState<CodesProps>(verifyPageState);
   const [isValid, setIsValid] = useState<boolean>(false);
-  const [isResend, setIsResend] = useState<boolean>(false);
+  const [isNotValid, setIsNotValid] = useState<boolean>(true);
+
+  const ref1 = useRef<HTMLInputElement | null>(null);
+  const ref2 = useRef<HTMLInputElement | null>(null);
+  const ref3 = useRef<HTMLInputElement | null>(null);
+  const ref4 = useRef<HTMLInputElement | null>(null);
+  const ref5 = useRef<HTMLInputElement | null>(null);
+  const ref6 = useRef<HTMLInputElement | null>(null);
+  const ref7 = useRef<HTMLInputElement | null>(null);
+
+  const areInputsEmpty = Object.values(codes).join('') === '';
+
+  const footerClasses = classNames(styles.container__footer, {
+    [styles.container__footer_valid]: isVerified,
+  });
+
+  const isProceedClasses = classNames(styles.container_proceed, {
+    [styles.container_proceed_valid]: isValid,
+  });
+
+  const isClearClasses = classNames(styles.container_proceed_clear, {
+    [styles.container_proceed_clear_valid]: isValid,
+  });
+
+  const spanClasses = classNames(styles.container_wrong_otp, {
+    [styles.container_resent_text]: isNotValid,
+  });
 
   const handleClear = () => {
-    setCodes(initialState);
+    setCodes(verifyPageState);
     setIsValid(false);
   };
 
-  const ref1 = useRef<any>();
-  const ref2 = useRef<any>();
-  const ref3 = useRef<any>();
-  const ref4 = useRef<any>();
-  const ref5 = useRef<any>();
-  const ref6 = useRef<any>();
-  const ref7 = useRef<any>();
+  useEffect(() => {
+    if (cookieTimer) {
+      if (cookieTimer >= INITIAL_TIME_MILLISECONDS) {
+        setIsNotValid(true);
+        removeCookie('timer');
+        setTimer(INITIAL_TIME);
+      } else {
+        setTimeout(() => {
+          setIsNotValid(true);
+          removeCookie('timer');
+          setTimer(INITIAL_TIME);
+        }, cookieTimer);
+      }
+      setIsNotValid(false);
+    }
+  }, [isNotValid]);
+
+  const proceedHandler = () => {
+    const code = Object.values(codes).join('');
+    const requestData = {
+      code,
+      email: emailVerify,
+    };
+
+    dispatch(authActions.userVerify(requestData));
+    RouterService.push(Route.SignIn);
+  };
 
   const handleInput =
     (number: number) => (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -206,31 +249,12 @@ const ContractSign: React.FC<VerifyProps> = ({
     }
   }, [codes]);
 
-  const proceedHandler = () => {
-    setIsResend(true);
-  };
-
-  // eslint-disable-next-line no-console
-  console.log(codes);
-
   const inputClasses = classNames(
     styles.container__top__number_verification__item__inp,
     {
       [styles.container__top__number_verification__item__inp_valid]: isValid,
     },
   );
-
-  const footerClasses = classNames(styles.container__footer, {
-    [styles.container__footer_valid]: isResend,
-  });
-
-  const isProceedClasses = classNames(styles.container_proceed, {
-    [styles.container_proceed_valid]: isValid,
-  });
-
-  const isClearClasses = classNames(styles.container_proceed_clear, {
-    [styles.container_proceed_clear_valid]: isValid,
-  });
 
   const renderVerificationIsMail = inputRows.map(({ref, id, name}) => (
     <Input
@@ -248,6 +272,14 @@ const ContractSign: React.FC<VerifyProps> = ({
     />
   ));
 
+  const InformMessages = areInputsEmpty && (
+    <span className={spanClasses}>
+      {cookieTimer
+        ? 'Wrong OTP try again in 2 minutes.'
+        : 'You can resend OPT now !'}
+    </span>
+  );
+
   return (
     <div className={styles.container}>
       <Link to="/" className={styles.container__cancel}>
@@ -261,8 +293,7 @@ const ContractSign: React.FC<VerifyProps> = ({
         </div>
       </div>
       <div className={isProceedClasses}>
-        {isResend ? <Timer /> : null}
-        {!isResend ? (
+        {!areInputsEmpty ? (
           <>
             {isValid && (
               <Button
@@ -276,14 +307,16 @@ const ContractSign: React.FC<VerifyProps> = ({
               Clear
             </Button>
           </>
-        ) : null}
+        ) : (
+          <Timer
+            timer={timer}
+            setTimer={setTimer}
+            isNotValid={isNotValid}
+            setIsNotValid={setIsNotValid}
+          />
+        )}
       </div>
-      {isResend && (
-        <span className={styles.container_wrong_otp}>
-          Wrong OTP try again in 2 minutes.
-        </span>
-      )}
-
+      {InformMessages}
       <div className={footerClasses}>
         <span className={styles.container__footer__name}>
           We’ve sent an e-mail to

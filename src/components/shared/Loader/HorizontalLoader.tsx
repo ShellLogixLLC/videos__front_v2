@@ -17,11 +17,11 @@ const HorizontalLoader: React.FC = () => {
 
   return (
     <Portal>
-      {/* <div className={styles.loader}> */}
-      <div className={styles.loader__content}>
-        {renderHorizontalLoaderItems}
+      <div className={styles.loader}>
+        <div className={styles.loader__content}>
+          {renderHorizontalLoaderItems}
+        </div>
       </div>
-      {/* </div> */}
     </Portal>
   );
 };

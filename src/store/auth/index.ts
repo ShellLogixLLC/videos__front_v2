@@ -1,13 +1,17 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
+import {RootState} from '~/types';
+
 import * as authThunks from './thunks';
-import {reducerName, AuthStates} from './constants';
-import {AuthSliceState, UpdateAccessTokenAction} from './types';
+import {reducerName} from './constants';
+import {AuthSliceState, AuthStates, UpdateAccessTokenAction} from './types';
 
 const internalInitialState: AuthSliceState = {
   error: null,
-  accessToken: '',
   loading: AuthStates.IDLE,
+  isVerified: false,
+  accessToken: '',
+  emailVerify: '',
 };
 
 const authSlice = createSlice({
@@ -39,16 +43,38 @@ const authSlice = createSlice({
     builder.addCase(authThunks.logout.fulfilled, () => internalInitialState);
 
     builder.addCase(authThunks.register.fulfilled, (state, action) => {
-      state.accessToken = action.payload.accessToken;
+      state.emailVerify = action.payload.emailVerify;
+      state.error = null;
       state.loading = AuthStates.IDLE;
     });
     builder.addCase(authThunks.register.rejected, (state, action) => {
+      state.loading = AuthStates.IDLE;
+      state.error = action.payload;
+    });
+
+    builder.addCase(authThunks.userVerify.fulfilled, (state, action) => {
+      state.isVerified = action.payload.isVerified;
+      state.loading = AuthStates.IDLE;
+    });
+    builder.addCase(authThunks.userVerify.rejected, (state, action) => {
       state.error = action.error;
     });
+
+    builder.addCase(authThunks.userSentVerifyAgain.fulfilled, (state) => {
+      state.loading = AuthStates.IDLE;
+    });
+    builder.addCase(
+      authThunks.userSentVerifyAgain.rejected,
+      (state, action) => {
+        state.error = action.error;
+      },
+    );
   },
 });
 
 const {reducer, actions} = authSlice;
+
+export const authSelect = (state: RootState) => state.auth;
 
 export const authActions = {
   ...actions,

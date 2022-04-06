@@ -1,11 +1,17 @@
 import {SerializedError} from '@reduxjs/toolkit';
 
-import {AuthStates} from './constants';
+export enum AuthStates {
+  IDLE = 'idle',
+  LOADING = 'loading',
+  PENDING = 'pending',
+}
 
 export type AuthSliceState = {
-  accessToken: string;
+  error?: SerializedError | any;
   loading: AuthStates;
-  error?: SerializedError | null;
+  isVerified: boolean;
+  accessToken: string;
+  emailVerify: string;
 };
 
 export type UpdateAccessTokenAction = {

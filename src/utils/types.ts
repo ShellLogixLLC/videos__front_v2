@@ -19,3 +19,8 @@ export type ILangData = {
   Icon: React.FC;
   locale: string;
 };
+
+export type ErrorToast = {
+  username?: string;
+  password?: string;
+};
