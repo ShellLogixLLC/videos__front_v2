@@ -47,9 +47,7 @@ const DatePicker: FC = () => {
         <CalendarOne className={styles.header__icon} />
       </div>
       <div className={`${contentClasses} calendar__trip`}>
-        <div className={styles.content_inner}>
-          <RangePicker {...rangePickerProps} onChange={setRangeValues} />
-        </div>
+        <RangePicker {...rangePickerProps} onChange={setRangeValues} />
       </div>
     </div>
   );
