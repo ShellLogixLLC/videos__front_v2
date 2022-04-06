@@ -25,6 +25,7 @@
     height: 536px;
     transition: all 0.3s;
     min-height: 70%;
+
     @media all and (orientation: landscape) {
       min-height: 100%;
     }

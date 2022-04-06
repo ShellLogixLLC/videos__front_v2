@@ -24,6 +24,7 @@ const MobileMenu: React.FC<IMobileMenuProps> = ({
 
   useOnClickOutside(burgerContainerRef, handleCloseMenu);
   useLockBodyScroll(isOpen);
+
   return (
     <div className={burgerClassNames}>
       <Close
