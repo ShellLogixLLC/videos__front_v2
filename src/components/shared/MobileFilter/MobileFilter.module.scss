@@ -1,6 +1,6 @@
 .wrapper {
   display: none;
-  position: absolute;
+  position: fixed;
   background-color: $black;
   width: 100vw;
   height: 0;
@@ -11,7 +11,6 @@
   z-index: 10;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s;
 
   @include breakpoint(desktop) {
     display: block;
@@ -46,6 +45,7 @@
     flex-direction: column;
     padding: 24px 24px;
     height: calc(100% - 80px);
+    overflow-y: auto;
 
     @include breakpoint(tablet-m) {
       padding: 24px 16px;
