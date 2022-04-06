@@ -1,9 +1,11 @@
 .wrapper {
   @extend %box-shadow;
   @extend %border-rad_10;
-  overflow: hidden;
+  border: 1px transparent;
+  max-width: 320px;
   width: 100%;
   height: 80px;
+  min-height: 80px;
   position: relative;
   transition: all 0.3s;
   padding: 16px 28px 16px 24px;
@@ -21,10 +23,11 @@
 
   &__active {
     @extend %box-shadow;
-    max-height: 536px;
+    height: 536px;
     height: 100%;
+
     @include breakpoint(desktop) {
-      max-height: 70%;
+      height: 371px;
     }
   }
 }
@@ -66,7 +69,7 @@
     overflow-y: scroll;
     max-height: 432px;
     padding: 0 24px 0 34px;
-    margin-right: 24px;
+    margin: 4px 24px 4px 0;
 
     @include breakpoint(desktop) {
       padding: 0 24px;

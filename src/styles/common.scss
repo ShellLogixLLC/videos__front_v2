@@ -221,7 +221,7 @@ input {
 
 .calendar__trip {
   .tp-calendar {
-    margin: 16px auto 20px;
+    margin: 0 auto;
     width: 100%;
     max-width: 268px;
 
@@ -337,7 +337,8 @@ input {
           & > div {
             color: $grey_color;
             padding: 8px 0 7px;
-            margin: 5px 0 5px;
+            height: 32px;
+            width: 32px;
 
             &:hover {
               background-color: $black;
