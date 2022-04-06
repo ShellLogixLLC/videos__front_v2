@@ -9,9 +9,10 @@ import {AuthSliceState, AuthStates, UpdateAccessTokenAction} from './types';
 const internalInitialState: AuthSliceState = {
   error: null,
   loading: AuthStates.IDLE,
-  isVerified: false,
+  userInfo: null,
   accessToken: '',
   emailVerify: '',
+  isVerified: false,
 };
 
 const authSlice = createSlice({
@@ -21,6 +22,12 @@ const authSlice = createSlice({
     updateAccessToken(state, action: PayloadAction<UpdateAccessTokenAction>) {
       state.accessToken = action.payload.token;
     },
+
+    updateErrorAndIsVerified(state) {
+      state.error = null;
+      state.isVerified = false;
+    },
+
     reset: () => internalInitialState,
   },
   extraReducers: (builder) => {
@@ -29,6 +36,7 @@ const authSlice = createSlice({
     });
     builder.addCase(authThunks.login.fulfilled, (state, action) => {
       state.error = null;
+      state.userInfo = action.payload.userInfo;
       state.accessToken = action.payload.accessToken;
       state.loading = AuthStates.IDLE;
     });
@@ -57,6 +65,7 @@ const authSlice = createSlice({
       state.loading = AuthStates.IDLE;
     });
     builder.addCase(authThunks.userVerify.rejected, (state, action) => {
+      state.loading = AuthStates.IDLE;
       state.error = action.error;
     });
 
@@ -66,9 +75,38 @@ const authSlice = createSlice({
     builder.addCase(
       authThunks.userSentVerifyAgain.rejected,
       (state, action) => {
+        state.loading = AuthStates.IDLE;
         state.error = action.error;
       },
     );
+    builder.addCase(authThunks.forgotPassword.fulfilled, (state, action) => {
+      state.isVerified = action.payload.isVerified;
+      state.loading = AuthStates.IDLE;
+    });
+    builder.addCase(authThunks.forgotPassword.rejected, (state, action) => {
+      state.loading = AuthStates.IDLE;
+      state.error = action.error;
+    });
+
+    builder.addCase(authThunks.resetPassword.fulfilled, (state, action) => {
+      state.error = null;
+      state.isVerified = action.payload.isVerified;
+      state.loading = AuthStates.IDLE;
+    });
+    builder.addCase(authThunks.resetPassword.rejected, (state, action) => {
+      state.loading = AuthStates.IDLE;
+      state.error = action.error;
+    });
+
+    builder.addCase(authThunks.changePassword.fulfilled, (state, action) => {
+      state.error = null;
+      state.isVerified = action.payload.isVerified;
+      state.loading = AuthStates.IDLE;
+    });
+    builder.addCase(authThunks.changePassword.rejected, (state, action) => {
+      state.loading = AuthStates.IDLE;
+      state.error = action.error;
+    });
   },
 });
 

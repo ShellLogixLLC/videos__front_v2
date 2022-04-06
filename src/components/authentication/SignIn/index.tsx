@@ -1,8 +1,11 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useEffect} from 'react';
+import {useToggle} from 'react-use';
 
 import {Logo} from '~/assets';
-import {RouterService} from '~/services';
+import {Loader} from '~/components';
 import {Route, signInForm} from '~/constants';
+import {authActions, authSelect} from '~/store/auth';
+import {useAppDispatch, useAppSelector} from '~/hooks';
 
 import Form from '../../shared/forms/Form';
 import Link from '../../shared/Link';
@@ -11,11 +14,23 @@ import Typography from '../../shared/Typography';
 import styles from './SignIn.module.scss';
 
 const SignIn: React.FC = () => {
-  const handleSignInFormSubmit = useCallback((values) => {
-    RouterService.push(Route.Home);
-    // eslint-disable-next-line no-console
-    console.log(values, 'signIn');
-  }, []);
+  const dispatch = useAppDispatch();
+  const {userInfo, error} = useAppSelector(authSelect);
+
+  const [isLoading, toggleIsLoading] = useToggle(false);
+
+  const handleSignInFormSubmit = useCallback(
+    (values) => {
+      dispatch(authActions.login(values));
+      toggleIsLoading();
+    },
+    [dispatch],
+  );
+
+  useEffect(() => {
+    if (userInfo || error) toggleIsLoading();
+  }, [isLoading, userInfo, error]);
+
   return (
     <div className={`container_without-header ${styles.container}`}>
       <div className={styles.container__top}>
@@ -65,6 +80,7 @@ const SignIn: React.FC = () => {
       <Link to={Route.Home} className={styles.container__route}>
         Back to Home
       </Link>
+      {isLoading && <Loader isVertical />}
     </div>
   );
 };

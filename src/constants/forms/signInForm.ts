@@ -5,10 +5,10 @@ import {EyeShowIcon, EyeHideIcon} from '~/assets';
 
 const fields: Field[] = [
   {
-    name: 'email',
-    label: 'Email',
-    type: 'email',
-    placeholder: 'Enter your email',
+    name: 'username',
+    label: 'Username',
+    type: 'text',
+    placeholder: 'Enter your username',
   },
   {
     name: 'password',
@@ -21,10 +21,10 @@ const fields: Field[] = [
 ];
 
 const schema = yup.object().shape({
-  email: yup
+  username: yup
     .string()
-    .required('The Email is required')
-    .email('The Email must be a valid email address'),
+    .required('The First name is required')
+    .min(4, 'First name is too short - should be 4 chars minimum.'),
   password: yup
     .string()
     .matches(
