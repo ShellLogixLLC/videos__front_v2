@@ -44,6 +44,7 @@ const ForgotPassword: React.FC = () => {
 
   const handleForgotPasswordSubmit = useCallback(
     (values) => {
+      dispatch(authActions.updateErrorAndIsVerified);
       dispatch(authActions.forgotPassword(values));
       toggleIsLoading();
     },

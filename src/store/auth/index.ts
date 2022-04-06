@@ -22,6 +22,12 @@ const authSlice = createSlice({
     updateAccessToken(state, action: PayloadAction<UpdateAccessTokenAction>) {
       state.accessToken = action.payload.token;
     },
+
+    updateErrorAndIsVerified(state) {
+      state.error = null;
+      state.isVerified = false;
+    },
+
     reset: () => internalInitialState,
   },
   extraReducers: (builder) => {
@@ -82,11 +88,22 @@ const authSlice = createSlice({
       state.error = action.error;
     });
 
-    builder.addCase(authThunks.forgotPassword.fulfilled, (state, action) => {
+    builder.addCase(authThunks.resetPassword.fulfilled, (state, action) => {
       state.error = null;
+      state.isVerified = action.payload.isVerified;
       state.loading = AuthStates.IDLE;
     });
-    builder.addCase(authThunks.forgotPassword.rejected, (state, action) => {
+    builder.addCase(authThunks.resetPassword.rejected, (state, action) => {
+      state.loading = AuthStates.IDLE;
+      state.error = action.error;
+    });
+
+    builder.addCase(authThunks.changePassword.fulfilled, (state, action) => {
+      state.error = null;
+      state.isVerified = action.payload.isVerified;
+      state.loading = AuthStates.IDLE;
+    });
+    builder.addCase(authThunks.changePassword.rejected, (state, action) => {
       state.loading = AuthStates.IDLE;
       state.error = action.error;
     });

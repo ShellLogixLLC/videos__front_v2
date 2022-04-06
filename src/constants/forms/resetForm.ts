@@ -5,14 +5,6 @@ import {EyeShowIcon, EyeHideIcon} from '~/assets';
 
 const fields: Field[] = [
   {
-    name: 'password',
-    label: 'Enter old password',
-    type: 'password',
-    placeholder: 'Enter old password',
-    RightIcon: EyeShowIcon,
-    RightToggledIcon: EyeHideIcon,
-  },
-  {
     name: 'new_password',
     label: 'Enter new password',
     type: 'password',
@@ -31,11 +23,6 @@ const fields: Field[] = [
 ];
 
 const schema = yup.object().shape({
-  // Unfinished VALIDATION
-  password: yup
-    .string()
-    .required('The Password is required')
-    .min(5, 'Write the current password.'),
   new_password: yup
     .string()
     .matches(
