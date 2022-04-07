@@ -244,7 +244,7 @@ input {
 }
 
 .sc-dlfnuX {
-  max-width: 268px;
+  max-width: 252px;
   width: 100%;
 }
 
@@ -253,7 +253,6 @@ input {
     @extend %flex-center-direction;
     width: 100%;
     margin: 5px 16px;
-    // overflow-x: scroll;
     min-height: 283px;
     height: auto;
 
@@ -300,20 +299,16 @@ input {
         }
       }
 
-      .start-date {
+      .sc-gKseQn.start-date {
         border-radius: 50% 0 0 50%;
 
         &:hover {
-          border-radius: none;
+          border-radius: 50%;
         }
       }
 
       .end-date {
-        border-radius: 0 50% 50% 0;
-
-        &:hover {
-          border-radius: none;
-        }
+        border-radius: 0 50% 50% 0 !important;
       }
 
       .start-date,
@@ -368,8 +363,9 @@ input {
 
           & > div {
             color: $grey_color;
-            padding: 8px 0 7px;
-            height: 32px;
+            padding: 0;
+            height: 36px;
+            width: 36px;
 
             &:hover {
               background-color: $black;
@@ -377,6 +373,29 @@ input {
               @include breakpoint(desktop) {
                 background-color: none;
               }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.sc-gKseQn {
+  border-radius: 50%;
+}
+
+.content_end {
+  & > div {
+    & > div {
+      &:last-child {
+        & > div {
+          &:last-child {
+            & .range-select {
+              border-radius: none !important;
+            }
+            & .start-date:hover {
+              border-radius: 50% 0 0 50% !important;
             }
           }
         }

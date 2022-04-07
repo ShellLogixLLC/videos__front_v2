@@ -32,8 +32,8 @@
     }
 
     @include breakpoint(desktop) {
-      height: 371px;
-      min-height: 371px;
+      height: 391px;
+      min-height: 391px;
     }
   }
 }
@@ -68,6 +68,6 @@
   z-index: 5;
 
   @include breakpoint(desktop) {
-    height: 283px;
+    height: 303px;
   }
 }

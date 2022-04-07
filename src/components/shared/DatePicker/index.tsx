@@ -21,6 +21,10 @@ const DatePicker: FC = () => {
     [styles.wrapper__active]: isOpen,
   });
 
+  const contentClasses = classNames(styles.content, {
+    ['content_end']: rangeValues?.to !== '',
+  });
+
   useOnClickOutside(calendarRef, () => toggleIsOpen(false));
 
   const rangePickerProps = {
@@ -44,7 +48,7 @@ const DatePicker: FC = () => {
         <Typography className={styles.header__text}>Calendar</Typography>
         <CalendarOne className={styles.header__icon} />
       </div>
-      <div className={`${styles.content} calendar__trip`}>
+      <div className={`${contentClasses} calendar__trip`}>
         <RangePicker {...rangePickerProps} onChange={setRangeValues} />
       </div>
     </div>
