@@ -1,21 +1,16 @@
 .search {
   @extend %search-styling;
-  border-radius: 50px !important;
-  max-width: 700px;
   width: 100%;
   color: $red !important;
-  padding: 8px 37px 8px 24px !important;
   border: 1px solid $white;
+  padding: 8px 37px 8px 24px !important;
+  max-width: 700px;
+  border-radius: 50px !important;
   background-color: transparent;
 
   @include breakpoint(desktop) {
     max-width: calc((100vw - 115px));
   }
-}
-
-.right_icon {
-  width: 20px;
-  height: 20px;
 }
 
 .wrapper {
@@ -26,13 +21,13 @@
   transition: 0.5s all ease;
 
   @include breakpoint(desktop) {
-    left: calc(100vw - 70px);
     right: 70px;
+    left: calc(100vw - 70px);
   }
 
   @include breakpoint(tablet) {
-    left: calc(100vw - 62px);
     right: 62px;
+    left: calc(100vw - 62px);
   }
 
   &_expanded {
@@ -50,12 +45,12 @@
 
   &__container {
     &__back {
-      display: none;
-      position: absolute;
       left: 0;
       width: 50px !important;
-      visibility: hidden;
       opacity: 0;
+      display: none;
+      position: absolute;
+      visibility: hidden;
       transition: all 0.4s;
 
       @include breakpoint(desktop) {
@@ -63,26 +58,27 @@
       }
 
       &_expand {
-        visibility: visible;
         opacity: 1;
         cursor: pointer;
+        visibility: visible;
         transition: all 0.6s;
       }
     }
 
     &__search {
       @extend %search-styling;
-      max-width: 24px;
       width: 100%;
       color: $red !important;
-      background-color: transparent;
       border: none;
-      border-radius: 16px !important;
-      padding: 0 !important;
       border: 1px solid transparent;
-      visibility: hidden;
       opacity: 0;
+      padding: 0 !important;
+      max-width: 24px;
+      visibility: hidden;
       transition: 0.5s all ease;
+      caret-color: transparent;
+      border-radius: 16px !important;
+      background-color: transparent;
 
       &:hover {
         border-color: transparent !important;
@@ -93,21 +89,22 @@
       }
 
       &_expanded {
-        max-width: 130%;
         border: 1px solid $white;
-        padding: 13px 58px 13px 24px !important;
-        visibility: visible;
         opacity: 1;
+        padding: 13px 58px 13px 24px !important;
+        max-width: 130%;
+        visibility: visible;
         transition: 0.5s all ease;
+        caret-color: $red;
 
         @include breakpoint(desktop) {
-          padding-right: 66px;
           max-width: calc((100vw - 125px));
+          padding-right: 66px;
         }
 
         @include breakpoint(tablet) {
-          max-width: calc((100vw - 110px));
           padding: 12px 48px 12px 16px !important;
+          max-width: calc((100vw - 110px));
         }
 
         &:hover {
@@ -121,12 +118,11 @@
     }
 
     &__right_icon {
-      width: 24px;
-      height: 24px;
       right: 16px;
-      background-color: $black;
+      width: 24px;
       cursor: pointer !important;
-      transition: 0.5s all ease;
+      height: 24px;
+      background-color: $black;
     }
   }
 }
