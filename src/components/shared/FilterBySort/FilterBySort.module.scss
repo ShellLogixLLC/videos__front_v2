@@ -10,6 +10,7 @@
   height: 80px;
   min-height: 80px;
   position: relative;
+  overflow: hidden;
   transition: all 0.3s;
 
   @include breakpoint(desktop) {
@@ -26,14 +27,10 @@
     @extend %box-shadow;
     height: 536px;
     transition: all 0.3s;
-    min-height: 70%;
-
-    // @media all and (orientation: landscape) {
-    //   min-height: 100%;
-    // }
 
     @include breakpoint(desktop) {
-      min-height: 371px;
+      height: 390px;
+      min-height: 390px;
     }
   }
 
@@ -62,41 +59,30 @@
     @extend %flex-column;
     width: 100%;
     margin-top: 16px;
-    height: 0;
+    height: 432px;
     position: absolute;
     z-index: 5;
     left: 0;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s;
+
+    @include breakpoint(desktop) {
+      height: 283px;
+    }
 
     &__child {
       @include custom-scroll;
       overflow-y: scroll;
-      max-height: 432px;
+      height: 432px;
       padding: 0 24px 0 34px;
       margin-right: 24px;
 
       @include breakpoint(desktop) {
         padding: 0 24px;
         margin-right: 34px;
-        max-height: calc(100% - 100px);
-        min-height: 273px;
+        height: 100%;
       }
 
       @include breakpoint(tablet) {
         margin-right: 24px;
-      }
-    }
-
-    &_open {
-      height: 432px;
-      opacity: 1;
-      visibility: visible;
-      transition: all 0.3s;
-
-      @include breakpoint(desktop) {
-        height: 100%;
       }
     }
 

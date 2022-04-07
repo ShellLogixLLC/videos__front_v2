@@ -219,11 +219,43 @@ input {
   -webkit-user-select: text !important;
 }
 
+.sc-bdfBQB {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+  margin: 0 16px !important;
+  flex-wrap: nowrap;
+
+  & > div {
+    height: 60px !important;
+    width: 50px !important;
+    padding: 5px;
+    width: auto !important;
+    border: none !important;
+  }
+
+  @include breakpoint(tablet-m) {
+    grid-template-columns: repeat(3, 1fr);
+
+    & > div {
+      height: 45px !important;
+    }
+  }
+}
+
+.sc-dlfnuX {
+  max-width: 268px;
+  width: 100%;
+}
+
 .calendar__trip {
   .tp-calendar {
-    margin: 0 auto;
+    @extend %flex-center-direction;
     width: 100%;
-    max-width: 268px;
+    margin: 5px 16px;
+    // overflow-x: scroll;
+    min-height: 283px;
+    height: auto;
 
     & > div:first-child {
       display: flex;
