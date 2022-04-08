@@ -49,7 +49,7 @@ export type InputProps = {
   RightIcon?: SVGIconProp;
   inpValue?: string | number;
   RightToggledIcon?: SVGIconProp;
-  toggleHandle?: (e?: React.FormEvent) => void;
+  toggleHandle?: (e: React.FormEvent) => void;
   onKeyUp?: (e: KeyboardEvent<HTMLInputElement>) => void;
   onMouseOver?: (e: MouseEvent<HTMLInputElement>) => void;
   onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
