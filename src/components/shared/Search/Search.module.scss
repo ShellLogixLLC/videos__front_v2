@@ -21,8 +21,7 @@
   transition: 0.5s all ease;
 
   @include breakpoint(desktop) {
-    right: 70px;
-    left: calc(100vw - 70px);
+    right: 72px;
   }
 
   @include breakpoint(tablet) {
@@ -35,7 +34,7 @@
     transition: 0.5s all ease;
 
     @include breakpoint(desktop) {
-      left: 70px;
+      left: 84px;
     }
 
     @include breakpoint(tablet) {
@@ -98,7 +97,6 @@
         caret-color: $red;
 
         @include breakpoint(desktop) {
-          max-width: calc((100vw - 125px));
           padding-right: 66px;
         }
 

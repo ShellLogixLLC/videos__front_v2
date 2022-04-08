@@ -1,8 +1,9 @@
 import React from 'react';
 import {useTranslation} from 'next-i18next';
 
-import {Typography} from '~/components';
+import {filteredMass} from '~/utils';
 import {HorizontalSlider} from '~/components';
+import {DatePicker, FilterBySort, Typography} from '~/components';
 
 import styles from './Home.module.scss';
 
@@ -10,14 +11,41 @@ const Home: React.FC = () => {
   const {t} = useTranslation();
 
   return (
-    <div className={styles.wrapper}>
-      <section className={styles.wrapper__one_section}>
-        <Typography className={styles.wrapper__one_section__title}>
-          {t('common.newVideos')}
-        </Typography>
-        <HorizontalSlider />
-      </section>
-    </div>
+    <article className={styles.wrapper}>
+      <div className={styles.wrapper__content}>
+        <section className={styles.wrapper__content__one_section}>
+          <Typography className={styles.wrapper__content__title}>
+            {t('common.newVideos')}
+          </Typography>
+          <HorizontalSlider />
+        </section>
+        <section className={styles.wrapper__content__two_section}>
+          <Typography className={styles.wrapper__content__title}>
+            {t('common.categories')}
+          </Typography>
+          <HorizontalSlider
+            isCategory
+            className={styles.wrapper__content__two_section_slider}
+          />
+        </section>
+        <section className={styles.wrapper__content__one_section}>
+          <Typography className={styles.wrapper__content__title}>
+            {t('common.topRated')}
+          </Typography>
+          <HorizontalSlider />
+        </section>
+        <section className={styles.wrapper__content__one_section}>
+          <Typography className={styles.wrapper__content__title}>
+            {t('common.mostLiked')}
+          </Typography>
+          <HorizontalSlider />
+        </section>
+      </div>
+      <aside className={styles.filter_block}>
+        <DatePicker />
+        <FilterBySort options={filteredMass} />
+      </aside>
+    </article>
   );
 };
 

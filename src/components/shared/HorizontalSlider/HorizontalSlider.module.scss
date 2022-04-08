@@ -12,6 +12,7 @@
   &__content {
     @extend %flex-between;
     width: auto;
+    height: 100%;
     transition: 350ms ease-out;
 
     @include breakpoint(tablet) {
