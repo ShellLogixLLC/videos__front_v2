@@ -15,7 +15,7 @@ const Search: React.FC = () => {
   const filterRef = useRef<HTMLDivElement | null>(null);
   const [searchValue, setSearchValue] = useState<string>('');
 
-  const onSearchSubmit = (e: React.FormEvent | undefined) => {
+  const onSearchSubmit = (e: React.FormEvent) => {
     e?.preventDefault();
     if (searchValue.length) {
       // TODO connect it with back end in the future
