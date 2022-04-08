@@ -16,7 +16,7 @@ const Search: React.FC = () => {
   const [searchValue, setSearchValue] = useState<string>('');
 
   const onSearchSubmit = (e: React.FormEvent) => {
-    e?.preventDefault();
+    e.preventDefault();
     if (searchValue.length) {
       // TODO connect it with back end in the future
       // eslint-disable-next-line no-console
