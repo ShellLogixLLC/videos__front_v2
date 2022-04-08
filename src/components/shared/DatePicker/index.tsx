@@ -22,7 +22,7 @@ const DatePicker: FC = () => {
   });
 
   const contentClasses = classNames(styles.content, {
-    ['content_end']: rangeValues?.to !== '',
+    content_end: rangeValues?.to,
   });
 
   useOnClickOutside(calendarRef, () => toggleIsOpen(false));
