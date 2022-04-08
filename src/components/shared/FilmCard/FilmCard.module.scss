@@ -2,13 +2,15 @@
   @extend %border-rad_10;
   @extend %box-shadow;
   padding: 16px 16px 28px 16px;
-  max-width: 320px;
+  min-width: 433px;
+  max-width: 433px;
   width: 100%;
   height: 386px;
   margin-right: 25px;
   background-color: $black;
 
   @include breakpoint(tablet) {
+    min-width: 100%;
     max-width: 100%;
     margin-right: 0;
   }
@@ -56,7 +58,7 @@
       svg {
         path {
           &:first-child {
-            fill: $red !important;
+            fill: $red;
           }
         }
 

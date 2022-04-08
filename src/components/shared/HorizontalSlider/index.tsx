@@ -40,12 +40,12 @@ const HorizontalSlider: React.FC = () => {
       : setTransformXValue(0);
 
   useEffect(() => {
-    if (contentRef.current) {
+    if (contentRef.current && isMaxTablet) {
       const {offsetWidth, scrollWidth} = contentRef.current;
       setTransformMaxWeight(Number(scrollWidth) - Number(offsetWidth));
     }
 
-    if (!isMaxTablet) {
+    if (!isMaxTablet && transformXValue !== 0) {
       setTransformXValue(0);
     }
   }, [isMaxTablet, transformXValue, transformMaxWeight]);

@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React from 'react';
 import classNames from 'classnames';
+import {useToggle} from 'react-use';
 
 import {HeartLikes, FilmLikeIcon, ViewsCount, CommentsCount} from '~/assets';
 
@@ -19,25 +20,16 @@ const FilmCard: React.FC<FilmCardProps> = ({
   cardClasses = '',
   commentsCount = 12,
 }) => {
-  const [isLiked, setIsLiked] = useState<boolean>(false);
+  const [isLiked, toggleIsLiked] = useToggle(false);
 
-  const toggleLike = () => {
-    setIsLiked(!isLiked);
-  };
-
-  const isLikedClasses = classNames({
+  const isLikedClasses = classNames(styles.wrapper__film_not_like_it, {
     [styles.wrapper__film_like_it]: isLiked,
-    [styles.wrapper__film_not_like_it]: !isLiked,
-  });
-
-  const filmCardClasses = classNames(styles.wrapper, {
-    [cardClasses]: cardClasses,
   });
 
   return (
-    <div className={filmCardClasses}>
+    <div className={`${styles.wrapper} ${cardClasses}`}>
       <div className={styles.wrapper__film}>
-        <Button className={isLikedClasses} onClick={toggleLike}>
+        <Button className={isLikedClasses} onClick={toggleIsLiked}>
           <HeartLikes />
         </Button>
         <Typography tagName="span" className={styles.wrapper__film__time}>
