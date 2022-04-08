@@ -1,4 +1,4 @@
-import React, {useRef, useState, useEffect, useContext} from 'react';
+import React, {useRef, useState, useContext} from 'react';
 import classNames from 'classnames';
 
 import {ToggleContext} from '~/context';
@@ -11,9 +11,22 @@ import styles from './Search.module.scss';
 
 const Search: React.FC = () => {
   const {expanded, toggleExpanded} = useContext(ToggleContext);
-
+  const inputRef = useRef<HTMLInputElement | null>(null);
   const filterRef = useRef<HTMLDivElement | null>(null);
   const [searchValue, setSearchValue] = useState<string>('');
+
+  const onSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchValue.length) {
+      // TODO connect it with back end in the future
+      // eslint-disable-next-line no-console
+      console.log('searchValue =', searchValue);
+      setSearchValue('');
+      toggleExpanded(false);
+    } else {
+      toggleExpanded(true);
+    }
+  };
 
   const searchChangeHandle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
@@ -31,29 +44,34 @@ const Search: React.FC = () => {
     [styles.wrapper__container__back_expand]: expanded,
   });
 
-  useOnClickOutside(filterRef, () => toggleExpanded(false));
-
-  useEffect(() => {
+  useOnClickOutside(filterRef, () => {
     setSearchValue('');
-  }, [expanded]);
+    toggleExpanded(false);
+    inputRef?.current?.blur();
+  });
 
   return (
     <>
       <SearchBackArrowIcon className={backArrowClassName} />
-      <Input
-        type="text"
-        name="globalSearch"
-        value={searchValue}
-        onChange={searchChangeHandle}
-        className={inputClasses}
-        RightIcon={SearchIcon}
-        wrapperRef={filterRef}
-        placeholder="Search"
-        toggleHandle={toggleExpanded}
-        rightIconStyle={styles.wrapper__container__right_icon}
-        labelClassName={labelClassName}
-        innerClassName={styles.wrapper__container}
-      />
+      <form
+        action="submit"
+        onSubmit={onSearchSubmit}
+        className={labelClassName}>
+        <Input
+          ref={inputRef}
+          type="text"
+          name="globalSearch"
+          value={searchValue}
+          onChange={searchChangeHandle}
+          className={inputClasses}
+          RightIcon={SearchIcon}
+          wrapperRef={filterRef}
+          placeholder="Search"
+          toggleHandle={onSearchSubmit}
+          rightIconStyle={styles.wrapper__container__right_icon}
+          innerClassName={styles.wrapper__container}
+        />
+      </form>
     </>
   );
 };

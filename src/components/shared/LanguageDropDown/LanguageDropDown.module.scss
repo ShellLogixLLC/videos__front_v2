@@ -15,8 +15,8 @@
     background-color: unset;
 
     @include breakpoint(desktop) {
-      height: 48px;
       width: 48px;
+      height: 48px;
     }
 
     &:hover {
@@ -28,7 +28,6 @@
     }
 
     &__icon {
-      display: flex;
       width: 23px;
     }
   }
@@ -36,23 +35,23 @@
   &__languages {
     @extend %flex-column;
     @extend %box-shadow;
-    cursor: default;
-    background-color: $black;
-    height: 95px;
-    justify-content: space-evenly;
-    position: absolute;
-    z-index: 10;
     top: 69px;
     right: -20px;
+    cursor: default;
+    height: 95px;
     border: unset;
+    z-index: 10;
+    position: absolute;
     border-radius: 7px;
+    justify-content: space-evenly;
+    background-color: $black;
 
     @include breakpoint(desktop) {
-      right: unset;
-      left: 25px;
       top: 50px;
-      max-width: 187px;
+      left: 25px;
       width: 100%;
+      right: unset;
+      max-width: 187px;
       border-radius: 0;
     }
 
