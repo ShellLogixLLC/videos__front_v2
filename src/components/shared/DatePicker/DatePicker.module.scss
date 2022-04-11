@@ -67,6 +67,45 @@
   right: 0;
   z-index: 5;
 
+  & > div {
+    & > div {
+      &:last-child {
+        display: grid !important;
+        grid-template-columns: repeat(4, 1fr);
+        width: 100%;
+        margin: 0 16px !important;
+        flex-wrap: nowrap;
+
+        & > div:first-child {
+          display: flex !important;
+
+          & > div {
+            & > div {
+              width: 38px;
+              height: 38px;
+            }
+          }
+        }
+
+        & > div[data-testid='month-item-to-select'] {
+          height: 60px !important;
+          width: 50px !important;
+          padding: 5px;
+          width: auto !important;
+          border: none !important;
+        }
+
+        @include breakpoint(tablet-m) {
+          grid-template-columns: repeat(3, 1fr);
+
+          & > div {
+            height: 45px !important;
+          }
+        }
+      }
+    }
+  }
+
   @include breakpoint(desktop) {
     height: 303px;
   }
