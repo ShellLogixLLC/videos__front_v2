@@ -6,8 +6,16 @@
     width: 100%;
     margin-right: 20px;
 
+    & > section:last-child {
+      margin-bottom: 0;
+    }
+
     @include breakpoint(desktop) {
       max-width: 100%;
+    }
+
+    @include breakpoint(tablet) {
+      margin-right: 0;
     }
 
     &__one_section {
@@ -18,6 +26,10 @@
       @include breakpoint(tablet) {
         height: auto;
       }
+
+      @include breakpoint(tablet-m) {
+        margin-bottom: 24px;
+      }
     }
 
     &__two_section {
@@ -26,7 +38,7 @@
       margin-bottom: 40px;
 
       &_slider {
-        height: 207px;
+        height: 207px !important;
       }
     }
 
@@ -48,8 +60,12 @@
 }
 
 .filter_block {
+  position: sticky;
+  top: 24px;
   min-width: 320px;
   width: 100%;
+  min-height: 176px;
+  height: 100%;
 
   @include breakpoint(desktop) {
     display: none;

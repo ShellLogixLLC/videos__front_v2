@@ -6,9 +6,12 @@ import {HorizontalSlider} from '~/components';
 import {DatePicker, FilterBySort, Typography} from '~/components';
 
 import styles from './Home.module.scss';
+import {AuthService} from '~/api';
 
 const Home: React.FC = () => {
   const {t} = useTranslation();
+
+  const {categories} = AuthService.useCategories();
 
   return (
     <article className={styles.wrapper}>
@@ -25,6 +28,7 @@ const Home: React.FC = () => {
           </Typography>
           <HorizontalSlider
             isCategory
+            dataList={categories?.categories}
             className={styles.wrapper__content__two_section_slider}
           />
         </section>

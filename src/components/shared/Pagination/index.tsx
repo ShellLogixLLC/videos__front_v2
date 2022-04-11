@@ -19,10 +19,12 @@ import styles from './Pagination.module.scss';
 
 const PaginationIndex: React.FC<IPaginationProps> = ({
   isRight = false,
+  isCategory,
   dataLength,
   activePage = INITIAL_PAGINATION_ACTIVE_PAGE,
   rowsPerPage = INITIAL_PAGINATION_ROWS_PER_PAGE,
   setActivePage = (e) => e,
+  isOffsetWidth,
   setRowsPerPage = (e) => e,
   handleClickLeftArrow,
   handleClickRightArrow,
@@ -58,11 +60,12 @@ const PaginationIndex: React.FC<IPaginationProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rowsPerPage]);
 
-  const moreBtn = !(rowsPerPage >= dataLength) ? (
-    <Button className={styles.wrapper__more_btn} onClick={handleClickMore}>
-      More
-    </Button>
-  ) : null;
+  const moreBtn =
+    !(rowsPerPage >= dataLength) && !isCategory ? (
+      <Button className={styles.wrapper__more_btn} onClick={handleClickMore}>
+        More
+      </Button>
+    ) : null;
 
   const paginationPerPage = !isRight && (
     <div className={styles.container__wrapper__show}>
@@ -71,13 +74,18 @@ const PaginationIndex: React.FC<IPaginationProps> = ({
   );
 
   const activePagination = isRight ? (
-    <div className={styles.right_block}>
-      <RightArrow
-        onClick={handleClickRightArrow}
-        className={rightArrowClasses}
-      />
-      <LeftArrow onClick={handleClickLeftArrow} className={leftArrowClasses} />
-    </div>
+    isOffsetWidth ? (
+      <div className={styles.right_block}>
+        <RightArrow
+          onClick={handleClickRightArrow}
+          className={rightArrowClasses}
+        />
+        <LeftArrow
+          onClick={handleClickLeftArrow}
+          className={leftArrowClasses}
+        />
+      </div>
+    ) : null
   ) : (
     <ReactPaginate
       forcePage={activePage}

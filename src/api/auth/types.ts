@@ -1,7 +1,6 @@
-import {ICommonRequestReturn, MutateData} from '~/types';
+import {CategoriesProps, ICommonRequestReturn, MutateData} from '~/types';
 
 export interface IUseUsersReturn extends ICommonRequestReturn {
-  //todo remove any before get data
-  categories: any;
+  categories: {categories: CategoriesProps[]; totalCount: number} | unknown;
   mutateUsers: MutateData;
 }

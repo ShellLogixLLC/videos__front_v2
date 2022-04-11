@@ -24,7 +24,8 @@
 
   &__active {
     @extend %box-shadow;
-    height: 536px;
+    height: 470px;
+    min-height: 470px;
     transition: all 0.3s;
 
     @media all and (orientation: landscape) {

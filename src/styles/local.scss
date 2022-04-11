@@ -85,7 +85,7 @@ body {
   height: 100%;
   overflow-x: hidden;
   @include custom-scroll;
-  background-color: $light-black;
+  background-color: $black;
   font-family: $montserrat_family;
   -webkit-tap-highlight-color: transparent;
 }

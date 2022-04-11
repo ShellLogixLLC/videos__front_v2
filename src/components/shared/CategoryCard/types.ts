@@ -1,3 +1,5 @@
+import {CategoriesProps} from '~/types';
+
 export type CategoryCardProps = {
-  text?: string;
+  item: CategoriesProps;
 };

@@ -10,15 +10,15 @@
 
 .project_body {
   min-height: calc(100vh - 180px);
-  padding: 40px 0 76px;
+  padding: 40px 0 72px;
   position: relative;
 
   @include breakpoint(tablet) {
-    padding: 24px 24px 32px;
+    padding: 24px 0 32px;
   }
 
   @include breakpoint(tablet-m) {
-    padding: 24px 16px 32px;
+    padding: 8px 0 32px;
   }
 }
 

@@ -1,6 +1,7 @@
 .wrapper {
   height: 90px;
   background-color: $black;
+  box-shadow: $header-box-shadow;
 
   &__content {
     @extend %flex-between;
