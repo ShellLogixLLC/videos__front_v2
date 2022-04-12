@@ -22,6 +22,7 @@ const DatePicker: FC = () => {
   });
 
   const contentClasses = classNames(styles.content, {
+    content_start: rangeValues?.from,
     content_end: rangeValues?.to,
   });
 

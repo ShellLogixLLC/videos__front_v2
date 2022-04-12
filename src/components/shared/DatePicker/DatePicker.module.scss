@@ -69,15 +69,20 @@
 
   & > div {
     & > div {
+      max-width: 100% !important;
+      width: 100%;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+
       &:last-child {
-        display: grid !important;
-        grid-template-columns: repeat(4, 1fr);
+        display: flex;
         width: 100%;
         margin: 0 16px !important;
-        flex-wrap: nowrap;
 
         & > div:first-child {
-          display: flex !important;
+          max-width: 252px;
+          width: 100%;
 
           & > div {
             & > div {
@@ -97,10 +102,6 @@
 
         @include breakpoint(tablet-m) {
           grid-template-columns: repeat(3, 1fr);
-
-          & > div {
-            height: 45px !important;
-          }
         }
       }
     }
