@@ -1,13 +1,16 @@
 .wrapper {
   @extend %box-shadow;
   @extend %border-rad_10;
-  overflow: hidden;
+  border: 1px transparent;
+  max-width: 320px;
   width: 100%;
+  height: 80px;
   min-height: 80px;
   position: relative;
-  transition: all 0.3s;
   padding: 16px 28px 16px 24px;
   background-color: $light-black;
+  overflow: hidden;
+  transition: all 0.3s;
 
   @include breakpoint(desktop) {
     max-width: 100%;
@@ -21,12 +24,16 @@
 
   &__active {
     @extend %box-shadow;
-
     height: 536px;
-    min-height: 70%;
+    transition: all 0.3s;
 
     @media all and (orientation: landscape) {
-      min-height: 100%;
+      height: 536px;
+    }
+
+    @include breakpoint(desktop) {
+      height: 391px;
+      min-height: 391px;
     }
   }
 }
@@ -52,42 +59,55 @@
 }
 
 .content {
-  @extend %flex-column;
-  width: 100%;
-  margin-top: 16px;
-  height: 0;
+  @extend %flex-center;
   position: absolute;
-  z-index: 5;
+  margin-top: 16px;
+  height: 432px;
   left: 0;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s;
+  right: 0;
+  z-index: 5;
 
-  &_inner {
-    @include custom-scroll;
-    overflow-y: scroll;
-    max-height: 432px;
-    padding: 0 24px 0 34px;
-    margin-right: 24px;
+  & > div {
+    & > div {
+      max-width: 100% !important;
+      width: 100%;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
 
-    @include breakpoint(desktop) {
-      padding: 0 24px;
-      margin-right: 34px;
-      max-height: calc(100% - 100px);
-    }
+      &:last-child {
+        display: flex;
+        width: 100%;
+        margin: 0 16px !important;
 
-    @include breakpoint(tablet) {
-      margin-right: 24px;
+        & > div:first-child {
+          max-width: 252px;
+          width: 100%;
+
+          & > div {
+            & > div {
+              width: 38px;
+              height: 38px;
+            }
+          }
+        }
+
+        & > div[data-testid='month-item-to-select'] {
+          height: 60px !important;
+          width: 50px !important;
+          padding: 5px;
+          width: auto !important;
+          border: none !important;
+        }
+
+        @include breakpoint(tablet-m) {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
     }
   }
 
-  &_open {
-    height: 432px;
-    opacity: 1;
-    visibility: visible;
-
-    @include breakpoint(desktop) {
-      height: 100%;
-    }
+  @include breakpoint(desktop) {
+    height: 303px;
   }
 }

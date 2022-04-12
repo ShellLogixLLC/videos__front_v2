@@ -221,9 +221,11 @@ input {
 
 .calendar__trip {
   .tp-calendar {
-    margin: 16px auto 20px;
+    @extend %flex-center-direction;
     width: 100%;
-    max-width: 268px;
+    margin: 5px 16px;
+    min-height: 283px;
+    height: auto;
 
     & > div:first-child {
       display: flex;
@@ -264,24 +266,16 @@ input {
 
           &.start-date {
             border-radius: 50% !important;
+
+            &:hover {
+              border-radius: 50%;
+            }
           }
         }
       }
 
-      .start-date {
-        border-radius: 50% 0 0 50%;
-
-        &:hover {
-          border-radius: none;
-        }
-      }
-
       .end-date {
-        border-radius: 0 50% 50% 0;
-
-        &:hover {
-          border-radius: none;
-        }
+        border-radius: 0 50% 50% 0 !important;
       }
 
       .start-date,
@@ -336,15 +330,69 @@ input {
 
           & > div {
             color: $grey_color;
-            padding: 8px 0 7px;
-            margin: 5px 0 5px;
+            padding: 0;
 
             &:hover {
               background-color: $black;
+              border-radius: 50%;
 
               @include breakpoint(desktop) {
                 background-color: none;
               }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.content_start {
+  & > div {
+    &:last-child {
+      & > div {
+        &:last-child {
+          & .range-select:hover {
+            border-radius: 0 0 0 0 !important;
+          }
+
+          & .range-select:last-child:hover {
+            border-radius: 50% 0 0 50% !important;
+          }
+
+          & .start-date:hover {
+            border-radius: 50% !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+.content_end {
+  & > div {
+    & > div {
+      &:last-child {
+        & > div {
+          &:last-child {
+            & .range-select:first-child:hover {
+              border-radius: 50% 0 0 50% !important;
+            }
+
+            & .range-select:last-child:hover {
+              border-radius: 0 50% 50% 0 !important;
+            }
+
+            & .range-select:hover {
+              border-radius: 0 0 0 0 !important;
+            }
+
+            & .end-date:hover {
+              border-radius: 0 50% 50% 0 !important;
+            }
+
+            & .start-date:hover {
+              border-radius: 50% 0 0 50% !important;
             }
           }
         }
