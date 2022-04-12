@@ -3,15 +3,26 @@ import {useTranslation} from 'next-i18next';
 
 import {filteredMass} from '~/utils';
 import {HorizontalSlider} from '~/components';
+import {CategoryService, VideosService} from '~/api';
 import {DatePicker, FilterBySort, Typography} from '~/components';
 
 import styles from './Home.module.scss';
-import {AuthService} from '~/api';
 
 const Home: React.FC = () => {
   const {t} = useTranslation();
 
-  const {categories} = AuthService.useCategories();
+  const {data} = CategoryService.useCategories();
+  const categories = data?.categories;
+  const {videosData} = VideosService.useVideos();
+  const videos = videosData?.videos;
+
+  //this data will change after
+  const categoryArr = categories && [
+    ...categories,
+    ...categories,
+    ...categories,
+  ];
+  const videosArr = videos && [...videos, ...videos, ...videos];
 
   return (
     <article className={styles.wrapper}>
@@ -20,7 +31,7 @@ const Home: React.FC = () => {
           <Typography className={styles.wrapper__content__title}>
             {t('common.newVideos')}
           </Typography>
-          <HorizontalSlider />
+          <HorizontalSlider dataList={videosArr} />
         </section>
         <section className={styles.wrapper__content__two_section}>
           <Typography className={styles.wrapper__content__title}>
@@ -28,7 +39,7 @@ const Home: React.FC = () => {
           </Typography>
           <HorizontalSlider
             isCategory
-            dataList={categories?.categories}
+            dataList={categoryArr}
             className={styles.wrapper__content__two_section_slider}
           />
         </section>
@@ -36,13 +47,13 @@ const Home: React.FC = () => {
           <Typography className={styles.wrapper__content__title}>
             {t('common.topRated')}
           </Typography>
-          <HorizontalSlider />
+          <HorizontalSlider dataList={videosArr} />
         </section>
         <section className={styles.wrapper__content__one_section}>
           <Typography className={styles.wrapper__content__title}>
             {t('common.mostLiked')}
           </Typography>
-          <HorizontalSlider />
+          <HorizontalSlider dataList={videosArr} />
         </section>
       </div>
       <aside className={styles.filter_block}>

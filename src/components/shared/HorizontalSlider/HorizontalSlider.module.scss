@@ -28,9 +28,10 @@
     }
 
     &__category {
+      display: flex;
+      justify-content: flex-start;
+
       @include breakpoint(tablet) {
-        display: flex;
-        justify-content: space-between;
         width: 100%;
         overflow-x: scroll;
 

@@ -12,7 +12,11 @@ const CategoryCard: React.FC<CategoryCardProps> = ({item}) => {
   return (
     <div className={styles.container}>
       <div className={styles.container__content}>
-        <Image src={CategoryImage} alt="Category" />
+        <Image
+          src={CategoryImage}
+          className={styles.container__content__img}
+          alt="Category"
+        />
       </div>
       <span className={styles.container__name}>{name?.en}</span>
     </div>

@@ -15,3 +15,18 @@ export type CategoriesProps = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type VideosProps = {
+  categoryIds: string[];
+  createdAt: string;
+  description: {en: string; ru: string};
+  duration: number;
+  filePath: string;
+  id: string;
+  likesCount: number;
+  tags: string[];
+  thumbnailPath: string;
+  title: {en: string; ru: string};
+  updatedAt: string;
+  userId: string;
+};

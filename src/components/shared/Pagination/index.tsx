@@ -24,7 +24,6 @@ const PaginationIndex: React.FC<IPaginationProps> = ({
   activePage = INITIAL_PAGINATION_ACTIVE_PAGE,
   rowsPerPage = INITIAL_PAGINATION_ROWS_PER_PAGE,
   setActivePage = (e) => e,
-  isOffsetWidth,
   setRowsPerPage = (e) => e,
   handleClickLeftArrow,
   handleClickRightArrow,
@@ -74,18 +73,13 @@ const PaginationIndex: React.FC<IPaginationProps> = ({
   );
 
   const activePagination = isRight ? (
-    isOffsetWidth ? (
-      <div className={styles.right_block}>
-        <RightArrow
-          onClick={handleClickRightArrow}
-          className={rightArrowClasses}
-        />
-        <LeftArrow
-          onClick={handleClickLeftArrow}
-          className={leftArrowClasses}
-        />
-      </div>
-    ) : null
+    <div className={styles.right_block}>
+      <RightArrow
+        onClick={handleClickRightArrow}
+        className={rightArrowClasses}
+      />
+      <LeftArrow onClick={handleClickLeftArrow} className={leftArrowClasses} />
+    </div>
   ) : (
     <ReactPaginate
       forcePage={activePage}

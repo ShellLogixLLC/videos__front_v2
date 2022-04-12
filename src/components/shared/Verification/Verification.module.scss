@@ -1,8 +1,10 @@
 .wrapper {
   &__title {
+    display: block;
     font-size: 12px;
     font-weight: 600;
     line-height: 16px;
+    margin-bottom: 7px;
   }
 
   :nth-child(2) {

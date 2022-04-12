@@ -44,6 +44,14 @@
       height: 50vw;
     }
 
+    & > div {
+      height: 100%;
+    }
+
+    &__img {
+      object-fit: cover;
+    }
+
     &_not_like_it {
       padding: unset;
       background-color: unset;

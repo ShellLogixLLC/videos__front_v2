@@ -24,13 +24,9 @@
 
   &__active {
     @extend %box-shadow;
-    height: 470px;
-    min-height: 470px;
+    height: 391px;
+    min-height: 371px;
     transition: all 0.3s;
-
-    @media all and (orientation: landscape) {
-      height: 536px;
-    }
 
     @include breakpoint(desktop) {
       height: 391px;
@@ -63,7 +59,7 @@
   @extend %flex-center;
   position: absolute;
   margin-top: 16px;
-  height: 432px;
+  height: 283px;
   left: 0;
   right: 0;
   z-index: 5;

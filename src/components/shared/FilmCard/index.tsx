@@ -1,7 +1,11 @@
 import React from 'react';
+import Image from 'next/image';
 import classNames from 'classnames';
 import {useToggle} from 'react-use';
 
+import {createDate} from '~/utils';
+import {CategoryImage} from '~/assets';
+import {COMMENTS_COUNT, VIEWS_COUNT} from '~/constants';
 import {HeartLikes, FilmLikeIcon, ViewsCount, CommentsCount} from '~/assets';
 
 import Button from '../Button';
@@ -10,17 +14,13 @@ import Typography from '../Typography';
 import {FilmCardProps} from './types';
 import styles from './FilmCard.module.scss';
 
-const FilmCard: React.FC<FilmCardProps> = ({
-  filmName = 'Video0000000000',
-  uploadDate = '20/07/21',
-  globalTime = '23:00',
-  likeCount = 34,
-  viewsCount = 33,
-  descriptionText = 'InformationInformationInformationInformationInformation',
-  cardClasses = '',
-  commentsCount = 12,
-}) => {
+const FilmCard: React.FC<FilmCardProps> = ({item, cardClasses = ''}) => {
+  const {duration, title, description, createdAt, likesCount} = item;
+
   const [isLiked, toggleIsLiked] = useToggle(false);
+
+  const createdDate = createDate(createdAt);
+  const durationSec = (duration / 60).toFixed(2);
 
   const isLikedClasses = classNames(styles.wrapper__film_not_like_it, {
     [styles.wrapper__film_like_it]: isLiked,
@@ -32,26 +32,31 @@ const FilmCard: React.FC<FilmCardProps> = ({
         <Button className={isLikedClasses} onClick={toggleIsLiked}>
           <HeartLikes />
         </Button>
+        <Image
+          src={CategoryImage}
+          className={styles.wrapper__film__img}
+          alt="Video"
+        />
         <Typography tagName="span" className={styles.wrapper__film__time}>
-          {globalTime}
+          {durationSec}
         </Typography>
       </div>
       <div className={styles.wrapper__other}>
-        <h3 className={styles.wrapper__other_name}>{filmName}</h3>
-        <span className={styles.wrapper__other__dw_date}>{uploadDate}</span>
+        <h3 className={styles.wrapper__other_name}>{title.en}</h3>
+        <span className={styles.wrapper__other__dw_date}>{createdDate}</span>
       </div>
-      <p className={styles.wrapper__pr_description}>{descriptionText}</p>
+      <p className={styles.wrapper__pr_description}>{description.en}</p>
       <div className={styles.wrapper__card_footer}>
         <div className={styles.wrapper__card_footer_item}>
-          <p>{likeCount}</p>
+          <p>{likesCount}</p>
           <FilmLikeIcon />
         </div>
         <div className={styles.wrapper__card_footer_item}>
-          <p>{viewsCount}</p>
+          <p>{VIEWS_COUNT}</p>
           <ViewsCount />
         </div>
         <div className={styles.wrapper__card_footer_item}>
-          <p>{commentsCount}</p>
+          <p>{COMMENTS_COUNT}</p>
           <CommentsCount />
         </div>
       </div>

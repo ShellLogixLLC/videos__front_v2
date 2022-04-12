@@ -2,7 +2,6 @@ import React, {useState, useRef, useEffect} from 'react';
 import classNames from 'classnames';
 
 import {useWindowSize} from '~/hooks';
-import {sliderDataList} from '~/utils';
 import {HorizontalSliderProps} from './types';
 import {PAGINATION_TRANSFORM_VALUE} from '~/constants';
 import {INITIAL_PAGINATION_MORE_COUNT} from '~/constants';
@@ -15,17 +14,14 @@ const HorizontalSlider: React.FC<HorizontalSliderProps> = ({
   className = '',
   isCategory,
 }) => {
-  const {isMaxTablet, windowWidth} = useWindowSize();
+  const {isMaxTablet} = useWindowSize();
   const contentRef = useRef<HTMLDivElement | null>(null);
 
   const [rowsPerPage, setRowsPerPage] = useState<number>(
     INITIAL_PAGINATION_MORE_COUNT,
   );
-  const [isOffsetWidth, setIsOffsetWidth] = useState<boolean>(false);
   const [transformXValue, setTransformXValue] = useState<number>(0);
-  const [transformMaxWeight, setTransformMaxWeight] = useState<number | null>(
-    null,
-  );
+  const [transformMaxWeight, setTransformMaxWeight] = useState<number>(0);
 
   const wrapperClasses = classNames(styles.wrapper, className);
 
@@ -33,16 +29,13 @@ const HorizontalSlider: React.FC<HorizontalSliderProps> = ({
     [styles.wrapper__content__category]: isCategory,
   });
 
-  // // it's code operating temporarily.
-  const currentData = dataList || sliderDataList;
+  const data = !isMaxTablet ? dataList?.slice(0, rowsPerPage) : dataList;
 
-  const data = !isMaxTablet ? currentData.slice(0, rowsPerPage) : currentData;
-
-  const renderVideoList = data.map((item: any, index: number) =>
+  const renderVideoList = data?.map((item: any, index: number) =>
     isCategory ? (
-      <CategoryCard key={item.id || index} item={item} />
+      <CategoryCard key={index} item={item} />
     ) : (
-      <FilmCard key={index} />
+      <FilmCard key={index} item={item} />
     ),
   );
 
@@ -59,19 +52,15 @@ const HorizontalSlider: React.FC<HorizontalSliderProps> = ({
       : setTransformXValue(0);
 
   useEffect(() => {
-    if (contentRef.current && isMaxTablet) {
-      const {offsetWidth, scrollWidth} = contentRef.current;
+    if (contentRef?.current) {
+      const {offsetWidth, scrollWidth} = contentRef?.current;
       setTransformMaxWeight(Number(scrollWidth) - Number(offsetWidth));
-
-      offsetWidth >= scrollWidth
-        ? setIsOffsetWidth(false)
-        : setIsOffsetWidth(true);
     }
 
     if (!isMaxTablet && transformXValue !== 0) {
       setTransformXValue(0);
     }
-  }, [isMaxTablet, transformXValue, transformMaxWeight, windowWidth]);
+  }, [isMaxTablet, dataList, transformXValue, transformMaxWeight]);
 
   return (
     <div className={wrapperClasses}>
@@ -87,9 +76,8 @@ const HorizontalSlider: React.FC<HorizontalSliderProps> = ({
         isRight
         isCategory={isCategory}
         rowsPerPage={rowsPerPage}
-        isOffsetWidth={isOffsetWidth}
         setRowsPerPage={setRowsPerPage}
-        dataLength={sliderDataList.length}
+        dataLength={dataList?.length}
         handleClickLeftArrow={handleClickLeftArrow}
         handleClickRightArrow={handleClickRightArrow}
         transformXValue={transformXValue}

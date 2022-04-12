@@ -9,7 +9,7 @@ import {IUseUsersReturn} from './types';
 
 const useCategories = (): IUseUsersReturn => {
   const {data, mutate, error} = useAppRequest({
-    url: endpoints.AuthService.getCategories(),
+    url: endpoints.CategoryService.getCategories(),
   });
 
   useEffect(() => {
@@ -19,15 +19,15 @@ const useCategories = (): IUseUsersReturn => {
   }, [error]);
 
   return {
+    data: data,
     isError: !!error,
-    categories: data,
-    mutateUsers: mutate,
+    mutateCategories: mutate,
     isLoading: !error && !data,
   };
 };
 
-const AuthService = {
+const CategoryService = {
   useCategories,
 };
 
-export default AuthService;
+export default CategoryService;

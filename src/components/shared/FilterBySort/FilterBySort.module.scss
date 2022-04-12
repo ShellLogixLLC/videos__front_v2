@@ -60,7 +60,7 @@
     @extend %flex-column;
     width: 100%;
     margin-top: 18px;
-    height: 432px;
+    height: 483px;
     position: absolute;
     z-index: 5;
     left: 0;
@@ -74,7 +74,7 @@
       overflow-y: scroll;
       max-height: 496px;
       padding: 0 24px 0 34px;
-      margin-right: 24px;
+      margin-right: 48px;
 
       @include breakpoint(desktop) {
         padding: 0 24px;
