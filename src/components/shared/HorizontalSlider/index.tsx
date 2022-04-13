@@ -12,7 +12,7 @@ import styles from './HorizontalSlider.module.scss';
 const HorizontalSlider: React.FC<HorizontalSliderProps> = ({
   dataList,
   className = '',
-  isCategory,
+  isCategory = false,
 }) => {
   const {isMaxTablet} = useWindowSize();
   const contentRef = useRef<HTMLDivElement | null>(null);
@@ -31,7 +31,7 @@ const HorizontalSlider: React.FC<HorizontalSliderProps> = ({
 
   const data = !isMaxTablet ? dataList?.slice(0, rowsPerPage) : dataList;
 
-  const renderVideoList = data?.map((item: any, index: number) =>
+  const renderVideoList = data?.map((item, index) =>
     isCategory ? (
       <CategoryCard key={index} item={item} />
     ) : (

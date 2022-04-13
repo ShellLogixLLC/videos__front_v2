@@ -1,6 +1,6 @@
-import {VideosProps} from '~/types';
+import {VideosProps, CategoriesProps} from '~/types';
 
 export type FilmCardProps = {
-  item: VideosProps;
+  item: CategoriesProps | VideosProps;
   cardClasses?: string;
 };

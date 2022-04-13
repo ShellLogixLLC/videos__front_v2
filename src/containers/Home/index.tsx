@@ -16,14 +16,6 @@ const Home: React.FC = () => {
   const {videosData} = VideosService.useVideos();
   const videos = videosData?.videos;
 
-  //this data will change after
-  const categoryArr = categories && [
-    ...categories,
-    ...categories,
-    ...categories,
-  ];
-  const videosArr = videos && [...videos, ...videos, ...videos];
-
   return (
     <article className={styles.wrapper}>
       <div className={styles.wrapper__content}>
@@ -31,7 +23,7 @@ const Home: React.FC = () => {
           <Typography className={styles.wrapper__content__title}>
             {t('common.newVideos')}
           </Typography>
-          <HorizontalSlider dataList={videosArr} />
+          <HorizontalSlider dataList={videos} />
         </section>
         <section className={styles.wrapper__content__two_section}>
           <Typography className={styles.wrapper__content__title}>
@@ -39,7 +31,7 @@ const Home: React.FC = () => {
           </Typography>
           <HorizontalSlider
             isCategory
-            dataList={categoryArr}
+            dataList={categories}
             className={styles.wrapper__content__two_section_slider}
           />
         </section>
@@ -47,13 +39,13 @@ const Home: React.FC = () => {
           <Typography className={styles.wrapper__content__title}>
             {t('common.topRated')}
           </Typography>
-          <HorizontalSlider dataList={videosArr} />
+          <HorizontalSlider dataList={videos} />
         </section>
         <section className={styles.wrapper__content__one_section}>
           <Typography className={styles.wrapper__content__title}>
             {t('common.mostLiked')}
           </Typography>
-          <HorizontalSlider dataList={videosArr} />
+          <HorizontalSlider dataList={videos} />
         </section>
       </div>
       <aside className={styles.filter_block}>

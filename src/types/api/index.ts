@@ -5,28 +5,30 @@ export interface ICommonRequestReturn {
   isLoading: boolean;
 }
 
+type NameProps = {
+  en: string;
+  ru: string;
+};
+
 export type CategoriesProps = {
   id: string;
-  name: {
-    en: string;
-    ru: string;
-  };
+  name: NameProps;
   imagePath: string;
   createdAt: string;
   updatedAt: string;
 };
 
 export type VideosProps = {
-  categoryIds: string[];
-  createdAt: string;
-  description: {en: string; ru: string};
+  id: string;
+  tags: string[];
+  title: NameProps;
+  userId: string;
   duration: number;
   filePath: string;
-  id: string;
-  likesCount: number;
-  tags: string[];
-  thumbnailPath: string;
-  title: {en: string; ru: string};
+  createdAt: string;
   updatedAt: string;
-  userId: string;
+  likesCount: number;
+  categoryIds: string[];
+  description: NameProps;
+  thumbnailPath: string;
 };

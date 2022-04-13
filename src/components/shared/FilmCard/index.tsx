@@ -1,21 +1,23 @@
 import React from 'react';
-import Image from 'next/image';
 import classNames from 'classnames';
 import {useToggle} from 'react-use';
 
 import {createDate} from '~/utils';
+import {VideosProps} from '~/types';
 import {CategoryImage} from '~/assets';
 import {COMMENTS_COUNT, VIEWS_COUNT} from '~/constants';
 import {HeartLikes, FilmLikeIcon, ViewsCount, CommentsCount} from '~/assets';
 
 import Button from '../Button';
+import ImageComp from '../ImageComp';
 import Typography from '../Typography';
 
 import {FilmCardProps} from './types';
 import styles from './FilmCard.module.scss';
 
 const FilmCard: React.FC<FilmCardProps> = ({item, cardClasses = ''}) => {
-  const {duration, title, description, createdAt, likesCount} = item;
+  const {duration, title, description, createdAt, likesCount} =
+    item as VideosProps;
 
   const [isLiked, toggleIsLiked] = useToggle(false);
 
@@ -32,11 +34,7 @@ const FilmCard: React.FC<FilmCardProps> = ({item, cardClasses = ''}) => {
         <Button className={isLikedClasses} onClick={toggleIsLiked}>
           <HeartLikes />
         </Button>
-        <Image
-          src={CategoryImage}
-          className={styles.wrapper__film__img}
-          alt="Video"
-        />
+        <ImageComp src={CategoryImage} />
         <Typography tagName="span" className={styles.wrapper__film__time}>
           {durationSec}
         </Typography>

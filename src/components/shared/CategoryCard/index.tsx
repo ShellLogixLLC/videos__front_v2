@@ -2,22 +2,23 @@ import React from 'react';
 import Image from 'next/image';
 
 import {CategoryImage} from '~/assets';
+import {CategoriesProps} from '~/types';
+
+import ImageComp from '../ImageComp';
 
 import {CategoryCardProps} from './types';
 import styles from './CategoryCard.module.scss';
 
 const CategoryCard: React.FC<CategoryCardProps> = ({item}) => {
-  const {name} = item;
+  const {name} = item as CategoriesProps;
 
   return (
     <div className={styles.container}>
-      <div className={styles.container__content}>
-        <Image
-          src={CategoryImage}
-          className={styles.container__content__img}
-          alt="Category"
-        />
-      </div>
+      <ImageComp
+        src={CategoryImage}
+        alt="Category"
+        className={styles.container__content}
+      />
       <span className={styles.container__name}>{name?.en}</span>
     </div>
   );

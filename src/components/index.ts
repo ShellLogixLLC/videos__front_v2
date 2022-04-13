@@ -18,6 +18,7 @@ export {default as Search} from './shared/Search';
 export {default as Button} from './shared/Button';
 export {default as Comments} from './shared/Comments';
 export {default as FilmCard} from './shared/FilmCard';
+export {default as ImageComp} from './shared/ImageComp';
 export {default as BackButton} from './shared/BackButton';
 export {default as Pagination} from './shared/Pagination';
 export {default as DatePicker} from './shared/DatePicker';

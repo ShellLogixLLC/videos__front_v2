@@ -1,5 +1,7 @@
+import {CategoriesProps, VideosProps} from '~/types';
+
 export type HorizontalSliderProps = {
-  dataList?: any;
+  dataList: VideosProps[] | CategoriesProps[];
   className?: string;
   isCategory?: boolean;
 };

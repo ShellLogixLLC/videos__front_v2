@@ -1,5 +1,5 @@
-import {CategoriesProps} from '~/types';
+import {CategoriesProps, VideosProps} from '~/types';
 
 export type CategoryCardProps = {
-  item: CategoriesProps;
+  item: CategoriesProps | VideosProps;
 };
