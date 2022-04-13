@@ -5,24 +5,24 @@ export interface ICommonRequestReturn {
   isLoading: boolean;
 }
 
-export type NameProps = {
+export type Name = {
   en: string;
   ru: string;
 };
 
-export type VideosDataProps = {
+export type VideosData = {
   videos: VideosProps[];
   totalCount: number;
 };
 
-export type CategoriesDataProps = {
+export type CategoriesData = {
   categories: CategoriesProps[];
   totalCount: number;
 };
 
 export type CategoriesProps = {
   id: string;
-  name: NameProps;
+  name: Name;
   imagePath: string;
   createdAt: string;
   updatedAt: string;
@@ -31,7 +31,7 @@ export type CategoriesProps = {
 export type VideosProps = {
   id: string;
   tags: string[];
-  title: NameProps;
+  title: Name;
   userId: string;
   duration: number;
   filePath: string;
@@ -39,6 +39,6 @@ export type VideosProps = {
   updatedAt: string;
   likesCount: number;
   categoryIds: string[];
-  description: NameProps;
+  description: Name;
   thumbnailPath: string;
 };

@@ -1,6 +1,6 @@
-import {ICommonRequestReturn, MutateData, VideosDataProps} from '~/types';
+import {ICommonRequestReturn, MutateData, VideosData} from '~/types';
 
 export interface IVideosReturn extends ICommonRequestReturn {
-  videosData: VideosDataProps;
+  videosData: VideosData;
   mutateVideo: MutateData;
 }
