@@ -1,5 +1,5 @@
-const createDate = (d: string) => {
-  const date = new Date(d);
+const createDate = (dateTime: string) => {
+  const date = new Date(dateTime);
   const getDay = date.getDate();
   const day = getDay > 9 ? getDay : `0${getDay}`;
   const getMonth = date.getMonth() + 1;

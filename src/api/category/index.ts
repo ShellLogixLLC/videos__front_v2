@@ -20,7 +20,7 @@ const useCategories = (): IUseUsersReturn => {
 
   return {
     isError: !!error,
-    data: data,
+    data,
     mutateCategories: mutate,
     isLoading: !error && !data,
   };
