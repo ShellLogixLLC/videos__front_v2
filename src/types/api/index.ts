@@ -5,9 +5,19 @@ export interface ICommonRequestReturn {
   isLoading: boolean;
 }
 
-type NameProps = {
+export type NameProps = {
   en: string;
   ru: string;
+};
+
+export type VideosDataProps = {
+  videos: VideosProps[];
+  totalCount: number;
+};
+
+export type CategoriesDataProps = {
+  categories: CategoriesProps[];
+  totalCount: number;
 };
 
 export type CategoriesProps = {
