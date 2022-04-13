@@ -1,10 +1,9 @@
 import React from 'react';
-import Image from 'next/image';
 
 import {CategoryImage} from '~/assets';
 import {CategoriesProps} from '~/types';
 
-import ImageComp from '../ImageComp';
+import Image from '../Image';
 
 import {CategoryCardProps} from './types';
 import styles from './CategoryCard.module.scss';
@@ -14,7 +13,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({item}) => {
 
   return (
     <div className={styles.container}>
-      <ImageComp
+      <Image
         src={CategoryImage}
         alt="Category"
         className={styles.container__content}

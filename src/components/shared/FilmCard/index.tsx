@@ -9,7 +9,7 @@ import {COMMENTS_COUNT, VIEWS_COUNT} from '~/constants';
 import {HeartLikes, FilmLikeIcon, ViewsCount, CommentsCount} from '~/assets';
 
 import Button from '../Button';
-import ImageComp from '../ImageComp';
+import Image from '../Image';
 import Typography from '../Typography';
 
 import {FilmCardProps} from './types';
@@ -34,7 +34,7 @@ const FilmCard: React.FC<FilmCardProps> = ({item, cardClasses = ''}) => {
         <Button className={isLikedClasses} onClick={toggleIsLiked}>
           <HeartLikes />
         </Button>
-        <ImageComp src={CategoryImage} />
+        <Image src={CategoryImage} />
         <Typography tagName="span" className={styles.wrapper__film__time}>
           {durationSec}
         </Typography>

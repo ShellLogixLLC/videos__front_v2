@@ -1,10 +1,10 @@
 import React from 'react';
-import Image, {ImageProps} from 'next/image';
+import NextImage, {ImageProps} from 'next/image';
 import classNames from 'classnames';
 
 import styles from './Image.module.scss';
 
-const ImageComp: React.FC<ImageProps> = ({
+const Image: React.FC<ImageProps> = ({
   src,
   alt,
   layout = 'fill',
@@ -15,7 +15,7 @@ const ImageComp: React.FC<ImageProps> = ({
 
   return (
     <div className={wrapperClasses}>
-      <Image
+      <NextImage
         src={src}
         alt={alt}
         layout={layout}
@@ -25,4 +25,4 @@ const ImageComp: React.FC<ImageProps> = ({
   );
 };
 
-export default ImageComp;
+export default Image;
