@@ -5,11 +5,11 @@ import {RouterService} from '~/services';
 
 import endpoints from '../endpoints';
 
-import {IUseUsersReturn} from './types';
+import {IVideosReturn} from './types';
 
-const useCategories = (): IUseUsersReturn => {
+const useVideos = (): IVideosReturn => {
   const {data, mutate, error} = useAppRequest({
-    url: endpoints.AuthService.getCategories(),
+    url: endpoints.VideosService.getVideos(),
   });
 
   useEffect(() => {
@@ -20,14 +20,14 @@ const useCategories = (): IUseUsersReturn => {
 
   return {
     isError: !!error,
-    categories: data || [],
-    mutateUsers: mutate,
+    videosData: data,
+    mutateVideo: mutate,
     isLoading: !error && !data,
   };
 };
 
-const AuthService = {
-  useCategories,
+const VideosService = {
+  useVideos,
 };
 
-export default AuthService;
+export default VideosService;

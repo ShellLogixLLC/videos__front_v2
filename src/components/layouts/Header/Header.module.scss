@@ -1,6 +1,10 @@
 .wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   height: 90px;
   background-color: $black;
+  box-shadow: $header-box-shadow;
 
   &__content {
     @extend %flex-between;
@@ -8,9 +12,11 @@
     height: 100%;
 
     &__container {
+      display: none;
       @extend %flex-between;
 
       @include breakpoint(desktop) {
+        display: flex;
         max-width: 48px;
         width: 100%;
       }

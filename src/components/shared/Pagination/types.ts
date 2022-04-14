@@ -1,7 +1,8 @@
 export type IPaginationProps = {
   isRight?: boolean;
-  activePage?: number;
   dataLength: number;
+  activePage?: number;
+  isCategory?: boolean;
   rowsPerPage?: number;
   setActivePage?: (arg: number) => void;
   setRowsPerPage?: (arg: number) => void;

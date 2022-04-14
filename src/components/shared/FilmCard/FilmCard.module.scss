@@ -7,7 +7,7 @@
   width: 100%;
   height: 386px;
   margin-right: 25px;
-  background-color: $black;
+  background-color: $light-black;
 
   @include breakpoint(tablet) {
     min-width: 100%;
@@ -16,7 +16,7 @@
   }
 
   @include breakpoint(tablet-m) {
-    height: 289px;
+    height: auto;
     padding: 16px 16px 19px 16px;
   }
 
@@ -41,7 +41,7 @@
     background-color: $dark-white;
 
     @include breakpoint(tablet-m) {
-      height: 128px;
+      height: 50vw;
     }
 
     &_not_like_it {
