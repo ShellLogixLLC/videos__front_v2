@@ -6,8 +6,9 @@ import {Seo} from '~/components';
 import {Home} from '~/containers';
 import endpoints from '~/api/endpoints';
 import ApiService from '~/api/ApiService';
+import {SwrPageProps} from '~/types';
 
-const HomePage: NextPage = ({fallback}: any) => (
+const HomePage: NextPage<SwrPageProps> = ({fallback}) => (
   <Seo title="Home page" metaDescription="Home page description">
     <SWRConfig value={{fallback}}>
       <Home />
