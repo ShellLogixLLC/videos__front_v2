@@ -4,9 +4,8 @@ import {GetServerSidePropsResult, NextPage} from 'next';
 
 import {Seo} from '~/components';
 import {Home} from '~/containers';
-
-import ApiService from '~/api/ApiService';
 import endpoints from '~/api/endpoints';
+import ApiService from '~/api/ApiService';
 
 const HomePage: NextPage = ({fallback}: any) => (
   <Seo title="Home page" metaDescription="Home page description">
@@ -19,12 +18,17 @@ const HomePage: NextPage = ({fallback}: any) => (
 export const getServerSideProps = async (): Promise<
   GetServerSidePropsResult<{}>
 > => {
-  const res = await ApiService.get(endpoints.AuthService.getCategories());
+  const resVideos = await ApiService.get(endpoints.VideosService.getVideos());
+
+  const resCategories = await ApiService.get(
+    endpoints.CategoryService.getCategories(),
+  );
 
   return {
     props: {
       fallback: {
-        [endpoints.AuthService.getCategories()]: res,
+        [endpoints.CategoryService.getCategories()]: resCategories,
+        [endpoints.VideosService.getVideos()]: resVideos,
       },
     },
   };
