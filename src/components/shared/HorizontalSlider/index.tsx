@@ -2,11 +2,11 @@ import React, {useState, useRef, useEffect} from 'react';
 import classNames from 'classnames';
 
 import {useWindowSize} from '~/hooks';
-import {HorizontalSliderProps} from './types';
 import {PAGINATION_TRANSFORM_VALUE} from '~/constants';
 import {INITIAL_PAGINATION_MORE_COUNT} from '~/constants';
 import {CategoryCard, FilmCard, Pagination} from '~/components';
 
+import {HorizontalSliderProps} from './types';
 import styles from './HorizontalSlider.module.scss';
 
 const HorizontalSlider: React.FC<HorizontalSliderProps> = ({
