@@ -4,7 +4,7 @@ import {NextPage} from 'next';
 import {Seo} from '~/components';
 import {ForgotPassword} from '~/components';
 
-import {getStaticProps} from './index';
+import {getStaticProps} from './categories';
 
 const ForgotPasswordPage: NextPage = () => (
   <Seo
