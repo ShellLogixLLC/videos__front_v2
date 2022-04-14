@@ -5,7 +5,7 @@ import {client} from '~/api';
 
 import {GetRequest, IConfig, IUseRequestReturn} from './types';
 
-const useRequest = <Data = unknown, Error = unknown>(
+const useRequest = <Data = any, Error = unknown>(
   request: GetRequest,
   {fallbackData, ...config}: IConfig<Data, Error> = {},
 ): IUseRequestReturn<Data, Error> => {

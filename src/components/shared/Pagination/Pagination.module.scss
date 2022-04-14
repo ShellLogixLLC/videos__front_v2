@@ -10,7 +10,11 @@
     @extend %flex-center;
 
     @include breakpoint(tablet) {
-      margin: 32px 0;
+      margin: 32px 0 0px;
+    }
+
+    @include breakpoint(tablet) {
+      margin: 16px 0 0px;
     }
 
     &__more_btn {

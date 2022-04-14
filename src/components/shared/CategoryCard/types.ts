@@ -1,3 +1,5 @@
+import {CategoriesProps, VideosProps} from '~/types';
+
 export type CategoryCardProps = {
-  text?: string;
+  item: CategoriesProps | VideosProps;
 };

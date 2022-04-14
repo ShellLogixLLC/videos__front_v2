@@ -2,6 +2,7 @@
   background-color: $black;
   @extend %flex-center;
   height: 90px;
+  box-shadow: $footer-box-shadow !important;
 
   &_content {
     @extend %flex-center;

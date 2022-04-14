@@ -12,7 +12,7 @@ const PageContent: React.FC<PageContentProps> = ({
     ['project_body_height']: !showHeaderFooter,
   });
 
-  return <section className={pageContentClasses}>{children}</section>;
+  return <main className={pageContentClasses}>{children}</main>;
 };
 
 export default PageContent;

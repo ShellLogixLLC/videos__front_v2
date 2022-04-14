@@ -6,21 +6,25 @@
   padding: 16px;
   min-width: 207px;
   max-width: 207px;
-  margin-right: 25px;
-  margin-bottom: 10px;
-  background-color: $black;
+  margin-right: 20px;
+  background-color: $light-black;
+
+  @include breakpoint(tablet) {
+    margin-right: 0;
+  }
 
   &__content {
+    position: relative;
     max-width: 175px;
-    width: 100%;
     height: 145px;
     background-color: $dark-white;
   }
 
   &__name {
     @extend %film_name;
-    margin-top: 10px;
+    margin-top: 8px;
     user-select: text;
     cursor: text;
+    display: block;
   }
 }

@@ -1,0 +1,12 @@
+.wrapper {
+  width: 100%;
+
+  & > div {
+    position: unset !important;
+    height: 100%;
+  }
+
+  &__img {
+    object-fit: cover;
+  }
+}

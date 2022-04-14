@@ -18,9 +18,6 @@ const Search: React.FC = () => {
   const onSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchValue.length) {
-      // TODO connect it with back end in the future
-      // eslint-disable-next-line no-console
-      console.log('searchValue =', searchValue);
       setSearchValue('');
       toggleExpanded(false);
     } else {

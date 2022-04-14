@@ -5,12 +5,9 @@ import {FilmCard} from '~/components';
 import styles from './Category.module.scss';
 
 const Category: React.FC = () => {
-  const films = [{}, {}, {}, {}, {}, {}, {}];
-  const renderAllFim = films.map((item, index) => <FilmCard key={index} />);
-
   return (
     <div className={styles.new_container}>
-      <div className={styles.new_container__wrapper}>{renderAllFim}</div>
+      <div className={styles.new_container__wrapper}>Category</div>
     </div>
   );
 };

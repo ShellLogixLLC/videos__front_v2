@@ -1,10 +1,6 @@
-export interface FilmCardProps {
-  filmName?: string;
-  likeCount?: string;
-  viewsCount?: string;
-  uploadDate?: string;
-  globalTime?: string;
+import {VideosProps, CategoriesProps} from '~/types';
+
+export type FilmCardProps = {
+  item: CategoriesProps | VideosProps;
   cardClasses?: string;
-  commentsCount?: string;
-  descriptionText?: string;
-}
+};
