@@ -3,7 +3,7 @@ import {NextPage} from 'next';
 
 import {Seo} from '~/components';
 
-import {getStaticProps} from './index';
+import {getStaticProps} from './categories';
 
 const ErrorPage: NextPage = () => (
   <Seo title="Error page" showHeaderFooter={false} metaDescription="Error page">

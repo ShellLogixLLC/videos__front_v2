@@ -3,8 +3,8 @@ import * as cookie from 'cookie';
 import * as setCookie from 'set-cookie-parser';
 import createAuthRefreshInterceptor from 'axios-auth-refresh';
 
-const defaultOptions = {
-  baseURL: 'https://protected-refuge-67749.herokuapp.com/api',
+export const defaultOptions = {
+  baseURL: 'https://obscure-harbor-76716.herokuapp.com/api',
 };
 
 const api = axios.create(defaultOptions);

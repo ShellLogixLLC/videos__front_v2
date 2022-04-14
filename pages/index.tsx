@@ -1,27 +1,31 @@
 import React from 'react';
-import {NextPage} from 'next';
-import {GetStaticProps} from 'next';
-import {serverSideTranslations} from 'next-i18next/serverSideTranslations';
+import {SWRConfig} from 'swr';
+import {GetServerSidePropsResult, NextPage} from 'next';
 
 import {Seo} from '~/components';
 import {Home} from '~/containers';
 
-import nextI18NextConfig from '../next-i18next.config';
+import ApiService from '~/api/ApiService';
+import endpoints from '~/api/endpoints';
 
-const HomePage: NextPage = () => (
+const HomePage: NextPage = ({fallback}: any) => (
   <Seo title="Home page" metaDescription="Home page description">
-    <Home />
+    <SWRConfig value={{fallback}}>
+      <Home />
+    </SWRConfig>
   </Seo>
 );
 
-export const getStaticProps: GetStaticProps = async ({locale}) => {
+export const getServerSideProps = async (): Promise<
+  GetServerSidePropsResult<{}>
+> => {
+  const res = await ApiService.get(endpoints.AuthService.getCategories());
+
   return {
     props: {
-      ...(await serverSideTranslations(
-        locale as string,
-        ['common'],
-        nextI18NextConfig,
-      )),
+      fallback: {
+        [endpoints.AuthService.getCategories()]: res,
+      },
     },
   };
 };
