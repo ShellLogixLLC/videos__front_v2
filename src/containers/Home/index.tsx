@@ -11,7 +11,7 @@ import styles from './Home.module.scss';
 const Home: React.FC = () => {
   const {t} = useTranslation();
 
-  const {data} = CategoryService.useCategories();
+  const {data, isLoading} = CategoryService.useCategories();
   const categories = data?.categories;
   const {videosData} = VideosService.useVideos();
   const videos = videosData?.videos;
@@ -23,13 +23,14 @@ const Home: React.FC = () => {
           <Typography className={styles.wrapper__content__title}>
             {t('common.newVideos')}
           </Typography>
-          <HorizontalSlider dataList={videos} />
+          <HorizontalSlider dataIsLoading={isLoading} dataList={videos} />
         </section>
         <section className={styles.wrapper__content__two_section}>
           <Typography className={styles.wrapper__content__title}>
             {t('common.categories')}
           </Typography>
           <HorizontalSlider
+            dataIsLoading={isLoading}
             isCategory
             dataList={categories}
             className={styles.wrapper__content__two_section_slider}
@@ -39,13 +40,13 @@ const Home: React.FC = () => {
           <Typography className={styles.wrapper__content__title}>
             {t('common.topRated')}
           </Typography>
-          <HorizontalSlider dataList={videos} />
+          <HorizontalSlider dataIsLoading={isLoading} dataList={videos} />
         </section>
         <section className={styles.wrapper__content__one_section}>
           <Typography className={styles.wrapper__content__title}>
             {t('common.mostLiked')}
           </Typography>
-          <HorizontalSlider dataList={videos} />
+          <HorizontalSlider dataIsLoading={isLoading} dataList={videos} />
         </section>
       </div>
       <aside className={styles.filter_block}>

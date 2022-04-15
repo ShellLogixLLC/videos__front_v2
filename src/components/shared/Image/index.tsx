@@ -9,7 +9,6 @@ const Image: React.FC<ImageProps> = ({
   alt,
   layout = 'fill',
   className = '',
-  ...all
 }) => {
   const wrapperClasses = classNames(styles.wrapper, className);
 
