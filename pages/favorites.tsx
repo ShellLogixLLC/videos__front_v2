@@ -3,7 +3,7 @@ import React from 'react';
 import {VideosService} from '~/api';
 import {Seo, Typography, Video} from '~/components';
 
-import {getStaticProps} from './index';
+import {getStaticProps} from './categories';
 
 const VIDEO_LENGTH = 110.5;
 const VIDEO_SRC =

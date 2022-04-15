@@ -1,5 +1,4 @@
 import React from 'react';
-import {useTranslation} from 'next-i18next';
 
 import {filteredMass} from '~/utils';
 import {HorizontalSlider} from '~/components';
@@ -9,8 +8,6 @@ import {DatePicker, FilterBySort, Typography} from '~/components';
 import styles from './Home.module.scss';
 
 const Home: React.FC = () => {
-  const {t} = useTranslation();
-
   const {data, isLoading} = CategoryService.useCategories();
   const categories = data?.categories;
   const {videosData} = VideosService.useVideos();
@@ -21,13 +18,13 @@ const Home: React.FC = () => {
       <div className={styles.wrapper__content}>
         <section className={styles.wrapper__content__one_section}>
           <Typography className={styles.wrapper__content__title}>
-            {t('common.newVideos')}
+            New Videos
           </Typography>
           <HorizontalSlider dataIsLoading={isLoading} dataList={videos} />
         </section>
         <section className={styles.wrapper__content__two_section}>
           <Typography className={styles.wrapper__content__title}>
-            {t('common.categories')}
+            Categories
           </Typography>
           <HorizontalSlider
             dataIsLoading={isLoading}
@@ -38,13 +35,13 @@ const Home: React.FC = () => {
         </section>
         <section className={styles.wrapper__content__one_section}>
           <Typography className={styles.wrapper__content__title}>
-            {t('common.topRated')}
+            Top Rated
           </Typography>
           <HorizontalSlider dataIsLoading={isLoading} dataList={videos} />
         </section>
         <section className={styles.wrapper__content__one_section}>
           <Typography className={styles.wrapper__content__title}>
-            {t('common.mostLiked')}
+            Most Liked
           </Typography>
           <HorizontalSlider dataIsLoading={isLoading} dataList={videos} />
         </section>

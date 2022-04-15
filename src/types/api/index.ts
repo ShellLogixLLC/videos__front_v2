@@ -42,3 +42,7 @@ export type VideosProps = {
   description: Name;
   thumbnailPath: string;
 };
+
+export type SwrPageProps = {
+  fallback: {[p: string]: unknown} | undefined;
+};

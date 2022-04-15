@@ -3,7 +3,7 @@ import {NextPage} from 'next';
 
 import {Seo, Typography} from '~/components';
 
-import {getStaticProps} from './index';
+import {getStaticProps} from './categories';
 
 const NewPage: NextPage = () => (
   <Seo title="New page" metaDescription="New page description">
