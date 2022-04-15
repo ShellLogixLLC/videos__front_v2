@@ -69,7 +69,11 @@ const HorizontalSlider: React.FC<HorizontalSliderProps> = ({
   }, [isMaxTablet, dataList, transformXValue, transformMaxWeight]);
 
   return dataIsLoading ? (
-    <HorizontalSliderSkeleton isCategory={isCategory} className={className} />
+    <HorizontalSliderSkeleton
+      isCategory={isCategory}
+      wrapperClasses={wrapperClasses}
+      contentClasses={contentClasses}
+    />
   ) : (
     <div className={wrapperClasses}>
       <div

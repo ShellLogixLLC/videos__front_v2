@@ -24,6 +24,19 @@
       grid-gap: 16px;
       grid-template-columns: repeat(1, 1fr);
     }
+    &__category {
+      display: flex;
+      justify-content: flex-start;
+
+      @include breakpoint(tablet) {
+        width: 100%;
+        overflow-x: scroll;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
+    }
   }
 }
 

@@ -1,4 +1,3 @@
-import classNames from 'classnames';
 import React from 'react';
 
 import {LeftArrow, RightArrow} from '~/assets';
@@ -10,12 +9,17 @@ import {ISkeletonDataTypes} from '../types';
 import styles from './HorizontalSlider.module.scss';
 
 const HorizontalSliderSkeleton: React.FC<ISkeletonDataTypes> = ({
-  dataLength = 8,
   isCategory = false,
-  className = '',
+  wrapperClasses,
+  contentClasses,
 }) => {
-  const commentsArray = new Array(dataLength).fill({});
-  const wrapperClasses = classNames(styles.wrapper, className);
+  const commentsArray = new Array(isCategory ? 8 : 4).fill({});
+
+  const moreBtn = !isCategory ? (
+    <div className={styles.more_btn}>
+      <p />
+    </div>
+  ) : null;
 
   const renderVideoList = commentsArray.map((item, index) =>
     isCategory ? (
@@ -28,7 +32,7 @@ const HorizontalSliderSkeleton: React.FC<ISkeletonDataTypes> = ({
   return (
     <>
       <div className={wrapperClasses}>
-        <div className={styles.wrapper__content}>{renderVideoList}</div>
+        <div className={contentClasses}>{renderVideoList}</div>
         <div className={styles.pagination}>
           <div className={styles.pagination__wrapper}>
             <div className={styles.right_block}>
@@ -38,9 +42,7 @@ const HorizontalSliderSkeleton: React.FC<ISkeletonDataTypes> = ({
           </div>
         </div>
       </div>
-      <div className={styles.more_btn}>
-        <p />
-      </div>
+      {moreBtn}
     </>
   );
 };
