@@ -10,7 +10,7 @@ import {ISkeletonDataTypes} from '../types';
 import styles from './HorizontalSlider.module.scss';
 
 const HorizontalSliderSkeleton: React.FC<ISkeletonDataTypes> = ({
-  dataLength = 4,
+  dataLength = 8,
   isCategory = false,
   className = '',
 }) => {
