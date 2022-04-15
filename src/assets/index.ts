@@ -6,6 +6,7 @@ export {default as CategoryImage} from './images/category.jpg';
 
 // Icons
 export {default as GPS} from './icons/GPS.svg';
+export {default as Alla} from './icons/Alla.svg';
 export {default as Love} from './icons/love.svg';
 export {default as Logo} from './icons/Logo.svg';
 export {default as WiFi} from './icons/wifi.svg';
@@ -117,6 +118,7 @@ export {default as VideoCamera} from './icons/videoCamera.svg';
 export {default as MapPaperGPS} from './icons/mapPaperGPS.svg';
 export {default as ShoppingBag} from './icons/shoppingBag.svg';
 export {default as DisketteIcon} from './icons/diskette.svg';
+
 export {default as FilmLikeIcon} from './icons/filmLikeIcon.svg';
 export {default as RefreshRound} from './icons/refreshRound.svg';
 export {default as MusicTwoNota} from './icons/musicTwoNota.svg';

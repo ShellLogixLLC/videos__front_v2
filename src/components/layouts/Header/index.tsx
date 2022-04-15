@@ -6,6 +6,7 @@ import {useTranslation} from 'next-i18next';
 import {Route} from '~/constants';
 import {ToggleContext} from '~/context';
 import {useWindowSize} from '~/hooks';
+import {CategoryService} from '~/api';
 import {routes, routesBurger} from '~/utils';
 import {Menu, Logo, MobileFilterIcon} from '~/assets';
 import {
@@ -15,12 +16,17 @@ import {
   MobileMenu,
   MobileFilter,
   HeaderNavbar,
+  SubCategories,
 } from '~/components';
 
 import styles from './Header.module.scss';
 
 const Header: React.FC = () => {
   const {t} = useTranslation();
+
+  const {data} = CategoryService.useCategories();
+  const categories = data?.categories;
+
   const {expanded} = useContext(ToggleContext);
   const {isDesktop} = useWindowSize();
 
@@ -36,26 +42,40 @@ const Header: React.FC = () => {
   });
 
   const handleOpenMenu = () => setIsOpen(true);
+
+  const datas = categories?.length && [
+    ...categories,
+    ...categories,
+    ...categories,
+  ];
+
+  console.log(datas, 'uyvhbjlnk');
+
   const headerTable = routes.map(({id, routeName, pageName}) => (
-    <Link
-      key={id}
-      to={routeName}
-      className={styles.wrapper__content_menu__link}
-      activeClassName={styles.wrapper__content_menu__link_active}>
-      {t(pageName)}
-    </Link>
+    <>
+      <Link
+        key={id}
+        to={routeName}
+        className={styles.wrapper__content_menu__link}
+        activeClassName={styles.wrapper__content_menu__link_active}>
+        {t(pageName)}
+      </Link>
+      {id === 1 && <SubCategories subCategoriesList={datas} />}
+    </>
   ));
 
   const renderMobileMenu = routesBurger.map(({id, routeName, pageName}) => (
-    <Link
-      key={id}
-      to={routeName}
-      className={styles.wrapper__content__burger__container__nav__items}
-      activeClassName={
-        styles.wrapper__content__burger__container__nav__items_active
-      }>
-      {t(pageName)}
-    </Link>
+    <>
+      <Link
+        key={id}
+        to={routeName}
+        className={styles.wrapper__content__burger__container__nav__items}
+        activeClassName={
+          styles.wrapper__content__burger__container__nav__items_active
+        }>
+        {t(pageName)}
+      </Link>
+    </>
   ));
 
   return (

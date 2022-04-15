@@ -7,6 +7,7 @@ import {LikeIt, UserIcon} from '~/assets';
 
 import Link from '../Link';
 import LanguageDropDown from '../LanguageDropDown';
+import ProfileDropdown from '../ProfileDropdown';
 import styles from '../../layouts/Header/Header.module.scss';
 
 const HeaderNavbar: React.FC = ({children}) => {
@@ -30,6 +31,7 @@ const HeaderNavbar: React.FC = ({children}) => {
           <UserIcon />
         </Link>
         <LanguageDropDown />
+        {/* <ProfileDropdown /> */}
       </div>
     </>
   );

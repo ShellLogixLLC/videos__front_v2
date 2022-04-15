@@ -1,0 +1,82 @@
+.wrapper {
+  @extend %flex-between;
+  position: absolute;
+  z-index: 10;
+  top: 90px;
+  left: -44px;
+  right: -44px;
+  padding: 0 50px;
+  height: 60px;
+  background-color: $black;
+  box-shadow: $header-box-shadow;
+
+  &__content {
+    padding: 16px 0;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 40px;
+      // opacity: 0.5;
+      background-color: $black;
+      opacity: 0.7;
+      box-shadow: $header-box-shadow;
+      z-index: 12;
+      background-image: linear-gradient(to right, $black, $light-rgba 90%);
+    }
+
+    &__inner {
+      @extend %flex-between;
+      transition: 350ms ease-out;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    &__item {
+      margin-right: 32px;
+
+      &__text {
+        @extend %film_name;
+        color: $dark-white;
+        white-space: nowrap;
+      }
+
+      &:last-child {
+        margin: 0;
+      }
+    }
+  }
+
+  &__left_icon {
+    @extend %subCategoryIcon;
+    margin-right: 36px;
+    z-index: 999;
+
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__right_icon {
+    @extend %subCategoryIcon;
+    z-index: 12;
+    position: static;
+    margin-left: 36px;
+    background-color: rgba(
+      0,
+      0,
+      0,
+      0.25
+    ); /* For browsers that do not support gradients */
+    background-image: linear-gradient(-180deg, #020202, rgba(0, 0, 0, 0.25));
+  }
+
+  &__icon_hidden {
+    transform: scale(0);
+  }
+}
