@@ -8,7 +8,7 @@ import {ToggleContext} from '~/context';
 import {useWindowSize} from '~/hooks';
 import {CategoryService} from '~/api';
 import {routes, routesBurger} from '~/utils';
-import {Menu, Logo, MobileFilterIcon} from '~/assets';
+import {Menu, Logo, MobileFilterIcon, SearchBackArrowIcon} from '~/assets';
 import {
   Link,
   Button,
@@ -32,6 +32,7 @@ const Header: React.FC = () => {
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isFilter, toggleFilter] = useToggle(false);
+  const [isCategories, toggleCategories] = useToggle(false);
 
   const logoClassNames = classNames(styles.wrapper__content_logo, {
     [styles.wrapper__content_logo_hidden]: expanded && !isDesktop,
@@ -48,11 +49,44 @@ const Header: React.FC = () => {
     ...categories,
     ...categories,
   ];
+  const toggleCategory = () => {
+    if (!isDesktop) {
+      toggleCategories();
+    }
+  };
+  console.log('isCategories', isCategories);
 
-  console.log(datas, 'uyvhbjlnk');
+  const renderCategory = (
+    <div
+      className={styles.wrapper__content_menu__category}
+      onClick={toggleCategory}>
+      <div
+        className={styles.wrapper__content_menu__link}
+        // activeClassName={styles.wrapper__content_menu__link_active}
+      >
+        <p>Category</p>
+        <SearchBackArrowIcon
+          className={
+            (styles.wrapper__content_menu__icon,
+            {
+              [styles.wrapper__content_menu__icon__rotate]: isCategories,
+            })
+          }
+        />
+      </div>
+      <SubCategories
+        wrapperClass={classNames(styles.sub_category, {
+          [styles.sub_category__mobile]: isCategories,
+        })}
+        subCategoriesList={datas}
+      />
+    </div>
+  );
 
-  const headerTable = routes.map(({id, routeName, pageName}) => (
-    <>
+  const headerTable = routes.map(({id, routeName, pageName}) =>
+    id === 1 ? (
+      renderCategory
+    ) : (
       <Link
         key={id}
         to={routeName}
@@ -60,12 +94,13 @@ const Header: React.FC = () => {
         activeClassName={styles.wrapper__content_menu__link_active}>
         {t(pageName)}
       </Link>
-      {id === 1 && <SubCategories subCategoriesList={datas} />}
-    </>
-  ));
+    ),
+  );
 
-  const renderMobileMenu = routesBurger.map(({id, routeName, pageName}) => (
-    <>
+  const renderMobileMenu = routesBurger.map(({id, routeName, pageName}) =>
+    id === 3 ? (
+      renderCategory
+    ) : (
       <Link
         key={id}
         to={routeName}
@@ -75,8 +110,8 @@ const Header: React.FC = () => {
         }>
         {t(pageName)}
       </Link>
-    </>
-  ));
+    ),
+  );
 
   return (
     <header className={styles.wrapper}>

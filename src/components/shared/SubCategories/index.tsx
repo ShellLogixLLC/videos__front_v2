@@ -1,5 +1,6 @@
 import React, {useState, useRef, useEffect} from 'react';
 import classNames from 'classnames';
+import {useRouter} from 'next/router';
 
 import {useWindowSize} from '~/hooks';
 import {SearchBackArrowIcon} from '~/assets';
@@ -7,9 +8,16 @@ import {INITIAL_SUB_CATEGORY_TRANSFORM} from '~/constants';
 
 import {SubCategoriesProps} from './types';
 import styles from './SubCategories.module.scss';
+import Link from '../Link';
 
-const SubCategories: React.FC<SubCategoriesProps> = ({subCategoriesList}) => {
-  const {windowWidth, isDesktop} = useWindowSize();
+const SubCategories: React.FC<SubCategoriesProps> = ({
+  wrapperClass,
+  subCategoriesList,
+}) => {
+  const router = useRouter();
+  console.log(router, 'router');
+
+  const {isDesktop} = useWindowSize();
   const contentRef = useRef<HTMLDivElement | null>(null);
 
   const [transform, setTransform] = useState<number>(0);
@@ -23,8 +31,9 @@ const SubCategories: React.FC<SubCategoriesProps> = ({subCategoriesList}) => {
     [styles.wrapper__icon_hidden]: maxScroll === transform,
   });
 
+  const wrapperClasses = classNames(styles.wrapper, wrapperClass);
+
   const handleClickLeftIcon = () => {
-    const prevValue = transform - INITIAL_SUB_CATEGORY_TRANSFORM;
     const setValue =
       transform > INITIAL_SUB_CATEGORY_TRANSFORM
         ? transform - INITIAL_SUB_CATEGORY_TRANSFORM
@@ -54,13 +63,16 @@ const SubCategories: React.FC<SubCategoriesProps> = ({subCategoriesList}) => {
   }, [subCategoriesList, isDesktop]);
 
   const renderSubCategoriesList = subCategoriesList?.map(({name, id}, idx) => (
-    <div key={idx} className={styles.wrapper__content__item}>
-      <p className={styles.wrapper__content__item__text}>{name.en}</p>
-    </div>
+    <Link
+      key={idx}
+      to={`/category/${name.en}`}
+      className={styles.wrapper__content__item}>
+      {name.en}
+    </Link>
   ));
 
   return (
-    <div className={styles.wrapper}>
+    <div className={wrapperClasses}>
       <div className={leftArrowIconClasses}>
         <SearchBackArrowIcon onClick={handleClickLeftIcon} />
       </div>

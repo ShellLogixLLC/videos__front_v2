@@ -59,13 +59,30 @@
         margin: 0 40px;
       }
 
+      &__icon {
+        display: none;
+
+        @include breakpoint(desktop) {
+          display: block;
+          // transform: rotate(90deg);
+
+          transition: all 0.3s;
+        }
+
+        &__rotate {
+          transform: rotate(90deg) !important;
+          transition: all 0.3s;
+        }
+      }
+
       &__link {
         @extend %film_info_text;
         @extend %flex-align;
         color: $white;
+        cursor: pointer;
         transform: scale(1);
         text-align: center;
-        padding: 0 4px;
+        padding: 10px 4px;
 
         @include breakpoint(tablet) {
           width: 100%;
@@ -75,6 +92,28 @@
         &_active {
           transform: scale(1.2);
           color: $red;
+        }
+      }
+
+      &__category {
+        @extend %flex-between;
+        min-height: 90px;
+
+        @include breakpoint(desktop) {
+          flex-direction: column;
+          justify-content: none;
+          align-items: flex-start;
+          margin-left: 32px;
+        }
+
+        &:hover > .sub_category {
+          @extend %flex-between;
+          transition: all 0.4s;
+          opacity: 1;
+
+          @include breakpoint(desktop) {
+            display: unset;
+          }
         }
       }
     }
@@ -243,5 +282,19 @@
     height: 100%;
     z-index: 4;
     background-color: $rgba-black;
+  }
+}
+
+.sub_category {
+  display: none !important;
+
+  &__mobile {
+    @include breakpoint(desktop) {
+      display: flex !important;
+      flex-direction: column;
+      transition: all 0.4s;
+      opacity: 1;
+      margin: 16px 0;
+    }
   }
 }
