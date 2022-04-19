@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import classNames from 'classnames';
 import {useToggle} from 'react-use';
 import {useTranslation} from 'next-i18next';
@@ -20,19 +20,20 @@ import {
 } from '~/components';
 
 import styles from './Header.module.scss';
+import {useRouter} from 'next/router';
 
 const Header: React.FC = () => {
   const {t} = useTranslation();
+  const {pathname} = useRouter();
+  const {expanded} = useContext(ToggleContext);
+  const {isDesktop} = useWindowSize();
 
   const {data} = CategoryService.useCategories();
   const categories = data?.categories;
 
-  const {expanded} = useContext(ToggleContext);
-  const {isDesktop} = useWindowSize();
-
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isFilter, toggleFilter] = useToggle(false);
-  const [isCategories, toggleCategories] = useToggle(false);
+  const [isCategories, setIsCategories] = useState<boolean>(false);
 
   const logoClassNames = classNames(styles.wrapper__content_logo, {
     [styles.wrapper__content_logo_hidden]: expanded && !isDesktop,
@@ -44,48 +45,55 @@ const Header: React.FC = () => {
 
   const handleOpenMenu = () => setIsOpen(true);
 
-  const datas = categories?.length && [
-    ...categories,
-    ...categories,
-    ...categories,
-  ];
   const toggleCategory = () => {
     if (!isDesktop) {
-      toggleCategories();
+      setIsCategories(!isCategories);
     }
   };
-  console.log('isCategories', isCategories);
 
-  const renderCategory = (
-    <div
-      className={styles.wrapper__content_menu__category}
-      onClick={toggleCategory}>
+  useEffect(() => {
+    if (!isOpen || isDesktop) {
+      setIsCategories(false);
+    }
+  }, [isDesktop, isOpen]);
+
+  const renderCategory = () => {
+    const isActiveItem = pathname === '/category/[name]';
+
+    const itemClasses = classNames(styles.wrapper__content_menu__link, {
+      [styles.wrapper__content_menu__link_active]: isActiveItem,
+    });
+
+    const iconClasses = classNames(styles.wrapper__content_menu__icon, {
+      [styles.wrapper__content_menu__icon__rotate]: isCategories,
+    });
+
+    const subCategoriesClasses = classNames({
+      [styles.sub_category]: !isCategories && isDesktop,
+      [styles.sub_category__mobile]: isCategories,
+    });
+
+    return (
       <div
-        className={styles.wrapper__content_menu__link}
-        // activeClassName={styles.wrapper__content_menu__link_active}
-      >
-        <p>Category</p>
-        <SearchBackArrowIcon
-          className={
-            (styles.wrapper__content_menu__icon,
-            {
-              [styles.wrapper__content_menu__icon__rotate]: isCategories,
-            })
-          }
+        key="categoryList"
+        className={styles.wrapper__content_menu__category}>
+        <div
+          onClick={toggleCategory}
+          className={styles.wrapper__content_menu__category__child}>
+          <p className={itemClasses}>Category</p>
+          <SearchBackArrowIcon className={iconClasses} />
+        </div>
+        <SubCategories
+          wrapperClass={subCategoriesClasses}
+          subCategoriesList={categories}
         />
       </div>
-      <SubCategories
-        wrapperClass={classNames(styles.sub_category, {
-          [styles.sub_category__mobile]: isCategories,
-        })}
-        subCategoriesList={datas}
-      />
-    </div>
-  );
+    );
+  };
 
   const headerTable = routes.map(({id, routeName, pageName}) =>
     id === 1 ? (
-      renderCategory
+      renderCategory()
     ) : (
       <Link
         key={id}
@@ -99,7 +107,7 @@ const Header: React.FC = () => {
 
   const renderMobileMenu = routesBurger.map(({id, routeName, pageName}) =>
     id === 3 ? (
-      renderCategory
+      renderCategory()
     ) : (
       <Link
         key={id}

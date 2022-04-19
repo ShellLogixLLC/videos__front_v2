@@ -1,0 +1,84 @@
+.wrapper {
+  @extend %flex-center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $dark-grey;
+  z-index: 20;
+  visibility: hidden;
+
+  &__open {
+    visibility: visible;
+  }
+
+  &__content {
+    @extend %flex-between;
+    position: relative;
+    padding: 36px 24px;
+    border-radius: 8px;
+    max-width: 580px;
+    margin: 0 16px;
+    width: 100%;
+    background-color: $white;
+
+    &__icon {
+      margin: 24px 0;
+      height: 48px !important;
+      width: 48px !important;
+
+      svg {
+        width: 100%;
+      }
+
+      path {
+        fill: $success;
+      }
+    }
+
+    &__close_icon {
+      cursor: pointer;
+      position: absolute;
+      top: 24px;
+      right: 24px;
+
+      g {
+        fill: $black;
+      }
+    }
+
+    &__child {
+      @extend %flex-center;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    &__title {
+      @extend %heading_extra;
+      color: $black;
+      margin-left: 32px;
+    }
+
+    &__block {
+      @extend %flex-align;
+      padding: 12px 0;
+      max-width: 350px;
+      width: 100%;
+
+      &__text {
+        @extend %language_sizes;
+        display: flex;
+        color: $black;
+        width: 100%;
+
+        span {
+          color: $black;
+          margin-left: 32px;
+          font-weight: 500;
+          word-break: break-all;
+        }
+      }
+    }
+  }
+}

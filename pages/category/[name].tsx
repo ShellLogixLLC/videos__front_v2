@@ -5,12 +5,11 @@ import {useRouter} from 'next/router';
 import {Seo, Typography} from '~/components';
 
 const CategoriesPage: NextPage = () => {
-  const router = useRouter();
-  console.log(router, 'router');
+  const {query} = useRouter();
 
   return (
     <Seo title="Categories page" metaDescription="Categories page description">
-      <Typography>Categories Name</Typography>
+      <Typography>Categories {query.name}</Typography>
     </Seo>
   );
 };

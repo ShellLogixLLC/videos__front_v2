@@ -22,6 +22,10 @@
       }
     }
 
+    &__user_icon {
+      cursor: pointer;
+    }
+
     &_logo {
       max-width: 153px;
       width: 100%;
@@ -61,16 +65,17 @@
 
       &__icon {
         display: none;
+        width: 32px;
 
         @include breakpoint(desktop) {
           display: block;
-          // transform: rotate(90deg);
-
+          transform: rotate(90deg);
+          margin-left: 12px;
           transition: all 0.3s;
         }
 
         &__rotate {
-          transform: rotate(90deg) !important;
+          transform: rotate(270deg) !important;
           transition: all 0.3s;
         }
       }
@@ -84,14 +89,22 @@
         text-align: center;
         padding: 10px 4px;
 
-        @include breakpoint(tablet) {
+        @include breakpoint(desktop) {
+          font-weight: 500;
+          font-size: 20px;
+          line-height: 24px;
+          max-width: 250px;
           width: 100%;
-          padding-left: 32px;
+          height: 48px;
+          padding: 0;
         }
 
         &_active {
-          transform: scale(1.2);
-          color: $red;
+          color: $red !important;
+
+          @include breakpoint(desktop) {
+            font-weight: bolder;
+          }
         }
       }
 
@@ -104,16 +117,17 @@
           justify-content: none;
           align-items: flex-start;
           margin-left: 32px;
+          min-height: unset;
         }
 
         &:hover > .sub_category {
           @extend %flex-between;
           transition: all 0.4s;
           opacity: 1;
+        }
 
-          @include breakpoint(desktop) {
-            display: unset;
-          }
+        &__child {
+          @extend %flex-between;
         }
       }
     }
@@ -286,14 +300,12 @@
 }
 
 .sub_category {
-  display: none !important;
+  display: none;
 
   &__mobile {
     @include breakpoint(desktop) {
       display: flex !important;
       flex-direction: column;
-      transition: all 0.4s;
-      opacity: 1;
       margin: 16px 0;
     }
   }

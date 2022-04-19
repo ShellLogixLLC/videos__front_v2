@@ -13,9 +13,9 @@
   box-shadow: $header-box-shadow;
 
   @include breakpoint(desktop) {
-    display: flex;
     position: static;
     height: auto;
+    opacity: 1;
     padding: 0;
   }
 
@@ -48,6 +48,10 @@
       margin-right: 32px;
       cursor: pointer;
 
+      &:hover {
+        opacity: 0.8;
+      }
+
       &:last-child {
         margin: 0;
       }
@@ -57,6 +61,10 @@
         min-width: 187px;
         width: 100%;
         margin: 0;
+      }
+
+      &__active {
+        color: $red;
       }
     }
   }
@@ -80,13 +88,6 @@
     z-index: 12;
     position: static;
     margin-left: 36px;
-    background-color: rgba(
-      0,
-      0,
-      0,
-      0.25
-    ); /* For browsers that do not support gradients */
-    background-image: linear-gradient(-180deg, #020202, rgba(0, 0, 0, 0.25));
 
     @include breakpoint(desktop) {
       display: none;

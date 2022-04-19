@@ -45,6 +45,17 @@ const authSlice = createSlice({
       state.error = action.error;
     });
 
+    builder.addCase(authThunks.loginWithToken.fulfilled, (state, action) => {
+      state.error = null;
+      state.userInfo = action.payload.userInfo;
+      state.accessToken = action.payload.accessToken;
+      state.loading = AuthStates.IDLE;
+    });
+    builder.addCase(authThunks.loginWithToken.rejected, (state, action) => {
+      state.loading = AuthStates.IDLE;
+      state.error = action.error;
+    });
+
     builder.addCase(authThunks.logout.pending, (state) => {
       state.loading = AuthStates.LOADING;
     });

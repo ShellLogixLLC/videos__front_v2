@@ -6,22 +6,21 @@ import {useWindowSize} from '~/hooks';
 import {SearchBackArrowIcon} from '~/assets';
 import {INITIAL_SUB_CATEGORY_TRANSFORM} from '~/constants';
 
+import Link from '../Link';
 import {SubCategoriesProps} from './types';
 import styles from './SubCategories.module.scss';
-import Link from '../Link';
 
 const SubCategories: React.FC<SubCategoriesProps> = ({
   wrapperClass,
   subCategoriesList,
 }) => {
-  const router = useRouter();
-  console.log(router, 'router');
-
+  const {query} = useRouter();
   const {isDesktop} = useWindowSize();
+
   const contentRef = useRef<HTMLDivElement | null>(null);
 
   const [transform, setTransform] = useState<number>(0);
-  const [maxScroll, setMaxScroll] = useState<number>(0);
+  const [maxScroll, setMaxScroll] = useState<number>(1);
 
   const leftArrowIconClasses = classNames(styles.wrapper__left_icon, {
     [styles.wrapper__icon_hidden]: transform === 0,
@@ -60,16 +59,21 @@ const SubCategories: React.FC<SubCategoriesProps> = ({
     if (!isDesktop) {
       setTransform(0);
     }
-  }, [subCategoriesList, isDesktop]);
+  }, [isDesktop, contentRef, subCategoriesList]);
 
-  const renderSubCategoriesList = subCategoriesList?.map(({name, id}, idx) => (
-    <Link
-      key={idx}
-      to={`/category/${name.en}`}
-      className={styles.wrapper__content__item}>
-      {name.en}
-    </Link>
-  ));
+  const renderSubCategoriesList = subCategoriesList?.map(({name, id}) => {
+    const isActiveItem = query.name === name.en;
+
+    const itemClasses = classNames(styles.wrapper__content__item, {
+      [styles.wrapper__content__item__active]: isActiveItem,
+    });
+
+    return (
+      <Link key={id} to={`/category/${name.en}`} className={itemClasses}>
+        {name.en}
+      </Link>
+    );
+  });
 
   return (
     <div className={wrapperClasses}>
