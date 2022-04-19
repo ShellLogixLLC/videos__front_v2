@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import {authSelect} from '~/store/auth';
 import {Alla, Close, RoundAllow} from '~/assets';
-import {useAppSelector, useOnClickOutside} from '~/hooks';
+import {useAppSelector, useLockBodyScroll, useOnClickOutside} from '~/hooks';
 
 import {ProfileModalProps} from './types';
 import styles from './ProfileModal.module.scss';
@@ -24,6 +24,8 @@ const ProfileModal: React.FC<ProfileModalProps> = ({expanded, setExpanded}) => {
   const handleClose = () => setExpanded(false);
 
   useOnClickOutside(modalRef, handleClose);
+
+  useLockBodyScroll(expanded);
 
   return (
     <Portal>

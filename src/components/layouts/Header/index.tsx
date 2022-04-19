@@ -24,7 +24,7 @@ import {useRouter} from 'next/router';
 
 const Header: React.FC = () => {
   const {t} = useTranslation();
-  const {pathname} = useRouter();
+  const {pathname, query} = useRouter();
   const {expanded} = useContext(ToggleContext);
   const {isDesktop} = useWindowSize();
 
@@ -50,6 +50,10 @@ const Header: React.FC = () => {
       setIsCategories(!isCategories);
     }
   };
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname, query.name]);
 
   useEffect(() => {
     if (!isOpen || isDesktop) {
