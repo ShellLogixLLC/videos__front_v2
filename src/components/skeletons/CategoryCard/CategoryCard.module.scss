@@ -7,7 +7,7 @@
   min-width: 207px;
   max-width: 207px;
   margin-right: 20px;
-  background-color: $black;
+  background-color: $light-black;
 
   @include breakpoint(tablet) {
     margin-right: 0;

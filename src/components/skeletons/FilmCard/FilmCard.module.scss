@@ -7,7 +7,7 @@
   width: 100%;
   height: 386px;
   margin-right: 25px;
-  background-color: $black;
+  background-color: $light-black;
 
   @include breakpoint(tablet) {
     min-width: 100%;
@@ -30,6 +30,7 @@
     width: 100%;
     height: 200px;
     margin-bottom: 16px;
+    background-color: $black;
     @extend %skeleton-animation;
 
     @include breakpoint(tablet-m) {
@@ -39,7 +40,7 @@
     &__time {
       width: 70px;
       padding: 5px 16px;
-      background-color: $black;
+      background-color: $grey;
       @extend %border-rad_10;
       @extend %flex-center;
       position: absolute;
@@ -67,6 +68,7 @@
       p {
         height: 24px;
         @extend %skeleton-animation;
+
         width: 100%;
 
         @include breakpoint(tablet-m) {
@@ -121,7 +123,7 @@
 
       p {
         @extend %skeleton-animation;
-        width: 50%;
+        width: 100%;
         height: 24px;
         margin-right: 16px;
       }
