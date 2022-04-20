@@ -1,3 +1,3 @@
 export type ICommentBlock = {
-  dataIsLoading?: boolean;
+  loading?: boolean;
 };

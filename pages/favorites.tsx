@@ -13,6 +13,7 @@ const POSTER_SRC =
 
 const FavoritesPage: React.FC = () => {
   const {isLoading} = VideosService.useVideos();
+
   return (
     <Seo title="Favorites page" metaDescription="Favorites page description">
       <Typography>Top Rated</Typography>
@@ -20,7 +21,7 @@ const FavoritesPage: React.FC = () => {
         videoSrc={VIDEO_SRC}
         videoDuration={VIDEO_LENGTH}
         posterSrc={POSTER_SRC}
-        dataIsLoading={isLoading}
+        loading={isLoading}
       />
     </Seo>
   );

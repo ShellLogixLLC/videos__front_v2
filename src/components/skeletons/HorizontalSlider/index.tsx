@@ -23,9 +23,13 @@ const HorizontalSliderSkeleton: React.FC<ISkeletonDataTypes> = ({
 
   const renderVideoList = commentsArray.map((item, index) =>
     isCategory ? (
-      <CategoryCardSkeleton key={index} />
+      <React.Fragment key={index}>
+        <CategoryCardSkeleton />
+      </React.Fragment>
     ) : (
-      <FilmCardSkeleton key={index} />
+      <React.Fragment key={index}>
+        <FilmCardSkeleton />
+      </React.Fragment>
     ),
   );
 

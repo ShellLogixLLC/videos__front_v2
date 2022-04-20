@@ -3,3 +3,7 @@ export type ISkeletonDataTypes = {
   wrapperClasses: string;
   contentClasses: string;
 };
+
+export type ISkeletonComment = {
+  dataLength?: number;
+};

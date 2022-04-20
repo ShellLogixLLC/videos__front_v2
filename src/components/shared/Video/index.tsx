@@ -28,7 +28,7 @@ const Video: React.FC<IVideoProps> = ({
   posterSrc,
   videoClass = '',
   videoDuration,
-  dataIsLoading = false,
+  loading = false,
 }) => {
   const [videoElement, setVideoElement] = useState<HTMLVideoElement | null>(
     null,
@@ -232,7 +232,7 @@ const Video: React.FC<IVideoProps> = ({
 
   return (
     <React.Fragment>
-      {dataIsLoading ? (
+      {loading ? (
         <VideoSkeleton />
       ) : (
         <div className={videoClasses}>

@@ -1,10 +1,10 @@
 import React from 'react';
 
-import {ISkeletonDataTypes} from '../types';
+import {ISkeletonComment} from '../types';
 
 import styles from './Comment.module.scss';
 
-const CommentSkeleton: React.FC<ISkeletonDataTypes> = ({dataLength = 4}) => {
+const CommentSkeleton: React.FC<ISkeletonComment> = ({dataLength = 4}) => {
   const commentsArray = new Array(dataLength).fill({});
 
   const renderCommentsSkeleton = commentsArray.map(({index}) => (
