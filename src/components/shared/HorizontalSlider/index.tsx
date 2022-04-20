@@ -2,8 +2,11 @@ import React, {useState, useRef, useEffect} from 'react';
 import classNames from 'classnames';
 
 import {useWindowSize} from '~/hooks';
-import {PAGINATION_TRANSFORM_VALUE} from '~/constants';
-import {INITIAL_PAGINATION_MORE_COUNT} from '~/constants';
+import {
+  PAGINATION_TRANSFORM_VALUE,
+  PAGINATION_SMALL_TRANSFORM_VALUE,
+  INITIAL_PAGINATION_MORE_COUNT,
+} from '~/constants';
 import {
   CategoryCard,
   FilmCard,
@@ -22,6 +25,10 @@ const HorizontalSlider: React.FC<HorizontalSliderProps> = ({
 }) => {
   const {isMaxTablet} = useWindowSize();
   const contentRef = useRef<HTMLDivElement | null>(null);
+
+  const paginationValue = isCategory
+    ? PAGINATION_SMALL_TRANSFORM_VALUE
+    : PAGINATION_TRANSFORM_VALUE;
 
   const [rowsPerPage, setRowsPerPage] = useState<number>(
     INITIAL_PAGINATION_MORE_COUNT,
@@ -47,14 +54,14 @@ const HorizontalSlider: React.FC<HorizontalSliderProps> = ({
 
   const handleClickRightArrow = () => {
     if (transformMaxWeight !== null)
-      transformXValue < transformMaxWeight - PAGINATION_TRANSFORM_VALUE
-        ? setTransformXValue(transformXValue + PAGINATION_TRANSFORM_VALUE)
+      transformXValue < transformMaxWeight - paginationValue
+        ? setTransformXValue(transformXValue + paginationValue)
         : setTransformXValue(transformMaxWeight);
   };
 
   const handleClickLeftArrow = () =>
     transformXValue > 0
-      ? setTransformXValue(transformXValue - PAGINATION_TRANSFORM_VALUE)
+      ? setTransformXValue(transformXValue - paginationValue)
       : setTransformXValue(0);
 
   useEffect(() => {
