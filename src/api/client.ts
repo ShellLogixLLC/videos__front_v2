@@ -3,7 +3,7 @@ import * as cookie from 'cookie';
 import * as setCookie from 'set-cookie-parser';
 import createAuthRefreshInterceptor from 'axios-auth-refresh';
 
-const defaultOptions = {
+export const defaultOptions = {
   baseURL: 'https://obscure-harbor-76716.herokuapp.com/api',
 };
 
