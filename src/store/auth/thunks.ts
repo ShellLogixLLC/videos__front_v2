@@ -35,13 +35,10 @@ export const login = createAsyncThunk(
 );
 
 export const loginWithToken = createAsyncThunk(
-  `${reducerName}/user/verifyLogin-with-token`,
+  `${reducerName}/user/login-with-token`,
   async (credentials: {token: string}, thunkAPI) => {
     try {
-      const {data} = await client.post(
-        '/user/verifyLogin-with-token',
-        credentials,
-      );
+      const {data} = await client.post('/user/login-with-token', credentials);
 
       return {
         userInfo: data.user,

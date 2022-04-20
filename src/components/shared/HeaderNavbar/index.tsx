@@ -19,21 +19,22 @@ const HeaderNavbar: React.FC = ({children}) => {
   const {userInfo} = useAppSelector(authSelect);
   const {expanded} = useContext(ToggleContext);
 
-  const [isUserModal, setIsUserModal] = useState<boolean>(false);
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
 
   const navClassName = classNames(styles.wrapper__content_menu, {
     [styles.wrapper__content_menu_hidden]: expanded,
   });
 
   const handleUserModal = () => {
-    setIsUserModal(true);
+    setIsOpenModal(true);
+
     if (!userInfo) {
       dispatch(authActions.loginWithToken({token: token as string}));
     }
   };
 
   const renderUserIcons = !token ? (
-    <Link to="/sign-in" className={styles.wrapper__content__other__sign_in}>
+    <Link to={Route.SignIn} className={styles.wrapper__content__other__sign_in}>
       <UserIcon />
     </Link>
   ) : (
@@ -56,7 +57,7 @@ const HeaderNavbar: React.FC = ({children}) => {
         {renderUserIcons}
         <LanguageDropDown />
       </div>
-      <ProfileModal expanded={isUserModal} setExpanded={setIsUserModal} />
+      <ProfileModal expanded={isOpenModal} setExpanded={setIsOpenModal} />
     </>
   );
 };
