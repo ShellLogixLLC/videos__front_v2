@@ -15,11 +15,11 @@ const HorizontalSliderSkeleton: React.FC<ISkeletonDataTypes> = ({
 }) => {
   const commentsArray = new Array(isCategory ? 8 : 4).fill({});
 
-  const moreBtn = !isCategory ? (
+  const moreBtn = !isCategory && (
     <div className={styles.more_btn}>
       <p />
     </div>
-  ) : null;
+  );
 
   const renderVideoList = commentsArray.map((item, index) =>
     isCategory ? (
