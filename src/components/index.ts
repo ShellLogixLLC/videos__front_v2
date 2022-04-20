@@ -31,6 +31,8 @@ export {default as Verification} from './shared/Verification';
 export {default as HeaderNavbar} from './shared/HeaderNavbar';
 export {default as MobileFilter} from './shared/MobileFilter';
 export {default as CategoryCard} from './shared/CategoryCard';
+export {default as ProfileModal} from './shared/ProfileModal';
+export {default as SubCategories} from './shared/SubCategories';
 export {default as VideoDescription} from './shared/VideoDescription';
 export {default as LanguageDropDown} from './shared/LanguageDropDown';
 export {default as HorizontalSlider} from './shared/HorizontalSlider';

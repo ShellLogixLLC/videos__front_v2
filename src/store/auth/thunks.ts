@@ -12,7 +12,7 @@ export const login = createAsyncThunk(
   `${reducerName}/user/login`,
   async (credentials: {email: string; password: string}, thunkAPI) => {
     try {
-      const {data} = await client.post('user/login', credentials);
+      const {data} = await client.post('/user/login', credentials);
 
       await RouterService.push(Route.Home);
       setCookie('token', data.token);
@@ -34,6 +34,28 @@ export const login = createAsyncThunk(
   },
 );
 
+export const loginWithToken = createAsyncThunk(
+  `${reducerName}/user/login-with-token`,
+  async (credentials: {token: string}, thunkAPI) => {
+    try {
+      const {data} = await client.post('/user/login-with-token', credentials);
+
+      return {
+        userInfo: data.user,
+        accessToken: data.token,
+      };
+    } catch (error: any) {
+      if (!error.response) {
+        throw error;
+      }
+
+      const {errors} = error.response.data;
+      if (errors) errorToast(errors);
+
+      return thunkAPI.rejectWithValue(error.response.data.errors);
+    }
+  },
+);
 export const register = createAsyncThunk(
   `${reducerName}/user/signup`,
   async (

@@ -51,6 +51,7 @@
       position: absolute;
       visibility: hidden;
       transition: all 0.4s;
+      transform: rotate(180deg);
 
       @include breakpoint(desktop) {
         display: block;

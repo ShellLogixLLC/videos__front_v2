@@ -63,3 +63,10 @@ $montserrat_family: 'Montserrat', sans-serif;
     bottom: 20px;
   }
 }
+
+%subCategoryIcon {
+  @extend %flex-align;
+  transform: scale(1);
+  transition: all 0.3s;
+  cursor: pointer;
+}
