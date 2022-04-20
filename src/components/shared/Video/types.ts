@@ -3,4 +3,5 @@ export type IVideoProps = {
   posterSrc: string;
   videoClass?: string;
   videoDuration: number;
+  loading?: boolean;
 };

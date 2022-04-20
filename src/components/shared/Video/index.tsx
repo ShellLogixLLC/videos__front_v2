@@ -16,6 +16,7 @@ import {
   ARROW_LEFT_KEY_CODE,
   ARROW_RIGHT_KEY_CODE,
 } from '~/constants';
+import {VideoSkeleton} from '~/components';
 
 import {IVideoProps} from './types';
 import VideoSlider from './VideoSlider';
@@ -27,6 +28,7 @@ const Video: React.FC<IVideoProps> = ({
   posterSrc,
   videoClass = '',
   videoDuration,
+  loading = false,
 }) => {
   const [videoElement, setVideoElement] = useState<HTMLVideoElement | null>(
     null,
@@ -229,95 +231,103 @@ const Video: React.FC<IVideoProps> = ({
   });
 
   return (
-    <div className={videoClasses}>
-      {isMaxTablet && (
-        <>
-          <div
-            className={styles.video__controls}
+    <React.Fragment>
+      {loading ? (
+        <VideoSkeleton />
+      ) : (
+        <div className={videoClasses}>
+          {isMaxTablet && (
+            <>
+              <div
+                className={styles.video__controls}
+                onMouseEnter={handleMouseOver}
+                onMouseLeave={handleMouseOut}>
+                <div
+                  role="button"
+                  onClick={handlePlayPauseClick}
+                  className={classNames(
+                    styles.video__controls__button,
+                    styles.video__controls__play_pause,
+                  )}>
+                  {!videoElement?.paused ? <PauseIcon /> : <PlayIcon />}
+                </div>
+                <div
+                  role="button"
+                  onClick={handleSkipSeconds}
+                  className={classNames(
+                    styles.video__controls__button,
+                    styles.video__controls__skip,
+                  )}>
+                  <NextVideoIcon />
+                </div>
+                <div
+                  role="button"
+                  onClick={handleMuteChange}
+                  className={classNames(
+                    styles.video__controls__button,
+                    styles.video__controls__volume_button,
+                  )}>
+                  {muted ? <MutedVolumeIcon /> : <VolumeIcon />}
+                </div>
+                <div className={styles.video__controls__volume_range}>
+                  <VolumeSlider
+                    min={0}
+                    max={100}
+                    value={volumeSliderValue}
+                    onChange={(e, newValue) =>
+                      handleVolumeChange(Number(newValue))
+                    }
+                  />
+                </div>
+                <div className={styles.video__controls__duration}>
+                  <p>{currentTimeString}</p>
+                </div>
+                <div className={styles.video__controls__range}>
+                  <VideoSlider
+                    value={currentTime}
+                    min={0}
+                    max={videoDuration}
+                    onChange={(e, newValue) => handleChange(Number(newValue))}
+                    onChangeCommitted={(e, newValue) =>
+                      handleChangeCommitted(Number(newValue))
+                    }
+                  />
+                </div>
+                <div className={styles.video__controls__duration}>
+                  <p>{moment(videoDuration * 1000).format('mm:ss')}</p>
+                </div>
+                <div
+                  role="button"
+                  onClick={handleFullScreen}
+                  className={styles.video__controls__button}>
+                  <FullScreenIcon />
+                </div>
+              </div>
+              <div
+                className={styles.video__progress}
+                style={{width: `${videoProgressPercentage}%`}}
+              />
+            </>
+          )}
+          <video
             onMouseEnter={handleMouseOver}
-            onMouseLeave={handleMouseOut}>
-            <div
-              role="button"
-              onClick={handlePlayPauseClick}
-              className={classNames(
-                styles.video__controls__button,
-                styles.video__controls__play_pause,
-              )}>
-              {!videoElement?.paused ? <PauseIcon /> : <PlayIcon />}
-            </div>
-            <div
-              role="button"
-              onClick={handleSkipSeconds}
-              className={classNames(
-                styles.video__controls__button,
-                styles.video__controls__skip,
-              )}>
-              <NextVideoIcon />
-            </div>
-            <div
-              role="button"
-              onClick={handleMuteChange}
-              className={classNames(
-                styles.video__controls__button,
-                styles.video__controls__volume_button,
-              )}>
-              {muted ? <MutedVolumeIcon /> : <VolumeIcon />}
-            </div>
-            <div className={styles.video__controls__volume_range}>
-              <VolumeSlider
-                min={0}
-                max={100}
-                value={volumeSliderValue}
-                onChange={(e, newValue) => handleVolumeChange(Number(newValue))}
-              />
-            </div>
-            <div className={styles.video__controls__duration}>
-              <p>{currentTimeString}</p>
-            </div>
-            <div className={styles.video__controls__range}>
-              <VideoSlider
-                value={currentTime}
-                min={0}
-                max={videoDuration}
-                onChange={(e, newValue) => handleChange(Number(newValue))}
-                onChangeCommitted={(e, newValue) =>
-                  handleChangeCommitted(Number(newValue))
-                }
-              />
-            </div>
-            <div className={styles.video__controls__duration}>
-              <p>{moment(videoDuration * 1000).format('mm:ss')}</p>
-            </div>
-            <div
-              role="button"
-              onClick={handleFullScreen}
-              className={styles.video__controls__button}>
-              <FullScreenIcon />
-            </div>
-          </div>
-          <div
-            className={styles.video__progress}
-            style={{width: `${videoProgressPercentage}%`}}
-          />
-        </>
+            onMouseLeave={handleMouseOut}
+            ref={videoRef}
+            muted={muted}
+            poster={posterSrc}
+            onClick={handleVideoClick}
+            controls={!isMaxTablet}>
+            <source src={videoSrc} type="video/mp4" />
+            <track kind="captions" />
+          </video>
+          {videoElement?.paused && !isMouseOver && (
+            <button onClick={handlePlayPauseClick}>
+              <PlayIcon />
+            </button>
+          )}
+        </div>
       )}
-      <video
-        onMouseEnter={handleMouseOver}
-        onMouseLeave={handleMouseOut}
-        ref={videoRef}
-        muted={muted}
-        poster={posterSrc}
-        onClick={handleVideoClick}
-        controls={!isMaxTablet}>
-        <source src={videoSrc} type="video/mp4" />
-        <track kind="captions" />
-      </video>
-      {videoElement?.paused && !isMouseOver && (
-        <button onClick={handlePlayPauseClick}>
-          <PlayIcon />
-        </button>
-      )}
-    </div>
+    </React.Fragment>
   );
 };
 

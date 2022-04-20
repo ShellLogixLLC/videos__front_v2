@@ -1,0 +1,101 @@
+.wrapper {
+  position: relative;
+  max-width: 100%;
+  width: 100%;
+  height: 386px;
+  overflow: hidden;
+
+  @include breakpoint(tablet) {
+    height: auto;
+  }
+
+  &__content {
+    @extend %flex-between;
+    width: auto;
+
+    @include breakpoint(tablet) {
+      display: grid;
+      grid-gap: 20px;
+      grid-template-columns: repeat(2, 1fr);
+      width: 100%;
+    }
+
+    @include breakpoint(tablet-m) {
+      grid-gap: 16px;
+      grid-template-columns: repeat(1, 1fr);
+    }
+    &__category {
+      display: flex;
+      justify-content: flex-start;
+
+      @include breakpoint(tablet) {
+        width: 100%;
+        overflow-x: scroll;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.pagination {
+  @extend %flex-align;
+  max-width: 240px;
+
+  @include breakpoint(tablet) {
+    display: none;
+  }
+
+  &__wrapper {
+    @extend %flex-center;
+
+    @include breakpoint(tablet) {
+      margin: 32px 0;
+    }
+  }
+}
+
+.right_block {
+  @extend %flex-center-direction;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: -1px;
+  width: 48px;
+  background: $dark-grey;
+  @extend %skeleton-animation;
+
+  @include breakpoint(tablet) {
+    display: none;
+  }
+
+  &__arrow {
+    @extend %flex-center;
+    height: 48px;
+    width: 48px;
+    margin: 4px 0;
+    padding: 12px 0;
+
+    path {
+      fill: $black;
+    }
+  }
+}
+.more_btn {
+  @extend %skeleton-animation;
+  display: none;
+  width: 100%;
+  padding: 20px 0;
+  margin: 32px 0;
+  border-radius: 8px;
+
+  p {
+    height: 22px;
+  }
+
+  @include breakpoint(tablet) {
+    display: block;
+  }
+}
