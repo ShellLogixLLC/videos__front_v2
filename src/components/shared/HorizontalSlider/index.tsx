@@ -2,12 +2,17 @@ import React, {useState, useRef, useEffect} from 'react';
 import classNames from 'classnames';
 
 import {useWindowSize} from '~/hooks';
-import {CategoryCard, FilmCard, Pagination} from '~/components';
 import {
   PAGINATION_TRANSFORM_VALUE,
   PAGINATION_SMALL_TRANSFORM_VALUE,
   INITIAL_PAGINATION_MORE_COUNT,
 } from '~/constants';
+import {
+  CategoryCard,
+  FilmCard,
+  Pagination,
+  HorizontalSliderSkeleton,
+} from '~/components';
 
 import {HorizontalSliderProps} from './types';
 import styles from './HorizontalSlider.module.scss';
@@ -16,6 +21,7 @@ const HorizontalSlider: React.FC<HorizontalSliderProps> = ({
   dataList,
   className = '',
   isCategory = false,
+  dataIsLoading,
 }) => {
   const {isMaxTablet} = useWindowSize();
   const contentRef = useRef<HTMLDivElement | null>(null);
@@ -69,7 +75,13 @@ const HorizontalSlider: React.FC<HorizontalSliderProps> = ({
     }
   }, [isMaxTablet, dataList, transformXValue, transformMaxWeight]);
 
-  return (
+  return dataIsLoading ? (
+    <HorizontalSliderSkeleton
+      isCategory={isCategory}
+      wrapperClasses={wrapperClasses}
+      contentClasses={contentClasses}
+    />
+  ) : (
     <div className={wrapperClasses}>
       <div
         ref={contentRef}

@@ -34,3 +34,10 @@ export {default as CategoryCard} from './shared/CategoryCard';
 export {default as VideoDescription} from './shared/VideoDescription';
 export {default as LanguageDropDown} from './shared/LanguageDropDown';
 export {default as HorizontalSlider} from './shared/HorizontalSlider';
+
+// Skeletons
+export {default as VideoSkeleton} from './skeletons/Video';
+export {default as CommentSkeleton} from './skeletons/Comment';
+export {default as FilmCardSkeletons} from './skeletons/FilmCard';
+export {default as CategoryCardSkeleton} from './skeletons/CategoryCard';
+export {default as HorizontalSliderSkeleton} from './skeletons/HorizontalSlider';

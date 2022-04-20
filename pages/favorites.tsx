@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {VideosService} from '~/api';
 import {Seo, Typography, Video} from '~/components';
 
 import {getStaticProps} from './categories';
@@ -10,16 +11,21 @@ const VIDEO_SRC =
 const POSTER_SRC =
   'https://peach.blender.org/wp-content/uploads/title_anouncement.jpg?x11217';
 
-const FavoritesPage: React.FC = () => (
-  <Seo title="Favorites page" metaDescription="Favorites page description">
-    <Typography>Top Rated</Typography>
-    <Video
-      videoSrc={VIDEO_SRC}
-      videoDuration={VIDEO_LENGTH}
-      posterSrc={POSTER_SRC}
-    />
-  </Seo>
-);
+const FavoritesPage: React.FC = () => {
+  const {isLoading} = VideosService.useVideos();
+
+  return (
+    <Seo title="Favorites page" metaDescription="Favorites page description">
+      <Typography>Top Rated</Typography>
+      <Video
+        videoSrc={VIDEO_SRC}
+        videoDuration={VIDEO_LENGTH}
+        posterSrc={POSTER_SRC}
+        loading={isLoading}
+      />
+    </Seo>
+  );
+};
 
 export {getStaticProps};
 

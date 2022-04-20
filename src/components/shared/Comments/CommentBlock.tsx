@@ -1,13 +1,15 @@
 import React from 'react';
 
 import {Love} from '~/assets';
+import {CommentSkeleton} from '~/components';
 import {commentBlock} from '~/utils';
 
 import Typography from '../Typography';
 
 import styles from './Comments.module.scss';
+import {ICommentBlock} from './types';
 
-const CommentBlock: React.FC = () => {
+const CommentBlock: React.FC<ICommentBlock> = ({loading}) => {
   const renderComments = commentBlock.map(({id, name, comment}) => (
     <div key={id} className={styles.block__wrapper__comment}>
       <div className={styles.block__wrapper__comment__head}>
@@ -22,7 +24,7 @@ const CommentBlock: React.FC = () => {
     </div>
   ));
 
-  return <>{renderComments}</>;
+  return <>{loading ? <CommentSkeleton /> : renderComments}</>;
 };
 
 export default CommentBlock;

@@ -36,6 +36,10 @@
   animation: roundTransformingBack 0.3s linear forwards;
 }
 
+%skeleton-animation {
+  animation: skeleton 3s infinite;
+}
+
 @keyframes roundTransformingBack {
   0% {
     transform: scale(1) rotate(180deg);
@@ -137,5 +141,23 @@
 
   100% {
     transform: scale(0);
+  }
+}
+
+@keyframes skeleton {
+  0% {
+    background-color: $dark-grey;
+  }
+  25% {
+    background-color: $grey_color;
+  }
+  50% {
+    background-color: $dark-grey;
+  }
+  75% {
+    background-color: $grey_color;
+  }
+  100% {
+    background-color: $dark-grey;
   }
 }

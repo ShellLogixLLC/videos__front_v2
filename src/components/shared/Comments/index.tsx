@@ -10,8 +10,9 @@ import Typography from '../Typography';
 import CommentForm from './CommentForm';
 import CommentBlock from './CommentBlock';
 import styles from './Comments.module.scss';
+import {ICommentBlock} from './types';
 
-const Comments: React.FC = () => {
+const Comments: React.FC<ICommentBlock> = ({loading}) => {
   const [expanded, toggleExpanded] = useToggle(false);
 
   const refInput = useRef<HTMLHeadingElement | null>(null);
@@ -47,7 +48,7 @@ const Comments: React.FC = () => {
 
       <div className={blockClassNames}>
         <div className={styles.block__wrapper}>
-          <CommentBlock />
+          <CommentBlock loading={loading} />
         </div>
         <div className={styles.block__form}>
           <CommentForm />
