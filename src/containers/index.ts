@@ -4,4 +4,6 @@ export {default as RegistrationContactInformationContainer} from './registration
 export {default as RegistrationPersonalInformationContainer} from './registration/RegistrationPersonalInformation';
 
 export {default as Home} from './Home';
+export {default as Search} from './Search';
+
 export {default as Category} from './Category';

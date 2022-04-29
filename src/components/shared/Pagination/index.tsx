@@ -61,7 +61,9 @@ const PaginationIndex: React.FC<IPaginationProps> = ({
 
   const moreBtn =
     !(rowsPerPage >= dataLength) && !isCategory ? (
-      <Button className={styles.wrapper__more_btn} onClick={handleClickMore}>
+      <Button
+        className={styles.container__wrapper__more_btn}
+        onClick={handleClickMore}>
         More
       </Button>
     ) : null;

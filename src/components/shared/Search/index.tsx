@@ -1,5 +1,6 @@
 import React, {useRef, useState, useContext} from 'react';
 import classNames from 'classnames';
+import {useRouter} from 'next/router';
 
 import {ToggleContext} from '~/context';
 import {useOnClickOutside} from '~/hooks';
@@ -14,12 +15,16 @@ const Search: React.FC = () => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const filterRef = useRef<HTMLDivElement | null>(null);
   const [searchValue, setSearchValue] = useState<string>('');
+  const router = useRouter();
 
   const onSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchValue.length) {
       setSearchValue('');
       toggleExpanded(false);
+      router.push({
+        pathname: `/search/${searchValue}`,
+      });
     } else {
       toggleExpanded(true);
     }
