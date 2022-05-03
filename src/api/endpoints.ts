@@ -10,8 +10,8 @@ const endpoints = {
   },
 
   VideosSearchService: {
-    getVideosSearch: (arg: string): string =>
-      `/videos?offset=0&limit=20&search=${arg}`,
+    getVideosSearch: (arg: string, limit: number, offset: number): string =>
+      `/videos?offset=${offset}&limit=${limit}&search=${arg}`,
   },
 };
 

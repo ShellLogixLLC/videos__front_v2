@@ -4,6 +4,8 @@ export type IPaginationProps = {
   activePage?: number;
   isCategory?: boolean;
   rowsPerPage?: number;
+  isPerPageNeeded?: boolean;
+  isMoreButtonNeeded?: boolean;
   setActivePage?: (arg: number) => void;
   setRowsPerPage?: (arg: number) => void;
   transformXValue?: number | null;

@@ -21,7 +21,7 @@ const HorizontalSlider: React.FC<HorizontalSliderProps> = ({
   dataList,
   className = '',
   isCategory = false,
-  dataIsLoading,
+  isLoading,
 }) => {
   const {isMaxTablet} = useWindowSize();
   const contentRef = useRef<HTMLDivElement | null>(null);
@@ -46,9 +46,9 @@ const HorizontalSlider: React.FC<HorizontalSliderProps> = ({
 
   const renderVideoList = data?.map((item, index) =>
     isCategory ? (
-      <CategoryCard key={index} item={item} />
+      <CategoryCard key={index} item={item} isLoading={isLoading} />
     ) : (
-      <FilmCard key={index} item={item} />
+      <FilmCard key={index} item={item} isLoading={isLoading} />
     ),
   );
 
@@ -75,7 +75,7 @@ const HorizontalSlider: React.FC<HorizontalSliderProps> = ({
     }
   }, [isMaxTablet, dataList, transformXValue, transformMaxWeight]);
 
-  return dataIsLoading ? (
+  return isLoading ? (
     <HorizontalSliderSkeleton
       isCategory={isCategory}
       wrapperClasses={wrapperClasses}

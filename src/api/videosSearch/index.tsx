@@ -7,9 +7,13 @@ import endpoints from '../endpoints';
 
 import {IVideosReturn} from './types';
 
-const useVideosSearch = (arg: any): IVideosReturn => {
+const useVideosSearch = (
+  arg: any,
+  limit: number,
+  offset: number,
+): IVideosReturn => {
   const {data, mutate, error} = useAppRequest({
-    url: endpoints.VideosSearchService.getVideosSearch(arg),
+    url: endpoints.VideosSearchService.getVideosSearch(arg, limit, offset),
   });
 
   useEffect(() => {

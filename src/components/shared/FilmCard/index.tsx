@@ -35,7 +35,7 @@ const FilmCard: React.FC<FilmCardProps> = ({
 
   return (
     <>
-      {!isLoading ? (
+      {isLoading ? (
         <FilmCardSkeletons />
       ) : (
         <div className={`${styles.wrapper} ${cardClasses}`}>

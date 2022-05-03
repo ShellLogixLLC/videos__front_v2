@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useRouter} from 'next/router';
 
 import {filteredMass} from '~/utils';
@@ -13,18 +13,29 @@ import {
   Typography,
 } from '~/components';
 import {LeftArrow} from '~/assets';
+import {
+  INITIAL_SEARCH_PAGINATION_ACTIVE_PAGE,
+  INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE,
+} from '~/constants';
 
 import styles from './Search.module.scss';
 
 const Search: React.FC = () => {
   const {query} = useRouter();
 
+  const [activePage, setActivePage] = useState<number>(
+    INITIAL_SEARCH_PAGINATION_ACTIVE_PAGE,
+  );
+
+  const offset = activePage * INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE + 1;
   const {videosData, isLoading} = VideosSearchService.useVideosSearch(
     query.param,
+    INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE,
+    offset,
   );
+
   const videos = videosData?.videos;
   const totalCount = videosData?.totalCount;
-
   const renderResultList = videos?.map((item, index) => (
     <FilmCard
       isLoading={isLoading}
@@ -51,16 +62,23 @@ const Search: React.FC = () => {
           </div>
         </section>
         <section className={styles.wrapper__content__result}>
-          {videos?.length ? (
-            renderResultList
-          ) : (
+          {renderResultList}
+          {videos?.length === 0 && (
             <p className={styles.wrapper__content__result__null}>
-              Not found!!!
+              Sorry, we could not find any result
             </p>
           )}
         </section>
         <section>
-          <Pagination dataLength={totalCount} rowsPerPage={9} />
+          {videos?.length > 0 && (
+            <Pagination
+              dataLength={totalCount}
+              isPerPageNeeded={false}
+              setActivePage={setActivePage}
+              activePage={activePage}
+              isMoreButtonNeeded={false}
+            />
+          )}
         </section>
       </div>
 
