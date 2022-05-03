@@ -27,7 +27,11 @@ const Search: React.FC = () => {
     INITIAL_PAGINATION_ACTIVE_PAGE,
   );
 
-  const offset = activePage * INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE + 1;
+  const offset =
+    activePage > INITIAL_PAGINATION_ACTIVE_PAGE
+      ? activePage * INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE + 1
+      : INITIAL_PAGINATION_ACTIVE_PAGE;
+
   const {videosData, isLoading} = VideosSearchService.useVideosSearch(
     query.param,
     INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE,
