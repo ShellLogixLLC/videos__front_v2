@@ -48,7 +48,7 @@ const HorizontalSlider: React.FC<HorizontalSliderProps> = ({
     isCategory ? (
       <CategoryCard key={index} item={item} isLoading={isLoading} />
     ) : (
-      <FilmCard key={index} item={item} isLoading={isLoading} />
+      <FilmCard key={index} item={item} />
     ),
   );
 
