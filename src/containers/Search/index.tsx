@@ -17,6 +17,7 @@ import {
   INITIAL_PAGINATION_ACTIVE_PAGE,
   INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE,
 } from '~/constants';
+import FilmCardSkeleton from '~/components/skeletons/FilmCard';
 
 import styles from './Search.module.scss';
 
@@ -43,14 +44,24 @@ const Search: React.FC = () => {
 
   const videos = videosData?.videos;
   const totalCount = videosData?.totalCount;
-  const renderResultList = videos?.map((item, index) => (
-    <FilmCard
-      isLoading={isLoading}
+  const skeletonsArray = new Array(9).fill({});
+
+  const renderResultListSkeletons = skeletonsArray?.map(({index}) => (
+    <FilmCardSkeleton
       key={index}
-      item={item}
       cardClasses={styles.wrapper__content__result__card}
     />
   ));
+
+  const renderResultList = isLoading
+    ? renderResultListSkeletons
+    : videos?.map((item, index) => (
+        <FilmCard
+          key={index}
+          item={item}
+          cardClasses={styles.wrapper__content__result__card}
+        />
+      ));
 
   return (
     <article className={styles.wrapper}>
