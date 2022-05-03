@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useRouter} from 'next/router';
 
 import {filteredMass} from '~/utils';
@@ -14,7 +14,7 @@ import {
 } from '~/components';
 import {LeftArrow} from '~/assets';
 import {
-  INITIAL_SEARCH_PAGINATION_ACTIVE_PAGE,
+  INITIAL_PAGINATION_ACTIVE_PAGE,
   INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE,
 } from '~/constants';
 
@@ -24,7 +24,7 @@ const Search: React.FC = () => {
   const {query} = useRouter();
 
   const [activePage, setActivePage] = useState<number>(
-    INITIAL_SEARCH_PAGINATION_ACTIVE_PAGE,
+    INITIAL_PAGINATION_ACTIVE_PAGE,
   );
 
   const offset = activePage * INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE + 1;
@@ -33,6 +33,9 @@ const Search: React.FC = () => {
     INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE,
     offset,
   );
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [activePage]);
 
   const videos = videosData?.videos;
   const totalCount = videosData?.totalCount;
@@ -77,6 +80,7 @@ const Search: React.FC = () => {
               setActivePage={setActivePage}
               activePage={activePage}
               isMoreButtonNeeded={false}
+              rowsPerPage={INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE}
             />
           )}
         </section>
