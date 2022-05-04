@@ -44,7 +44,9 @@ const Search: React.FC = () => {
 
   const videos = videosData?.videos;
   const totalCount = videosData?.totalCount;
-  const skeletonsArray = new Array(9).fill({});
+  const skeletonsArray = new Array(
+    INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE,
+  ).fill({});
 
   const renderResultListSkeletons = skeletonsArray?.map(({index}) => (
     <FilmCardSkeleton

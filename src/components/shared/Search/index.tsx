@@ -27,6 +27,7 @@ const Search: React.FC = () => {
       });
     } else {
       toggleExpanded(true);
+      setTimeout(() => inputRef?.current?.focus(), 100);
     }
   };
 
@@ -49,7 +50,7 @@ const Search: React.FC = () => {
   useOnClickOutside(filterRef, () => {
     setSearchValue('');
     toggleExpanded(false);
-    inputRef?.current?.blur();
+    setTimeout(() => inputRef?.current?.blur(), 100);
   });
 
   return (
