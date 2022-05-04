@@ -33,7 +33,6 @@ const PaginationIndex: React.FC<IPaginationProps> = ({
   transformMaxWeight,
 }) => {
   const pageCount = Math.ceil(dataLength / rowsPerPage);
-
   const rightArrowClasses = classNames(styles.right_block__arrow, {
     [styles.disabled]: transformXValue === transformMaxWeight,
   });
@@ -53,7 +52,7 @@ const PaginationIndex: React.FC<IPaginationProps> = ({
     setRowsPerPage(rowsPerPage + INITIAL_PAGINATION_MORE_COUNT);
 
   useEffect(() => {
-    if (activePage * rowsPerPage > pageCount) {
+    if (activePage * rowsPerPage > dataLength) {
       setActivePage(pageCount - 1);
     }
 
