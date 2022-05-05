@@ -22,7 +22,8 @@
   &__content {
     padding: 16px 0;
     overflow: hidden;
-    width: 100%;
+    margin: 0 auto;
+    width: auto;
 
     @include breakpoint(desktop) {
       overflow: visible;
@@ -30,8 +31,10 @@
     }
 
     &__inner {
-      @extend %flex-center;
+      @extend %flex-align;
       transition: 350ms ease-out;
+      justify-content: stretch;
+      gap: 32px;
 
       &::-webkit-scrollbar {
         display: none;
@@ -46,7 +49,6 @@
       @extend %film_name;
       color: $dark-white;
       white-space: nowrap;
-      margin-right: 32px;
       cursor: pointer;
 
       &:hover {

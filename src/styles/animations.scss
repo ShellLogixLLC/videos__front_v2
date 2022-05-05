@@ -40,6 +40,10 @@
   animation: skeleton 3s infinite;
 }
 
+%overflow-animation {
+  animation: hide-scroll 0.3s;
+}
+
 @keyframes roundTransformingBack {
   0% {
     transform: scale(1) rotate(180deg);
@@ -159,5 +163,12 @@
   }
   100% {
     background-color: $dark-grey;
+  }
+}
+
+@keyframes hide-scroll {
+  from,
+  to {
+    overflow: hidden;
   }
 }
