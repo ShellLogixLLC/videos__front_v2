@@ -7,6 +7,7 @@ import {SearchBackArrowIcon} from '~/assets';
 import {INITIAL_SUB_CATEGORY_TRANSFORM} from '~/constants';
 
 import Link from '../Link';
+
 import {SubCategoriesProps} from './types';
 import styles from './SubCategories.module.scss';
 

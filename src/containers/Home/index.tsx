@@ -10,6 +10,7 @@ import styles from './Home.module.scss';
 const Home: React.FC = () => {
   const {data, isLoading} = CategoryService.useCategories();
   const categories = data?.categories;
+
   const {videosData} = VideosService.useVideos();
   const videos = videosData?.videos;
 
@@ -20,15 +21,15 @@ const Home: React.FC = () => {
           <Typography className={styles.wrapper__content__title}>
             New Videos
           </Typography>
-          <HorizontalSlider dataIsLoading={isLoading} dataList={videos} />
+          <HorizontalSlider isLoading={isLoading} dataList={videos} />
         </section>
         <section className={styles.wrapper__content__two_section}>
           <Typography className={styles.wrapper__content__title}>
             Categories
           </Typography>
           <HorizontalSlider
-            dataIsLoading={isLoading}
             isCategory
+            isLoading={isLoading}
             dataList={categories}
             className={styles.wrapper__content__two_section_slider}
           />
@@ -37,13 +38,13 @@ const Home: React.FC = () => {
           <Typography className={styles.wrapper__content__title}>
             Top Rated
           </Typography>
-          <HorizontalSlider dataIsLoading={isLoading} dataList={videos} />
+          <HorizontalSlider isLoading={isLoading} dataList={videos} />
         </section>
         <section className={styles.wrapper__content__one_section}>
           <Typography className={styles.wrapper__content__title}>
             Most Liked
           </Typography>
-          <HorizontalSlider dataIsLoading={isLoading} dataList={videos} />
+          <HorizontalSlider isLoading={isLoading} dataList={videos} />
         </section>
       </div>
       <aside className={styles.filter_block}>

@@ -1,0 +1,118 @@
+.wrapper {
+  @extend %flex-justify-between;
+
+  &__content {
+    max-width: calc(100% - 340px);
+    width: 100%;
+    margin-right: 20px;
+    position: relative;
+
+    @include breakpoint(desktop) {
+      max-width: 100%;
+    }
+
+    @include breakpoint(tablet) {
+      margin-right: 0;
+    }
+
+    &__header {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+
+      &__title {
+        @extend %project_title;
+        color: $white;
+        margin-bottom: 24px;
+
+        @include breakpoint(tablet) {
+          font-size: 32px;
+          line-height: 39px;
+        }
+
+        @include breakpoint(tablet-m) {
+          margin-bottom: 8px;
+        }
+      }
+
+      &__route {
+        display: flex;
+        max-width: 100px;
+        align-items: center;
+        justify-content: left;
+        background-color: unset;
+        @extend %film_name;
+
+        svg {
+          width: 48px;
+
+          path {
+            fill: $red;
+          }
+        }
+      }
+    }
+
+    &__result {
+      max-width: 100%;
+      width: 100%;
+      margin-bottom: 58px;
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      gap: 20px;
+
+      @include breakpoint(wide-l) {
+        grid-template-columns: repeat(2, auto);
+      }
+
+      @include breakpoint(tablet) {
+        height: auto;
+        grid-template-columns: repeat(1, auto);
+      }
+
+      @include breakpoint(tablet-m) {
+        margin-bottom: 24px;
+      }
+
+      &__card {
+        min-width: 288px !important;
+        max-width: 433px !important;
+        margin: 0 auto !important;
+        margin-bottom: 12px !important;
+
+        @include breakpoint(wide-l) {
+          margin-bottom: 0 !important;
+        }
+      }
+
+      &__pagination {
+        margin: 0 auto;
+      }
+      &__wrapper {
+        @extend %flex-align;
+        &__null {
+          color: $red;
+          @extend %film_name;
+        }
+        &__search_result{
+          color: $red;
+          margin-left: 6px;
+          @extend %film_name;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+.filter_block {
+  position: sticky;
+  top: 130px;
+  min-width: 320px;
+  min-height: 176px;
+  height: 100%;
+
+  @include breakpoint(desktop) {
+    display: none;
+  }
+}

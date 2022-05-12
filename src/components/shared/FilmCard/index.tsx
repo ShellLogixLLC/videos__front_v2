@@ -29,36 +29,38 @@ const FilmCard: React.FC<FilmCardProps> = ({item, cardClasses = ''}) => {
   });
 
   return (
-    <div className={`${styles.wrapper} ${cardClasses}`}>
-      <div className={styles.wrapper__film}>
-        <Button className={isLikedClasses} onClick={toggleIsLiked}>
-          <HeartLikes />
-        </Button>
-        <Image src={CategoryImage} />
-        <Typography tagName="span" className={styles.wrapper__film__time}>
-          {durationSec}
-        </Typography>
-      </div>
-      <div className={styles.wrapper__other}>
-        <h3 className={styles.wrapper__other_name}>{title.en}</h3>
-        <span className={styles.wrapper__other__dw_date}>{createdDate}</span>
-      </div>
-      <p className={styles.wrapper__pr_description}>{description.en}</p>
-      <div className={styles.wrapper__card_footer}>
-        <div className={styles.wrapper__card_footer_item}>
-          <p>{likesCount}</p>
-          <FilmLikeIcon />
+    <>
+      <div className={`${styles.wrapper} ${cardClasses}`}>
+        <div className={styles.wrapper__film}>
+          <Button className={isLikedClasses} onClick={toggleIsLiked}>
+            <HeartLikes />
+          </Button>
+          <Image src={CategoryImage} alt={'Category Image'} />
+          <Typography tagName="span" className={styles.wrapper__film__time}>
+            {durationSec}
+          </Typography>
         </div>
-        <div className={styles.wrapper__card_footer_item}>
-          <p>{VIEWS_COUNT}</p>
-          <ViewsCount />
+        <div className={styles.wrapper__other}>
+          <h3 className={styles.wrapper__other_name}>{title?.en}</h3>
+          <span className={styles.wrapper__other__dw_date}>{createdDate}</span>
         </div>
-        <div className={styles.wrapper__card_footer_item}>
-          <p>{COMMENTS_COUNT}</p>
-          <CommentsCount />
+        <p className={styles.wrapper__pr_description}>{description?.en}</p>
+        <div className={styles.wrapper__card_footer}>
+          <div className={styles.wrapper__card_footer_item}>
+            <p>{likesCount}</p>
+            <FilmLikeIcon />
+          </div>
+          <div className={styles.wrapper__card_footer_item}>
+            <p>{VIEWS_COUNT}</p>
+            <ViewsCount />
+          </div>
+          <div className={styles.wrapper__card_footer_item}>
+            <p>{COMMENTS_COUNT}</p>
+            <CommentsCount />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

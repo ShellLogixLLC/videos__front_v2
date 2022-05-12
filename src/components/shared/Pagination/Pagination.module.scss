@@ -2,8 +2,10 @@
   @extend %flex-align;
   max-width: 240px;
 
-  @include breakpoint(tablet) {
-    display: none;
+  &__display {
+    @include breakpoint(tablet) {
+      display: none;
+    }
   }
 
   &__wrapper {

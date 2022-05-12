@@ -2,6 +2,7 @@ import React, {useState, useContext, useEffect} from 'react';
 import classNames from 'classnames';
 import {useToggle} from 'react-use';
 import {useTranslation} from 'next-i18next';
+import {useRouter} from 'next/router';
 
 import {Route} from '~/constants';
 import {ToggleContext} from '~/context';
@@ -20,7 +21,6 @@ import {
 } from '~/components';
 
 import styles from './Header.module.scss';
-import {useRouter} from 'next/router';
 
 const Header: React.FC = () => {
   const {t} = useTranslation();

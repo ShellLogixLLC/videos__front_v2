@@ -1,9 +1,10 @@
 import React from 'react';
 
 import styles from './FilmCard.module.scss';
+import {ISkeletonFilmCard} from './types';
 
-const FilmCardSkeleton: React.FC = () => (
-  <div className={styles.wrapper}>
+const FilmCardSkeleton: React.FC<ISkeletonFilmCard> = ({cardClasses = ''}) => (
+  <div className={`${styles.wrapper}  ${cardClasses}`}>
     <div className={styles.wrapper__film}>
       <div className={styles.wrapper__film__time}>
         <p />
