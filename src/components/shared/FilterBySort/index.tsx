@@ -19,6 +19,10 @@ const FilterBySort: React.FC<IFilterBySortProps> = ({options}) => {
     [styles.container__expand]: expanded,
   });
 
+  const innerClasses = classNames(styles.container__content__child, {
+    [styles.container__content__child__animation]: expanded,
+  });
+
   useOnClickOutside(filterRef, () => {
     toggleExpanded(false);
   });
@@ -48,9 +52,7 @@ const FilterBySort: React.FC<IFilterBySortProps> = ({options}) => {
         <FilterLamp className={styles.container__header__icon} />
       </div>
       <div className={styles.container__content}>
-        <div className={styles.container__content__child}>
-          {renderFilteredTable}
-        </div>
+        <div className={innerClasses}>{renderFilteredTable}</div>
       </div>
     </div>
   );

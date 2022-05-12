@@ -1,5 +1,4 @@
 .wrapper {
-  display: none;
   opacity: 0;
   transition: all 0.4s;
   position: absolute;
@@ -16,6 +15,7 @@
     position: static;
     height: auto;
     opacity: 1;
+    display: none;
     padding: 0;
   }
 
@@ -30,15 +30,15 @@
     }
 
     &__inner {
-      @extend %flex-center;
       transition: 350ms ease-out;
+      text-align: center;
 
       &::-webkit-scrollbar {
         display: none;
       }
 
       @include breakpoint(desktop) {
-        flex-direction: column;
+        flex-direction: column !important;
       }
     }
 
@@ -47,6 +47,7 @@
       color: $dark-white;
       white-space: nowrap;
       margin-right: 32px;
+      display: inline;
       cursor: pointer;
 
       &:hover {
@@ -62,6 +63,7 @@
         min-width: 187px;
         width: 100%;
         margin: 0;
+        display: block;
       }
 
       &__active {

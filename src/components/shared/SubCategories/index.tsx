@@ -33,7 +33,6 @@ const SubCategories: React.FC<SubCategoriesProps> = ({
     maxScroll < nextValue
       ? maxScroll
       : transform + INITIAL_SUB_CATEGORY_TRANSFORM;
-
   const isHiddenLeftIcon = maxScroll === 0 || transform === 0;
   const isHiddenRightIcon = maxScroll === 0 || maxScroll === transform;
 
@@ -57,11 +56,11 @@ const SubCategories: React.FC<SubCategoriesProps> = ({
 
       setMaxScroll(Number(scrollWidth) - Number(offsetWidth));
     }
-
-    if (!isDesktop) {
-      setTransform(0);
-    }
   }, [isDesktop, contentRef, subCategoriesList, windowWidth]);
+
+  useEffect(() => {
+    setTransform(0);
+  }, [windowWidth]);
 
   const renderSubCategoriesList = subCategoriesList?.map(({name, id}) => {
     const isActiveItem = query.name === name.en;

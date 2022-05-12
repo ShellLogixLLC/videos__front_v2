@@ -121,9 +121,8 @@
         }
 
         &:hover > .sub_category {
-          @extend %flex-between;
           transition: all 0.4s;
-          opacity: 1;
+          opacity: 1 !important;
         }
 
         &__child {
@@ -300,8 +299,9 @@
 }
 
 .sub_category {
-  display: none;
+  @extend %flex-between;
 
+  opacity: 0;
   &__mobile {
     @include breakpoint(desktop) {
       display: flex !important;

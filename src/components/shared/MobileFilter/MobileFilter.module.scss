@@ -49,12 +49,12 @@
     }
 
     &__btn {
-      margin-top: 48px;
+      margin-top: 32px;
       background: $dark-red;
       padding: 20px 0;
 
       @include breakpoint(tablet-m) {
-        margin-top: 80px;
+        margin-top: 24px;
       }
     }
   }
