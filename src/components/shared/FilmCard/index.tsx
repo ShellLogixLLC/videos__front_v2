@@ -41,10 +41,10 @@ const FilmCard: React.FC<FilmCardProps> = ({item, cardClasses = ''}) => {
           </Typography>
         </div>
         <div className={styles.wrapper__other}>
-          <h3 className={styles.wrapper__other_name}>{title.en}</h3>
+          <h3 className={styles.wrapper__other_name}>{title?.en}</h3>
           <span className={styles.wrapper__other__dw_date}>{createdDate}</span>
         </div>
-        <p className={styles.wrapper__pr_description}>{description.en}</p>
+        <p className={styles.wrapper__pr_description}>{description?.en}</p>
         <div className={styles.wrapper__card_footer}>
           <div className={styles.wrapper__card_footer_item}>
             <p>{likesCount}</p>

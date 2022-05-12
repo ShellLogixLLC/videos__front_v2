@@ -38,6 +38,7 @@ const Search: React.FC = () => {
     INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE,
     offset,
   );
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [activePage]);
@@ -55,15 +56,17 @@ const Search: React.FC = () => {
     />
   ));
 
-  const renderResultList = isLoading
-    ? renderResultListSkeletons
-    : videos?.map((item, index) => (
-        <FilmCard
-          key={index}
-          item={item}
-          cardClasses={styles.wrapper__content__result__card}
-        />
-      ));
+  const renderResultList = !isLoading
+    ? videos?.map((item) => {
+        return (
+          <FilmCard
+            item={item}
+            key={item.id}
+            cardClasses={styles.wrapper__content__result__card}
+          />
+        );
+      })
+    : renderResultListSkeletons;
 
   return (
     <article className={styles.wrapper}>
@@ -84,9 +87,17 @@ const Search: React.FC = () => {
         <section className={styles.wrapper__content__result}>
           {renderResultList}
           {videos?.length === 0 && (
-            <p className={styles.wrapper__content__result__null}>
-              Sorry, we could not find any result
-            </p>
+            <div className={styles.wrapper__content__result__wrapper}>
+              <p className={styles.wrapper__content__result__wrapper__null}>
+                Sorry, we could not find any result as:
+              </p>
+              <p
+                className={
+                  styles.wrapper__content__result__wrapper__search_result
+                }>
+                {query.param}
+              </p>
+            </div>
           )}
         </section>
         <section>

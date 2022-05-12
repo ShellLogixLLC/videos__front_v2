@@ -10,6 +10,7 @@ import styles from './Home.module.scss';
 const Home: React.FC = () => {
   const {data, isLoading} = CategoryService.useCategories();
   const categories = data?.categories;
+
   const {videosData} = VideosService.useVideos();
   const videos = videosData?.videos;
 
@@ -27,8 +28,8 @@ const Home: React.FC = () => {
             Categories
           </Typography>
           <HorizontalSlider
-            isLoading={isLoading}
             isCategory
+            isLoading={isLoading}
             dataList={categories}
             className={styles.wrapper__content__two_section_slider}
           />

@@ -88,9 +88,18 @@
       &__pagination {
         margin: 0 auto;
       }
-      &__null {
-        color: $red;
-        @extend %film_name;
+      &__wrapper {
+        @extend %flex-align;
+        &__null {
+          color: $red;
+          @extend %film_name;
+        }
+        &__search_result{
+          color: $red;
+          margin-left: 6px;
+          @extend %film_name;
+          text-decoration: underline;
+        }
       }
     }
   }
