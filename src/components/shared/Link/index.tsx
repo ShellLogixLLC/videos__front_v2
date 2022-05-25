@@ -7,6 +7,7 @@ import {LinkProps} from './types';
 
 const Link: React.FC<LinkProps> = ({
   to,
+  as,
   blank,
   target,
   onClick,
@@ -41,7 +42,7 @@ const Link: React.FC<LinkProps> = ({
   });
 
   return (
-    <NextLink href={to} {...linkProps}>
+    <NextLink href={to} as={as} {...linkProps}>
       <a
         target={target}
         onClick={onClick}

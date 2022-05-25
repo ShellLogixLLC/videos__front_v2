@@ -5,6 +5,12 @@ export interface ICommonRequestReturn {
   isLoading: boolean;
 }
 
+export type ApiServiceParamsTypes = {
+  limit?: number;
+  offset?: number;
+  categoryIds?: string[];
+};
+
 export type Name = {
   en: string;
   ru: string;

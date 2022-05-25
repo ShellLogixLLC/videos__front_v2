@@ -5,7 +5,7 @@ import {RouterService} from '~/services';
 
 import endpoints from '../endpoints';
 
-import {IUseUsersReturn} from './types';
+import {IUseUsersReturn, ICategory, IVideoByCategory} from './types';
 
 const useCategories = (): IUseUsersReturn => {
   const {data, mutate, error} = useAppRequest({
@@ -26,8 +26,59 @@ const useCategories = (): IUseUsersReturn => {
   };
 };
 
+const useCategoryById = (
+  activeVCategoryId?: string | string[] | undefined,
+): ICategory => {
+  const {data, mutate, error} = useAppRequest({
+    url: endpoints.CategoryService.getCategoryById(activeVCategoryId),
+  });
+
+  useEffect(() => {
+    if (error) {
+      RouterService.pushError();
+    }
+  }, [error]);
+
+  return {
+    isError: !!error,
+    data,
+    mutate,
+    isLoading: !error && !data,
+  };
+};
+
+const useVideosByCategoryId = (
+  limit: number,
+  offset: number,
+  activeVCategoryId: string | string[] | undefined,
+): IVideoByCategory => {
+  const {data, mutate, error} = useAppRequest({
+    url: endpoints.CategoryService.getVideoByCategoryId(),
+    params: {
+      limit,
+      offset,
+      categoryIds: [activeVCategoryId],
+    },
+  });
+
+  useEffect(() => {
+    if (error) {
+      RouterService.pushError();
+    }
+  }, [error]);
+
+  return {
+    isError: !!error,
+    data,
+    mutate,
+    isLoading: !error && !data,
+  };
+};
+
 const CategoryService = {
   useCategories,
+  useCategoryById,
+  useVideosByCategoryId,
 };
 
 export default CategoryService;
