@@ -81,6 +81,7 @@ const Header: React.FC = () => {
       <div
         key="categoryList"
         className={styles.wrapper__content_menu__category}>
+        {/*<div className={styles.wrapper__content__menu__category__container}>*/}
         <div
           onClick={toggleCategory}
           className={styles.wrapper__content_menu__category__child}>
@@ -91,6 +92,7 @@ const Header: React.FC = () => {
           wrapperClass={subCategoriesClasses}
           subCategoriesList={categories}
         />
+        {/*</div>*/}
       </div>
     );
   };

@@ -53,7 +53,6 @@ const SubCategories: React.FC<SubCategoriesProps> = ({
   useEffect(() => {
     if (contentRef.current) {
       const {offsetWidth, scrollWidth} = contentRef.current;
-
       setMaxScroll(Number(scrollWidth) - Number(offsetWidth));
     }
   }, [isDesktop, contentRef, subCategoriesList, windowWidth]);
