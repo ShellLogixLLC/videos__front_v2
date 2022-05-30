@@ -110,24 +110,24 @@
 
       &__category {
         @extend %flex-between;
-        //min-height: 90px;
-        cursor: pointer;
+        min-height: 90px;
 
         @include breakpoint(desktop) {
           flex-direction: column;
-          justify-content: unset;
+          justify-content: none;
           align-items: flex-start;
           margin-left: 32px;
           min-height: unset;
         }
 
         &:hover > .sub_category {
-          transition: all 0.4s ease;
+          transition: all 0.4s;
           opacity: 1 !important;
         }
 
         &__child {
           @extend %flex-between;
+          cursor: pointer;
         }
       }
     }
@@ -301,6 +301,7 @@
 
 .sub_category {
   @extend %flex-between;
+
   opacity: 0;
   &__mobile {
     @include breakpoint(desktop) {
