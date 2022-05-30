@@ -301,8 +301,8 @@
 
 .sub_category {
   @extend %flex-between;
-
   opacity: 0;
+
   &__mobile {
     @include breakpoint(desktop) {
       display: flex !important;
