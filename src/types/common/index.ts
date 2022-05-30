@@ -1,16 +1,16 @@
 export type SVGIconProp = React.FC<React.SVGProps<SVGSVGElement>>;
 
 export type CategoryTitleTypes = {
-  categoryId?: string | string[] | undefined;
+  categoryId?: string | string[];
 };
 
 export type CategoryContentTypes = {
   activePage: number;
-  categoryId?: string | string[] | undefined;
+  categoryId?: string | string[];
   setTotalCount: (value: number) => void;
 };
 
-export type queryParamsTypes = {
+export type QueryParamsTypes = {
   page?: number;
   name?: string;
 };

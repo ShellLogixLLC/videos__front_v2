@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {useRouter} from 'next/router';
 
 import {LeftArrow} from '~/assets';
-import {queryParamsTypes} from '~/types';
+import {QueryParamsTypes} from '~/types';
 import {filteredMass, setQueryParams} from '~/utils';
 import {
   Link,
@@ -18,6 +18,8 @@ import CategoryContent from './CategoryContent';
 
 const Category: React.FC = () => {
   const {query} = useRouter();
+  const [activePage, setActivePage] = useState<number>(0);
+  const [totalCount, setTotalCount] = useState<number>(0);
 
   useEffect(() => {
     if (query?.page) {
@@ -25,12 +27,9 @@ const Category: React.FC = () => {
     }
   }, [query.page]);
 
-  const setNewQueryParams = (newQueryParams: queryParamsTypes): void => {
+  const setNewQueryParams = (newQueryParams: QueryParamsTypes): void => {
     setQueryParams({...query, ...newQueryParams});
   };
-
-  const [activePage, setActivePage] = useState<number>(0);
-  const [totalCount, setTotalCount] = useState<number>(0);
 
   const changeActivePage = (page: number): void => {
     setActivePage(page);

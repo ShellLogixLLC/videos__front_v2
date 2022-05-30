@@ -6,6 +6,7 @@ import {Category} from '~/containers';
 import endpoints from '~/api/endpoints';
 import ApiService from '~/api/ApiService';
 import {ICategoriesPageQueries} from '~/types';
+import {INITIAL_CATEGORY_LIMIT} from '~/constants';
 
 const CategoriesPage: NextPage = () => {
   return (
@@ -27,8 +28,8 @@ export const getServerSideProps: GetServerSideProps = async ({query}) => {
   const categoryVideos = await ApiService.get(
     endpoints.CategoryService.getVideoByCategoryId(),
     {
-      offset: activePage * 9,
-      limit: 9,
+      offset: activePage * INITIAL_CATEGORY_LIMIT,
+      limit: INITIAL_CATEGORY_LIMIT,
       categoryIds: [name],
     },
   );

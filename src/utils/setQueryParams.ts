@@ -1,8 +1,8 @@
 import Router from 'next/router';
 
-import {queryParamsTypes} from '~/types';
+import {QueryParamsTypes} from '~/types';
 
-const setQueryParams = (newQueries: queryParamsTypes): void => {
+const setQueryParams = (newQueries: QueryParamsTypes): void => {
   Router.push(
     {
       pathname: Router.pathname,
