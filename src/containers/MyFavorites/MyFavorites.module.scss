@@ -1,0 +1,42 @@
+.favorites{
+ @extend %flex-justify-between;
+ flex-direction: column;
+
+  &__backRoute{
+   @extend %flex-align;
+
+   &__button{
+
+   }
+  }
+ &__link{
+  max-width: 400px;
+  width: 100%;
+  &_active{
+   color: $dark-red;
+   animation: roundTransforming;
+  }
+ }
+ &__title{
+ font-size: 64px;
+  margin-top: 50px;
+
+  @include breakpoint(tablet){
+   font-size: 32px;
+  }
+ }
+
+ &__content{
+  display: grid;
+  grid-template-columns: repeat( 4, minmax(0, 320px));
+  grid-gap: 20px;
+
+  @include breakpoint(tablet){
+   grid-template-columns: repeat(2,minmax(0,350px));
+
+   @include breakpoint(mobile){
+    grid-template-columns: repeat(1,minmax(0,288px));
+   }
+  }
+ }
+}
