@@ -25,12 +25,79 @@ const MyFavorites: React.FC = () => {
       <Typography tagName="h1" className={styles.favorites__title}>
         WishList
       </Typography>
-      <div className={styles.favorites__content}></div>
-      {/*<Video*/}
-      {/*  videoSrc={VIDEO_SRC}*/}
-      {/*  posterSrc={POSTER_SRC}*/}
-      {/*  videoDuration={VIDEO_LENGTH}*/}
-      {/*/>*/}
+      <div className={styles.favorites__content}>
+        <Video
+          videoSrc={VIDEO_SRC}
+          posterSrc={POSTER_SRC}
+          videoDuration={VIDEO_LENGTH}
+        />
+        <Video
+          videoSrc={VIDEO_SRC}
+          posterSrc={POSTER_SRC}
+          videoDuration={VIDEO_LENGTH}
+        />
+        <Video
+          videoSrc={VIDEO_SRC}
+          posterSrc={POSTER_SRC}
+          videoDuration={VIDEO_LENGTH}
+        />
+        <Video
+          videoSrc={VIDEO_SRC}
+          posterSrc={POSTER_SRC}
+          videoDuration={VIDEO_LENGTH}
+        />
+        <Video
+          videoSrc={VIDEO_SRC}
+          posterSrc={POSTER_SRC}
+          videoDuration={VIDEO_LENGTH}
+        />
+        <Video
+          videoSrc={VIDEO_SRC}
+          posterSrc={POSTER_SRC}
+          videoDuration={VIDEO_LENGTH}
+        />
+        <Video
+          videoSrc={VIDEO_SRC}
+          posterSrc={POSTER_SRC}
+          videoDuration={VIDEO_LENGTH}
+        />
+        <Video
+          videoSrc={VIDEO_SRC}
+          posterSrc={POSTER_SRC}
+          videoDuration={VIDEO_LENGTH}
+        />
+        <Video
+          videoSrc={VIDEO_SRC}
+          posterSrc={POSTER_SRC}
+          videoDuration={VIDEO_LENGTH}
+        />
+        <Video
+          videoSrc={VIDEO_SRC}
+          posterSrc={POSTER_SRC}
+          videoDuration={VIDEO_LENGTH}
+        />
+        <Video
+          videoSrc={VIDEO_SRC}
+          posterSrc={POSTER_SRC}
+          videoDuration={VIDEO_LENGTH}
+        />
+        <Video
+          videoSrc={VIDEO_SRC}
+          posterSrc={POSTER_SRC}
+          videoDuration={VIDEO_LENGTH}
+        />
+        <Video
+          videoSrc={VIDEO_SRC}
+          posterSrc={POSTER_SRC}
+          videoDuration={VIDEO_LENGTH}
+        />
+        <Video
+          videoSrc={VIDEO_SRC}
+          posterSrc={POSTER_SRC}
+          videoDuration={VIDEO_LENGTH}
+        />
+      </div>
+      <div className={styles.favorites__pagination}></div>
     </div>
   );
 };
