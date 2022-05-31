@@ -6,7 +6,19 @@
    @extend %flex-align;
 
    &__button{
+    @extend %flex-align;
+    background: transparent;
+    color: $white;
+    max-width: 100px;
+    @extend %film_name;
 
+    svg {
+     width: 48px;
+
+     path {
+      fill: $red;
+     }
+    }
    }
   }
  &__link{
