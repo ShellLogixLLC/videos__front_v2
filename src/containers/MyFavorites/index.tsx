@@ -17,80 +17,83 @@ const MyFavorites: React.FC = () => {
         />
       </div>
 
-      <Typography tagName="h1" className={styles.favorites__title}>
-        WishList
-      </Typography>
+      <div className={styles.favorites__title}>
+        <Typography tagName="h1" className={styles.favorites__title__text}>
+          WishList
+        </Typography>
+      </div>
+
       <div className={styles.favorites__content}>
-        {/*<Video*/}
-        {/*  videoSrc={VIDEO_SRC}*/}
-        {/*  posterSrc={POSTER_SRC}*/}
-        {/*  videoDuration={VIDEO_LENGTH}*/}
-        {/*/>*/}
-        {/*<Video*/}
-        {/*  videoSrc={VIDEO_SRC}*/}
-        {/*  posterSrc={POSTER_SRC}*/}
-        {/*  videoDuration={VIDEO_LENGTH}*/}
-        {/*/>*/}
-        {/*<Video*/}
-        {/*  videoSrc={VIDEO_SRC}*/}
-        {/*  posterSrc={POSTER_SRC}*/}
-        {/*  videoDuration={VIDEO_LENGTH}*/}
-        {/*/>*/}
-        {/*<Video*/}
-        {/*  videoSrc={VIDEO_SRC}*/}
-        {/*  posterSrc={POSTER_SRC}*/}
-        {/*  videoDuration={VIDEO_LENGTH}*/}
-        {/*/>*/}
-        {/*<Video*/}
-        {/*  videoSrc={VIDEO_SRC}*/}
-        {/*  posterSrc={POSTER_SRC}*/}
-        {/*  videoDuration={VIDEO_LENGTH}*/}
-        {/*/>*/}
-        {/*<Video*/}
-        {/*  videoSrc={VIDEO_SRC}*/}
-        {/*  posterSrc={POSTER_SRC}*/}
-        {/*  videoDuration={VIDEO_LENGTH}*/}
-        {/*/>*/}
-        {/*<Video*/}
-        {/*  videoSrc={VIDEO_SRC}*/}
-        {/*  posterSrc={POSTER_SRC}*/}
-        {/*  videoDuration={VIDEO_LENGTH}*/}
-        {/*/>*/}
-        {/*<Video*/}
-        {/*  videoSrc={VIDEO_SRC}*/}
-        {/*  posterSrc={POSTER_SRC}*/}
-        {/*  videoDuration={VIDEO_LENGTH}*/}
-        {/*/>*/}
-        {/*<Video*/}
-        {/*  videoSrc={VIDEO_SRC}*/}
-        {/*  posterSrc={POSTER_SRC}*/}
-        {/*  videoDuration={VIDEO_LENGTH}*/}
-        {/*/>*/}
-        {/*<Video*/}
-        {/*  videoSrc={VIDEO_SRC}*/}
-        {/*  posterSrc={POSTER_SRC}*/}
-        {/*  videoDuration={VIDEO_LENGTH}*/}
-        {/*/>*/}
-        {/*<Video*/}
-        {/*  videoSrc={VIDEO_SRC}*/}
-        {/*  posterSrc={POSTER_SRC}*/}
-        {/*  videoDuration={VIDEO_LENGTH}*/}
-        {/*/>*/}
-        {/*<Video*/}
-        {/*  videoSrc={VIDEO_SRC}*/}
-        {/*  posterSrc={POSTER_SRC}*/}
-        {/*  videoDuration={VIDEO_LENGTH}*/}
-        {/*/>*/}
-        {/*<Video*/}
-        {/*  videoSrc={VIDEO_SRC}*/}
-        {/*  posterSrc={POSTER_SRC}*/}
-        {/*  videoDuration={VIDEO_LENGTH}*/}
-        {/*/>*/}
-        {/*<Video*/}
-        {/*  videoSrc={VIDEO_SRC}*/}
-        {/*  posterSrc={POSTER_SRC}*/}
-        {/*  videoDuration={VIDEO_LENGTH}*/}
-        {/*/>*/}
+        <Video
+          videoSrc={VIDEO_SRC}
+          posterSrc={POSTER_SRC}
+          videoDuration={VIDEO_LENGTH}
+        />
+        <Video
+          videoSrc={VIDEO_SRC}
+          posterSrc={POSTER_SRC}
+          videoDuration={VIDEO_LENGTH}
+        />
+        <Video
+          videoSrc={VIDEO_SRC}
+          posterSrc={POSTER_SRC}
+          videoDuration={VIDEO_LENGTH}
+        />
+        <Video
+          videoSrc={VIDEO_SRC}
+          posterSrc={POSTER_SRC}
+          videoDuration={VIDEO_LENGTH}
+        />
+        <Video
+          videoSrc={VIDEO_SRC}
+          posterSrc={POSTER_SRC}
+          videoDuration={VIDEO_LENGTH}
+        />
+        <Video
+          videoSrc={VIDEO_SRC}
+          posterSrc={POSTER_SRC}
+          videoDuration={VIDEO_LENGTH}
+        />
+        <Video
+          videoSrc={VIDEO_SRC}
+          posterSrc={POSTER_SRC}
+          videoDuration={VIDEO_LENGTH}
+        />
+        <Video
+          videoSrc={VIDEO_SRC}
+          posterSrc={POSTER_SRC}
+          videoDuration={VIDEO_LENGTH}
+        />
+        <Video
+          videoSrc={VIDEO_SRC}
+          posterSrc={POSTER_SRC}
+          videoDuration={VIDEO_LENGTH}
+        />
+        <Video
+          videoSrc={VIDEO_SRC}
+          posterSrc={POSTER_SRC}
+          videoDuration={VIDEO_LENGTH}
+        />
+        <Video
+          videoSrc={VIDEO_SRC}
+          posterSrc={POSTER_SRC}
+          videoDuration={VIDEO_LENGTH}
+        />
+        <Video
+          videoSrc={VIDEO_SRC}
+          posterSrc={POSTER_SRC}
+          videoDuration={VIDEO_LENGTH}
+        />
+        <Video
+          videoSrc={VIDEO_SRC}
+          posterSrc={POSTER_SRC}
+          videoDuration={VIDEO_LENGTH}
+        />
+        <Video
+          videoSrc={VIDEO_SRC}
+          posterSrc={POSTER_SRC}
+          videoDuration={VIDEO_LENGTH}
+        />
       </div>
       <div className={styles.favorites__pagination}></div>
     </div>

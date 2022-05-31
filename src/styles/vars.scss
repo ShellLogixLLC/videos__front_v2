@@ -17,6 +17,12 @@ $montserrat_family: 'Montserrat', sans-serif;
   justify-content: center;
 }
 
+%flex-start{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 %flex-align {
   display: flex;
   align-items: center;
