@@ -1,0 +1,24 @@
+.wrapper {
+  margin-top: 24px;
+
+  &__title {
+    max-width: 500px;
+    width: 100%;
+    height: 48px;
+    @extend %skeleton-animation;
+  }
+
+  &__content {
+    margin-top: 32px;
+    display: flex;
+    gap: 24px;
+
+    &_item {
+      color: transparent;
+      padding: 0 34px;
+      height: 48px;
+      border-radius: 48px;
+      @extend %skeleton-animation;
+    }
+  }
+}

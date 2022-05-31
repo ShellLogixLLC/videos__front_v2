@@ -25,3 +25,5 @@ export * from './videoUrl';
 
 // timer
 export * from './timer';
+
+export * from './category';

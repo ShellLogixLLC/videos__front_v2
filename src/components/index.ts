@@ -41,5 +41,6 @@ export {default as HorizontalSlider} from './shared/HorizontalSlider';
 export {default as VideoSkeleton} from './skeletons/Video';
 export {default as CommentSkeleton} from './skeletons/Comment';
 export {default as FilmCardSkeletons} from './skeletons/FilmCard';
+export {default as CategoryNavSkeleton} from './skeletons/CategoryNav';
 export {default as CategoryCardSkeleton} from './skeletons/CategoryCard';
 export {default as HorizontalSliderSkeleton} from './skeletons/HorizontalSlider';

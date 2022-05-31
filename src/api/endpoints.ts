@@ -1,6 +1,8 @@
 const endpoints = {
   CategoryService: {
     getCategories: (): string => '/categories',
+    getCategoryById: (id?: string | string[]): string => `/categories/${id}`,
+    getVideoByCategoryId: (): string => `/videos`,
   },
 
   VideosService: {

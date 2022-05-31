@@ -1,21 +1,68 @@
-.new_container {
-  margin-top: 40px;
+.wrapper {
+  gap: 20px;
+  width: 100%;
+  @extend %flex-justify-between;
+}
+
+.filters {
+  top: 110px;
+  height: fit-content;
+  position: sticky;
+  min-width: 320px;
+
+  @include breakpoint(desktop) {
+    display: none;
+  }
+}
+
+.content {
+  width: 100%;
+
+  &__back {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 12px 12px 0;
+
+    svg {
+      margin-right: 12px;
+    }
+
+    &_text {
+      @extend %film_name;
+    }
+  }
 
   &__title {
-    @extend %separate_page_film_name;
-    margin-bottom: 24px;
+    margin: 24px 0 32px;
+    @extend %project_title;
+
+    @include breakpoint(tablet) {
+      font-weight: 400;
+      font-size: 32px;
+      line-height: 39px;
+    }
   }
 
   &__wrapper {
-    @extend %flex-between;
+    margin-top: 32px;
+    gap: 20px;
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: repeat(3, minmax(320px, 1fr));
 
-    &::webkit-scrollbar {
-      display: none;
+    @include breakpoint(wide-l) {
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     }
-    overflow-x: scroll;
 
-    :last-child {
-      margin-right: 0;
+    &_item {
+      max-width: unset;
+      min-width: unset;
+      margin: 0;
+      height: unset;
     }
+  }
+
+  &__pagination {
+    margin-top: 40px;
   }
 }

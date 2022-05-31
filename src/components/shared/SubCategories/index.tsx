@@ -63,14 +63,18 @@ const SubCategories: React.FC<SubCategoriesProps> = ({
   }, [windowWidth]);
 
   const renderSubCategoriesList = subCategoriesList?.map(({name, id}) => {
-    const isActiveItem = query.name === name.en;
+    const isActiveItem = query.name === id;
 
     const itemClasses = classNames(styles.wrapper__content__item, {
       [styles.wrapper__content__item__active]: isActiveItem,
     });
 
     return (
-      <Link key={id} to={`/category/${name.en}`} className={itemClasses}>
+      <Link
+        key={id}
+        to="/category/[name]"
+        as={`/category/${id}`}
+        className={itemClasses}>
         {name.en}
       </Link>
     );
