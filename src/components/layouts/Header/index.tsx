@@ -66,8 +66,6 @@ const Header: React.FC = () => {
     }
   };
 
-  console.log(isCategoriesHoverable, 'isHover');
-
   useEffect(() => {
     setIsOpen(false);
   }, [pathname, query.name]);
@@ -107,12 +105,10 @@ const Header: React.FC = () => {
           <SearchBackArrowIcon className={iconClasses} />
         </div>
         {isCategoriesHoverable && (
-          <>
-            <SubCategories
-              wrapperClass={subCategoriesClasses}
-              subCategoriesList={categories}
-            />
-          </>
+          <SubCategories
+            wrapperClass={subCategoriesClasses}
+            subCategoriesList={categories}
+          />
         )}
       </div>
     );
