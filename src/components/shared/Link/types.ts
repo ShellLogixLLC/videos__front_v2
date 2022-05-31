@@ -1,5 +1,6 @@
 export interface LinkProps {
   to: string;
+  as?: string;
   blank?: boolean;
   target?: string;
   locale?: string;

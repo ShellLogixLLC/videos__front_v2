@@ -1,9 +1,13 @@
 import React from 'react';
 
 import {filteredMass} from '~/utils';
-import {HorizontalSlider} from '~/components';
 import {CategoryService, VideosService} from '~/api';
-import {DatePicker, FilterBySort, Typography} from '~/components';
+import {
+  DatePicker,
+  Typography,
+  FilterBySort,
+  HorizontalSlider,
+} from '~/components';
 
 import styles from './Home.module.scss';
 

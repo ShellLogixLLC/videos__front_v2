@@ -2,6 +2,11 @@
   @extend %flex-align;
   overflow-x: scroll;
   box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.125);
+  max-width: calc(100vw - 440px);
+
+  @include breakpoint(desktop) {
+    max-width: unset;
+  }
 
   &::-webkit-scrollbar {
     height: 0px;

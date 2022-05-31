@@ -1,3 +1,5 @@
+import {ParsedUrlQuery} from 'querystring';
+
 import React from 'react';
 
 import {Route} from '~/constants';
@@ -27,4 +29,9 @@ export interface IRegistrationStepsParams {
 
 export interface IRegistrationStepsPageParams {
   params: IRegistrationStepsParams;
+}
+
+export interface ICategoriesPageQueries extends ParsedUrlQuery {
+  name: string;
+  page?: string;
 }

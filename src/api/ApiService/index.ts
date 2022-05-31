@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import {ApiServiceParamsTypes} from '~/types';
+
 import {defaultOptions} from '../client';
 
 const axiosInstance = axios.create({
@@ -7,8 +9,10 @@ const axiosInstance = axios.create({
 });
 
 const ApiService = {
-  get: async <T>(path: string): Promise<T> => {
-    const {data} = await axiosInstance.get<T>(path);
+  get: async <T>(path: string, params?: ApiServiceParamsTypes): Promise<T> => {
+    const {data} = await axiosInstance.get<T>(path, {
+      params,
+    });
 
     return data;
   },
