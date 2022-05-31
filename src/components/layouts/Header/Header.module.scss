@@ -127,6 +127,7 @@
 
         &__child {
           @extend %flex-between;
+          cursor: pointer;
         }
       }
     }

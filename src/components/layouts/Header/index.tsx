@@ -34,6 +34,8 @@ const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isFilter, toggleFilter] = useToggle(false);
   const [isCategories, setIsCategories] = useState<boolean>(false);
+  const [isCategoriesHoverable, setCategoriesHoverable] =
+    useState<boolean>(false);
 
   const logoClassNames = classNames(styles.wrapper__content_logo, {
     [styles.wrapper__content_logo_hidden]: expanded && !isDesktop,
@@ -45,9 +47,22 @@ const Header: React.FC = () => {
 
   const handleOpenMenu = () => setIsOpen(true);
 
-  const toggleCategory = () => {
+  const toggleCategory = (): void => {
     if (!isDesktop) {
       setIsCategories(!isCategories);
+      setCategoriesHoverable(true);
+    }
+  };
+
+  const onMouseEnter = (): void => {
+    if (isDesktop) {
+      setCategoriesHoverable(true);
+    }
+  };
+
+  const onMouseLeave = (): void => {
+    if (isDesktop) {
+      setCategoriesHoverable(false);
     }
   };
 
@@ -79,18 +94,22 @@ const Header: React.FC = () => {
 
     return (
       <div
+        onMouseLeave={onMouseLeave}
         key="categoryList"
         className={styles.wrapper__content_menu__category}>
         <div
+          onMouseEnter={onMouseEnter}
           onClick={toggleCategory}
           className={styles.wrapper__content_menu__category__child}>
           <p className={itemClasses}>Category</p>
           <SearchBackArrowIcon className={iconClasses} />
         </div>
-        <SubCategories
-          wrapperClass={subCategoriesClasses}
-          subCategoriesList={categories}
-        />
+        {isCategoriesHoverable && (
+          <SubCategories
+            wrapperClass={subCategoriesClasses}
+            subCategoriesList={categories}
+          />
+        )}
       </div>
     );
   };
