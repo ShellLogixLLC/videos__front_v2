@@ -1,12 +1,33 @@
 import React from 'react';
 
-import {BackButton, Link, Typography, Video} from '~/components';
-import {VIDEO_SRC, POSTER_SRC, VIDEO_LENGTH, Route} from '~/constants';
+import {
+  BackButton,
+  FilmCardSkeletons,
+  Link,
+  Typography,
+  Video,
+} from '~/components';
 import {LeftArrow} from '~/assets';
+import WishlistSearchService from '~/api/wishlist';
+import {INITIAL_WISHLIST_LIMIT, INITIAL_WISHLIST_OFFSET} from '~/constants';
 
 import styles from './MyFavorites.module.scss';
 
 const MyFavorites: React.FC = () => {
+  const {data, isLoading} = WishlistSearchService.useVideoWishlist(
+    INITIAL_WISHLIST_LIMIT,
+    INITIAL_WISHLIST_OFFSET,
+  );
+
+  if (isLoading) {
+    const renderLoaderCards = Array.from(Array(9), (index: number) => (
+      <FilmCardSkeletons
+        key={index}
+        cardClasses={styles.content__wrapper_item}
+      />
+    ));
+  }
+
   return (
     <div className={styles.favorites}>
       <div className={styles.favorites__backRoute}>
@@ -23,78 +44,7 @@ const MyFavorites: React.FC = () => {
         </Typography>
       </div>
 
-      <div className={styles.favorites__content}>
-        <Video
-          videoSrc={VIDEO_SRC}
-          posterSrc={POSTER_SRC}
-          videoDuration={VIDEO_LENGTH}
-        />
-        <Video
-          videoSrc={VIDEO_SRC}
-          posterSrc={POSTER_SRC}
-          videoDuration={VIDEO_LENGTH}
-        />
-        <Video
-          videoSrc={VIDEO_SRC}
-          posterSrc={POSTER_SRC}
-          videoDuration={VIDEO_LENGTH}
-        />
-        <Video
-          videoSrc={VIDEO_SRC}
-          posterSrc={POSTER_SRC}
-          videoDuration={VIDEO_LENGTH}
-        />
-        <Video
-          videoSrc={VIDEO_SRC}
-          posterSrc={POSTER_SRC}
-          videoDuration={VIDEO_LENGTH}
-        />
-        <Video
-          videoSrc={VIDEO_SRC}
-          posterSrc={POSTER_SRC}
-          videoDuration={VIDEO_LENGTH}
-        />
-        <Video
-          videoSrc={VIDEO_SRC}
-          posterSrc={POSTER_SRC}
-          videoDuration={VIDEO_LENGTH}
-        />
-        <Video
-          videoSrc={VIDEO_SRC}
-          posterSrc={POSTER_SRC}
-          videoDuration={VIDEO_LENGTH}
-        />
-        <Video
-          videoSrc={VIDEO_SRC}
-          posterSrc={POSTER_SRC}
-          videoDuration={VIDEO_LENGTH}
-        />
-        <Video
-          videoSrc={VIDEO_SRC}
-          posterSrc={POSTER_SRC}
-          videoDuration={VIDEO_LENGTH}
-        />
-        <Video
-          videoSrc={VIDEO_SRC}
-          posterSrc={POSTER_SRC}
-          videoDuration={VIDEO_LENGTH}
-        />
-        <Video
-          videoSrc={VIDEO_SRC}
-          posterSrc={POSTER_SRC}
-          videoDuration={VIDEO_LENGTH}
-        />
-        <Video
-          videoSrc={VIDEO_SRC}
-          posterSrc={POSTER_SRC}
-          videoDuration={VIDEO_LENGTH}
-        />
-        <Video
-          videoSrc={VIDEO_SRC}
-          posterSrc={POSTER_SRC}
-          videoDuration={VIDEO_LENGTH}
-        />
-      </div>
+      <div className={styles.favorites__content}></div>
       <div className={styles.favorites__pagination}></div>
     </div>
   );
