@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import axios from 'axios';
 
 import {
@@ -6,6 +6,7 @@ import {
   Button,
   FilmCardSkeletons,
   Link,
+  Pagination,
   Typography,
   Video,
 } from '~/components';
@@ -26,6 +27,9 @@ const MyFavorites: React.FC = () => {
     INITIAL_WISHLIST_OFFSET,
   );
 
+  const [activePage, setActivePage] = useState<number>(0);
+  const [totalCount, setTotalCount] = useState<number>(0);
+
   if (isLoading) {
     const renderLoaderCards = Array.from(Array(9), (index: number) => (
       <FilmCardSkeletons
@@ -42,6 +46,10 @@ const MyFavorites: React.FC = () => {
 
   const postVideo = async () => {
     // client.post(Route.Favorites);
+  };
+
+  const changeActivePage = (page: number) => {
+    setActivePage(page);
   };
 
   return (
@@ -62,7 +70,14 @@ const MyFavorites: React.FC = () => {
 
       <div className={styles.favorites__content}>This Should be Content</div>
       <div className={styles.favorites__pagination}>
-        This should be pagination
+        <Pagination
+          activePage={activePage}
+          dataLength={totalCount}
+          rowsPerPage={9}
+          setActivePage={changeActivePage}
+          isPerPageNeeded={false}
+          isMoreButtonNeeded={false}
+        />
       </div>
       <div className={styles.favorites__post}>
         <Button className={styles.favorites__post__button} onClick={postVideo}>

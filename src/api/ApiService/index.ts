@@ -13,7 +13,6 @@ const ApiService = {
     const {data} = await axiosInstance.get<T>(path, {
       params,
     });
-
     return data;
   },
 };
