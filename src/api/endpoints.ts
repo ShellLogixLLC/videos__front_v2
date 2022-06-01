@@ -15,6 +15,10 @@ const endpoints = {
     getVideosSearch: (arg: string, limit: number, offset: number): string =>
       `/videos?offset=${offset}&limit=${limit}&search=${arg}`,
   },
+  WishlistService: {
+    getWishlistVideos: (limit: number, offset: number): string =>
+      `/videos?offset=${offset}&limit=${limit}`,
+  },
 };
 
 export default endpoints;

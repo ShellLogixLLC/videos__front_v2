@@ -1,10 +1,11 @@
 import React from 'react';
-import {NextPage} from 'next';
+import {GetServerSidePropsResult, NextPage} from 'next';
 
 import {Seo, Typography} from '~/components';
 import {MyFavorites} from '~/containers';
-
-import {getStaticProps} from './categories';
+import ApiService from '~/api/ApiService';
+import endpoints from '~/api/endpoints';
+import {INITIAL_CATEGORY_LIMIT} from '~/constants';
 
 const MyFavoritesPage: NextPage = () => (
   <Seo
@@ -15,6 +16,26 @@ const MyFavoritesPage: NextPage = () => (
   </Seo>
 );
 
-export {getStaticProps};
+const OFFSET = 8;
+
+export const getServerSideProps = async (): Promise<
+  GetServerSidePropsResult<{}>
+> => {
+  const resWishlist = await ApiService.get(
+    endpoints.WishlistService.getWishlistVideos,
+    {
+      limit: INITIAL_CATEGORY_LIMIT,
+    },
+  );
+
+  return {
+    props: {
+      fallback: {
+        [endpoints.WishlistService.getWishlistVideos(LIMIT, OFFSET)]:
+          resWishlist,
+      },
+    },
+  };
+};
 
 export default MyFavoritesPage;
