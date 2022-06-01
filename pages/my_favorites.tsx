@@ -33,6 +33,8 @@ export const getServerSideProps = async ({}): Promise<
     },
   );
 
+  console.log(wishlistVideos, 'aaa');
+
   return {
     props: {
       fallback: {

@@ -16,12 +16,13 @@ const useVideoWishlist = (limit: number, offset: number): any => {
       RouterService.pushError();
     }
   }, [error]);
-};
 
-return {
-  isError: !!error,
-  data,
-  mutate,
+  return {
+    isError: !!error,
+    data,
+    mutate,
+    isLoading: !error && !data,
+  };
 };
 
 const WishlistSearchService = {

@@ -1,7 +1,9 @@
 import React from 'react';
+import axios from 'axios';
 
 import {
   BackButton,
+  Button,
   FilmCardSkeletons,
   Link,
   Typography,
@@ -9,7 +11,12 @@ import {
 } from '~/components';
 import {LeftArrow} from '~/assets';
 import WishlistSearchService from '~/api/wishlist';
-import {INITIAL_WISHLIST_LIMIT, INITIAL_WISHLIST_OFFSET} from '~/constants';
+import {
+  INITIAL_WISHLIST_LIMIT,
+  INITIAL_WISHLIST_OFFSET,
+  Route,
+} from '~/constants';
+import {client} from '~/api';
 
 import styles from './MyFavorites.module.scss';
 
@@ -26,7 +33,16 @@ const MyFavorites: React.FC = () => {
         cardClasses={styles.content__wrapper_item}
       />
     ));
+    return <div className={styles.content__wrapper}>{renderLoaderCards}</div>;
   }
+
+  if (data) {
+    return <div>Data</div>;
+  }
+
+  const postVideo = async () => {
+    // client.post(Route.Favorites);
+  };
 
   return (
     <div className={styles.favorites}>
@@ -44,8 +60,15 @@ const MyFavorites: React.FC = () => {
         </Typography>
       </div>
 
-      <div className={styles.favorites__content}></div>
-      <div className={styles.favorites__pagination}></div>
+      <div className={styles.favorites__content}>This Should be Content</div>
+      <div className={styles.favorites__pagination}>
+        This should be pagination
+      </div>
+      <div className={styles.favorites__post}>
+        <Button className={styles.favorites__post__button} onClick={postVideo}>
+          Post New Video
+        </Button>
+      </div>
     </div>
   );
 };
