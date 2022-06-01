@@ -1,6 +1,6 @@
-import {CategoriesProps, ICommonRequestReturn, MutateData} from '~/types';
+import {ICommonRequestReturn, MutateData, WishlistProps} from '~/types';
 
-export interface ICategory extends ICommonRequestReturn {
-  data: CategoriesProps;
-  mutate: MutateData;
+export interface IWishlistReturn extends ICommonRequestReturn {
+  videosData: WishlistProps[];
+  mutateVideo: MutateData;
 }

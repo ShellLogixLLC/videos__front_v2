@@ -1,29 +1,34 @@
 import React from 'react';
 import {GetServerSidePropsResult, NextPage} from 'next';
+import {SWRConfig} from 'swr';
 
-import {Seo, Typography} from '~/components';
+import {Seo} from '~/components';
 import {MyFavorites} from '~/containers';
 import ApiService from '~/api/ApiService';
 import endpoints from '~/api/endpoints';
-import {INITIAL_CATEGORY_LIMIT} from '~/constants';
+import {
+  INITIAL_CATEGORY_LIMIT,
+  INITIAL_WISHLIST_LIMIT,
+  INITIAL_WISHLIST_OFFSET,
+} from '~/constants';
 
-const MyFavoritesPage: NextPage = () => (
-  <Seo
-    title="My favorites page"
-    metaDescription="My favorites page description">
-    {/*<Typography>WishList</Typography>*/}
-    <MyFavorites />
-  </Seo>
+const MyFavoritesPage: NextPage = ({fallback}) => (
+  <SWRConfig value={fallback}>
+    <Seo
+      title="My favorites page"
+      metaDescription="My favorites page description">
+      <MyFavorites />
+    </Seo>
+  </SWRConfig>
 );
 
-const OFFSET = 8;
-
-export const getServerSideProps = async (): Promise<
+export const getServerSideProps = async ({}): Promise<
   GetServerSidePropsResult<{}>
 > => {
-  const resWishlist = await ApiService.get(
-    endpoints.WishlistService.getWishlistVideos,
+  const wishlistVideos = await ApiService.get(
+    endpoints.CategoryService.getVideoByCategoryId(),
     {
+      offset: INITIAL_WISHLIST_OFFSET,
       limit: INITIAL_CATEGORY_LIMIT,
     },
   );
@@ -31,8 +36,10 @@ export const getServerSideProps = async (): Promise<
   return {
     props: {
       fallback: {
-        [endpoints.WishlistService.getWishlistVideos(LIMIT, OFFSET)]:
-          resWishlist,
+        [endpoints.WishlistService.getWishlistVideos(
+          INITIAL_WISHLIST_LIMIT,
+          INITIAL_WISHLIST_OFFSET,
+        )]: wishlistVideos,
       },
     },
   };
