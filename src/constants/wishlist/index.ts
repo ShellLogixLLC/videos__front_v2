@@ -1,3 +1,3 @@
-export const INITIAL_WISHLIST_LIMIT = 13;
+export const INITIAL_WISHLIST_LIMIT = 9;
 
-export const INITIAL_WISHLIST_OFFSET = 4;
+// export const INITIAL_WISHLIST_OFFSET = 4;

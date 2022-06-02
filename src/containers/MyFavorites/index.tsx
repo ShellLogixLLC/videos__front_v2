@@ -1,34 +1,31 @@
 import React, {useState} from 'react';
-import axios from 'axios';
 
 import {
   BackButton,
   Button,
   FilmCardSkeletons,
-  Link,
   Pagination,
   Typography,
-  Video,
 } from '~/components';
 import {LeftArrow} from '~/assets';
 import WishlistSearchService from '~/api/wishlist';
 import {
+  INITIAL_PAGINATION_ACTIVE_PAGE,
   INITIAL_WISHLIST_LIMIT,
-  INITIAL_WISHLIST_OFFSET,
-  Route,
 } from '~/constants';
-import {client} from '~/api';
 
 import styles from './MyFavorites.module.scss';
 
 const MyFavorites: React.FC = () => {
+  const [activePage, setActivePage] = useState<number>(
+    INITIAL_PAGINATION_ACTIVE_PAGE,
+  );
+  const [totalCount, setTotalCount] = useState<number>(0);
+
   const {data, isLoading} = WishlistSearchService.useVideoWishlist(
     INITIAL_WISHLIST_LIMIT,
-    INITIAL_WISHLIST_OFFSET,
+    activePage * INITIAL_WISHLIST_LIMIT,
   );
-
-  const [activePage, setActivePage] = useState<number>(0);
-  const [totalCount, setTotalCount] = useState<number>(0);
 
   if (isLoading) {
     const renderLoaderCards = Array.from(Array(9), (index: number) => (
