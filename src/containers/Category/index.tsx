@@ -4,13 +4,7 @@ import {useRouter} from 'next/router';
 import {LeftArrow} from '~/assets';
 import {QueryParamsTypes} from '~/types';
 import {filteredMass, setQueryParams} from '~/utils';
-import {
-  Link,
-  Typography,
-  DatePicker,
-  Pagination,
-  FilterBySort,
-} from '~/components';
+import {DatePicker, Pagination, FilterBySort, BackButton} from '~/components';
 
 import styles from './Category.module.scss';
 import CategoryTitle from './CategoryTitle';
@@ -45,10 +39,13 @@ const Category: React.FC = () => {
     <article>
       <div className={styles.wrapper}>
         <div className={styles.content}>
-          <Link to="/" className={styles.content__back}>
-            <LeftArrow />
-            <Typography className={styles.content__back_text}>Back</Typography>
-          </Link>
+          <div className={styles.content__backRoute}>
+            <BackButton
+              text="Back"
+              LeftIcon={LeftArrow}
+              className={styles.content__backRoute__button}
+            />
+          </div>
           <CategoryTitle categoryId={query?.name} />
           <CategoryContent
             activePage={activePage}

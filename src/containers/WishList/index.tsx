@@ -14,7 +14,7 @@ import {
   INITIAL_WISHLIST_LIMIT,
 } from '~/constants';
 
-import styles from './MyFavorites.module.scss';
+import styles from './Wishlist.module.scss';
 
 const MyFavorites: React.FC = () => {
   const [activePage, setActivePage] = useState<number>(
@@ -36,6 +36,9 @@ const MyFavorites: React.FC = () => {
     ));
     return <div className={styles.content__wrapper}>{renderLoaderCards}</div>;
   }
+
+  console.log(isLoading, 'isLoading');
+  console.log(data, 'data');
 
   if (data) {
     return <div>Data</div>;
@@ -70,7 +73,7 @@ const MyFavorites: React.FC = () => {
         <Pagination
           activePage={activePage}
           dataLength={totalCount}
-          rowsPerPage={9}
+          rowsPerPage={INITIAL_WISHLIST_LIMIT}
           setActivePage={changeActivePage}
           isPerPageNeeded={false}
           isMoreButtonNeeded={false}

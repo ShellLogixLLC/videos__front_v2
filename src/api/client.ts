@@ -1,7 +1,9 @@
 import axios from 'axios';
-import * as cookie from 'cookie';
-import * as setCookie from 'set-cookie-parser';
-import createAuthRefreshInterceptor from 'axios-auth-refresh';
+
+import {getCookieFromBrowser} from '~/libraries';
+// import * as cookie from 'cookie';
+// import * as setCookie from 'set-cookie-parser';
+// import createAuthRefreshInterceptor from 'axios-auth-refresh';
 
 export const defaultOptions = {
   baseURL: 'https://obscure-harbor-76716.herokuapp.com/api',
@@ -9,27 +11,12 @@ export const defaultOptions = {
 
 const api = axios.create(defaultOptions);
 
-createAuthRefreshInterceptor(api, (failedRequest) =>
-  api.get('/api/refreshToken').then((resp) => {
-    if (api.defaults.headers.setCookie) {
-      delete api.defaults.headers.setCookie;
-    }
-    const {accessToken} = resp.data;
+api.interceptors.request.use((config) => {
+  const token = getCookieFromBrowser('token');
 
-    const bearer = `Bearer ${accessToken}`;
-    api.defaults.headers.Authorization = bearer;
+  config.headers['Authorization'] = `Bearer ${token}`;
 
-    const responseCookie = setCookie.parse(resp.headers['set-cookie'])[0];
-    api.defaults.headers.setCookie = resp.headers['set-cookie'];
-    api.defaults.headers.cookie = cookie.serialize(
-      responseCookie.name,
-      responseCookie.value,
-    );
-
-    failedRequest.response.config.headers.Authorization = bearer;
-
-    return Promise.resolve();
-  }),
-);
+  return config;
+});
 
 export default api;
