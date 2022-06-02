@@ -3,7 +3,13 @@
     @media (max-width: $mobile-m) {
       @content;
     }
-  } @else if $devices == tablet-l {
+  }
+  @else if  $devices == mobile-l{
+    @media(max-width: $mobile-l){
+      @content;
+    }
+  }
+  @else if $devices == tablet-l {
     @media (max-width: $tablet-l) {
       @content;
     }

@@ -17,8 +17,11 @@ import {
 import FilmCardSkeleton from '~/components/skeletons/FilmCard';
 import {client} from '~/api';
 import {WishlistProps} from '~/types';
+import ApiService from '~/api/ApiService';
 
 import styles from './Wishlist.module.scss';
+
+import type {NextApiRequest, NextApiResponse} from 'next';
 
 const MyFavorites: React.FC = () => {
   const [activePage, setActivePage] = useState<number>(
@@ -50,8 +53,8 @@ const MyFavorites: React.FC = () => {
   });
 
   const postVideo = async () => {
-    client.post('/favorites');
-    // client.post(Route.Favorites);
+    // const response = await fetch(WishlistSearchService);
+    console.log('Viddeo added to wishlist');
   };
 
   const changeActivePage = (page: number) => {
@@ -79,16 +82,18 @@ const MyFavorites: React.FC = () => {
           {renderWishlistVideos}
         </div>
       </div>
-      <div className={styles.favorites__pagination}>
-        <Pagination
-          activePage={activePage}
-          dataLength={totalCount}
-          rowsPerPage={INITIAL_WISHLIST_LIMIT}
-          setActivePage={changeActivePage}
-          isPerPageNeeded={false}
-          isMoreButtonNeeded={false}
-        />
-      </div>
+      {data.length && (
+        <div className={styles.favorites__pagination}>
+          <Pagination
+            activePage={activePage}
+            dataLength={totalCount}
+            rowsPerPage={INITIAL_WISHLIST_LIMIT}
+            setActivePage={changeActivePage}
+            isPerPageNeeded={false}
+            isMoreButtonNeeded={false}
+          />
+        </div>
+      )}
       <div className={styles.favorites__post}>
         <Button className={styles.favorites__post__button} onClick={postVideo}>
           Post New Video

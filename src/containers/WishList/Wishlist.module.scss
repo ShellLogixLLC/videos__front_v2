@@ -56,27 +56,31 @@
 
   &__wrapper{
    display: grid;
-   grid-template-columns: repeat( auto-fit, minmax(0, 320px));
+   grid-template-columns: repeat( 4, minmax(0, 320px));
    grid-gap: 48px 20px;
    padding: 32px 0 54px;
 
+   @include breakpoint(desktop){
+    grid-template-columns: repeat(3,minmax(0,320px));
+   }
+
    @include breakpoint(tablet){
-    grid-template-columns: repeat(auto-fit,minmax(0,350px));
+    grid-template-columns: repeat(2,minmax(0,350px));
     padding-bottom: 46px;
     padding-top: 24px;
    }
-   @include breakpoint(mobile){
-    grid-template-columns: repeat(auto-fit,minmax(0,288px));
+
+   @include breakpoint(mobile-l){
+    grid-template-columns: repeat(1,minmax(0,1fr));
     padding-bottom: 36px;
    }
   }
   &__card{
-   min-height: 386px;
+   height: unset;
+   max-width: unset;
+   min-width: unset;
   }
-
  }
-
-
 
  &__pagination{
  width: 100%;
