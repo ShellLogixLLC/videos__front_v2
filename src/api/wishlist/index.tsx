@@ -1,11 +1,11 @@
 import {useEffect} from 'react';
 
-import {IWishlistReturn} from '~/api/wishlist/types';
+import {IWishlist} from '~/api/wishlist/types';
 import {useAppRequest} from '~/hooks';
 import endpoints from '~/api/endpoints';
 import {RouterService} from '~/services';
 
-const useVideoWishlist = (limit: number, offset: number): any => {
+const useVideoWishlist = (limit: number, offset: number): IWishlist => {
   const {data, mutate, error} = useAppRequest({
     url: endpoints.WishlistService.getWishlistVideos(),
     params: {

@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import {
   BackButton,
   Button,
+  FilmCard,
   FilmCardSkeletons,
   Pagination,
   Typography,
@@ -13,6 +14,9 @@ import {
   INITIAL_PAGINATION_ACTIVE_PAGE,
   INITIAL_WISHLIST_LIMIT,
 } from '~/constants';
+import FilmCardSkeleton from '~/components/skeletons/FilmCard';
+import {client} from '~/api';
+import {WishlistProps} from '~/types';
 
 import styles from './Wishlist.module.scss';
 
@@ -37,14 +41,16 @@ const MyFavorites: React.FC = () => {
     return <div className={styles.content__wrapper}>{renderLoaderCards}</div>;
   }
 
-  console.log(isLoading, 'isLoading');
-  console.log(data, 'data');
-
-  if (data) {
-    return <div>Data</div>;
-  }
+  const renderWishlistVideos = data.map((item) => {
+    return (
+      <React.Fragment key={item.id}>
+        <FilmCard item={item} cardClasses={styles.favorites__content__card} />
+      </React.Fragment>
+    );
+  });
 
   const postVideo = async () => {
+    client.post('/favorites');
     // client.post(Route.Favorites);
   };
 
@@ -68,7 +74,11 @@ const MyFavorites: React.FC = () => {
         </Typography>
       </div>
 
-      <div className={styles.favorites__content}>This Should be Content</div>
+      <div className={styles.favorites__content}>
+        <div className={styles.favorites__content__wrapper}>
+          {renderWishlistVideos}
+        </div>
+      </div>
       <div className={styles.favorites__pagination}>
         <Pagination
           activePage={activePage}
