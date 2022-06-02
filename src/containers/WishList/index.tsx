@@ -34,6 +34,8 @@ const MyFavorites: React.FC = () => {
     activePage * INITIAL_WISHLIST_LIMIT,
   );
 
+  // const {videoId} = data
+
   if (isLoading) {
     const renderLoaderCards = Array.from(Array(9), (index: number) => (
       <FilmCardSkeletons
@@ -53,8 +55,18 @@ const MyFavorites: React.FC = () => {
   });
 
   const postVideo = async () => {
-    // const response = await fetch(WishlistSearchService);
-    console.log('Viddeo added to wishlist');
+    //   const response = fetch(
+    //     "'https://obscure-harbor-76716.herokuapp.com/api/favorites",
+    //     {
+    //       method: 'POST',
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //       },
+    //       params:
+    //       body: JSON.stringify(data),
+    //     },
+    //   );
+    //   return response;
   };
 
   const changeActivePage = (page: number) => {

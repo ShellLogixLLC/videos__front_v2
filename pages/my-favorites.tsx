@@ -1,6 +1,8 @@
 import React from 'react';
 import {GetServerSideProps, GetServerSidePropsResult, NextPage} from 'next';
 import {SWRConfig} from 'swr';
+import axios from 'axios';
+import Cookies from 'cookie';
 
 import {Seo} from '~/components';
 import {Wishlist} from '~/containers';
@@ -19,29 +21,34 @@ const MyFavoritesPage: NextPage<SwrPageProps> = ({fallback}) => (
   </SWRConfig>
 );
 
-// export const getServerSideProps: GetServerSideProps = async ({
-//   query,
-// }): Promise<GetServerSidePropsResult<{}>> => {
-//   const {page} = query as ICategoriesPageQueries;
-//   const activePage = page ? Number(page) : 0;
-//
-//   const wishlistVideos = await ApiService.get(
-//     endpoints.WishlistService.getWishlistVideos(),
-//     {
-//       limit: INITIAL_WISHLIST_LIMIT,
-//       offset: activePage * INITIAL_WISHLIST_LIMIT,
-//     },
-//   );
-//
-//   console.log(wishlistVideos, 7);
-//
-//   return {
-//     props: {
-//       fallback: {
-//         [endpoints.WishlistService.getWishlistVideos()]: wishlistVideos,
-//       },
-//     },
-//   };
-// };
+export const getServerSideProps: GetServerSideProps = async (
+  ctx,
+): Promise<GetServerSidePropsResult<{}>> => {
+  const {page} = ctx.query as ICategoriesPageQueries;
+  const activePage = page ? Number(page) : 0;
+
+  const cookie = ctx.req.headers.cookie
+    ?.split(';')
+    .find((cookie) => cookie.includes('token'))
+    ?.replace('token=', '');
+  const headers = {Authorization: `Bearer ${cookie}`};
+
+  const wishlistVideos = await ApiService.get(
+    endpoints.WishlistService.getWishlistVideos(),
+    {
+      limit: INITIAL_WISHLIST_LIMIT,
+      offset: activePage * INITIAL_WISHLIST_LIMIT,
+    },
+    {headers},
+  );
+
+  return {
+    props: {
+      fallback: {
+        [endpoints.WishlistService.getWishlistVideos()]: wishlistVideos,
+      },
+    },
+  };
+};
 
 export default MyFavoritesPage;

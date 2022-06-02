@@ -9,9 +9,14 @@ const axiosInstance = axios.create({
 });
 
 const ApiService = {
-  get: async <T>(path: string, params?: ApiServiceParamsTypes): Promise<T> => {
+  get: async <T>(
+    path: string,
+    params?: ApiServiceParamsTypes,
+    options?: any,
+  ): Promise<T> => {
     const {data} = await axiosInstance.get<T>(path, {
       params,
+      ...options,
     });
     return data;
   },
