@@ -60,7 +60,7 @@
    grid-gap: 48px 20px;
    padding: 32px 0 54px;
 
-   @include breakpoint(desktop){
+   @include breakpoint(wide){
     grid-template-columns: repeat(3,minmax(0,320px));
    }
 
@@ -87,4 +87,18 @@
   @extend %flex-center;
   height: 100px;
  }
+}
+
+.div{
+ position: relative;
+}
+
+.input{
+ color: transparent;
+}
+
+.span{
+ position: absolute;
+ top: 0;
+ left: 0;
 }

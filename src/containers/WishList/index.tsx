@@ -5,6 +5,7 @@ import {
   Button,
   FilmCard,
   FilmCardSkeletons,
+  Input,
   Pagination,
   Typography,
 } from '~/components';
@@ -18,6 +19,7 @@ import FilmCardSkeleton from '~/components/skeletons/FilmCard';
 import {client} from '~/api';
 import {WishlistProps} from '~/types';
 import ApiService from '~/api/ApiService';
+import {getCookieFromBrowser} from '~/libraries';
 
 import styles from './Wishlist.module.scss';
 
@@ -55,18 +57,21 @@ const MyFavorites: React.FC = () => {
   });
 
   const postVideo = async () => {
-    //   const response = fetch(
-    //     "'https://obscure-harbor-76716.herokuapp.com/api/favorites",
-    //     {
-    //       method: 'POST',
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //       },
-    //       params:
-    //       body: JSON.stringify(data),
-    //     },
-    //   );
-    //   return response;
+    const token = getCookieFromBrowser('token');
+
+    const response = await fetch(
+      'https://obscure-harbor-76716.herokuapp.com/api/favorites',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({videoId: '6257070ca3368c4e61612c71'}),
+      },
+    );
+    console.log(response, 'resp');
+    return response;
   };
 
   const changeActivePage = (page: number) => {
