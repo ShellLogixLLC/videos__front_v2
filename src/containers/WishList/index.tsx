@@ -1,11 +1,10 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import {
   BackButton,
   Button,
   FilmCard,
   FilmCardSkeletons,
-  Input,
   Pagination,
   Typography,
 } from '~/components';
@@ -16,7 +15,6 @@ import {
   INITIAL_WISHLIST_LIMIT,
 } from '~/constants';
 import FilmCardSkeleton from '~/components/skeletons/FilmCard';
-import {client} from '~/api';
 import {WishlistProps} from '~/types';
 import ApiService from '~/api/ApiService';
 import {getCookieFromBrowser} from '~/libraries';
@@ -36,7 +34,14 @@ const MyFavorites: React.FC = () => {
     activePage * INITIAL_WISHLIST_LIMIT,
   );
 
-  // const {videoId} = data
+  useEffect(() => {
+    if (data && data.length > 0) {
+      setTotalCount(data.length);
+    }
+  }, [totalCount, data && data.length]);
+
+  console.log(totalCount, 'totalC');
+  console.log(activePage, 'active');
 
   if (isLoading) {
     const renderLoaderCards = Array.from(Array(9), (index: number) => (
@@ -67,16 +72,17 @@ const MyFavorites: React.FC = () => {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({videoId: '6257070ca3368c4e61612c71'}),
+        body: JSON.stringify({videoId: '625706f2a3368c4e61612c6b'}),
       },
     );
-    console.log(response, 'resp');
     return response;
   };
 
   const changeActivePage = (page: number) => {
     setActivePage(page);
   };
+
+  const setRowsPerPage = () => {};
 
   return (
     <div className={styles.favorites}>
@@ -105,6 +111,7 @@ const MyFavorites: React.FC = () => {
             activePage={activePage}
             dataLength={totalCount}
             rowsPerPage={INITIAL_WISHLIST_LIMIT}
+            setRowsPerPage={setRowsPerPage}
             setActivePage={changeActivePage}
             isPerPageNeeded={false}
             isMoreButtonNeeded={false}

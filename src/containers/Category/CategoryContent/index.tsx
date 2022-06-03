@@ -23,6 +23,8 @@ const CategoryContent: React.FC<CategoryContentTypes> = ({
     }
   }, [data, setTotalCount]);
 
+  console.log(data, 'datta');
+
   if (isLoading) {
     const renderLoaderCards = Array.from(Array(9), (index: number) => (
       <FilmCardSkeletons
