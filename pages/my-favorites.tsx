@@ -1,8 +1,6 @@
 import React from 'react';
 import {GetServerSideProps, GetServerSidePropsResult, NextPage} from 'next';
 import {SWRConfig} from 'swr';
-import axios from 'axios';
-import Cookies from 'cookie';
 
 import {Seo} from '~/components';
 import {Wishlist} from '~/containers';

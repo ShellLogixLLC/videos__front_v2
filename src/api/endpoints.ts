@@ -16,7 +16,7 @@ const endpoints = {
       `/videos?offset=${offset}&limit=${limit}&search=${arg}`,
   },
   WishlistService: {
-    getWishlistVideos: (): string => `/favorites`,
+    getWishlistVideos: (): string => `/favorites/videos`,
   },
 };
 

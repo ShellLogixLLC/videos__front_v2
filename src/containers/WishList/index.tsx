@@ -15,13 +15,9 @@ import {
   INITIAL_WISHLIST_LIMIT,
 } from '~/constants';
 import FilmCardSkeleton from '~/components/skeletons/FilmCard';
-import {WishlistProps} from '~/types';
-import ApiService from '~/api/ApiService';
 import {getCookieFromBrowser} from '~/libraries';
 
 import styles from './Wishlist.module.scss';
-
-import type {NextApiRequest, NextApiResponse} from 'next';
 
 const MyFavorites: React.FC = () => {
   const [activePage, setActivePage] = useState<number>(
@@ -34,14 +30,19 @@ const MyFavorites: React.FC = () => {
     activePage * INITIAL_WISHLIST_LIMIT,
   );
 
-  useEffect(() => {
-    if (data && data.length > 0) {
-      setTotalCount(data.length);
-    }
-  }, [totalCount, data && data.length]);
+  const videos = data?.videos;
+  const count = data?.totalCount;
 
-  console.log(totalCount, 'totalC');
-  console.log(activePage, 'active');
+  useEffect(() => {
+    if (data && videos.length > 0) {
+      setTotalCount(count);
+    }
+  }, [count, data]);
+
+  console.log(data, 'dataa');
+  console.log(videos, 'videos');
+  console.log(count, 'count');
+  console.log(totalCount, 'totalCount');
 
   if (isLoading) {
     const renderLoaderCards = Array.from(Array(9), (index: number) => (
@@ -53,7 +54,7 @@ const MyFavorites: React.FC = () => {
     return <div className={styles.content__wrapper}>{renderLoaderCards}</div>;
   }
 
-  const renderWishlistVideos = data.map((item) => {
+  const renderWishlistVideos = videos.map((item) => {
     return (
       <React.Fragment key={item.id}>
         <FilmCard item={item} cardClasses={styles.favorites__content__card} />
@@ -72,7 +73,7 @@ const MyFavorites: React.FC = () => {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({videoId: '625706f2a3368c4e61612c6b'}),
+        body: JSON.stringify({videoId: '62570713a3368c4e61612c73'}),
       },
     );
     return response;
@@ -81,8 +82,6 @@ const MyFavorites: React.FC = () => {
   const changeActivePage = (page: number) => {
     setActivePage(page);
   };
-
-  const setRowsPerPage = () => {};
 
   return (
     <div className={styles.favorites}>
@@ -105,13 +104,12 @@ const MyFavorites: React.FC = () => {
           {renderWishlistVideos}
         </div>
       </div>
-      {data.length && (
+      {!!totalCount && (
         <div className={styles.favorites__pagination}>
           <Pagination
             activePage={activePage}
             dataLength={totalCount}
             rowsPerPage={INITIAL_WISHLIST_LIMIT}
-            setRowsPerPage={setRowsPerPage}
             setActivePage={changeActivePage}
             isPerPageNeeded={false}
             isMoreButtonNeeded={false}
