@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {useRouter} from 'next/router';
 
 import {
   BackButton,
@@ -16,6 +17,7 @@ import {
 } from '~/constants';
 import FilmCardSkeleton from '~/components/skeletons/FilmCard';
 import {getCookieFromBrowser} from '~/libraries';
+import {useWindowSize} from '~/hooks';
 
 import styles from './Wishlist.module.scss';
 
@@ -24,6 +26,14 @@ const MyFavorites: React.FC = () => {
     INITIAL_PAGINATION_ACTIVE_PAGE,
   );
   const [totalCount, setTotalCount] = useState<number>(0);
+
+  const {isMinTablet} = useWindowSize();
+
+  console.log(isMinTablet, 'isTablet');
+
+  const {query} = useRouter();
+
+  console.log(query, 'query');
 
   const {data, isLoading} = WishlistSearchService.useVideoWishlist(
     INITIAL_WISHLIST_LIMIT,
@@ -38,6 +48,20 @@ const MyFavorites: React.FC = () => {
       setTotalCount(count);
     }
   }, [count, data]);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 120,
+      behavior: 'smooth',
+    });
+
+    if (isMinTablet) {
+      window.scrollTo({
+        top: 90,
+        behavior: 'smooth',
+      });
+    }
+  }, [activePage]);
 
   console.log(data, 'dataa');
   console.log(videos, 'videos');
@@ -116,11 +140,11 @@ const MyFavorites: React.FC = () => {
           />
         </div>
       )}
-      <div className={styles.favorites__post}>
-        <Button className={styles.favorites__post__button} onClick={postVideo}>
-          Post New Video
-        </Button>
-      </div>
+      {/*<div className={styles.favorites__post}>*/}
+      {/*  <Button className={styles.favorites__post__button} onClick={postVideo}>*/}
+      {/*    Post New Video*/}
+      {/*  </Button>*/}
+      {/*</div>*/}
     </div>
   );
 };

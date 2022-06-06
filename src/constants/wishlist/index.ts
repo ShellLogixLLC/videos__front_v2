@@ -1,1 +1,1 @@
-export const INITIAL_WISHLIST_LIMIT = 8;
+export const INITIAL_WISHLIST_LIMIT = 12;
