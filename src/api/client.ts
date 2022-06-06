@@ -1,9 +1,6 @@
 import axios from 'axios';
 
 import {getCookieFromBrowser} from '~/libraries';
-// import * as cookie from 'cookie';
-// import * as setCookie from 'set-cookie-parser';
-// import createAuthRefreshInterceptor from 'axios-auth-refresh';
 
 export const defaultOptions = {
   baseURL: 'https://obscure-harbor-76716.herokuapp.com/api',

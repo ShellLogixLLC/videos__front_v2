@@ -15,7 +15,6 @@ import {
   INITIAL_PAGINATION_ACTIVE_PAGE,
   INITIAL_WISHLIST_LIMIT,
 } from '~/constants';
-import FilmCardSkeleton from '~/components/skeletons/FilmCard';
 import {getCookieFromBrowser} from '~/libraries';
 import {useWindowSize} from '~/hooks';
 
@@ -29,11 +28,7 @@ const MyFavorites: React.FC = () => {
 
   const {isMinTablet} = useWindowSize();
 
-  console.log(isMinTablet, 'isTablet');
-
   const {query} = useRouter();
-
-  console.log(query, 'query');
 
   const {data, isLoading} = WishlistSearchService.useVideoWishlist(
     INITIAL_WISHLIST_LIMIT,
@@ -47,35 +42,34 @@ const MyFavorites: React.FC = () => {
     if (data && videos.length > 0) {
       setTotalCount(count);
     }
-  }, [count, data]);
-
-  useEffect(() => {
     window.scrollTo({
-      top: 120,
+      top: 100,
       behavior: 'smooth',
     });
 
     if (isMinTablet) {
       window.scrollTo({
-        top: 90,
+        top: 80,
         behavior: 'smooth',
       });
     }
-  }, [activePage]);
-
-  console.log(data, 'dataa');
-  console.log(videos, 'videos');
-  console.log(count, 'count');
-  console.log(totalCount, 'totalCount');
+  }, [count, data, activePage]);
 
   if (isLoading) {
-    const renderLoaderCards = Array.from(Array(9), (index: number) => (
-      <FilmCardSkeletons
-        key={index}
-        cardClasses={styles.content__wrapper_item}
-      />
-    ));
-    return <div className={styles.content__wrapper}>{renderLoaderCards}</div>;
+    const renderLoaderCards = Array.from(
+      Array(INITIAL_WISHLIST_LIMIT),
+      (index: number) => (
+        <FilmCardSkeletons
+          key={index}
+          cardClasses={styles.favorites__content__card}
+        />
+      ),
+    );
+    return (
+      <div className={styles.favorites__content__wrapper}>
+        {renderLoaderCards}
+      </div>
+    );
   }
 
   const renderWishlistVideos = videos.map((item) => {
@@ -123,11 +117,10 @@ const MyFavorites: React.FC = () => {
         </Typography>
       </div>
 
-      <div className={styles.favorites__content}>
-        <div className={styles.favorites__content__wrapper}>
-          {renderWishlistVideos}
-        </div>
+      <div className={styles.favorites__content__wrapper}>
+        {renderWishlistVideos}
       </div>
+
       {!!totalCount && (
         <div className={styles.favorites__pagination}>
           <Pagination

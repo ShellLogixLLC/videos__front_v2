@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import {ApiServiceParamsTypes} from '~/types';
+import {ApiServiceOptionsTypes, ApiServiceParamsTypes} from '~/types';
 
 import {defaultOptions} from '../client';
 
@@ -12,7 +12,7 @@ const ApiService = {
   get: async <T>(
     path: string,
     params?: ApiServiceParamsTypes,
-    options?: any,
+    options?: ApiServiceOptionsTypes,
   ): Promise<T> => {
     const {data} = await axiosInstance.get<T>(path, {
       params,

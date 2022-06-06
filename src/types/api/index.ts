@@ -11,6 +11,14 @@ export type ApiServiceParamsTypes = {
   categoryIds?: string[];
 };
 
+export type AuthorizationConfigType = {
+  Authorization: string;
+};
+
+export type ApiServiceOptionsTypes = {
+  headers: AuthorizationConfigType;
+};
+
 export type Name = {
   en: string;
   ru: string;
