@@ -133,11 +133,11 @@ const MyFavorites: React.FC = () => {
           />
         </div>
       )}
-      {/*<div className={styles.favorites__post}>*/}
-      {/*  <Button className={styles.favorites__post__button} onClick={postVideo}>*/}
-      {/*    Post New Video*/}
-      {/*  </Button>*/}
-      {/*</div>*/}
+      <div className={styles.favorites__post}>
+        <Button className={styles.favorites__post__button} onClick={postVideo}>
+          Post New Video
+        </Button>
+      </div>
     </div>
   );
 };
