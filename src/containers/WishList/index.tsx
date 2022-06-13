@@ -3,7 +3,6 @@ import {useRouter} from 'next/router';
 
 import {
   BackButton,
-  Button,
   FilmCard,
   FilmCardSkeletons,
   Pagination,
@@ -15,8 +14,9 @@ import {
   INITIAL_PAGINATION_ACTIVE_PAGE,
   INITIAL_WISHLIST_LIMIT,
 } from '~/constants';
-import {getCookieFromBrowser} from '~/libraries';
 import {useWindowSize} from '~/hooks';
+import {QueryParamsTypes} from '~/types';
+import {setQueryParams} from '~/utils';
 
 import styles from './Wishlist.module.scss';
 
@@ -29,6 +29,14 @@ const MyFavorites: React.FC = () => {
   const {isMinTablet} = useWindowSize();
 
   const {query} = useRouter();
+
+  useEffect(() => {
+    if (query?.page) {
+      setActivePage(Number(query.page));
+    }
+  }, [query.page]);
+
+  console.log(query, 'query');
 
   const {data, isLoading} = WishlistSearchService.useVideoWishlist(
     INITIAL_WISHLIST_LIMIT,
@@ -80,25 +88,30 @@ const MyFavorites: React.FC = () => {
     );
   });
 
-  const postVideo = async () => {
-    const token = getCookieFromBrowser('token');
+  // const postVideo = async () => {
+  //   const token = getCookieFromBrowser('token');
+  //
+  //   const response = await fetch(
+  //     'https://obscure-harbor-76716.herokuapp.com/api/favorites',
+  //     {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //       body: JSON.stringify({videoId: '62570713a3368c4e61612c73'}),
+  //     },
+  //   );
+  //   return response;
+  // };
 
-    const response = await fetch(
-      'https://obscure-harbor-76716.herokuapp.com/api/favorites',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({videoId: '62570713a3368c4e61612c73'}),
-      },
-    );
-    return response;
+  const setNewQueryParams = (newQueryParams: QueryParamsTypes): void => {
+    setQueryParams({...query, ...newQueryParams});
   };
 
   const changeActivePage = (page: number) => {
     setActivePage(page);
+    setNewQueryParams({page});
   };
 
   return (
@@ -133,11 +146,6 @@ const MyFavorites: React.FC = () => {
           />
         </div>
       )}
-      <div className={styles.favorites__post}>
-        <Button className={styles.favorites__post__button} onClick={postVideo}>
-          Post New Video
-        </Button>
-      </div>
     </div>
   );
 };
