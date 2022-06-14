@@ -2,6 +2,7 @@ import React from 'react';
 
 import {Link, Typography} from '~/components';
 import {Route} from '~/constants';
+import {Logo} from '~/assets';
 
 import styles from './Error.module.scss';
 
@@ -15,9 +16,11 @@ const Error: React.FC = () => {
         <Typography
           tagName="p"
           className={styles.error__container__description}>
-          Page not found
+          OOPS !!! Page not found
         </Typography>
-        {/*<Link to={Route.Home}>Back to Home <Link/>*/}
+        <Link className={styles.error__container__route} to={Route.Home}>
+          Home
+        </Link>
       </div>
     </div>
   );
