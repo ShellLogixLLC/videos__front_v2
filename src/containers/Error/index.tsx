@@ -8,17 +8,15 @@ import styles from './Error.module.scss';
 
 const Error: React.FC = () => {
   return (
-    <div className={styles.error}>
-      <div className={styles.error__container}>
-        <Typography tagName="h1" className={styles.error__container__title}>
+    <div className={styles.wrapper}>
+      <div className={styles.container}>
+        <Typography tagName="h1" className={styles.container__title}>
           404
         </Typography>
-        <Typography
-          tagName="p"
-          className={styles.error__container__description}>
+        <Typography tagName="p" className={styles.container__description}>
           OOPS !!! Page not found
         </Typography>
-        <Link className={styles.error__container__route} to={Route.Home}>
+        <Link className={styles.container__route} to={Route.Home}>
           Home
         </Link>
       </div>

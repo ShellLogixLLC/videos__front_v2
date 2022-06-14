@@ -1,4 +1,4 @@
-.error{
+.wrapper{
   width: 100%;
   position: fixed;
   top: 0;
@@ -6,10 +6,14 @@
   right: 0;
   bottom: 0;
   @extend %flex-center;
-  &__container{
+}
+
+  .container{
     @extend %flex-center;
     flex-direction: column;
     height: 100%;
+    margin-bottom: 100px;
+
     &__title{
       font-size: 170px;
       font-weight: 400;
@@ -44,4 +48,3 @@
       font-size: 24px;
     }
   }
-}
