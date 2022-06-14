@@ -22,15 +22,6 @@
    }
   }
 
- &__link{
-  max-width: 400px;
-  width: 100%;
-
-  &_active{
-   color: $dark-red;
-   animation: roundTransforming;
-  }
- }
 
  &__title{
  @extend %flex-start;
@@ -69,20 +60,18 @@
     grid-template-columns: repeat(3,minmax(0,320px));
    }
 
-   @include breakpoint(tablet){
+   @include breakpoint(tablet-custom){
     grid-template-columns: repeat(2,minmax(0,350px));
     padding-bottom: 46px;
     padding-top: 24px;
    }
 
    @include breakpoint(mobile-l){
-    grid-template-columns: repeat(1,minmax(0,350px));
+    grid-template-columns: 1fr;
     padding-bottom: 36px;
    }
-   @include breakpoint(mobile){
-    grid-template-columns: repeat(1,minmax(0,288px));
-   }
   }
+
   &__content__card{
    height: unset;
    max-width: unset;
@@ -90,24 +79,9 @@
    margin-right: 0 !important;
   }
 
-
  &__pagination{
  width: 100%;
   @extend %flex-center;
   height: 100px;
  }
-}
-
-.div{
- position: relative;
-}
-
-.input{
- color: transparent;
-}
-
-.span{
- position: absolute;
- top: 0;
- left: 0;
 }

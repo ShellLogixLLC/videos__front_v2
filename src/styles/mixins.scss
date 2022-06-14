@@ -13,7 +13,13 @@
     @media (max-width: $tablet-l) {
       @content;
     }
-  } @else if $devices == tablet-m {
+  }
+  @else if $devices == tablet-custom {
+    @media (max-width: $tablet-custom) {
+      @content;
+    }
+  }
+  @else if $devices == tablet-m {
     @media (max-width: $tablet-m) {
       @content;
     }

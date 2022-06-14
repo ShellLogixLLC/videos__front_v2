@@ -36,8 +36,6 @@ const MyFavorites: React.FC = () => {
     }
   }, [query.page]);
 
-  console.log(query, 'query');
-
   const {data, isLoading} = WishlistSearchService.useVideoWishlist(
     INITIAL_WISHLIST_LIMIT,
     activePage * INITIAL_WISHLIST_LIMIT,
@@ -87,23 +85,6 @@ const MyFavorites: React.FC = () => {
       </React.Fragment>
     );
   });
-
-  // const postVideo = async () => {
-  //   const token = getCookieFromBrowser('token');
-  //
-  //   const response = await fetch(
-  //     'https://obscure-harbor-76716.herokuapp.com/api/favorites',
-  //     {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //       body: JSON.stringify({videoId: '62570713a3368c4e61612c73'}),
-  //     },
-  //   );
-  //   return response;
-  // };
 
   const setNewQueryParams = (newQueryParams: QueryParamsTypes): void => {
     setQueryParams({...query, ...newQueryParams});
