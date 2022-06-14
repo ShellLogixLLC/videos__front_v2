@@ -1,6 +1,11 @@
 .error{
   width: 100%;
-  min-height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  @extend %flex-center;
   &__container{
     @extend %flex-center;
     flex-direction: column;
@@ -10,17 +15,21 @@
       font-weight: 400;
       text-align: center;
       color: $white;
-      padding: 100px 0;
+     margin: 100px 0;
 
       @include breakpoint(tablet){
         font-size: 130px;
+        margin: 50px 0;
+      }
+      @include breakpoint(mobile){
+        font-size: 110px;
       }
     }
 
     &__description{
       text-align: center;
       font-weight: 500;
-      padding: 16px 0 30px;
+      padding: 24px 0 40px;
       font-size: 20px;
       color: $dark-white;
     }
@@ -31,7 +40,7 @@
       background-color: $dark-red;
       color: $white;
       font-weight: 500;
-      border-radius: 8px;
+      border-radius: 50px;
       font-size: 24px;
     }
   }
