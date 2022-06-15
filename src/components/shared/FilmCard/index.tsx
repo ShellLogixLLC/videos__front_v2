@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import classNames from 'classnames';
 import {useToggle} from 'react-use';
 
@@ -7,6 +7,7 @@ import {VideosProps} from '~/types';
 import {CategoryImage} from '~/assets';
 import {COMMENTS_COUNT, VIEWS_COUNT} from '~/constants';
 import {HeartLikes, FilmLikeIcon, ViewsCount, CommentsCount} from '~/assets';
+import {getCookieFromBrowser} from '~/libraries';
 
 import Button from '../Button';
 import Image from '../Image';
@@ -16,10 +17,14 @@ import {FilmCardProps} from './types';
 import styles from './FilmCard.module.scss';
 
 const FilmCard: React.FC<FilmCardProps> = ({item, cardClasses = ''}) => {
-  const {duration, title, description, createdAt, likesCount} =
+  const {id, duration, title, description, createdAt, likesCount} =
     item as VideosProps;
 
-  const [isLiked, toggleIsLiked] = useToggle(false);
+  console.log(item, 'item');
+  console.log(item.id, 'id');
+
+  // const [isLiked, toggleIsLiked] = useToggle(false);
+  const [isLiked, setIsLiked] = useState<boolean>(false);
 
   const createdDate = createDate(createdAt);
   const durationSec = (duration / 60).toFixed(2);
@@ -27,6 +32,39 @@ const FilmCard: React.FC<FilmCardProps> = ({item, cardClasses = ''}) => {
   const isLikedClasses = classNames(styles.wrapper__film_not_like_it, {
     [styles.wrapper__film_like_it]: isLiked,
   });
+
+  const toggleIsLiked = async () => {
+    setIsLiked(!isLiked);
+    if (!isLiked) {
+      const token = getCookieFromBrowser('token');
+      const addResponse = await fetch(
+        'https://obscure-harbor-76716.herokuapp.com/api/favorites',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({videoId: id}),
+        },
+      );
+      return addResponse;
+    } else {
+      const token = getCookieFromBrowser('token');
+      const deleteResponse = await fetch(
+        'https://obscure-harbor-76716.herokuapp.com/api/favorites',
+        {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({videoId: id}),
+        },
+      );
+      return deleteResponse;
+    }
+  };
 
   return (
     <>
