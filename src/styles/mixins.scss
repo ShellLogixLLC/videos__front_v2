@@ -3,11 +3,23 @@
     @media (max-width: $mobile-m) {
       @content;
     }
-  } @else if $devices == tablet-l {
+  }
+  @else if  $devices == mobile-l{
+    @media(max-width: $mobile-l){
+      @content;
+    }
+  }
+  @else if $devices == tablet-l {
     @media (max-width: $tablet-l) {
       @content;
     }
-  } @else if $devices == tablet-m {
+  }
+  @else if $devices == tablet-custom {
+    @media (max-width: $tablet-custom) {
+      @content;
+    }
+  }
+  @else if $devices == tablet-m {
     @media (max-width: $tablet-m) {
       @content;
     }
@@ -19,7 +31,13 @@
     @media (max-width: $desktop) {
       @content;
     }
-  } @else if $devices == wide {
+  }
+  @else if $devices == wide-s {
+    @media (max-width: $wide-s) {
+      @content;
+    }
+  }
+  @else if $devices == wide {
     @media (max-width: $wide) {
       @content;
     }

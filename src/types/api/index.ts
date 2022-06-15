@@ -11,6 +11,14 @@ export type ApiServiceParamsTypes = {
   categoryIds?: string[];
 };
 
+export type AuthorizationConfigType = {
+  Authorization: string;
+};
+
+export type ApiServiceOptionsTypes = {
+  headers: AuthorizationConfigType;
+};
+
 export type Name = {
   en: string;
   ru: string;
@@ -47,6 +55,23 @@ export type VideosProps = {
   categoryIds: string[];
   description: Name;
   thumbnailPath: string;
+};
+
+export type WishlistProps = {
+  id: string;
+  title: Name;
+  description: Name;
+  userId: string;
+  filePath: string;
+  thumbnailPath: string;
+  duration: number;
+  likesCount: number;
+  commentsCount: number;
+  categoryIds: string[];
+  tags: string[];
+  views: number;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type SwrPageProps = {

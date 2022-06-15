@@ -18,17 +18,23 @@
 .content {
   width: 100%;
 
-  &__back {
-    display: inline-flex;
-    align-items: center;
-    padding: 12px 12px 12px 0;
+  &__backRoute{
+    @extend %flex-align;
 
-    svg {
-      margin-right: 12px;
-    }
-
-    &_text {
+    &__button{
+      @extend %flex-align;
+      background: transparent;
+      color: $white;
+      max-width: 100px;
       @extend %film_name;
+
+      svg {
+        width: 48px;
+
+        path {
+          fill: $red;
+        }
+      }
     }
   }
 
