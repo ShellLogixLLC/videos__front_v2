@@ -8,6 +8,7 @@ import {CategoryImage} from '~/assets';
 import {COMMENTS_COUNT, VIEWS_COUNT} from '~/constants';
 import {HeartLikes, FilmLikeIcon, ViewsCount, CommentsCount} from '~/assets';
 import {getCookieFromBrowser} from '~/libraries';
+import {client} from '~/api';
 
 import Button from '../Button';
 import Image from '../Image';
@@ -35,8 +36,8 @@ const FilmCard: React.FC<FilmCardProps> = ({item, cardClasses = ''}) => {
 
   const toggleIsLiked = async () => {
     setIsLiked(!isLiked);
+    const token = getCookieFromBrowser('token');
     if (!isLiked) {
-      const token = getCookieFromBrowser('token');
       const addResponse = await fetch(
         'https://obscure-harbor-76716.herokuapp.com/api/favorites',
         {
@@ -50,15 +51,16 @@ const FilmCard: React.FC<FilmCardProps> = ({item, cardClasses = ''}) => {
       );
       return addResponse;
     } else {
-      const token = getCookieFromBrowser('token');
+      // await client.delete('/favorites', {params: {videoId: id}});
       const deleteResponse = await fetch(
-        'https://obscure-harbor-76716.herokuapp.com/api/favorites',
+        `https://obscure-harbor-76716.herokuapp.com/api/favorites?videoId=${id}`,
         {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
           },
+
           body: JSON.stringify({videoId: id}),
         },
       );
