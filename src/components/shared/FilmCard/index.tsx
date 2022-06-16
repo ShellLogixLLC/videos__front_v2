@@ -18,15 +18,23 @@ import Typography from '../Typography';
 import {FilmCardProps} from './types';
 import styles from './FilmCard.module.scss';
 
-const FilmCard: React.FC<FilmCardProps> = ({item, cardClasses = ''}) => {
+const FilmCard: React.FC<FilmCardProps> = ({
+  item,
+  cardClasses = '',
+  wishlist,
+}) => {
   const {id, duration, title, description, createdAt, likesCount} =
     item as VideosProps;
 
   // const [isLiked, toggleIsLiked] = useToggle(false);
-  const [isLiked, setIsLiked] = useState<boolean>(false);
+  const [isLiked, setIsLiked] = useState<boolean>(
+    wishlist?.includes(id) || false,
+  );
 
   const createdDate = createDate(createdAt);
   const durationSec = (duration / 60).toFixed(2);
+
+  console.log(wishlist, 'wishlist');
 
   const isLikedClasses = classNames(styles.wrapper__film_not_like_it, {
     [styles.wrapper__film_like_it]: isLiked,
