@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import classNames from 'classnames';
 import {useToggle} from 'react-use';
+import axios from 'axios';
 
 import {createDate} from '~/utils';
 import {VideosProps} from '~/types';
@@ -21,9 +22,6 @@ const FilmCard: React.FC<FilmCardProps> = ({item, cardClasses = ''}) => {
   const {id, duration, title, description, createdAt, likesCount} =
     item as VideosProps;
 
-  console.log(item, 'item');
-  console.log(item.id, 'id');
-
   // const [isLiked, toggleIsLiked] = useToggle(false);
   const [isLiked, setIsLiked] = useState<boolean>(false);
 
@@ -34,34 +32,32 @@ const FilmCard: React.FC<FilmCardProps> = ({item, cardClasses = ''}) => {
     [styles.wrapper__film_like_it]: isLiked,
   });
 
+  const token = getCookieFromBrowser('token');
+
   const toggleIsLiked = async () => {
     setIsLiked(!isLiked);
-    const token = getCookieFromBrowser('token');
+
     if (!isLiked) {
-      const addResponse = await fetch(
+      const addResponse = await axios.post(
         'https://obscure-harbor-76716.herokuapp.com/api/favorites',
+        {videoId: id},
         {
-          method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({videoId: id}),
         },
       );
       return addResponse;
     } else {
-      // await client.delete('/favorites', {params: {videoId: id}});
-      const deleteResponse = await fetch(
-        `https://obscure-harbor-76716.herokuapp.com/api/favorites?videoId=${id}`,
+      const deleteResponse = await axios.delete(
+        `https://obscure-harbor-76716.herokuapp.com/api/favorites`,
         {
-          method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
           },
-
-          body: JSON.stringify({videoId: id}),
+          params: {videoId: id},
         },
       );
       return deleteResponse;
