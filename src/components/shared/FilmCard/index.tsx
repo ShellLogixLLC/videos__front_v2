@@ -22,19 +22,18 @@ const FilmCard: React.FC<FilmCardProps> = ({
   item,
   cardClasses = '',
   wishlist,
+  isFavorite = false,
 }) => {
   const {id, duration, title, description, createdAt, likesCount} =
     item as VideosProps;
 
-  // const [isLiked, toggleIsLiked] = useToggle(false);
+  // const [isLiked,setIsLiked] = useToggle( wishlist && wishlist.includes(id) || isFavorite);
   const [isLiked, setIsLiked] = useState<boolean>(
-    wishlist?.includes(id) || false,
+    wishlist?.includes(id) || isFavorite,
   );
 
   const createdDate = createDate(createdAt);
   const durationSec = (duration / 60).toFixed(2);
-
-  console.log(wishlist, 'wishlist');
 
   const isLikedClasses = classNames(styles.wrapper__film_not_like_it, {
     [styles.wrapper__film_like_it]: isLiked,

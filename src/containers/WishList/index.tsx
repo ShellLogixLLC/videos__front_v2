@@ -81,7 +81,11 @@ const MyFavorites: React.FC = () => {
   const renderWishlistVideos = videos.map((item) => {
     return (
       <React.Fragment key={item.id}>
-        <FilmCard item={item} cardClasses={styles.favorites__content__card} />
+        <FilmCard
+          item={item}
+          cardClasses={styles.favorites__content__card}
+          isFavorite={true}
+        />
       </React.Fragment>
     );
   });
