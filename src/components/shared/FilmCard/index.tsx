@@ -26,9 +26,8 @@ const FilmCard: React.FC<FilmCardProps> = ({
   const {id, duration, title, description, createdAt, likesCount} =
     item as VideosProps;
 
-  // const [isLiked,setIsLiked] = useToggle( wishlist && wishlist.includes(id) || isFavorite);
   const [isLiked, setIsLiked] = useState<boolean>(
-    wishlist?.includes(id) || isFavorite,
+    isFavorite || wishlist?.includes(id) || false,
   );
 
   const dispatch = useAppDispatch();

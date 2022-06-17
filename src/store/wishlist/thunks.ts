@@ -21,7 +21,7 @@ export const deleteFromWishlist = createAsyncThunk(
   `${wishlistReducer}/delete`,
   async (params: {videoId: string}, thunkAPI) => {
     try {
-      await client.post(`/favorites`, {params});
+      await client.delete(`/favorites`, {params});
     } catch (error) {
       const {message} = error as Error;
 
