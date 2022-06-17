@@ -1,15 +1,14 @@
 import React, {useState} from 'react';
 import classNames from 'classnames';
 import {useToggle} from 'react-use';
-import axios from 'axios';
 
 import {createDate} from '~/utils';
 import {VideosProps} from '~/types';
 import {CategoryImage} from '~/assets';
 import {COMMENTS_COUNT, VIEWS_COUNT} from '~/constants';
 import {HeartLikes, FilmLikeIcon, ViewsCount, CommentsCount} from '~/assets';
-import {getCookieFromBrowser} from '~/libraries';
-import {client} from '~/api';
+import {useAppDispatch} from '~/hooks';
+import {addToWishlist, deleteFromWishlist} from '~/store/wishlist/thunks';
 
 import Button from '../Button';
 import Image from '../Image';
@@ -32,6 +31,8 @@ const FilmCard: React.FC<FilmCardProps> = ({
     wishlist?.includes(id) || isFavorite,
   );
 
+  const dispatch = useAppDispatch();
+
   const createdDate = createDate(createdAt);
   const durationSec = (duration / 60).toFixed(2);
 
@@ -39,35 +40,13 @@ const FilmCard: React.FC<FilmCardProps> = ({
     [styles.wrapper__film_like_it]: isLiked,
   });
 
-  const token = getCookieFromBrowser('token');
-
   const toggleIsLiked = async () => {
     setIsLiked(!isLiked);
 
     if (!isLiked) {
-      const addResponse = await axios.post(
-        'https://obscure-harbor-76716.herokuapp.com/api/favorites',
-        {videoId: id},
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-        },
-      );
-      return addResponse;
+      dispatch(addToWishlist({videoId: id}));
     } else {
-      const deleteResponse = await axios.delete(
-        `https://obscure-harbor-76716.herokuapp.com/api/favorites`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-          params: {videoId: id},
-        },
-      );
-      return deleteResponse;
+      dispatch(deleteFromWishlist({videoId: id}));
     }
   };
 

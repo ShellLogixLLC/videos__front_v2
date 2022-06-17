@@ -4,11 +4,24 @@ import {client} from '~/api';
 
 import {wishlistReducer} from '../constants';
 
-export const sendComment = createAsyncThunk(
-  `${wishlistReducer}/send-comment`,
-  async (credentials: {videoId: string; message: string}, thunkAPI) => {
+export const addToWishlist = createAsyncThunk(
+  `${wishlistReducer}/add`,
+  async (credentials: {videoId: string}, thunkAPI) => {
     try {
-      await client.post(`/comments`, credentials);
+      await client.post(`/favorites`, credentials);
+    } catch (error) {
+      const {message} = error as Error;
+
+      return thunkAPI.rejectWithValue({error: message});
+    }
+  },
+);
+
+export const deleteFromWishlist = createAsyncThunk(
+  `${wishlistReducer}/delete`,
+  async (params: {videoId: string}, thunkAPI) => {
+    try {
+      await client.post(`/favorites`, {params});
     } catch (error) {
       const {message} = error as Error;
 
