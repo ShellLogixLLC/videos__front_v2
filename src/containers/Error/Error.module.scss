@@ -1,50 +1,51 @@
 .wrapper{
   width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
   @extend %flex-center;
-}
+  flex-direction: column;
+  min-height: calc(100vh - 100px);
 
-  .container{
-    @extend %flex-center;
-    flex-direction: column;
-    height: 100%;
-    margin-bottom: 100px;
+  &__title{
+    font-size: 170px;
+    font-weight: 400;
+    text-align: center;
+    color: $white;
+    line-height: 200px;
 
-    &__title{
-      font-size: 170px;
-      font-weight: 400;
-      text-align: center;
-      color: $white;
-     margin: 100px 0;
 
-      @include breakpoint(tablet){
-        font-size: 130px;
-        margin: 50px 0;
-      }
-      @include breakpoint(mobile){
-        font-size: 110px;
-      }
+    @include breakpoint(tablet){
+      font-size: 130px;
+      line-height: 100px;
+
     }
-
-    &__description{
-      text-align: center;
-      font-weight: 500;
-      padding: 24px 0 40px;
-      font-size: 20px;
-      color: $dark-white;
-    }
-
-    &__route{
-      border: none;
-      padding: 13px 35px;
-      background-color: $dark-red;
-      color: $white;
-      font-weight: 500;
-      border-radius: 50px;
-      font-size: 24px;
+    @include breakpoint(mobile){
+      font-size: 110px;
     }
   }
+
+  &__description{
+    @extend %error_small;
+    text-align: center;
+    padding: 50px 0 50px;
+    color: $dark-white;
+
+    @include breakpoint(desktop){
+      padding: 40px 0 40px;
+    }
+  }
+
+  &__route{
+    @extend %error_medium;
+    border: none;
+    padding: 13px 35px;
+    background-color: $dark-red;
+    color: $white;
+    border-radius: 50px;
+  }
+}
+
+
+
+
+
+
+
