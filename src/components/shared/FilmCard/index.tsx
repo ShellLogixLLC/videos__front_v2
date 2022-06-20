@@ -1,18 +1,22 @@
 import React, {useState} from 'react';
 import classNames from 'classnames';
-import {useToggle} from 'react-use';
 
 import {createDate} from '~/utils';
 import {VideosProps} from '~/types';
-import {CategoryImage} from '~/assets';
-import {COMMENTS_COUNT, VIEWS_COUNT} from '~/constants';
-import {HeartLikes, FilmLikeIcon, ViewsCount, CommentsCount} from '~/assets';
 import {useAppDispatch} from '~/hooks';
+import {COMMENTS_COUNT, VIEWS_COUNT} from '~/constants';
 import {addToWishlist, deleteFromWishlist} from '~/store/wishlist/thunks';
+import {
+  HeartLikes,
+  FilmLikeIcon,
+  ViewsCount,
+  CommentsCount,
+  CategoryImage,
+} from '~/assets';
 
+import Typography from '../Typography';
 import Button from '../Button';
 import Image from '../Image';
-import Typography from '../Typography';
 
 import {FilmCardProps} from './types';
 import styles from './FilmCard.module.scss';
@@ -26,13 +30,14 @@ const FilmCard: React.FC<FilmCardProps> = ({
   const {id, duration, title, description, createdAt, likesCount} =
     item as VideosProps;
 
-  const [isLiked, setIsLiked] = useState<boolean>(
-    isFavorite || wishlist?.includes(id) || false,
-  );
+  const isVideoFavorite = isFavorite || wishlist?.includes(id) || false;
+
+  const [isLiked, setIsLiked] = useState<boolean>(isVideoFavorite);
 
   const dispatch = useAppDispatch();
 
   const createdDate = createDate(createdAt);
+
   const durationSec = (duration / 60).toFixed(2);
 
   const isLikedClasses = classNames(styles.wrapper__film_not_like_it, {
