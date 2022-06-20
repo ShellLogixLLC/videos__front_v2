@@ -2,9 +2,21 @@
   "common.new": "Новый",
   "common.home": "Главный",
   "common.search": "Поиск",
-  "common.favorites": "Избранное",
+  "common.signIn": "Войти",
+  "common.signUp": "Зарегистрироваться",
   "common.topRated": "Самые популярные",
+  "common.favorites": "Избранное",
   "common.mostLiked": "Самые популярные",
   "common.newVideos": "Новые видео",
-  "common.categories": "Категории"
+  "common.categories": "Категории",
+  "common.backToHome": "Вернуться домой",
+  "common.enterYourEmail": "Введите адрес электронной почты",
+  "common.forgotPassword": "Забыли пароль?",
+  "common.dontHaveAnAccount": "У вас нет аккаунта?",
+  "common.enterYourPassword": "Введите свой пароль",
+  "common.theEmailIsRequired": "Электронная почта обязательна",
+  "common.theEmailMustBeAValidEmailAddress": "Электронная почта должна быть действительным адресом электронной почты",
+  "common.passwordCantStartOrEndWwithABlankSpace": "Пароль не может начинаться или заканчиваться пробелом",
+  "common.passwordIsTooShortShouldBe6CharsMinimum": "Пароль слишком короткий - должно быть не менее 6 символов."
+
 }
