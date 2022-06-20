@@ -5,5 +5,10 @@ module.exports = {
     defaultLocale: 'en',
     locales: ['en', 'ru'],
   },
+  interpolation: {
+    prefix: '{',
+    suffix: '}',
+  },
+  localeStructure: '{lng}/{ns}',
   localePath: path.resolve('./public/locales'),
 };
