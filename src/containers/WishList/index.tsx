@@ -78,13 +78,14 @@ const MyFavorites: React.FC = () => {
     );
   }
 
-  const renderWishlistVideos = videos.map((item) => {
-    return (
-      <React.Fragment key={item.id}>
-        <FilmCard item={item} cardClasses={styles.favorites__content__card} />
-      </React.Fragment>
-    );
-  });
+  const renderWishlistVideos = videos.map((item) => (
+    <FilmCard
+      key={item.id}
+      item={item}
+      cardClasses={styles.favorites__content__card}
+      isFavorite={true}
+    />
+  ));
 
   const setNewQueryParams = (newQueryParams: QueryParamsTypes): void => {
     setQueryParams({...query, ...newQueryParams});
