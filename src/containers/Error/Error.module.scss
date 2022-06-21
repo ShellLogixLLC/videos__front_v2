@@ -1,0 +1,50 @@
+.wrapper{
+  width: 100%;
+  @extend %flex-center;
+  flex-direction: column;
+  min-height: calc(100vh - 100px);
+
+  &__title{
+    font-size: 170px;
+    font-weight: 400;
+    text-align: center;
+    color: $white;
+    line-height: 200px;
+
+    @include breakpoint(tablet){
+      font-size: 130px;
+      line-height: 100px;
+
+    }
+    @include breakpoint(mobile){
+      font-size: 110px;
+    }
+  }
+
+  &__description{
+    @extend %error_small;
+    text-align: center;
+    padding: 50px 0 50px;
+    color: $dark-white;
+
+    @include breakpoint(desktop){
+      padding: 40px 0 40px;
+    }
+  }
+
+  &__route{
+    @extend %error_medium;
+    border: none;
+    padding: 13px 35px;
+    background-color: $dark-red;
+    color: $white;
+    border-radius: 50px;
+  }
+}
+
+
+
+
+
+
+

@@ -28,8 +28,4 @@ const useVideoWishlist = (limit: number, offset: number): IWishlist => {
   };
 };
 
-const WishlistSearchService = {
-  useVideoWishlist,
-};
-
-export default WishlistSearchService;
+export default useVideoWishlist;

@@ -22,6 +22,7 @@ const HorizontalSlider: React.FC<HorizontalSliderProps> = ({
   className = '',
   isCategory = false,
   isLoading,
+  wishlist,
 }) => {
   const {isMaxTablet} = useWindowSize();
   const contentRef = useRef<HTMLDivElement | null>(null);
@@ -48,7 +49,7 @@ const HorizontalSlider: React.FC<HorizontalSliderProps> = ({
     isCategory ? (
       <CategoryCard key={index} item={item} isLoading={isLoading} />
     ) : (
-      <FilmCard key={index} item={item} />
+      <FilmCard key={index} item={item} wishlist={wishlist} />
     ),
   );
 

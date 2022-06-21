@@ -8,6 +8,7 @@ import {
   FilterBySort,
   HorizontalSlider,
 } from '~/components';
+import WishlistSearchService from '~/api/wishlist';
 
 import styles from './Home.module.scss';
 
@@ -18,6 +19,8 @@ const Home: React.FC = () => {
   const {videosData} = VideosService.useVideos();
   const videos = videosData?.videos;
 
+  const {data: wishlistData} = WishlistSearchService.useVideoWishlistIds();
+
   return (
     <article className={styles.wrapper}>
       <div className={styles.wrapper__content}>
@@ -25,7 +28,11 @@ const Home: React.FC = () => {
           <Typography className={styles.wrapper__content__title}>
             New Videos
           </Typography>
-          <HorizontalSlider isLoading={isLoading} dataList={videos} />
+          <HorizontalSlider
+            isLoading={isLoading}
+            dataList={videos}
+            wishlist={wishlistData}
+          />
         </section>
         <section className={styles.wrapper__content__two_section}>
           <Typography className={styles.wrapper__content__title}>
@@ -42,13 +49,21 @@ const Home: React.FC = () => {
           <Typography className={styles.wrapper__content__title}>
             Top Rated
           </Typography>
-          <HorizontalSlider isLoading={isLoading} dataList={videos} />
+          <HorizontalSlider
+            isLoading={isLoading}
+            dataList={videos}
+            wishlist={wishlistData}
+          />
         </section>
         <section className={styles.wrapper__content__one_section}>
           <Typography className={styles.wrapper__content__title}>
             Most Liked
           </Typography>
-          <HorizontalSlider isLoading={isLoading} dataList={videos} />
+          <HorizontalSlider
+            isLoading={isLoading}
+            dataList={videos}
+            wishlist={wishlistData}
+          />
         </section>
       </div>
       <aside className={styles.filter_block}>
