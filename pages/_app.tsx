@@ -3,6 +3,8 @@ import {AppProps} from 'next/app';
 import NextNprogress from 'nextjs-progressbar';
 import {appWithTranslation} from 'next-i18next';
 
+import nextI18nConfig from '../next-i18next.config';
+
 import 'emoji-mart/css/emoji-mart.css';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -36,4 +38,4 @@ const ProdApp: React.FC<AppProps> = ({Component, pageProps}) => (
   </Provider>
 );
 
-export default wrapper.withRedux(appWithTranslation(ProdApp));
+export default wrapper.withRedux(appWithTranslation(ProdApp, nextI18nConfig));

@@ -1,4 +1,5 @@
 import React from 'react';
+import {useTranslation} from 'next-i18next';
 
 import {filteredMass} from '~/utils';
 import {CategoryService, VideosService} from '~/api';
@@ -16,6 +17,10 @@ const Home: React.FC = () => {
   const {data, isLoading} = CategoryService.useCategories();
   const categories = data?.categories;
 
+  const {t, ready} = useTranslation('home');
+
+  console.log(t, ready, 'aaa');
+
   const {videosData} = VideosService.useVideos();
   const videos = videosData?.videos;
 
@@ -26,7 +31,7 @@ const Home: React.FC = () => {
       <div className={styles.wrapper__content}>
         <section className={styles.wrapper__content__one_section}>
           <Typography className={styles.wrapper__content__title}>
-            New Videos
+            {ready ? t('home') : ''}
           </Typography>
           <HorizontalSlider
             isLoading={isLoading}

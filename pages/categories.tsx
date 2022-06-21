@@ -2,14 +2,17 @@ import React from 'react';
 import {GetStaticProps, NextPage} from 'next';
 // import { useTranslation } from 'next-i18next'
 import {serverSideTranslations} from 'next-i18next/serverSideTranslations';
+import {locale} from 'moment/moment';
 
 import {Seo, Typography} from '~/components';
+import {LocaleProps} from '~/types';
 
 import nextI18NextConfig from '../next-i18next.config';
 
-const CategoriesPage: NextPage = () => (
+const CategoriesPage: NextPage<LocaleProps> = ({locale}) => (
   <Seo title="Categories page" metaDescription="Categories page description">
     <Typography>Categories</Typography>
+    <h2>{locale}</h2>
   </Seo>
 );
 

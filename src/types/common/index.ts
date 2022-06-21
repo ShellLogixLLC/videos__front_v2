@@ -14,3 +14,7 @@ export type QueryParamsTypes = {
   page?: number;
   name?: string;
 };
+
+export type LocaleProps = {
+  locale?: string;
+};
