@@ -18,7 +18,7 @@ const SignIn: React.FC = () => {
   const dispatch = useAppDispatch();
   const {userInfo, error} = useAppSelector(authSelect);
 
-  const {t, ready} = useTranslation('common');
+  const {t} = useTranslation('common');
 
   const [isLoading, toggleIsLoading] = useToggle(false);
 
@@ -42,7 +42,7 @@ const SignIn: React.FC = () => {
           type="Extra"
           variant="Heading"
           className={styles.container__top__title}>
-          {ready ? t('signIn') : ' '}
+          {t('signIn')}
         </Typography>
       </div>
       <Form
@@ -52,7 +52,7 @@ const SignIn: React.FC = () => {
         inputClassName={styles.sign_in__block__input__inp}
         labelClassName={styles.sign_in__block}
         innerClassName={styles.sign_in__block__input}
-        submitText="Sign In"
+        submitText={t('signIn')}
         onSubmit={handleSignInFormSubmit}
       />
       <Link to={Route.ForgotPassword} className={styles.container__forgot}>
@@ -60,7 +60,7 @@ const SignIn: React.FC = () => {
           variant="Text"
           type="Semibold"
           className={styles.container__forgot_text}>
-          {ready ? t('forgotPassword') : ''}
+          {t('forgotPassword')}
         </Typography>
       </Link>
 
@@ -69,19 +69,19 @@ const SignIn: React.FC = () => {
           variant="Text"
           type="Semibold"
           className={styles.container__account_reg}>
-          {ready ? t('dontHaveAnAccount') : ''}
+          {t('dontHaveAnAccount')}
         </Typography>
         <Link to={Route.RegistrationPersonalInformation}>
           <Typography
             variant="Text"
             type="Medium"
             className={styles.container__account_sign}>
-            {ready ? t('signUp') : ''}
+            {t('signUp')}
           </Typography>
         </Link>
       </div>
       <Link to={Route.Home} className={styles.container__route}>
-        {ready ? t('backToHome') : ''}
+        {t('backToHome')}
       </Link>
       {isLoading && <Loader isVertical />}
     </div>

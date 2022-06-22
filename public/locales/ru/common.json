@@ -1,5 +1,6 @@
 {
   "new": "Новый",
+  "cat": "Категория",
   "home": "Главный",
   "search": "Поиск",
   "signIn": "Войти",
@@ -12,6 +13,9 @@
   "newVideos": "Новые видео",
   "categories": "Категории",
   "backToHome": "Вернуться домой",
+  "userName": "Имя пользователя",
+  "registration": "Регистрация",
+  "cancelRegistration": "Отменить регистрацию",
   "enterYourEmail": "Введите адрес электронной почты",
   "forgotPassword": "Забыли пароль?",
   "dontHaveAnAccount": "У вас нет аккаунта?",
@@ -19,8 +23,6 @@
   "theEmailIsRequired": "Электронная почта обязательна",
   "theEmailMustBeAValidEmailAddress": "Электронная почта должна быть действительным адресом электронной почты",
   "passwordCantStartOrEndWwithABlankSpace": "Пароль не может начинаться или заканчиваться пробелом",
-  "passwordIsTooShortShouldBe6CharsMinimum": "Пароль слишком короткий - должно быть не менее 6 символов."
-
-
-
+  "passwordIsTooShortShouldBe6CharsMinimum": "Пароль слишком короткий - должно быть не менее 6 символов.",
+  "allRightsReserved": "Все права защищены"
 }

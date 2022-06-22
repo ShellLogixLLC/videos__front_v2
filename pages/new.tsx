@@ -3,13 +3,12 @@ import {GetStaticProps, NextPage} from 'next';
 import {serverSideTranslations} from 'next-i18next/serverSideTranslations';
 
 import {Seo, Typography} from '~/components';
-import {LocaleProps} from '~/types';
 
 import nextI18NextConfig from '../next-i18next.config';
 
-const NewPage: NextPage<LocaleProps> = ({locale}) => (
+const NewPage: NextPage = () => (
   <Seo title="New page" metaDescription="New page description">
-    <Typography>{locale}</Typography>
+    <Typography>New</Typography>
   </Seo>
 );
 

@@ -1,6 +1,7 @@
 import React, {useRef, useState, useContext} from 'react';
 import classNames from 'classnames';
 import {useRouter} from 'next/router';
+import {useTranslation} from 'next-i18next';
 
 import {ToggleContext} from '~/context';
 import {useOnClickOutside} from '~/hooks';
@@ -16,6 +17,7 @@ const Search: React.FC = () => {
   const filterRef = useRef<HTMLDivElement | null>(null);
   const [searchValue, setSearchValue] = useState<string>('');
   const router = useRouter();
+  const {t} = useTranslation('common');
 
   const onSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -69,7 +71,7 @@ const Search: React.FC = () => {
           className={inputClasses}
           RightIcon={SearchIcon}
           wrapperRef={filterRef}
-          placeholder="Search"
+          placeholder={t('search')}
           toggleHandle={onSearchSubmit}
           rightIconStyle={styles.wrapper__container__right_icon}
           innerClassName={styles.wrapper__container}

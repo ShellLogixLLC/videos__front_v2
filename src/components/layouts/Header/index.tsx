@@ -23,7 +23,6 @@ import {
 import styles from './Header.module.scss';
 
 const Header: React.FC = () => {
-  const {t, ready} = useTranslation('common');
   const {pathname, query} = useRouter();
   const {expanded} = useContext(ToggleContext);
   const {isDesktop} = useWindowSize();
@@ -36,6 +35,8 @@ const Header: React.FC = () => {
   const [isCategories, setIsCategories] = useState<boolean>(false);
   const [isCategoriesHoverable, setCategoriesHoverable] =
     useState<boolean>(false);
+
+  const {t} = useTranslation('common');
 
   const logoClassNames = classNames(styles.wrapper__content_logo, {
     [styles.wrapper__content_logo_hidden]: expanded && !isDesktop,
@@ -101,7 +102,7 @@ const Header: React.FC = () => {
           onMouseEnter={onMouseEnter}
           onClick={toggleCategory}
           className={styles.wrapper__content_menu__category__child}>
-          <p className={itemClasses}>Category</p>
+          <p className={itemClasses}> {t('categories')}</p>
           <SearchBackArrowIcon className={iconClasses} />
         </div>
         {isCategoriesHoverable && (

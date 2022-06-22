@@ -1,5 +1,6 @@
 {
   "new": "New",
+  "cat": "Category",
   "home": "Home",
   "search": "Search",
   "signIn": "Sign In",
@@ -12,6 +13,9 @@
   "newVideos": "New Videos",
   "categories": "Categories",
   "backToHome": "Back to Home",
+  "userName": "Username",
+  "registration": "Registration",
+  "cancelRegistration": "Cancel Registration",
   "enterYourEmail": "Enter your email",
   "forgotPassword": "Forgot Password?",
   "dontHaveAnAccount": "Don’t have an account?",
@@ -19,5 +23,6 @@
   "theEmailIsRequired": "The Email is required",
   "theEmailMustBeAValidEmailAddress": "The Email must be a valid email address",
   "passwordCantStartOrEndWwithABlankSpace": "Password can't start or end with a blank space",
-  "passwordIsTooShortShouldBe6CharsMinimum": "Password is too short - should be 6 chars minimum."
+  "passwordIsTooShortShouldBe6CharsMinimum": "Password is too short - should be 6 chars minimum.",
+  "allRightsReserved": "All rights reserved"
 }

@@ -1,5 +1,6 @@
 import React, {useCallback, useEffect} from 'react';
 import {useToggle} from 'react-use';
+import {useTranslation} from 'next-i18next';
 
 import {Logo} from '~/assets';
 import {Loader} from '~/components';
@@ -16,6 +17,8 @@ import styles from './Registration.module.scss';
 const Registration: React.FC = () => {
   const dispatch = useAppDispatch();
   const {error} = useAppSelector(authSelect);
+
+  const {t} = useTranslation('common');
 
   const [isLoading, toggleIsLoading] = useToggle(false);
 
@@ -43,7 +46,7 @@ const Registration: React.FC = () => {
   return (
     <div className={`container_without-header ${styles.container}`}>
       <BackButton
-        text="Cancel registration"
+        text={t('cancelRegistration')}
         className={styles.container__cancel}
       />
       <Logo className={styles.container__top_img} />
@@ -51,7 +54,7 @@ const Registration: React.FC = () => {
         type="Extra"
         variant="Heading"
         className={styles.container__top__title}>
-        Registration
+        {t('registration')}
       </Typography>
       <Form
         // ref={signInRef}
