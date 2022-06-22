@@ -19,6 +19,7 @@ import {
   HeaderNavbar,
   SubCategories,
 } from '~/components';
+import useLocales from '~/hooks/useLocales';
 
 import styles from './Header.module.scss';
 
@@ -115,8 +116,9 @@ const Header: React.FC = () => {
     );
   };
 
-  const headerTable = routes.map(({id, routeName, pageName}) =>
-    id === 1 ? (
+  const headerTable = routes.map(({id, routeName, pageName}) => {
+    const {translatedTypo} = useLocales(pageName);
+    return id === 1 ? (
       renderCategory()
     ) : (
       <Link
@@ -124,10 +126,10 @@ const Header: React.FC = () => {
         to={routeName}
         className={styles.wrapper__content_menu__link}
         activeClassName={styles.wrapper__content_menu__link_active}>
-        {t(pageName)}
+        {translatedTypo}
       </Link>
-    ),
-  );
+    );
+  });
 
   const renderMobileMenu = routesBurger.map(({id, routeName, pageName}) =>
     id === 3 ? (

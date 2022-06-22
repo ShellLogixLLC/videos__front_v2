@@ -15,6 +15,7 @@ export type QueryParamsTypes = {
   name?: string;
 };
 
-export type LocaleProps = {
-  locale?: string;
-};
+export enum LocaleType {
+  En = 'en',
+  Ru = 'ru',
+}

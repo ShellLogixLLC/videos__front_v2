@@ -5,7 +5,7 @@ import {RoutesProps} from './types';
 export const routes: RoutesProps[] = [
   {
     id: 1,
-    pageName: 'Categories',
+    pageName: 'categories',
     routeName: Route.Categories,
   },
   {

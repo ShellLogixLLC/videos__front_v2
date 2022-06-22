@@ -25,12 +25,11 @@ const Home: React.FC = () => {
   const {data: wishlistData} = WishlistSearchService.useVideoWishlistIds();
 
   return (
-    // <React.Suspense fallback="loading">
     <article className={styles.wrapper}>
       <div className={styles.wrapper__content}>
         <section className={styles.wrapper__content__one_section}>
           <Typography className={styles.wrapper__content__title}>
-            {t('newVideos')}
+            newVideos
           </Typography>
           <HorizontalSlider
             isLoading={isLoading}
@@ -40,7 +39,7 @@ const Home: React.FC = () => {
         </section>
         <section className={styles.wrapper__content__two_section}>
           <Typography className={styles.wrapper__content__title}>
-            {t('categories')}
+            categories
           </Typography>
           <HorizontalSlider
             isCategory
@@ -51,7 +50,7 @@ const Home: React.FC = () => {
         </section>
         <section className={styles.wrapper__content__one_section}>
           <Typography className={styles.wrapper__content__title}>
-            {t('topRated')}
+            topRated
           </Typography>
           <HorizontalSlider
             isLoading={isLoading}
@@ -61,7 +60,7 @@ const Home: React.FC = () => {
         </section>
         <section className={styles.wrapper__content__one_section}>
           <Typography className={styles.wrapper__content__title}>
-            {t('mostLiked')}
+            mostLiked
           </Typography>
           <HorizontalSlider
             isLoading={isLoading}
@@ -75,7 +74,6 @@ const Home: React.FC = () => {
         <FilterBySort options={filteredMass} />
       </aside>
     </article>
-    // </React.Suspense>
   );
 };
 

@@ -31,3 +31,5 @@ export * from './category';
 
 //wishlist
 export * from './wishlist';
+
+export * from './locales';
