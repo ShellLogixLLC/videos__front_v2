@@ -1,5 +1,6 @@
 import React, {useCallback, useEffect} from 'react';
 import {useToggle} from 'react-use';
+import {useTranslation} from 'next-i18next';
 
 import {Logo} from '~/assets';
 import {Loader} from '~/components';
@@ -16,6 +17,8 @@ import styles from './SignIn.module.scss';
 const SignIn: React.FC = () => {
   const dispatch = useAppDispatch();
   const {userInfo, error} = useAppSelector(authSelect);
+
+  const {t, ready} = useTranslation('common');
 
   const [isLoading, toggleIsLoading] = useToggle(false);
 
@@ -39,7 +42,7 @@ const SignIn: React.FC = () => {
           type="Extra"
           variant="Heading"
           className={styles.container__top__title}>
-          Sign In
+          {ready ? t('signIn') : ' '}
         </Typography>
       </div>
       <Form
@@ -57,7 +60,7 @@ const SignIn: React.FC = () => {
           variant="Text"
           type="Semibold"
           className={styles.container__forgot_text}>
-          Forgot Password?
+          {ready ? t('forgotPassword') : ''}
         </Typography>
       </Link>
 
@@ -66,19 +69,19 @@ const SignIn: React.FC = () => {
           variant="Text"
           type="Semibold"
           className={styles.container__account_reg}>
-          Don’t have an account?
+          {ready ? t('dontHaveAnAccount') : ''}
         </Typography>
         <Link to={Route.RegistrationPersonalInformation}>
           <Typography
             variant="Text"
             type="Medium"
             className={styles.container__account_sign}>
-            Sign up
+            {ready ? t('signUp') : ''}
           </Typography>
         </Link>
       </div>
       <Link to={Route.Home} className={styles.container__route}>
-        Back to Home
+        {ready ? t('backToHome') : ''}
       </Link>
       {isLoading && <Loader isVertical />}
     </div>

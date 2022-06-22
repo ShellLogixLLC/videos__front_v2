@@ -17,9 +17,7 @@ const Home: React.FC = () => {
   const {data, isLoading} = CategoryService.useCategories();
   const categories = data?.categories;
 
-  const {t, ready} = useTranslation('home');
-
-  console.log(t, ready, 'aaa');
+  const {t, ready} = useTranslation('common');
 
   const {videosData} = VideosService.useVideos();
   const videos = videosData?.videos;
@@ -31,7 +29,7 @@ const Home: React.FC = () => {
       <div className={styles.wrapper__content}>
         <section className={styles.wrapper__content__one_section}>
           <Typography className={styles.wrapper__content__title}>
-            {ready ? t('home') : ''}
+            {ready ? t('newVideos') : ''}
           </Typography>
           <HorizontalSlider
             isLoading={isLoading}
@@ -41,7 +39,7 @@ const Home: React.FC = () => {
         </section>
         <section className={styles.wrapper__content__two_section}>
           <Typography className={styles.wrapper__content__title}>
-            Categories
+            {ready ? t('categories') : ''}
           </Typography>
           <HorizontalSlider
             isCategory
@@ -52,7 +50,7 @@ const Home: React.FC = () => {
         </section>
         <section className={styles.wrapper__content__one_section}>
           <Typography className={styles.wrapper__content__title}>
-            Top Rated
+            {ready ? t('topRated') : ''}
           </Typography>
           <HorizontalSlider
             isLoading={isLoading}
@@ -62,7 +60,7 @@ const Home: React.FC = () => {
         </section>
         <section className={styles.wrapper__content__one_section}>
           <Typography className={styles.wrapper__content__title}>
-            Most Liked
+            {ready ? t('mostLiked') : ''}
           </Typography>
           <HorizontalSlider
             isLoading={isLoading}

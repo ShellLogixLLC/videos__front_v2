@@ -23,7 +23,7 @@ import {
 import styles from './Header.module.scss';
 
 const Header: React.FC = () => {
-  const {t} = useTranslation();
+  const {t, ready} = useTranslation('common');
   const {pathname, query} = useRouter();
   const {expanded} = useContext(ToggleContext);
   const {isDesktop} = useWindowSize();

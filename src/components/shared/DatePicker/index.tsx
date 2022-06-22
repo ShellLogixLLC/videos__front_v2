@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import {useToggle} from 'react-use';
 import {RangePicker} from 'react-trip-date';
 import {RangePickerSelectedDays} from 'react-trip-date/dist/rangePicker/rangePicker.type';
+import {useTranslation} from 'next-i18next';
 
 import {useOnClickOutside} from '~/hooks';
 import {CalendarOne, LeftArrow, RightArrow} from '~/assets';
@@ -13,6 +14,8 @@ import styles from './DatePicker.module.scss';
 
 const DatePicker: FC = () => {
   const calendarRef = useRef<HTMLHeadingElement | null>(null);
+
+  const {t, ready} = useTranslation('common');
 
   const [isOpen, toggleIsOpen] = useToggle(false);
   const [rangeValues, setRangeValues] = useState<RangePickerSelectedDays>();
@@ -46,7 +49,9 @@ const DatePicker: FC = () => {
   return (
     <div ref={calendarRef} className={togglerClasses}>
       <div role="button" onClick={toggleIsOpen} className={styles.header}>
-        <Typography className={styles.header__text}>Calendar</Typography>
+        <Typography className={styles.header__text}>
+          {ready ? t('calendar') : ''}
+        </Typography>
         <CalendarOne className={styles.header__icon} />
       </div>
       <div className={`${contentClasses} calendar__trip`}>

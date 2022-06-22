@@ -1,6 +1,7 @@
 import React, {useMemo, useRef} from 'react';
 import {useToggle} from 'react-use';
 import classNames from 'classnames';
+import {useTranslation} from 'next-i18next';
 
 import {FilterLamp} from '~/assets';
 import {useOnClickOutside} from '~/hooks';
@@ -14,6 +15,8 @@ import styles from './FilterBySort.module.scss';
 const FilterBySort: React.FC<IFilterBySortProps> = ({options}) => {
   const filterRef = useRef<HTMLDivElement | null>(null);
   const [expanded, toggleExpanded] = useToggle(false);
+
+  const {t, ready} = useTranslation('common');
 
   const containerClasses = classNames(styles.container, {
     [styles.container__expand]: expanded,
@@ -47,7 +50,7 @@ const FilterBySort: React.FC<IFilterBySortProps> = ({options}) => {
     <div ref={filterRef} onClick={toggleExpanded} className={containerClasses}>
       <div className={styles.container__header}>
         <Typography className={styles.container__header__title}>
-          Sort by
+          {ready ? t('sortBy') : ''}
         </Typography>
         <FilterLamp className={styles.container__header__icon} />
       </div>

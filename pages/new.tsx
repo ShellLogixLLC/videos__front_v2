@@ -1,7 +1,6 @@
 import React from 'react';
 import {GetStaticProps, NextPage} from 'next';
 import {serverSideTranslations} from 'next-i18next/serverSideTranslations';
-// import {useTranslation} from 'next-i18next';
 
 import {Seo, Typography} from '~/components';
 import {LocaleProps} from '~/types';
