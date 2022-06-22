@@ -25,6 +25,7 @@ const Home: React.FC = () => {
   const {data: wishlistData} = WishlistSearchService.useVideoWishlistIds();
 
   return (
+    // <React.Suspense fallback="loading">
     <article className={styles.wrapper}>
       <div className={styles.wrapper__content}>
         <section className={styles.wrapper__content__one_section}>
@@ -74,6 +75,7 @@ const Home: React.FC = () => {
         <FilterBySort options={filteredMass} />
       </aside>
     </article>
+    // </React.Suspense>
   );
 };
 
