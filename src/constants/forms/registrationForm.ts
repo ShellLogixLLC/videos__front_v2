@@ -9,7 +9,7 @@ const fields: Field[] = [
     name: 'username',
     type: 'text',
     label: 'Username',
-    placeholder: 'Enter your username',
+    placeholder: 'Enter Your Username',
   },
 
   {

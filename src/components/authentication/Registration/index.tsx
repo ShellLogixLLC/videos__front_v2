@@ -54,7 +54,7 @@ const Registration: React.FC = () => {
         type="Extra"
         variant="Heading"
         className={styles.container__top__title}>
-        {t('registration')}
+        registration
       </Typography>
       <Form
         // ref={signInRef}
