@@ -25,19 +25,13 @@ const fields: Field[] = [
 const schema = yup.object().shape({
   new_password: yup
     .string()
-    .matches(
-      /^[^\s]+(\s+[^\s]+)*$/,
-      `Password can't start or end with a blank space`,
-    )
-    .required('The Password is required')
-    .min(5, 'New password.'),
+    .matches(/^[^\s]+(\s+[^\s]+)*$/, `passwordCantStartOrEndWwithABlankSpace`)
+    .required('thePasswordIsRequired')
+    .min(5, 'newPassword'),
   allow_password: yup
     .string()
-    .matches(
-      /^[^\s]+(\s+[^\s]+)*$/,
-      `Password can't start or end with a blank space`,
-    )
-    .required('The Password is required')
+    .matches(/^[^\s]+(\s+[^\s]+)*$/, `passwordCantStartOrEndWwithABlankSpace`)
+    .required('thePasswordIsRequired')
     .min(5, 'Password is too short - should be 8 chars minimum.'),
 });
 

@@ -16,7 +16,7 @@ const FilterBySort: React.FC<IFilterBySortProps> = ({options}) => {
   const filterRef = useRef<HTMLDivElement | null>(null);
   const [expanded, toggleExpanded] = useToggle(false);
 
-  const {t} = useTranslation('common');
+  // const {t} = useTranslation('common');
 
   const containerClasses = classNames(styles.container, {
     [styles.container__expand]: expanded,
@@ -50,7 +50,7 @@ const FilterBySort: React.FC<IFilterBySortProps> = ({options}) => {
     <div ref={filterRef} onClick={toggleExpanded} className={containerClasses}>
       <div className={styles.container__header}>
         <Typography className={styles.container__header__title}>
-          {t('sortBy')}
+          sortBy
         </Typography>
         <FilterLamp className={styles.container__header__icon} />
       </div>

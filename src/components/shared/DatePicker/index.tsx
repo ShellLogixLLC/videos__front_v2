@@ -15,7 +15,7 @@ import styles from './DatePicker.module.scss';
 const DatePicker: FC = () => {
   const calendarRef = useRef<HTMLHeadingElement | null>(null);
 
-  const {t} = useTranslation('common');
+  // const {t} = useTranslation('common');
 
   const [isOpen, toggleIsOpen] = useToggle(false);
   const [rangeValues, setRangeValues] = useState<RangePickerSelectedDays>();
@@ -49,7 +49,7 @@ const DatePicker: FC = () => {
   return (
     <div ref={calendarRef} className={togglerClasses}>
       <div role="button" onClick={toggleIsOpen} className={styles.header}>
-        <Typography className={styles.header__text}>{t('calendar')}</Typography>
+        <Typography className={styles.header__text}>calendar</Typography>
         <CalendarOne className={styles.header__icon} />
       </div>
       <div className={`${contentClasses} calendar__trip`}>

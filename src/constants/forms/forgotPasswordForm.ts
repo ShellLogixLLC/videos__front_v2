@@ -14,8 +14,8 @@ const fields: Field[] = [
 const schema = yup.object().shape({
   email: yup
     .string()
-    .required('The Email is required')
-    .email('The Email must be a valid email address'),
+    .required('theEmailIsRequired')
+    .email('theEmailMustBeAValidEmailAddress'),
 });
 
 const forgotPasswordForm: Form = {

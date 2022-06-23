@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useRouter} from 'next/router';
+import {useTranslation} from 'next-i18next';
 
 import {
   BackButton,
@@ -29,6 +30,8 @@ const MyFavorites: React.FC = () => {
   const {isMinTablet} = useWindowSize();
 
   const {query} = useRouter();
+
+  const {t} = useTranslation('common');
 
   useEffect(() => {
     if (query?.page) {
@@ -100,7 +103,7 @@ const MyFavorites: React.FC = () => {
     <div className={styles.favorites}>
       <div className={styles.favorites__backRoute}>
         <BackButton
-          text="Back"
+          text={t('back')}
           LeftIcon={LeftArrow}
           className={styles.favorites__backRoute__button}
         />
@@ -108,7 +111,7 @@ const MyFavorites: React.FC = () => {
 
       <div className={styles.favorites__title}>
         <Typography tagName="h1" className={styles.favorites__title__text}>
-          WishList
+          wishlist
         </Typography>
       </div>
 

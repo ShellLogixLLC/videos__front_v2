@@ -23,16 +23,13 @@ const fields: Field[] = [
 const schema = yup.object().shape({
   username: yup
     .string()
-    .required('The First name is required')
-    .min(4, 'First name is too short - should be 4 chars minimum.'),
+    .required('theFirstNameIsRequired')
+    .min(4, 'firstNameIsTooShort'),
   password: yup
     .string()
-    .matches(
-      /^[^\s]+(\s+[^\s]+)*$/,
-      `Password can't start or end with a blank space`,
-    )
+    .matches(/^[^\s]+(\s+[^\s]+)*$/, `passwordCantStartOrEndWwithABlankSpace`)
     .required('The Password is required')
-    .min(6, 'Password is too short - should be 6 chars minimum.'),
+    .min(6, 'passwordIsTooShortShouldBe6CharsMinimum'),
 });
 
 const signInForm: Form = {

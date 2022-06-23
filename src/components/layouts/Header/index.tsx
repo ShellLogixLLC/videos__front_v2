@@ -18,6 +18,7 @@ import {
   MobileFilter,
   HeaderNavbar,
   SubCategories,
+  Typography,
 } from '~/components';
 import useLocales from '~/hooks/useLocales';
 
@@ -103,7 +104,7 @@ const Header: React.FC = () => {
           onMouseEnter={onMouseEnter}
           onClick={toggleCategory}
           className={styles.wrapper__content_menu__category__child}>
-          <p className={itemClasses}> {t('categories')}</p>
+          <Typography className={itemClasses}>categories</Typography>
           <SearchBackArrowIcon className={iconClasses} />
         </div>
         {isCategoriesHoverable && (
@@ -131,8 +132,9 @@ const Header: React.FC = () => {
     );
   });
 
-  const renderMobileMenu = routesBurger.map(({id, routeName, pageName}) =>
-    id === 3 ? (
+  const renderMobileMenu = routesBurger.map(({id, routeName, pageName}) => {
+    const {translatedTypo} = useLocales(pageName);
+    return id === 3 ? (
       renderCategory()
     ) : (
       <Link
@@ -142,10 +144,10 @@ const Header: React.FC = () => {
         activeClassName={
           styles.wrapper__content__burger__container__nav__items_active
         }>
-        {t(pageName)}
+        {translatedTypo}
       </Link>
-    ),
-  );
+    );
+  });
 
   return (
     <header className={styles.wrapper}>

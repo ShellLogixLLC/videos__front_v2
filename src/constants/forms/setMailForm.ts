@@ -12,7 +12,7 @@ const fields: Field[] = [
 ];
 
 const schema = yup.object().shape({
-  email: yup.string().email('Must be a valid email').required(),
+  email: yup.string().email('theEmailMustBeAValidEmailAddress').required(),
 });
 
 const setEmailForm: Form = {

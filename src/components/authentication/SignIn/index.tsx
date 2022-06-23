@@ -32,7 +32,7 @@ const SignIn: React.FC = () => {
 
   useEffect(() => {
     if (userInfo || error) toggleIsLoading();
-  }, [isLoading, userInfo, error]);
+  }, [isLoading, userInfo, error, toggleIsLoading]);
 
   return (
     <div className={`container_without-header ${styles.container}`}>
