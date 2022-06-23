@@ -42,7 +42,7 @@ const SignIn: React.FC = () => {
           type="Extra"
           variant="Heading"
           className={styles.container__top__title}>
-          {t('signIn')}
+          signIn
         </Typography>
       </div>
       <Form
@@ -60,7 +60,7 @@ const SignIn: React.FC = () => {
           variant="Text"
           type="Semibold"
           className={styles.container__forgot_text}>
-          {t('forgotPassword')}
+          forgotPassword
         </Typography>
       </Link>
 
@@ -69,14 +69,14 @@ const SignIn: React.FC = () => {
           variant="Text"
           type="Semibold"
           className={styles.container__account_reg}>
-          {t('dontHaveAnAccount')}
+          dontHaveAnAccount
         </Typography>
         <Link to={Route.RegistrationPersonalInformation}>
           <Typography
             variant="Text"
             type="Medium"
             className={styles.container__account_sign}>
-            {t('signUp')}
+            signUp
           </Typography>
         </Link>
       </div>

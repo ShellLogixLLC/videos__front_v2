@@ -12,7 +12,7 @@ module.exports = {
   },
   react: {useSuspense: false},
   i18n: {
-    defaultLocale: 'en',
+    defaultLocale: 'default',
     locales: ['default', 'en', 'ru'],
     localeDetection: false,
   },

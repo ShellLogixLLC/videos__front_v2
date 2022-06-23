@@ -8,7 +8,7 @@ import nextI18NextConfig from '../next-i18next.config';
 
 const CategoriesPage: NextPage = () => (
   <Seo title="Categories page" metaDescription="Categories page description">
-    <Typography>Categories</Typography>
+    <Typography>categories</Typography>
   </Seo>
 );
 

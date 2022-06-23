@@ -16,7 +16,7 @@ const FavoritesPage: React.FC = () => {
 
   return (
     <Seo title="Favorites page" metaDescription="Favorites page description">
-      <Typography>Top Rated</Typography>
+      <Typography>topRated</Typography>
       <Video
         videoSrc={VIDEO_SRC}
         videoDuration={VIDEO_LENGTH}
