@@ -80,7 +80,7 @@ const Search: React.FC = () => {
             />
             <CategoryNav />
             <Typography className={styles.wrapper__content__header__title}>
-              Search Results
+              searchResults
             </Typography>
           </div>
         </section>
@@ -88,9 +88,10 @@ const Search: React.FC = () => {
           {renderResultList}
           {videos?.length === 0 && (
             <div className={styles.wrapper__content__result__wrapper}>
-              <p className={styles.wrapper__content__result__wrapper__null}>
-                Sorry, we could not find any result as:
-              </p>
+              <Typography
+                className={styles.wrapper__content__result__wrapper__null}>
+                sorryWeCouldNotFindAnyResult
+              </Typography>
               <p
                 className={
                   styles.wrapper__content__result__wrapper__search_result

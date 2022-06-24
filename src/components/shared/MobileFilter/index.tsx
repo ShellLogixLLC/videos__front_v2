@@ -26,7 +26,7 @@ const MobileFilter: React.FC<IMobileFilterProps> = ({
     <div className={wrapperClasses}>
       <div className={styles.wrapper__top_block}>
         <Typography className={styles.wrapper__top_block__text}>
-          Filter
+          filter
         </Typography>
         <Close onClick={toggleFilter} className={styles.wrapper__close} />
       </div>

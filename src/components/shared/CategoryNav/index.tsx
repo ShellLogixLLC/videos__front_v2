@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import classNames from 'classnames';
+import {useTranslation} from 'next-i18next';
 
 import {categoryNavigation} from '~/utils/index';
 
@@ -9,6 +10,8 @@ import styles from './CategoryNav.module.scss';
 
 const CategoryNav: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<number>(0);
+
+  const {t} = useTranslation();
 
   const buttonClasses = (id: number) =>
     classNames(styles.wrapper__buttons, {
@@ -25,7 +28,7 @@ const CategoryNav: React.FC = () => {
         key={id}
         onClick={() => chooseCategory(idx)}
         className={buttonClasses(id)}>
-        {nameCategory}
+        {t(nameCategory)}
       </Button>
     ),
   );

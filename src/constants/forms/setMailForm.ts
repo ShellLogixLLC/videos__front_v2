@@ -6,8 +6,8 @@ const fields: Field[] = [
   {
     name: 'email',
     type: 'text',
-    label: 'Email Address',
-    placeholder: '',
+    label: 'email',
+    placeholder: 'enterYourEmail',
   },
 ];
 

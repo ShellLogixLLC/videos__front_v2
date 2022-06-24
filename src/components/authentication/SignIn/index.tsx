@@ -46,7 +46,6 @@ const SignIn: React.FC = () => {
         </Typography>
       </div>
       <Form
-        // ref={signInRef}
         form={signInForm}
         className={styles.sign_in}
         inputClassName={styles.sign_in__block__input__inp}

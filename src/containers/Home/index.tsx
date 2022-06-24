@@ -1,5 +1,4 @@
 import React from 'react';
-import {useTranslation} from 'next-i18next';
 
 import {filteredMass} from '~/utils';
 import {CategoryService, VideosService} from '~/api';
@@ -16,8 +15,6 @@ import styles from './Home.module.scss';
 const Home: React.FC = () => {
   const {data, isLoading} = CategoryService.useCategories();
   const categories = data?.categories;
-
-  const {t} = useTranslation('common');
 
   const {videosData} = VideosService.useVideos();
   const videos = videosData?.videos;

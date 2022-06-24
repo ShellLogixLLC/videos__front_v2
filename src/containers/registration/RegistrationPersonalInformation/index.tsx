@@ -28,7 +28,7 @@ const RegistrationPersonalInformation: React.FC = () => {
           type="Medium"
           variant="Text"
           className={styles.container__top__step}>
-          Step 1 of 3
+          step1Of3
         </Typography>
       </div>
 

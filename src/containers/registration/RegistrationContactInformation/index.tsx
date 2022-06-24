@@ -28,7 +28,7 @@ const RegistrationContactInformation: React.FC = () => {
           type="Medium"
           variant="Text"
           className={styles.container__top__step}>
-          Step 2. Enter your email
+          step2EnterYourEmail
         </Typography>
       </div>
 

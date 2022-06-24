@@ -84,7 +84,7 @@ const ForgotPassword: React.FC = () => {
         </div>
         <Form
           form={forgotPasswordForm}
-          submitText={ifResetButton}
+          submitText={t(ifResetButton)}
           labelClassName={isFormClosed}
           inputClassName={formInputClasses}
           addFormBtnClasses={formBtnClasses}

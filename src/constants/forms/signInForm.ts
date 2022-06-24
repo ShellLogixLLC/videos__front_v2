@@ -6,14 +6,14 @@ import {EyeShowIcon, EyeHideIcon} from '~/assets';
 const fields: Field[] = [
   {
     name: 'username',
-    label: 'username',
+    label: 'userName',
     type: 'text',
     placeholder: 'enterYourUsername',
   },
   {
     name: 'password',
+    label: 'passWord',
     type: 'password',
-    label: 'password',
     placeholder: 'enterYourPassword',
     RightIcon: EyeHideIcon,
     RightToggledIcon: EyeShowIcon,

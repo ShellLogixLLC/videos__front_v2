@@ -57,7 +57,6 @@ const Registration: React.FC = () => {
         registration
       </Typography>
       <Form
-        // ref={signInRef}
         submitText="proceed"
         form={registrationForm}
         onSubmit={handleResetPassFormSubmit}

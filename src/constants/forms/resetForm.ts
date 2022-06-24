@@ -6,17 +6,17 @@ import {EyeShowIcon, EyeHideIcon} from '~/assets';
 const fields: Field[] = [
   {
     name: 'new_password',
-    label: 'Enter new password',
+    label: 'enterNewPassword',
     type: 'password',
-    placeholder: 'Enter new password',
+    placeholder: 'enterNewPassword',
     RightIcon: EyeShowIcon,
     RightToggledIcon: EyeHideIcon,
   },
   {
     name: 'allow_password',
-    label: 'Confirm password',
+    label: 'confirmPassword',
     type: 'password',
-    placeholder: 'Confirm new password',
+    placeholder: 'confirmPassword',
     RightIcon: EyeShowIcon,
     RightToggledIcon: EyeHideIcon,
   },
@@ -27,12 +27,12 @@ const schema = yup.object().shape({
     .string()
     .matches(/^[^\s]+(\s+[^\s]+)*$/, `passwordCantStartOrEndWwithABlankSpace`)
     .required('thePasswordIsRequired')
-    .min(5, 'newPassword'),
+    .min(6, 'newPassword'),
   allow_password: yup
     .string()
     .matches(/^[^\s]+(\s+[^\s]+)*$/, `passwordCantStartOrEndWwithABlankSpace`)
     .required('thePasswordIsRequired')
-    .min(5, 'Password is too short - should be 8 chars minimum.'),
+    .min(6, 'Password is too short - should be 6 chars minimum.'),
 });
 
 const resetForm: Form = {

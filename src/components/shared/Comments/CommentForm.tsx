@@ -1,6 +1,7 @@
 import React from 'react';
 import {useForm} from 'react-hook-form';
 import {BaseEmoji} from 'emoji-mart';
+import {useTranslation} from 'next-i18next';
 
 import Button from '../../shared/Button';
 import EmojisInput from '../../shared/EmojisInput';
@@ -11,6 +12,8 @@ const CommentForm: React.FC = () => {
   const {handleSubmit, register, formState, setValue, getValues} = useForm({
     mode: 'onChange',
   });
+
+  const {t} = useTranslation();
 
   const onSubmit = () => {};
 
@@ -26,7 +29,7 @@ const CommentForm: React.FC = () => {
         addEmoji={addEmoji}
       />
       <Button disabled={!formState.isValid} type="submit">
-        Comment
+        {t('comment')}
       </Button>
     </form>
   );

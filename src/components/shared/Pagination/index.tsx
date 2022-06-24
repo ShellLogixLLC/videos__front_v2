@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import classNames from 'classnames';
 import ReactPaginate from 'react-paginate';
+import {useTranslation} from 'next-i18next';
 
 import {LeftArrow, RightArrow} from '~/assets';
 import {
@@ -41,6 +42,8 @@ const PaginationIndex: React.FC<IPaginationProps> = ({
     [styles.disabled]: transformXValue === 0,
   });
 
+  const {t} = useTranslation();
+
   const containerClasses = classNames(styles.container, {
     [styles.container__display]: isMoreButtonNeeded,
   });
@@ -69,7 +72,7 @@ const PaginationIndex: React.FC<IPaginationProps> = ({
       <Button
         className={styles.container__wrapper__more_btn}
         onClick={handleClickMore}>
-        More
+        {t('more')}
       </Button>
     ) : null;
 

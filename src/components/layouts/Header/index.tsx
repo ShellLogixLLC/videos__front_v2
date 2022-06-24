@@ -38,7 +38,7 @@ const Header: React.FC = () => {
   const [isCategoriesHoverable, setCategoriesHoverable] =
     useState<boolean>(false);
 
-  // const {t} = useTranslation('common');
+  const {t} = useTranslation();
 
   const logoClassNames = classNames(styles.wrapper__content_logo, {
     [styles.wrapper__content_logo_hidden]: expanded && !isDesktop,
@@ -118,7 +118,6 @@ const Header: React.FC = () => {
   };
 
   const headerTable = routes.map(({id, routeName, pageName}) => {
-    const {translatedTypo} = useLocales(pageName);
     return id === 1 ? (
       renderCategory()
     ) : (
@@ -127,13 +126,12 @@ const Header: React.FC = () => {
         to={routeName}
         className={styles.wrapper__content_menu__link}
         activeClassName={styles.wrapper__content_menu__link_active}>
-        {translatedTypo}
+        {t(pageName)}
       </Link>
     );
   });
 
   const renderMobileMenu = routesBurger.map(({id, routeName, pageName}) => {
-    const {translatedTypo} = useLocales(pageName);
     return id === 3 ? (
       renderCategory()
     ) : (
@@ -144,7 +142,7 @@ const Header: React.FC = () => {
         activeClassName={
           styles.wrapper__content__burger__container__nav__items_active
         }>
-        {translatedTypo}
+        {t(pageName)}
       </Link>
     );
   });
