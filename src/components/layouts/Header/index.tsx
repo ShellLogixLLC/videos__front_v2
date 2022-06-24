@@ -20,7 +20,6 @@ import {
   SubCategories,
   Typography,
 } from '~/components';
-import useLocales from '~/hooks/useLocales';
 
 import styles from './Header.module.scss';
 
@@ -38,7 +37,7 @@ const Header: React.FC = () => {
   const [isCategoriesHoverable, setCategoriesHoverable] =
     useState<boolean>(false);
 
-  const {t} = useTranslation();
+  const {t} = useTranslation('common');
 
   const logoClassNames = classNames(styles.wrapper__content_logo, {
     [styles.wrapper__content_logo_hidden]: expanded && !isDesktop,

@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useRouter} from 'next/router';
+import {useTranslation} from 'next-i18next';
 
 import {filteredMass} from '~/utils';
 import {VideosSearchService} from '~/api';
@@ -23,6 +24,8 @@ import styles from './Search.module.scss';
 
 const Search: React.FC = () => {
   const {query} = useRouter();
+
+  const {t} = useTranslation('common');
 
   const [activePage, setActivePage] = useState<number>(
     INITIAL_PAGINATION_ACTIVE_PAGE,
@@ -74,7 +77,7 @@ const Search: React.FC = () => {
         <section>
           <div className={styles.wrapper__content__header}>
             <BackButton
-              text="Back"
+              text={t('back')}
               LeftIcon={LeftArrow}
               className={styles.wrapper__content__header__route}
             />

@@ -20,7 +20,7 @@ const ForgotPassword: React.FC = () => {
   const dispatch = useAppDispatch();
   const {error, isVerified} = useAppSelector(authSelect);
 
-  const {t} = useTranslation();
+  const {t} = useTranslation('common');
 
   const [isLoading, toggleIsLoading] = useToggle(false);
 

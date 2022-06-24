@@ -3,8 +3,6 @@ import React from 'react';
 import {VideosService} from '~/api';
 import {Seo, Typography, Video} from '~/components';
 
-import {getStaticProps} from './categories';
-
 const VIDEO_LENGTH = 110.5;
 const VIDEO_SRC =
   'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
@@ -26,7 +24,5 @@ const FavoritesPage: React.FC = () => {
     </Seo>
   );
 };
-
-export {getStaticProps};
 
 export default FavoritesPage;

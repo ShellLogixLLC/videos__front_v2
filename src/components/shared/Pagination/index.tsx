@@ -42,7 +42,7 @@ const PaginationIndex: React.FC<IPaginationProps> = ({
     [styles.disabled]: transformXValue === 0,
   });
 
-  const {t} = useTranslation();
+  const {t} = useTranslation('common');
 
   const containerClasses = classNames(styles.container, {
     [styles.container__display]: isMoreButtonNeeded,

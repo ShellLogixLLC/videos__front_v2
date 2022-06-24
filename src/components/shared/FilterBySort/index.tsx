@@ -1,7 +1,6 @@
 import React, {useMemo, useRef} from 'react';
 import {useToggle} from 'react-use';
 import classNames from 'classnames';
-import {useTranslation} from 'next-i18next';
 
 import {FilterLamp} from '~/assets';
 import {useOnClickOutside} from '~/hooks';

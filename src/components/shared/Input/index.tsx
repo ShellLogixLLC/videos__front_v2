@@ -41,7 +41,7 @@ const Input = forwardRef<any, InputProps>(
   ) => {
     const [isToggledIcon, setIsToggledIcon] = useState<boolean>(false);
 
-    const {t} = useTranslation();
+    const {t} = useTranslation('common');
 
     const inputClasses = classNames(styles.container, {
       [className]: className,

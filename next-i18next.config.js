@@ -6,13 +6,12 @@ const path = require('path');
 const EXPIRATION = process.env.REACT_APP_EXPIRATION_DATE;
 
 module.exports = {
+  strict: true,
   backend: {
     backendOptions: [{expirationTime: +EXPIRATION}], // 1 hour
     backends: typeof window !== 'undefined' ? [HttpBackend] : [],
   },
   react: {useSuspense: false},
-  nsSeparator: false,
-  keySeparator: false,
   interpolation: {
     prefix: '{{',
     suffix: '}}',

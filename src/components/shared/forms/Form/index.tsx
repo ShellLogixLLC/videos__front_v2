@@ -61,7 +61,7 @@ const Form = forwardRef<any, IFormProps>(
       resolver: yupResolver(schema),
     });
 
-    const {t} = useTranslation();
+    const {t} = useTranslation('common');
 
     const formClasses = classNames(styles.container, {
       [className]: className,

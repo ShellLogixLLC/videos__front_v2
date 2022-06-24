@@ -25,7 +25,7 @@ const ContractSign: React.FC<VerifyProps> = ({
   const dispatch = useAppDispatch();
   const {emailVerify, isVerified} = useAppSelector(authSelect);
 
-  const {t} = useTranslation();
+  const {t} = useTranslation('common');
 
   const date = new Date().getTime();
   const cookieTimer = Number(getCookieFromBrowser('timer')) - date;

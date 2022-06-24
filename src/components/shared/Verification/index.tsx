@@ -18,7 +18,7 @@ const Verification: React.FC<VerificationProps> = ({value, onClick}) => {
     [styles.wrapper__buttons_not_verified]: !value,
   });
 
-  const {t} = useTranslation();
+  const {t} = useTranslation('common');
 
   return (
     <label className={styles.wrapper}>

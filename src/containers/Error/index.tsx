@@ -7,7 +7,7 @@ import {Link, Typography} from '~/components';
 import styles from './Error.module.scss';
 
 const Error: React.FC = () => {
-  const {t} = useTranslation();
+  const {t} = useTranslation('common');
 
   return (
     <div className={styles.wrapper}>

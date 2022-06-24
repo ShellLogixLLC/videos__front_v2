@@ -1,10 +1,10 @@
 import React from 'react';
-import {GetStaticProps, NextPage} from 'next';
-import {serverSideTranslations} from 'next-i18next/serverSideTranslations';
+import {NextPage} from 'next';
+// import {serverSideTranslations} from 'next-i18next/serverSideTranslations';
 
 import {Seo, Typography} from '~/components';
 
-import nextI18NextConfig from '../next-i18next.config';
+// import nextI18NextConfig from '../next-i18next.config';
 
 const NewPage: NextPage = () => (
   <Seo title="New page" metaDescription="New page description">
@@ -12,16 +12,16 @@ const NewPage: NextPage = () => (
   </Seo>
 );
 
-export const getStaticProps: GetStaticProps = async ({locale}) => {
-  return {
-    props: {
-      ...(await serverSideTranslations(
-        locale as string,
-        ['common'],
-        nextI18NextConfig,
-      )),
-    },
-  };
-};
+// export const getStaticProps: GetStaticProps = async ({locale}) => {
+//   return {
+//     props: {
+//       ...(await serverSideTranslations(
+//         locale as string,
+//         ['common'],
+//         nextI18NextConfig,
+//       )),
+//     },
+//   };
+// };
 
 export default NewPage;

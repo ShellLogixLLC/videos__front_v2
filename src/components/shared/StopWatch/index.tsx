@@ -23,7 +23,7 @@ const Timer: React.FC<ITimerProps> = ({
   const dispatch = useAppDispatch();
   const {emailVerify} = useAppSelector(authSelect);
 
-  const {t} = useTranslation();
+  const {t} = useTranslation('common');
 
   const wrapperClasses = classNames(styles.container__wrapper, {
     [styles.container__wrapper_disable]: !isNotValid,

@@ -11,7 +11,7 @@ import styles from './CategoryNav.module.scss';
 const CategoryNav: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<number>(0);
 
-  const {t} = useTranslation();
+  const {t} = useTranslation('common');
 
   const buttonClasses = (id: number) =>
     classNames(styles.wrapper__buttons, {

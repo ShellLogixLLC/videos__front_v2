@@ -13,7 +13,7 @@ const CommentForm: React.FC = () => {
     mode: 'onChange',
   });
 
-  const {t} = useTranslation();
+  const {t} = useTranslation('common');
 
   const onSubmit = () => {};
 
