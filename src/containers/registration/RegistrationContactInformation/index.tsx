@@ -22,7 +22,7 @@ const RegistrationContactInformation: React.FC = () => {
           type="Extra"
           variant="Heading"
           className={styles.container__top__title}>
-          Registration
+          registration
         </Typography>
         <Typography
           type="Medium"
@@ -35,7 +35,7 @@ const RegistrationContactInformation: React.FC = () => {
       <Form
         ref={emailRef}
         form={setEmailForm}
-        submitText="Proceed"
+        submitText="proceed"
         onSubmit={handlePasswordFormSubmit}
       />
     </div>

@@ -8,22 +8,22 @@ const fields: Field[] = [
   {
     name: 'username',
     type: 'text',
-    label: 'Username',
-    placeholder: 'Enter Your Username',
+    label: 'userName',
+    placeholder: 'enterYourUsername',
   },
 
   {
     name: 'email',
     type: 'email',
-    label: 'Email',
-    placeholder: 'Enter your email address',
+    label: 'email',
+    placeholder: 'enterYourEmailAddress',
   },
 
   {
     name: 'create_password',
     type: 'password',
-    label: 'Create password',
-    placeholder: 'Enter password',
+    label: 'createPassword',
+    placeholder: 'enterYourPassword',
     RightIcon: EyeHideIcon,
     RightToggledIcon: EyeShowIcon,
   },
@@ -31,8 +31,8 @@ const fields: Field[] = [
   {
     name: 'confirm_password',
     type: 'password',
-    label: 'Confirm password',
-    placeholder: 'Enter the same password',
+    label: 'confirmPassword',
+    placeholder: 'enterTheSamePassword',
     RightIcon: EyeHideIcon,
     RightToggledIcon: EyeShowIcon,
   },
@@ -45,12 +45,12 @@ const fields: Field[] = [
   {
     name: 'agreed',
     type: 'checkbox',
-    label: 'I agree to the  ',
+    label: 'agreeToThe',
     labelOptions: {
       firstLink: Route.Terms,
       secondLink: Route.Privacy,
-      firstLinkText: 'Terms of Service  ',
-      secondLinkText: ' Privacy Policy',
+      firstLinkText: 'termsOfService',
+      secondLinkText: 'privacyPolicy',
     },
   },
 ];

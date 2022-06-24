@@ -27,9 +27,9 @@ const LanguageDropDown: React.FC = () => {
     toggleExpanded();
   };
 
-  // useEffect(() => {
-  //   i18n?.addResourceBundle(activeLang, 'Lang-name', {key: activeLang});
-  // }, [activeLang]);
+  useEffect(() => {
+    i18n?.addResourceBundle(activeLang, 'Lang-name', {key: activeLang});
+  }, [activeLang]);
 
   const renderLangData = langData.map(({locale, Icon: LangIcon}) => (
     <Link

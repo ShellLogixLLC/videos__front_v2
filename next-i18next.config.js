@@ -11,9 +11,15 @@ module.exports = {
     backends: typeof window !== 'undefined' ? [HttpBackend] : [],
   },
   react: {useSuspense: false},
+  nsSeparator: false,
+  keySeparator: false,
+  interpolation: {
+    prefix: '{{',
+    suffix: '}}',
+  },
   i18n: {
-    defaultLocale: 'default',
-    locales: ['default', 'en', 'ru'],
+    defaultLocale: 'en',
+    locales: ['en', 'ru'],
     localeDetection: false,
   },
   serializeConfig: false,

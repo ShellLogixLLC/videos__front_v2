@@ -16,7 +16,7 @@ type Variant = 'Text' | 'Heading' | 'Button' | 'Link';
 type Align = 'right' | 'left' | 'center' | 'justify';
 
 export type TypographyProps = {
-  children: string;
+  children: any;
   align?: Align;
   type?: TypoType;
   variant?: Variant;

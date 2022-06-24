@@ -6,15 +6,15 @@ import {EyeShowIcon, EyeHideIcon} from '~/assets';
 const fields: Field[] = [
   {
     name: 'username',
-    label: 'Username',
+    label: 'username',
     type: 'text',
-    placeholder: 'Enter your username',
+    placeholder: 'enterYourUsername',
   },
   {
     name: 'password',
     type: 'password',
-    label: 'Password',
-    placeholder: 'Enter your password',
+    label: 'password',
+    placeholder: 'enterYourPassword',
     RightIcon: EyeHideIcon,
     RightToggledIcon: EyeShowIcon,
   },

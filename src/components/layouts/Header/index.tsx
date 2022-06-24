@@ -38,7 +38,7 @@ const Header: React.FC = () => {
   const [isCategoriesHoverable, setCategoriesHoverable] =
     useState<boolean>(false);
 
-  const {t} = useTranslation('common');
+  // const {t} = useTranslation('common');
 
   const logoClassNames = classNames(styles.wrapper__content_logo, {
     [styles.wrapper__content_logo_hidden]: expanded && !isDesktop,

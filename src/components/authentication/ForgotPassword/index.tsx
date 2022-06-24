@@ -1,6 +1,7 @@
 import React, {useCallback, useEffect} from 'react';
 import classNames from 'classnames';
 import {useToggle} from 'react-use';
+import {useTranslation} from 'next-i18next';
 
 import {Logo} from '~/assets';
 import {Route} from '~/constants';
@@ -19,12 +20,14 @@ const ForgotPassword: React.FC = () => {
   const dispatch = useAppDispatch();
   const {error, isVerified} = useAppSelector(authSelect);
 
+  const {t} = useTranslation();
+
   const [isLoading, toggleIsLoading] = useToggle(false);
 
-  const ifResetButton = isVerified ? 'Resend link' : 'Reset Password';
+  const ifResetButton = isVerified ? 'resendLink' : 'resetPassword';
 
   const ifSubmitText = isVerified
-    ? 'We’ve sent a password reset link to your email. Email should be received within 5 minutes.'
+    ? 'weHaveSentPasswordResetLink'
     : 'enterYourEmailAddressAndWeWillSendInstructions';
 
   const isFormClosed = classNames(styles.container__content__sign_in__block, {
@@ -60,7 +63,7 @@ const ForgotPassword: React.FC = () => {
   return (
     <div className={`container_without-header ${styles.container}`}>
       <Link to={Route.SignIn} className={styles.container__route}>
-        Back to sign in
+        {t('backToSignIn')}
       </Link>
       <div className={styles.container__content}>
         <div className={styles.container__content__top}>
@@ -80,7 +83,6 @@ const ForgotPassword: React.FC = () => {
           </Typography>
         </div>
         <Form
-          // ref={forgotPasswordRef}
           form={forgotPasswordForm}
           submitText={ifResetButton}
           labelClassName={isFormClosed}
