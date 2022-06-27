@@ -282,7 +282,7 @@ const ContractSign: React.FC<VerifyProps> = ({
   return (
     <div className={styles.container}>
       <Link to="/" className={styles.container__cancel}>
-        <Typography> cancelOtpRegistration</Typography>
+        <Typography>cancelOtpRegistration</Typography>
       </Link>
       <div className={styles.container__top}>
         <Logo className={styles.container__top__img} />

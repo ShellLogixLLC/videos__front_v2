@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import Typography from '~/components/shared/Typography';
+import useLocales from '~/hooks/useLocales';
 
 import Button from '../Button';
 
@@ -17,16 +18,19 @@ const Verification: React.FC<VerificationProps> = ({value, onClick}) => {
     [styles.wrapper__buttons_not_verified]: !value,
   });
 
+  const {translatedTypo: translatedVerifiedText} = useLocales('verified');
+  const {translatedTypo: translatedUnverifiedText} = useLocales('unverified');
+
   return (
     <label className={styles.wrapper}>
       <Typography tagName="span" className={styles.wrapper__title}>
         accountVerification
       </Typography>
       <Button onClick={() => onClick(true)} className={verifiedClasses}>
-        <Typography>verified</Typography>
+        {translatedVerifiedText}
       </Button>
       <Button onClick={() => onClick(false)} className={dontVerifiedClasses}>
-        <Typography>unverified</Typography>
+        {translatedUnverifiedText}
       </Button>
     </label>
   );
