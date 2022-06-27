@@ -20,9 +20,9 @@ module.exports = {
     defaultLocale: 'en',
     locales: ['en', 'ru'],
     localeDetection: false,
-    localePath: path.resolve('./public/locales'),
+    localePath: path.resolve('./public/static/locales'),
   },
   serializeConfig: false,
   use: typeof window !== 'undefined' ? [ChainedBackend] : [],
-  localePath: path.resolve('./public/locales'),
+  localePath: path.resolve('./public/static/locales'),
 };

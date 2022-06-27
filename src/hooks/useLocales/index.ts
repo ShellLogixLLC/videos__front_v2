@@ -4,7 +4,7 @@ import {useRouter} from 'next/router';
 import {DefaultLocale} from '~/constants';
 import {LocaleType} from '~/types/common';
 
-import locales from '../../../public/locales';
+import locales from '../../../public/static/locales';
 
 import {UseLocalesReturn} from './types';
 
