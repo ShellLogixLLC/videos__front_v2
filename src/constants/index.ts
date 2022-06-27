@@ -33,4 +33,4 @@ export * from './category';
 export * from './wishlist';
 
 //locales
-export * from '../../public/locales';
+export * from './locales';
