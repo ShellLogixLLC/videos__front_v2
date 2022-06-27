@@ -1,7 +1,6 @@
 import React, {useCallback, useEffect} from 'react';
 import classNames from 'classnames';
 import {useToggle} from 'react-use';
-import {useTranslation} from 'next-i18next';
 
 import {Logo} from '~/assets';
 import {Route} from '~/constants';
@@ -9,6 +8,7 @@ import {Loader} from '~/components';
 import {forgotPasswordForm} from '~/constants';
 import {authActions, authSelect} from '~/store/auth';
 import {useAppDispatch, useAppSelector} from '~/hooks';
+import useLocales from '~/hooks/useLocales';
 
 import Link from '../../shared/Link';
 import Form from '../../shared/forms/Form';
@@ -20,11 +20,11 @@ const ForgotPassword: React.FC = () => {
   const dispatch = useAppDispatch();
   const {error, isVerified} = useAppSelector(authSelect);
 
-  const {t} = useTranslation('common');
-
   const [isLoading, toggleIsLoading] = useToggle(false);
 
   const ifResetButton = isVerified ? 'resendLink' : 'resetPassword';
+
+  const {translatedTypo} = useLocales(ifResetButton);
 
   const ifSubmitText = isVerified
     ? 'weHaveSentPasswordResetLink'
@@ -63,7 +63,7 @@ const ForgotPassword: React.FC = () => {
   return (
     <div className={`container_without-header ${styles.container}`}>
       <Link to={Route.SignIn} className={styles.container__route}>
-        {t('backToSignIn')}
+        <Typography>backToSignIn</Typography>
       </Link>
       <div className={styles.container__content}>
         <div className={styles.container__content__top}>
@@ -84,7 +84,7 @@ const ForgotPassword: React.FC = () => {
         </div>
         <Form
           form={forgotPasswordForm}
-          submitText={t(ifResetButton)}
+          submitText={translatedTypo || ''}
           labelClassName={isFormClosed}
           inputClassName={formInputClasses}
           addFormBtnClasses={formBtnClasses}

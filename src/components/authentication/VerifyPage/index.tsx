@@ -1,6 +1,5 @@
 import React, {useEffect, useMemo, useRef, useState} from 'react';
 import classNames from 'classnames';
-import {useTranslation} from 'next-i18next';
 
 import {Logo} from '~/assets';
 import {RouterService} from '~/services';
@@ -24,8 +23,6 @@ const ContractSign: React.FC<VerifyProps> = ({
 }) => {
   const dispatch = useAppDispatch();
   const {emailVerify, isVerified} = useAppSelector(authSelect);
-
-  const {t} = useTranslation('common');
 
   const date = new Date().getTime();
   const cookieTimer = Number(getCookieFromBrowser('timer')) - date;
@@ -285,7 +282,7 @@ const ContractSign: React.FC<VerifyProps> = ({
   return (
     <div className={styles.container}>
       <Link to="/" className={styles.container__cancel}>
-        {t('cancelOtpRegistration')}
+        <Typography> cancelOtpRegistration</Typography>
       </Link>
       <div className={styles.container__top}>
         <Logo className={styles.container__top__img} />
@@ -304,11 +301,11 @@ const ContractSign: React.FC<VerifyProps> = ({
                 title="Are you sure the password is correct"
                 onClick={proceedHandler}
                 className={styles.container_proceed_allow}>
-                {t('proceed')}
+                <Typography>proceed</Typography>
               </Button>
             )}
             <Button onClick={handleClear} className={isClearClasses}>
-              {t('clear')}
+              <Typography>clear</Typography>
             </Button>
           </>
         ) : (

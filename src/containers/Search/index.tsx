@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import {useRouter} from 'next/router';
-import {useTranslation} from 'next-i18next';
 
 import {filteredMass} from '~/utils';
 import {VideosSearchService} from '~/api';
@@ -19,13 +18,12 @@ import {
   INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE,
 } from '~/constants';
 import FilmCardSkeleton from '~/components/skeletons/FilmCard';
+import useLocales from '~/hooks/useLocales';
 
 import styles from './Search.module.scss';
 
 const Search: React.FC = () => {
   const {query} = useRouter();
-
-  const {t} = useTranslation('common');
 
   const [activePage, setActivePage] = useState<number>(
     INITIAL_PAGINATION_ACTIVE_PAGE,
@@ -52,6 +50,8 @@ const Search: React.FC = () => {
     INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE,
   ).fill({});
 
+  const {translatedTypo} = useLocales('back');
+
   const renderResultListSkeletons = skeletonsArray?.map(({index}) => (
     <FilmCardSkeleton
       key={index}
@@ -77,7 +77,7 @@ const Search: React.FC = () => {
         <section>
           <div className={styles.wrapper__content__header}>
             <BackButton
-              text={t('back')}
+              text={translatedTypo || ''}
               LeftIcon={LeftArrow}
               className={styles.wrapper__content__header__route}
             />

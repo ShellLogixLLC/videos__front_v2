@@ -1,7 +1,6 @@
 import React, {useState, useContext, useEffect} from 'react';
 import classNames from 'classnames';
 import {useToggle} from 'react-use';
-import {useTranslation} from 'next-i18next';
 import {useRouter} from 'next/router';
 
 import {Route} from '~/constants';
@@ -36,8 +35,6 @@ const Header: React.FC = () => {
   const [isCategories, setIsCategories] = useState<boolean>(false);
   const [isCategoriesHoverable, setCategoriesHoverable] =
     useState<boolean>(false);
-
-  const {t} = useTranslation('common');
 
   const logoClassNames = classNames(styles.wrapper__content_logo, {
     [styles.wrapper__content_logo_hidden]: expanded && !isDesktop,
@@ -125,7 +122,7 @@ const Header: React.FC = () => {
         to={routeName}
         className={styles.wrapper__content_menu__link}
         activeClassName={styles.wrapper__content_menu__link_active}>
-        {t(pageName)}
+        <Typography>{pageName}</Typography>
       </Link>
     );
   });
@@ -141,7 +138,7 @@ const Header: React.FC = () => {
         activeClassName={
           styles.wrapper__content__burger__container__nav__items_active
         }>
-        {t(pageName)}
+        <Typography>{pageName}</Typography>
       </Link>
     );
   });

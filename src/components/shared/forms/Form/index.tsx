@@ -8,7 +8,8 @@ import classNames from 'classnames';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {useForm, Controller, DefaultValues} from 'react-hook-form';
 import {isUndefined} from 'lodash';
-import {useTranslation} from 'next-i18next';
+
+import useLocales from '~/hooks/useLocales';
 
 import Input from '../../Input';
 import Button from '../../Button';
@@ -60,8 +61,6 @@ const Form = forwardRef<any, IFormProps>(
       reValidateMode: 'onChange',
       resolver: yupResolver(schema),
     });
-
-    const {t} = useTranslation('common');
 
     const formClasses = classNames(styles.container, {
       [className]: className,
@@ -131,6 +130,8 @@ const Form = forwardRef<any, IFormProps>(
       ],
     );
 
+    const {translatedTypo: translatedSubmitText} = useLocales(submitText);
+
     const renderFields = useCallback(
       () => fields.map(({name, ...rest}) => renderField(name, rest)),
       [fields, renderField],
@@ -160,7 +161,7 @@ const Form = forwardRef<any, IFormProps>(
           disabled={!isValid}
           onClick={formHandler}
           className={disabledButtonClasses}>
-          {submitText && t(submitText)}
+          {translatedSubmitText || submitText}
         </Button>
       </form>
     );

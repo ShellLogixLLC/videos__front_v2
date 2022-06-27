@@ -1,6 +1,7 @@
 import React, {forwardRef, useMemo, useState, useCallback} from 'react';
 import classNames from 'classnames';
-import {useTranslation} from 'next-i18next';
+
+import useLocales from '~/hooks/useLocales';
 
 import Typography from '../Typography';
 
@@ -41,8 +42,6 @@ const Input = forwardRef<any, InputProps>(
   ) => {
     const [isToggledIcon, setIsToggledIcon] = useState<boolean>(false);
 
-    const {t} = useTranslation('common');
-
     const inputClasses = classNames(styles.container, {
       [className]: className,
       [styles.container_right_icon]: RightIcon,
@@ -81,9 +80,12 @@ const Input = forwardRef<any, InputProps>(
       [RightIcon, RightToggledIcon, isToggledIcon],
     );
 
+    const {translatedTypo: translatedLabel} = useLocales(label);
+    const {translatedTypo: translatedPlaceholder} = useLocales(placeholder);
+
     return (
       <label htmlFor={name} className={labelClasses}>
-        <span className={labelTextClasses}>{label && t(label)}</span>
+        <span className={labelTextClasses}>{translatedLabel || label}</span>
         <div ref={wrapperRef} className={inputInnerClasses}>
           <input
             {...rest}
@@ -103,7 +105,7 @@ const Input = forwardRef<any, InputProps>(
             maxLength={maxLength}
             className={inputClasses}
             onMouseOver={onMouseOver}
-            placeholder={placeholder && t(placeholder)}
+            placeholder={translatedPlaceholder || placeholder}
             type={isToggledIcon ? 'text' : type}
             pattern={type === 'number' ? '[0-9]*' : undefined}
             inputMode={type === 'number' ? 'numeric' : 'text'}

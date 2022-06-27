@@ -1,12 +1,12 @@
 import React, {useCallback, useEffect} from 'react';
 import {useToggle} from 'react-use';
-import {useTranslation} from 'next-i18next';
 
 import {Logo} from '~/assets';
 import {Loader} from '~/components';
 import {Route, signInForm} from '~/constants';
 import {authActions, authSelect} from '~/store/auth';
 import {useAppDispatch, useAppSelector} from '~/hooks';
+import useLocales from '~/hooks/useLocales';
 
 import Form from '../../shared/forms/Form';
 import Link from '../../shared/Link';
@@ -17,8 +17,6 @@ import styles from './SignIn.module.scss';
 const SignIn: React.FC = () => {
   const dispatch = useAppDispatch();
   const {userInfo, error} = useAppSelector(authSelect);
-
-  const {t} = useTranslation('common');
 
   const [isLoading, toggleIsLoading] = useToggle(false);
 
@@ -33,6 +31,8 @@ const SignIn: React.FC = () => {
   useEffect(() => {
     if (userInfo || error) toggleIsLoading();
   }, [isLoading, userInfo, error, toggleIsLoading]);
+
+  const {translatedTypo} = useLocales('signIn');
 
   return (
     <div className={`container_without-header ${styles.container}`}>
@@ -51,7 +51,7 @@ const SignIn: React.FC = () => {
         inputClassName={styles.sign_in__block__input__inp}
         labelClassName={styles.sign_in__block}
         innerClassName={styles.sign_in__block__input}
-        submitText={t('signIn')}
+        submitText={translatedTypo || ''}
         onSubmit={handleSignInFormSubmit}
       />
       <Link to={Route.ForgotPassword} className={styles.container__forgot}>
@@ -80,7 +80,7 @@ const SignIn: React.FC = () => {
         </Link>
       </div>
       <Link to={Route.Home} className={styles.container__route}>
-        {t('backToHome')}
+        <Typography>backToHome</Typography>
       </Link>
       {isLoading && <Loader isVertical />}
     </div>

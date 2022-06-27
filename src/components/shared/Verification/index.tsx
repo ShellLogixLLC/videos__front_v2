@@ -1,6 +1,5 @@
 import React from 'react';
 import classNames from 'classnames';
-import {useTranslation} from 'next-i18next';
 
 import Typography from '~/components/shared/Typography';
 
@@ -18,18 +17,16 @@ const Verification: React.FC<VerificationProps> = ({value, onClick}) => {
     [styles.wrapper__buttons_not_verified]: !value,
   });
 
-  const {t} = useTranslation('common');
-
   return (
     <label className={styles.wrapper}>
       <Typography tagName="span" className={styles.wrapper__title}>
         accountVerification
       </Typography>
       <Button onClick={() => onClick(true)} className={verifiedClasses}>
-        {t('verified')}
+        <Typography>verified</Typography>
       </Button>
       <Button onClick={() => onClick(false)} className={dontVerifiedClasses}>
-        {t('unverified')}
+        <Typography>unverified</Typography>
       </Button>
     </label>
   );

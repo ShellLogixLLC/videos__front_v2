@@ -15,8 +15,6 @@ const FilterBySort: React.FC<IFilterBySortProps> = ({options}) => {
   const filterRef = useRef<HTMLDivElement | null>(null);
   const [expanded, toggleExpanded] = useToggle(false);
 
-  // const {t} = useTranslation('common');
-
   const containerClasses = classNames(styles.container, {
     [styles.container__expand]: expanded,
   });

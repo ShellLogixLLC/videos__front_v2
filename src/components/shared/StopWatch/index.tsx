@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
 import classNames from 'classnames';
-import {useTranslation} from 'next-i18next';
 
 import {formatTimer} from '~/utils';
 import {removeCookie, setCookie} from '~/libraries';
@@ -22,8 +21,6 @@ const Timer: React.FC<ITimerProps> = ({
 }) => {
   const dispatch = useAppDispatch();
   const {emailVerify} = useAppSelector(authSelect);
-
-  const {t} = useTranslation('common');
 
   const wrapperClasses = classNames(styles.container__wrapper, {
     [styles.container__wrapper_disable]: !isNotValid,
@@ -61,7 +58,7 @@ const Timer: React.FC<ITimerProps> = ({
         onClick={resendHandler}
         disabled={!isNotValid}
         className={resendClasses}>
-        {t('resendOTP')}
+        <Typography>resendOTP</Typography>
       </Button>
       <div className={styles.timer_block}>
         <Typography className={wrapperClasses}>{formatTimer(timer)}</Typography>

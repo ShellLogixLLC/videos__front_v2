@@ -1,12 +1,12 @@
 import React, {useCallback, useEffect} from 'react';
 import {useToggle} from 'react-use';
-import {useTranslation} from 'next-i18next';
 
 import {Logo} from '~/assets';
 import {Loader} from '~/components';
 import {registrationForm} from '~/constants';
 import {authActions, authSelect} from '~/store/auth';
 import {useAppDispatch, useAppSelector} from '~/hooks';
+import useLocales from '~/hooks/useLocales';
 
 import Form from '../../shared/forms/Form';
 import BackButton from '../../shared/BackButton';
@@ -18,9 +18,9 @@ const Registration: React.FC = () => {
   const dispatch = useAppDispatch();
   const {error} = useAppSelector(authSelect);
 
-  const {t} = useTranslation('common');
-
   const [isLoading, toggleIsLoading] = useToggle(false);
+
+  const {translatedTypo} = useLocales('cancelRegistration');
 
   const handleResetPassFormSubmit = useCallback(
     (values) => {
@@ -46,7 +46,7 @@ const Registration: React.FC = () => {
   return (
     <div className={`container_without-header ${styles.container}`}>
       <BackButton
-        text={t('cancelRegistration')}
+        text={translatedTypo || ''}
         className={styles.container__cancel}
       />
       <Logo className={styles.container__top_img} />
