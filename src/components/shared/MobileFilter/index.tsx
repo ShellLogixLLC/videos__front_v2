@@ -33,7 +33,9 @@ const MobileFilter: React.FC<IMobileFilterProps> = ({
       <div className={styles.wrapper__content}>
         <DatePicker />
         <FilterBySort options={filteredMass} />
-        <Button className={styles.wrapper__content__btn}>Filter</Button>
+        <Button className={styles.wrapper__content__btn}>
+          <Typography tagName="span">filter</Typography>
+        </Button>
       </div>
     </div>
   );
