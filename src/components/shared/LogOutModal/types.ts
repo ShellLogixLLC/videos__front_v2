@@ -1,6 +1,8 @@
+import React from 'react';
+
 export type LogOutModalProps = {
   show?: boolean;
-  setShow?: any;
+  setShow?: React.Dispatch<React.SetStateAction<boolean>>;
   close?: boolean;
-  setClose?: any;
+  setClose?: React.Dispatch<React.SetStateAction<boolean>>;
 };

@@ -20,5 +20,43 @@
     flex-direction: column;
     padding-bottom: 40px;
 
+    &__close__icon{
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+
+  &__content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &__text{
+      font-size: 24px;
+      color:red
+    }
+
+    &__buttons{
+      @extend %flex-center;
+
+      &__cancel{
+        border: none;
+        border-radius: 16px;
+        &__title{
+          font-size: 20px;
+          color: blue;
+        }
+      }
+
+      &__logout{
+        border: none;
+        border-radius: 16px;
+        &__title{
+          font-size: 20px;
+          color: blue;
+        }
+      }
+    }
   }
 }
