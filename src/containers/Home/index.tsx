@@ -9,6 +9,7 @@ import {
   HorizontalSlider,
 } from '~/components';
 import WishlistSearchService from '~/api/wishlist';
+import {LogoutModal} from '~/components';
 
 import styles from './Home.module.scss';
 
@@ -70,6 +71,7 @@ const Home: React.FC = () => {
         <DatePicker />
         <FilterBySort options={filteredMass} />
       </aside>
+      <LogoutModal />
     </article>
   );
 };

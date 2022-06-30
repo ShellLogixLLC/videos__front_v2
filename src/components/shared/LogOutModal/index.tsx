@@ -64,15 +64,6 @@ const LogOutModal: React.FC<LogOutModalProps> = ({
               </Typography>
             </Button>
           </div>
-          <Button
-            className={styles.modal__content__buttons__logout}
-            onClick={handleLogoutSubmit}>
-            <Typography
-              className={styles.modal__content__buttons__logout__title}
-              tagName="span">
-              Log Out
-            </Typography>
-          </Button>
         </div>
       </div>
     </div>
