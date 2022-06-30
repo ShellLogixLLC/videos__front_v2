@@ -64,12 +64,17 @@ export const register = createAsyncThunk(
       username: string;
       password: string;
       passwordConfirmation: string;
+      verification: boolean;
     },
     thunkAPI,
   ) => {
     try {
       const {data} = await client.post('/user/signup', credentials);
-      await RouterService.push(Route.RegistrationSetupPassword);
+      if (credentials.verification) {
+        await RouterService.push(Route.RegistrationSetupPassword);
+      } else {
+        await RouterService.push(Route.SignIn);
+      }
 
       return {
         emailVerify: data.email,
