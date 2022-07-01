@@ -1,15 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import {filteredMass} from '~/utils';
 import {CategoryService, VideosService} from '~/api';
 import {
+  Button,
   DatePicker,
-  Typography,
   FilterBySort,
   HorizontalSlider,
+  LogoutModal,
+  Typography,
 } from '~/components';
 import WishlistSearchService from '~/api/wishlist';
-import {LogoutModal} from '~/components';
+import {removeCookie} from '~/libraries';
+import {RouterService} from '~/services';
+import {Route} from '~/constants';
 
 import styles from './Home.module.scss';
 
@@ -21,6 +25,20 @@ const Home: React.FC = () => {
   const videos = videosData?.videos;
 
   const {data: wishlistData} = WishlistSearchService.useVideoWishlistIds();
+  const [showModal, setShowModal] = useState<boolean>(false);
+
+  const openModal = (): void => {
+    setShowModal(!showModal);
+  };
+
+  const close = (): void => {
+    setShowModal(false);
+  };
+
+  // const handleLogOut = (): void => {
+  //   removeCookie('token');
+  //   RouterService.push(Route.Home);
+  // };
 
   return (
     <article className={styles.wrapper}>
@@ -71,7 +89,8 @@ const Home: React.FC = () => {
         <DatePicker />
         <FilterBySort options={filteredMass} />
       </aside>
-      <LogoutModal />
+      <LogoutModal close={close} show={showModal} />
+      <Button onClick={openModal}>Log Out</Button>
     </article>
   );
 };
