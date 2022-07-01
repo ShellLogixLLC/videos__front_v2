@@ -35,8 +35,13 @@ const LogOutModal: React.FC<LogOutModalProps> = ({show, close}) => {
               onClick={() => close()}
             />
             <div className={styles.modal__content}>
-              <Typography tagName="h2" className={styles.modal__content__text}>
-                Are You sure You want to Log Out?
+              <Typography tagName="h2" className={styles.modal__content__title}>
+                Log Out?
+              </Typography>
+              <Typography
+                tagName="span"
+                className={styles.modal__content__text}>
+                Are you sure you want to log out?
               </Typography>
               <div className={styles.modal__content__buttons}>
                 <Button
