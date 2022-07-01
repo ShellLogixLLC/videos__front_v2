@@ -11,9 +11,6 @@ import {
   Typography,
 } from '~/components';
 import WishlistSearchService from '~/api/wishlist';
-import {removeCookie} from '~/libraries';
-import {RouterService} from '~/services';
-import {Route} from '~/constants';
 
 import styles from './Home.module.scss';
 
@@ -27,18 +24,13 @@ const Home: React.FC = () => {
   const {data: wishlistData} = WishlistSearchService.useVideoWishlistIds();
   const [showModal, setShowModal] = useState<boolean>(false);
 
-  const openModal = (): void => {
-    setShowModal(!showModal);
-  };
+  // const openModal = (): void => {
+  //   setShowModal(!showModal);
+  // };
 
   const close = (): void => {
     setShowModal(false);
   };
-
-  // const handleLogOut = (): void => {
-  //   removeCookie('token');
-  //   RouterService.push(Route.Home);
-  // };
 
   return (
     <article className={styles.wrapper}>
@@ -83,6 +75,7 @@ const Home: React.FC = () => {
             dataList={videos}
             wishlist={wishlistData}
           />
+          {/*<Button onClick={openModal}>Log Out</Button>*/}
         </section>
       </div>
       <aside className={styles.filter_block}>
@@ -90,7 +83,6 @@ const Home: React.FC = () => {
         <FilterBySort options={filteredMass} />
       </aside>
       <LogoutModal close={close} show={showModal} />
-      <Button onClick={openModal}>Log Out</Button>
     </article>
   );
 };
