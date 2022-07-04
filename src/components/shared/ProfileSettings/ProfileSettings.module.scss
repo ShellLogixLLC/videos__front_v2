@@ -37,12 +37,32 @@
   position: absolute;
   top: 100%;
   visibility: hidden;
-  //transition: all 0.5s ease-in-out;
-  background: $dark-white;
+  background: $dark-red;
   border-radius: 6px;
 
   &__open{
     visibility: visible;
-    transition: all 0.1s ease-in-out;
+    transition: all 0.5s ease-in-out;
   }
+
+  &__list{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+
+    &__link{
+      font-size: 18px;
+      line-height: 22px;
+      transition: all 0.5s ease;
+      color: $white;
+      width: 100%;
+      min-height: 60px;
+
+      &:hover{
+        color: $red;
+      }
+    }
+  }
+
+
 }

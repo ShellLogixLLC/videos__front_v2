@@ -1,7 +1,7 @@
 import React, {useRef, useState} from 'react';
 import classNames from 'classnames';
 
-import {LogoutModal, Typography} from '~/components';
+import {LogoutModal, ProfileModal, Typography} from '~/components';
 import {BottomArrow, UserIcon} from '~/assets';
 import {useAppSelector, useOnClickOutside} from '~/hooks';
 import {authSelect} from '~/store/auth';
@@ -11,7 +11,8 @@ import styles from './ProfileSettings.module.scss';
 
 const ProfileSettings: React.FC<ProfileSettingsProps> = () => {
   const [isDropdownOpen, setDropdownOpen] = useState<boolean>(false);
-  const [showModal, setShowModal] = useState<boolean>(false);
+  const [showLogoutModal, setShowLogoutModal] = useState<boolean>(false);
+  const [showProfileModal, setShowProfileModal] = useState<boolean>(false);
 
   const {userInfo} = useAppSelector(authSelect);
 
@@ -22,11 +23,15 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = () => {
   };
 
   const closeModal = (): void => {
-    setShowModal(false);
+    setShowLogoutModal(false);
   };
 
-  const openModal = (): void => {
-    setShowModal(!showModal);
+  const openLogoutModal = (): void => {
+    setShowLogoutModal(!showLogoutModal);
+  };
+
+  const openProfileModal = (): void => {
+    setShowProfileModal(!showProfileModal);
   };
 
   const closeDropdown = (): void => {
@@ -63,15 +68,27 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = () => {
         </Typography>
         <BottomArrow clasName={arrowIconClassName} />
         <div ref={dropdownRef} className={dropdownClassName}>
-          <ul>
-            <li>Some Link</li>
-            <li role="button" onClick={openModal}>
+          <ul className={styles.content__list}>
+            <li
+              role="button"
+              onClick={openProfileModal}
+              className={styles.content__list__link}>
+              User Info
+            </li>
+            <li
+              role="button"
+              onClick={openLogoutModal}
+              className={styles.content__list__link}>
               Log Out
             </li>
           </ul>
         </div>
       </div>
-      <LogoutModal close={closeModal} show={showModal} />
+      <LogoutModal close={closeModal} show={showLogoutModal} />
+      <ProfileModal
+        expanded={showProfileModal}
+        setExpanded={setShowProfileModal}
+      />
     </div>
   );
 };

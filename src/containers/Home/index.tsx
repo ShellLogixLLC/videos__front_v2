@@ -1,17 +1,14 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 import {filteredMass} from '~/utils';
 import {CategoryService, VideosService} from '~/api';
 import {
-  Button,
   DatePicker,
   FilterBySort,
   HorizontalSlider,
-  LogoutModal,
   Typography,
 } from '~/components';
 import WishlistSearchService from '~/api/wishlist';
-import {getCookieFromBrowser} from '~/libraries';
 
 import styles from './Home.module.scss';
 
@@ -73,7 +70,6 @@ const Home: React.FC = () => {
         <DatePicker />
         <FilterBySort options={filteredMass} />
       </aside>
-      {/*<LogoutModal close={close} show={showModal} />*/}
     </article>
   );
 };
