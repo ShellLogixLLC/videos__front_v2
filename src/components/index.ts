@@ -37,6 +37,7 @@ export {default as VideoDescription} from './shared/VideoDescription';
 export {default as LanguageDropDown} from './shared/LanguageDropDown';
 export {default as HorizontalSlider} from './shared/HorizontalSlider';
 export {default as LogoutModal} from './shared/LogOutModal';
+export {default as ProfileSettings} from './shared/ProfileSettings';
 
 // Skeletons
 export {default as VideoSkeleton} from './skeletons/Video';

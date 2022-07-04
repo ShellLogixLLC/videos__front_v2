@@ -11,6 +11,7 @@ import {
   Typography,
 } from '~/components';
 import WishlistSearchService from '~/api/wishlist';
+import {getCookieFromBrowser} from '~/libraries';
 
 import styles from './Home.module.scss';
 
@@ -21,12 +22,15 @@ const Home: React.FC = () => {
   const {videosData} = VideosService.useVideos();
   const videos = videosData?.videos;
 
+  const token = getCookieFromBrowser('token');
+
   const {data: wishlistData} = WishlistSearchService.useVideoWishlistIds();
+
   const [showModal, setShowModal] = useState<boolean>(false);
 
-  // const openModal = (): void => {
-  //   setShowModal(!showModal);
-  // };
+  const openModal = (): void => {
+    setShowModal(!showModal);
+  };
 
   const close = (): void => {
     setShowModal(false);
@@ -75,7 +79,7 @@ const Home: React.FC = () => {
             dataList={videos}
             wishlist={wishlistData}
           />
-          {/*<Button onClick={openModal}>Log Out</Button>*/}
+          <Button onClick={openModal}>Log Out</Button>
         </section>
       </div>
       <aside className={styles.filter_block}>

@@ -17,6 +17,7 @@ const HeaderNavbar: React.FC = ({children}) => {
   const dispatch = useAppDispatch();
   const token = getCookieFromBrowser('token');
   const {userInfo} = useAppSelector(authSelect);
+
   const {expanded} = useContext(ToggleContext);
 
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
