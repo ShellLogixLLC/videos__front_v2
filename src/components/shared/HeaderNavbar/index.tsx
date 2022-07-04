@@ -7,6 +7,7 @@ import {getCookieFromBrowser} from '~/libraries';
 import {authActions, authSelect} from '~/store/auth';
 import {LikeIt, UserIcon, UserRound} from '~/assets';
 import {useAppDispatch, useAppSelector} from '~/hooks';
+import {ProfileSettings} from '~/components';
 
 import Link from '../Link';
 import ProfileModal from '../ProfileModal';
@@ -39,10 +40,11 @@ const HeaderNavbar: React.FC = ({children}) => {
       <UserIcon />
     </Link>
   ) : (
-    <UserRound
-      className={styles.wrapper__content__user_icon}
-      onClick={handleUserModal}
-    />
+    // <UserRound
+    //   className={styles.wrapper__content__user_icon}
+    //   onClick={handleUserModal}
+    // />
+    <ProfileSettings />
   );
 
   return (
