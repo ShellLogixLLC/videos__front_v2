@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import classNames from 'classnames';
 
 import {Route} from '~/constants';
@@ -11,7 +11,9 @@ import Link from '../Link';
 import LanguageDropDown from '../LanguageDropDown';
 import styles from '../../layouts/Header/Header.module.scss';
 
-const HeaderNavbar: React.FC = ({children}) => {
+import {HeaderNavbarProps} from './types';
+
+const HeaderNavbar: React.FC<HeaderNavbarProps> = ({children}) => {
   const token = getCookieFromBrowser('token');
 
   const {expanded} = useContext(ToggleContext);
@@ -20,13 +22,9 @@ const HeaderNavbar: React.FC = ({children}) => {
     [styles.wrapper__content_menu_hidden]: expanded,
   });
 
-  // const handleUserModal = () => {
-  //   setIsOpenModal(true);
-  //
-  //   if (!userInfo) {
-  //     dispatch(authActions.loginWithToken({token: token as string}));
-  //   }
-  // };
+  const wrapperClassName = classNames(styles.wrapper__content__other, {
+    [styles.wrapper__content__other__withToken]: !token,
+  });
 
   const renderUserIcons = !token ? (
     <Link to={Route.SignIn} className={styles.wrapper__content__other__sign_in}>
@@ -39,7 +37,7 @@ const HeaderNavbar: React.FC = ({children}) => {
   return (
     <>
       <nav className={navClassName}>{children}</nav>
-      <div className={styles.wrapper__content__other}>
+      <div className={wrapperClassName}>
         <div className={styles.wrapper__content__other__skeleton} />
         <Link
           className={styles.wrapper__content__other__link}

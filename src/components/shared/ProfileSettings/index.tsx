@@ -54,33 +54,39 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = () => {
     [styles.content__open]: isDropdownOpen,
   });
 
+  const linkClassName = classNames(styles.content__list__link);
+
   useOnClickOutside(dropdownRef, closeDropdown);
 
   return (
-    <div className={wrapperClassName}>
-      <div
-        role="button"
-        onClick={handleDropdownClick}
-        className={containerClassName}>
+    <div
+      role="button"
+      onClick={handleDropdownClick}
+      className={wrapperClassName}>
+      <div ref={dropdownRef} className={containerClassName}>
         <UserIcon className={styles.container__userIcon} />
         <Typography tagName="span" className={styles.container__user}>
           {userInfo ? userInfo.username && userInfo.username : ''}
         </Typography>
-        <BottomArrow clasName={arrowIconClassName} />
-        <div ref={dropdownRef} className={dropdownClassName}>
+        <BottomArrow className={arrowIconClassName} />
+        <div className={dropdownClassName}>
           <ul className={styles.content__list}>
-            <li
-              role="button"
-              onClick={openProfileModal}
-              className={styles.content__list__link}>
-              User Info
-            </li>
-            <li
-              role="button"
-              onClick={openLogoutModal}
-              className={styles.content__list__link}>
-              Log Out
-            </li>
+            <div className={styles.content__list__wrapper}>
+              <li
+                role="button"
+                onClick={openProfileModal}
+                className={linkClassName}>
+                User Info
+              </li>
+            </div>
+            <div className={styles.content__list__wrapper}>
+              <li
+                role="button"
+                onClick={openLogoutModal}
+                className={linkClassName}>
+                Log Out
+              </li>
+            </div>
           </ul>
         </div>
       </div>

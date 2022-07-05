@@ -20,6 +20,7 @@
   background-color: $black;
   transition: 0.2s all ease;
 
+
   @include breakpoint(desktop) {
     right: 72px;
   }

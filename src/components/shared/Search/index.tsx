@@ -5,6 +5,7 @@ import {useRouter} from 'next/router';
 import {ToggleContext} from '~/context';
 import {useOnClickOutside} from '~/hooks';
 import {SearchBackArrowIcon, SearchIcon} from '~/assets';
+import {getCookieFromBrowser} from '~/libraries';
 
 import Input from '../Input';
 
@@ -16,6 +17,8 @@ const Search: React.FC = () => {
   const filterRef = useRef<HTMLDivElement | null>(null);
   const [searchValue, setSearchValue] = useState<string>('');
   const router = useRouter();
+
+  const token = getCookieFromBrowser('token');
 
   const onSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,6 +40,7 @@ const Search: React.FC = () => {
 
   const labelClassName = classNames(styles.wrapper, {
     [styles.wrapper_expanded]: expanded,
+    [styles.wrapper__withToken]: !token,
   });
 
   const inputClasses = classNames(styles.wrapper__container__search, {

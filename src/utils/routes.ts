@@ -57,9 +57,4 @@ export const routesBurger: RoutesProps[] = [
     pageName: 'New',
     routeName: Route.New,
   },
-  {
-    id: 7,
-    pageName: 'Sign In',
-    routeName: Route.SignIn,
-  },
 ];
