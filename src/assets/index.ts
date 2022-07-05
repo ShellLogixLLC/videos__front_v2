@@ -69,6 +69,7 @@ export {default as UserRound} from './icons/userRound.svg';
 export {default as NewsPaper} from './icons/newspaper.svg';
 export {default as GoAnother} from './icons/goAnother.svg';
 export {default as ExitArrow} from './icons/exitArrow.svg';
+export {default as LogoutIcon} from './icons/logout.svg';
 export {default as MiniHouse} from './icons/miniHouse.svg';
 export {default as RulerIcon} from './icons/rulerIcon.svg';
 export {default as LeftArrow} from './icons/leftArrow.svg';

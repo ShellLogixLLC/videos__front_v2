@@ -1,6 +1,7 @@
 .wrapper {
   position: relative;
   transition:0.2s ease;
+  min-width: 135px;
 
   &__open {
     border-top-right-radius: 8px;
@@ -22,7 +23,6 @@
 
     &__active {
       transform: rotate(180deg);
-
     }
   }
 
@@ -39,7 +39,7 @@
     margin-left: 3px;
 
     &__open {
-
+     display: none;
     }
   }
 }
@@ -51,7 +51,6 @@
   background: $black;
   border-radius: 0 0 8px 8px;
   border: 2px solid $dark-red;
-  min-width: 125px;
   width: 100%;
 
   &__open {
@@ -60,9 +59,18 @@
 
   &__list {
     list-style: none;
-    display: flex;
+    @extend %flex-center;
     flex-direction: column;
-    padding: 20px 20px 0;
+
+
+    &__icon{
+     width: 20px !important;
+     height: 20px !important;
+
+      &__exit{
+        margin-right: 5px;
+      }
+    }
 
     &__wrapper{
       @extend %flex-center;
@@ -70,6 +78,7 @@
 
     &__link {
      @extend %film_info_text;
+      @extend %flex-center;
       color: $white;
       min-height: 45px;
       transition: 0.2s ease;
@@ -79,7 +88,7 @@
 
       &:hover {
         color: $red;
-        padding-left: 4px;
+        text-decoration: underline;
       }
     }
   }

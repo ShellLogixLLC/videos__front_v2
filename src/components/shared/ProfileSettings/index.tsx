@@ -2,7 +2,7 @@ import React, {useRef, useState} from 'react';
 import classNames from 'classnames';
 
 import {LogoutModal, ProfileModal, Typography} from '~/components';
-import {BottomArrow, UserIcon} from '~/assets';
+import {BottomArrow, ExitIcon, UserIcon} from '~/assets';
 import {useAppSelector, useOnClickOutside} from '~/hooks';
 import {authSelect} from '~/store/auth';
 
@@ -54,6 +54,11 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = () => {
     [styles.container__userIcon__open]: isDropdownOpen,
   });
 
+  const logOutIconClassName = classNames(
+    styles.content__list__icon,
+    styles.content__list__icon__exit,
+  );
+
   const dropdownClassName = classNames(styles.content, {
     [styles.content__open]: isDropdownOpen,
   });
@@ -75,21 +80,19 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = () => {
         <BottomArrow className={arrowIconClassName} />
         <div className={dropdownClassName}>
           <ul className={styles.content__list}>
-            <div className={styles.content__list__wrapper}>
-              <li
-                role="button"
-                onClick={openProfileModal}
-                className={linkClassName}>
-                User Info
-              </li>
+            <div
+              role="button"
+              onClick={openProfileModal}
+              className={styles.content__list__wrapper}>
+              <UserIcon className={styles.content__list__icon} />
+              <li className={linkClassName}>User Info</li>
             </div>
-            <div className={styles.content__list__wrapper}>
-              <li
-                role="button"
-                onClick={openLogoutModal}
-                className={linkClassName}>
-                Log Out
-              </li>
+            <div
+              role="button"
+              onClick={openLogoutModal}
+              className={styles.content__list__wrapper}>
+              <ExitIcon className={logOutIconClassName} />
+              <li className={linkClassName}>Log Out</li>
             </div>
           </ul>
         </div>
