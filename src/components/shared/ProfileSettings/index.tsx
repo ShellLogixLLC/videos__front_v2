@@ -16,6 +16,11 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = () => {
 
   const {userInfo} = useAppSelector(authSelect);
 
+  const realUserName =
+    userInfo && userInfo.username.length > 10
+      ? userInfo.username.slice(0, 10)
+      : userInfo && userInfo.username;
+
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleDropdownClick = (): void => {
@@ -34,7 +39,6 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = () => {
   const openProfileModal = (): void => {
     setShowProfileModal(!showProfileModal);
     setDropdownOpen(false);
-    console.log(isDropdownOpen, 'isis');
   };
 
   const closeDropdown = (): void => {
@@ -78,7 +82,7 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = () => {
       <div ref={dropdownRef} className={containerClassName}>
         <UserIcon className={userIconClassName} />
         <Typography tagName="span" className={styles.container__user}>
-          {userInfo ? userInfo.username && userInfo.username : ''}
+          {realUserName}
         </Typography>
         <BottomArrow className={arrowIconClassName} />
         <div className={dropdownClassName}>

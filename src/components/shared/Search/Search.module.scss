@@ -8,6 +8,7 @@
   border-radius: 50px !important;
   background-color: transparent;
 
+
   @include breakpoint(desktop) {
     max-width: calc((100vw - 115px));
   }
@@ -19,6 +20,8 @@
   right: 170px;
   background-color: $black;
   transition: 0.2s all ease;
+  opacity: 0;
+  display: none;
 
   @include breakpoint(desktop) {
     right: 72px;

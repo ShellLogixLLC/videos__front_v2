@@ -89,6 +89,7 @@
       &:hover {
         color: $red;
         text-decoration: underline;
+        text-shadow: -16px 6px 15px $red;
       }
     }
   }
