@@ -13,6 +13,9 @@ import styles from './Search.module.scss';
 
 const Search: React.FC = () => {
   const {expanded, toggleExpanded} = useContext(ToggleContext);
+
+  console.log(expanded, 'expanded');
+
   const inputRef = useRef<HTMLInputElement | null>(null);
   const filterRef = useRef<HTMLDivElement | null>(null);
   const [searchValue, setSearchValue] = useState<string>('');
@@ -40,11 +43,13 @@ const Search: React.FC = () => {
 
   const labelClassName = classNames(styles.wrapper, {
     [styles.wrapper_expanded]: expanded,
-    [styles.wrapper__withToken]: !token,
+    // [styles.wrapper__withToken]: token,
+    // [styles.wrapper__withToken__expanded]: token && expanded,
   });
 
   const inputClasses = classNames(styles.wrapper__container__search, {
     [styles.wrapper__container__search_expanded]: expanded,
+    // [styles.wrapper__container__search_with_token]: token,
   });
 
   const backArrowClassName = classNames(styles.wrapper__container__back, {

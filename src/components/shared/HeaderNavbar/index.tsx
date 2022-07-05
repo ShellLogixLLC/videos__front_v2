@@ -23,7 +23,7 @@ const HeaderNavbar: React.FC<HeaderNavbarProps> = ({children}) => {
   });
 
   const wrapperClassName = classNames(styles.wrapper__content__other, {
-    [styles.wrapper__content__other__withToken]: !token,
+    [styles.wrapper__content__other__withToken]: token,
   });
 
   const renderUserIcons = !token ? (

@@ -34,7 +34,7 @@ const MyFavorites: React.FC = () => {
     if (query?.page) {
       setActivePage(Number(query.page));
     }
-  }, [query.page]);
+  }, [query.pagewq]);
 
   const {data, isLoading} = WishlistSearchService.useVideoWishlist(
     INITIAL_WISHLIST_LIMIT,

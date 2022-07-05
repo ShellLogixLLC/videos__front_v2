@@ -19,6 +19,7 @@
   right: 170px;
   background-color: $black;
   transition: 0.2s all ease;
+  //top: 80px;
 
 
   @include breakpoint(desktop) {
@@ -42,6 +43,25 @@
       left: 62px;
     }
   }
+
+  //&__withToken{
+  //  left: calc(100% - 240px);
+  //  right: 240px;
+  //
+  //  @include breakpoint(desktop) {
+  //    left: 84px;
+  //  }
+  //
+  //  @include breakpoint(tablet) {
+  //    left: 62px;
+  //  }
+  //
+  //  &__expanded{
+  //    left: calc(100% - 390px);
+  //    right: 390px;
+  //  }
+  //}
+
 
   &__container {
     &__back {
@@ -79,6 +99,26 @@
       caret-color: transparent;
       border-radius: 16px !important;
       background-color: transparent;
+
+      //&_with_token{
+      //
+      //  @include breakpoint(desktop) {
+      //    padding-right: 66px;
+      //  }
+      //
+      //  @include breakpoint(tablet) {
+      //    padding: 12px 48px 12px 16px !important;
+      //    max-width: calc((100vw - 110px));
+      //  }
+      //
+      //  &:hover {
+      //    border-color: $red !important;
+      //  }
+      //
+      //  &:focus {
+      //    border-color: $red !important;
+      //  }
+      //}
 
       &:hover {
         border-color: transparent !important;

@@ -50,6 +50,10 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = () => {
     [styles.container__arrowIcon__active]: isDropdownOpen,
   });
 
+  const userIconClassName = classNames(styles.container__userIcon, {
+    [styles.container__userIcon__open]: isDropdownOpen,
+  });
+
   const dropdownClassName = classNames(styles.content, {
     [styles.content__open]: isDropdownOpen,
   });
@@ -64,7 +68,7 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = () => {
       onClick={handleDropdownClick}
       className={wrapperClassName}>
       <div ref={dropdownRef} className={containerClassName}>
-        <UserIcon className={styles.container__userIcon} />
+        <UserIcon className={userIconClassName} />
         <Typography tagName="span" className={styles.container__user}>
           {userInfo ? userInfo.username && userInfo.username : ''}
         </Typography>
