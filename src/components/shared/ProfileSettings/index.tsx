@@ -28,10 +28,13 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = () => {
 
   const openLogoutModal = (): void => {
     setShowLogoutModal(!showLogoutModal);
+    setDropdownOpen(false);
   };
 
   const openProfileModal = (): void => {
     setShowProfileModal(!showProfileModal);
+    setDropdownOpen(false);
+    console.log(isDropdownOpen, 'isis');
   };
 
   const closeDropdown = (): void => {
