@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import {Route} from '~/constants';
 import {ToggleContext} from '~/context';
 import {getCookieFromBrowser} from '~/libraries';
-import {LikeItIcon, UserIcon} from '~/assets';
+import {LikeItIcon} from '~/assets';
 import {ProfileSettings, Search, SigninDropdown} from '~/components';
 
 import Link from '../Link';
