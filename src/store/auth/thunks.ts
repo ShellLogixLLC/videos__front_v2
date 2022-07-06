@@ -6,10 +6,10 @@ import {setCookie} from '~/libraries';
 import {errorToast} from '~/utils';
 import {RouterService} from '~/services';
 
-import {reducerName} from './constants';
+import {authReducer} from '../constants';
 
 export const login = createAsyncThunk(
-  `${reducerName}/user/login`,
+  `${authReducer}/user/login`,
   async (credentials: {email: string; password: string}, thunkAPI) => {
     try {
       const {data} = await client.post('/user/login', credentials);
@@ -35,7 +35,7 @@ export const login = createAsyncThunk(
 );
 
 export const loginWithToken = createAsyncThunk(
-  `${reducerName}/user/login-with-token`,
+  `${authReducer}/user/login-with-token`,
   async (credentials: {token: string}, thunkAPI) => {
     try {
       const {data} = await client.post('/user/login-with-token', credentials);
@@ -57,7 +57,7 @@ export const loginWithToken = createAsyncThunk(
   },
 );
 export const register = createAsyncThunk(
-  `${reducerName}/user/signup`,
+  `${authReducer}/user/signup`,
   async (
     credentials: {
       email: string;
@@ -87,7 +87,7 @@ export const register = createAsyncThunk(
 );
 
 export const userVerify = createAsyncThunk(
-  `${reducerName}/user/verify`,
+  `${authReducer}/user/verify`,
   async (credentials: {email: string; code: string}, thunkAPI) => {
     try {
       const {data} = await client.post('/user/verify', credentials);
@@ -103,7 +103,7 @@ export const userVerify = createAsyncThunk(
 );
 
 export const userSentVerifyAgain = createAsyncThunk(
-  `${reducerName}/user/send-verification`,
+  `${authReducer}/user/send-verification`,
   async (credentials: {email: string}, thunkAPI) => {
     try {
       await client.post('/user/send-verification', credentials);
@@ -116,7 +116,7 @@ export const userSentVerifyAgain = createAsyncThunk(
 );
 
 export const forgotPassword = createAsyncThunk(
-  `${reducerName}/user/send-reset-password`,
+  `${authReducer}/user/send-reset-password`,
   async (credentials: {email: string}, thunkAPI) => {
     try {
       const {data} = await client.post('user/send-reset-password', credentials);
@@ -138,7 +138,7 @@ export const forgotPassword = createAsyncThunk(
 );
 
 export const resetPassword = createAsyncThunk(
-  `${reducerName}/user/reset-password`,
+  `${authReducer}/user/reset-password`,
   async (
     credentials: {
       token: string;
@@ -170,7 +170,7 @@ export const resetPassword = createAsyncThunk(
 );
 
 export const changePassword = createAsyncThunk(
-  `${reducerName}/user/change-password`,
+  `${authReducer}/user/change-password`,
   async (
     credentials: {
       currentPassword: string;
@@ -201,7 +201,7 @@ export const changePassword = createAsyncThunk(
 );
 
 export const logout = createAsyncThunk(
-  `${reducerName}/logout`,
+  `${authReducer}/logout`,
   async (_, thunkAPI) => {
     try {
       const response = await client.delete('api/logout');

@@ -46,6 +46,7 @@ export type VideosProps = {
   id: string;
   tags: string[];
   title: Name;
+  views: number;
   userId: string;
   duration: number;
   filePath: string;
@@ -55,6 +56,7 @@ export type VideosProps = {
   categoryIds: string[];
   description: Name;
   thumbnailPath: string;
+  commentsCount: number;
 };
 
 export type WishlistProps = {

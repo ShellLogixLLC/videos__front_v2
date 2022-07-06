@@ -135,6 +135,11 @@
       cursor: text;
       user-select: text;
       text-transform: capitalize;
+      transition: color ease-in-out 0.2s;
+
+      &:hover {
+        color: $red;
+      }
 
       @include breakpoint(tablet-m) {
         font-size: 18px;

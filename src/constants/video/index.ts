@@ -1,7 +1,14 @@
 export const VIEWS_COUNT = 1200;
-export const SKIP_SECONDS = 15;
+export const SKIP_SECONDS = 5;
+export const VIDEOS_LIMIT = 8;
 export const AHEAD_SECONDS = 5;
+export const COMMECTS_LIMIT = 6;
 export const COMMENTS_COUNT = 20;
 export const SPACE_KEY_CODE = 32;
+export const VIDEO_CREATED_AT = '20/07/21';
+export const VIDEO_INITIAL_NAME = 'Video Name';
 export const ARROW_LEFT_KEY_CODE = 37;
+export const SIMILAR_VIDEOS_COUNT = 40;
 export const ARROW_RIGHT_KEY_CODE = 39;
+export const VIDEO_INITIAL_LIKE_COUNT = 0;
+export const VIDEO_INITIAL_VIEW_COUNT = 0;

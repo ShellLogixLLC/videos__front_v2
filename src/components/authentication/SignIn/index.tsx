@@ -24,7 +24,7 @@ const SignIn: React.FC = () => {
       dispatch(authActions.login(values));
       toggleIsLoading();
     },
-    [dispatch],
+    [dispatch, toggleIsLoading],
   );
 
   useEffect(() => {

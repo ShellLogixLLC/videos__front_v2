@@ -1,0 +1,66 @@
+.wrapper {
+  margin-top: 20px;
+  //   @extend %skeleton-animation;
+
+  &__settings {
+    gap: 20px;
+    margin-bottom: 16px;
+    @extend %flex-between;
+
+    &_left {
+      gap: 20px;
+      width: 100%;
+      @extend %flex-align;
+    }
+
+    &_item {
+      width: 100%;
+      height: 19px;
+      max-width: 63px;
+      @extend %skeleton-animation;
+    }
+
+    &_shape {
+      width: 100%;
+      height: 24px;
+      max-width: 24px;
+      @extend %skeleton-animation;
+    }
+  }
+
+  &__title {
+    width: 100%;
+    height: 32px;
+    max-width: 268px;
+    margin-bottom: 16px;
+    @extend %skeleton-animation;
+  }
+
+  &__date {
+    width: 100%;
+    height: 22px;
+    max-width: 219px;
+    margin-bottom: 16px;
+    @extend %skeleton-animation;
+  }
+
+  &__text {
+    width: 100%;
+    height: 22px;
+    max-width: 340px;
+    margin-bottom: 16px;
+    @extend %skeleton-animation;
+
+    &:first-child {
+      width: 100%;
+      height: 22px;
+      max-width: 380px;
+    }
+
+    &:last-child {
+      width: 100%;
+      height: 22px;
+      max-width: 300px;
+    }
+  }
+}

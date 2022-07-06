@@ -1,7 +1,14 @@
 import React, {useState} from 'react';
+import moment from 'moment';
 import classNames from 'classnames';
 
 import {HeartLikes, FilmLikeIcon, ViewsCount} from '~/assets/index';
+import {
+  VIDEO_CREATED_AT,
+  VIDEO_INITIAL_NAME,
+  VIDEO_INITIAL_LIKE_COUNT,
+  VIDEO_INITIAL_VIEW_COUNT,
+} from '~/constants';
 
 import {VideDescriptionTypes} from './types';
 import styles from './VideDescription.module.scss';
@@ -9,13 +16,14 @@ import styles from './VideDescription.module.scss';
 const videDescriptionTextDefault = 'Have problems with the internet !';
 
 const VideDescription: React.FC<VideDescriptionTypes> = ({
-  videoName = 'Video Name',
-  likeCount = 7777,
-  viewCount = 7777,
-  dateOfDownload = '20/07/21',
-  videDescriptionText = videDescriptionTextDefault,
+  createdAt = VIDEO_CREATED_AT,
+  videoName = VIDEO_INITIAL_NAME,
+  likeCount = VIDEO_INITIAL_LIKE_COUNT,
+  viewCount = VIDEO_INITIAL_VIEW_COUNT,
+  description = videDescriptionTextDefault,
 }) => {
   const [isLiked, setIsLiked] = useState<boolean>(false);
+  const formatCreatedDate = moment(createdAt).format('L');
 
   const likeHandler = () => {
     setIsLiked(!isLiked);
@@ -27,20 +35,20 @@ const VideDescription: React.FC<VideDescriptionTypes> = ({
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.wrapper__title_block}>
-        <h3 className={styles.wrapper__title_block__name}>{videoName}</h3>
+      <div className={styles.wrapper__options}>
+        <div className={styles.wrapper__views_liked}>
+          <span className={styles.wrapper__views_liked__like}>
+            {likeCount} <FilmLikeIcon />
+          </span>
+          <span className={styles.wrapper__views_liked__view}>
+            {viewCount} <ViewsCount />
+          </span>
+        </div>
         <HeartLikes onClick={likeHandler} className={isLikedClasses} />
       </div>
-      <span className={styles.wrapper__date}>{dateOfDownload}</span>
-      <p className={styles.wrapper__description}>{videDescriptionText}</p>
-      <div className={styles.wrapper__views_liked}>
-        <span className={styles.wrapper__views_liked__like}>
-          {likeCount} <FilmLikeIcon />
-        </span>
-        <span className={styles.wrapper__views_liked__view}>
-          {viewCount} <ViewsCount />
-        </span>
-      </div>
+      <h3 className={styles.wrapper__title_block__name}>{videoName}</h3>
+      <p className={styles.wrapper__date}>{formatCreatedDate}</p>
+      <p className={styles.wrapper__description}>{description}</p>
     </div>
   );
 };
