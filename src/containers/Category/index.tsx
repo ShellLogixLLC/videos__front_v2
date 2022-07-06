@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useRouter} from 'next/router';
 
-import {LeftArrow} from '~/assets';
+import {LeftArrowIcon} from '~/assets';
 import {QueryParamsTypes} from '~/types';
 import {filteredMass, setQueryParams} from '~/utils';
 import {DatePicker, Pagination, FilterBySort, BackButton} from '~/components';
@@ -42,7 +42,7 @@ const Category: React.FC = () => {
           <div className={styles.content__backRoute}>
             <BackButton
               text="Back"
-              LeftIcon={LeftArrow}
+              LeftIcon={LeftArrowIcon}
               className={styles.content__backRoute__button}
             />
           </div>
