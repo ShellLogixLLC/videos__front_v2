@@ -1,7 +1,14 @@
 import React from 'react';
 
 import {LeftArrow} from '~/assets';
-import {Link, Comments, Typography, DatePicker} from '~/components';
+import {
+  Link,
+  Comments,
+  Typography,
+  DatePicker,
+  FilterBySort,
+} from '~/components';
+import {filteredMass} from '~/utils';
 
 import styles from './Video.module.scss';
 import VideoWrapper from './VideoWrapper';
@@ -18,8 +25,9 @@ const VideoContainer: React.FC = () => (
         <VideoWrapper />
         <Comments />
       </div>
-      <aside className={styles.filters}>
+      <aside className={styles.filter_block}>
         <DatePicker />
+        <FilterBySort options={filteredMass} />
       </aside>
     </div>
     <VideoLikeThis />

@@ -4,13 +4,6 @@
   @extend %flex-justify-between;
 }
 
-.filters {
-  top: 110px;
-  height: fit-content;
-  position: sticky;
-  min-width: 320px;
-}
-
 .content {
   width: 100%;
 
@@ -45,6 +38,10 @@
   &__title {
     @extend %separate_page_film_name;
     margin-bottom: 24px;
+
+    @include breakpoint(desktop) {
+      font-size: 32px;
+    }
   }
 
   &__wrapper {
@@ -77,5 +74,16 @@
     &__item {
       min-width: 320px;
     }
+  }
+}
+
+.filter_block {
+  position: sticky;
+  top: 130px;
+  min-width: 320px;
+  height: fit-content;
+
+  @include breakpoint(desktop) {
+    display: none;
   }
 }

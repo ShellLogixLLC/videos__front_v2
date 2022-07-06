@@ -13,6 +13,10 @@
     &__name {
       @extend %separate_page_film_name;
       margin-bottom: 16px;
+
+      @include breakpoint(desktop) {
+        font-size: 24px;
+      }
     }
 
     &__heart_like {
@@ -58,11 +62,16 @@
     min-height: 110px;
     margin-bottom: 24px;
     @extend %film_info_text;
+
+    @include breakpoint(desktop) {
+      font-size: 18px;
+    }
   }
 
   &__views_liked {
     gap: 20px;
     @extend %flex-align;
+    @extend %film_name;
 
     &__like {
       @extend %flex-between;

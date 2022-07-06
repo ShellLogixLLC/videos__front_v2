@@ -6,6 +6,7 @@
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
   transition: all 0.7s;
   margin: 16px 0 0;
+  height: 634px;
 
   &_close {
     height: 80px;
@@ -23,6 +24,10 @@
       &__text {
         margin-right: 8px;
         @extend %separate_page_film_name;
+
+        @include breakpoint(desktop) {
+          font-size: 24px;
+        }
       }
 
       &__count {
@@ -49,6 +54,7 @@
   transition: all 0.7s;
   @extend %flex-between;
   flex-direction: column;
+  height: 534px;
 
   &_hidden {
     height: 0;
@@ -70,10 +76,7 @@
       @extend %border-rad_10;
       background-color: $black;
       box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
-
-      &:not(:first-child) {
-        margin-top: 25px;
-      }
+      margin-top: 16px;
 
       &__head {
         margin-bottom: 5px;
