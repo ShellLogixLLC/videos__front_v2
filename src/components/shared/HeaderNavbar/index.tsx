@@ -5,7 +5,7 @@ import {Route} from '~/constants';
 import {ToggleContext} from '~/context';
 import {getCookieFromBrowser} from '~/libraries';
 import {LikeItIcon, UserIcon} from '~/assets';
-import {ProfileSettings, Search} from '~/components';
+import {ProfileSettings, Search, SigninDropdown} from '~/components';
 
 import Link from '../Link';
 import LanguageDropDown from '../LanguageDropDown';
@@ -26,13 +26,7 @@ const HeaderNavbar: React.FC<HeaderNavbarProps> = ({children}) => {
     [styles.wrapper__content__other__withToken]: token,
   });
 
-  const renderUserIcons = !token ? (
-    <Link to={Route.SignIn} className={styles.wrapper__content__other__sign_in}>
-      <UserIcon />
-    </Link>
-  ) : (
-    <ProfileSettings />
-  );
+  const renderUserIcons = !token ? <SigninDropdown /> : <ProfileSettings />;
 
   return (
     <>
