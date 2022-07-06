@@ -4,8 +4,8 @@ import classNames from 'classnames';
 import {Route} from '~/constants';
 import {ToggleContext} from '~/context';
 import {getCookieFromBrowser} from '~/libraries';
-import {LikeIt, UserIcon} from '~/assets';
-import {ProfileSettings} from '~/components';
+import {LikeItIcon, UserIcon} from '~/assets';
+import {ProfileSettings, Search} from '~/components';
 
 import Link from '../Link';
 import LanguageDropDown from '../LanguageDropDown';
@@ -37,12 +37,13 @@ const HeaderNavbar: React.FC<HeaderNavbarProps> = ({children}) => {
   return (
     <>
       <nav className={navClassName}>{children}</nav>
+      <Search />
       <div className={wrapperClassName}>
         <div className={styles.wrapper__content__other__skeleton} />
         <Link
           className={styles.wrapper__content__other__link}
           to={Route.MyFavorite}>
-          <LikeIt className={styles.wrapper__content__other__wishlist} />
+          <LikeItIcon className={styles.wrapper__content__other__wishlist} />
         </Link>
         {renderUserIcons}
         <LanguageDropDown />

@@ -1,5 +1,4 @@
 import React, {useRef} from 'react';
-// import classNames from 'classnames';
 
 import {CloseIcon} from '~/assets';
 import {Typography} from '~/components';

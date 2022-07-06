@@ -15,15 +15,11 @@
 }
 
 .wrapper {
-  position: absolute;
-  left: calc(100% - 170px);
-  right: 170px;
   background-color: $black;
   transition: 0.2s all ease;
-  opacity: 0;
-  display: none;
 
   @include breakpoint(desktop) {
+    position: absolute;
     right: 72px;
   }
 

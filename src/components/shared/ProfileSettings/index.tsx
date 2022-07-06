@@ -2,7 +2,7 @@ import React, {useRef, useState} from 'react';
 import classNames from 'classnames';
 
 import {LogoutModal, ProfileModal, Typography} from '~/components';
-import {BottomArrow, ExitIcon, UserIcon} from '~/assets';
+import {BottomArrow, ExitIcon, SettingsIcon, UserIcon} from '~/assets';
 import {useAppSelector, useOnClickOutside} from '~/hooks';
 import {authSelect} from '~/store/auth';
 
@@ -91,7 +91,7 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = () => {
               role="button"
               onClick={openProfileModal}
               className={styles.content__list__wrapper}>
-              <UserIcon className={styles.content__list__icon} />
+              <SettingsIcon className={styles.content__list__icon} />
               <li className={linkClassName}>User Info</li>
             </div>
             <div
