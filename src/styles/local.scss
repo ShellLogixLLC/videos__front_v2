@@ -134,6 +134,7 @@ img {
   box-sizing: border-box;
   background-size: cover;
   -webkit-box-sizing: border-box;
+  user-select: none;
 }
 
 ::selection {

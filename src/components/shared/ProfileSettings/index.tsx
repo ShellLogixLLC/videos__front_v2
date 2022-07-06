@@ -1,10 +1,9 @@
 import React, {useRef, useState} from 'react';
 import classNames from 'classnames';
 
-import {LogoutModal, ProfileModal, Typography} from '~/components';
-import {BottomArrow, ExitIcon, SettingsIcon, UserIcon} from '~/assets';
-import {useAppSelector, useOnClickOutside} from '~/hooks';
-import {authSelect} from '~/store/auth';
+import {LogoutModal, ProfileModal} from '~/components';
+import {ExitIcon, SettingsIcon, UserIcon} from '~/assets';
+import {useOnClickOutside} from '~/hooks';
 
 import {ProfileSettingsProps} from './types';
 import styles from './ProfileSettings.module.scss';
@@ -13,13 +12,6 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = () => {
   const [isDropdownOpen, setDropdownOpen] = useState<boolean>(false);
   const [showLogoutModal, setShowLogoutModal] = useState<boolean>(false);
   const [showProfileModal, setShowProfileModal] = useState<boolean>(false);
-
-  const {userInfo} = useAppSelector(authSelect);
-
-  const realUserName =
-    userInfo && userInfo.username.length > 10
-      ? userInfo.username.slice(0, 10)
-      : userInfo && userInfo.username;
 
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -53,10 +45,6 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = () => {
     [styles.container__open]: isDropdownOpen,
   });
 
-  const arrowIconClassName = classNames(styles.container__arrowIcon, {
-    [styles.container__arrowIcon__active]: isDropdownOpen,
-  });
-
   const userIconClassName = classNames(styles.container__userIcon, {
     [styles.container__userIcon__open]: isDropdownOpen,
   });
@@ -81,10 +69,6 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = () => {
       className={wrapperClassName}>
       <div ref={dropdownRef} className={containerClassName}>
         <UserIcon className={userIconClassName} />
-        <Typography tagName="span" className={styles.container__user}>
-          {realUserName}
-        </Typography>
-        <BottomArrow className={arrowIconClassName} />
         <div className={dropdownClassName}>
           <ul className={styles.content__list}>
             <div
