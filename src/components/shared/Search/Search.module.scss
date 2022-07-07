@@ -8,18 +8,19 @@
   border-radius: 50px !important;
   background-color: transparent;
 
-
   @include breakpoint(desktop) {
     max-width: calc((100vw - 115px));
   }
 }
 
 .wrapper {
+  position: absolute;
+  left: calc(100% - 170px);
+  right: 170px;
   background-color: $black;
   transition: 0.2s all ease;
 
   @include breakpoint(desktop) {
-    position: absolute;
     right: 72px;
   }
 

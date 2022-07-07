@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {LoveIcon} from '~/assets';
+import {Love} from '~/assets';
 import {CommentSkeleton} from '~/components';
 import {commentBlock} from '~/utils';
 
@@ -14,7 +14,7 @@ const CommentBlock: React.FC<ICommentBlock> = ({loading}) => {
     <div key={id} className={styles.block__wrapper__comment}>
       <div className={styles.block__wrapper__comment__head}>
         <div className={styles.block__wrapper__comment__head__image}>
-          <LoveIcon />
+          <Love />
         </div>
         <Typography className={styles.block__wrapper__comment__head__name}>
           {name}

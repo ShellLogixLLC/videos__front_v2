@@ -2,7 +2,7 @@ import React, {useMemo, useRef} from 'react';
 import {useToggle} from 'react-use';
 import classNames from 'classnames';
 
-import {FilterLampIcon} from '~/assets';
+import {FilterLamp} from '~/assets';
 import {useOnClickOutside} from '~/hooks';
 
 import Link from '../Link';
@@ -49,7 +49,7 @@ const FilterBySort: React.FC<IFilterBySortProps> = ({options}) => {
         <Typography className={styles.container__header__title}>
           Sort by
         </Typography>
-        <FilterLampIcon className={styles.container__header__icon} />
+        <FilterLamp className={styles.container__header__icon} />
       </div>
       <div className={styles.container__content}>
         <div className={innerClasses}>{renderFilteredTable}</div>

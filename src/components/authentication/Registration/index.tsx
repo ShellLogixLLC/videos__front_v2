@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect} from 'react';
 import {useToggle} from 'react-use';
 
-import {LogoIcon} from '~/assets';
+import {Logo} from '~/assets';
 import {Loader} from '~/components';
 import {registrationForm} from '~/constants';
 import {authActions, authSelect} from '~/store/auth';
@@ -46,7 +46,7 @@ const Registration: React.FC = () => {
         text="Cancel registration"
         className={styles.container__cancel}
       />
-      <LogoIcon className={styles.container__top_img} />
+      <Logo className={styles.container__top_img} />
       <Typography
         type="Extra"
         variant="Heading"

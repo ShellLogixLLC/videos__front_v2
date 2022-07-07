@@ -5,7 +5,7 @@ import {RangePicker} from 'react-trip-date';
 import {RangePickerSelectedDays} from 'react-trip-date/dist/rangePicker/rangePicker.type';
 
 import {useOnClickOutside} from '~/hooks';
-import {CalendarOne, LeftArrowIcon, RightArrow} from '~/assets';
+import {CalendarOne, LeftArrow, RightArrow} from '~/assets';
 
 import Typography from '../Typography';
 
@@ -37,7 +37,7 @@ const DatePicker: FC = () => {
       header: {
         monthIcons: {
           right: <RightArrow />,
-          left: <LeftArrowIcon />,
+          left: <LeftArrow />,
         },
       },
     },

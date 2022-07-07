@@ -6,7 +6,7 @@ import {IProcess} from './types';
 
 declare const process: IProcess;
 
-export const setCookie = (key: string, value: string): void => {
+export const setCookie = (key: string, value: string) => {
   if (process.browser) {
     cookie.set(key, value, {
       expires: 1,
@@ -15,7 +15,7 @@ export const setCookie = (key: string, value: string): void => {
   }
 };
 
-export const removeCookie = (key: string): void => {
+export const removeCookie = (key: string) => {
   if (process.browser) {
     cookie.remove(key, {
       expires: 1,
@@ -23,6 +23,6 @@ export const removeCookie = (key: string): void => {
   }
 };
 
-export const getCookieFromBrowser = (key: string): string => {
-  return cookie.get(key) as string;
+export const getCookieFromBrowser = (key: string) => {
+  return cookie.get(key);
 };
