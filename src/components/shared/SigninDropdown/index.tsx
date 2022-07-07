@@ -6,8 +6,8 @@ import {Link, Typography} from '~/components';
 import {useOnClickOutside} from '~/hooks';
 import {Route} from '~/constants';
 
-import styles from './SigninDropdown.module.scss';
 import {SigninDropdownProps} from './types';
+import styles from './SigninDropdown.module.scss';
 
 const SigninDropdown: React.FC<SigninDropdownProps> = () => {
   const [isDropdownOpen, setDropdownOpen] = useState<boolean>(false);
