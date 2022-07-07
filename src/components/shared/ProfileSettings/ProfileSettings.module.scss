@@ -1,7 +1,6 @@
 .wrapper {
   position: relative;
   transition:0.2s ease;
-  min-width: 145px;
   z-index: 40;
 
   &__open {
@@ -35,6 +34,7 @@
   border-radius: 0 0 8px 8px;
   border: 2px solid $dark-red;
   width: 100%;
+  min-width: 145px;
   box-sizing: border-box;
 
   &__open {

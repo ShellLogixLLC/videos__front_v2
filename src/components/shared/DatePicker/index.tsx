@@ -5,7 +5,7 @@ import {RangePicker} from 'react-trip-date';
 import {RangePickerSelectedDays} from 'react-trip-date/dist/rangePicker/rangePicker.type';
 
 import {useOnClickOutside} from '~/hooks';
-import {CalendarOne, LeftArrowIcon, RightArrow} from '~/assets';
+import {CalendarOneIcon, LeftArrowIcon, RightArrowIcon} from '~/assets';
 
 import Typography from '../Typography';
 
@@ -36,7 +36,7 @@ const DatePicker: FC = () => {
     components: {
       header: {
         monthIcons: {
-          right: <RightArrow />,
+          right: <RightArrowIcon />,
           left: <LeftArrowIcon />,
         },
       },
@@ -47,7 +47,7 @@ const DatePicker: FC = () => {
     <div ref={calendarRef} className={togglerClasses}>
       <div role="button" onClick={toggleIsOpen} className={styles.header}>
         <Typography className={styles.header__text}>Calendar</Typography>
-        <CalendarOne className={styles.header__icon} />
+        <CalendarOneIcon className={styles.header__icon} />
       </div>
       <div className={`${contentClasses} calendar__trip`}>
         <RangePicker {...rangePickerProps} onChange={setRangeValues} />

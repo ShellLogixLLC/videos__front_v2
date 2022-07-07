@@ -3,7 +3,7 @@ import usePortal from 'react-useportal';
 import classNames from 'classnames';
 
 import {authSelect} from '~/store/auth';
-import {AllaIcon, Close, RoundAllowIcon} from '~/assets';
+import {AllaIcon, CloseIcon, RoundAllowIcon} from '~/assets';
 import {useAppSelector, useLockBodyScroll, useOnClickOutside} from '~/hooks';
 
 import {ProfileModalProps} from './types';
@@ -31,7 +31,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({expanded, setExpanded}) => {
     <Portal>
       <div className={wrapperClasses}>
         <div ref={modalRef} className={styles.wrapper__content}>
-          <Close
+          <CloseIcon
             className={styles.wrapper__content__close_icon}
             onClick={handleClose}
           />
