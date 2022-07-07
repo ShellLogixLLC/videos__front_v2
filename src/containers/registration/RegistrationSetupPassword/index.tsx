@@ -1,6 +1,6 @@
 import React, {useRef} from 'react';
 
-import {LogoIcon} from '~/assets';
+import {Logo} from '~/assets';
 import {RouterService} from '~/services';
 import {Typography, Form} from '~/components';
 import {setPasswordForm, Route} from '~/constants';
@@ -17,7 +17,7 @@ const RegistrationSetupPassword: React.FC = () => {
   return (
     <div className="container_without-header">
       <div className={styles.container__top}>
-        <LogoIcon className={styles.container__top_img} />
+        <Logo className={styles.container__top_img} />
         <Typography
           type="Extra"
           variant="Heading"

@@ -2,7 +2,7 @@ import React, {useCallback, useEffect} from 'react';
 import classNames from 'classnames';
 import {useToggle} from 'react-use';
 
-import {LogoIcon} from '~/assets';
+import {Logo} from '~/assets';
 import {Route} from '~/constants';
 import {Loader} from '~/components';
 import {forgotPasswordForm} from '~/constants';
@@ -64,7 +64,7 @@ const ForgotPassword: React.FC = () => {
       </Link>
       <div className={styles.container__content}>
         <div className={styles.container__content__top}>
-          <LogoIcon className={styles.container__content__top_img} />
+          <Logo className={styles.container__content__top_img} />
           <Typography
             type="Extra"
             variant="Heading"
