@@ -39,8 +39,8 @@ const HeaderNavbar: React.FC<HeaderNavbarProps> = ({children}) => {
           to={Route.MyFavorite}>
           <LikeItIcon className={styles.wrapper__content__other__wishlist} />
         </Link>
-        {renderUserIcons}
         <LanguageDropDown />
+        {renderUserIcons}
       </div>
     </>
   );
