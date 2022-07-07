@@ -75,15 +75,15 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = () => {
               role="button"
               onClick={openProfileModal}
               className={styles.content__list__wrapper}>
-              <SettingsIcon className={styles.content__list__icon} />
               <li className={linkClassName}>User Info</li>
+              <SettingsIcon className={styles.content__list__icon} />
             </div>
             <div
               role="button"
               onClick={openLogoutModal}
               className={styles.content__list__wrapper}>
-              <ExitIcon className={logOutIconClassName} />
               <li className={linkClassName}>Log Out</li>
+              <ExitIcon className={logOutIconClassName} />
             </div>
           </ul>
         </div>
