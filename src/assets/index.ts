@@ -43,6 +43,8 @@ export {default as BookIcon} from './icons/book.svg';
 export {default as CropIcon} from './icons/crop.svg';
 export {default as LinkIcon} from './icons/link.svg';
 export {default as ExitIcon} from './icons/exit.svg';
+export {default as ExitRedIcon} from './icons/exitRed.svg';
+export {default as SaveChangesIcon} from './icons/saveChanges.svg';
 export {default as BookmarkIcon} from './icons/bookmark.svg';
 export {default as SuitCaseIcon} from './icons/suitCase.svg';
 export {default as SettingsIcon} from './icons/settings.svg';
