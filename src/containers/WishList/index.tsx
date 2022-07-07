@@ -8,7 +8,7 @@ import {
   Pagination,
   Typography,
 } from '~/components';
-import {LeftArrowIcon} from '~/assets';
+import {LeftArrow} from '~/assets';
 import WishlistSearchService from '~/api/wishlist';
 import {
   INITIAL_PAGINATION_ACTIVE_PAGE,
@@ -101,7 +101,7 @@ const MyFavorites: React.FC = () => {
       <div className={styles.favorites__backRoute}>
         <BackButton
           text="Back"
-          LeftIcon={LeftArrowIcon}
+          LeftIcon={LeftArrow}
           className={styles.favorites__backRoute__button}
         />
       </div>

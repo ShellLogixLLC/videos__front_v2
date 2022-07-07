@@ -1,47 +1,63 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import classNames from 'classnames';
 
 import {Route} from '~/constants';
 import {ToggleContext} from '~/context';
 import {getCookieFromBrowser} from '~/libraries';
-import {LikeItIcon} from '~/assets';
-import {ProfileSettings, Search, SigninDropdown} from '~/components';
+import {authActions, authSelect} from '~/store/auth';
+import {LikeIt, UserIcon, UserRound} from '~/assets';
+import {useAppDispatch, useAppSelector} from '~/hooks';
 
 import Link from '../Link';
+import ProfileModal from '../ProfileModal';
 import LanguageDropDown from '../LanguageDropDown';
 import styles from '../../layouts/Header/Header.module.scss';
 
-import {HeaderNavbarProps} from './types';
-
-const HeaderNavbar: React.FC<HeaderNavbarProps> = ({children}) => {
+const HeaderNavbar: React.FC = ({children}) => {
+  const dispatch = useAppDispatch();
   const token = getCookieFromBrowser('token');
-
+  const {userInfo} = useAppSelector(authSelect);
   const {expanded} = useContext(ToggleContext);
+
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
 
   const navClassName = classNames(styles.wrapper__content_menu, {
     [styles.wrapper__content_menu_hidden]: expanded,
   });
 
-  const wrapperClassName = classNames(styles.wrapper__content__other, {
-    [styles.wrapper__content__other__withToken]: token,
-  });
+  const handleUserModal = () => {
+    setIsOpenModal(true);
 
-  const renderUserIcons = !token ? <SigninDropdown /> : <ProfileSettings />;
+    if (!userInfo) {
+      dispatch(authActions.loginWithToken({token: token as string}));
+    }
+  };
+
+  const renderUserIcons = !token ? (
+    <Link to={Route.SignIn} className={styles.wrapper__content__other__sign_in}>
+      <UserIcon />
+    </Link>
+  ) : (
+    <UserRound
+      className={styles.wrapper__content__user_icon}
+      onClick={handleUserModal}
+    />
+  );
 
   return (
     <>
       <nav className={navClassName}>{children}</nav>
-      <Search />
-      <div className={wrapperClassName}>
+      <div className={styles.wrapper__content__other}>
         <div className={styles.wrapper__content__other__skeleton} />
         <Link
           className={styles.wrapper__content__other__link}
           to={Route.MyFavorite}>
-          <LikeItIcon className={styles.wrapper__content__other__wishlist} />
+          <LikeIt className={styles.wrapper__content__other__wishlist} />
         </Link>
         <LanguageDropDown />
         {renderUserIcons}
       </div>
+      <ProfileModal expanded={isOpenModal} setExpanded={setIsOpenModal} />
     </>
   );
 };

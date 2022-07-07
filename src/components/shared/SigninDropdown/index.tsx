@@ -6,10 +6,9 @@ import {Link, Typography} from '~/components';
 import {useOnClickOutside} from '~/hooks';
 import {Route} from '~/constants';
 
-import {SigninDropdownProps} from './types';
 import styles from './SigninDropdown.module.scss';
 
-const SigninDropdown: React.FC<SigninDropdownProps> = () => {
+const SigninDropdown: React.FC = () => {
   const [isDropdownOpen, setDropdownOpen] = useState<boolean>(false);
 
   const dropdownRef = useRef<HTMLDivElement>(null);

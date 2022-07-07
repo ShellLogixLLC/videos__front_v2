@@ -4,9 +4,9 @@ import {filteredMass} from '~/utils';
 import {CategoryService, VideosService} from '~/api';
 import {
   DatePicker,
+  Typography,
   FilterBySort,
   HorizontalSlider,
-  Typography,
 } from '~/components';
 import WishlistSearchService from '~/api/wishlist';
 
