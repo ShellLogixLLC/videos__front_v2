@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {LeftArrow, RightArrow} from '~/assets';
+import {LeftArrowIcon, RightArrow} from '~/assets';
 
 import CategoryCardSkeleton from '../CategoryCard';
 import FilmCardSkeleton from '../FilmCard';
@@ -41,7 +41,7 @@ const HorizontalSliderSkeleton: React.FC<ISkeletonDataTypes> = ({
           <div className={styles.pagination__wrapper}>
             <div className={styles.right_block}>
               <RightArrow className={styles.right_block__arrow} />
-              <LeftArrow className={styles.right_block__arrow} />
+              <LeftArrowIcon className={styles.right_block__arrow} />
             </div>
           </div>
         </div>

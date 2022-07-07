@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect} from 'react';
 import {useToggle} from 'react-use';
 
-import {Logo} from '~/assets';
+import {LogoIcon} from '~/assets';
 import {Loader} from '~/components';
 import {Route, signInForm} from '~/constants';
 import {authActions, authSelect} from '~/store/auth';
@@ -34,7 +34,7 @@ const SignIn: React.FC = () => {
   return (
     <div className={`container_without-header ${styles.container}`}>
       <div className={styles.container__top}>
-        <Logo className={styles.container__top_img} />
+        <LogoIcon className={styles.container__top_img} />
         <Typography
           type="Extra"
           variant="Heading"

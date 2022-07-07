@@ -159,6 +159,10 @@
       width: 100%;
       position: relative;
 
+      &__withToken{
+        max-width: 260px;
+      }
+
       @include breakpoint(desktop) {
         display: none;
       }

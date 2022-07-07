@@ -3,7 +3,7 @@ import usePortal from 'react-useportal';
 import classNames from 'classnames';
 
 import {authSelect} from '~/store/auth';
-import {Alla, Close, RoundAllow} from '~/assets';
+import {AllaIcon, Close, RoundAllowIcon} from '~/assets';
 import {useAppSelector, useLockBodyScroll, useOnClickOutside} from '~/hooks';
 
 import {ProfileModalProps} from './types';
@@ -37,7 +37,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({expanded, setExpanded}) => {
           />
           <div className={styles.wrapper__content__child}>
             <div className={styles.wrapper__content__block}>
-              <Alla />
+              <AllaIcon />
               <h2 className={styles.wrapper__content__title}>
                 Hello {userInfo?.username}
               </h2>
@@ -48,7 +48,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({expanded, setExpanded}) => {
               </p>
             </div>
             {userInfo?.isVerified && (
-              <RoundAllow className={styles.wrapper__content__icon} />
+              <RoundAllowIcon className={styles.wrapper__content__icon} />
             )}
           </div>
         </div>

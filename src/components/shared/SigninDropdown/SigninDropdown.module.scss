@@ -1,0 +1,60 @@
+.wrapper{
+  position: relative;
+  min-width: 145px;
+  z-index: 40;
+
+  &__open {
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    background: $dark-red;
+  }
+}
+
+.container{
+  @extend %flex-center;
+  padding: 8px 0;
+  cursor: pointer;
+
+  &__user_icon{
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.content {
+  @extend %flex-align;
+  position: absolute;
+  top: 100%;
+  visibility: hidden;
+  background: $black;
+  border-radius: 0 0 8px 8px;
+  border: 2px solid $dark-red;
+  width: 100%;
+  box-sizing: border-box;
+
+  &__open {
+    visibility: visible;
+  }
+
+  &__list {
+    list-style: none;
+    @extend %flex-center;
+    flex-direction: column;
+    width: 100%;
+
+    &__link {
+      color: $red;
+      padding: 13px 0;
+
+      &__text {
+        color: $white;
+
+        &:hover {
+          color: $red;
+          text-decoration: underline;
+          text-shadow: -16px 6px 15px $red;
+        }
+      }
+    }
+  }
+}

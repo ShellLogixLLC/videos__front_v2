@@ -1,0 +1,69 @@
+import React, {useRef, useState} from 'react';
+import classNames from 'classnames';
+
+import {UserIcon} from '~/assets';
+import {Link, Typography} from '~/components';
+import {useOnClickOutside} from '~/hooks';
+import {Route} from '~/constants';
+
+import styles from './SigninDropdown.module.scss';
+import {SigninDropdownProps} from './types';
+
+const SigninDropdown: React.FC<SigninDropdownProps> = () => {
+  const [isDropdownOpen, setDropdownOpen] = useState<boolean>(false);
+
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const wrapperClassName = classNames(styles.wrapper, {
+    [styles.wrapper__open]: isDropdownOpen,
+  });
+
+  const dropdownClassName = classNames(styles.content, {
+    [styles.content__open]: isDropdownOpen,
+  });
+
+  const handleDropdownClick = (): void => {
+    setDropdownOpen(!isDropdownOpen);
+  };
+
+  const closeDropdown = (): void => {
+    setDropdownOpen(false);
+  };
+
+  useOnClickOutside(dropdownRef, closeDropdown);
+
+  return (
+    <div
+      role="button"
+      onClick={handleDropdownClick}
+      className={wrapperClassName}>
+      <div ref={dropdownRef} className={styles.container}>
+        <UserIcon className={styles.container__user_icon} />
+        <div className={dropdownClassName}>
+          <ul className={styles.content__list}>
+            <li className={styles.content__list__link}>
+              <Link to={Route.RegistrationPersonalInformation}>
+                <Typography
+                  className={styles.content__list__link__text}
+                  tagName="span">
+                  Register
+                </Typography>
+              </Link>
+            </li>
+            <li className={styles.content__list__link}>
+              <Link to={Route.SignIn}>
+                <Typography
+                  className={styles.content__list__link__text}
+                  tagName="span">
+                  Sign In
+                </Typography>
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default SigninDropdown;
