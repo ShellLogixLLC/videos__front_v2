@@ -2,7 +2,7 @@ import React, {useCallback, useEffect} from 'react';
 import {useRouter} from 'next/router';
 import {useToggle} from 'react-use';
 
-import {Logo} from '~/assets';
+import {LogoIcon} from '~/assets';
 import {Loader} from '~/components';
 import {resetForm} from '~/constants';
 import {authActions, authSelect} from '~/store/auth';
@@ -43,7 +43,7 @@ const ResetPassword: React.FC = () => {
 
   return (
     <div className={`container_without-header ${styles.container}`}>
-      <Logo className={styles.container__top_img} />
+      <LogoIcon className={styles.container__top_img} />
       <Typography
         type="Extra"
         variant="Heading"

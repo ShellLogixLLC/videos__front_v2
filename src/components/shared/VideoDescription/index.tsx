@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import classNames from 'classnames';
 
-import {HeartLikes, FilmLikeIcon, ViewsCount} from '~/assets/index';
+import {HeartLikesIcon, FilmLikeIcon, ViewsCountIcon} from '~/assets/index';
 
 import {VideDescriptionTypes} from './types';
 import styles from './VideDescription.module.scss';
@@ -29,7 +29,7 @@ const VideDescription: React.FC<VideDescriptionTypes> = ({
     <div className={styles.wrapper}>
       <div className={styles.wrapper__title_block}>
         <h3 className={styles.wrapper__title_block__name}>{videoName}</h3>
-        <HeartLikes onClick={likeHandler} className={isLikedClasses} />
+        <HeartLikesIcon onClick={likeHandler} className={isLikedClasses} />
       </div>
       <span className={styles.wrapper__date}>{dateOfDownload}</span>
       <p className={styles.wrapper__description}>{videDescriptionText}</p>
@@ -38,7 +38,7 @@ const VideDescription: React.FC<VideDescriptionTypes> = ({
           {likeCount} <FilmLikeIcon />
         </span>
         <span className={styles.wrapper__views_liked__view}>
-          {viewCount} <ViewsCount />
+          {viewCount} <ViewsCountIcon />
         </span>
       </div>
     </div>
