@@ -326,7 +326,7 @@ const ContractSign: React.FC<VerifyProps> = ({
           blank
           to="https://gmail.com/"
           className={styles.container__footer__my_account}>
-          {my_account}
+          {emailVerify || my_account}
         </Link>
       </div>
     </div>

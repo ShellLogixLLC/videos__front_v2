@@ -21,15 +21,17 @@ const Registration: React.FC = () => {
 
   const {translatedTypo} = useLocales('cancelRegistration');
 
-  const handleResetPassFormSubmit = useCallback(
+  const handleRegistrationSubmit = useCallback(
     (values) => {
-      const {email, username, create_password, confirm_password} = values;
+      const {email, username, create_password, confirm_password, verification} =
+        values;
 
       const userInfo = {
         email,
         username,
         password: create_password,
         passwordConfirmation: confirm_password,
+        verification,
       };
 
       dispatch(authActions.register(userInfo));
@@ -58,7 +60,7 @@ const Registration: React.FC = () => {
       <Form
         submitText="proceed"
         form={registrationForm}
-        onSubmit={handleResetPassFormSubmit}
+        onSubmit={handleRegistrationSubmit}
         labelClassName={styles.container__registration__block}
         innerClassName={styles.container__registration__block__input}
         inputClassName={styles.container__registration__block__input__inp}
