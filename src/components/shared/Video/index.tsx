@@ -2,11 +2,12 @@ import React, {useState, useEffect, useRef} from 'react';
 import moment from 'moment';
 import classNames from 'classnames';
 
+import PlayIcon from '~/assets/icons/play-video.svg';
 import PauseIcon from '~/assets/icons/pause.svg';
 import VolumeIcon from '~/assets/icons/volume.svg';
-import PlayIcon from '~/assets/icons/play-video.svg';
 import NextVideoIcon from '~/assets/icons/next-video.svg';
 import FullScreenIcon from '~/assets/icons/full-screen.svg';
+import {VideoSkeleton} from '~/components';
 import MutedVolumeIcon from '~/assets/icons/muted-volume.svg';
 import {useWindowSize, useEventListener} from '~/hooks/index';
 import {
@@ -16,11 +17,10 @@ import {
   ARROW_LEFT_KEY_CODE,
   ARROW_RIGHT_KEY_CODE,
 } from '~/constants';
-import {VideoSkeleton} from '~/components';
 
-import {IVideoProps} from './types';
 import VideoSlider from './VideoSlider';
 import VolumeSlider from './VolumeSlider';
+import {IVideoProps} from './types';
 import styles from './Video.module.scss';
 
 const Video: React.FC<IVideoProps> = ({
@@ -30,21 +30,21 @@ const Video: React.FC<IVideoProps> = ({
   videoDuration,
   loading = false,
 }) => {
-  const [videoElement, setVideoElement] = useState<HTMLVideoElement | null>(
-    null,
-  );
-  const [currentTime, setCurrentTime] = useState<number>(0);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const {isMaxTablet} = useWindowSize();
+
   const [muted, setMuted] = useState<boolean>(false);
-  const [cachedVolume, setCachedVolume] = useState<number>(1);
-  const [wasPlaying, setWasPlaying] = useState<boolean>(false);
-  const [isMouseOver, setIsMouseOver] = useState<boolean>(false);
   const [keyStatus, setKeyStatus] = useState({
     backward: false,
     forward: false,
   });
-
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const {isMaxTablet} = useWindowSize();
+  const [wasPlaying, setWasPlaying] = useState<boolean>(false);
+  const [isMouseOver, setIsMouseOver] = useState<boolean>(false);
+  const [currentTime, setCurrentTime] = useState<number>(0);
+  const [cachedVolume, setCachedVolume] = useState<number>(1);
+  const [videoElement, setVideoElement] = useState<HTMLVideoElement | null>(
+    null,
+  );
 
   const handleSpace = (event: any) => {
     if (event.keyCode === SPACE_KEY_CODE) {
@@ -171,10 +171,15 @@ const Video: React.FC<IVideoProps> = ({
 
   const handleSkipSeconds = () => {
     if (videoElement) {
+      const nextTime =
+        videoDuration > SKIP_SECONDS &&
+        currentTime + SKIP_SECONDS < videoDuration
+          ? currentTime + SKIP_SECONDS
+          : videoDuration;
       const isPaused = videoElement.paused;
       videoElement.pause();
-      videoElement.currentTime = currentTime + SKIP_SECONDS;
-      setCurrentTime(currentTime + SKIP_SECONDS);
+      videoElement.currentTime = nextTime;
+      setCurrentTime(nextTime);
       if (!isPaused) {
         videoElement.play();
       }

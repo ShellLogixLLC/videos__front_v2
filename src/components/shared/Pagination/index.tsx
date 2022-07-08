@@ -25,7 +25,7 @@ const PaginationIndex: React.FC<IPaginationProps> = ({
   activePage = INITIAL_PAGINATION_ACTIVE_PAGE,
   rowsPerPage = INITIAL_PAGINATION_ROWS_PER_PAGE,
   isMoreButtonNeeded = true,
-  isPerPageNeeded = true,
+  isPerPageNeeded = false,
   setActivePage = (e) => e,
   setRowsPerPage = (e) => e,
   handleClickLeftArrow,
