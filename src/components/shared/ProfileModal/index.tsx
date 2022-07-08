@@ -22,8 +22,8 @@ const ProfileModal: React.FC<ProfileModalProps> = ({expanded, setExpanded}) => {
   const {userInfo} = useAppSelector(authSelect);
 
   const [isUsernameEdited, setUsernameEdited] = useState<boolean>(true);
-  const [inputValue, setInputValue] = useState<string>(
-    (userInfo && userInfo.username) || 'Username',
+  const [inputValue, setInputValue] = useState<string | string[]>(
+    (userInfo && userInfo?.username) || 'Username',
   );
 
   const modalRef = useRef<HTMLDivElement | null>(null);
@@ -69,7 +69,10 @@ const ProfileModal: React.FC<ProfileModalProps> = ({expanded, setExpanded}) => {
               {isUsernameEdited ? (
                 <EditPenIcon className={styles.wrapper__content__editIcon} />
               ) : (
-                <Input value={inputValue} onChange={handlInputChange} />
+                <Input
+                  value={inputValue as string}
+                  onChange={handlInputChange}
+                />
               )}
             </div>
             <div className={styles.wrapper__content__block}>

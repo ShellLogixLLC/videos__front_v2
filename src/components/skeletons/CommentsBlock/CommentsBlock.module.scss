@@ -1,0 +1,20 @@
+.skeleton {
+  width: 100%;
+  height: 80px;
+  padding: 16px;
+  border-radius: 10px;
+  @extend %flex-between;
+  @extend %skeleton-animation;
+
+  &__title {
+    width: 203px;
+    height: 40px;
+    background: $black;
+  }
+
+  &__arrow {
+    width: 24px;
+    height: 24px;
+    background: $black;
+  }
+}

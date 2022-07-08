@@ -48,13 +48,13 @@ const ResetPassword: React.FC = () => {
         type="Extra"
         variant="Heading"
         className={styles.container__top__title}>
-        Reset Password
+        resetPassword
       </Typography>
       <Typography
         type="Extra"
         variant="Heading"
         className={styles.container__top__subtitle}>
-        Enter your new password
+        enterNewPassword
       </Typography>
       <Form
         form={resetForm}
@@ -62,7 +62,7 @@ const ResetPassword: React.FC = () => {
         inputClassName={styles.reset__block__input__inp}
         labelClassName={styles.reset__block}
         innerClassName={styles.reset__block__input}
-        submitText="Reset Password"
+        submitText="resetPassword"
         onSubmit={handleResetPassFormSubmit}
       />
       {isLoading && <Loader isVertical />}

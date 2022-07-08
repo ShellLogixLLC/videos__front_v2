@@ -1,21 +1,48 @@
-import React, {useRef} from 'react';
-import {useToggle} from 'react-use';
+import React, {useState, useEffect} from 'react';
 import classNames from 'classnames';
+import {useToggle} from 'react-use';
+import {useSelector} from 'react-redux';
 
+import {authState} from '~/store/auth';
+import {CommentType} from '~/api/videos/types';
+import {VideosService} from '~/api';
+import {COMMENTS_LIMIT} from '~/constants';
 import {LanguageArrowTop} from '~/assets';
-import {useOnClickOutside} from '~/hooks';
+import {CommentsBlockSkeleton} from '~/components';
 
 import Typography from '../Typography';
 
+import styles from './Comments.module.scss';
 import CommentForm from './CommentForm';
 import CommentBlock from './CommentBlock';
-import styles from './Comments.module.scss';
-import {ICommentBlock} from './types';
 
-const Comments: React.FC<ICommentBlock> = ({loading}) => {
+const Comments: React.FC = () => {
+  const {userInfo} = useSelector(authState);
+
+  const [limit, setLimit] = useState<number>(COMMENTS_LIMIT);
   const [expanded, toggleExpanded] = useToggle(false);
+  const [totalCount, setTotalCount] = useState<number>(0);
+  const [commentsList, setCommentsList] = useState<CommentType[]>([]);
 
-  const refInput = useRef<HTMLHeadingElement | null>(null);
+  const {data, isLoading} = VideosService.useVideoComments(limit, 0);
+  const boolInverse = totalCount > data?.totalCount;
+
+  useEffect(() => {
+    if (!isLoading && data?.comments) {
+      setCommentsList(data?.comments);
+      setTotalCount(data?.totalCount);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data?.comments]);
+
+  if (!commentsList.length && isLoading) {
+    return <CommentsBlockSkeleton />;
+  }
+
+  const addNewComment = (newComment: CommentType): void => {
+    setCommentsList([{...newComment, user: userInfo}, ...commentsList]);
+    setTotalCount(totalCount + 1);
+  };
 
   const blockClassNames = classNames(styles.block, {
     [styles.block_hidden]: !expanded,
@@ -29,30 +56,33 @@ const Comments: React.FC<ICommentBlock> = ({loading}) => {
     [styles.container__content__icon__open]: expanded,
   });
 
-  useOnClickOutside(refInput, () => toggleExpanded(false));
-
   return (
-    <div ref={refInput} className={containerClassNames}>
-      <div
-        onClick={toggleExpanded}
-        role="button"
-        className={styles.container__content}>
+    <div className={containerClassNames}>
+      <div onClick={toggleExpanded} className={styles.container__content}>
         <div className={styles.container__content__title}>
           <Typography className={styles.container__content__title__text}>
-            Comments
+            comments
           </Typography>
-          <span className={styles.container__content__title__count}>(20)</span>
+          <span className={styles.container__content__title__count}>
+            ({totalCount})
+          </span>
         </div>
         <LanguageArrowTop className={arrowIconClasses} />
       </div>
 
       <div className={blockClassNames}>
-        <div className={styles.block__wrapper}>
-          <CommentBlock loading={loading} />
-        </div>
-        <div className={styles.block__form}>
-          <CommentForm />
-        </div>
+        <CommentBlock
+          comments={commentsList}
+          setLimit={setLimit}
+          limit={limit}
+          boolInverse={boolInverse}
+          totalCount={totalCount}
+        />
+        {userInfo?.isVerified && (
+          <div className={styles.block__form}>
+            <CommentForm addNewComment={addNewComment} />
+          </div>
+        )}
       </div>
     </div>
   );

@@ -31,6 +31,7 @@ const Link: React.FC<LinkProps> = ({
         rel: 'noreferrer',
       }
     : anchorProps;
+
   const activeClasses = query[queryKey]
     ? query[queryKey] === queryValue
     : asPath === to;

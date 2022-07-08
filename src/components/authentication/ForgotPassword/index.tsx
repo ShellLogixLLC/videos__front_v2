@@ -7,7 +7,7 @@ import {Route} from '~/constants';
 import {Loader} from '~/components';
 import {forgotPasswordForm} from '~/constants';
 import {authActions, authSelect} from '~/store/auth';
-import {useAppDispatch, useAppSelector} from '~/hooks';
+import {useAppDispatch, useAppSelector, useLocales} from '~/hooks';
 
 import Link from '../../shared/Link';
 import Form from '../../shared/forms/Form';
@@ -21,11 +21,13 @@ const ForgotPassword: React.FC = () => {
 
   const [isLoading, toggleIsLoading] = useToggle(false);
 
-  const ifResetButton = isVerified ? 'Resend link' : 'Reset Password';
+  const ifResetButton = isVerified ? 'resendLink' : 'resetPassword';
+
+  const {translatedTypo} = useLocales(ifResetButton);
 
   const ifSubmitText = isVerified
-    ? 'We’ve sent a password reset link to your email. Email should be received within 5 minutes.'
-    : 'Enter your email address and we’ll send you instructions to reset your password.';
+    ? 'weHaveSentPasswordResetLink'
+    : 'enterYourEmailAddressAndWeWillSendInstructions';
 
   const isFormClosed = classNames(styles.container__content__sign_in__block, {
     [styles.container__content__sign_in__block_close]: isVerified,
@@ -60,7 +62,7 @@ const ForgotPassword: React.FC = () => {
   return (
     <div className={`container_without-header ${styles.container}`}>
       <Link to={Route.SignIn} className={styles.container__route}>
-        Back to sign in
+        <Typography>backToSignIn</Typography>
       </Link>
       <div className={styles.container__content}>
         <div className={styles.container__content__top}>
@@ -69,7 +71,7 @@ const ForgotPassword: React.FC = () => {
             type="Extra"
             variant="Heading"
             className={styles.container__content__top__title}>
-            Forgot Password
+            forgotPassword
           </Typography>
 
           <Typography
@@ -80,9 +82,8 @@ const ForgotPassword: React.FC = () => {
           </Typography>
         </div>
         <Form
-          // ref={forgotPasswordRef}
           form={forgotPasswordForm}
-          submitText={ifResetButton}
+          submitText={translatedTypo || ''}
           labelClassName={isFormClosed}
           inputClassName={formInputClasses}
           addFormBtnClasses={formBtnClasses}

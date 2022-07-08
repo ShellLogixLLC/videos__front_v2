@@ -1,87 +1,80 @@
-.favorites{
- @extend %flex-justify-between;
- flex-direction: column;
+.favorites {
+  @extend %flex-justify-between;
+  flex-direction: column;
 
-  &__backRoute{
-   @extend %flex-align;
-
-   &__button{
+  &__backRoute {
     @extend %flex-align;
-    background: transparent;
-    color: $white;
-    max-width: 100px;
-    @extend %film_name;
 
-    svg {
-     width: 48px;
+    &__button {
+      @extend %flex-align;
+      background: transparent;
+      color: $white;
+      max-width: 100px;
+      padding: 12px 0;
+      @extend %film_name;
+      margin-left: -6px;
 
-     path {
-      fill: $red;
-     }
+      svg {
+        margin-right: 18px;
+
+        path {
+          fill: $red;
+        }
+      }
     }
-   }
   }
 
-
- &__title{
- @extend %flex-start;
-  padding-top: 36px;
-
-  @include breakpoint(mobile){
-   padding-top: 23px;
-  }
-
-  &__text{
-   font-size: 64px;
-   line-height: 78px;
-   font-weight: 400;
-
-   @include breakpoint(tablet){
-    font-size: 32px;
-   }
-  }
- }
-
-  &__content__wrapper{
-   display: grid;
-   grid-template-columns: repeat( 4, minmax(320px, 1fr));
-   grid-gap: 48px 20px;
-   padding: 32px 0 54px;
-
-   @include breakpoint(wide-l){
-    grid-template-columns: repeat(4,minmax(0,320px));
-   }
-
-   @include breakpoint(wide){
-    grid-template-columns: repeat(3,minmax(320px,1fr));
-   }
-
-   @include breakpoint(wide-s){
-    grid-template-columns: repeat(3,minmax(0,320px));
-   }
-
-   @include breakpoint(tablet-custom){
-    grid-template-columns: repeat(2,minmax(0,350px));
-    padding-bottom: 46px;
+  &__title {
+    @extend %flex-start;
     padding-top: 24px;
-   }
 
-   @include breakpoint(mobile-l){
-    grid-template-columns: 1fr;
-    padding-bottom: 36px;
-   }
+    @include breakpoint(tablet-m) {
+      padding-top: 16px;
+    }
+
+    &__text {
+      font-size: 64px;
+      line-height: 78px;
+      font-weight: 400;
+
+      @include breakpoint(desktop) {
+        font-size: 32px;
+      }
+    }
   }
 
-  &__content__card{
-   height: unset;
-   max-width: unset;
-   min-width: unset;
-   margin-right: 0 !important;
+  &__content__wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(320px, 1fr));
+    grid-gap: 32px 20px;
+    padding: 32px 0 40px;
+
+    @include breakpoint(wide-l) {
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    }
+
+    @include breakpoint(desktop) {
+      padding: 24px 0 32px;
+      grid-gap: 20px;
+    }
+
+    @include breakpoint(tablet-m) {
+      padding: 24px 0;
+      grid-gap: 16px;
+      grid-template-columns: 1fr;
+    }
   }
 
- &__pagination{
- width: 100%;
-  @extend %flex-center;
-  height: 100px;
- }
+  &__content__card {
+    height: unset;
+    max-width: unset;
+    min-width: unset;
+    margin-right: 0 !important;
+  }
+
+  &__pagination {
+    width: 100%;
+    @extend %flex-center;
+    height: 48px;
+  }
 }

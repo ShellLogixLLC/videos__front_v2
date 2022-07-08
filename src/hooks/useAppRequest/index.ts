@@ -20,6 +20,9 @@ const useRequest = <Data = any, Error = unknown>(
     () => client(request!),
     {
       ...config,
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
       fallbackData: fallbackData && {
         status: 200,
         statusText: 'InitialData',

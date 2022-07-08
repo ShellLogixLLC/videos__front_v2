@@ -14,3 +14,8 @@ export type QueryParamsTypes = {
   page?: number;
   name?: string;
 };
+
+export enum LocaleType {
+  En = 'en',
+  Ru = 'ru',
+}

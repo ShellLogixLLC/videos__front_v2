@@ -11,7 +11,7 @@ import {Route} from '~/constants';
 import {LogOutModalProps} from './types';
 import styles from './LogOutModal.module.scss';
 
-const LogOutModal: React.FC<LogOutModalProps> = ({show, close}) => {
+const LogoutModal: React.FC<LogOutModalProps> = ({show, close}) => {
   const handleLogoutSubmit = (): void => {
     removeCookie('token');
     RouterService.push(Route.Home);
@@ -72,4 +72,4 @@ const LogOutModal: React.FC<LogOutModalProps> = ({show, close}) => {
   );
 };
 
-export default LogOutModal;
+export default LogoutModal;

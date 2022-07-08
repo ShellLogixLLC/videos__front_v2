@@ -47,7 +47,7 @@ const FilterBySort: React.FC<IFilterBySortProps> = ({options}) => {
     <div ref={filterRef} onClick={toggleExpanded} className={containerClasses}>
       <div className={styles.container__header}>
         <Typography className={styles.container__header__title}>
-          Sort by
+          sortBy
         </Typography>
         <FilterLampIcon className={styles.container__header__icon} />
       </div>

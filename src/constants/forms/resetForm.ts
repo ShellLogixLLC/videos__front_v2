@@ -6,17 +6,17 @@ import {EyeShowIcon, EyeHideIcon} from '~/assets';
 const fields: Field[] = [
   {
     name: 'new_password',
-    label: 'Enter new password',
+    label: 'enterNewPassword',
     type: 'password',
-    placeholder: 'Enter new password',
+    placeholder: 'enterNewPassword',
     RightIcon: EyeShowIcon,
     RightToggledIcon: EyeHideIcon,
   },
   {
     name: 'allow_password',
-    label: 'Confirm password',
+    label: 'confirmPassword',
     type: 'password',
-    placeholder: 'Confirm new password',
+    placeholder: 'confirmPassword',
     RightIcon: EyeShowIcon,
     RightToggledIcon: EyeHideIcon,
   },
@@ -25,20 +25,14 @@ const fields: Field[] = [
 const schema = yup.object().shape({
   new_password: yup
     .string()
-    .matches(
-      /^[^\s]+(\s+[^\s]+)*$/,
-      `Password can't start or end with a blank space`,
-    )
-    .required('The Password is required')
-    .min(5, 'New password.'),
+    .matches(/^[^\s]+(\s+[^\s]+)*$/, `passwordCantStartOrEndWwithABlankSpace`)
+    .required('thePasswordIsRequired')
+    .min(6, 'newPassword'),
   allow_password: yup
     .string()
-    .matches(
-      /^[^\s]+(\s+[^\s]+)*$/,
-      `Password can't start or end with a blank space`,
-    )
-    .required('The Password is required')
-    .min(5, 'Password is too short - should be 8 chars minimum.'),
+    .matches(/^[^\s]+(\s+[^\s]+)*$/, `passwordCantStartOrEndWwithABlankSpace`)
+    .required('thePasswordIsRequired')
+    .min(6, 'Password is too short - should be 6 chars minimum.'),
 });
 
 const resetForm: Form = {
