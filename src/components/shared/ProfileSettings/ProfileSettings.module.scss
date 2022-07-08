@@ -31,7 +31,7 @@
   visibility: hidden;
   background: $black;
   border-radius: 0 0 8px 8px;
-  border: 1px solid $dark-red;
+  box-shadow: $red 1px 1px 2px;
   width: 100%;
   min-width: 145px;
   padding: 11px 0 0;

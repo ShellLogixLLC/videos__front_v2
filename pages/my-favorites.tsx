@@ -14,7 +14,7 @@ const MyFavoritesPage: NextPage<SwrPageProps> = ({fallback}) => (
     <Seo
       title="My favorites page"
       metaDescription="My favorites page description">
-      <Wishlist />
+      {/*<Wishlist />*/}
     </Seo>
   </SWRConfig>
 );
