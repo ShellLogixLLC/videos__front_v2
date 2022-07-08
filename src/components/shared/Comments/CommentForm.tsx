@@ -3,8 +3,8 @@ import {useForm} from 'react-hook-form';
 import {BaseEmoji} from 'emoji-mart';
 
 import Button from '../../shared/Button';
-import EmojisInput from '../../shared/EmojisInput';
 import Typography from '../Typography';
+import EmojisInput from '../../shared/EmojisInput';
 
 import styles from './Comments.module.scss';
 

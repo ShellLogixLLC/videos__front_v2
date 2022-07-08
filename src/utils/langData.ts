@@ -1,15 +1,16 @@
 import {EnIcon, RuIcon} from '~/assets';
+import {LocaleType} from '~/types';
 
 import {ILangData} from './types';
 
 const langData: ILangData[] = [
   {
     Icon: EnIcon,
-    locale: 'en',
+    locale: LocaleType.En,
   },
   {
     Icon: RuIcon,
-    locale: 'ru',
+    locale: LocaleType.Ru,
   },
 ];
 

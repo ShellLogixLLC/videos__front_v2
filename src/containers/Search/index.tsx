@@ -18,7 +18,7 @@ import {
   INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE,
 } from '~/constants';
 import FilmCardSkeleton from '~/components/skeletons/FilmCard';
-import useLocales from '~/hooks/useLocales';
+import {useLocales} from '~/hooks';
 
 import styles from './Search.module.scss';
 

@@ -8,8 +8,8 @@ import {authActions, authSelect} from '~/store/auth';
 import {useAppDispatch, useAppSelector} from '~/hooks';
 import {getCookieFromBrowser, removeCookie} from '~/libraries';
 import {INITIAL_TIME, INITIAL_TIME_MILLISECONDS, Route} from '~/constants';
-import Typography from '~/components/shared/Typography';
 
+import Typography from '../../shared/Typography';
 import Link from '../../shared/Link';
 import Timer from '../../shared/StopWatch';
 import Input from '../../shared/Input';

@@ -1,7 +1,7 @@
 import React, {forwardRef, useMemo, useState, useCallback} from 'react';
 import classNames from 'classnames';
 
-import useLocales from '~/hooks/useLocales';
+import {useLocales} from '~/hooks';
 
 import Typography from '../Typography';
 

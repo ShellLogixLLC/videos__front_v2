@@ -5,7 +5,7 @@ import {useRouter} from 'next/router';
 import {ToggleContext} from '~/context';
 import {useOnClickOutside} from '~/hooks';
 import {SearchBackArrowIcon, SearchIcon} from '~/assets';
-import useLocales from '~/hooks/useLocales';
+import {useLocales} from '~/hooks';
 
 import Input from '../Input';
 

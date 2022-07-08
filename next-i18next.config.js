@@ -1,19 +1,11 @@
-const HttpBackend = require('i18next-http-backend/cjs');
+const path = require('path');
+
 const ChainedBackend = require('i18next-chained-backend').default;
 
-const path = require('path');
-// const {REACT_PRODUCTION} = process.env;
-
-// const isLocal = REACT_PRODUCTION === 'local';
-
-const EXPIRATION = process.env.REACT_APP_EXPIRATION_DATE;
+const isWindowUndefined = typeof window !== 'undefined';
 
 module.exports = {
   strict: true,
-  backend: {
-    backendOptions: [{expirationTime: +EXPIRATION}],
-    backends: typeof window !== 'undefined' ? [HttpBackend] : [],
-  },
   react: {useSuspense: false},
   interpolation: {
     prefix: '{{',
@@ -26,6 +18,6 @@ module.exports = {
     localePath: path.resolve('./public/locales'),
   },
   serializeConfig: false,
-  use: typeof window !== 'undefined' ? [ChainedBackend] : [],
+  use: isWindowUndefined ? [ChainedBackend] : [],
   localePath: path.resolve('./public/locales'),
 };

@@ -7,8 +7,7 @@ import {Route} from '~/constants';
 import {Loader} from '~/components';
 import {forgotPasswordForm} from '~/constants';
 import {authActions, authSelect} from '~/store/auth';
-import {useAppDispatch, useAppSelector} from '~/hooks';
-import useLocales from '~/hooks/useLocales';
+import {useAppDispatch, useAppSelector, useLocales} from '~/hooks';
 
 import Link from '../../shared/Link';
 import Form from '../../shared/forms/Form';

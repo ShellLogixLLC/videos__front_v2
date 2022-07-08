@@ -4,5 +4,4 @@ import * as ru from './ru/common.json'
 export default {
   en,
   ru,
-  // default: en
 }

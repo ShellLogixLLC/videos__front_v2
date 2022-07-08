@@ -5,8 +5,7 @@ import {Logo} from '~/assets';
 import {Loader} from '~/components';
 import {Route, signInForm} from '~/constants';
 import {authActions, authSelect} from '~/store/auth';
-import {useAppDispatch, useAppSelector} from '~/hooks';
-import useLocales from '~/hooks/useLocales';
+import {useAppDispatch, useAppSelector, useLocales} from '~/hooks';
 
 import Form from '../../shared/forms/Form';
 import Link from '../../shared/Link';

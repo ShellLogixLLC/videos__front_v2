@@ -14,10 +14,9 @@ import {
   INITIAL_PAGINATION_ACTIVE_PAGE,
   INITIAL_WISHLIST_LIMIT,
 } from '~/constants';
-import {useWindowSize} from '~/hooks';
+import {useWindowSize, useLocales} from '~/hooks';
 import {QueryParamsTypes} from '~/types';
 import {setQueryParams} from '~/utils';
-import useLocales from '~/hooks/useLocales';
 
 import styles from './Wishlist.module.scss';
 

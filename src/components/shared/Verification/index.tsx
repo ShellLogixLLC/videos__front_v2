@@ -1,8 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import Typography from '~/components/shared/Typography';
-import useLocales from '~/hooks/useLocales';
+import {Typography} from '~/components';
+import {useLocales} from '~/hooks';
 
 import Button from '../Button';
 

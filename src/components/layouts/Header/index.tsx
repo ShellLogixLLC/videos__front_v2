@@ -11,13 +11,13 @@ import {routes, routesBurger} from '~/utils';
 import {Menu, Logo, MobileFilterIcon, SearchBackArrowIcon} from '~/assets';
 import {
   Link,
-  Button,
   Search,
+  Button,
   MobileMenu,
+  Typography,
   MobileFilter,
   HeaderNavbar,
   SubCategories,
-  Typography,
 } from '~/components';
 
 import styles from './Header.module.scss';

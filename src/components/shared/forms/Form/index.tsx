@@ -9,7 +9,7 @@ import {yupResolver} from '@hookform/resolvers/yup';
 import {useForm, Controller, DefaultValues} from 'react-hook-form';
 import {isUndefined} from 'lodash';
 
-import useLocales from '~/hooks/useLocales';
+import {useLocales} from '~/hooks';
 
 import Input from '../../Input';
 import Button from '../../Button';

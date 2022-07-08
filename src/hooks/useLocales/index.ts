@@ -2,7 +2,7 @@ import {has} from 'lodash';
 import {useRouter} from 'next/router';
 
 import {DefaultLocale} from '~/constants';
-import {LocaleType} from '~/types/common';
+import {LocaleType} from '~/types';
 
 import locales from '../../../public/locales';
 
@@ -11,7 +11,7 @@ import {UseLocalesReturn} from './types';
 const useLocales = (typoKey?: string): UseLocalesReturn => {
   const {locale} = useRouter();
   const detectedLocale =
-    locale !== 'en' ? (locale as LocaleType) : DefaultLocale;
+    locale !== LocaleType.En ? (locale as LocaleType) : DefaultLocale;
 
   const detectedLocales = locales[detectedLocale];
   const translatedTypo =

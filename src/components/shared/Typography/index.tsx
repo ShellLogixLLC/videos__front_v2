@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import {FontStyles} from '~/constants';
-import useLocales from '~/hooks/useLocales';
+import {useLocales} from '~/hooks';
 
 import {TypographyProps} from './types';
 
