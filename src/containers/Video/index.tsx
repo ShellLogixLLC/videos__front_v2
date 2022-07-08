@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {LeftArrow} from '~/assets';
+import {LeftArrowIcon} from '~/assets';
 import {
   Link,
   Comments,
@@ -19,7 +19,7 @@ const VideoContainer: React.FC = () => (
     <div className={styles.wrapper}>
       <div className={styles.content}>
         <Link to="/" className={styles.content__back}>
-          <LeftArrow />
+          <LeftArrowIcon />
           <Typography className={styles.content__back_text}>Back</Typography>
         </Link>
         <VideoWrapper />

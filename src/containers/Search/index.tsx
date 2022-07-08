@@ -12,7 +12,7 @@ import {
   Pagination,
   Typography,
 } from '~/components';
-import {LeftArrow} from '~/assets';
+import {LeftArrowIcon} from '~/assets';
 import {
   INITIAL_PAGINATION_ACTIVE_PAGE,
   INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE,
@@ -78,7 +78,7 @@ const Search: React.FC = () => {
           <div className={styles.wrapper__content__header}>
             <BackButton
               text={translatedTypo || ''}
-              LeftIcon={LeftArrow}
+              LeftIcon={LeftArrowIcon}
               className={styles.wrapper__content__header__route}
             />
             <CategoryNav />

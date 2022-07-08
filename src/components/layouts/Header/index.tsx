@@ -8,10 +8,14 @@ import {ToggleContext} from '~/context';
 import {useWindowSize} from '~/hooks';
 import {CategoryService} from '~/api';
 import {routes, routesBurger} from '~/utils';
-import {Menu, Logo, MobileFilterIcon, SearchBackArrowIcon} from '~/assets';
+import {
+  MenuIcon,
+  LogoIcon,
+  MobileFilterIcon,
+  SearchBackArrowIcon,
+} from '~/assets';
 import {
   Link,
-  Search,
   Button,
   MobileMenu,
   Typography,
@@ -148,8 +152,10 @@ const Header: React.FC = () => {
       <div className={bgClassName} />
       <div className={`${styles.wrapper__content} container`}>
         <Link className={logoClassNames} to={Route.Home}>
-          <Logo />
+          <LogoIcon />
         </Link>
+
+        <HeaderNavbar>{headerTable}</HeaderNavbar>
         <div className={styles.wrapper__content__container}>
           <MobileFilterIcon
             onClick={toggleFilter}
@@ -158,14 +164,12 @@ const Header: React.FC = () => {
           <Button
             onClick={handleOpenMenu}
             className={styles.wrapper__content__burger_btn}>
-            <Menu className={styles.wrapper__content__burger_icon} />
+            <MenuIcon className={styles.wrapper__content__burger_icon} />
           </Button>
         </div>
         <MobileMenu isOpen={isOpen} setIsOpen={setIsOpen}>
           {renderMobileMenu}
         </MobileMenu>
-        <HeaderNavbar>{headerTable}</HeaderNavbar>
-        <Search />
       </div>
       <MobileFilter isFilter={isFilter} toggleFilter={toggleFilter} />
     </header>

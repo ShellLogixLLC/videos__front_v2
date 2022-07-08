@@ -1,6 +1,6 @@
 import React, {useRef} from 'react';
 
-import {Logo} from '~/assets';
+import {LogoIcon} from '~/assets';
 import {RouterService} from '~/services';
 import {Typography, Form} from '~/components';
 import {registrationForm, Route} from '~/constants';
@@ -17,7 +17,7 @@ const RegistrationPersonalInformation: React.FC = () => {
   return (
     <div className="container_without-header">
       <div className={styles.container__top}>
-        <Logo className={styles.container__top_img} />
+        <LogoIcon className={styles.container__top_img} />
         <Typography
           type="Extra"
           variant="Heading"

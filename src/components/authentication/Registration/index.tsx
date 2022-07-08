@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect} from 'react';
 import {useToggle} from 'react-use';
 
-import {Logo} from '~/assets';
+import {LogoIcon} from '~/assets';
 import {Loader} from '~/components';
 import {registrationForm} from '~/constants';
 import {authActions, authSelect} from '~/store/auth';
@@ -50,7 +50,7 @@ const Registration: React.FC = () => {
         text={translatedTypo || ''}
         className={styles.container__cancel}
       />
-      <Logo className={styles.container__top_img} />
+      <LogoIcon className={styles.container__top_img} />
       <Typography
         type="Extra"
         variant="Heading"

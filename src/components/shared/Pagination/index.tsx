@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import classNames from 'classnames';
 import ReactPaginate from 'react-paginate';
 
-import {LeftArrow, RightArrow} from '~/assets';
+import {LeftArrowIcon, RightArrowIcon} from '~/assets';
 import {
   INITIAL_PAGINATION_MORE_COUNT,
   INITIAL_PAGINATION_ACTIVE_PAGE,
@@ -82,19 +82,22 @@ const PaginationIndex: React.FC<IPaginationProps> = ({
 
   const activePagination = isRight ? (
     <div className={styles.right_block}>
-      <RightArrow
+      <RightArrowIcon
         onClick={handleClickRightArrow}
         className={rightArrowClasses}
       />
-      <LeftArrow onClick={handleClickLeftArrow} className={leftArrowClasses} />
+      <LeftArrowIcon
+        onClick={handleClickLeftArrow}
+        className={leftArrowClasses}
+      />
     </div>
   ) : (
     <ReactPaginate
       forcePage={activePage}
-      nextLabel={<RightArrow />}
+      nextLabel={<RightArrowIcon />}
       pageCount={pageCount}
       onPageChange={setPage}
-      previousLabel={<LeftArrow />}
+      previousLabel={<LeftArrowIcon />}
       pageClassName={styles.container__break}
       breakClassName={styles.container__break}
       activeClassName={styles.container_active}

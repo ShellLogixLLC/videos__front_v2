@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import {Close} from '~/assets';
+import {CloseIcon} from '~/assets';
 import {filteredMass} from '~/utils';
 import {useLockBodyScroll} from '~/hooks';
 import {Button, Typography} from '~/components';
@@ -28,7 +28,7 @@ const MobileFilter: React.FC<IMobileFilterProps> = ({
         <Typography className={styles.wrapper__top_block__text}>
           filter
         </Typography>
-        <Close onClick={toggleFilter} className={styles.wrapper__close} />
+        <CloseIcon onClick={toggleFilter} className={styles.wrapper__close} />
       </div>
       <div className={styles.wrapper__content}>
         <DatePicker />

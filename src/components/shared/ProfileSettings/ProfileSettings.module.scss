@@ -1,0 +1,86 @@
+.wrapper {
+  position: relative;
+  transition:0.2s ease;
+  z-index: 40;
+
+  &__open {
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+  }
+}
+
+.container {
+  @extend %flex-center;
+  padding: 8px 0;
+  cursor: pointer;
+
+  &__userIcon {
+    width: 24px;
+    height: 24px;
+
+    &__open {
+    }
+  }
+}
+
+.content {
+  @extend %flex-align;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  visibility: hidden;
+  background: $black;
+  border-radius: 0 0 8px 8px;
+  box-shadow: $red 1px 1px 2px;
+  width: 100%;
+  min-width: 145px;
+  padding: 11px 0 0;
+  box-sizing: border-box;
+
+  &__open {
+    visibility: visible;
+  }
+
+  &__list {
+    list-style: none;
+    @extend %flex-center;
+    flex-direction: column;
+    width: 100%;
+    padding: 0 7px;
+
+
+    &__icon{
+      width: 22px !important;
+      height: 22px !important;
+
+      &__exit{
+      }
+    }
+
+    &__wrapper{
+      @extend %flex-between;
+      width: 100%;
+      padding: 0 0 20px;
+    }
+
+    &__link {
+      @extend %film_info_text;
+      font-size: 15px;
+      @extend %flex-center;
+      color: $white;
+      transition: 0.2s ease;
+      transition-property: color,padding-left;
+      text-align: center;
+      cursor: pointer;
+      user-select: none;
+
+
+
+      &:hover {
+        color: $red;
+        text-decoration: underline;
+        text-shadow: -5px 6px 5px $red;
+      }
+    }
+  }
+}

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import moment from 'moment';
 import classNames from 'classnames';
 
-import {HeartLikes, FilmLikeIcon, ViewsCount} from '~/assets/index';
+import {HeartLikesIcon, FilmLikeIcon, ViewsCountIcon} from '~/assets/index';
 import {
   VIDEO_CREATED_AT,
   VIDEO_INITIAL_NAME,
@@ -41,10 +41,10 @@ const VideDescription: React.FC<VideDescriptionTypes> = ({
             {likeCount} <FilmLikeIcon />
           </span>
           <span className={styles.wrapper__views_liked__view}>
-            {viewCount} <ViewsCount />
+            {viewCount} <ViewsCountIcon />
           </span>
         </div>
-        <HeartLikes onClick={likeHandler} className={isLikedClasses} />
+        <HeartLikesIcon onClick={likeHandler} className={isLikedClasses} />
       </div>
       <h3 className={styles.wrapper__title_block__name}>{videoName}</h3>
       <p className={styles.wrapper__date}>{formatCreatedDate}</p>

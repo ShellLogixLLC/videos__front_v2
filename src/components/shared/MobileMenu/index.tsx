@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
 import classNames from 'classnames';
 
-import {Close} from '~/assets';
+import {CloseIcon} from '~/assets';
 import {useOnClickOutside, useLockBodyScroll} from '~/hooks';
 
 import styles from '../../layouts/Header/Header.module.scss';
@@ -27,7 +27,7 @@ const MobileMenu: React.FC<IMobileMenuProps> = ({
 
   return (
     <div className={burgerClassNames}>
-      <Close
+      <CloseIcon
         onClick={handleCloseMenu}
         className={styles.wrapper__content__close_icon}
       />
