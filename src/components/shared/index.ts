@@ -16,7 +16,7 @@ export {default as Typography} from './Typography';
 export {default as MobileMenu} from './MobileMenu';
 export {default as CategoryNav} from './CategoryNav';
 export {default as EmojisInput} from './EmojisInput';
-export {default as LogoutModal} from './LogoutModal';
+export {default as LogoutModal} from './LogOutModal';
 export {default as FilterBySort} from './FilterBySort';
 export {default as Verification} from './Verification';
 export {default as HeaderNavbar} from './HeaderNavbar';
