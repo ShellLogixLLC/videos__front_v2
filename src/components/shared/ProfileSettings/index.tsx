@@ -2,13 +2,12 @@ import React, {useRef, useState} from 'react';
 import classNames from 'classnames';
 
 import {LogoutModal, ProfileModal} from '~/components';
-import {ExitIcon, SettingsIcon, UserIcon} from '~/assets';
+import {ExitIcon, UserIcon} from '~/assets';
 import {useOnClickOutside} from '~/hooks';
 
-import {ProfileSettingsProps} from './types';
 import styles from './ProfileSettings.module.scss';
 
-const ProfileSettings: React.FC<ProfileSettingsProps> = () => {
+const ProfileSettings: React.FC = () => {
   const [isDropdownOpen, setDropdownOpen] = useState<boolean>(false);
   const [showLogoutModal, setShowLogoutModal] = useState<boolean>(false);
   const [showProfileModal, setShowProfileModal] = useState<boolean>(false);
@@ -76,7 +75,7 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = () => {
               onClick={openProfileModal}
               className={styles.content__list__wrapper}>
               <li className={linkClassName}>User Info</li>
-              <SettingsIcon className={styles.content__list__icon} />
+              <UserIcon className={styles.content__list__icon} />
             </div>
             <div
               role="button"
