@@ -1,6 +1,7 @@
 import React, {useRef} from 'react';
 import usePortal from 'react-useportal';
 import classNames from 'classnames';
+import ReactTooltip from 'react-tooltip';
 
 import {authSelect} from '~/store/auth';
 import {AllaIcon, CloseIcon, RoundAllowIcon} from '~/assets';
