@@ -63,8 +63,8 @@ export const register = createAsyncThunk(
       email: string;
       username: string;
       password: string;
-      passwordConfirmation: string;
       verification: boolean;
+      passwordConfirmation: string;
     },
     thunkAPI,
   ) => {
