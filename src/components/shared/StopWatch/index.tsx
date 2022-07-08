@@ -58,7 +58,7 @@ const Timer: React.FC<ITimerProps> = ({
         onClick={resendHandler}
         disabled={!isNotValid}
         className={resendClasses}>
-        Resend OTP
+        <Typography>resendOTP</Typography>
       </Button>
       <div className={styles.timer_block}>
         <Typography className={wrapperClasses}>{formatTimer(timer)}</Typography>

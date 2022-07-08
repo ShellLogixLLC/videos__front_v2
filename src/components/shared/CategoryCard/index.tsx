@@ -2,7 +2,7 @@ import React from 'react';
 
 import {CategoryImage} from '~/assets';
 import {CategoriesProps} from '~/types';
-import {CategoryCardSkeleton, Link} from '~/components';
+import {CategoryCardSkeleton, Link, Typography} from '~/components';
 
 import Image from '../Image';
 
@@ -24,7 +24,9 @@ const CategoryCard: React.FC<CategoryCardProps> = ({item, isLoading}) => {
         alt="Category"
         className={styles.container__content}
       />
-      <span className={styles.container__name}>{name?.en}</span>
+      <Typography tagName="span" className={styles.container__name}>
+        {name?.en}
+      </Typography>
     </Link>
   );
 };

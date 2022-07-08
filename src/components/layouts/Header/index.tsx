@@ -1,7 +1,6 @@
 import React, {useState, useContext, useEffect} from 'react';
 import classNames from 'classnames';
 import {useToggle} from 'react-use';
-import {useTranslation} from 'next-i18next';
 import {useRouter} from 'next/router';
 
 import {Route} from '~/constants';
@@ -12,9 +11,10 @@ import {routes, routesBurger} from '~/utils';
 import {Menu, Logo, MobileFilterIcon, SearchBackArrowIcon} from '~/assets';
 import {
   Link,
-  Button,
   Search,
+  Button,
   MobileMenu,
+  Typography,
   MobileFilter,
   HeaderNavbar,
   SubCategories,
@@ -23,7 +23,6 @@ import {
 import styles from './Header.module.scss';
 
 const Header: React.FC = () => {
-  const {t} = useTranslation();
   const {pathname, query} = useRouter();
   const {expanded} = useContext(ToggleContext);
   const {isDesktop} = useWindowSize();
@@ -101,7 +100,7 @@ const Header: React.FC = () => {
           onMouseEnter={onMouseEnter}
           onClick={toggleCategory}
           className={styles.wrapper__content_menu__category__child}>
-          <p className={itemClasses}>Category</p>
+          <Typography className={itemClasses}>categories</Typography>
           <SearchBackArrowIcon className={iconClasses} />
         </div>
         {isCategoriesHoverable && (
@@ -114,8 +113,8 @@ const Header: React.FC = () => {
     );
   };
 
-  const headerTable = routes.map(({id, routeName, pageName}) =>
-    id === 1 ? (
+  const headerTable = routes.map(({id, routeName, pageName}) => {
+    return id === 1 ? (
       renderCategory()
     ) : (
       <Link
@@ -123,13 +122,13 @@ const Header: React.FC = () => {
         to={routeName}
         className={styles.wrapper__content_menu__link}
         activeClassName={styles.wrapper__content_menu__link_active}>
-        {t(pageName)}
+        <Typography>{pageName}</Typography>
       </Link>
-    ),
-  );
+    );
+  });
 
-  const renderMobileMenu = routesBurger.map(({id, routeName, pageName}) =>
-    id === 3 ? (
+  const renderMobileMenu = routesBurger.map(({id, routeName, pageName}) => {
+    return id === 3 ? (
       renderCategory()
     ) : (
       <Link
@@ -139,10 +138,10 @@ const Header: React.FC = () => {
         activeClassName={
           styles.wrapper__content__burger__container__nav__items_active
         }>
-        {t(pageName)}
+        <Typography>{pageName}</Typography>
       </Link>
-    ),
-  );
+    );
+  });
 
   return (
     <header className={styles.wrapper}>

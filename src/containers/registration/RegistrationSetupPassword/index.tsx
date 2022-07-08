@@ -22,13 +22,13 @@ const RegistrationSetupPassword: React.FC = () => {
           type="Extra"
           variant="Heading"
           className={styles.container__top__title}>
-          Registration
+          registration
         </Typography>
         <Typography
           type="Medium"
           variant="Text"
           className={styles.container__top__step}>
-          Step 3. Set up password
+          step3SetUpPassword
         </Typography>
       </div>
 

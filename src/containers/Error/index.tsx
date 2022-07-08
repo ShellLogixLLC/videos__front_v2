@@ -12,10 +12,10 @@ const Error: React.FC = () => {
         404
       </Typography>
       <Typography tagName="p" className={styles.wrapper__description}>
-        OOPS !!! Page not found
+        pageNotFound
       </Typography>
       <Link className={styles.wrapper__route} to={Route.Home}>
-        Home
+        <Typography>home</Typography>
       </Link>
     </div>
   );

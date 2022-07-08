@@ -6,13 +6,13 @@ const fields: Field[] = [
   {
     name: 'email',
     type: 'text',
-    label: 'Email Address',
-    placeholder: '',
+    label: 'email',
+    placeholder: 'enterYourEmail',
   },
 ];
 
 const schema = yup.object().shape({
-  email: yup.string().email('Must be a valid email').required(),
+  email: yup.string().email('theEmailMustBeAValidEmailAddress').required(),
 });
 
 const setEmailForm: Form = {

@@ -9,6 +9,8 @@ import {yupResolver} from '@hookform/resolvers/yup';
 import {useForm, Controller, DefaultValues} from 'react-hook-form';
 import {isUndefined} from 'lodash';
 
+import {useLocales} from '~/hooks';
+
 import Input from '../../Input';
 import Button from '../../Button';
 import CheckboxRow from '../../CheckboxRow';
@@ -128,6 +130,8 @@ const Form = forwardRef<any, IFormProps>(
       ],
     );
 
+    const {translatedTypo: translatedSubmitText} = useLocales(submitText);
+
     const renderFields = useCallback(
       () => fields.map(({name, ...rest}) => renderField(name, rest)),
       [fields, renderField],
@@ -157,7 +161,7 @@ const Form = forwardRef<any, IFormProps>(
           disabled={!isValid}
           onClick={formHandler}
           className={disabledButtonClasses}>
-          {submitText}
+          {translatedSubmitText || submitText}
         </Button>
       </form>
     );
