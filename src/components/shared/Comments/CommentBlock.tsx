@@ -1,7 +1,7 @@
 import React, {useEffect, useRef} from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-import {COMMECTS_LIMIT} from '~/constants';
+import {COMMENTS_LIMIT} from '~/constants';
 import {CommentSkeleton} from '~/components';
 
 import Comment from './Comment';
@@ -15,6 +15,7 @@ const CommentBlock: React.FC<ICommentBlock> = ({
   totalCount,
   boolInverse,
 }) => {
+  // this ref belongs to the package, and I didn't find the correct type.
   const scrollRef = useRef<any | null>(null);
 
   useEffect(() => {
@@ -28,8 +29,8 @@ const CommentBlock: React.FC<ICommentBlock> = ({
 
   const getMoreData = () => {
     const nextLimit =
-      limit + COMMECTS_LIMIT <= totalCount
-        ? limit + COMMECTS_LIMIT
+      limit + COMMENTS_LIMIT <= totalCount
+        ? limit + COMMENTS_LIMIT
         : totalCount;
     setTimeout(() => {
       setLimit(nextLimit);
@@ -41,7 +42,7 @@ const CommentBlock: React.FC<ICommentBlock> = ({
   ));
 
   const renderLoader = limit !== totalCount && totalCount !== 0 && (
-    <CommentSkeleton dataLength={COMMECTS_LIMIT} />
+    <CommentSkeleton dataLength={COMMENTS_LIMIT} />
   );
 
   return (

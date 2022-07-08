@@ -1,13 +1,12 @@
 import React from 'react';
+import shortid from 'shortid';
 import {useForm} from 'react-hook-form';
 import {BaseEmoji} from 'emoji-mart';
 import {useRouter} from 'next/router';
 
 import {videoActions} from '~/store/video';
 import {useAppDispatch} from '~/hooks';
-
-import Button from '../../shared/Button';
-import EmojisInput from '../../shared/EmojisInput';
+import {Button, EmojisInput} from '~/components';
 
 import styles from './Comments.module.scss';
 import {ICommentForm} from './types';
@@ -16,8 +15,6 @@ const CommentForm: React.FC<ICommentForm> = ({addNewComment}) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const {id: activeVideoId} = router.query;
-
-  const massageId = Math.random().toString(36).substr(2, 9);
 
   const {handleSubmit, register, formState, setValue, getValues} = useForm({
     mode: 'onChange',
@@ -32,7 +29,7 @@ const CommentForm: React.FC<ICommentForm> = ({addNewComment}) => {
     );
     setValue('comment', '');
     addNewComment({
-      id: massageId,
+      id: shortid.generate(),
       videoId: activeVideoId,
       message: comment,
     });

@@ -6,7 +6,7 @@ import {useSelector} from 'react-redux';
 import {authState} from '~/store/auth';
 import {CommentType} from '~/api/videos/types';
 import {VideosService} from '~/api';
-import {COMMECTS_LIMIT} from '~/constants';
+import {COMMENTS_LIMIT} from '~/constants';
 import {LanguageArrowTop} from '~/assets';
 import {CommentsBlockSkeleton} from '~/components';
 
@@ -19,7 +19,7 @@ import CommentBlock from './CommentBlock';
 const Comments: React.FC = () => {
   const {userInfo} = useSelector(authState);
 
-  const [limit, setLimit] = useState<number>(COMMECTS_LIMIT);
+  const [limit, setLimit] = useState<number>(COMMENTS_LIMIT);
   const [expanded, toggleExpanded] = useToggle(false);
   const [totalCount, setTotalCount] = useState<number>(0);
   const [commentsList, setCommentsList] = useState<CommentType[]>([]);

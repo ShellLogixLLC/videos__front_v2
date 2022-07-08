@@ -18,7 +18,7 @@ const Comment: React.FC<IComment> = ({comment}) => {
           {toUpperCaseUsername}
         </div>
         <Typography className={styles.block__wrapper__comment__head__name}>
-          {user?.username}
+          {userName}
         </Typography>
       </div>
       <p className={styles.block__wrapper__comment__description}>{message}</p>

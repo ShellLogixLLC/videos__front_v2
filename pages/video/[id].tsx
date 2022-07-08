@@ -7,6 +7,11 @@ import {SwrPageProps} from '~/types';
 import {VideoContainer} from '~/containers';
 import endpoints from '~/api/endpoints';
 import ApiService from '~/api/ApiService';
+import {
+  COMMENTS_LIMIT,
+  VIDEO_INITIAL_LIMIT,
+  VIDEO_INITIAL_OFFSET,
+} from '~/constants';
 
 const VideoPage: NextPage<SwrPageProps> = ({fallback}) => {
   return (
@@ -27,21 +32,35 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   );
 
   const comments = await ApiService.get(
-    endpoints.VideosService.getVideoComments(0, 6, activeVideoId),
+    endpoints.VideosService.getVideoComments(
+      VIDEO_INITIAL_OFFSET,
+      COMMENTS_LIMIT,
+      activeVideoId,
+    ),
   );
 
   const videosSimilar = await ApiService.get(
-    endpoints.VideosService.getVideoSimilar(0, 16, activeVideoId),
+    endpoints.VideosService.getVideoSimilar(
+      VIDEO_INITIAL_OFFSET,
+      VIDEO_INITIAL_LIMIT,
+      activeVideoId,
+    ),
   );
 
   return {
     props: {
       fallback: {
         [endpoints.VideosService.getVideoById(activeVideoId)]: video,
-        [endpoints.VideosService.getVideoComments(0, 6, activeVideoId)]:
-          comments,
-        [endpoints.VideosService.getVideoSimilar(0, 16, activeVideoId)]:
-          videosSimilar,
+        [endpoints.VideosService.getVideoComments(
+          VIDEO_INITIAL_OFFSET,
+          COMMENTS_LIMIT,
+          activeVideoId,
+        )]: comments,
+        [endpoints.VideosService.getVideoSimilar(
+          VIDEO_INITIAL_OFFSET,
+          VIDEO_INITIAL_LIMIT,
+          activeVideoId,
+        )]: videosSimilar,
       },
     },
   };
