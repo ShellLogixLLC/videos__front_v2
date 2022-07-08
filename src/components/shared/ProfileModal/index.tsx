@@ -3,16 +3,16 @@ import usePortal from 'react-useportal';
 import classNames from 'classnames';
 
 import {authSelect} from '~/store/auth';
+import {Typography} from '~/components';
+import {PopupProps} from '~/types';
 import {Alla, Close, RoundAllow} from '~/assets';
 import {useAppSelector, useLockBodyScroll, useOnClickOutside} from '~/hooks';
-import {Typography} from '~/components';
 
-import {ProfileModalProps} from './types';
 import styles from './ProfileModal.module.scss';
 
 // This page isn't finished, it doesn't have design
 
-const ProfileModal: React.FC<ProfileModalProps> = ({expanded, setExpanded}) => {
+const ProfileModal: React.FC<PopupProps> = ({expanded, setExpanded}) => {
   const {Portal} = usePortal();
   const {userInfo} = useAppSelector(authSelect);
 
