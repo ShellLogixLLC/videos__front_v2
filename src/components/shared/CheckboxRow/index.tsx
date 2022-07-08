@@ -25,7 +25,7 @@ const CheckboxRow: React.FC<ICheckboxRowProps> = ({
           </Typography>
         </Link>
 
-        <Typography tagName="span">and </Typography>
+        <Typography tagName="span">and</Typography>
         {isMobile && <br />}
         <Link blank className={styles.container__link} to={secondLink}>
           <Typography className={styles.container__second} tagName="span">

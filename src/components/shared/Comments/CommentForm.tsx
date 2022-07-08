@@ -6,7 +6,7 @@ import {useRouter} from 'next/router';
 
 import {videoActions} from '~/store/video';
 import {useAppDispatch} from '~/hooks';
-import {Button, EmojisInput} from '~/components';
+import {Button, EmojisInput, Typography} from '~/components';
 
 import styles from './Comments.module.scss';
 import {ICommentForm} from './types';
@@ -47,7 +47,7 @@ const CommentForm: React.FC<ICommentForm> = ({addNewComment}) => {
         addEmoji={addEmoji}
       />
       <Button disabled={!formState.isValid} type="submit">
-        Comment
+        <Typography>comment</Typography>
       </Button>
     </form>
   );

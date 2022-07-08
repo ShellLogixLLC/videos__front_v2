@@ -18,6 +18,7 @@ import {
   INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE,
 } from '~/constants';
 import FilmCardSkeleton from '~/components/skeletons/FilmCard';
+import {useLocales} from '~/hooks';
 
 import styles from './Search.module.scss';
 
@@ -49,6 +50,8 @@ const Search: React.FC = () => {
     INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE,
   ).fill({});
 
+  const {translatedTypo} = useLocales('back');
+
   const renderResultListSkeletons = skeletonsArray?.map(({index}) => (
     <FilmCardSkeleton
       key={index}
@@ -74,13 +77,13 @@ const Search: React.FC = () => {
         <section>
           <div className={styles.wrapper__content__header}>
             <BackButton
-              text="Back"
+              text={translatedTypo || ''}
               LeftIcon={LeftArrow}
               className={styles.wrapper__content__header__route}
             />
             <CategoryNav />
             <Typography className={styles.wrapper__content__header__title}>
-              Search Results
+              searchResults
             </Typography>
           </div>
         </section>
@@ -88,9 +91,10 @@ const Search: React.FC = () => {
           {renderResultList}
           {videos?.length === 0 && (
             <div className={styles.wrapper__content__result__wrapper}>
-              <p className={styles.wrapper__content__result__wrapper__null}>
-                Sorry, we could not find any result as:
-              </p>
+              <Typography
+                className={styles.wrapper__content__result__wrapper__null}>
+                sorryWeCouldNotFindAnyResult
+              </Typography>
               <p
                 className={
                   styles.wrapper__content__result__wrapper__search_result

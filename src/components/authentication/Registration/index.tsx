@@ -5,7 +5,7 @@ import {Logo} from '~/assets';
 import {Loader} from '~/components';
 import {registrationForm} from '~/constants';
 import {authActions, authSelect} from '~/store/auth';
-import {useAppDispatch, useAppSelector} from '~/hooks';
+import {useAppDispatch, useAppSelector, useLocales} from '~/hooks';
 
 import Form from '../../shared/forms/Form';
 import BackButton from '../../shared/BackButton';
@@ -19,15 +19,19 @@ const Registration: React.FC = () => {
 
   const [isLoading, toggleIsLoading] = useToggle(false);
 
-  const handleResetPassFormSubmit = useCallback(
+  const {translatedTypo} = useLocales('cancelRegistration');
+
+  const handleRegistrationSubmit = useCallback(
     (values) => {
-      const {email, username, create_password, confirm_password} = values;
+      const {email, username, create_password, confirm_password, verification} =
+        values;
 
       const userInfo = {
         email,
         username,
         password: create_password,
         passwordConfirmation: confirm_password,
+        verification,
       };
 
       dispatch(authActions.register(userInfo));
@@ -43,7 +47,7 @@ const Registration: React.FC = () => {
   return (
     <div className={`container_without-header ${styles.container}`}>
       <BackButton
-        text="Cancel registration"
+        text={translatedTypo || ''}
         className={styles.container__cancel}
       />
       <Logo className={styles.container__top_img} />
@@ -51,13 +55,12 @@ const Registration: React.FC = () => {
         type="Extra"
         variant="Heading"
         className={styles.container__top__title}>
-        Registration
+        registration
       </Typography>
       <Form
-        // ref={signInRef}
-        submitText="Proceed"
+        submitText="proceed"
         form={registrationForm}
-        onSubmit={handleResetPassFormSubmit}
+        onSubmit={handleRegistrationSubmit}
         labelClassName={styles.container__registration__block}
         innerClassName={styles.container__registration__block__input}
         inputClassName={styles.container__registration__block__input__inp}

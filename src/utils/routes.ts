@@ -5,22 +5,22 @@ import {RoutesProps} from './types';
 export const routes: RoutesProps[] = [
   {
     id: 1,
-    pageName: 'Categories',
+    pageName: 'categories',
     routeName: Route.Categories,
   },
   {
     id: 2,
-    pageName: 'Top Rated',
+    pageName: 'topRated',
     routeName: Route.Favorites,
   },
   {
     id: 3,
-    pageName: 'Most Liked',
+    pageName: 'mostLiked',
     routeName: Route.MostLiked,
   },
   {
     id: 4,
-    pageName: 'New',
+    pageName: 'new',
     routeName: Route.New,
   },
 ];
@@ -28,33 +28,33 @@ export const routes: RoutesProps[] = [
 export const routesBurger: RoutesProps[] = [
   {
     id: 1,
-    pageName: 'Home',
+    pageName: 'home',
     routeName: Route.Home,
   },
 
   {
     id: 2,
-    pageName: 'Favorites',
+    pageName: 'favorites',
     routeName: Route.MyFavorite,
   },
   {
     id: 3,
-    pageName: 'Categories',
+    pageName: 'categories',
     routeName: Route.Categories,
   },
   {
     id: 4,
-    pageName: 'Top Rated',
+    pageName: 'topRated',
     routeName: Route.Favorites,
   },
   {
     id: 5,
-    pageName: 'Most Liked',
+    pageName: 'mostLiked',
     routeName: Route.MostLiked,
   },
   {
     id: 6,
-    pageName: 'New',
+    pageName: 'new',
     routeName: Route.New,
   },
 ];

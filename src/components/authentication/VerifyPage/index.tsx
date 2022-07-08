@@ -9,6 +9,7 @@ import {useAppDispatch, useAppSelector} from '~/hooks';
 import {getCookieFromBrowser, removeCookie} from '~/libraries';
 import {INITIAL_TIME, INITIAL_TIME_MILLISECONDS, Route} from '~/constants';
 
+import Typography from '../../shared/Typography';
 import Link from '../../shared/Link';
 import Timer from '../../shared/StopWatch';
 import Input from '../../shared/Input';
@@ -273,21 +274,21 @@ const ContractSign: React.FC<VerifyProps> = ({
   ));
 
   const InformMessages = areInputsEmpty && (
-    <span className={spanClasses}>
-      {cookieTimer
-        ? 'Wrong OTP try again in 2 minutes.'
-        : 'You can resend OPT now !'}
-    </span>
+    <Typography tagName="span" className={spanClasses}>
+      {cookieTimer ? 'wrongOtpTryAgain' : 'youCanResendOpt'}
+    </Typography>
   );
 
   return (
     <div className={styles.container}>
       <Link to="/" className={styles.container__cancel}>
-        Cancel OTP Registration
+        <Typography>cancelOtpRegistration</Typography>
       </Link>
       <div className={styles.container__top}>
         <Logo className={styles.container__top__img} />
-        <p className={styles.container__top__title}>Enter: One Time Password</p>
+        <Typography className={styles.container__top__title}>
+          enterOneTimePassword
+        </Typography>
         <div className={styles.container__top__number_verification}>
           {renderVerificationIsMail}
         </div>
@@ -300,11 +301,11 @@ const ContractSign: React.FC<VerifyProps> = ({
                 title="Are you sure the password is correct"
                 onClick={proceedHandler}
                 className={styles.container_proceed_allow}>
-                Proceed
+                <Typography>proceed</Typography>
               </Button>
             )}
             <Button onClick={handleClear} className={isClearClasses}>
-              Clear
+              <Typography>clear</Typography>
             </Button>
           </>
         ) : (
@@ -318,14 +319,14 @@ const ContractSign: React.FC<VerifyProps> = ({
       </div>
       {InformMessages}
       <div className={footerClasses}>
-        <span className={styles.container__footer__name}>
-          We’ve sent an e-mail to
-        </span>
+        <Typography tagName="span" className={styles.container__footer__name}>
+          weHaveSentAnEmail
+        </Typography>
         <Link
           blank
           to="https://gmail.com/"
           className={styles.container__footer__my_account}>
-          {my_account}
+          {emailVerify || my_account}
         </Link>
       </div>
     </div>

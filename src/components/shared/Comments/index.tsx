@@ -61,7 +61,7 @@ const Comments: React.FC = () => {
       <div onClick={toggleExpanded} className={styles.container__content}>
         <div className={styles.container__content__title}>
           <Typography className={styles.container__content__title__text}>
-            Comments
+            comments
           </Typography>
           <span className={styles.container__content__title__count}>
             ({totalCount})

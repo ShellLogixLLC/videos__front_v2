@@ -1,23 +1,23 @@
 const categoryNavigation = [
   {
     id: 0,
-    nameCategory: 'All',
+    nameCategory: 'all',
   },
   {
     id: 1,
-    nameCategory: 'New',
+    nameCategory: 'new',
   },
   {
     id: 2,
-    nameCategory: 'Top Rated',
+    nameCategory: 'topRated',
   },
   {
     id: 3,
-    nameCategory: 'Most Liked',
+    nameCategory: 'mostLiked',
   },
   {
     id: 4,
-    nameCategory: 'Random',
+    nameCategory: 'random',
   },
 ];
 

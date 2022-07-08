@@ -12,6 +12,7 @@ import {
 } from '~/constants';
 
 import Button from '../Button';
+import Typography from '../Typography';
 
 import PerPage from './PerPage';
 import {IPaginationProps} from './types';
@@ -69,7 +70,7 @@ const PaginationIndex: React.FC<IPaginationProps> = ({
       <Button
         className={styles.container__wrapper__more_btn}
         onClick={handleClickMore}>
-        More
+        <Typography>more</Typography>
       </Button>
     ) : null;
 

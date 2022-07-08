@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import {FontStyles} from '~/constants';
+import {useLocales} from '~/hooks';
 
 import {TypographyProps} from './types';
 
@@ -23,10 +24,10 @@ const Typography: React.FC<
   });
 
   const Tag = tagName;
-
+  const {translatedTypo} = useLocales(children);
   return (
-    <Tag {...rest} className={classes}>
-      {children}
+    <Tag {...rest} className={classes.length ? classes : undefined}>
+      {translatedTypo || children}
     </Tag>
   );
 };

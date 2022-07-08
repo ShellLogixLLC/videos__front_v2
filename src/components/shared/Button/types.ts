@@ -1,3 +1,5 @@
+import {ReactNode} from 'react';
+
 import {SVGIconProp} from '~/types/common';
 
 type Size = 'large' | 'medium' | 'small';
@@ -11,6 +13,7 @@ export interface IButtonProps {
   type?: ButtonType;
   variant?: Variant;
   disabled?: boolean;
+  children: ReactNode;
   className?: string;
   onClick?: () => void;
   LeftIcon?: SVGIconProp;
