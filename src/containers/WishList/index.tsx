@@ -14,7 +14,7 @@ import {
   INITIAL_PAGINATION_ACTIVE_PAGE,
   INITIAL_WISHLIST_LIMIT,
 } from '~/constants';
-import {useWindowSize} from '~/hooks';
+import {useWindowSize, useLocales} from '~/hooks';
 import {QueryParamsTypes} from '~/types';
 import {setQueryParams} from '~/utils';
 
@@ -43,6 +43,8 @@ const MyFavorites: React.FC = () => {
 
   const videos = data?.videos;
   const count = data?.totalCount;
+
+  const {translatedTypo} = useLocales('back');
 
   useEffect(() => {
     if (data && videos.length > 0) {
@@ -100,7 +102,7 @@ const MyFavorites: React.FC = () => {
     <div className={styles.favorites}>
       <div className={styles.favorites__backRoute}>
         <BackButton
-          text="Back"
+          text={translatedTypo || ''}
           LeftIcon={LeftArrow}
           className={styles.favorites__backRoute__button}
         />
@@ -108,7 +110,7 @@ const MyFavorites: React.FC = () => {
 
       <div className={styles.favorites__title}>
         <Typography tagName="h1" className={styles.favorites__title__text}>
-          WishList
+          wishlist
         </Typography>
       </div>
 

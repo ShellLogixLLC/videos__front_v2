@@ -7,16 +7,16 @@ const fields: Field[] = [
   {
     name: 'password',
     type: 'password',
-    label: 'Create password',
-    placeholder: '',
+    label: 'createPassword',
+    placeholder: 'createPassword',
     RightIcon: EyeShowIcon,
     RightToggledIcon: EyeHideIcon,
   },
   {
     name: 'passwordConfirmation',
     type: 'password',
-    label: 'Repeat password',
-    placeholder: '',
+    label: 'repeatPassword',
+    placeholder: 'repeatPassword',
     RightIcon: EyeShowIcon,
     RightToggledIcon: EyeHideIcon,
   },
@@ -25,15 +25,12 @@ const fields: Field[] = [
 const schema = yup.object().shape({
   password: yup
     .string()
-    .required('The Password is required')
-    .min(5, 'Password is too short - should be 5 chars minimum.'),
+    .required('thePasswordIsRequired')
+    .min(6, 'passwordIsTooShortShouldBe6CharsMinimum'),
   passwordConfirmation: yup
     .string()
-    .matches(
-      /^[^\s]+(\s+[^\s]+)*$/,
-      `Password can't start or end with a blank space`,
-    )
-    .oneOf([yup.ref('password'), null], 'Passwords must match'),
+    .matches(/^[^\s]+(\s+[^\s]+)*$/, `passwordCantStartOrEndWwithABlankSpace`)
+    .oneOf([yup.ref('password'), null], 'passwordsMustMatch'),
 });
 
 const setPasswordForm: Form = {

@@ -5,6 +5,7 @@ import {useRouter} from 'next/router';
 import {ToggleContext} from '~/context';
 import {useOnClickOutside} from '~/hooks';
 import {SearchBackArrowIcon, SearchIcon} from '~/assets';
+import {useLocales} from '~/hooks';
 
 import Input from '../Input';
 
@@ -34,6 +35,8 @@ const Search: React.FC = () => {
   const searchChangeHandle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
+
+  const {translatedTypo: translatedPlaceholder} = useLocales('search');
 
   const labelClassName = classNames(styles.wrapper, {
     [styles.wrapper_expanded]: expanded,
@@ -69,7 +72,7 @@ const Search: React.FC = () => {
           className={inputClasses}
           RightIcon={SearchIcon}
           wrapperRef={filterRef}
-          placeholder="Search"
+          placeholder={translatedPlaceholder || ''}
           toggleHandle={onSearchSubmit}
           rightIconStyle={styles.wrapper__container__right_icon}
           innerClassName={styles.wrapper__container}

@@ -5,6 +5,7 @@ import {useRouter} from 'next/router';
 
 import {langData} from '~/utils';
 import {useOnClickOutside} from '~/hooks';
+import {LocaleType} from '~/types';
 
 import Link from '../Link';
 import Button from '../Button';
@@ -13,7 +14,7 @@ import styles from './LanguageDropDown.module.scss';
 
 const LanguageDropDown: React.FC = () => {
   const {asPath, locale} = useRouter();
-  const {Icon} = locale === 'en' ? langData[0] : langData[1];
+  const {Icon} = locale === LocaleType.En ? langData[0] : langData[1];
 
   const [expanded, toggleExpanded] = useToggle(false);
   const [activeLang, setActiveLang] = useState<string>(locale as string);

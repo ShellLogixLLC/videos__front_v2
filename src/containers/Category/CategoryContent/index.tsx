@@ -49,7 +49,7 @@ const CategoryContent: React.FC<CategoryContentTypes> = ({
       {totalCount ? (
         renderVideosList
       ) : (
-        <Typography>Sorry, we could not find any result</Typography>
+        <Typography>sorryWeCouldNotFindAnyResult</Typography>
       )}
     </div>
   );
