@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Typography from '../../shared/Typography';
+
 import styles from './Footer.module.scss';
 
 const Footer: React.FC = () => {
@@ -9,9 +11,12 @@ const Footer: React.FC = () => {
   return (
     <footer className={styles.wrapper}>
       <div className={`${styles.wrapper_content}container`}>
-        <p className={styles.wrapper_content__text}>
-          ©Videos {year} All rights reserved.
-        </p>
+        <Typography tagName="span" className={styles.wrapper_content__text}>
+          ©Videos {year}
+        </Typography>
+        <Typography tagName="span" className={styles.wrapper_content__text}>
+          allRightsReserved
+        </Typography>
       </div>
     </footer>
   );

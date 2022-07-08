@@ -8,22 +8,22 @@ const fields: Field[] = [
   {
     name: 'username',
     type: 'text',
-    label: 'Username',
-    placeholder: 'Enter your username',
+    label: 'userName',
+    placeholder: 'enterYourUsername',
   },
 
   {
     name: 'email',
     type: 'email',
-    label: 'Email',
-    placeholder: 'Enter your email address',
+    label: 'email',
+    placeholder: 'enterYourEmailAddress',
   },
 
   {
     name: 'create_password',
     type: 'password',
-    label: 'Create password',
-    placeholder: 'Enter password',
+    label: 'createPassword',
+    placeholder: 'enterYourPassword',
     RightIcon: EyeHideIcon,
     RightToggledIcon: EyeShowIcon,
   },
@@ -31,8 +31,8 @@ const fields: Field[] = [
   {
     name: 'confirm_password',
     type: 'password',
-    label: 'Confirm password',
-    placeholder: 'Enter the same password',
+    label: 'confirmPassword',
+    placeholder: 'enterTheSamePassword',
     RightIcon: EyeHideIcon,
     RightToggledIcon: EyeShowIcon,
   },
@@ -45,12 +45,12 @@ const fields: Field[] = [
   {
     name: 'agreed',
     type: 'checkbox',
-    label: 'I agree to the  ',
+    label: 'agreeToThe',
     labelOptions: {
       firstLink: Route.Terms,
       secondLink: Route.Privacy,
-      firstLinkText: 'Terms of Service  ',
-      secondLinkText: ' Privacy Policy',
+      firstLinkText: 'termsOfService',
+      secondLinkText: 'privacyPolicy',
     },
   },
 ];
@@ -58,34 +58,26 @@ const fields: Field[] = [
 const schema = yup.object().shape({
   username: yup
     .string()
-    .required('The First name is required')
-    .min(4, 'First name is too short - should be 4 chars minimum.'),
+    .required('theFirstNameIsRequired')
+    .min(4, 'firstNameIsTooShort'),
   email: yup
     .string()
-    .required('The Email is required')
-    .email('The Email must be a valid email address'),
+    .required('theEmailIsRequired')
+    .email('theEmailMustBeAValidEmailAddress'),
   create_password: yup
     .string()
-    .matches(
-      /^[^\s]+(\s+[^\s]+)*$/,
-      `Password can't start or end with a blank space`,
-    )
-    .required('The Last name is required')
-    .min(3, 'Last name is too short - should be 3 chars minimum.'),
+    .matches(/^[^\s]+(\s+[^\s]+)*$/, `passwordCantStartOrEndWwithABlankSpace`)
+    .required('theLastNameIsRequired')
+    .min(6, 'passwordIsTooShortShouldBe6CharsMinimum'),
   confirm_password: yup
     .string()
-    .matches(
-      /^[^\s]+(\s+[^\s]+)*$/,
-      `Password can't start or end with a blank space`,
-    )
+    .matches(/^[^\s]+(\s+[^\s]+)*$/, `passwordCantStartOrEndWwithABlankSpace`)
     .oneOf(
       [yup.ref('create_password'), null],
-      'Password is too short or does not match the previous one',
+      'passwordIsTooShortOrDoesNotMatch',
     ),
   verification: yup.boolean().oneOf([true, false]),
-  agreed: yup
-    .boolean()
-    .oneOf([true], 'The terms and conditions must be accepted.'),
+  agreed: yup.boolean().oneOf([true], 'termsAndConditionsMustBeAccepted'),
 });
 
 const registrationForm: Form = {

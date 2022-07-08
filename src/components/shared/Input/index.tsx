@@ -1,6 +1,8 @@
 import React, {forwardRef, useMemo, useState, useCallback} from 'react';
 import classNames from 'classnames';
 
+import {useLocales} from '~/hooks';
+
 import Typography from '../Typography';
 
 import {InputProps} from './types';
@@ -78,9 +80,12 @@ const Input = forwardRef<any, InputProps>(
       [RightIcon, RightToggledIcon, isToggledIcon],
     );
 
+    const {translatedTypo: translatedLabel} = useLocales(label);
+    const {translatedTypo: translatedPlaceholder} = useLocales(placeholder);
+
     return (
       <label htmlFor={name} className={labelClasses}>
-        <span className={labelTextClasses}>{label}</span>
+        <span className={labelTextClasses}>{translatedLabel || label}</span>
         <div ref={wrapperRef} className={inputInnerClasses}>
           <input
             {...rest}
@@ -100,7 +105,7 @@ const Input = forwardRef<any, InputProps>(
             maxLength={maxLength}
             className={inputClasses}
             onMouseOver={onMouseOver}
-            placeholder={placeholder}
+            placeholder={translatedPlaceholder || placeholder}
             type={isToggledIcon ? 'text' : type}
             pattern={type === 'number' ? '[0-9]*' : undefined}
             inputMode={type === 'number' ? 'numeric' : 'text'}

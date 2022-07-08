@@ -22,20 +22,20 @@ const RegistrationContactInformation: React.FC = () => {
           type="Extra"
           variant="Heading"
           className={styles.container__top__title}>
-          Registration
+          registration
         </Typography>
         <Typography
           type="Medium"
           variant="Text"
           className={styles.container__top__step}>
-          Step 2. Enter your email
+          step2EnterYourEmail
         </Typography>
       </div>
 
       <Form
         ref={emailRef}
         form={setEmailForm}
-        submitText="Proceed"
+        submitText="proceed"
         onSubmit={handlePasswordFormSubmit}
       />
     </div>

@@ -51,7 +51,7 @@ const ShowItem: React.FC<IPerPageProps> = ({rowsPerPage, setRowsPerPage}) => {
           type="Medium"
           variant="Heading"
           className={styles.container__wrapper__show__txt}>
-          Show
+          show
         </Typography>
 
         <Typography

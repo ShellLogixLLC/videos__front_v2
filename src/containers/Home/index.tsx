@@ -26,7 +26,7 @@ const Home: React.FC = () => {
       <div className={styles.wrapper__content}>
         <section className={styles.wrapper__content__one_section}>
           <Typography className={styles.wrapper__content__title}>
-            New Videos
+            newVideos
           </Typography>
           <HorizontalSlider
             isLoading={isLoading}
@@ -36,7 +36,7 @@ const Home: React.FC = () => {
         </section>
         <section className={styles.wrapper__content__two_section}>
           <Typography className={styles.wrapper__content__title}>
-            Categories
+            categories
           </Typography>
           <HorizontalSlider
             isCategory
@@ -47,7 +47,7 @@ const Home: React.FC = () => {
         </section>
         <section className={styles.wrapper__content__one_section}>
           <Typography className={styles.wrapper__content__title}>
-            Top Rated
+            topRated
           </Typography>
           <HorizontalSlider
             isLoading={isLoading}
@@ -57,7 +57,7 @@ const Home: React.FC = () => {
         </section>
         <section className={styles.wrapper__content__one_section}>
           <Typography className={styles.wrapper__content__title}>
-            Most Liked
+            mostLiked
           </Typography>
           <HorizontalSlider
             isLoading={isLoading}

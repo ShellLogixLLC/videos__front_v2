@@ -5,7 +5,7 @@ import {Logo} from '~/assets';
 import {Loader} from '~/components';
 import {registrationForm} from '~/constants';
 import {authActions, authSelect} from '~/store/auth';
-import {useAppDispatch, useAppSelector} from '~/hooks';
+import {useAppDispatch, useAppSelector, useLocales} from '~/hooks';
 
 import Form from '../../shared/forms/Form';
 import BackButton from '../../shared/BackButton';
@@ -18,6 +18,8 @@ const Registration: React.FC = () => {
   const {error} = useAppSelector(authSelect);
 
   const [isLoading, toggleIsLoading] = useToggle(false);
+
+  const {translatedTypo} = useLocales('cancelRegistration');
 
   const handleResetPassFormSubmit = useCallback(
     (values) => {
@@ -43,7 +45,7 @@ const Registration: React.FC = () => {
   return (
     <div className={`container_without-header ${styles.container}`}>
       <BackButton
-        text="Cancel registration"
+        text={translatedTypo || ''}
         className={styles.container__cancel}
       />
       <Logo className={styles.container__top_img} />
@@ -51,11 +53,10 @@ const Registration: React.FC = () => {
         type="Extra"
         variant="Heading"
         className={styles.container__top__title}>
-        Registration
+        registration
       </Typography>
       <Form
-        // ref={signInRef}
-        submitText="Proceed"
+        submitText="proceed"
         form={registrationForm}
         onSubmit={handleResetPassFormSubmit}
         labelClassName={styles.container__registration__block}

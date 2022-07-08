@@ -20,7 +20,9 @@ const CommentBlock: React.FC<ICommentBlock> = ({loading}) => {
           {name}
         </Typography>
       </div>
-      <p className={styles.block__wrapper__comment__description}>{comment}</p>
+      <Typography className={styles.block__wrapper__comment__description}>
+        {comment}
+      </Typography>
     </div>
   ));
 

@@ -3,6 +3,7 @@ import {useForm} from 'react-hook-form';
 import {BaseEmoji} from 'emoji-mart';
 
 import Button from '../../shared/Button';
+import Typography from '../Typography';
 import EmojisInput from '../../shared/EmojisInput';
 
 import styles from './Comments.module.scss';
@@ -26,7 +27,7 @@ const CommentForm: React.FC = () => {
         addEmoji={addEmoji}
       />
       <Button disabled={!formState.isValid} type="submit">
-        Comment
+        <Typography>comment</Typography>
       </Button>
     </form>
   );

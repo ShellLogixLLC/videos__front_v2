@@ -2,9 +2,9 @@ import React, {useEffect, useState} from 'react';
 import {useRouter} from 'next/router';
 
 import {LeftArrow} from '~/assets';
-import {useWindowSize} from '~/hooks';
 import {setQueryParams} from '~/utils';
 import WishlistSearchService from '~/api/wishlist';
+import {useWindowSize, useLocales} from '~/hooks';
 import {QueryParamsTypes, VideosProps} from '~/types';
 import {
   INITIAL_WISHLIST_LIMIT,
@@ -52,6 +52,8 @@ const MyFavorites: React.FC = () => {
       ? totalCount && totalCount % INITIAL_WISHLIST_LIMIT
       : INITIAL_WISHLIST_LIMIT
     : tabletSkeletonsCount;
+
+  const {translatedTypo} = useLocales('back');
 
   useEffect(() => {
     if (!isLoading) {
@@ -116,7 +118,7 @@ const MyFavorites: React.FC = () => {
     <div className={styles.favorites}>
       <div className={styles.favorites__backRoute}>
         <BackButton
-          text="Back"
+          text={translatedTypo || ''}
           LeftIcon={LeftArrow}
           className={styles.favorites__backRoute__button}
         />
@@ -124,7 +126,7 @@ const MyFavorites: React.FC = () => {
 
       <div className={styles.favorites__title}>
         <Typography tagName="h1" className={styles.favorites__title__text}>
-          WishList
+          wishlist
         </Typography>
       </div>
 

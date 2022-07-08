@@ -1,5 +1,6 @@
 export {default as useModal} from './useModal';
 export {default as useSticky} from './useSticky';
+export {default as useLocales} from './useLocales';
 export {default as useAppRequest} from './useAppRequest';
 export {default as useWindowSize} from './useWindowSize';
 export {default as useAppDispatch} from './useAppDispatch';
