@@ -32,7 +32,7 @@ const HeaderNavbar: React.FC<HeaderNavbarProps> = ({children}) => {
     [styles.wrapper__content__other__withToken]: token,
   });
 
-  const openLikeItPopup = () => setIsLikeItPopup(!isLikeItPopup);
+  const openLikeItPopup = () => setIsLikeItPopup(true);
 
   const renderUserIcons = !token ? <SigninDropdown /> : <ProfileSettings />;
 
@@ -57,7 +57,12 @@ const HeaderNavbar: React.FC<HeaderNavbarProps> = ({children}) => {
         <LanguageDropDown />
         {renderUserIcons}
       </div>
-      <WishlistModal expanded={isLikeItPopup} setExpanded={setIsLikeItPopup} />
+      {isLikeItPopup && (
+        <WishlistModal
+          expanded={isLikeItPopup}
+          setExpanded={setIsLikeItPopup}
+        />
+      )}
     </>
   );
 };

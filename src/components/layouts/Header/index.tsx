@@ -3,12 +3,12 @@ import classNames from 'classnames';
 import {useToggle} from 'react-use';
 import {useRouter} from 'next/router';
 
-import {Route} from '~/constants';
 import {ToggleContext} from '~/context';
 import {useWindowSize} from '~/hooks';
 import {CategoryService} from '~/api';
 import {routes, routesBurger} from '~/utils';
 import {getCookieFromBrowser} from '~/libraries';
+import {NavigationConstants, Route} from '~/constants';
 import {
   LogoIcon,
   MenuIcon,
@@ -56,7 +56,7 @@ const Header: React.FC = () => {
 
   const openLikeItPopup = () => {
     setIsOpen(false);
-    setIsLikeItPopup(!isLikeItPopup);
+    setIsLikeItPopup(true);
   };
 
   const toggleCategory = (): void => {
@@ -127,7 +127,7 @@ const Header: React.FC = () => {
   };
 
   const headerTable = routes.map(({id, routeName, pageName}) => {
-    return id === 1 ? (
+    return pageName === NavigationConstants.Categories ? (
       renderCategory()
     ) : (
       <Link
@@ -141,9 +141,9 @@ const Header: React.FC = () => {
   });
 
   const renderMobileMenu = routesBurger.map(({id, routeName, pageName}) => {
-    return id === 3 ? (
+    return pageName === NavigationConstants.Categories ? (
       renderCategory()
-    ) : !token && id === 2 ? (
+    ) : !token && pageName === NavigationConstants.Favorites ? (
       <Typography
         className={styles.wrapper__content__burger__container__nav__items}
         onClick={openLikeItPopup}>
