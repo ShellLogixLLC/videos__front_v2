@@ -171,6 +171,10 @@
         @extend %flex-center;
       }
 
+      &__wishlist {
+        cursor: pointer;
+      }
+
       &__empty__block {
         width: 24px;
       }
@@ -300,6 +304,46 @@
     height: 100%;
     z-index: 4;
     background-color: $rgba-black;
+  }
+
+  &__popup {
+    padding: 0 24px;
+
+    &__text {
+      font-family: 'Montserrat';
+      font-size: 22px;
+      line-height: 28px;
+      color: $light-black;
+
+      @include breakpoint(tablet-m) {
+        font-size: 18px;
+        line-height: 24px;
+      }
+    }
+
+    &__link {
+      font-family: 'Montserrat';
+      font-size: 22px;
+      line-height: 28px;
+      font-weight: 500;
+      cursor: pointer;
+      color: $success;
+      margin-left: 12px;
+
+      @include breakpoint(tablet-m) {
+        font-size: 18px;
+        line-height: 24px;
+      }
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    &__bottom_column {
+      margin-top: 12px;
+      display: flex;
+    }
   }
 }
 

@@ -34,3 +34,6 @@ export * from './wishlist';
 
 //locales
 export * from './locales';
+
+// navigation
+export * from './navigation';
