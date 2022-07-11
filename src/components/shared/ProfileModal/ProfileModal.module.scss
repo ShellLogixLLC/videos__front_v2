@@ -25,10 +25,28 @@
     background-color: $black;
     box-shadow: $red 0px 0px 6px;
 
+    &__input{
+      background: red;
+      color: black;
+      border: none;
+    }
+
+    &__icons{
+      @extend %flex-align;
+      gap: 6px;
+      margin-left: 8px;
+    }
+
     &__userIcon, &__emailIcon ,&__lockIcon{
       height: 24px !important;
       width: 24px !important;
       margin-right: 16px;
+    }
+
+    &__saveIcon,&__deleteIcon{
+      height: 14px !important;
+      width: 14px !important;
+      cursor: pointer;
     }
 
     &__editIcon,&__messageIcon{
@@ -48,20 +66,40 @@
       @extend %heading_extra;
       font-size:24px;
       color: $white;
+      cursor: pointer;
+
+      &__wrapper{
+        max-width: 207px;
+        width: 100%;
+      }
     }
 
     &__block {
       @extend %flex-align;
       width: 100%;
 
+      &:not(:last-child){
+        margin-bottom: 12px;
+      }
+
       &__star{
         font-size: 15px;
         color: $white;
+
+        &__wrapper{
+          max-width: 207px;
+          width: 100%;
+        }
       }
 
       &__text {
         @extend %language_sizes;
         color: $white;
+
+        &__wrapper{
+          max-width: 207px;
+          width: 100%;
+        }
       }
     }
   }
