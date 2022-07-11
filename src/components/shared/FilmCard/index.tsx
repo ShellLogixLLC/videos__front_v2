@@ -6,9 +6,9 @@ import {VideosProps} from '~/types';
 import {useAppDispatch} from '~/hooks';
 import {addToWishlist, deleteFromWishlist} from '~/store/wishlist/thunks';
 import {
-  HeartLikes,
+  HeartLikesIcon,
   FilmLikeIcon,
-  ViewsCount,
+  ViewsCountIcon,
   CommentsCount,
   CategoryImage,
 } from '~/assets';
@@ -66,7 +66,7 @@ const FilmCard: React.FC<FilmCardProps> = ({
     <div className={`${styles.wrapper} ${cardClasses}`}>
       <Link to="video/[id]" as={`video/${id}`} className={styles.wrapper__film}>
         <Button className={isLikedClasses} onClick={toggleIsLiked}>
-          <HeartLikes />
+          <HeartLikesIcon />
         </Button>
         <Image src={CategoryImage} alt={'Category Image'} />
         <Typography tagName="span" className={styles.wrapper__film__time}>
@@ -90,7 +90,7 @@ const FilmCard: React.FC<FilmCardProps> = ({
         </div>
         <div className={styles.wrapper__card_footer_item}>
           <p>{views}</p>
-          <ViewsCount />
+          <ViewsCountIcon />
         </div>
         <div className={styles.wrapper__card_footer_item}>
           <p>{commentsCount}</p>

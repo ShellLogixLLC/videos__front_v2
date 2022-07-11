@@ -1,7 +1,7 @@
 import React, {useEffect, useMemo, useRef, useState} from 'react';
 import classNames from 'classnames';
 
-import {Logo} from '~/assets';
+import {LogoIcon} from '~/assets';
 import {RouterService} from '~/services';
 import {verifyPageState} from '~/utils';
 import {authActions, authSelect} from '~/store/auth';
@@ -285,7 +285,7 @@ const ContractSign: React.FC<VerifyProps> = ({
         <Typography>cancelOtpRegistration</Typography>
       </Link>
       <div className={styles.container__top}>
-        <Logo className={styles.container__top__img} />
+        <LogoIcon className={styles.container__top__img} />
         <Typography className={styles.container__top__title}>
           enterOneTimePassword
         </Typography>

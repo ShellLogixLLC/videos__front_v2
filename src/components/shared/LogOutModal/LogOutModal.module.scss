@@ -1,0 +1,120 @@
+.modal{
+  @extend %flex-center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  background: $logout-modal-background;
+  z-index: 1111!important;
+  transition: all .5s;
+
+  &__container{
+    width: 100%;
+    max-width: 605px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    color: rgba(0,0,0,.65);
+    background: rgba(0,0,0,0.91);
+    box-shadow: 0 8px 35px rgb(0 0 0 / 5%);
+    box-shadow: $red 2px 2px 4px;
+    border-radius: 8px;
+    padding: 24px;
+
+    @include breakpoint(wide){
+      max-width: 405px;
+    }
+
+    @include breakpoint(tablet){
+      margin: 0 24px;
+      padding: 16px;
+    }
+
+    &__close__icon{
+      position: absolute;
+      right: 24px;
+      top: 24px;
+      cursor: pointer;
+      width: 56px;
+      height: 56px;
+      transition: all 0.4s ease-in-out;
+
+      @include breakpoint(tablet){
+        right: 16px;
+        top: 16px;
+        width: 40px;
+        height: 40px;
+      }
+
+      &:hover{
+        opacity: 0.7;
+      }
+    }
+  }
+
+  &__content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &__title{
+      @extend %heading_extra;
+      color: $white !important;
+      padding: 8px 0 24px;
+      text-align: center;
+
+      @include breakpoint(tablet){
+        padding: 8px 0 16px;
+        font-size: 24px;
+      }
+    }
+
+    &__text{
+      @extend %heading_large;
+      text-align: center;
+      padding: 0 0 52px;
+
+      @include breakpoint(tablet){
+        padding: 0 0 32px;
+        font-size: 18px;
+      }
+    }
+
+    &__buttons{
+      @extend %flex-center;
+      justify-content: space-between;
+      width: 100%;
+
+      &__cancel{
+        border: none;
+        background: $white;
+        width: 48%;
+        transition: all .5s ease;
+
+        &:hover{
+          background: $red !important;
+        }
+
+        &:hover &__title{
+          color: $white !important;
+        }
+        &__title{
+          font-size: 20px;
+          color: $black;
+        }
+      }
+      &__logout{
+        border: none;
+        background: $red;
+        width: 48%;
+        &__title{
+          font-size: 20px;
+          color: $white;
+        }
+      }
+    }
+  }
+}

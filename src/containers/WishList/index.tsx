@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useRouter} from 'next/router';
 
-import {LeftArrow} from '~/assets';
+import {LeftArrowIcon} from '~/assets';
 import {setQueryParams} from '~/utils';
 import WishlistSearchService from '~/api/wishlist';
 import {useWindowSize, useLocales} from '~/hooks';
@@ -119,7 +119,7 @@ const MyFavorites: React.FC = () => {
       <div className={styles.favorites__backRoute}>
         <BackButton
           text={translatedTypo || ''}
-          LeftIcon={LeftArrow}
+          LeftIcon={LeftArrowIcon}
           className={styles.favorites__backRoute__button}
         />
       </div>

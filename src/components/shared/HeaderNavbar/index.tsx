@@ -2,65 +2,61 @@ import React, {useContext, useState} from 'react';
 import classNames from 'classnames';
 
 import {Route} from '~/constants';
+import {LikeItIcon} from '~/assets';
 import {ToggleContext} from '~/context';
 import {getCookieFromBrowser} from '~/libraries';
-import {LikeIt, UserIcon, UserRound} from '~/assets';
 import {
   Link,
-  ProfileModal,
+  Search,
   WishlistModal,
+  SigninDropdown,
+  ProfileSettings,
   LanguageDropDown,
 } from '~/components';
 
 import styles from '../../layouts/Header/Header.module.scss';
 
-const HeaderNavbar: React.FC = ({children}) => {
-  const token = getCookieFromBrowser('token');
-  const {expanded} = useContext(ToggleContext);
+import {HeaderNavbarProps} from './types';
 
-  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+const HeaderNavbar: React.FC<HeaderNavbarProps> = ({children}) => {
+  const {expanded} = useContext(ToggleContext);
+  const token = getCookieFromBrowser('token');
+
   const [isLikeItPopup, setIsLikeItPopup] = useState<boolean>(false);
 
   const navClassName = classNames(styles.wrapper__content_menu, {
     [styles.wrapper__content_menu_hidden]: expanded,
   });
 
-  const handleUserModal = () => setIsOpenModal(true);
+  const wrapperClassName = classNames(styles.wrapper__content__other, {
+    [styles.wrapper__content__other__withToken]: token,
+  });
 
   const openLikeItPopup = () => setIsLikeItPopup(!isLikeItPopup);
 
-  const renderUserIcons = !token ? (
-    <Link to={Route.SignIn} className={styles.wrapper__content__other__sign_in}>
-      <UserIcon />
-    </Link>
-  ) : (
-    <UserRound
-      className={styles.wrapper__content__user_icon}
-      onClick={handleUserModal}
-    />
-  );
+  const renderUserIcons = !token ? <SigninDropdown /> : <ProfileSettings />;
 
   return (
     <>
       <nav className={navClassName}>{children}</nav>
-      <div className={styles.wrapper__content__other}>
+      <Search />
+      <div className={wrapperClassName}>
         <div className={styles.wrapper__content__other__skeleton} />
         {token ? (
           <Link
             className={styles.wrapper__content__other__link}
             to={Route.MyFavorite}>
-            <LikeIt className={styles.wrapper__content__other__wishlist} />
+            <LikeItIcon className={styles.wrapper__content__other__wishlist} />
           </Link>
         ) : (
-          <LikeIt
+          <LikeItIcon
             onClick={openLikeItPopup}
             className={styles.wrapper__content__other__wishlist}
           />
         )}
-        {renderUserIcons}
         <LanguageDropDown />
+        {renderUserIcons}
       </div>
-      <ProfileModal expanded={isOpenModal} setExpanded={setIsOpenModal} />
       <WishlistModal expanded={isLikeItPopup} setExpanded={setIsLikeItPopup} />
     </>
   );

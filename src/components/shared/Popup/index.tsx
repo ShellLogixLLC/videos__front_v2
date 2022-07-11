@@ -2,7 +2,7 @@ import React, {useRef} from 'react';
 import usePortal from 'react-useportal';
 import classNames from 'classnames';
 
-import {Close} from '~/assets';
+import {CloseIcon} from '~/assets';
 import {PopupProps} from '~/types';
 import {useLockBodyScroll, useOnClickOutside} from '~/hooks';
 
@@ -27,7 +27,7 @@ const Popup: React.FC<PopupProps> = ({expanded, setExpanded, children}) => {
     <Portal>
       <div className={wrapperClasses}>
         <div ref={modalRef} className={styles.wrapper__content}>
-          <Close
+          <CloseIcon
             className={styles.wrapper__content__close_icon}
             onClick={handleClose}
           />
