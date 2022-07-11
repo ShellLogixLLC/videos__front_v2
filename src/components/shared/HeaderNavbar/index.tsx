@@ -3,13 +3,15 @@ import classNames from 'classnames';
 
 import {Route} from '~/constants';
 import {ToggleContext} from '~/context';
-import {Popup, Typography} from '~/components';
 import {getCookieFromBrowser} from '~/libraries';
 import {LikeIt, UserIcon, UserRound} from '~/assets';
+import {
+  Link,
+  ProfileModal,
+  WishlistModal,
+  LanguageDropDown,
+} from '~/components';
 
-import Link from '../Link';
-import ProfileModal from '../ProfileModal';
-import LanguageDropDown from '../LanguageDropDown';
 import styles from '../../layouts/Header/Header.module.scss';
 
 const HeaderNavbar: React.FC = ({children}) => {
@@ -59,21 +61,7 @@ const HeaderNavbar: React.FC = ({children}) => {
         <LanguageDropDown />
       </div>
       <ProfileModal expanded={isOpenModal} setExpanded={setIsOpenModal} />
-      <Popup expanded={isLikeItPopup} setExpanded={setIsLikeItPopup}>
-        <div className={styles.wrapper__popup}>
-          <Typography className={styles.wrapper__popup__text}>
-            You should be sign in to add videos in your favorites.
-          </Typography>
-          <div className={styles.wrapper__popup__bottom_column}>
-            <Typography className={styles.wrapper__popup__text}>
-              For Sign in
-            </Typography>
-            <Link to={Route.SignIn} className={styles.wrapper__popup__link}>
-              click here
-            </Link>
-          </div>
-        </div>
-      </Popup>
+      <WishlistModal expanded={isLikeItPopup} setExpanded={setIsLikeItPopup} />
     </>
   );
 };

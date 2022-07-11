@@ -23,11 +23,20 @@
     width: 100%;
     background-color: $white;
 
+    @include breakpoint(tablet-m) {
+      padding: 24px 12px;
+    }
+
     &__close_icon {
       cursor: pointer;
       position: absolute;
       top: 24px;
       right: 24px;
+
+      @include breakpoint(tablet-m) {
+        top: 8px;
+        right: 12px;
+      }
 
       g {
         fill: $black;

@@ -310,6 +310,11 @@
       font-size: 22px;
       line-height: 28px;
       color: $light-black;
+
+      @include breakpoint(tablet-m) {
+        font-size: 18px;
+        line-height: 24px;
+      }
     }
 
     &__link {
@@ -320,6 +325,11 @@
       cursor: pointer;
       color: $success;
       margin-left: 12px;
+
+      @include breakpoint(tablet-m) {
+        font-size: 18px;
+        line-height: 24px;
+      }
 
       &:hover {
         text-decoration: underline;
