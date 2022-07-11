@@ -1,6 +1,4 @@
-import React from 'react';
-
-export type ProfileModalProps = {
+export type PopupProps = {
   expanded: boolean;
   setExpanded: React.Dispatch<React.SetStateAction<boolean>>;
 };

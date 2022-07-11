@@ -3,14 +3,15 @@ import classNames from 'classnames';
 import {useToggle} from 'react-use';
 import {useRouter} from 'next/router';
 
-import {Route} from '~/constants';
 import {ToggleContext} from '~/context';
 import {useWindowSize} from '~/hooks';
 import {CategoryService} from '~/api';
 import {routes, routesBurger} from '~/utils';
+import {getCookieFromBrowser} from '~/libraries';
+import {NavigationConstants, Route} from '~/constants';
 import {
-  MenuIcon,
   LogoIcon,
+  MenuIcon,
   MobileFilterIcon,
   SearchBackArrowIcon,
 } from '~/assets';
@@ -22,11 +23,13 @@ import {
   MobileFilter,
   HeaderNavbar,
   SubCategories,
+  WishlistModal,
 } from '~/components';
 
 import styles from './Header.module.scss';
 
 const Header: React.FC = () => {
+  const token = getCookieFromBrowser('token');
   const {pathname, query} = useRouter();
   const {expanded} = useContext(ToggleContext);
   const {isDesktop} = useWindowSize();
@@ -37,6 +40,7 @@ const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isFilter, toggleFilter] = useToggle(false);
   const [isCategories, setIsCategories] = useState<boolean>(false);
+  const [isLikeItPopup, setIsLikeItPopup] = useState<boolean>(false);
   const [isCategoriesHoverable, setCategoriesHoverable] =
     useState<boolean>(false);
 
@@ -49,6 +53,11 @@ const Header: React.FC = () => {
   });
 
   const handleOpenMenu = () => setIsOpen(true);
+
+  const openLikeItPopup = () => {
+    setIsOpen(false);
+    setIsLikeItPopup(true);
+  };
 
   const toggleCategory = (): void => {
     if (!isDesktop) {
@@ -118,7 +127,7 @@ const Header: React.FC = () => {
   };
 
   const headerTable = routes.map(({id, routeName, pageName}) => {
-    return id === 1 ? (
+    return pageName === NavigationConstants.Categories ? (
       renderCategory()
     ) : (
       <Link
@@ -132,8 +141,14 @@ const Header: React.FC = () => {
   });
 
   const renderMobileMenu = routesBurger.map(({id, routeName, pageName}) => {
-    return id === 3 ? (
+    return pageName === NavigationConstants.Categories ? (
       renderCategory()
+    ) : !token && pageName === NavigationConstants.Favorites ? (
+      <Typography
+        className={styles.wrapper__content__burger__container__nav__items}
+        onClick={openLikeItPopup}>
+        {pageName}
+      </Typography>
     ) : (
       <Link
         key={id}
@@ -172,6 +187,7 @@ const Header: React.FC = () => {
         </MobileMenu>
       </div>
       <MobileFilter isFilter={isFilter} toggleFilter={toggleFilter} />
+      <WishlistModal expanded={isLikeItPopup} setExpanded={setIsLikeItPopup} />
     </header>
   );
 };

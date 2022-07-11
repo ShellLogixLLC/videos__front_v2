@@ -1,0 +1,58 @@
+.wrapper {
+  @extend %flex-center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $dark-grey;
+  z-index: 20;
+  visibility: hidden;
+
+  &__open {
+    visibility: visible;
+  }
+
+  &__content {
+    @extend %flex-between;
+    position: relative;
+    padding: 36px 24px;
+    border-radius: 8px;
+    max-width: 480px;
+    margin: 0 16px;
+    width: 100%;
+    background-color: $white;
+
+    @include breakpoint(tablet-m) {
+      padding: 24px 12px;
+    }
+
+    &__close_icon {
+      cursor: pointer;
+      position: absolute;
+      top: 24px;
+      right: 24px;
+
+      @include breakpoint(tablet-m) {
+        top: 8px;
+        right: 12px;
+      }
+
+      g {
+        fill: $black;
+      }
+    }
+
+    &__child {
+      @extend %flex-center;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    &__title {
+      @extend %heading_extra;
+      color: $black;
+      margin-left: 32px;
+    }
+  }
+}
