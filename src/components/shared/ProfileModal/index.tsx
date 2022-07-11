@@ -34,7 +34,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({expanded, setExpanded}) => {
 
   const handleClose = () => setExpanded(false);
 
-  const handlInputChange = (e: any) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
 
@@ -60,9 +60,9 @@ const ProfileModal: React.FC<ProfileModalProps> = ({expanded, setExpanded}) => {
                   {userInfo?.username}
                 </Typography>
                 {userInfo && userInfo.isVerified ? (
-                  <p>Verified</p>
+                  <Typography tagName="span">Verifiedd</Typography>
                 ) : (
-                  <p>Unverified</p>
+                  <Typography tagName="span">Unverified</Typography>
                 )}
               </div>
 
@@ -71,7 +71,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({expanded, setExpanded}) => {
               ) : (
                 <Input
                   value={inputValue as string}
-                  onChange={handlInputChange}
+                  onChange={handleInputChange}
                 />
               )}
             </div>
