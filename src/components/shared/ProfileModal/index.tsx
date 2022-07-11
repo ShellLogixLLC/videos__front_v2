@@ -21,7 +21,7 @@ import styles from './ProfileModal.module.scss';
 
 const ProfileModal: React.FC<PopupProps> = ({expanded, setExpanded}) => {
   const {Portal} = usePortal();
-  const {userInfo} = useAppSelector(authSelect);
+  const {userInfo, isVerified} = useAppSelector(authSelect);
 
   const [isUsernameEdited, setUsernameEdited] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string | string[]>(
@@ -33,6 +33,13 @@ const ProfileModal: React.FC<PopupProps> = ({expanded, setExpanded}) => {
   const wrapperClasses = classNames(styles.wrapper, {
     [styles.wrapper__open]: expanded,
   });
+
+  const mailSenderClassName = classNames(
+    styles.wrapper__content__messageIcon__button,
+    {
+      [styles.wrapper__content__messageIcon__button__disabled]: !isVerified,
+    },
+  );
 
   const handleClose = () => setExpanded(false);
 
@@ -56,10 +63,6 @@ const ProfileModal: React.FC<PopupProps> = ({expanded, setExpanded}) => {
     console.log('email was sent');
   };
 
-  const handleCloseEdit = (): void => {
-    setUsernameEdited(false);
-  };
-
   useOnClickOutside(modalRef, handleClose);
 
   useLockBodyScroll(expanded);
@@ -76,14 +79,12 @@ const ProfileModal: React.FC<PopupProps> = ({expanded, setExpanded}) => {
                 role="button"
                 onClick={handleEditUsername}>
                 {isUsernameEdited ? (
-                  // <div role="button" onClick={handleCloseEdit}>
                   <Input
                     className={styles.wrapper__content__input}
                     value={inputValue as string}
                     onChange={handleInputChange}
                   />
                 ) : (
-                  // </div>
                   <Typography
                     tagName="span"
                     className={styles.wrapper__content__title}>
@@ -91,11 +92,11 @@ const ProfileModal: React.FC<PopupProps> = ({expanded, setExpanded}) => {
                   </Typography>
                 )}
 
-                {/*{userInfo && userInfo.isVerified ? (*/}
-                {/*  <Typography tagName="span">Verifiedd</Typography>*/}
-                {/*) : (*/}
-                {/*  <Typography tagName="span">Unverified</Typography>*/}
-                {/*)}*/}
+                {userInfo && userInfo.isVerified ? (
+                  <Typography tagName="span">Verified</Typography>
+                ) : (
+                  <Typography tagName="span">Unverified</Typography>
+                )}
               </div>
 
               {isUsernameEdited ? (
@@ -120,18 +121,19 @@ const ProfileModal: React.FC<PopupProps> = ({expanded, setExpanded}) => {
             </div>
             <div className={styles.wrapper__content__block}>
               <EmailIcon className={styles.wrapper__content__emailIcon} />
-              <div
-                role="button"
-                onClick={handleSendEmail}
-                className={styles.wrapper__content__block__text__wrappper}>
+              <div className={styles.wrapper__content__block__text__wrapper}>
                 <Typography
                   tagName="span"
                   className={styles.wrapper__content__block__text}>
                   {userInfo?.email}
                 </Typography>
               </div>
-
-              <MessageIcon className={styles.wrapper__content__messageIcon} />
+              <Button
+                onClick={handleSendEmail}
+                className={mailSenderClassName}
+                disabled={!isVerified}>
+                <MessageIcon className={styles.wrapper__content__messageIcon} />
+              </Button>
             </div>
             <div className={styles.wrapper__content__block}>
               <LockIcon className={styles.wrapper__content__lockIcon} />

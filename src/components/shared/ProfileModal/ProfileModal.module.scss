@@ -25,6 +25,14 @@
     background-color: $black;
     box-shadow: $red 0px 0px 6px;
 
+    @include breakpoint(tablet){
+      max-width: 369px;
+    }
+
+    @include breakpoint(tablet-m){
+      max-width: 269px;
+    }
+
     &__input{
       background: red;
       color: black;
@@ -44,8 +52,8 @@
     }
 
     &__saveIcon,&__deleteIcon{
-      height: 14px !important;
-      width: 14px !important;
+      height: 22px !important;
+      width: 22px !important;
       cursor: pointer;
     }
 
@@ -53,7 +61,18 @@
       height: 24px !important;
       width: 24px !important;
       margin-left: 8px;
-      cursor: pointer;
+
+      &__button{
+        background: transparent;
+        width: unset;
+        padding: unset;
+        transition: opacity 0.4s ease;
+
+        &__disabled{
+          opacity: 0.7;
+          cursor: not-allowed !important;
+        }
+      }
     }
 
     &__child {
@@ -67,6 +86,15 @@
       font-size:24px;
       color: $white;
       cursor: pointer;
+      line-break: anywhere;
+
+      @include breakpoint(tablet){
+        font-size: 18px;
+      }
+
+      @include breakpoint(tablet-m){
+        font-size: 12px;
+      }
 
       &__wrapper{
         max-width: 207px;
@@ -85,6 +113,7 @@
       &__star{
         font-size: 15px;
         color: $white;
+        line-break: anywhere;
 
         &__wrapper{
           max-width: 207px;
@@ -95,6 +124,15 @@
       &__text {
         @extend %language_sizes;
         color: $white;
+        line-break: anywhere;
+
+        @include breakpoint(tablet){
+          font-size: 18px;
+        }
+
+        @include breakpoint(tablet-m){
+          font-size: 12px;
+        }
 
         &__wrapper{
           max-width: 207px;
