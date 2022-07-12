@@ -1,9 +1,11 @@
 import React, {useRef, useState} from 'react';
 import classNames from 'classnames';
+import Tooltip from 'react-tooltip-lite';
 
-import {LogoutModal, ProfileModal} from '~/components';
-import {ExitIcon, UserIcon} from '~/assets';
-import {useOnClickOutside} from '~/hooks';
+import {LogoutModal, ProfileModal, Typography} from '~/components';
+import {ExitIcon, UnverifiedIcon, UserIcon, VerifiedIcon} from '~/assets';
+import {useAppSelector, useOnClickOutside} from '~/hooks';
+import {authSelect} from '~/store/auth';
 
 import styles from './ProfileSettings.module.scss';
 
@@ -11,6 +13,10 @@ const ProfileSettings: React.FC = () => {
   const [isDropdownOpen, setDropdownOpen] = useState<boolean>(false);
   const [showLogoutModal, setShowLogoutModal] = useState<boolean>(false);
   const [showProfileModal, setShowProfileModal] = useState<boolean>(false);
+
+  const {userInfo} = useAppSelector(authSelect);
+
+  const isVerified = userInfo && userInfo.isVerified;
 
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -75,7 +81,36 @@ const ProfileSettings: React.FC = () => {
               onClick={openProfileModal}
               className={styles.content__list__wrapper}>
               <li className={linkClassName}>User Info</li>
-              <UserIcon className={styles.content__list__icon} />
+              <Tooltip
+                content={
+                  isVerified ? (
+                    <div className={styles.content__tooltip}>
+                      <VerifiedIcon className={styles.content__tooltip__icon} />
+                      <Typography className={styles.content__tooltip__title}>
+                        verified
+                      </Typography>
+                    </div>
+                  ) : (
+                    <div className={styles.content__tooltip}>
+                      <UnverifiedIcon
+                        className={styles.content__tooltip__icon}
+                      />
+                      <Typography className={styles.content__tooltip__title}>
+                        unverified
+                      </Typography>
+                    </div>
+                  )
+                }
+                direction="left"
+                background="#fff"
+                hoverDelay={100}
+                mouseOutDelay={100}
+                tipContentClassName={styles.content__tooltip__lite}
+                tipContentHover={true}
+                arrow={true}
+                forceDirection={true}>
+                <UserIcon className={styles.content__list__icon} />
+              </Tooltip>
             </div>
             <div
               role="button"

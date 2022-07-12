@@ -21,7 +21,9 @@ import styles from './ProfileModal.module.scss';
 
 const ProfileModal: React.FC<PopupProps> = ({expanded, setExpanded}) => {
   const {Portal} = usePortal();
-  const {userInfo, isVerified} = useAppSelector(authSelect);
+  const {userInfo} = useAppSelector(authSelect);
+
+  const isVerified = userInfo && userInfo.isVerified;
 
   const [isUsernameEdited, setUsernameEdited] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string | string[]>(
@@ -59,9 +61,7 @@ const ProfileModal: React.FC<PopupProps> = ({expanded, setExpanded}) => {
     setUsernameEdited(false);
   };
 
-  const handleSendEmail = () => {
-    console.log('email was sent');
-  };
+  const handleSendEmail = (): void => {};
 
   useOnClickOutside(modalRef, handleClose);
 
@@ -90,12 +90,6 @@ const ProfileModal: React.FC<PopupProps> = ({expanded, setExpanded}) => {
                     className={styles.wrapper__content__title}>
                     {userInfo?.username}
                   </Typography>
-                )}
-
-                {userInfo && userInfo.isVerified ? (
-                  <Typography tagName="span">Verified</Typography>
-                ) : (
-                  <Typography tagName="span">Unverified</Typography>
                 )}
               </div>
 

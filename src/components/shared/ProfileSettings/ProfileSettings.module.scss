@@ -41,6 +41,28 @@
     visibility: visible;
   }
 
+  &__tooltip{
+   @extend %flex-align;
+    transition: all 0.4s ease;
+    min-width: 50px;
+    width: 100%;
+
+    &__lite{
+      min-width: 100%;
+    }
+
+    &__icon{
+      width: 20px !important;
+      height: 20px !important;
+    }
+
+    &__title{
+      font-size: 12px;
+      color: $tooltip_black_color;
+      padding-left: 3px;
+    }
+  }
+
   &__list {
     list-style: none;
     @extend %flex-center;
@@ -74,12 +96,9 @@
       cursor: pointer;
       user-select: none;
 
-
-
       &:hover {
         color: $red;
         text-decoration: underline;
-        text-shadow: -5px 6px 5px $red;
       }
     }
   }

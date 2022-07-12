@@ -57,6 +57,10 @@
       cursor: pointer;
     }
 
+    &__editIcon{
+      cursor: pointer;
+    }
+
     &__editIcon,&__messageIcon{
       height: 24px !important;
       width: 24px !important;

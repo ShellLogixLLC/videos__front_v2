@@ -100,6 +100,8 @@ export {default as LayersIcon} from './icons/layersIcon.svg';
 export {default as AntennaIcon} from './icons/antenna.svg';
 export {default as EyeShowIcon} from './icons/eyeShow.svg';
 export {default as EyeHideIcon} from './icons/eyeHide.svg';
+export {default as VerifiedIcon} from './icons/verified.svg';
+export {default as UnverifiedIcon} from './icons/unverified.svg';
 export {default as NextOneIcon} from './icons/nextOne.svg';
 export {default as MoveMaxIcon} from './icons/moveMaxIcon.svg';
 export {default as SpeakerMuteIcon} from './icons/speakerMute.svg';
