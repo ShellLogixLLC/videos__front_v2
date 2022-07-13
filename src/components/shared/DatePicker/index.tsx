@@ -1,6 +1,7 @@
-import React, {FC, useState, useRef} from 'react';
+import React, {FC, useState, useRef, useEffect} from 'react';
 import classNames from 'classnames';
 import {useToggle} from 'react-use';
+import {useRouter} from 'next/router';
 import {RangePicker} from 'react-trip-date';
 import {RangePickerSelectedDays} from 'react-trip-date/dist/rangePicker/rangePicker.type';
 
@@ -12,9 +13,12 @@ import Typography from '../Typography';
 import styles from './DatePicker.module.scss';
 
 const DatePicker: FC = () => {
+  const router = useRouter();
+  const {query} = router;
   const calendarRef = useRef<HTMLHeadingElement | null>(null);
 
   const [isOpen, toggleIsOpen] = useToggle(false);
+
   const [rangeValues, setRangeValues] = useState<RangePickerSelectedDays>();
 
   const togglerClasses = classNames(styles.wrapper, {
@@ -27,6 +31,27 @@ const DatePicker: FC = () => {
   });
 
   useOnClickOutside(calendarRef, () => toggleIsOpen(false));
+
+  useEffect(() => {
+    if (query?.startDate || query?.endDate)
+      setRangeValues({
+        from: query.startDate ? String(query.startDate) : '',
+        to: query.endDate ? String(query.endDate) : '',
+      });
+  }, []);
+
+  useEffect(() => {
+    if (rangeValues?.from)
+      router.push({
+        // pathname: router.pathname,
+        query: {
+          ...router.query,
+          startDate: rangeValues.from,
+          endDate: !rangeValues.to ? rangeValues.from : rangeValues.to,
+        },
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [rangeValues]);
 
   const rangePickerProps = {
     numberOfMonths: 1,

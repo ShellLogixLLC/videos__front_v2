@@ -2,9 +2,14 @@ import React, {useState, useEffect} from 'react';
 import {useRouter} from 'next/router';
 
 import {LeftArrowIcon} from '~/assets';
+import {useWindowSize} from '~/hooks';
+import {setQueryParams} from '~/utils';
 import {QueryParamsTypes} from '~/types';
-import {filteredMass, setQueryParams} from '~/utils';
-import {DatePicker, Pagination, FilterBySort, BackButton} from '~/components';
+import {DatePicker, Pagination, BackButton} from '~/components';
+import {
+  INITIAL_PAGINATION_MORE_COUNT,
+  INITIAL_PAGINATION_ROWS_PER_PAGE,
+} from '~/constants';
 
 import styles from './Category.module.scss';
 import CategoryTitle from './CategoryTitle';
@@ -12,27 +17,47 @@ import CategoryContent from './CategoryContent';
 
 const Category: React.FC = () => {
   const {query} = useRouter();
+  const {isMinTablet} = useWindowSize();
+  const currentPerPageCount = !isMinTablet
+    ? INITIAL_PAGINATION_ROWS_PER_PAGE
+    : INITIAL_PAGINATION_MORE_COUNT;
+
   const [activePage, setActivePage] = useState<number>(0);
   const [totalCount, setTotalCount] = useState<number>(0);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(currentPerPageCount);
 
   useEffect(() => {
     if (query?.page) {
       setActivePage(Number(query.page));
+
+      if (!isMinTablet) {
+        window.scrollTo({
+          top: 220,
+          behavior: 'smooth',
+        });
+      }
     }
   }, [query.page]);
+
+  useEffect(() => {
+    if (query.name) {
+      setActivePage(0);
+      setRowsPerPage(INITIAL_PAGINATION_ROWS_PER_PAGE);
+    }
+  }, [query.name]);
 
   const setNewQueryParams = (newQueryParams: QueryParamsTypes): void => {
     setQueryParams({...query, ...newQueryParams});
   };
 
+  useEffect(() => {
+    setRowsPerPage(INITIAL_PAGINATION_ROWS_PER_PAGE);
+    setActivePage(0);
+  }, [isMinTablet]);
+
   const changeActivePage = (page: number): void => {
     setActivePage(page);
     setNewQueryParams({page});
-
-    window.scrollTo({
-      top: 220,
-      behavior: 'smooth',
-    });
   };
 
   return (
@@ -46,28 +71,32 @@ const Category: React.FC = () => {
               className={styles.content__backRoute__button}
             />
           </div>
-          <CategoryTitle categoryId={query?.name} />
+          <CategoryTitle
+            categoryId={query?.name}
+            setActivePage={setActivePage}
+          />
           <CategoryContent
             activePage={activePage}
             categoryId={query?.name}
             setTotalCount={setTotalCount}
+            totalCount={totalCount}
+            rowsPerPage={rowsPerPage}
           />
           {!!totalCount && (
             <div className={styles.content__pagination}>
               <Pagination
-                activePage={activePage}
                 dataLength={totalCount}
-                rowsPerPage={9}
+                rowsPerPage={rowsPerPage}
+                activePage={activePage}
+                setRowsPerPage={setRowsPerPage}
                 setActivePage={changeActivePage}
                 isPerPageNeeded={false}
-                isMoreButtonNeeded={false}
               />
             </div>
           )}
         </div>
         <div className={styles.filters}>
           <DatePicker />
-          <FilterBySort options={filteredMass} />
         </div>
       </div>
     </article>

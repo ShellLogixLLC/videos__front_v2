@@ -6,7 +6,10 @@ import {CategoryNav, CategoryNavSkeleton, Typography} from '~/components';
 
 import styles from '../Category.module.scss';
 
-const CategoryTitle: React.FC<CategoryTitleTypes> = ({categoryId}) => {
+const CategoryTitle: React.FC<CategoryTitleTypes> = ({
+  categoryId,
+  setActivePage,
+}) => {
   const {data, isLoading} = CategoryService.useCategoryById(categoryId);
 
   if (isLoading) {
@@ -20,7 +23,7 @@ const CategoryTitle: React.FC<CategoryTitleTypes> = ({categoryId}) => {
       <Typography tagName="h1" className={styles.content__title}>
         {name.en}
       </Typography>
-      <CategoryNav />
+      <CategoryNav setActivePage={setActivePage} />
     </>
   );
 };

@@ -11,6 +11,11 @@ const useVideosByCategoryId = (
   limit: number,
   offset: number,
   activeVCategoryId?: string | string[],
+  startDate?: string,
+  endDate?: string,
+  likesSort?: number | string,
+  viewsSort?: number | string,
+  durationSort?: number | string,
 ): IVideoByCategory => {
   const {data, mutate, error} = useAppRequest({
     url: endpoints.CategoryService.getVideoByCategoryId(),
@@ -18,6 +23,11 @@ const useVideosByCategoryId = (
       limit,
       offset,
       categoryIds: [activeVCategoryId],
+      startDate,
+      endDate,
+      likesSort,
+      viewsSort,
+      durationSort,
     },
   });
 

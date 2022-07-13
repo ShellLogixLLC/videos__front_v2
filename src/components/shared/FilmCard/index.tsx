@@ -46,7 +46,9 @@ const FilmCard: React.FC<FilmCardProps> = ({
 
   const createdDate = createDate(createdAt);
 
-  const durationSec = (duration / 60).toFixed(2);
+  const durationSec = Math.round(duration % 60);
+
+  const durationMinutes = Math.floor(duration / 60);
 
   const isLikedClasses = classNames(styles.wrapper__film_not_like_it, {
     [styles.wrapper__film_like_it]: isLiked,
@@ -70,7 +72,7 @@ const FilmCard: React.FC<FilmCardProps> = ({
         </Button>
         <Image src={CategoryImage} alt={'Category Image'} />
         <Typography tagName="span" className={styles.wrapper__film__time}>
-          {durationSec}
+          {durationMinutes} : {durationSec}
         </Typography>
       </Link>
       <div className={styles.wrapper__other}>
