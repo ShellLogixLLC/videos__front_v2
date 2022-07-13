@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import usePortal from 'react-useportal';
 import classNames from 'classnames';
 
@@ -9,6 +9,7 @@ import {Button, Input, Link, Typography} from '~/components';
 import {
   useAppDispatch,
   useAppSelector,
+  useLocales,
   useLockBodyScroll,
   useOnClickOutside,
 } from '~/hooks';
@@ -39,6 +40,11 @@ const ProfileModal: React.FC<PopupProps> = ({expanded, setExpanded}) => {
   );
 
   const modalRef = useRef<HTMLDivElement | null>(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  const {translatedTypo: translatedPlaceholder} = useLocales(
+    'enterYourNewUsername',
+  );
 
   const wrapperClasses = classNames(styles.wrapper, {
     [styles.wrapper__open]: expanded,
@@ -51,6 +57,10 @@ const ProfileModal: React.FC<PopupProps> = ({expanded, setExpanded}) => {
     },
   );
 
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, [isUsernameEdited]);
+
   const handleClose = () => setExpanded(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,6 +72,9 @@ const ProfileModal: React.FC<PopupProps> = ({expanded, setExpanded}) => {
   };
 
   const handleSaveChanges = (): void => {
+    if (inputValue.length < 6 || inputValue.length > 18) {
+      return;
+    }
     dispatch(updateUser({username: inputValue}));
     setUsernameEdited(false);
   };
@@ -89,7 +102,8 @@ const ProfileModal: React.FC<PopupProps> = ({expanded, setExpanded}) => {
                 onClick={handleEditUsername}>
                 {isUsernameEdited ? (
                   <Input
-                    placeholder="Enter Your New Username"
+                    ref={inputRef}
+                    placeholder={translatedPlaceholder || ''}
                     className={styles.wrapper__content__input}
                     value={inputValue as string}
                     onChange={handleInputChange}

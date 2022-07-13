@@ -38,6 +38,7 @@
   "forgotPassword": "Забыли пароль?",
   "dontHaveAnAccount": "У вас нет аккаунта?",
   "enterYourUsername": "Введите имя пользователя",
+  "enterYourNewUsername": "Введите новое имя пользователя",
   "enterYourPassword": "Введите свой пароль",
   "enterNewPassword": "Введите Новый пароль",
   "enterTheSamePassword": "Введите тот же пароль",

@@ -18,9 +18,9 @@
     @extend %flex-between;
     flex-direction: column;
     position: relative;
-    padding: 14px 0 50px 19px;
+    padding: 14px 20px 50px 19px;
     border-radius: 13px;
-    max-width: 469px;
+    max-width: 409px;
     width: 100%;
     background-color: $black;
     box-shadow: $red 0px 0px 6px;
@@ -34,9 +34,19 @@
     }
 
     &__input{
-      background: red;
-      color: black;
+      background: transparent;
+      color: $white;
+      font-size: 20px;
+      font-weight: 500;
       border: none;
+
+      @include breakpoint(tablet){
+        font-size: 18px;
+      }
+
+      @include breakpoint(tablet-m){
+        font-size: 12px;
+      }
     }
 
     &__icons{
