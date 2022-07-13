@@ -145,7 +145,6 @@ const Header: React.FC = () => {
       renderCategory()
     ) : !token && pageName === NavigationConstants.Favorites ? (
       <Typography
-        key={id}
         className={styles.wrapper__content__burger__container__nav__items}
         onClick={openLikeItPopup}>
         {pageName}

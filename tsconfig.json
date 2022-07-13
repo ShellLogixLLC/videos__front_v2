@@ -1,16 +1,9 @@
 {
   "extends": "./tsconfig.paths.json",
-  "include": [
-    "src",
-    "pages"
-  ],
+  "include": ["src", "pages"],
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -30,14 +23,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "noEmit": true,
-    "typeRoots": [
-      "./src/types/*",
-      "./node_modules/@types"
-    ],
-    "incremental": true
+    "typeRoots": ["./src/types/*", "./node_modules/@types"]
   },
-  "exclude": [
-    "node_modules",
-    ".vercel"
-  ]
+  "exclude": ["node_modules", ".vercel"]
 }
