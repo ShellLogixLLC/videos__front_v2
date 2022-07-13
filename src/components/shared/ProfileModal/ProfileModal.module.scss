@@ -18,7 +18,7 @@
     @extend %flex-between;
     flex-direction: column;
     position: relative;
-    padding: 14px 65px 50px 19px;
+    padding: 14px 0 50px 19px;
     border-radius: 13px;
     max-width: 469px;
     width: 100%;
@@ -101,8 +101,7 @@
       }
 
       &__wrapper{
-        max-width: 207px;
-        width: 100%;
+        @extend %profile_modal_wrapper;
       }
     }
 
@@ -120,8 +119,7 @@
         line-break: anywhere;
 
         &__wrapper{
-          max-width: 207px;
-          width: 100%;
+         @extend %profile_modal_wrapper
         }
       }
 
@@ -139,8 +137,7 @@
         }
 
         &__wrapper{
-          max-width: 207px;
-          width: 100%;
+         @extend %profile_modal_wrapper;
         }
       }
     }

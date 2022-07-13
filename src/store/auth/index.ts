@@ -120,6 +120,14 @@ const authSlice = createSlice({
       state.loading = LoadingStates.IDLE;
       state.error = action.error;
     });
+    builder.addCase(authThunks.updateUser.rejected, (state, action) => {
+      state.loading = LoadingStates.IDLE;
+      state.error = action.error;
+    });
+    builder.addCase(authThunks.updateUser.fulfilled, (state, action) => {
+      state.error = null;
+      state.loading = LoadingStates.IDLE;
+    });
   },
 });
 

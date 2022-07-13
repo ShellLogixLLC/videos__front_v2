@@ -6,7 +6,12 @@ import {Route} from '~/constants';
 import {authSelect} from '~/store/auth';
 import {PopupProps} from '~/types';
 import {Button, Input, Link, Typography} from '~/components';
-import {useAppSelector, useLockBodyScroll, useOnClickOutside} from '~/hooks';
+import {
+  useAppDispatch,
+  useAppSelector,
+  useLockBodyScroll,
+  useOnClickOutside,
+} from '~/hooks';
 import {
   LockIcon,
   EmailIcon,
@@ -16,6 +21,7 @@ import {
   SaveChangesIcon,
   ExitRedIcon,
 } from '~/assets';
+import {updateUser} from '~/store/auth/thunks';
 
 import styles from './ProfileModal.module.scss';
 
@@ -23,11 +29,13 @@ const ProfileModal: React.FC<PopupProps> = ({expanded, setExpanded}) => {
   const {Portal} = usePortal();
   const {userInfo} = useAppSelector(authSelect);
 
+  const dispatch = useAppDispatch();
+
   const isVerified = userInfo && userInfo.isVerified;
 
   const [isUsernameEdited, setUsernameEdited] = useState<boolean>(false);
-  const [inputValue, setInputValue] = useState<string | string[]>(
-    (userInfo && userInfo?.username) || 'Username',
+  const [inputValue, setInputValue] = useState<string>(
+    userInfo?.username || '',
   );
 
   const modalRef = useRef<HTMLDivElement | null>(null);
@@ -39,7 +47,7 @@ const ProfileModal: React.FC<PopupProps> = ({expanded, setExpanded}) => {
   const mailSenderClassName = classNames(
     styles.wrapper__content__messageIcon__button,
     {
-      [styles.wrapper__content__messageIcon__button__disabled]: !isVerified,
+      [styles.wrapper__content__messageIcon__button__disabled]: isVerified,
     },
   );
 
@@ -54,6 +62,7 @@ const ProfileModal: React.FC<PopupProps> = ({expanded, setExpanded}) => {
   };
 
   const handleSaveChanges = (): void => {
+    dispatch(updateUser({username: inputValue}));
     setUsernameEdited(false);
   };
 
@@ -80,6 +89,7 @@ const ProfileModal: React.FC<PopupProps> = ({expanded, setExpanded}) => {
                 onClick={handleEditUsername}>
                 {isUsernameEdited ? (
                   <Input
+                    placeholder="Enter Your New Username"
                     className={styles.wrapper__content__input}
                     value={inputValue as string}
                     onChange={handleInputChange}
@@ -125,7 +135,7 @@ const ProfileModal: React.FC<PopupProps> = ({expanded, setExpanded}) => {
               <Button
                 onClick={handleSendEmail}
                 className={mailSenderClassName}
-                disabled={!isVerified}>
+                disabled={isVerified || false}>
                 <MessageIcon className={styles.wrapper__content__messageIcon} />
               </Button>
             </div>
