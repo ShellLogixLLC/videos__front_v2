@@ -6925,6 +6925,11 @@ fd-slicer@~1.1.0:
   dependencies:
     pend "~1.2.0"
 
+fetch-polyfill@0.8.2:
+  version "0.8.2"
+  resolved "https://registry.yarnpkg.com/fetch-polyfill/-/fetch-polyfill-0.8.2.tgz#3e1486442da5b53c43e66a6951eaa0fd5d23f1ac"
+  integrity sha512-HnMXyMscl9drfxTsIgEBOgrEgFH1hq+223eCSQud7blPVhprK1ObBi0TA8KqGa7Ro22nrlwNz2XOtx9uwVXsCg==
+
 figgy-pudding@^3.5.1:
   version "3.5.2"
   resolved "https://registry.yarnpkg.com/figgy-pudding/-/figgy-pudding-3.5.2.tgz#b4eee8148abb01dcf1d1ac34367d59e12fa61d6e"
