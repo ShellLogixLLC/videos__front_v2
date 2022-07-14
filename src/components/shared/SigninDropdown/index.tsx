@@ -45,7 +45,7 @@ const SigninDropdown: React.FC = () => {
                 <Typography
                   className={styles.content__list__link__text}
                   tagName="span">
-                  Register
+                  register
                 </Typography>
               </Link>
             </li>
@@ -54,7 +54,7 @@ const SigninDropdown: React.FC = () => {
                 <Typography
                   className={styles.content__list__link__text}
                   tagName="span">
-                  Sign In
+                  signIn
                 </Typography>
               </Link>
             </li>

@@ -120,14 +120,14 @@ const authSlice = createSlice({
       state.loading = LoadingStates.LOADING;
       state.error = action.error;
     });
-    builder.addCase(authThunks.updateUser.pending, (state, action) => {
+    builder.addCase(authThunks.updateUser.pending, (state) => {
       state.loading = LoadingStates.LOADING;
     });
     builder.addCase(authThunks.updateUser.rejected, (state, action) => {
-      state.loading = LoadingStates.LOADING;
+      state.loading = LoadingStates.REJECTED;
       state.error = action.error;
     });
-    builder.addCase(authThunks.updateUser.fulfilled, (state, action) => {
+    builder.addCase(authThunks.updateUser.fulfilled, (state) => {
       state.error = null;
       state.loading = LoadingStates.IDLE;
     });

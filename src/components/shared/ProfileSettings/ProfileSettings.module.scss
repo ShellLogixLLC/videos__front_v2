@@ -75,6 +75,22 @@
       width: 22px !important;
       height: 22px !important;
 
+      &__verifyIcon{
+        height: 15px !important;
+        width: 15px !important;
+        z-index: 20;
+      }
+
+      &__wrapper{
+        position: relative;
+      }
+
+      &__child{
+        position: absolute;
+        bottom: -30%;
+        right: -20%;
+      }
+
       &__exit{
       }
     }

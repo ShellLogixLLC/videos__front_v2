@@ -111,7 +111,20 @@ const ProfileSettings: React.FC = () => {
                 tipContentHover={true}
                 arrow={true}
                 forceDirection={true}>
-                <UserIcon className={styles.content__list__icon} />
+                <div className={styles.content__list__icon__wrapper}>
+                  <UserIcon className={styles.content__list__icon} />
+                  <div className={styles.content__list__icon__child}>
+                    {isVerified ? (
+                      <VerifiedIcon
+                        className={styles.content__list__icon__verifyIcon}
+                      />
+                    ) : (
+                      <UnverifiedIcon
+                        className={styles.content__list__icon__verifyIcon}
+                      />
+                    )}
+                  </div>
+                </div>
               </Tooltip>
             </div>
             <div

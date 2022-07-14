@@ -59,6 +59,22 @@
       height: 24px !important;
       width: 24px !important;
       margin-right: 16px;
+
+      &__verifyIcon{
+        height: 15px !important;
+        width: 15px !important;
+        z-index: 20;
+      }
+
+      &__wrapper{
+        position: relative;
+      }
+
+      &__child{
+        position: absolute;
+        bottom: -25%;
+        right: 25%;
+      }
     }
 
     &__saveIcon,&__deleteIcon{
@@ -116,7 +132,7 @@
     }
 
     &__block {
-      @extend %flex-align;
+      @extend %flex-center;
       width: 100%;
 
       &:not(:last-child){
@@ -124,7 +140,7 @@
       }
 
       &__star{
-        font-size: 15px;
+        font-size: 20px;
         color: $white;
         line-break: anywhere;
 
