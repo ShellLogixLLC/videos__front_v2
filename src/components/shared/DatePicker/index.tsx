@@ -46,12 +46,12 @@ const DatePicker: FC = () => {
   }, [query.startDate, query.endDate, query.activeCategory]);
 
   useEffect(() => {
-    if (rangeValues?.from)
+    if (rangeValues?.from && rangeValues.to)
       router.push({
         query: {
           ...router.query,
           startDate: rangeValues.from,
-          endDate: !rangeValues.to ? rangeValues.from : rangeValues.to,
+          endDate: rangeValues.to,
         },
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps

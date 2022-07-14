@@ -34,8 +34,12 @@ const Category: React.FC = () => {
     if (isEqual(query.name, query.name)) {
       setRowsPerPage(INITIAL_PAGINATION_ROWS_PER_PAGE);
     }
+
+    if (isEqual(query.page, query.page)) {
+      setActivePage(Number(query.page));
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query.name]);
+  }, [query]);
 
   const setNewQueryParams = (newQueryParams: QueryParamsTypes): void => {
     setQueryParams({...query, ...newQueryParams});
