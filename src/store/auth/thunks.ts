@@ -5,7 +5,6 @@ import {client} from '~/api';
 import {getCookieFromBrowser, setCookie} from '~/libraries';
 import {errorToast} from '~/utils';
 import {RouterService} from '~/services';
-import {authActions} from '~/store/auth/index';
 
 import {authReducer} from '../constants';
 

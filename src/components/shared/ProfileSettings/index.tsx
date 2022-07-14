@@ -80,7 +80,9 @@ const ProfileSettings: React.FC = () => {
               role="button"
               onClick={openProfileModal}
               className={styles.content__list__wrapper}>
-              <li className={linkClassName}>User Info</li>
+              <li className={linkClassName}>
+                <Typography>userInfo</Typography>
+              </li>
               <Tooltip
                 content={
                   isVerified ? (
@@ -116,7 +118,9 @@ const ProfileSettings: React.FC = () => {
               role="button"
               onClick={openLogoutModal}
               className={styles.content__list__wrapper}>
-              <li className={linkClassName}>Log Out</li>
+              <li className={linkClassName}>
+                <Typography>logout</Typography>
+              </li>
               <ExitIcon className={logOutIconClassName} />
             </div>
           </ul>

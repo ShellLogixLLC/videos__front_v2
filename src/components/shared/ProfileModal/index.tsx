@@ -28,7 +28,7 @@ import styles from './ProfileModal.module.scss';
 
 const ProfileModal: React.FC<PopupProps> = ({expanded, setExpanded}) => {
   const {Portal} = usePortal();
-  const {userInfo} = useAppSelector(authSelect);
+  const {userInfo, loading} = useAppSelector(authSelect);
 
   const dispatch = useAppDispatch();
 
@@ -72,9 +72,6 @@ const ProfileModal: React.FC<PopupProps> = ({expanded, setExpanded}) => {
   };
 
   const handleSaveChanges = (): void => {
-    if (inputValue.length < 6 || inputValue.length > 18) {
-      return;
-    }
     dispatch(updateUser({username: inputValue}));
     setUsernameEdited(false);
   };
@@ -88,6 +85,8 @@ const ProfileModal: React.FC<PopupProps> = ({expanded, setExpanded}) => {
   useOnClickOutside(modalRef, handleClose);
 
   useLockBodyScroll(expanded);
+
+  console.log(loading, 'loading');
 
   return (
     <Portal>

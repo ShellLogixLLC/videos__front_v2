@@ -43,7 +43,7 @@ const authSlice = createSlice({
       state.loading = LoadingStates.IDLE;
     });
     builder.addCase(authThunks.login.rejected, (state, action) => {
-      state.loading = LoadingStates.IDLE;
+      state.loading = LoadingStates.PENDING;
       state.error = action.error;
     });
 
@@ -54,7 +54,7 @@ const authSlice = createSlice({
       state.loading = LoadingStates.IDLE;
     });
     builder.addCase(authThunks.loginWithToken.rejected, (state, action) => {
-      state.loading = LoadingStates.IDLE;
+      state.loading = LoadingStates.PENDING;
       state.error = action.error;
     });
 
@@ -69,7 +69,7 @@ const authSlice = createSlice({
       state.loading = LoadingStates.IDLE;
     });
     builder.addCase(authThunks.register.rejected, (state, action) => {
-      state.loading = LoadingStates.IDLE;
+      state.loading = LoadingStates.LOADING;
       state.error = action.payload;
     });
 
@@ -78,7 +78,7 @@ const authSlice = createSlice({
       state.loading = LoadingStates.IDLE;
     });
     builder.addCase(authThunks.userVerify.rejected, (state, action) => {
-      state.loading = LoadingStates.IDLE;
+      state.loading = LoadingStates.LOADING;
       state.error = action.error;
     });
 
@@ -88,7 +88,7 @@ const authSlice = createSlice({
     builder.addCase(
       authThunks.userSentVerifyAgain.rejected,
       (state, action) => {
-        state.loading = LoadingStates.IDLE;
+        state.loading = LoadingStates.LOADING;
         state.error = action.error;
       },
     );
@@ -97,7 +97,7 @@ const authSlice = createSlice({
       state.loading = LoadingStates.IDLE;
     });
     builder.addCase(authThunks.forgotPassword.rejected, (state, action) => {
-      state.loading = LoadingStates.IDLE;
+      state.loading = LoadingStates.LOADING;
       state.error = action.error;
     });
 
@@ -107,7 +107,7 @@ const authSlice = createSlice({
       state.loading = LoadingStates.IDLE;
     });
     builder.addCase(authThunks.resetPassword.rejected, (state, action) => {
-      state.loading = LoadingStates.IDLE;
+      state.loading = LoadingStates.LOADING;
       state.error = action.error;
     });
 
@@ -117,11 +117,14 @@ const authSlice = createSlice({
       state.loading = LoadingStates.IDLE;
     });
     builder.addCase(authThunks.changePassword.rejected, (state, action) => {
-      state.loading = LoadingStates.IDLE;
+      state.loading = LoadingStates.LOADING;
       state.error = action.error;
     });
+    builder.addCase(authThunks.updateUser.pending, (state, action) => {
+      state.loading = LoadingStates.LOADING;
+    });
     builder.addCase(authThunks.updateUser.rejected, (state, action) => {
-      state.loading = LoadingStates.IDLE;
+      state.loading = LoadingStates.LOADING;
       state.error = action.error;
     });
     builder.addCase(authThunks.updateUser.fulfilled, (state, action) => {

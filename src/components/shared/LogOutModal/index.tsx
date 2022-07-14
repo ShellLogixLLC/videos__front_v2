@@ -35,12 +35,12 @@ const LogoutModal: React.FC<LogOutModalProps> = ({show, close}) => {
             />
             <div className={styles.modal__content}>
               <Typography tagName="h2" className={styles.modal__content__title}>
-                Log Out?
+                logout?
               </Typography>
               <Typography
                 tagName="span"
                 className={styles.modal__content__text}>
-                Are you sure you want to log out?
+                areYouSureYouWantLogout
               </Typography>
               <div className={styles.modal__content__buttons}>
                 <Button
@@ -49,7 +49,7 @@ const LogoutModal: React.FC<LogOutModalProps> = ({show, close}) => {
                   <Typography
                     className={styles.modal__content__buttons__cancel__title}
                     tagName="span">
-                    Cancel
+                    cancel
                   </Typography>
                 </Button>
                 <Button
@@ -58,7 +58,7 @@ const LogoutModal: React.FC<LogOutModalProps> = ({show, close}) => {
                   <Typography
                     className={styles.modal__content__buttons__cancel__title}
                     tagName="span">
-                    Log Out
+                    logout
                   </Typography>
                 </Button>
               </div>
