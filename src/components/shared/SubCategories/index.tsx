@@ -4,7 +4,7 @@ import {useRouter} from 'next/router';
 
 import {useWindowSize} from '~/hooks';
 import {SearchBackArrowIcon} from '~/assets';
-import {INITIAL_SUB_CATEGORY_TRANSFORM} from '~/constants';
+import {CategorySorts, INITIAL_SUB_CATEGORY_TRANSFORM} from '~/constants';
 
 import Link from '../Link';
 
@@ -15,7 +15,8 @@ const SubCategories: React.FC<SubCategoriesProps> = ({
   wrapperClass,
   subCategoriesList,
 }) => {
-  const {query} = useRouter();
+  const router = useRouter();
+  const {query} = router;
   const {isDesktop, windowWidth} = useWindowSize();
 
   const contentRef = useRef<HTMLDivElement | null>(null);
@@ -71,7 +72,15 @@ const SubCategories: React.FC<SubCategoriesProps> = ({
     return (
       <Link
         key={id}
-        to="/category/[name]"
+        to={{
+          pathname: '/category/[name]',
+          query: {
+            activeCategory: CategorySorts.All,
+            likesSort: '',
+            viewsSort: '',
+            durationSort: '',
+          },
+        }}
         as={`/category/${id}`}
         className={itemClasses}>
         {name.en}

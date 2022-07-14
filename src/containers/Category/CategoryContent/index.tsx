@@ -22,13 +22,15 @@ const CategoryContent: React.FC<CategoryContentTypes> = ({
   const {query} = useRouter();
   const {isMinTablet} = useWindowSize();
 
+  const [videosList, setVideosList] = useState<any>([]);
+
   const endDate = query?.endDate ? String(query?.endDate) : '';
   const startDate = query?.startDate ? String(query?.startDate) : '';
   const likesSort = Number(query?.likesSort) || '';
   const viewsSort = Number(query?.viewsSort) || '';
   const durationSort = Number(query?.durationSort) || '';
 
-  const limit = !isMinTablet ? INITIAL_WISHLIST_LIMIT : rowsPerPage;
+  const limit = isMinTablet ? rowsPerPage : INITIAL_WISHLIST_LIMIT;
   const offset = !isMinTablet ? activePage * INITIAL_WISHLIST_LIMIT : 0;
 
   const {data, isLoading} = CategoryService.useVideosByCategoryId(
@@ -42,8 +44,6 @@ const CategoryContent: React.FC<CategoryContentTypes> = ({
     durationSort,
   );
 
-  const [videosList, setVideosList] = useState<any>([]);
-
   const tabletSkeletonsCount =
     rowsPerPage + INITIAL_PAGINATION_MORE_COUNT > totalCount
       ? totalCount && totalCount % INITIAL_PAGINATION_MORE_COUNT
@@ -56,10 +56,8 @@ const CategoryContent: React.FC<CategoryContentTypes> = ({
     : tabletSkeletonsCount;
 
   useEffect(() => {
-    // if (data) {
     setTotalCount(data?.totalCount);
     setVideosList(data?.videos);
-    // }
   }, [data, setTotalCount]);
 
   const renderLoaderCards = Array.from(
@@ -87,11 +85,9 @@ const CategoryContent: React.FC<CategoryContentTypes> = ({
   return (
     <>
       <div className={styles.content__wrapper}>
-        {totalCount ? (
-          renderVideosList
-        ) : (
-          <Typography>sorryWeCouldNotFindAnyResult</Typography>
-        )}
+        {totalCount
+          ? renderVideosList
+          : !isLoading && <Typography>sorryWeCouldNotFindAnyResult</Typography>}
       </div>
       {isLoading && (
         <div className={styles.content__wrapper}>{renderLoaderCards}</div>

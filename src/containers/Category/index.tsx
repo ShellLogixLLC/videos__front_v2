@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {isEqual} from 'lodash';
 import {useRouter} from 'next/router';
 
 import {LeftArrowIcon} from '~/assets';
@@ -18,32 +19,22 @@ import CategoryContent from './CategoryContent';
 const Category: React.FC = () => {
   const {query} = useRouter();
   const {isMinTablet} = useWindowSize();
-  const currentPerPageCount = !isMinTablet
-    ? INITIAL_PAGINATION_ROWS_PER_PAGE
-    : INITIAL_PAGINATION_MORE_COUNT;
 
-  const [activePage, setActivePage] = useState<number>(0);
+  const currentPerPageCount = isMinTablet
+    ? INITIAL_PAGINATION_MORE_COUNT
+    : INITIAL_PAGINATION_ROWS_PER_PAGE;
+
+  const [activePage, setActivePage] = useState<number>(
+    query?.page ? Number(query?.page || 0) : 0,
+  );
   const [totalCount, setTotalCount] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(currentPerPageCount);
 
   useEffect(() => {
-    if (query?.page) {
-      setActivePage(Number(query.page));
-
-      if (!isMinTablet) {
-        window.scrollTo({
-          top: 220,
-          behavior: 'smooth',
-        });
-      }
-    }
-  }, [query.page]);
-
-  useEffect(() => {
-    if (query.name) {
-      setActivePage(0);
+    if (isEqual(query.name, query.name)) {
       setRowsPerPage(INITIAL_PAGINATION_ROWS_PER_PAGE);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query.name]);
 
   const setNewQueryParams = (newQueryParams: QueryParamsTypes): void => {
@@ -51,8 +42,10 @@ const Category: React.FC = () => {
   };
 
   useEffect(() => {
-    setRowsPerPage(INITIAL_PAGINATION_ROWS_PER_PAGE);
-    setActivePage(0);
+    if (isMinTablet) {
+      setRowsPerPage(INITIAL_PAGINATION_ROWS_PER_PAGE);
+      setActivePage(0);
+    }
   }, [isMinTablet]);
 
   const changeActivePage = (page: number): void => {
@@ -71,10 +64,7 @@ const Category: React.FC = () => {
               className={styles.content__backRoute__button}
             />
           </div>
-          <CategoryTitle
-            categoryId={query?.name}
-            setActivePage={setActivePage}
-          />
+          <CategoryTitle categoryId={query?.name} />
           <CategoryContent
             activePage={activePage}
             categoryId={query?.name}

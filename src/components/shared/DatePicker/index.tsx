@@ -1,5 +1,6 @@
 import React, {FC, useState, useRef, useEffect} from 'react';
 import classNames from 'classnames';
+import {isEqual} from 'lodash';
 import {useToggle} from 'react-use';
 import {useRouter} from 'next/router';
 import {RangePicker} from 'react-trip-date';
@@ -18,7 +19,6 @@ const DatePicker: FC = () => {
   const calendarRef = useRef<HTMLHeadingElement | null>(null);
 
   const [isOpen, toggleIsOpen] = useToggle(false);
-
   const [rangeValues, setRangeValues] = useState<RangePickerSelectedDays>();
 
   const togglerClasses = classNames(styles.wrapper, {
@@ -33,17 +33,21 @@ const DatePicker: FC = () => {
   useOnClickOutside(calendarRef, () => toggleIsOpen(false));
 
   useEffect(() => {
-    if (query?.startDate || query?.endDate)
+    if (
+      query?.startDate ||
+      query?.endDate ||
+      isEqual(query.activeCategory, query.activeCategory)
+    ) {
       setRangeValues({
         from: query.startDate ? String(query.startDate) : '',
         to: query.endDate ? String(query.endDate) : '',
       });
-  }, []);
+    }
+  }, [query.startDate, query.endDate, query.activeCategory]);
 
   useEffect(() => {
     if (rangeValues?.from)
       router.push({
-        // pathname: router.pathname,
         query: {
           ...router.query,
           startDate: rangeValues.from,

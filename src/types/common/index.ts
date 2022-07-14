@@ -2,7 +2,6 @@ export type SVGIconProp = React.FC<React.SVGProps<SVGSVGElement>>;
 
 export type CategoryTitleTypes = {
   categoryId?: string | string[];
-  setActivePage: React.Dispatch<React.SetStateAction<number>>;
 };
 
 export type CategoryContentTypes = {
@@ -16,6 +15,10 @@ export type CategoryContentTypes = {
 export type QueryParamsTypes = {
   page?: number;
   name?: string;
+  likesSort?: number | string;
+  viewsSort?: number | string;
+  durationSort?: number | string;
+  activeCategory?: string;
 };
 
 export enum LocaleType {
