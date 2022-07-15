@@ -232,8 +232,14 @@ export const updateUser = createAsyncThunk(
       return {
         username: data,
       };
-    } catch (error) {
+    } catch (error: any) {
+      if (!error.response) {
+        throw error;
+      }
       const {message} = error as Error;
+
+      const {errors} = error.response.data;
+      if (errors) errorToast(errors);
 
       return rejectWithValue({error: message});
     }

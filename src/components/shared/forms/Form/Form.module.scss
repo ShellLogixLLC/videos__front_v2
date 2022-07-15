@@ -14,5 +14,9 @@
       margin: 32px auto 0;
       cursor: not-allowed;
     }
+
+    &__editMode{
+      display: none;
+    }
   }
 }

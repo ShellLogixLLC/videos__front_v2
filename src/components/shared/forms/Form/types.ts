@@ -24,6 +24,7 @@ export type Form = {
 
 export interface IFormProps<TFieldValues extends FieldValues = FieldValues> {
   form: Form;
+  isEditedMode?: boolean;
   formHandler?: () => void;
   labelText?: string;
   submitText: string;
@@ -31,7 +32,6 @@ export interface IFormProps<TFieldValues extends FieldValues = FieldValues> {
   inputClassName?: string;
   innerClassName?: string;
   labelClassName?: string;
-  btnClassName?: string;
   addFormBtnClasses?: string;
   onSubmit: SubmitHandler<TFieldValues>;
 }

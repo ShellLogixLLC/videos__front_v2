@@ -1,8 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import usePortal from 'react-useportal';
 import classNames from 'classnames';
-import {ToastContainer, toast} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 import {Route} from '~/constants';
 import {authSelect} from '~/store/auth';
@@ -36,7 +34,7 @@ import styles from './ProfileModal.module.scss';
 
 const ProfileModal: React.FC<PopupProps> = ({expanded, setExpanded}) => {
   const {Portal} = usePortal();
-  const {userInfo, loading, error} = useAppSelector(authSelect);
+  const {userInfo, loading} = useAppSelector(authSelect);
 
   const dispatch = useAppDispatch();
 
@@ -46,13 +44,6 @@ const ProfileModal: React.FC<PopupProps> = ({expanded, setExpanded}) => {
   const [inputValue, setInputValue] = useState<string>(
     userInfo?.username || '',
   );
-  const [errorMessage, setErrorMessage] = useState<string>('');
-
-  useEffect(() => {
-    if (error) {
-      setErrorMessage(error);
-    }
-  }, [error]);
 
   const modalRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -96,18 +87,6 @@ const ProfileModal: React.FC<PopupProps> = ({expanded, setExpanded}) => {
   const handleSaveChanges = (): void => {
     dispatch(updateUser({username: inputValue}));
     setUsernameEdited(false);
-    if (loading === LoadingStates.REJECTED) {
-      toast('aa', {
-        position: 'top-right',
-        autoClose: 4000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-      });
-      // <ToastContainer transition={bounce} />;
-    }
   };
 
   const handleDeleteChanges = () => {
@@ -164,37 +143,30 @@ const ProfileModal: React.FC<PopupProps> = ({expanded, setExpanded}) => {
                   onClick={handleEditUsername}>
                   {isUsernameEdited ? (
                     <>
-                      {/*<form onSubmit={handleSaveChanges}>*/}
-                      {/*  <Input*/}
-                      {/*    ref={inputRef}*/}
-                      {/*    placeholder={translatedPlaceholder || ''}*/}
-                      {/*    className={styles.wrapper__content__input}*/}
-                      {/*    value={inputValue as string}*/}
-                      {/*    onChange={handleInputChange}*/}
-                      {/*  />*/}
-                      {/*</form>*/}
-                      <Form
-                        btnClassName={styles.button}
-                        className={styles.wrapper_content__form}
-                        form={editUsernameForm}
-                        submitText="submit"
-                        onSubmit={handleSaveChanges}
-                        inputClassName={styles.wrapper__content__input}
-                      />
+                      <form onSubmit={handleSaveChanges}>
+                        <Input
+                          ref={inputRef}
+                          placeholder={translatedPlaceholder || ''}
+                          className={styles.wrapper__content__input}
+                          value={inputValue as string}
+                          onChange={handleInputChange}
+                        />
+                      </form>
+                      {/*<Form*/}
+                      {/*  isEditedMode*/}
+                      {/*  className={styles.wrapper_content__form}*/}
+                      {/*  form={editUsernameForm}*/}
+                      {/*  submitText="submit"*/}
+                      {/*  onSubmit={handleSaveChanges}*/}
+                      {/*  inputClassName={styles.wrapper__content__input}*/}
+                      {/*/>*/}
                     </>
                   ) : (
-                    <>
-                      <Typography
-                        tagName="span"
-                        className={styles.wrapper__content__title}>
-                        {userInfo?.username}
-                      </Typography>
-                      {/*<Typography*/}
-                      {/*  tagName="span"*/}
-                      {/*  className={styles.wrapper__content__title}>*/}
-                      {/*  {error && error.message}*/}
-                      {/*</Typography>*/}
-                    </>
+                    <Typography
+                      tagName="span"
+                      className={styles.wrapper__content__title}>
+                      {userInfo?.username}
+                    </Typography>
                   )}
                 </div>
 

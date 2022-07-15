@@ -31,6 +31,7 @@ const Form = forwardRef<any, IFormProps>(
       inputClassName = '',
       labelClassName = '',
       innerClassName = '',
+      isEditedMode = false,
       addFormBtnClasses = '',
     },
     ref,
@@ -67,7 +68,7 @@ const Form = forwardRef<any, IFormProps>(
     });
 
     const disabledButtonClasses = classNames(styles.container__button, {
-      // [btnClassName]: btnClassName,
+      [styles.container__button__editMode]: isEditedMode,
       [styles.container__button_disabled]: !isValid,
       [addFormBtnClasses]: addFormBtnClasses,
     });
