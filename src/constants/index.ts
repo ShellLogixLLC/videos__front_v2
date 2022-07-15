@@ -37,3 +37,6 @@ export * from './locales';
 
 // navigation
 export * from './navigation';
+
+// global constats
+export * from './globalConstants';

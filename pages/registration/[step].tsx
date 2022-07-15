@@ -1,10 +1,11 @@
-import {GetServerSidePropsResult, NextPage} from 'next';
 import React from 'react';
+import {GetServerSideProps, GetServerSidePropsResult, NextPage} from 'next';
 
-import {
-  IRegistrationStepsPageProps,
-  IRegistrationStepsPageParams,
-} from '~/types';
+import {getCookie} from '~/libraries';
+import {ctxRedirect} from '~/utils';
+import {RouterService} from '~/services';
+import {IRegistrationStepsPageProps} from '~/types';
+import {IS_SERVER, registrationSteps, Route} from '~/constants';
 import {
   Seo,
   VerifyPage,
@@ -12,7 +13,6 @@ import {
   ResetPassword,
   ForgotPassword,
 } from '~/components';
-import {registrationSteps} from '~/constants';
 
 export const RegistrationContainers = {
   VerifyPage,
@@ -37,12 +37,21 @@ const RegistrationStepPage: NextPage<IRegistrationStepsPageProps> = ({
   );
 };
 
-export const getServerSideProps = async ({
-  params: {step},
-}: IRegistrationStepsPageParams): Promise<
-  GetServerSidePropsResult<IRegistrationStepsPageProps>
-> => {
+export const getServerSideProps: GetServerSideProps = async (
+  ctx,
+): Promise<GetServerSidePropsResult<IRegistrationStepsPageProps>> => {
+  const step = ctx.params?.step;
   const parsedStep = Number(step) - 1;
+
+  const token = getCookie('token', ctx.req.headers.cookie as string);
+
+  if (token) {
+    if (IS_SERVER) {
+      ctxRedirect(ctx, Route.Error);
+    } else {
+      RouterService.push(Route.Error);
+    }
+  }
 
   if (!registrationSteps[parsedStep]) {
     return {

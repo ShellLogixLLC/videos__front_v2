@@ -1,13 +1,16 @@
 import React from 'react';
-import {GetServerSideProps, GetServerSidePropsResult, NextPage} from 'next';
 import {SWRConfig} from 'swr';
+import {NextPage, GetServerSideProps, GetServerSidePropsResult} from 'next';
 
 import {Seo} from '~/components';
+import endpoints from '~/api/endpoints';
 import {Wishlist} from '~/containers';
 import ApiService from '~/api/ApiService';
-import endpoints from '~/api/endpoints';
-import {INITIAL_WISHLIST_LIMIT} from '~/constants';
+import {getCookie} from '~/libraries';
+import {ctxRedirect} from '~/utils';
+import {RouterService} from '~/services';
 import {ICategoriesPageQueries, SwrPageProps} from '~/types';
+import {INITIAL_WISHLIST_LIMIT, IS_SERVER, Route} from '~/constants';
 
 const MyFavoritesPage: NextPage<SwrPageProps> = ({fallback}) => (
   <SWRConfig value={fallback}>
@@ -24,13 +27,20 @@ export const getServerSideProps: GetServerSideProps = async (
   ctx,
 ): Promise<GetServerSidePropsResult<{}>> => {
   const {page} = ctx.query as ICategoriesPageQueries;
+
+  const token = getCookie('token', ctx.req.headers.cookie as string);
+
   const activePage = page ? Number(page) : 0;
 
-  const cookie = ctx.req.headers.cookie
-    ?.split(';')
-    .find((cookie) => cookie.includes('token'))
-    ?.replace('token=', '');
-  const headers = {Authorization: `Bearer ${cookie}`};
+  if (!token) {
+    if (IS_SERVER) {
+      ctxRedirect(ctx, Route.Error);
+    } else {
+      RouterService.push(Route.Error);
+    }
+  }
+
+  const headers = {Authorization: `Bearer ${token}`};
 
   const wishlistVideos = await ApiService.get(
     endpoints.WishlistService.getWishlistVideos(),
