@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import {Route} from '~/constants';
 import {authSelect} from '~/store/auth';
 import {PopupProps} from '~/types';
-import {Button, Input, Link, Typography} from '~/components';
+import {Button, Input, Typography} from '~/components';
 import {
   useAppDispatch,
   useAppSelector,
@@ -24,7 +24,7 @@ import {
   UserRoundIcon,
   VerifiedIcon,
 } from '~/assets';
-import {updateUser} from '~/store/auth/thunks';
+import {updateUser, userSentVerifyAgain} from '~/store/auth/thunks';
 import {LoadingStates} from '~/store/types';
 import HorizontalLoader from '~/components/shared/Loader/HorizontalLoader';
 import {RouterService} from '~/services';
@@ -54,6 +54,13 @@ const ProfileModal: React.FC<PopupProps> = ({expanded, setExpanded}) => {
   const wrapperClasses = classNames(styles.wrapper, {
     [styles.wrapper__open]: expanded,
   });
+
+  const firstBlockClassName = classNames(
+    styles.wrapper__content__title__wrapper,
+    {
+      [styles.wrapper__content__title__wrapper__edited]: isUsernameEdited,
+    },
+  );
 
   const mailSenderButtonClassName = classNames(
     styles.wrapper__content__messageIcon__button,
@@ -86,11 +93,14 @@ const ProfileModal: React.FC<PopupProps> = ({expanded, setExpanded}) => {
   };
 
   const handleSendEmail = (): void => {
-    alert('mail was sent');
+    if (userInfo && userInfo.email) {
+      dispatch(userSentVerifyAgain({email: userInfo.email}));
+      RouterService.push(Route.RegistrationSetupPassword);
+    }
   };
 
-  const handleChangeRoute = (): void => {
-    RouterService.push(Route.RegistrationSetupPassword);
+  const handleChangePasswordRoute = (): void => {
+    RouterService.push(Route.RegistrationContactInformation);
   };
 
   useOnClickOutside(modalRef, handleClose);
@@ -127,7 +137,7 @@ const ProfileModal: React.FC<PopupProps> = ({expanded, setExpanded}) => {
                   </div>
                 </div>
                 <div
-                  className={styles.wrapper__content__title__wrapper}
+                  className={firstBlockClassName}
                   role="button"
                   onClick={handleEditUsername}>
                   {isUsernameEdited ? (
@@ -200,7 +210,7 @@ const ProfileModal: React.FC<PopupProps> = ({expanded, setExpanded}) => {
                 </div>
                 <Button
                   className={mailSenderButtonClassName}
-                  onClick={handleChangeRoute}
+                  onClick={handleChangePasswordRoute}
                   disabled={isVerified || false}>
                   <EditPenIcon
                     className={styles.wrapper__content__messageIcon}

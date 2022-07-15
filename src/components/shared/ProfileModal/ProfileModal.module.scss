@@ -40,6 +40,10 @@
       font-weight: 500;
       border: none;
 
+      &::placeholder{
+        font-size: 15px;
+      }
+
       @include breakpoint(tablet){
         font-size: 18px;
       }
@@ -78,8 +82,8 @@
     }
 
     &__saveIcon,&__deleteIcon{
-      height: 22px !important;
-      width: 22px !important;
+      height: 18px !important;
+      width: 18px !important;
       cursor: pointer;
     }
 
@@ -128,6 +132,10 @@
 
       &__wrapper{
         @extend %profile_modal_wrapper;
+
+        &__edited{
+          max-width: 195px !important;
+        }
       }
     }
 
