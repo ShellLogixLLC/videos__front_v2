@@ -50,6 +50,8 @@
   "enterTheSamePassword": "Введите тот же пароль",
   "theFirstNameIsRequired": "Имя обязательно",
   "firstNameIsTooShort": "Имя слишком короткое — должно быть минимум 4 символа.",
+  "firstNameIsTooLong": "Имя слишком длинное — должно быть не более 18 символов.",
+  "thisFieldCannotContainBlankspaces": "Этот поле не может содержать пробелов",
   "theLastNameIsRequired": "Фамилия обязательна",
   "lastNameIsTooShort": "Фамилия слишком короткая — должно быть минимум 3 символа.",
   "enterYourEmail": "Введите адрес электронной почты",

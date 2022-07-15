@@ -31,6 +31,7 @@ export interface IFormProps<TFieldValues extends FieldValues = FieldValues> {
   inputClassName?: string;
   innerClassName?: string;
   labelClassName?: string;
+  btnClassName?: string;
   addFormBtnClasses?: string;
   onSubmit: SubmitHandler<TFieldValues>;
 }

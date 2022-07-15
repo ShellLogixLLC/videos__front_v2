@@ -67,6 +67,7 @@ const Form = forwardRef<any, IFormProps>(
     });
 
     const disabledButtonClasses = classNames(styles.container__button, {
+      // [btnClassName]: btnClassName,
       [styles.container__button_disabled]: !isValid,
       [addFormBtnClasses]: addFormBtnClasses,
     });

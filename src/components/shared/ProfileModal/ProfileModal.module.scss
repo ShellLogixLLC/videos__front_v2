@@ -33,6 +33,9 @@
       max-width: 269px;
     }
 
+    &__form{
+    }
+
     &__input{
       background: transparent;
       color: $white;
@@ -176,4 +179,8 @@
       }
     }
   }
+}
+
+.button{
+  opacity: 0;
 }
