@@ -8,9 +8,9 @@ import {
   INITIAL_PAGINATION_MORE_COUNT,
 } from '~/constants';
 import {
-  CategoryCard,
   FilmCard,
   Pagination,
+  CategoryCard,
   HorizontalSliderSkeleton,
 } from '~/components';
 
