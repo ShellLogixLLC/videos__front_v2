@@ -3,13 +3,11 @@ import {AppProps} from 'next/app';
 import NextNprogress from 'nextjs-progressbar';
 import {appWithTranslation} from 'next-i18next';
 
-import nextI18nConfig from '../next-i18next.config';
-
 import 'emoji-mart/css/emoji-mart.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 import '~/styles/index.scss';
-import {useEffect} from 'react';
+import React, {useEffect} from 'react';
 
 import store, {wrapper} from '~/store';
 import {getCookieFromBrowser} from '~/libraries';
@@ -20,6 +18,8 @@ import {
   ModalContextProvider,
   ToastContextProvider,
 } from '~/context';
+
+import nextI18nConfig from '../next-i18next.config';
 
 const ProdApp: React.FC<AppProps> = ({Component, pageProps}) => {
   const dispatch = useAppDispatch();
