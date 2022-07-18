@@ -34,6 +34,7 @@
     }
 
     &__form{
+      flex-direction: column;
     }
 
     &__input{
@@ -147,7 +148,6 @@
         @extend %profile_modal_wrapper;
 
         &__edited{
-          max-width: 195px !important;
           width: 100%;
         }
       }

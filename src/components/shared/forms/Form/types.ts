@@ -1,4 +1,5 @@
 import * as yup from 'yup';
+import React from 'react';
 import {SubmitHandler, FieldValues} from 'react-hook-form';
 
 import {Route} from '~/constants';
@@ -27,7 +28,8 @@ export interface IFormProps<TFieldValues extends FieldValues = FieldValues> {
   isEditedMode?: boolean;
   formHandler?: () => void;
   labelText?: string;
-  submitText: string;
+  submitText?: string;
+  RightIcon?: React.ReactSVGElement;
   className?: string;
   inputClassName?: string;
   innerClassName?: string;

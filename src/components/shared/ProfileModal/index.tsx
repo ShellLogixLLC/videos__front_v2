@@ -5,9 +5,8 @@ import usePortal from 'react-useportal';
 import {Route} from '~/constants';
 import {PopupProps} from '~/types';
 import {authSelect} from '~/store/auth';
-import {Button, Form, Input, Typography} from '~/components';
+import {Button, Form, Typography} from '~/components';
 import {
-  useLocales,
   useAppDispatch,
   useAppSelector,
   useLockBodyScroll,
@@ -41,16 +40,8 @@ const ProfileModal: React.FC<PopupProps> = ({expanded, setExpanded}) => {
   const isVerified = userInfo && userInfo.isVerified;
 
   const [isUsernameEdited, setUsernameEdited] = useState<boolean>(false);
-  const [inputValue, setInputValue] = useState<string>(
-    userInfo?.username || '',
-  );
-
   const modalRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
-
-  const {translatedTypo: translatedPlaceholder} = useLocales(
-    'enterYourNewUsername',
-  );
 
   const wrapperClasses = classNames(styles.wrapper, {
     [styles.wrapper__open]: expanded,
@@ -76,16 +67,12 @@ const ProfileModal: React.FC<PopupProps> = ({expanded, setExpanded}) => {
 
   const handleClose = () => setExpanded(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-  };
-
   const handleEditUsername = (): void => {
     setUsernameEdited(true);
   };
 
-  const handleSaveChanges = (): void => {
-    dispatch(updateUser({username: inputValue}));
+  const handleSaveChanges = (payload: Record<string, string>): void => {
+    dispatch(updateUser({username: payload.username}));
     setUsernameEdited(false);
   };
 
@@ -142,25 +129,14 @@ const ProfileModal: React.FC<PopupProps> = ({expanded, setExpanded}) => {
                   role="button"
                   onClick={handleEditUsername}>
                   {isUsernameEdited ? (
-                    <>
-                      <form onSubmit={handleSaveChanges}>
-                        <Input
-                          ref={inputRef}
-                          placeholder={translatedPlaceholder || ''}
-                          className={styles.wrapper__content__input}
-                          value={inputValue as string}
-                          onChange={handleInputChange}
-                        />
-                      </form>
-                      {/*<Form*/}
-                      {/*  isEditedMode*/}
-                      {/*  className={styles.wrapper_content__form}*/}
-                      {/*  form={editUsernameForm}*/}
-                      {/*  submitText="submit"*/}
-                      {/*  onSubmit={handleSaveChanges}*/}
-                      {/*  inputClassName={styles.wrapper__content__input}*/}
-                      {/*/>*/}
-                    </>
+                    <Form
+                      isEditedMode
+                      RightIcon={SaveChangesIcon}
+                      className={styles.wrapper_content__form}
+                      form={editUsernameForm}
+                      onSubmit={handleSaveChanges}
+                      inputClassName={styles.wrapper__content__input}
+                    />
                   ) : (
                     <Typography
                       tagName="span"
@@ -172,11 +148,6 @@ const ProfileModal: React.FC<PopupProps> = ({expanded, setExpanded}) => {
 
                 {isUsernameEdited ? (
                   <div className={styles.wrapper__content__icons}>
-                    <div role="button" onClick={handleSaveChanges}>
-                      <SaveChangesIcon
-                        className={styles.wrapper__content__saveIcon}
-                      />
-                    </div>
                     <div role="button" onClick={handleDeleteChanges}>
                       <ExitRedIcon
                         className={styles.wrapper__content__deleteIcon}

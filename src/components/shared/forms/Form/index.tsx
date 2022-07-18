@@ -33,6 +33,7 @@ const Form = forwardRef<any, IFormProps>(
       innerClassName = '',
       isEditedMode = false,
       addFormBtnClasses = '',
+      RightIcon,
     },
     ref,
   ) => {
@@ -64,6 +65,7 @@ const Form = forwardRef<any, IFormProps>(
     });
 
     const formClasses = classNames(styles.container, {
+      [styles.container__edited]: isEditedMode,
       [className]: className,
     });
 
@@ -163,7 +165,9 @@ const Form = forwardRef<any, IFormProps>(
           disabled={!isValid}
           onClick={formHandler}
           className={disabledButtonClasses}>
-          {translatedSubmitText || submitText}
+          {isEditedMode
+            ? RightIcon && <RightIcon className={styles.submitIcon} />
+            : translatedSubmitText || submitText}
         </Button>
       </form>
     );
