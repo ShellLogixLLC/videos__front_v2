@@ -5,25 +5,25 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: $dark-grey;
   z-index: 20;
-  visibility: hidden;
   height: 100vh;
+  visibility: hidden;
+  background-color: $dark-grey;
 
   &__open {
     visibility: visible;
   }
 
   &__content {
+    width: 100%;
+    max-width: 409px;
+    position: relative;
+    border-radius: 13px;
     @extend %flex-between;
     flex-direction: column;
-    position: relative;
-    padding: 14px 20px 50px 19px;
-    border-radius: 13px;
-    max-width: 409px;
-    width: 100%;
     background-color: $black;
     box-shadow: $red 0px 0px 6px;
+    padding: 14px 20px 50px 19px;
 
     @include breakpoint(tablet){
       max-width: 369px;
@@ -37,14 +37,21 @@
     }
 
     &__input{
-      background: transparent;
+      border: none;
       color: $white;
       font-size: 20px;
       font-weight: 500;
-      border: none;
+      background: transparent;
 
       &::placeholder{
         font-size: 15px;
+
+        @include breakpoint(tablet){
+          font-size: 12px;
+        }
+        @include breakpoint(tablet-m){
+          font-size: 10px;
+        }
       }
 
       @include breakpoint(tablet){
@@ -57,20 +64,20 @@
     }
 
     &__icons{
-      @extend %flex-align;
       gap: 6px;
       margin-left: 8px;
+      @extend %flex-align;
     }
 
     &__userIcon, &__emailIcon ,&__lockIcon{
+      margin-right: 16px;
       height: 24px !important;
       width: 24px !important;
-      margin-right: 16px;
 
       &__verifyIcon{
+        z-index: 20;
         height: 15px !important;
         width: 15px !important;
-        z-index: 20;
       }
 
       &__wrapper{
@@ -79,15 +86,17 @@
 
       &__child{
         position: absolute;
-        bottom: -25%;
         right: 25%;
+        bottom: -25%;
+
       }
     }
 
     &__saveIcon,&__deleteIcon{
+      cursor: pointer;
       height: 18px !important;
       width: 18px !important;
-      cursor: pointer;
+
     }
 
     &__editIcon{
@@ -95,14 +104,15 @@
     }
 
     &__editIcon,&__messageIcon{
+      margin-left: 8px;
       height: 24px !important;
       width: 24px !important;
-      margin-left: 8px;
+
 
       &__button{
-        background: transparent;
         width: unset;
         padding: unset;
+        background: transparent;
         transition: opacity 0.4s ease;
 
         &__disabled{
@@ -138,6 +148,7 @@
 
         &__edited{
           max-width: 195px !important;
+          width: 100%;
         }
       }
     }
@@ -181,6 +192,3 @@
   }
 }
 
-.button{
-  opacity: 0;
-}

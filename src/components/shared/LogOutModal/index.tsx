@@ -1,12 +1,12 @@
 import React, {useRef} from 'react';
 
+import {Route} from '~/constants';
 import {CloseIcon} from '~/assets';
 import {Typography} from '~/components';
-import Button from '~/components/shared/Button';
-import {useLockBodyScroll, useOnClickOutside} from '~/hooks';
 import {removeCookie} from '~/libraries';
 import {RouterService} from '~/services';
-import {Route} from '~/constants';
+import Button from '~/components/shared/Button';
+import {useLockBodyScroll, useOnClickOutside} from '~/hooks';
 
 import {LogOutModalProps} from './types';
 import styles from './LogOutModal.module.scss';
@@ -35,7 +35,7 @@ const LogoutModal: React.FC<LogOutModalProps> = ({show, close}) => {
             />
             <div className={styles.modal__content}>
               <Typography tagName="h2" className={styles.modal__content__title}>
-                logout?
+                logoutQuestion
               </Typography>
               <Typography
                 tagName="span"

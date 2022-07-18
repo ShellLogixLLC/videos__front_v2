@@ -2,10 +2,10 @@ import React, {useRef, useState} from 'react';
 import classNames from 'classnames';
 import Tooltip from 'react-tooltip-lite';
 
+import {authSelect} from '~/store/auth';
+import {useAppSelector, useOnClickOutside} from '~/hooks';
 import {LogoutModal, ProfileModal, Typography} from '~/components';
 import {ExitIcon, UnverifiedIcon, UserIcon, VerifiedIcon} from '~/assets';
-import {useAppSelector, useOnClickOutside} from '~/hooks';
-import {authSelect} from '~/store/auth';
 
 import styles from './ProfileSettings.module.scss';
 

@@ -16,7 +16,7 @@
   "signIn": "Войти",
   "register": "Регистрация",
   "logout": "Выйти",
-  "logout?": "Выйти ?",
+  "logoutQuestion": "Выйти ?",
   "areYouSureYouWantLogout": "Вы действительно хотите выйти?",
   "userInfo": "Инфо",
   "signUp": "Зарегистрироваться",

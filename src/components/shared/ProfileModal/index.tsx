@@ -1,33 +1,33 @@
 import React, {useEffect, useRef, useState} from 'react';
-import usePortal from 'react-useportal';
 import classNames from 'classnames';
+import usePortal from 'react-useportal';
 
 import {Route} from '~/constants';
-import {authSelect} from '~/store/auth';
 import {PopupProps} from '~/types';
+import {authSelect} from '~/store/auth';
 import {Button, Form, Input, Typography} from '~/components';
 import {
+  useLocales,
   useAppDispatch,
   useAppSelector,
-  useLocales,
   useLockBodyScroll,
   useOnClickOutside,
 } from '~/hooks';
 import {
-  EditPenIcon,
   EmailIcon,
-  ExitRedIcon,
   LockIcon,
+  EditPenIcon,
+  ExitRedIcon,
   MessageIcon,
-  SaveChangesIcon,
-  UnverifiedIcon,
-  UserRoundIcon,
   VerifiedIcon,
+  UserRoundIcon,
+  UnverifiedIcon,
+  SaveChangesIcon,
 } from '~/assets';
 import {updateUser, userSentVerifyAgain} from '~/store/auth/thunks';
+import {RouterService} from '~/services';
 import {LoadingStates} from '~/store/types';
 import HorizontalLoader from '~/components/shared/Loader/HorizontalLoader';
-import {RouterService} from '~/services';
 import editUsernameForm from '~/constants/forms/editUsername';
 
 import styles from './ProfileModal.module.scss';

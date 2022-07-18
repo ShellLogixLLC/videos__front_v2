@@ -16,7 +16,7 @@
   "signIn": "Sign In",
   "register": "Register",
   "logout": "Log Out",
-  "logout?": "Log Out ?",
+  "logoutQuestion": "Log Out ?",
   "areYouSureYouWantLogout": "Are you sure you want to log out?",
   "userInfo": "User Info",
   "signUp": "Sign Up",

@@ -1,7 +1,7 @@
 .wrapper {
+  z-index: 10;
   position: relative;
   transition:0.2s ease;
-  z-index: 10;
 
   &__open {
     border-top-right-radius: 8px;
@@ -10,9 +10,9 @@
 }
 
 .container {
-  @extend %flex-center;
   padding: 8px 0;
   cursor: pointer;
+  @extend %flex-center;
 
   &__userIcon {
     width: 24px;
@@ -26,26 +26,26 @@
 .content {
   @extend %flex-align;
   position: absolute;
-  top: 100%;
   right: 0;
-  visibility: hidden;
-  background: $black;
-  border-radius: 0 0 8px 8px;
-  box-shadow: $red 1px 1px 2px;
+  top: 100%;
   width: 100%;
   min-width: 145px;
   padding: 11px 0 0;
+  visibility: hidden;
+  background: $black;
   box-sizing: border-box;
+  border-radius: 0 0 8px 8px;
+  box-shadow: $red 1px 1px 2px;
 
   &__open {
     visibility: visible;
   }
 
   &__tooltip{
-   @extend %flex-align;
-    transition: all 0.4s ease;
-    min-width: 50px;
     width: 100%;
+    min-width: 50px;
+    @extend %flex-align;
+    transition: all 0.4s ease;
 
     &__lite{
       min-width: 100%;
@@ -58,27 +58,26 @@
 
     &__title{
       font-size: 12px;
-      color: $tooltip_black_color;
       padding-left: 3px;
+      color: $tooltip_black_color;
     }
   }
 
   &__list {
+    width: 100%;
+    padding: 0 7px;
     list-style: none;
     @extend %flex-center;
     flex-direction: column;
-    width: 100%;
-    padding: 0 7px;
-
 
     &__icon{
       width: 22px !important;
       height: 22px !important;
 
       &__verifyIcon{
+        z-index: 20;
         height: 15px !important;
         width: 15px !important;
-        z-index: 20;
       }
 
       &__wrapper{
@@ -96,9 +95,9 @@
     }
 
     &__wrapper{
-      @extend %flex-between;
       width: 100%;
       padding: 0 0 20px;
+      @extend %flex-between;
     }
 
     &__link {
@@ -106,11 +105,12 @@
       font-size: 15px;
       @extend %flex-center;
       color: $white;
-      transition: 0.2s ease;
-      transition-property: color,padding-left;
-      text-align: center;
       cursor: pointer;
       user-select: none;
+      text-align: center;
+      transition: 0.2s ease;
+      transition-property: color,padding-left;
+
 
       &:hover {
         color: $red;

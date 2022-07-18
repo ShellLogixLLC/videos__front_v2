@@ -2,9 +2,9 @@ import React, {useRef, useState} from 'react';
 import classNames from 'classnames';
 
 import {UserIcon} from '~/assets';
-import {Link, Typography} from '~/components';
-import {useOnClickOutside} from '~/hooks';
 import {Route} from '~/constants';
+import {useOnClickOutside} from '~/hooks';
+import {Link, Typography} from '~/components';
 
 import styles from './SigninDropdown.module.scss';
 
