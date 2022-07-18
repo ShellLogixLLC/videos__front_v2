@@ -2,9 +2,9 @@ import React, {useEffect, useRef, useState} from 'react';
 import classNames from 'classnames';
 import usePortal from 'react-useportal';
 
-import {Route} from '~/constants';
 import {PopupProps} from '~/types';
 import {authSelect} from '~/store/auth';
+import {Route, editUsernameForm} from '~/constants';
 import {Button, Form, Typography} from '~/components';
 import {
   useAppDispatch,
@@ -23,11 +23,10 @@ import {
   UnverifiedIcon,
   SaveChangesIcon,
 } from '~/assets';
-import {updateUser, userSentVerifyAgain} from '~/store/auth/thunks';
 import {RouterService} from '~/services';
 import {LoadingStates} from '~/store/types';
+import {updateUser, userSentVerifyAgain} from '~/store/auth/thunks';
 import HorizontalLoader from '~/components/shared/Loader/HorizontalLoader';
-import editUsernameForm from '~/constants/forms/editUsername';
 
 import styles from './ProfileModal.module.scss';
 

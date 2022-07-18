@@ -17,6 +17,7 @@
   &__content {
     width: 100%;
     max-width: 409px;
+    min-height: 230px;
     position: relative;
     border-radius: 13px;
     @extend %flex-between;
@@ -39,10 +40,19 @@
 
     &__input{
       border: none;
+      border-bottom: 1px solid #ffffff;
       color: $white;
       font-size: 20px;
       font-weight: 500;
       background: transparent;
+
+      &:focus{
+        border-bottom: 1px solid $white !important;
+      }
+
+      &:hover{
+        border-bottom: 1px solid $white !important;
+      }
 
       &::placeholder{
         font-size: 15px;
@@ -97,7 +107,6 @@
       cursor: pointer;
       height: 18px !important;
       width: 18px !important;
-
     }
 
     &__editIcon{
@@ -108,7 +117,6 @@
       margin-left: 8px;
       height: 24px !important;
       width: 24px !important;
-
 
       &__button{
         width: unset;
@@ -124,9 +132,9 @@
     }
 
     &__child {
+      width: 100%;
       @extend %flex-center;
       flex-direction: column;
-      width: 100%;
     }
 
     &__title {
@@ -149,6 +157,8 @@
 
         &__edited{
           width: 100%;
+          border-bottom: 0;
+          margin-bottom: 0;
         }
       }
     }
@@ -167,7 +177,7 @@
         line-break: anywhere;
 
         &__wrapper{
-         @extend %profile_modal_wrapper
+         @extend %profile_modal_wrapper;
         }
       }
 

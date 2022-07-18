@@ -29,7 +29,7 @@ export interface IFormProps<TFieldValues extends FieldValues = FieldValues> {
   formHandler?: () => void;
   labelText?: string;
   submitText?: string;
-  RightIcon?: React.ReactSVGElement;
+  RightIcon?: React.ElementType;
   className?: string;
   inputClassName?: string;
   innerClassName?: string;
