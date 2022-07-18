@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import {Route} from '~/constants';
 import {authSelect} from '~/store/auth';
 import {PopupProps} from '~/types';
-import {Button, Input, Typography} from '~/components';
+import {Button, Form, Input, Typography} from '~/components';
 import {
   useAppDispatch,
   useAppSelector,
@@ -28,6 +28,7 @@ import {updateUser, userSentVerifyAgain} from '~/store/auth/thunks';
 import {LoadingStates} from '~/store/types';
 import HorizontalLoader from '~/components/shared/Loader/HorizontalLoader';
 import {RouterService} from '~/services';
+import editUsernameForm from '~/constants/forms/editUsername';
 
 import styles from './ProfileModal.module.scss';
 
