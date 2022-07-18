@@ -9,6 +9,12 @@ module.exports = {
     includePaths: [path.resolve(__dirname, 'src/styles')],
     prependData: `@import "resources.scss";`,
   },
+
+  experimental: {
+    outputFileTracingRoot: path.join(__dirname, '/public/locales'),
+    nftTracing: true,
+  },
+
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,
