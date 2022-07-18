@@ -19,10 +19,10 @@ import styles from './HorizontalSlider.module.scss';
 
 const HorizontalSlider: React.FC<HorizontalSliderProps> = ({
   dataList,
+  wishlist,
+  isLoading,
   className = '',
   isCategory = false,
-  isLoading,
-  wishlist,
 }) => {
   const {isMaxTablet} = useWindowSize();
   const contentRef = useRef<HTMLDivElement | null>(null);
