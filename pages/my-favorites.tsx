@@ -29,11 +29,11 @@ export const getServerSideProps: GetServerSideProps = async (
 
   const token = getCookie('token', ctx.req.headers.cookie as string);
 
-  pageRedirect(!token, ctx);
+  await pageRedirect(!token, ctx);
 
   const activePage = page ? Number(page) : 0;
 
-  const headers = {Authorization: `Bearer ${token}`};
+  // const headers = {Authorization: `Bearer ${token}`};
 
   const wishlistVideos = await ApiService.get(
     endpoints.WishlistService.getWishlistVideos(),
@@ -41,7 +41,7 @@ export const getServerSideProps: GetServerSideProps = async (
       limit: INITIAL_WISHLIST_LIMIT,
       offset: activePage * INITIAL_WISHLIST_LIMIT,
     },
-    {headers},
+    // {headers},
   );
 
   return {

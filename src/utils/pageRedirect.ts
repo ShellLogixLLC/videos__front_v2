@@ -8,7 +8,7 @@ const ctxRedirect = (ctx: any, path: string) => {
   ctx.res.end();
 };
 
-const pageRedirect = (token: boolean | string | undefined, ctx: any) => {
+const pageRedirect = (token: boolean, ctx: any) => {
   if (token) {
     if (IS_SERVER) {
       ctxRedirect(ctx, Route.Error);

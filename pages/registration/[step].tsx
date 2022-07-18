@@ -44,7 +44,7 @@ export const getServerSideProps: GetServerSideProps = async (
 
   const token = getCookie('token', ctx.req.headers.cookie as string);
 
-  pageRedirect(token, ctx);
+  await pageRedirect(!!token, ctx);
 
   if (!registrationSteps[parsedStep]) {
     return {

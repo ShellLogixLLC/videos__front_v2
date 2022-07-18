@@ -20,7 +20,7 @@ export const getServerSideProps: GetServerSideProps = async (
 ): Promise<GetServerSidePropsResult<{}>> => {
   const token = getCookie('token', ctx.req.headers.cookie as string);
 
-  pageRedirect(token, ctx);
+  await pageRedirect(!!token, ctx);
 
   return {
     props: {},
