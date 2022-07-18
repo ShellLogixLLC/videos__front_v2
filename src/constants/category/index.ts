@@ -1,4 +1,4 @@
-export enum CategorySorts {
+export enum CategoryFilters {
   All = 'all',
   New = 'new',
   TopRated = 'topRated',

@@ -4,7 +4,7 @@ import {useRouter} from 'next/router';
 
 import {useWindowSize} from '~/hooks';
 import {SearchBackArrowIcon} from '~/assets';
-import {CategorySorts, INITIAL_SUB_CATEGORY_TRANSFORM} from '~/constants';
+import {CategoryFilters, INITIAL_SUB_CATEGORY_TRANSFORM} from '~/constants';
 
 import Link from '../Link';
 
@@ -75,7 +75,7 @@ const SubCategories: React.FC<SubCategoriesProps> = ({
         to={{
           pathname: '/category/[name]',
           query: {
-            activeCategory: CategorySorts.All,
+            activeCategory: CategoryFilters.All,
             likesSort: '',
             viewsSort: '',
             durationSort: '',

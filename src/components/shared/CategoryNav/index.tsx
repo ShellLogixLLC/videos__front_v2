@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import classNames from 'classnames';
 import {useRouter} from 'next/router';
 
-import {CategorySorts} from '~/constants';
+import {CategoryFilters} from '~/constants';
 import {CategoryTitleTypes} from '~/types';
 import {categoryNavigation, chooseCategorySort} from '~/utils/index';
 
@@ -12,11 +12,10 @@ import Typography from '../Typography';
 import styles from './CategoryNav.module.scss';
 
 const CategoryNav: React.FC<CategoryTitleTypes> = () => {
-  const router = useRouter();
-  const {query} = router;
+  const {query} = useRouter();
 
   const [activeCategory, setActiveCategory] = useState<string | string[]>(
-    query?.activeCategory || CategorySorts.All,
+    query?.activeCategory || CategoryFilters.All,
   );
 
   useEffect(() => {

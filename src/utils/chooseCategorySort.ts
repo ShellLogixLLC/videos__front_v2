@@ -1,4 +1,4 @@
-import {CategorySorts} from '~/constants';
+import {CategoryFilters} from '~/constants';
 import {QueryParamsTypes} from '~/types';
 
 import setQueryParams from './setQueryParams';
@@ -11,7 +11,7 @@ const chooseCategory = (
 ) => {
   if (nameCategory !== activeCategory) {
     setActiveCategory(nameCategory);
-    if (CategorySorts.TopRated === nameCategory) {
+    if (CategoryFilters.TopRated === nameCategory) {
       setQueryParams({
         ...query,
         activeCategory: nameCategory,
@@ -20,7 +20,7 @@ const chooseCategory = (
         viewsSort: '',
         durationSort: '',
       });
-    } else if (CategorySorts.TopViews === nameCategory) {
+    } else if (CategoryFilters.TopViews === nameCategory) {
       setQueryParams({
         ...query,
         activeCategory: nameCategory,
@@ -29,7 +29,7 @@ const chooseCategory = (
         viewsSort: -1,
         durationSort: '',
       });
-    } else if (CategorySorts.Duration === nameCategory) {
+    } else if (CategoryFilters.Duration === nameCategory) {
       setQueryParams({
         ...query,
         activeCategory: nameCategory,
