@@ -2,10 +2,9 @@ import React from 'react';
 import {GetServerSideProps, GetServerSidePropsResult, NextPage} from 'next';
 
 import {getCookie} from '~/libraries';
-import {ctxRedirect} from '~/utils';
-import {RouterService} from '~/services';
+import {pageRedirect} from '~/utils';
+import {registrationSteps} from '~/constants';
 import {IRegistrationStepsPageProps} from '~/types';
-import {IS_SERVER, registrationSteps, Route} from '~/constants';
 import {
   Seo,
   VerifyPage,
@@ -45,13 +44,7 @@ export const getServerSideProps: GetServerSideProps = async (
 
   const token = getCookie('token', ctx.req.headers.cookie as string);
 
-  if (token) {
-    if (IS_SERVER) {
-      ctxRedirect(ctx, Route.Error);
-    } else {
-      RouterService.push(Route.Error);
-    }
-  }
+  pageRedirect(token, ctx);
 
   if (!registrationSteps[parsedStep]) {
     return {

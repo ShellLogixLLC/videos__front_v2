@@ -7,10 +7,9 @@ import endpoints from '~/api/endpoints';
 import {Wishlist} from '~/containers';
 import ApiService from '~/api/ApiService';
 import {getCookie} from '~/libraries';
-import {ctxRedirect} from '~/utils';
-import {RouterService} from '~/services';
+import {pageRedirect} from '~/utils';
+import {INITIAL_WISHLIST_LIMIT} from '~/constants';
 import {ICategoriesPageQueries, SwrPageProps} from '~/types';
-import {INITIAL_WISHLIST_LIMIT, IS_SERVER, Route} from '~/constants';
 
 const MyFavoritesPage: NextPage<SwrPageProps> = ({fallback}) => (
   <SWRConfig value={fallback}>
@@ -30,15 +29,9 @@ export const getServerSideProps: GetServerSideProps = async (
 
   const token = getCookie('token', ctx.req.headers.cookie as string);
 
-  const activePage = page ? Number(page) : 0;
+  pageRedirect(!token, ctx);
 
-  if (!token) {
-    if (IS_SERVER) {
-      ctxRedirect(ctx, Route.Error);
-    } else {
-      RouterService.push(Route.Error);
-    }
-  }
+  const activePage = page ? Number(page) : 0;
 
   const headers = {Authorization: `Bearer ${token}`};
 

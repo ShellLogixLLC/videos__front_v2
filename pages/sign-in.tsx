@@ -2,9 +2,7 @@ import {GetServerSideProps, GetServerSidePropsResult, NextPage} from 'next';
 
 import {getCookie} from '~/libraries';
 import {Seo, SignIn} from '~/components';
-import {ctxRedirect} from '~/utils';
-import {RouterService} from '~/services';
-import {IS_SERVER, Route} from '~/constants';
+import {pageRedirect} from '~/utils';
 
 const SignInPage: NextPage = () => (
   <Seo
@@ -20,13 +18,8 @@ export const getServerSideProps: GetServerSideProps = async (
 ): Promise<GetServerSidePropsResult<{}>> => {
   const token = getCookie('token', ctx.req.headers.cookie as string);
 
-  if (token) {
-    if (IS_SERVER) {
-      ctxRedirect(ctx, Route.Error);
-    } else {
-      RouterService.push(Route.Error);
-    }
-  }
+  pageRedirect(token, ctx);
+
   return {
     props: {},
   };
