@@ -33,15 +33,12 @@ export const getServerSideProps: GetServerSideProps = async (
 
   const activePage = page ? Number(page) : 0;
 
-  // const headers = {Authorization: `Bearer ${token}`};
-
   const wishlistVideos = await ApiService.get(
     endpoints.WishlistService.getWishlistVideos(),
     {
       limit: INITIAL_WISHLIST_LIMIT,
       offset: activePage * INITIAL_WISHLIST_LIMIT,
     },
-    // {headers},
   );
 
   return {
