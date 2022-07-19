@@ -24,8 +24,11 @@ const CategoryContent: React.FC<CategoryContentTypes> = ({
 
   const [videosList, setVideosList] = useState<any>([]);
 
-  const endDate = query?.endDate ? String(query?.endDate) : '';
-  const startDate = query?.startDate ? String(query?.startDate) : '';
+  const queryEndDate = query?.endDate;
+  const queryStartDate = query?.startDate;
+
+  const endDate = queryEndDate ? String(queryEndDate) : '';
+  const startDate = queryStartDate ? String(queryStartDate) : '';
   const likesSort = Number(query?.likesSort) || '';
   const viewsSort = Number(query?.viewsSort) || '';
   const durationSort = Number(query?.durationSort) || '';

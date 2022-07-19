@@ -30,13 +30,16 @@ const Category: React.FC = () => {
   const [totalCount, setTotalCount] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(currentPerPageCount);
 
+  const queryName = query.name;
+  const queryPage = query.page;
+
   useEffect(() => {
-    if (isEqual(query.name, query.name)) {
+    if (isEqual(queryName, queryName)) {
       setRowsPerPage(INITIAL_PAGINATION_ROWS_PER_PAGE);
     }
 
-    if (isEqual(query.page, query.page)) {
-      setActivePage(Number(query.page));
+    if (isEqual(queryPage, queryPage)) {
+      setActivePage(Number(queryPage));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
