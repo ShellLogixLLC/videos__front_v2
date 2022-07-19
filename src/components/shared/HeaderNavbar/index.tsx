@@ -1,22 +1,28 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import classNames from 'classnames';
 
 import {Route} from '~/constants';
+import {LikeItIcon} from '~/assets';
 import {ToggleContext} from '~/context';
 import {getCookieFromBrowser} from '~/libraries';
-import {LikeItIcon} from '~/assets';
-import {ProfileSettings, Search, SigninDropdown} from '~/components';
+import {
+  Link,
+  Search,
+  WishlistModal,
+  SigninDropdown,
+  ProfileSettings,
+  LanguageDropDown,
+} from '~/components';
 
-import Link from '../Link';
-import LanguageDropDown from '../LanguageDropDown';
 import styles from '../../layouts/Header/Header.module.scss';
 
 import {HeaderNavbarProps} from './types';
 
 const HeaderNavbar: React.FC<HeaderNavbarProps> = ({children}) => {
+  const {expanded} = useContext(ToggleContext);
   const token = getCookieFromBrowser('token');
 
-  const {expanded} = useContext(ToggleContext);
+  const [isLikeItPopup, setIsLikeItPopup] = useState<boolean>(false);
 
   const navClassName = classNames(styles.wrapper__content_menu, {
     [styles.wrapper__content_menu_hidden]: expanded,
@@ -26,6 +32,8 @@ const HeaderNavbar: React.FC<HeaderNavbarProps> = ({children}) => {
     [styles.wrapper__content__other__withToken]: token,
   });
 
+  const openLikeItPopup = () => setIsLikeItPopup(true);
+
   const renderUserIcons = !token ? <SigninDropdown /> : <ProfileSettings />;
 
   return (
@@ -34,15 +42,29 @@ const HeaderNavbar: React.FC<HeaderNavbarProps> = ({children}) => {
       <Search />
       <div className={wrapperClassName}>
         <div className={styles.wrapper__content__other__skeleton} />
-        <Link
-          className={styles.wrapper__content__other__link}
-          to={Route.MyFavorite}>
-          <LikeItIcon className={styles.wrapper__content__other__wishlist} />
-        </Link>
+        {token ? (
+          <Link
+            className={styles.wrapper__content__other__link}
+            to={Route.MyFavorite}>
+            <LikeItIcon className={styles.wrapper__content__other__wishlist} />
+          </Link>
+        ) : (
+          <LikeItIcon
+            onClick={openLikeItPopup}
+            className={styles.wrapper__content__other__wishlist}
+          />
+        )}
         <LanguageDropDown />
         {renderUserIcons}
       </div>
+      {isLikeItPopup && (
+        <WishlistModal
+          expanded={isLikeItPopup}
+          setExpanded={setIsLikeItPopup}
+        />
+      )}
     </>
   );
 };
+
 export default HeaderNavbar;

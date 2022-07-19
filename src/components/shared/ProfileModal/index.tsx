@@ -2,22 +2,24 @@ import React, {useRef, useState} from 'react';
 import usePortal from 'react-useportal';
 import classNames from 'classnames';
 
+import {Route} from '~/constants';
 import {authSelect} from '~/store/auth';
+import {PopupProps} from '~/types';
+import {Input, Link, Typography} from '~/components';
+import {useAppSelector, useLockBodyScroll, useOnClickOutside} from '~/hooks';
 import {
-  UserRoundIcon,
-  EditPenIcon,
+  LockIcon,
   EmailIcon,
   MessageIcon,
-  LockIcon,
+  EditPenIcon,
+  UserRoundIcon,
 } from '~/assets';
-import {useAppSelector, useLockBodyScroll, useOnClickOutside} from '~/hooks';
-import {Input, Link, Typography} from '~/components';
-import {Route} from '~/constants';
 
-import {ProfileModalProps} from './types';
 import styles from './ProfileModal.module.scss';
 
-const ProfileModal: React.FC<ProfileModalProps> = ({expanded, setExpanded}) => {
+// This page isn't finished, it doesn't have design
+
+const ProfileModal: React.FC<PopupProps> = ({expanded, setExpanded}) => {
   const {Portal} = usePortal();
   const {userInfo} = useAppSelector(authSelect);
 
