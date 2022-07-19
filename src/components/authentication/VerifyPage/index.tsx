@@ -26,6 +26,7 @@ const ContractSign: React.FC<VerifyProps> = ({
 
   const date = new Date().getTime();
   const cookieTimer = Number(getCookieFromBrowser('timer')) - date;
+
   const time = cookieTimer ? cookieTimer / 1000 : INITIAL_TIME;
 
   const [timer, setTimer] = useState<number>(time);
