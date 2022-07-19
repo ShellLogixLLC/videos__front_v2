@@ -9,6 +9,7 @@ import {VideosService} from '~/api';
 import {COMMENTS_LIMIT} from '~/constants';
 import {LanguageArrowTop} from '~/assets';
 import {CommentsBlockSkeleton} from '~/components';
+import {getCookieFromBrowser} from '~/libraries';
 
 import Typography from '../Typography';
 
@@ -18,6 +19,7 @@ import CommentBlock from './CommentBlock';
 
 const Comments: React.FC = () => {
   const {userInfo} = useSelector(authState);
+  const token = getCookieFromBrowser('token');
 
   const [limit, setLimit] = useState<number>(COMMENTS_LIMIT);
   const [expanded, toggleExpanded] = useToggle(false);
@@ -27,6 +29,20 @@ const Comments: React.FC = () => {
   const {data, isLoading} = VideosService.useVideoComments(limit, 0);
   const boolInverse = totalCount > data?.totalCount;
 
+  const blockClassNames = classNames(styles.block, {
+    [styles.block_small]: !token && expanded,
+    [styles.block_hidden]: !expanded,
+  });
+
+  const containerClassNames = classNames(styles.container, {
+    [styles.container_small]: !token && expanded,
+    [styles.container_close]: !expanded,
+  });
+
+  const arrowIconClasses = classNames(styles.container__content__icon, {
+    [styles.container__content__icon__open]: expanded,
+  });
+
   useEffect(() => {
     if (!isLoading && data?.comments) {
       setCommentsList(data?.comments);
@@ -34,6 +50,8 @@ const Comments: React.FC = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data?.comments]);
+
+  useEffect(() => {}, [token]);
 
   if (!commentsList.length && isLoading) {
     return <CommentsBlockSkeleton />;
@@ -43,18 +61,6 @@ const Comments: React.FC = () => {
     setCommentsList([{...newComment, user: userInfo}, ...commentsList]);
     setTotalCount(totalCount + 1);
   };
-
-  const blockClassNames = classNames(styles.block, {
-    [styles.block_hidden]: !expanded,
-  });
-
-  const containerClassNames = classNames(styles.container, {
-    [styles.container_close]: !expanded,
-  });
-
-  const arrowIconClasses = classNames(styles.container__content__icon, {
-    [styles.container__content__icon__open]: expanded,
-  });
 
   return (
     <div className={containerClassNames}>
@@ -78,7 +84,7 @@ const Comments: React.FC = () => {
           boolInverse={boolInverse}
           totalCount={totalCount}
         />
-        {userInfo?.isVerified && (
+        {token && (
           <div className={styles.block__form}>
             <CommentForm addNewComment={addNewComment} />
           </div>
