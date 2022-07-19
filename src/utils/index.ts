@@ -11,7 +11,6 @@ export {default as filmsBase} from './filmsBase';
 export {default as errorToast} from './errorToast';
 export {default as createDate} from './createDate';
 export {default as formatTimer} from './formatTimer';
-export {default as pageRedirect} from './pageRedirect';
 export {default as commentBlock} from './commentBlock';
 export {default as downloadFile} from './downloadFile';
 export {default as filteredMass} from './filteredMass';

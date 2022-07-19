@@ -3,8 +3,8 @@ import {GetServerSideProps, GetServerSidePropsResult, NextPage} from 'next';
 
 import {Seo} from '~/components';
 import {getCookie} from '~/libraries';
-import {pageRedirect} from '~/utils';
 import {ForgotPassword} from '~/components';
+import {EmptyProps, getProtectedPageRedirect, LocaleKeys} from '~/constants';
 
 const ForgotPasswordPage: NextPage = () => (
   <Seo
@@ -18,13 +18,10 @@ const ForgotPasswordPage: NextPage = () => (
 export const getServerSideProps: GetServerSideProps = async (
   ctx,
 ): Promise<GetServerSidePropsResult<{}>> => {
-  const token = getCookie('token', ctx.req.headers.cookie as string);
+  const {locale, req} = ctx;
+  const token = getCookie('token', req.headers.cookie as string);
 
-  await pageRedirect(!!token, ctx);
-
-  return {
-    props: {},
-  };
+  return token ? getProtectedPageRedirect(locale as LocaleKeys) : EmptyProps;
 };
 
 export default ForgotPasswordPage;
