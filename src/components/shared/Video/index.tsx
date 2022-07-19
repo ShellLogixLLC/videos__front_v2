@@ -24,11 +24,11 @@ import {IVideoProps} from './types';
 import styles from './Video.module.scss';
 
 const Video: React.FC<IVideoProps> = ({
+  loading = false,
   videoSrc,
   posterSrc,
   videoClass = '',
   videoDuration,
-  loading = false,
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const {isMaxTablet} = useWindowSize();
@@ -103,23 +103,24 @@ const Video: React.FC<IVideoProps> = ({
   useEventListener('keyup', (event) => handleSecAhead(event));
 
   useEffect(() => {
-    const video = videoRef.current;
-
-    if (!video) return;
+    const video = videoRef?.current;
 
     const handleTimeUpdate = (event: any) => {
       setCurrentTime(event.target?.currentTime);
     };
 
-    setVideoElement(video);
-    video.addEventListener('timeupdate', handleTimeUpdate);
+    if (video) {
+      setVideoElement(video);
+      video.addEventListener('timeupdate', handleTimeUpdate);
+    }
 
     return () => {
       if (video) {
         video.removeEventListener('timeupdate', handleTimeUpdate);
       }
     };
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [videoRef?.current]);
 
   useEffect(() => {
     const offAnimation = setTimeout(() => {
