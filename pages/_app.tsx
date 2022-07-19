@@ -30,7 +30,6 @@ const ProdApp: React.FC<AppProps> = ({Component, pageProps}) => {
     if (!userInfo && token) {
       dispatch(authActions.loginWithToken({token: token as string}));
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -55,5 +54,4 @@ const ProdApp: React.FC<AppProps> = ({Component, pageProps}) => {
     </Provider>
   );
 };
-
 export default wrapper.withRedux(appWithTranslation(ProdApp, nextI18nConfig));
