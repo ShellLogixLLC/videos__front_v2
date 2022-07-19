@@ -3,8 +3,6 @@ import {AppProps} from 'next/app';
 import NextNprogress from 'nextjs-progressbar';
 import {appWithTranslation} from 'next-i18next';
 
-import nextI18nConfig from '../next-i18next.config';
-
 import 'emoji-mart/css/emoji-mart.css';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -20,6 +18,9 @@ import {
   ModalContextProvider,
   ToastContextProvider,
 } from '~/context';
+import {wishlistActions} from '~/store/wishlist';
+
+import nextI18nConfig from '../next-i18next.config';
 
 const ProdApp: React.FC<AppProps> = ({Component, pageProps}) => {
   const dispatch = useAppDispatch();
@@ -29,9 +30,9 @@ const ProdApp: React.FC<AppProps> = ({Component, pageProps}) => {
   useEffect(() => {
     if (!userInfo && token) {
       dispatch(authActions.loginWithToken({token: token as string}));
+      dispatch(wishlistActions.getWishlistIds());
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [token, userInfo]);
 
   return (
     <Provider store={store}>

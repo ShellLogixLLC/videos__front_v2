@@ -9,6 +9,7 @@ export const addToWishlist = createAsyncThunk(
   async (credentials: {videoId: string}, thunkAPI) => {
     try {
       await client.post(`/favorites`, credentials);
+      thunkAPI.dispatch(getWishlistIds());
     } catch (error) {
       const {message} = error as Error;
 
@@ -22,9 +23,23 @@ export const deleteFromWishlist = createAsyncThunk(
   async (params: {videoId: string}, thunkAPI) => {
     try {
       await client.delete(`/favorites`, {params});
+      thunkAPI.dispatch(getWishlistIds());
     } catch (error) {
       const {message} = error as Error;
 
+      return thunkAPI.rejectWithValue({error: message});
+    }
+  },
+);
+
+export const getWishlistIds = createAsyncThunk(
+  `${wishlistReducer}/id`,
+  async (_, thunkAPI) => {
+    try {
+      const res = await client.get(`/favorites`);
+      return thunkAPI.fulfillWithValue(res.data);
+    } catch (error) {
+      const {message} = error as Error;
       return thunkAPI.rejectWithValue({error: message});
     }
   },
