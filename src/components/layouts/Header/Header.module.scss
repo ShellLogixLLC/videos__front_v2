@@ -3,7 +3,8 @@
   top: 0;
   z-index: 10;
   height: 90px;
-  background-color: $black;
+  background-color: $rgba-black;
+  backdrop-filter: saturate(180%) blur(5px);
   box-shadow: $header-box-shadow;
 
   &__content {
