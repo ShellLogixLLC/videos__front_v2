@@ -32,7 +32,7 @@ const ProdApp: React.FC<AppProps> = ({Component, pageProps}) => {
       dispatch(authActions.loginWithToken({token: token as string}));
       dispatch(wishlistActions.getWishlistIds());
     }
-  }, [token, userInfo]);
+  }, []);
 
   return (
     <Provider store={store}>
