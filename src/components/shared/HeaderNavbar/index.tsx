@@ -44,8 +44,8 @@ const HeaderNavbar: React.FC<HeaderNavbarProps> = ({children}) => {
         <div className={styles.wrapper__content__other__skeleton} />
         {token ? (
           <Link
-            className={styles.wrapper__content__other__link}
-            to={Route.MyFavorite}>
+            to={Route.Favorites}
+            className={styles.wrapper__content__other__link}>
             <LikeItIcon className={styles.wrapper__content__other__wishlist} />
           </Link>
         ) : (

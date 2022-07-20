@@ -26,3 +26,22 @@ export const removeCookie = (key: string): void => {
 export const getCookieFromBrowser = (key: string): string => {
   return cookie.get(key) as string;
 };
+
+const getCookieFromServer = (key: string, cookie: string) => {
+  if (!cookie) {
+    return undefined;
+  }
+  const rawCookie = cookie
+    .split(';')
+    .find((c: string) => c.trim().startsWith(`${key}=`));
+  if (!rawCookie) {
+    return undefined;
+  }
+  return rawCookie.split('=')[1];
+};
+
+export const getCookie = (key: string, cookie: string): string | undefined => {
+  return process.browser
+    ? getCookieFromBrowser(key)
+    : getCookieFromServer(key, cookie);
+};

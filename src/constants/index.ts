@@ -38,3 +38,9 @@ export * from './locales';
 
 // navigation
 export * from './navigation';
+
+// global constats
+export * from './globalConstants';
+
+// server side constant
+export * from './serverSidePropsData';
