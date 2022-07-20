@@ -2,9 +2,9 @@ import React, {useRef, useState} from 'react';
 import classNames from 'classnames';
 
 import {UserIcon} from '~/assets';
-import {Link, Typography} from '~/components';
-import {useOnClickOutside} from '~/hooks';
 import {Route} from '~/constants';
+import {useOnClickOutside} from '~/hooks';
+import {Link, Typography} from '~/components';
 
 import styles from './SigninDropdown.module.scss';
 
@@ -45,7 +45,7 @@ const SigninDropdown: React.FC = () => {
                 <Typography
                   className={styles.content__list__link__text}
                   tagName="span">
-                  Register
+                  register
                 </Typography>
               </Link>
             </li>
@@ -54,7 +54,7 @@ const SigninDropdown: React.FC = () => {
                 <Typography
                   className={styles.content__list__link__text}
                   tagName="span">
-                  Sign In
+                  signIn
                 </Typography>
               </Link>
             </li>
