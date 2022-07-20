@@ -24,7 +24,7 @@ const schema = yup.object().shape({
   username: yup
     .string()
     .required('theFirstNameIsRequired')
-    .min(4, 'firstNameIsTooShort'),
+    .min(6, 'firstNameIsTooShort'),
   password: yup
     .string()
     .matches(/^[^\s]+(\s+[^\s]+)*$/, `passwordCantStartOrEndWwithABlankSpace`)

@@ -80,4 +80,11 @@ $montserrat_family: 'Montserrat', sans-serif;
   cursor: pointer;
 }
 
+%profile_modal_wrapper {
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 2px;
+  border-bottom: 1px solid #ffffff;
+}
+
 $boxShadow: 0 0 8px #99080f;

@@ -2,7 +2,7 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 
 import {Route} from '~/constants';
 import {client} from '~/api';
-import {setCookie} from '~/libraries';
+import {getCookieFromBrowser, setCookie} from '~/libraries';
 import {errorToast} from '~/utils';
 import {RouterService} from '~/services';
 
@@ -216,6 +216,32 @@ export const logout = createAsyncThunk(
       const {message} = error as Error;
 
       return thunkAPI.rejectWithValue({error: message});
+    }
+  },
+);
+
+export const updateUser = createAsyncThunk(
+  `${authReducer}/update`,
+  async (credentials: {username: string}, {dispatch, rejectWithValue}) => {
+    try {
+      const token = getCookieFromBrowser('token');
+
+      const {data} = await client.patch('/user', credentials);
+      dispatch(loginWithToken({token: token as string}));
+
+      return {
+        username: data,
+      };
+    } catch (error: any) {
+      if (!error.response) {
+        throw error;
+      }
+      const {message} = error as Error;
+
+      const {errors} = error.response.data;
+      if (errors) errorToast(errors);
+
+      return rejectWithValue({error: message});
     }
   },
 );
