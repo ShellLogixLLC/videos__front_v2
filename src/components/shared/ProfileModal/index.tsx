@@ -1,47 +1,93 @@
-import React, {useRef, useState} from 'react';
-import usePortal from 'react-useportal';
+import React, {useEffect, useRef, useState} from 'react';
 import classNames from 'classnames';
+import usePortal from 'react-useportal';
 
-import {Route} from '~/constants';
-import {authSelect} from '~/store/auth';
 import {PopupProps} from '~/types';
-import {Input, Link, Typography} from '~/components';
-import {useAppSelector, useLockBodyScroll, useOnClickOutside} from '~/hooks';
+import {authSelect} from '~/store/auth';
+import {Route, editUsernameForm} from '~/constants';
+import {Button, Form, Typography} from '~/components';
 import {
-  LockIcon,
+  useAppDispatch,
+  useAppSelector,
+  useLockBodyScroll,
+  useOnClickOutside,
+} from '~/hooks';
+import {
   EmailIcon,
-  MessageIcon,
+  LockIcon,
   EditPenIcon,
+  ExitRedIcon,
+  MessageIcon,
+  VerifiedIcon,
   UserRoundIcon,
+  UnverifiedIcon,
+  SaveChangesIcon,
 } from '~/assets';
+import {RouterService} from '~/services';
+import {LoadingStates} from '~/store/types';
+import {updateUser, userSentVerifyAgain} from '~/store/auth/thunks';
+import HorizontalLoader from '~/components/shared/Loader/HorizontalLoader';
 
 import styles from './ProfileModal.module.scss';
 
-// This page isn't finished, it doesn't have design
-
 const ProfileModal: React.FC<PopupProps> = ({expanded, setExpanded}) => {
   const {Portal} = usePortal();
-  const {userInfo} = useAppSelector(authSelect);
+  const {userInfo, loading} = useAppSelector(authSelect);
 
-  const [isUsernameEdited, setUsernameEdited] = useState<boolean>(true);
-  const [inputValue, setInputValue] = useState<string | string[]>(
-    (userInfo && userInfo?.username) || 'Username',
-  );
+  const dispatch = useAppDispatch();
 
+  const isVerified = userInfo && userInfo.isVerified;
+
+  const [isUsernameEdited, setUsernameEdited] = useState<boolean>(false);
   const modalRef = useRef<HTMLDivElement | null>(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const wrapperClasses = classNames(styles.wrapper, {
     [styles.wrapper__open]: expanded,
   });
 
+  const firstBlockClassName = classNames(
+    styles.wrapper__content__title__wrapper,
+    {
+      [styles.wrapper__content__title__wrapper__edited]: isUsernameEdited,
+    },
+  );
+
+  const mailSenderButtonClassName = classNames(
+    styles.wrapper__content__messageIcon__button,
+    {
+      [styles.wrapper__content__messageIcon__button__disabled]: isVerified,
+    },
+  );
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, [isUsernameEdited]);
+
   const handleClose = () => setExpanded(false);
 
-  const handlInputChange = (e: any) => {
-    setInputValue(e.target.value);
+  const handleEditUsername = (): void => {
+    setUsernameEdited(true);
   };
 
-  const handleEditUsername = () => {
-    setUsernameEdited(!isUsernameEdited);
+  const handleSaveChanges = (payload: Record<string, string>): void => {
+    dispatch(updateUser({username: payload.username}));
+    setUsernameEdited(false);
+  };
+
+  const handleDeleteChanges = () => {
+    setUsernameEdited(false);
+  };
+
+  const handleSendEmail = (): void => {
+    if (userInfo && userInfo.email) {
+      dispatch(userSentVerifyAgain({email: userInfo.email}));
+      RouterService.push(Route.RegistrationSetupPassword);
+    }
+  };
+
+  const handleChangePasswordRoute = (): void => {
+    RouterService.push(Route.RegistrationContactInformation);
   };
 
   useOnClickOutside(modalRef, handleClose);
@@ -51,55 +97,107 @@ const ProfileModal: React.FC<PopupProps> = ({expanded, setExpanded}) => {
   return (
     <Portal>
       <div className={wrapperClasses}>
-        <div ref={modalRef} className={styles.wrapper__content}>
-          <div className={styles.wrapper__content__child}>
-            <div className={styles.wrapper__content__block}>
-              <UserRoundIcon className={styles.wrapper__content__userIcon} />
-              <div role="button" onClick={handleEditUsername}>
-                <Typography
-                  tagName="span"
-                  className={styles.wrapper__content__title}>
-                  {userInfo?.username}
-                </Typography>
-                {userInfo && userInfo.isVerified ? (
-                  <p>Verified</p>
+        {loading === LoadingStates.LOADING ? (
+          <HorizontalLoader />
+        ) : (
+          <div ref={modalRef} className={styles.wrapper__content}>
+            <div className={styles.wrapper__content__child}>
+              <div className={styles.wrapper__content__block}>
+                <div className={styles.wrapper__content__userIcon__wrapper}>
+                  <UserRoundIcon
+                    className={styles.wrapper__content__userIcon}
+                  />
+                  <div className={styles.wrapper__content__userIcon__child}>
+                    {isVerified ? (
+                      <VerifiedIcon
+                        className={
+                          styles.wrapper__content__userIcon__verifyIcon
+                        }
+                      />
+                    ) : (
+                      <UnverifiedIcon
+                        className={
+                          styles.wrapper__content__userIcon__verifyIcon
+                        }
+                      />
+                    )}
+                  </div>
+                </div>
+                <div
+                  className={firstBlockClassName}
+                  role="button"
+                  onClick={handleEditUsername}>
+                  {isUsernameEdited ? (
+                    <Form
+                      isEditedMode
+                      RightIcon={SaveChangesIcon}
+                      className={styles.wrapper_content__form}
+                      form={editUsernameForm}
+                      onSubmit={handleSaveChanges}
+                      inputClassName={styles.wrapper__content__input}
+                    />
+                  ) : (
+                    <Typography
+                      tagName="span"
+                      className={styles.wrapper__content__title}>
+                      {userInfo?.username}
+                    </Typography>
+                  )}
+                </div>
+
+                {isUsernameEdited ? (
+                  <div className={styles.wrapper__content__icons}>
+                    <div role="button" onClick={handleDeleteChanges}>
+                      <ExitRedIcon
+                        className={styles.wrapper__content__deleteIcon}
+                      />
+                    </div>
+                  </div>
                 ) : (
-                  <p>Unverified</p>
+                  <EditPenIcon
+                    onClick={handleEditUsername}
+                    className={styles.wrapper__content__editIcon}
+                  />
                 )}
               </div>
-
-              {isUsernameEdited ? (
-                <EditPenIcon className={styles.wrapper__content__editIcon} />
-              ) : (
-                <Input
-                  value={inputValue as string}
-                  onChange={handlInputChange}
-                />
-              )}
-            </div>
-            <div className={styles.wrapper__content__block}>
-              <EmailIcon className={styles.wrapper__content__emailIcon} />
-              <Typography
-                tagName="span"
-                className={styles.wrapper__content__block__text}>
-                {userInfo?.email}
-              </Typography>
-
-              <MessageIcon className={styles.wrapper__content__messageIcon} />
-            </div>
-            <div className={styles.wrapper__content__block}>
-              <LockIcon className={styles.wrapper__content__lockIcon} />
-              <Typography
-                className={styles.wrapper__content__block__star}
-                tagName="span">
-                ********
-              </Typography>
-              <Link to={Route.RegistrationSetupPassword}>
-                <EditPenIcon className={styles.wrapper__content__messageIcon} />
-              </Link>
+              <div className={styles.wrapper__content__block}>
+                <EmailIcon className={styles.wrapper__content__emailIcon} />
+                <div className={styles.wrapper__content__block__text__wrapper}>
+                  <Typography
+                    tagName="span"
+                    className={styles.wrapper__content__block__text}>
+                    {userInfo?.email}
+                  </Typography>
+                </div>
+                <Button
+                  onClick={handleSendEmail}
+                  className={mailSenderButtonClassName}
+                  disabled={isVerified || false}>
+                  <MessageIcon
+                    className={styles.wrapper__content__messageIcon}
+                  />
+                </Button>
+              </div>
+              <div className={styles.wrapper__content__block}>
+                <LockIcon className={styles.wrapper__content__lockIcon} />
+                <div className={styles.wrapper__content__block__star__wrapper}>
+                  <Typography
+                    className={styles.wrapper__content__block__star}
+                    tagName="span">
+                    **************
+                  </Typography>
+                </div>
+                <Button
+                  className={styles.wrapper__content__messageIcon__button}
+                  onClick={handleChangePasswordRoute}>
+                  <EditPenIcon
+                    className={styles.wrapper__content__messageIcon}
+                  />
+                </Button>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </Portal>
   );

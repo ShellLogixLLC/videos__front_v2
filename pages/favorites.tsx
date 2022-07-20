@@ -1,28 +1,59 @@
 import React from 'react';
+import {SWRConfig} from 'swr';
+import {NextPage, GetServerSidePropsResult, GetServerSideProps} from 'next';
 
-import {VideosService} from '~/api';
-import {Seo, Typography, Video} from '~/components';
+import {Seo} from '~/components';
+import endpoints from '~/api/endpoints';
+import {Wishlist} from '~/containers';
+import ApiService from '~/api/ApiService';
+import {getCookie} from '~/libraries';
+import {ICategoriesPageQueries, SwrPageProps} from '~/types';
+import {
+  LocaleKeys,
+  INITIAL_WISHLIST_LIMIT,
+  getProtectedPageRedirect,
+} from '~/constants';
 
-const VIDEO_LENGTH = 110.5;
-const VIDEO_SRC =
-  'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
-const POSTER_SRC =
-  'https://peach.blender.org/wp-content/uploads/title_anouncement.jpg?x11217';
-
-const FavoritesPage: React.FC = () => {
-  const {isLoading} = VideosService.useVideos();
-
-  return (
-    <Seo title="Favorites page" metaDescription="Favorites page description">
-      <Typography>topRated</Typography>
-      <Video
-        videoSrc={VIDEO_SRC}
-        videoDuration={VIDEO_LENGTH}
-        posterSrc={POSTER_SRC}
-        loading={isLoading}
-      />
+const MyFavoritesPage: NextPage<SwrPageProps> = ({fallback}) => (
+  <SWRConfig value={fallback}>
+    <Seo
+      title="My favorites page"
+      className="favorites-page"
+      metaDescription="My favorites page description">
+      <Wishlist />
     </Seo>
+  </SWRConfig>
+);
+
+export const getServerSideProps: GetServerSideProps = async (
+  ctx,
+): Promise<GetServerSidePropsResult<{}>> => {
+  const {locale, req, query} = ctx;
+  const {page} = query as ICategoriesPageQueries;
+
+  const token = getCookie('token', req.headers.cookie as string);
+
+  const activePage = page ? Number(page) : 0;
+  const headers = {Authorization: `Bearer ${token}`};
+
+  const wishlistVideos = await ApiService.get(
+    endpoints.WishlistService.getWishlistVideos(),
+    {
+      limit: INITIAL_WISHLIST_LIMIT,
+      offset: activePage * INITIAL_WISHLIST_LIMIT,
+    },
+    {headers},
   );
+
+  return !token
+    ? getProtectedPageRedirect(locale as LocaleKeys)
+    : {
+        props: {
+          fallback: {
+            [endpoints.WishlistService.getWishlistVideos()]: wishlistVideos,
+          },
+        },
+      };
 };
 
-export default FavoritesPage;
+export default MyFavoritesPage;

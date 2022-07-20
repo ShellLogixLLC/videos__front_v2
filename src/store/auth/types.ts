@@ -6,7 +6,7 @@ export type UserInfo = {
   id: string;
   email: string;
   isAdmin: boolean;
-  username: string | string[];
+  username: string;
   imagePath: string;
   createdAt: string;
   updatedAt: string;

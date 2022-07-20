@@ -8,8 +8,8 @@ import {useWindowSize, useLocales} from '~/hooks';
 import {QueryParamsTypes, VideosProps} from '~/types';
 import {
   INITIAL_WISHLIST_LIMIT,
+  INITIAL_PAGINATION_MORE_COUNT,
   INITIAL_PAGINATION_ACTIVE_PAGE,
-  INITIAL_PAGINATION_ROWS_PER_PAGE,
 } from '~/constants';
 import {
   FilmCard,
@@ -24,15 +24,16 @@ import styles from './Wishlist.module.scss';
 const MyFavorites: React.FC = () => {
   const {query} = useRouter();
   const {isMinTablet} = useWindowSize();
+  const currentPerPageCount = !isMinTablet
+    ? INITIAL_WISHLIST_LIMIT
+    : INITIAL_PAGINATION_MORE_COUNT;
 
   const [videosList, setVideosList] = useState<VideosProps[]>([]);
   const [totalCount, setTotalCount] = useState<number>(0);
   const [activePage, setActivePage] = useState<number>(
     INITIAL_PAGINATION_ACTIVE_PAGE,
   );
-  const [rowsPerPage, setRowsPerPage] = useState<number>(
-    INITIAL_WISHLIST_LIMIT,
-  );
+  const [rowsPerPage, setRowsPerPage] = useState<number>(currentPerPageCount);
 
   const limit = !isMinTablet ? INITIAL_WISHLIST_LIMIT : rowsPerPage;
   const offset = !isMinTablet ? activePage * INITIAL_WISHLIST_LIMIT : 0;
@@ -43,9 +44,9 @@ const MyFavorites: React.FC = () => {
   );
 
   const tabletSkeletonsCount =
-    rowsPerPage + INITIAL_PAGINATION_ROWS_PER_PAGE > totalCount
-      ? totalCount && totalCount % INITIAL_WISHLIST_LIMIT
-      : INITIAL_PAGINATION_ROWS_PER_PAGE;
+    rowsPerPage + INITIAL_PAGINATION_MORE_COUNT > totalCount
+      ? totalCount && totalCount % INITIAL_PAGINATION_MORE_COUNT
+      : INITIAL_PAGINATION_MORE_COUNT;
 
   const skeletonsCount = !isMinTablet
     ? totalCount < INITIAL_WISHLIST_LIMIT * (activePage + 1)

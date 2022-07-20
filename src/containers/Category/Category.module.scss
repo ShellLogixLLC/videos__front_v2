@@ -18,10 +18,10 @@
 .content {
   width: 100%;
 
-  &__backRoute{
+  &__backRoute {
     @extend %flex-align;
 
-    &__button{
+    &__button {
       @extend %flex-align;
       background: transparent;
       color: $white;
