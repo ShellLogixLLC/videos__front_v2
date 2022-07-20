@@ -8,8 +8,8 @@ import {CommentType} from '~/api/videos/types';
 import {VideosService} from '~/api';
 import {COMMENTS_LIMIT} from '~/constants';
 import {LanguageArrowTop} from '~/assets';
-import {CommentsBlockSkeleton} from '~/components';
 import {getCookieFromBrowser} from '~/libraries';
+import {CommentsBlockSkeleton} from '~/components';
 
 import Typography from '../Typography';
 
