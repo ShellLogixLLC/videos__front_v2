@@ -51,8 +51,6 @@ const Comments: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data?.comments]);
 
-  useEffect(() => {}, [token]);
-
   if (!commentsList.length && isLoading) {
     return <CommentsBlockSkeleton />;
   }
