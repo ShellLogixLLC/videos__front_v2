@@ -13,11 +13,11 @@ const categoryNavigation = [
   },
   {
     id: 3,
-    nameCategory: 'mostLiked',
+    nameCategory: 'duration',
   },
   {
     id: 4,
-    nameCategory: 'random',
+    nameCategory: 'topViews',
   },
 ];
 

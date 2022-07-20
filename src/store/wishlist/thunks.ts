@@ -26,7 +26,6 @@ export const deleteFromWishlist = createAsyncThunk(
       thunkAPI.dispatch(getWishlistIds());
     } catch (error) {
       const {message} = error as Error;
-
       return thunkAPI.rejectWithValue({error: message});
     }
   },

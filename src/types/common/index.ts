@@ -7,12 +7,18 @@ export type CategoryTitleTypes = {
 export type CategoryContentTypes = {
   activePage: number;
   categoryId?: string | string[];
+  totalCount: number;
   setTotalCount: (value: number) => void;
+  rowsPerPage: number;
 };
 
 export type QueryParamsTypes = {
   page?: number;
   name?: string;
+  likesSort?: number | string;
+  viewsSort?: number | string;
+  durationSort?: number | string;
+  activeCategory?: string;
 };
 
 export enum LocaleType {

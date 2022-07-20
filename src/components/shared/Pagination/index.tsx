@@ -46,8 +46,13 @@ const PaginationIndex: React.FC<IPaginationProps> = ({
     [styles.container__display]: isMoreButtonNeeded,
   });
 
-  const setPage = (selectedItem: {selected: number}) =>
+  const setPage = (selectedItem: {selected: number}) => {
     setActivePage(selectedItem.selected);
+    window.scrollTo({
+      top: 100,
+      behavior: 'smooth',
+    });
+  };
 
   const handleClickMore = () =>
     setRowsPerPage(rowsPerPage + INITIAL_PAGINATION_MORE_COUNT);
