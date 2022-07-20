@@ -46,6 +46,8 @@ const Video: React.FC<IVideoProps> = ({
     null,
   );
 
+  const video = videoRef?.current;
+
   const handleSpace = (event: any) => {
     if (event.keyCode === SPACE_KEY_CODE) {
       if (wasPlaying) {
@@ -102,13 +104,11 @@ const Video: React.FC<IVideoProps> = ({
 
   useEventListener('keyup', (event) => handleSecAhead(event));
 
+  const handleTimeUpdate = (event: any) => {
+    setCurrentTime(event.target?.currentTime);
+  };
+
   useEffect(() => {
-    const video = videoRef?.current;
-
-    const handleTimeUpdate = (event: any) => {
-      setCurrentTime(event.target?.currentTime);
-    };
-
     if (video) {
       setVideoElement(video);
       video.addEventListener('timeupdate', handleTimeUpdate);

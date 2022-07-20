@@ -37,3 +37,6 @@ export * from './locales';
 
 // navigation
 export * from './navigation';
+
+// video url
+export * from './videoUrl';
