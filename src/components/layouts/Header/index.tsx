@@ -135,7 +135,9 @@ const Header: React.FC = () => {
         to={routeName}
         className={styles.wrapper__content_menu__link}
         activeClassName={styles.wrapper__content_menu__link_active}>
-        <Typography>{pageName}</Typography>
+        <Typography className={styles.wrapper__content_menu__link__typo}>
+          {pageName}
+        </Typography>
       </Link>
     );
   });
