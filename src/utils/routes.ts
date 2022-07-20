@@ -35,7 +35,7 @@ export const routesBurger: RoutesProps[] = [
   {
     id: 2,
     pageName: 'favorites',
-    routeName: Route.MyFavorite,
+    routeName: Route.Favorites,
   },
   {
     id: 3,

@@ -8,7 +8,6 @@ enum Route {
   Favorites = '/favorites',
   MostLiked = '/most-liked',
   Categories = '/categories',
-  MyFavorite = '/my-favorites',
   Search = '/search-result',
 
   // Contract manager routes

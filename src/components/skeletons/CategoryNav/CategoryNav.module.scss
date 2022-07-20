@@ -1,10 +1,10 @@
 .wrapper {
-  margin-top: 24px;
+  margin: 24px 0 32px;
 
   &__title {
     max-width: 500px;
     width: 100%;
-    height: 48px;
+    height: 78px;
     @extend %skeleton-animation;
   }
 
@@ -16,7 +16,7 @@
     &_item {
       color: transparent;
       padding: 0 34px;
-      height: 48px;
+      height: 50px;
       border-radius: 48px;
       @extend %skeleton-animation;
     }

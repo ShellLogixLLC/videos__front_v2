@@ -24,7 +24,6 @@ export const deleteFromWishlist = createAsyncThunk(
       await client.delete(`/favorites`, {params});
     } catch (error) {
       const {message} = error as Error;
-
       return thunkAPI.rejectWithValue({error: message});
     }
   },

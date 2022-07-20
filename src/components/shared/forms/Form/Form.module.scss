@@ -2,6 +2,11 @@
   width: 100%;
   @extend %flex-column;
 
+  &__edited{
+   display: grid;
+    grid-template-columns: 6fr 1fr;
+  }
+
   &__button {
     max-width: 100%;
     margin: 32px auto 0;
@@ -14,5 +19,17 @@
       margin: 32px auto 0;
       cursor: not-allowed;
     }
+
+    &__editMode{
+      background: transparent;
+      margin: 0;
+      border-radius: 0;
+      padding: 0;
+    }
   }
+}
+
+.submitIcon{
+  width: 18px;
+  height: 18px;
 }
