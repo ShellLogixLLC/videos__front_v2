@@ -1,31 +1,47 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import classNames from 'classnames';
+import {useRouter} from 'next/router';
 
-import {categoryNavigation} from '~/utils/index';
+import {CategoryFilters} from '~/constants';
+import {CategoryTitleTypes} from '~/types';
+import {categoryNavigation, chooseCategorySort} from '~/utils/index';
 
 import Button from '../Button';
 import Typography from '../Typography';
 
 import styles from './CategoryNav.module.scss';
 
-const CategoryNav: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState<number>(0);
+const CategoryNav: React.FC<CategoryTitleTypes> = () => {
+  const {query} = useRouter();
 
-  const buttonClasses = (id: number) =>
+  const [activeCategory, setActiveCategory] = useState<string | string[]>(
+    query?.activeCategory || CategoryFilters.All,
+  );
+
+  useEffect(() => {
+    if (query?.activeCategory) {
+      setActiveCategory(query?.activeCategory);
+    }
+  }, [query]);
+
+  const buttonClasses = (nameCategory: string) =>
     classNames(styles.wrapper__buttons, {
-      [styles.wrapper__buttons__active]: activeCategory === id,
+      [styles.wrapper__buttons__active]: activeCategory === nameCategory,
     });
 
-  const chooseCategory = (idx: number) => {
-    setActiveCategory(idx);
-  };
-
   const renderCategoryNavigation = categoryNavigation.map(
-    ({nameCategory, id}, idx) => (
+    ({nameCategory, id}) => (
       <Button
         key={id}
-        onClick={() => chooseCategory(idx)}
-        className={buttonClasses(id)}>
+        onClick={() =>
+          chooseCategorySort(
+            nameCategory,
+            query,
+            activeCategory,
+            setActiveCategory,
+          )
+        }
+        className={buttonClasses(nameCategory)}>
         <Typography>{nameCategory}</Typography>
       </Button>
     ),
