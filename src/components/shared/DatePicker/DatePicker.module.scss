@@ -1,12 +1,12 @@
 .wrapper {
   @extend %box-shadow;
   @extend %border-rad_10;
+  background-color: $light-black;
   border: 1px transparent;
   max-width: 320px;
   width: 100%;
   position: relative;
   padding: 16px 28px 16px 24px;
-  background-color: $light-black;
   overflow: hidden;
   height: 80px;
   min-height: 80px;
