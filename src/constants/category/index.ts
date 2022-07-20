@@ -1,1 +1,7 @@
-export const INITIAL_CATEGORY_LIMIT = 9;
+export enum CategoryFilters {
+  All = 'all',
+  New = 'new',
+  TopRated = 'topRated',
+  Duration = 'duration',
+  TopViews = 'topViews',
+}
