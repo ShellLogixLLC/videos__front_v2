@@ -1,6 +1,8 @@
-import {NextPage} from 'next';
+import {GetServerSideProps, GetServerSidePropsResult, NextPage} from 'next';
 
+import {getCookie} from '~/libraries';
 import {Seo, SignIn} from '~/components';
+import {EmptyProps, getProtectedPageRedirect, LocaleKeys} from '~/constants';
 
 const SignInPage: NextPage = () => (
   <Seo
@@ -10,5 +12,14 @@ const SignInPage: NextPage = () => (
     <SignIn />
   </Seo>
 );
+
+export const getServerSideProps: GetServerSideProps = async (
+  ctx,
+): Promise<GetServerSidePropsResult<{}>> => {
+  const {locale, req} = ctx;
+  const token = getCookie('token', req.headers.cookie as string);
+
+  return token ? getProtectedPageRedirect(locale as LocaleKeys) : EmptyProps;
+};
 
 export default SignInPage;

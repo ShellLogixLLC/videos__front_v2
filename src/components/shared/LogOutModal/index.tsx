@@ -1,12 +1,12 @@
 import React, {useRef} from 'react';
 
+import {Route} from '~/constants';
 import {CloseIcon} from '~/assets';
 import {Typography} from '~/components';
-import Button from '~/components/shared/Button';
-import {useLockBodyScroll, useOnClickOutside} from '~/hooks';
 import {removeCookie} from '~/libraries';
 import {RouterService} from '~/services';
-import {Route} from '~/constants';
+import Button from '~/components/shared/Button';
+import {useLockBodyScroll, useOnClickOutside} from '~/hooks';
 
 import {LogOutModalProps} from './types';
 import styles from './LogOutModal.module.scss';
@@ -35,12 +35,12 @@ const LogoutModal: React.FC<LogOutModalProps> = ({show, close}) => {
             />
             <div className={styles.modal__content}>
               <Typography tagName="h2" className={styles.modal__content__title}>
-                Log Out?
+                logoutQuestion
               </Typography>
               <Typography
                 tagName="span"
                 className={styles.modal__content__text}>
-                Are you sure you want to log out?
+                areYouSureYouWantLogout
               </Typography>
               <div className={styles.modal__content__buttons}>
                 <Button
@@ -49,7 +49,7 @@ const LogoutModal: React.FC<LogOutModalProps> = ({show, close}) => {
                   <Typography
                     className={styles.modal__content__buttons__cancel__title}
                     tagName="span">
-                    Cancel
+                    cancel
                   </Typography>
                 </Button>
                 <Button
@@ -58,7 +58,7 @@ const LogoutModal: React.FC<LogOutModalProps> = ({show, close}) => {
                   <Typography
                     className={styles.modal__content__buttons__cancel__title}
                     tagName="span">
-                    Log Out
+                    logout
                   </Typography>
                 </Button>
               </div>

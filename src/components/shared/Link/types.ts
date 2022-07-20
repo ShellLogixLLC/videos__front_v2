@@ -1,5 +1,11 @@
+import {QueryParamsTypes} from '~/types';
+
+type To = {
+  pathname: string;
+  query?: QueryParamsTypes;
+};
 export interface LinkProps {
-  to: string;
+  to: string | To;
   as?: string;
   blank?: boolean;
   target?: string;
