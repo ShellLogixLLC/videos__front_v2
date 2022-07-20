@@ -33,9 +33,12 @@ const ForgotPassword: React.FC = () => {
     [styles.container__content__sign_in__block_close]: isVerified,
   });
 
-  const formBtnClasses = classNames({
-    [styles.container__content__sign_in__block_btn]: isVerified,
-  });
+  const formBtnClasses = classNames(
+    styles.container__content__sign_in__block_btn,
+    {
+      [styles.container__content__sign_in__block_btn__verifiied]: isVerified,
+    },
+  );
 
   const formInputClasses = classNames(
     styles.container__content__sign_in__block__input__inp,
@@ -66,7 +69,9 @@ const ForgotPassword: React.FC = () => {
       </Link>
       <div className={styles.container__content}>
         <div className={styles.container__content__top}>
-          <LogoIcon className={styles.container__content__top_img} />
+          <Link to={Route.Home}>
+            <LogoIcon className={styles.container__content__top_img} />
+          </Link>
           <Typography
             type="Extra"
             variant="Heading"
