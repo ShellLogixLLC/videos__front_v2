@@ -11,7 +11,6 @@ import {
   WishlistModal,
   SigninDropdown,
   ProfileSettings,
-  LanguageDropDown,
 } from '~/components';
 
 import styles from '../../layouts/Header/Header.module.scss';
@@ -54,7 +53,6 @@ const HeaderNavbar: React.FC<HeaderNavbarProps> = ({children}) => {
             className={styles.wrapper__content__other__wishlist}
           />
         )}
-        <LanguageDropDown />
         {renderUserIcons}
       </div>
       {isLikeItPopup && (

@@ -58,7 +58,7 @@ const SigninDropdown: React.FC = () => {
                 </Typography>
               </Link>
             </li>
-            {/*<LanguageDropDown />*/}
+            <LanguageDropDown />
           </ul>
         </div>
       </div>

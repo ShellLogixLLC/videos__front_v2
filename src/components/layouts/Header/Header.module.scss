@@ -50,6 +50,10 @@
       opacity: 1;
       transition: all 0.5s;
 
+      @include breakpoint(wide){
+        max-width: 500px;
+      }
+
       &_hidden {
         visibility: hidden;
         opacity: 0;
@@ -84,14 +88,23 @@
       &__link {
         @extend %film_info_text;
         @extend %flex-align;
-        color: $white;
+        color: $gray;
         cursor: pointer;
         transform: scale(1);
         text-align: center;
         padding: 10px 4px;
 
+        @include breakpoint(wide){
+          font-size: 18px;
+        }
+
         &__typo{
           font-size: 20px;
+          color: $gray;
+
+          @include breakpoint(wide){
+            font-size: 18px;
+          }
         }
 
         @include breakpoint(desktop) {
@@ -160,13 +173,10 @@
 
     &__other {
       @extend %flex-between;
-      max-width: 210px;
+      max-width: 120px;
       width: 100%;
       position: relative;
 
-      //&__withToken{
-      //  max-width: 260px;
-      //}
 
       @include breakpoint(desktop) {
         display: none;

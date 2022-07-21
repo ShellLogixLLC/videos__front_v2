@@ -33,15 +33,11 @@
   }
 
   &__languages {
-    @extend %flex-column;
+    display: flex;
     @extend %box-shadow;
-    top: 69px;
-    right: -20px;
     cursor: default;
-    height: 95px;
     border: unset;
     z-index: 10;
-    position: absolute;
     border-radius: 7px;
     justify-content: space-evenly;
     background-color: $black;
@@ -57,7 +53,14 @@
 
     &__item {
       @extend %flex-align;
-      padding: 0 24px;
+
+      &:first-child{
+        margin-right: 20px;
+      }
+
+      &__active{
+        border-bottom: 2px solid $white;
+      }
 
       svg {
         width: 23px;

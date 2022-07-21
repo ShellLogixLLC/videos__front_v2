@@ -17,6 +17,9 @@
 .wrapper {
   background-color: $black;
   transition: 0.2s all ease;
+  position: absolute;
+  right: 80px;
+  z-index: 3;
 
   @include breakpoint(desktop) {
     position: absolute;
@@ -119,7 +122,6 @@
       width: 24px;
       cursor: pointer !important;
       height: 24px;
-      background-color: $black;
     }
   }
 }
