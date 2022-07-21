@@ -21,14 +21,8 @@
   right: 80px;
   z-index: 3;
 
-  @include breakpoint(desktop) {
-    position: absolute;
+  @include breakpoint(desktop){
     right: 72px;
-  }
-
-  @include breakpoint(tablet) {
-    right: 48px;
-    left: calc(100vw - 96px);
   }
 
   &_expanded {

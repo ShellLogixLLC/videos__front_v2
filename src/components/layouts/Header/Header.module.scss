@@ -98,18 +98,16 @@
           font-size: 18px;
         }
 
+
         &__typo{
-          font-size: 20px;
+          font-size: 18px;
           color: $gray;
 
-          @include breakpoint(wide){
-            font-size: 18px;
-          }
         }
 
         @include breakpoint(desktop) {
           font-weight: 500;
-          font-size: 20px;
+          font-size: 16px;
           line-height: 24px;
           max-width: 250px;
           width: 100%;
@@ -173,7 +171,7 @@
 
     &__other {
       @extend %flex-between;
-      max-width: 120px;
+      max-width: 112px;
       width: 100%;
       position: relative;
 
@@ -301,6 +299,10 @@
             width: 100%;
             height: 50px;
 
+            &__typo{
+            color: $gray;
+          }
+
             &_active {
               color: $red;
               font-weight: bolder;
@@ -316,6 +318,7 @@
     left: 0;
     right: 0;
     bottom: 0;
+    min-height: 100vh;
     height: 100%;
     z-index: 4;
     background-color: $rgba-black;

@@ -142,16 +142,20 @@ const ProfileSettings: React.FC = () => {
               </li>
               <LanguageDropDown />
             </div>
-            <div
-              role="button"
-              onClick={openLogoutModal}
-              className={styles.content__list__wrapper}>
-              <li className={linkClassName}>
+            <div className={styles.content__list__wrapper}>
+              <li
+                role="button"
+                onClick={openLogoutModal}
+                className={linkClassName}>
                 <Typography className={styles.content__list__wrapper__typo}>
                   logout
                 </Typography>
               </li>
-              <ExitIcon className={logOutIconClassName} />
+              <ExitIcon
+                role="button"
+                onClick={openLogoutModal}
+                className={logOutIconClassName}
+              />
             </div>
           </ul>
         </div>

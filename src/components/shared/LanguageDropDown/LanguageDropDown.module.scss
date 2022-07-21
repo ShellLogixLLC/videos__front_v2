@@ -3,10 +3,6 @@
   cursor: pointer;
   position: relative;
 
-  @include breakpoint(desktop) {
-    padding-left: 32px;
-  }
-
   &__header {
     @extend %flex-align;
     padding: 0;
@@ -43,12 +39,11 @@
     background-color: $black;
 
     @include breakpoint(desktop) {
-      top: 50px;
-      left: 25px;
       width: 100%;
-      right: unset;
-      max-width: 187px;
-      border-radius: 0;
+      max-width: 100px;
+      justify-content: space-between;
+      align-items:center;
+      padding-left: 32px;
     }
 
     &__item {
@@ -56,10 +51,14 @@
 
       &:first-child{
         margin-right: 20px;
+
+        @include breakpoint(desktop){
+          margin-right: 0;
+        }
       }
 
       &__active{
-        border-bottom: 2px solid $white;
+        border-bottom: 2px solid $dark-red;
       }
 
       svg {

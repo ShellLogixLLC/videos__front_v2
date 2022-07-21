@@ -34,11 +34,14 @@
   visibility: hidden;
   background: $black;
   box-sizing: border-box;
+  border: 1px solid $dark-red;
   border-radius: 0 0 8px 8px;
-  box-shadow: $red 1px 1px 2px;
+
 
   &__open {
     visibility: visible;
+    transition:  all 0.4s ease;
+    transition-property: visibility;
   }
 
   &__tooltip{
@@ -65,7 +68,7 @@
 
   &__list {
     width: 100%;
-    padding: 0 7px;
+    padding: 0 18px 0 12px;
     list-style: none;
     @extend %flex-center;
     flex-direction: column;

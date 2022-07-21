@@ -160,7 +160,12 @@ const Header: React.FC = () => {
         activeClassName={
           styles.wrapper__content__burger__container__nav__items_active
         }>
-        <Typography>{pageName}</Typography>
+        <Typography
+          className={
+            styles.wrapper__content__burger__container__nav__items__typo
+          }>
+          {pageName}
+        </Typography>
       </Link>
     );
   });
