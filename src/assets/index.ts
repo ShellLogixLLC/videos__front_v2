@@ -62,7 +62,7 @@ export {default as MessageIcon} from './icons/message.svg';
 export {default as ExitRedIcon} from './icons/exitRed.svg';
 export {default as RulerIcon} from './icons/rulerIcon.svg';
 export {default as CloudIcon} from './icons/cloudIcon.svg';
-export {default as CloseIcon} from './icons/closeIcon.svg';
+export {default as CloseIcon} from './icons/close.svg';
 export {default as AntennaIcon} from './icons/antenna.svg';
 export {default as EyeShowIcon} from './icons/eyeShow.svg';
 export {default as NextOneIcon} from './icons/nextOne.svg';

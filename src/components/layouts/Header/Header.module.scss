@@ -98,11 +98,9 @@
           font-size: 18px;
         }
 
-
         &__typo{
           font-size: 18px;
           color: $gray;
-
         }
 
         @include breakpoint(desktop) {
@@ -116,7 +114,9 @@
         }
 
         &_active {
-          color: $red !important;
+         p{
+            color: $red !important;
+          }
 
           @include breakpoint(desktop) {
             font-weight: bolder;
@@ -299,13 +299,17 @@
             width: 100%;
             height: 50px;
 
+
+
             &__typo{
             color: $gray;
           }
 
             &_active {
-              color: $red;
-              font-weight: bolder;
+              p{
+                color: $red !important;
+                font-weight: bolder;
+              }
             }
           }
         }
