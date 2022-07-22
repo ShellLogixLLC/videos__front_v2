@@ -11,6 +11,7 @@ import styles from './LanguageDropDown.module.scss';
 
 const LanguageDropDown: React.FC = () => {
   const {asPath, locale} = useRouter();
+
   const [activeLang, setActiveLang] = useState<string>(locale as string);
 
   const filterRef = useRef<HTMLDivElement | null>(null);
