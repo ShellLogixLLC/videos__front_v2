@@ -1,13 +1,15 @@
 .wrapper {
   @extend %box-shadow;
   @extend %border-rad_10;
+  background-color: $light-black;
   border: 1px transparent;
   max-width: 320px;
   width: 100%;
-  position: relative;
   padding: 16px 28px 16px 24px;
-  background-color: $light-black;
+  position: relative;
   overflow: hidden;
+  height: 80px;
+  min-height: 80px;
   transition: all 0.3s;
 
   @include breakpoint(desktop) {
@@ -23,7 +25,6 @@
   &__active {
     @extend %box-shadow;
     height: 391px;
-    min-height: 371px;
     transition: all 0.3s;
 
     @include breakpoint(desktop) {
@@ -58,11 +59,15 @@
 .content {
   @extend %flex-center;
   position: absolute;
-  margin-top: 16px;
+  margin-top: 18px;
   height: 305px;
   left: 0;
   right: 0;
   z-index: 5;
+
+  svg {
+    cursor: pointer;
+  }
 
   & > div {
     & > div {
