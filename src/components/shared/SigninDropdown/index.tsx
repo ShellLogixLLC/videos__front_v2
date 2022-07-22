@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import {UserIcon} from '~/assets';
 import {Route} from '~/constants';
 import {useOnClickOutside} from '~/hooks';
-import {Link, Typography} from '~/components';
+import {LanguageDropDown, Link, Typography} from '~/components';
 
 import styles from './SigninDropdown.module.scss';
 
@@ -58,6 +58,7 @@ const SigninDropdown: React.FC = () => {
                 </Typography>
               </Link>
             </li>
+            <LanguageDropDown />
           </ul>
         </div>
       </div>

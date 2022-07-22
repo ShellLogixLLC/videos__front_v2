@@ -3,8 +3,10 @@
   cursor: pointer;
   position: relative;
 
-  @include breakpoint(desktop) {
-    padding-left: 32px;
+  @include  breakpoint(desktop){
+    max-height: 50px;
+    height: 100%;
+    margin-bottom: 48px;
   }
 
   &__header {
@@ -33,31 +35,35 @@
   }
 
   &__languages {
-    @extend %flex-column;
-    @extend %box-shadow;
-    top: 69px;
-    right: -20px;
+    display: flex;
     cursor: default;
-    height: 95px;
     border: unset;
     z-index: 10;
-    position: absolute;
     border-radius: 7px;
     justify-content: space-evenly;
-    background-color: $black;
 
     @include breakpoint(desktop) {
-      top: 50px;
-      left: 25px;
       width: 100%;
-      right: unset;
-      max-width: 187px;
-      border-radius: 0;
+      max-width: 100px;
+      justify-content: space-between;
+      align-items:center;
+      padding-left: 32px;
     }
 
     &__item {
       @extend %flex-align;
-      padding: 0 24px;
+
+      &:first-child{
+        margin-right: 20px;
+
+        @include breakpoint(desktop){
+          margin-right: 0;
+        }
+      }
+
+      &__active{
+        border-bottom: 2px solid $dark-red;
+      }
 
       svg {
         width: 23px;
