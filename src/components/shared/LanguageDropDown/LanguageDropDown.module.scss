@@ -3,6 +3,11 @@
   cursor: pointer;
   position: relative;
 
+  @include  breakpoint(desktop){
+    height: 50px;
+    margin-bottom: 48px;
+  }
+
   &__header {
     @extend %flex-align;
     padding: 0;
