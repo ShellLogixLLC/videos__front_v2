@@ -44,9 +44,9 @@ const VideoLikeThis: React.FC = () => {
   const renderLoader =
     limit < SIMILAR_VIDEOS_COUNT &&
     skeletonsArray.map((_item, index) => (
-      <React.Fragment key={index}>
+      <React.Fragment key={`skeleton${index}`}>
         <FilmCardSkeletons
-          cardClasses={styles.similar__skeleton_wrapper__item}
+          cardClasses={styles.similar__wrapper__skeleton_item}
         />
       </React.Fragment>
     ));
@@ -59,11 +59,10 @@ const VideoLikeThis: React.FC = () => {
       <InfiniteScroll
         dataLength={likeThisList.length}
         next={getMoreData}
+        className={styles.similar__wrapper}
         hasMore={true}
-        loader={
-          <div className={styles.similar__skeleton_wrapper}>{renderLoader}</div>
-        }>
-        <div className={styles.similar__wrapper}>{renderSimilarVideosList}</div>
+        loader={renderLoader}>
+        {renderSimilarVideosList}
       </InfiniteScroll>
     </div>
   );
