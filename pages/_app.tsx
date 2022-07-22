@@ -3,16 +3,15 @@ import {AppProps} from 'next/app';
 import NextNprogress from 'nextjs-progressbar';
 import {appWithTranslation} from 'next-i18next';
 
-import nextI18nConfig from '../next-i18next.config';
-
 import 'emoji-mart/css/emoji-mart.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 import '~/styles/index.scss';
-import {useEffect} from 'react';
+import React, {useEffect} from 'react';
 
 import store, {wrapper} from '~/store';
 import {getCookieFromBrowser} from '~/libraries';
+import {wishlistActions} from '~/store/wishlist';
 import {authActions, authSelect} from '~/store/auth';
 import {useAppDispatch, useAppSelector} from '~/hooks';
 import {
@@ -20,6 +19,8 @@ import {
   ModalContextProvider,
   ToastContextProvider,
 } from '~/context';
+
+import nextI18nConfig from '../next-i18next.config';
 
 const ProdApp: React.FC<AppProps> = ({Component, pageProps}) => {
   const dispatch = useAppDispatch();
@@ -29,8 +30,8 @@ const ProdApp: React.FC<AppProps> = ({Component, pageProps}) => {
   useEffect(() => {
     if (!userInfo && token) {
       dispatch(authActions.loginWithToken({token: token as string}));
+      dispatch(wishlistActions.getWishlistIds());
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -55,5 +56,4 @@ const ProdApp: React.FC<AppProps> = ({Component, pageProps}) => {
     </Provider>
   );
 };
-
 export default wrapper.withRedux(appWithTranslation(ProdApp, nextI18nConfig));

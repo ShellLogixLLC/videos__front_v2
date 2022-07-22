@@ -11,7 +11,7 @@ export const routes: RoutesProps[] = [
   {
     id: 2,
     pageName: 'topRated',
-    routeName: Route.Favorites,
+    routeName: Route.TopRated,
   },
   {
     id: 3,
@@ -35,7 +35,7 @@ export const routesBurger: RoutesProps[] = [
   {
     id: 2,
     pageName: 'favorites',
-    routeName: Route.MyFavorite,
+    routeName: Route.Favorites,
   },
   {
     id: 3,
@@ -45,7 +45,7 @@ export const routesBurger: RoutesProps[] = [
   {
     id: 4,
     pageName: 'topRated',
-    routeName: Route.Favorites,
+    routeName: Route.TopRated,
   },
   {
     id: 5,

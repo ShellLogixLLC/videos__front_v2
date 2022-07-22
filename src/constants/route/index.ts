@@ -4,10 +4,10 @@ enum Route {
   Error = '/404',
   Terms = '/terms-of-service',
   Privacy = '/privacy-policy',
+  TopRated = '/top-rated',
   Favorites = '/favorites',
   MostLiked = '/most-liked',
   Categories = '/categories',
-  MyFavorite = '/my-favorites',
   Search = '/search-result',
 
   // Contract manager routes

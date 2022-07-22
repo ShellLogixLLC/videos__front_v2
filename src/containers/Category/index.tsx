@@ -1,10 +1,16 @@
 import React, {useState, useEffect} from 'react';
+import {isEqual} from 'lodash';
 import {useRouter} from 'next/router';
 
 import {LeftArrowIcon} from '~/assets';
+import {useWindowSize} from '~/hooks';
+import {setQueryParams} from '~/utils';
 import {QueryParamsTypes} from '~/types';
-import {filteredMass, setQueryParams} from '~/utils';
-import {DatePicker, Pagination, FilterBySort, BackButton} from '~/components';
+import {DatePicker, Pagination, BackButton} from '~/components';
+import {
+  INITIAL_PAGINATION_MORE_COUNT,
+  INITIAL_PAGINATION_ROWS_PER_PAGE,
+} from '~/constants';
 
 import styles from './Category.module.scss';
 import CategoryTitle from './CategoryTitle';
@@ -12,27 +18,46 @@ import CategoryContent from './CategoryContent';
 
 const Category: React.FC = () => {
   const {query} = useRouter();
-  const [activePage, setActivePage] = useState<number>(0);
+  const {isMinTablet} = useWindowSize();
+
+  const currentPerPageCount = isMinTablet
+    ? INITIAL_PAGINATION_MORE_COUNT
+    : INITIAL_PAGINATION_ROWS_PER_PAGE;
+
+  const [activePage, setActivePage] = useState<number>(
+    query?.page ? Number(query?.page || 0) : 0,
+  );
   const [totalCount, setTotalCount] = useState<number>(0);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(currentPerPageCount);
+
+  const queryName = query.name;
+  const queryPage = query.page;
 
   useEffect(() => {
-    if (query?.page) {
-      setActivePage(Number(query.page));
+    if (isEqual(queryName, queryName)) {
+      setRowsPerPage(INITIAL_PAGINATION_ROWS_PER_PAGE);
     }
-  }, [query.page]);
+
+    if (isEqual(queryPage, queryPage)) {
+      setActivePage(Number(queryPage));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [query]);
 
   const setNewQueryParams = (newQueryParams: QueryParamsTypes): void => {
     setQueryParams({...query, ...newQueryParams});
   };
 
+  useEffect(() => {
+    if (isMinTablet) {
+      setRowsPerPage(INITIAL_PAGINATION_ROWS_PER_PAGE);
+      setActivePage(0);
+    }
+  }, [isMinTablet]);
+
   const changeActivePage = (page: number): void => {
     setActivePage(page);
     setNewQueryParams({page});
-
-    window.scrollTo({
-      top: 220,
-      behavior: 'smooth',
-    });
   };
 
   return (
@@ -51,23 +76,24 @@ const Category: React.FC = () => {
             activePage={activePage}
             categoryId={query?.name}
             setTotalCount={setTotalCount}
+            totalCount={totalCount}
+            rowsPerPage={rowsPerPage}
           />
           {!!totalCount && (
             <div className={styles.content__pagination}>
               <Pagination
-                activePage={activePage}
                 dataLength={totalCount}
-                rowsPerPage={9}
+                rowsPerPage={rowsPerPage}
+                activePage={activePage}
+                setRowsPerPage={setRowsPerPage}
                 setActivePage={changeActivePage}
                 isPerPageNeeded={false}
-                isMoreButtonNeeded={false}
               />
             </div>
           )}
         </div>
         <div className={styles.filters}>
           <DatePicker />
-          <FilterBySort options={filteredMass} />
         </div>
       </div>
     </article>
