@@ -3,7 +3,7 @@
   @extend %flex-column;
 
   &__edited{
-   display: grid;
+    display: grid;
     grid-template-columns: 6fr 1fr;
   }
 

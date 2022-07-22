@@ -9,6 +9,8 @@ import {
   Typography,
 } from '~/components';
 import WishlistSearchService from '~/api/wishlist';
+import {useAppSelector} from '~/hooks';
+import {wishlistSelect} from '~/store/wishlist';
 
 import styles from './Home.module.scss';
 
@@ -19,7 +21,7 @@ const Home: React.FC = () => {
   const {videosData} = VideosService.useVideos();
   const videos = videosData?.videos;
 
-  const {data: wishlistData} = WishlistSearchService.useVideoWishlistIds();
+  const {wishlistIds: wishlistData} = useAppSelector(wishlistSelect);
 
   return (
     <article className={styles.wrapper}>

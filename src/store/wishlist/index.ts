@@ -11,6 +11,7 @@ import {WishlistSliceState} from './types';
 const internalInitialState: WishlistSliceState = {
   loading: LoadingStates.IDLE,
   error: null,
+  wishlistIds: [],
 };
 
 const wishlistSlice = createSlice({
@@ -43,6 +44,21 @@ const wishlistSlice = createSlice({
         state.error = action.error;
       },
     );
+    builder.addCase(wishlistThunks.getWishlistIds.pending, (state) => {
+      state.loading = LoadingStates.LOADING;
+    });
+    builder.addCase(
+      wishlistThunks.getWishlistIds.fulfilled,
+      (state, action) => {
+        state.error = null;
+        state.loading = LoadingStates.IDLE;
+        state.wishlistIds = action.payload;
+      },
+    );
+    builder.addCase(wishlistThunks.getWishlistIds.rejected, (state, action) => {
+      state.loading = LoadingStates.IDLE;
+      state.error = action.error;
+    });
   },
 });
 
