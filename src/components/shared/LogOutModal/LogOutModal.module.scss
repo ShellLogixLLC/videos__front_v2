@@ -1,11 +1,11 @@
 .modal{
   @extend %flex-center;
   position: fixed;
-  left: 0;
   top: 0;
+  left: 0;
   width: 100%;
-  min-height: 100vh;
   height: 100%;
+  min-height: 100vh;
   touch-action: none;
   background: $logout-modal-background;
   z-index: 1111!important;
@@ -13,14 +13,13 @@
 
   &__container{
     width: 100%;
-    max-width: 605px;
+    max-width: 535px;
     display: flex;
     align-items: center;
     flex-direction: column;
     position: relative;
     color: rgba(0,0,0,.65);
     background: rgba(0,0,0,0.91);
-    box-shadow: 0 8px 35px rgb(0 0 0 / 5%);
     box-shadow: $red 2px 2px 4px;
     border-radius: 8px;
     padding: 24px;
@@ -36,16 +35,14 @@
 
     &__close__icon{
       position: absolute;
-      right: 24px;
       top: 24px;
+      right: 24px;
       cursor: pointer;
-      width: 56px;
-      height: 56px;
       transition: all 0.4s ease-in-out;
 
       @include breakpoint(tablet){
-        right: 16px;
         top: 16px;
+        right: 16px;
         width: 40px;
         height: 40px;
       }
@@ -102,15 +99,18 @@
         &:hover &__title{
           color: $white !important;
         }
+
         &__title{
           font-size: 20px;
           color: $black;
         }
       }
+
       &__logout{
         border: none;
         background: $red;
         width: 48%;
+
         &__title{
           font-size: 20px;
           color: $white;

@@ -36,7 +36,6 @@
     z-index: 10;
     border-radius: 7px;
     justify-content: space-evenly;
-    background-color: $black;
 
     @include breakpoint(desktop) {
       width: 100%;
