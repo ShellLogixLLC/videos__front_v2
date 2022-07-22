@@ -8,6 +8,10 @@
   margin: 16px 0 0;
   height: 634px;
 
+  &_small {
+    height: 486px !important;
+  }
+
   &_close {
     height: 80px;
     transition: all 0.7s;
@@ -55,6 +59,10 @@
   @extend %flex-between;
   flex-direction: column;
   height: 534px;
+
+  &_small {
+    height: 386px !important;
+  }
 
   &_hidden {
     height: 0;
