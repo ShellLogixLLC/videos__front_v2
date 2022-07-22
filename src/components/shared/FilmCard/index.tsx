@@ -58,9 +58,9 @@ const FilmCard: React.FC<FilmCardProps> = ({
     setIsLiked(!isLiked);
 
     if (!isLiked) {
-      dispatch(addToWishlist({videoId: id}));
+      await dispatch(addToWishlist({videoId: id}));
     } else {
-      dispatch(deleteFromWishlist({videoId: id}));
+      await dispatch(deleteFromWishlist({videoId: id}));
     }
   };
 
