@@ -35,7 +35,6 @@
 
   &__languages {
     display: flex;
-    @extend %box-shadow;
     cursor: default;
     border: unset;
     z-index: 10;
