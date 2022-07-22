@@ -4,7 +4,8 @@
   position: relative;
 
   @include  breakpoint(desktop){
-    height: 50px;
+    max-height: 50px;
+    height: 100%;
     margin-bottom: 48px;
   }
 
