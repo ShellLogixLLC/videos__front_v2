@@ -14,7 +14,7 @@ import {
   getProtectedPageRedirect,
 } from '~/constants';
 
-const MyFavoritesPage: NextPage<SwrPageProps> = ({fallback}) => (
+const FavoritesPage: NextPage<SwrPageProps> = ({fallback}) => (
   <SWRConfig value={fallback}>
     <Seo
       title="My favorites page"
@@ -56,4 +56,4 @@ export const getServerSideProps: GetServerSideProps = async (
       };
 };
 
-export default MyFavoritesPage;
+export default FavoritesPage;

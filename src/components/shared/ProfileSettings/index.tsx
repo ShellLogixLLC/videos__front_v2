@@ -4,7 +4,12 @@ import Tooltip from 'react-tooltip-lite';
 
 import {authSelect} from '~/store/auth';
 import {useAppSelector, useOnClickOutside} from '~/hooks';
-import {LogoutModal, ProfileModal, Typography} from '~/components';
+import {
+  Typography,
+  LogoutModal,
+  ProfileModal,
+  LanguageDropDown,
+} from '~/components';
 import {ExitIcon, UnverifiedIcon, UserIcon, VerifiedIcon} from '~/assets';
 
 import styles from './ProfileSettings.module.scss';
@@ -81,7 +86,9 @@ const ProfileSettings: React.FC = () => {
               onClick={openProfileModal}
               className={styles.content__list__wrapper}>
               <li className={linkClassName}>
-                <Typography>userInfo</Typography>
+                <Typography className={styles.content__list__wrapper__typo}>
+                  userInfo
+                </Typography>
               </li>
               <Tooltip
                 content={
@@ -127,14 +134,28 @@ const ProfileSettings: React.FC = () => {
                 </div>
               </Tooltip>
             </div>
-            <div
-              role="button"
-              onClick={openLogoutModal}
-              className={styles.content__list__wrapper}>
+            <div className={styles.content__list__wrapper}>
               <li className={linkClassName}>
-                <Typography>logout</Typography>
+                <Typography className={styles.content__list__wrapper__typo}>
+                  language
+                </Typography>
               </li>
-              <ExitIcon className={logOutIconClassName} />
+              <LanguageDropDown />
+            </div>
+            <div className={styles.content__list__wrapper}>
+              <li
+                role="button"
+                onClick={openLogoutModal}
+                className={linkClassName}>
+                <Typography className={styles.content__list__wrapper__typo}>
+                  logout
+                </Typography>
+              </li>
+              <ExitIcon
+                role="button"
+                onClick={openLogoutModal}
+                className={logOutIconClassName}
+              />
             </div>
           </ul>
         </div>

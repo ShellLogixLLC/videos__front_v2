@@ -22,16 +22,16 @@
 .content {
   @extend %flex-align;
   position: absolute;
-  top: 100%;
   right: 0;
+  top: 100%;
+  width: 100%;
+  min-width: 143px;
   visibility: hidden;
   background: $black;
-  border-radius: 0 0 8px 8px;
-  width: 100%;
-  min-width: 120px;
-  box-sizing: border-box;
   padding: 11px 0 20px;
-  box-shadow: $red 1px 1px 2px;
+  box-sizing: border-box;
+  border-radius: 0 0 8px 8px;
+  border: 1px solid $dark-red;
 
   &__open {
     visibility: visible;
@@ -41,10 +41,10 @@
   &__list {
     width: 100%;
     height: 100%;
-    padding: 0 5px;
+    list-style: none;
     display: flex;
     flex-direction: column;
-    list-style: none;
+    padding: 0 18px 0 12px;
 
     &__link {
       color: $white;

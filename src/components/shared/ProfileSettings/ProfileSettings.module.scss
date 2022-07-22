@@ -29,16 +29,19 @@
   right: 0;
   top: 100%;
   width: 100%;
-  min-width: 145px;
+  min-width: 213px;
   padding: 11px 0 0;
   visibility: hidden;
   background: $black;
   box-sizing: border-box;
+  border: 1px solid $dark-red;
   border-radius: 0 0 8px 8px;
-  box-shadow: $red 1px 1px 2px;
+
 
   &__open {
     visibility: visible;
+    transition:  all 0.4s ease;
+    transition-property: visibility;
   }
 
   &__tooltip{
@@ -65,7 +68,7 @@
 
   &__list {
     width: 100%;
-    padding: 0 7px;
+    padding: 0 18px 0 12px;
     list-style: none;
     @extend %flex-center;
     flex-direction: column;
@@ -82,6 +85,11 @@
 
       &__wrapper{
         position: relative;
+
+        &__typo{
+          font-size: 16px;
+          color: $white;
+        }
       }
 
       &__child{

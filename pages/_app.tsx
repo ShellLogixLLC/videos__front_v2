@@ -11,6 +11,7 @@ import React, {useEffect} from 'react';
 
 import store, {wrapper} from '~/store';
 import {getCookieFromBrowser} from '~/libraries';
+import {wishlistActions} from '~/store/wishlist';
 import {authActions, authSelect} from '~/store/auth';
 import {useAppDispatch, useAppSelector} from '~/hooks';
 import {
@@ -29,6 +30,7 @@ const ProdApp: React.FC<AppProps> = ({Component, pageProps}) => {
   useEffect(() => {
     if (!userInfo && token) {
       dispatch(authActions.loginWithToken({token: token as string}));
+      dispatch(wishlistActions.getWishlistIds());
     }
   }, []);
 

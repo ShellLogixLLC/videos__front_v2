@@ -1,5 +1,6 @@
 .wrapper {
   @extend %flex-justify-between;
+  display: none;
 
   &__content {
     max-width: calc(100% - 340px);

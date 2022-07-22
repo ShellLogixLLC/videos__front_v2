@@ -1,4 +1,5 @@
 import cookie from 'js-cookie';
+import {GetServerSidePropsContext} from 'next';
 
 import {Route} from '~/constants';
 
@@ -26,6 +27,14 @@ export const removeCookie = (key: string): void => {
 export const getCookieFromBrowser = (key: string): string => {
   return cookie.get(key) as string;
 };
+
+export const getCookieFromContext = (
+  ctx: GetServerSidePropsContext<any>,
+): string | undefined =>
+  ctx.req.headers.cookie
+    ?.split(';')
+    .find((cookie) => cookie.includes('token'))
+    ?.replace('token=', '');
 
 const getCookieFromServer = (key: string, cookie: string) => {
   if (!cookie) {
