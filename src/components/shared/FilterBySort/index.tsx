@@ -1,9 +1,8 @@
-import React, {useMemo, useRef} from 'react';
+import React, {useMemo} from 'react';
 import {useToggle} from 'react-use';
 import classNames from 'classnames';
 
 import {FilterLampIcon} from '~/assets';
-import {useOnClickOutside} from '~/hooks';
 
 import Link from '../Link';
 import Typography from '../Typography';
@@ -12,7 +11,6 @@ import {IFilterBySortProps} from './types';
 import styles from './FilterBySort.module.scss';
 
 const FilterBySort: React.FC<IFilterBySortProps> = ({options}) => {
-  const filterRef = useRef<HTMLDivElement | null>(null);
   const [expanded, toggleExpanded] = useToggle(false);
 
   const containerClasses = classNames(styles.container, {
@@ -21,10 +19,6 @@ const FilterBySort: React.FC<IFilterBySortProps> = ({options}) => {
 
   const innerClasses = classNames(styles.container__content__child, {
     [styles.container__content__child__animation]: expanded,
-  });
-
-  useOnClickOutside(filterRef, () => {
-    toggleExpanded(false);
   });
 
   const renderFilteredTable = useMemo(
@@ -44,7 +38,7 @@ const FilterBySort: React.FC<IFilterBySortProps> = ({options}) => {
   );
 
   return (
-    <div ref={filterRef} onClick={toggleExpanded} className={containerClasses}>
+    <div onClick={toggleExpanded} className={containerClasses}>
       <div className={styles.container__header}>
         <Typography className={styles.container__header__title}>
           sortBy
