@@ -4,6 +4,7 @@ import {useRouter} from 'next/router';
 
 import {useWindowSize} from '~/hooks';
 import {SearchBackArrowIcon} from '~/assets';
+import {getCookieFromBrowser} from '~/libraries';
 import {CategoryFilters, INITIAL_SUB_CATEGORY_TRANSFORM} from '~/constants';
 
 import Link from '../Link';
@@ -15,6 +16,8 @@ const SubCategories: React.FC<SubCategoriesProps> = ({
   wrapperClass,
   subCategoriesList,
 }) => {
+  const lng = getCookieFromBrowser('activeLang');
+
   const router = useRouter();
   const {query} = router;
   const {isDesktop, windowWidth} = useWindowSize();
@@ -83,7 +86,7 @@ const SubCategories: React.FC<SubCategoriesProps> = ({
         }}
         as={`/category/${id}`}
         className={itemClasses}>
-        {name.en}
+        {name[lng]}
       </Link>
     );
   });

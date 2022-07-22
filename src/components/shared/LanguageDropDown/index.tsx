@@ -4,8 +4,9 @@ import {useToggle} from 'react-use';
 import {useRouter} from 'next/router';
 
 import {langData} from '~/utils';
-import {useOnClickOutside} from '~/hooks';
+import {setCookie} from '~/libraries';
 import {LocaleType} from '~/types';
+import {useOnClickOutside} from '~/hooks';
 
 import Link from '../Link';
 import Button from '../Button';
@@ -29,6 +30,7 @@ const LanguageDropDown: React.FC = () => {
   };
 
   useEffect(() => {
+    setCookie('activeLang', activeLang);
     i18n?.addResourceBundle(activeLang, 'Lang-name', {key: activeLang});
   }, [activeLang]);
 

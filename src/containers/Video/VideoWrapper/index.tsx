@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {VideosService} from '~/api';
+import {getCookieFromBrowser} from '~/libraries';
 import {
   Video,
   VideoSkeleton,
@@ -11,6 +12,8 @@ import {
 import styles from '../Video.module.scss';
 
 const VideoWrapper: React.FC = () => {
+  const lng = getCookieFromBrowser('activeLang');
+
   const {data, isLoading} = VideosService.useVideoById();
 
   if (isLoading) {
@@ -42,11 +45,11 @@ const VideoWrapper: React.FC = () => {
           videoDuration={duration}
         />
         <VideoDescription
-          videoName={title.en}
+          videoName={title[lng]}
           likeCount={likesCount}
           viewCount={views}
           createdAt={createdAt}
-          description={description.en}
+          description={description[lng]}
         />
       </div>
     </>
