@@ -25,14 +25,21 @@ import nextI18nConfig from '../next-i18next.config';
 const ProdApp: React.FC<AppProps> = ({Component, pageProps}) => {
   const dispatch = useAppDispatch();
   const token = getCookieFromBrowser('token');
-  const {userInfo} = useAppSelector(authSelect);
+
+  const {userInfo, accessToken} = useAppSelector(authSelect);
+  const isVerified = userInfo?.isVerified;
+
+  useEffect(() => {
+    if (accessToken && isVerified) {
+      dispatch(wishlistActions.getWishlistIds());
+    }
+  }, [accessToken, isVerified, dispatch]);
 
   useEffect(() => {
     if (!userInfo && token) {
       dispatch(authActions.loginWithToken({token: token as string}));
-      dispatch(wishlistActions.getWishlistIds());
     }
-  }, []);
+  }, [dispatch, token, userInfo]);
 
   return (
     <Provider store={store}>

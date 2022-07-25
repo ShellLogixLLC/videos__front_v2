@@ -6,7 +6,6 @@ import {Loader} from '~/components';
 import {Route, signInForm} from '~/constants';
 import {authActions, authSelect} from '~/store/auth';
 import {useAppDispatch, useAppSelector, useLocales} from '~/hooks';
-import {wishlistActions} from '~/store/wishlist';
 
 import Form from '../../shared/forms/Form';
 import Link from '../../shared/Link';
@@ -16,21 +15,17 @@ import styles from './SignIn.module.scss';
 
 const SignIn: React.FC = () => {
   const dispatch = useAppDispatch();
-  const {userInfo, error} = useAppSelector(authSelect);
 
-  const isVerified = userInfo?.isVerified;
+  const {userInfo, accessToken, error} = useAppSelector(authSelect);
 
   const [isLoading, toggleIsLoading] = useToggle(false);
 
   const handleSignInFormSubmit = useCallback(
     (values) => {
       dispatch(authActions.login(values));
-      if (isVerified) {
-        dispatch(wishlistActions.getWishlistIds());
-      }
       toggleIsLoading();
     },
-    [dispatch, toggleIsLoading],
+    [dispatch, toggleIsLoading, accessToken],
   );
 
   useEffect(() => {

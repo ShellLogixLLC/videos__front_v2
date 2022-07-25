@@ -17,14 +17,13 @@
   &__content {
     width: 100%;
     max-width: 409px;
-    min-height: 230px;
+    min-height: 213px;
     position: relative;
     border-radius: 13px;
-    @extend %flex-between;
+    @extend %flex-center;
     flex-direction: column;
     background-color: $black;
     box-shadow: $red 0px 0px 6px;
-    padding: 14px 20px 50px 19px;
 
     @include breakpoint(tablet){
       max-width: 369px;
@@ -139,7 +138,7 @@
 
     &__title {
       @extend %heading_extra;
-      font-size:24px;
+      font-size:20px;
       color: $white;
       cursor: pointer;
       line-break: anywhere;
@@ -176,7 +175,7 @@
       width: 100%;
 
       &:not(:last-child){
-        margin-bottom: 12px;
+        margin-bottom: 24px;
       }
 
       &__star{
