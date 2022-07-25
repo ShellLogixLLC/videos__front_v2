@@ -54,7 +54,8 @@ const FilmCard: React.FC<FilmCardProps> = ({
     [styles.wrapper__film_like_it]: isLiked,
   });
 
-  const toggleIsLiked = async () => {
+  const toggleIsLiked = async (e: React.MouseEvent) => {
+    e.preventDefault();
     setIsLiked(!isLiked);
 
     if (!isLiked) {

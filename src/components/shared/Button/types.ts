@@ -15,7 +15,7 @@ export interface IButtonProps {
   disabled?: boolean;
   children: ReactNode;
   className?: string;
-  onClick?: () => void;
+  onClick?: (e?: any) => void;
   LeftIcon?: SVGIconProp;
   RightIcon?: SVGIconProp;
   containerLeftClasses?: string;
