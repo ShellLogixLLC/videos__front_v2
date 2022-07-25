@@ -131,7 +131,7 @@
       @extend %text-elypsis;
       max-width: 150px;
       width: 100%;
-      cursor: text;
+      cursor: pointer;
       user-select: text;
       text-transform: capitalize;
       transition: color ease-in-out 0.2s;
