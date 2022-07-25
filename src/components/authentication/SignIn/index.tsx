@@ -6,6 +6,7 @@ import {Loader} from '~/components';
 import {Route, signInForm} from '~/constants';
 import {authActions, authSelect} from '~/store/auth';
 import {useAppDispatch, useAppSelector, useLocales} from '~/hooks';
+import {wishlistActions} from '~/store/wishlist';
 
 import Form from '../../shared/forms/Form';
 import Link from '../../shared/Link';
@@ -22,6 +23,7 @@ const SignIn: React.FC = () => {
   const handleSignInFormSubmit = useCallback(
     (values) => {
       dispatch(authActions.login(values));
+      dispatch(wishlistActions.getWishlistIds());
       toggleIsLoading();
     },
     [dispatch, toggleIsLoading],
