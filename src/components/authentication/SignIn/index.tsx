@@ -18,12 +18,16 @@ const SignIn: React.FC = () => {
   const dispatch = useAppDispatch();
   const {userInfo, error} = useAppSelector(authSelect);
 
+  const isVerified = userInfo?.isVerified;
+
   const [isLoading, toggleIsLoading] = useToggle(false);
 
   const handleSignInFormSubmit = useCallback(
     (values) => {
       dispatch(authActions.login(values));
-      dispatch(wishlistActions.getWishlistIds());
+      if (isVerified) {
+        dispatch(wishlistActions.getWishlistIds());
+      }
       toggleIsLoading();
     },
     [dispatch, toggleIsLoading],

@@ -22,8 +22,6 @@ const Home: React.FC = () => {
 
   const {wishlistIds: wishlistData} = useAppSelector(wishlistSelect);
 
-  console.log(wishlistData, 'data');
-
   return (
     <article className={styles.wrapper}>
       <div className={styles.wrapper__content}>

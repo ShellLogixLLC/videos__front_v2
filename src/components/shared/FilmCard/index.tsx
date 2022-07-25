@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import classNames from 'classnames';
-import {useToggle} from 'react-use';
+// import {useToggle} from 'react-use';
 
 import {createDate} from '~/utils';
 import {VideosProps} from '~/types';
@@ -41,7 +41,7 @@ const FilmCard: React.FC<FilmCardProps> = ({
 
   const isVideoFavorite = isFavorite || wishlist?.includes(id) || false;
 
-  const [isLiked, setIsLiked] = useToggle(isVideoFavorite);
+  const [isLiked, setIsLiked] = useState<boolean>(isVideoFavorite);
 
   const dispatch = useAppDispatch();
 
@@ -52,11 +52,11 @@ const FilmCard: React.FC<FilmCardProps> = ({
   const durationMinutes = Math.floor(duration / 60);
 
   const isLikedClasses = classNames(styles.wrapper__film_not_like_it, {
-    [styles.wrapper__film_like_it]: isLiked,
+    [styles.wrapper__film_like_it]: isVideoFavorite,
   });
 
   const toggleIsLiked = async () => {
-    setIsLiked();
+    setIsLiked(!isLiked);
 
     if (!isLiked) {
       await dispatch(addToWishlist({videoId: id}));
