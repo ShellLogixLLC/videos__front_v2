@@ -25,7 +25,12 @@ const ProfileSettings: React.FC = () => {
 
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const handleDropdownClick = (): void => {
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  const handleDropdownClick = (e: React.MouseEvent): void => {
+    if (wrapperRef?.current?.contains(e.target as Node)) {
+      return;
+    }
     setDropdownOpen(!isDropdownOpen);
   };
 
@@ -162,6 +167,7 @@ const ProfileSettings: React.FC = () => {
       </div>
       <LogoutModal close={closeModal} show={showLogoutModal} />
       <ProfileModal
+        ref={wrapperRef}
         expanded={showProfileModal}
         setExpanded={setShowProfileModal}
       />

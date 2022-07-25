@@ -8,7 +8,6 @@ import {
   HorizontalSlider,
   Typography,
 } from '~/components';
-import WishlistSearchService from '~/api/wishlist';
 import {useAppSelector} from '~/hooks';
 import {wishlistSelect} from '~/store/wishlist';
 
