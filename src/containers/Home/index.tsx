@@ -1,6 +1,8 @@
 import React from 'react';
 
 import {filteredMass} from '~/utils';
+import {useAppSelector} from '~/hooks';
+import {wishlistSelect} from '~/store/wishlist';
 import {CategoryService, VideosService} from '~/api';
 import {
   DatePicker,
@@ -8,9 +10,6 @@ import {
   HorizontalSlider,
   Typography,
 } from '~/components';
-import WishlistSearchService from '~/api/wishlist';
-import {useAppSelector} from '~/hooks';
-import {wishlistSelect} from '~/store/wishlist';
 
 import styles from './Home.module.scss';
 

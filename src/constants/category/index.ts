@@ -4,4 +4,12 @@ export enum CategoryFilters {
   TopRated = 'topRated',
   Duration = 'duration',
   TopViews = 'topViews',
+  MostLiked = 'mostLiked',
+  MostViewed = 'mostViewed',
+}
+
+export enum ActiveCategoryRoute {
+  New = 'new',
+  Most_Liked = 'most-liked',
+  Most_Viewed = 'most-viewed',
 }

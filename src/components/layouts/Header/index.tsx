@@ -6,9 +6,9 @@ import {useRouter} from 'next/router';
 import {ToggleContext} from '~/context';
 import {useWindowSize} from '~/hooks';
 import {CategoryService} from '~/api';
-import {routes, routesBurger} from '~/utils';
 import {getCookieFromBrowser} from '~/libraries';
 import {NavigationConstants, Route} from '~/constants';
+import {routes, routesBurger, setQueryParams} from '~/utils';
 import {
   LogoIcon,
   MenuIcon,
@@ -30,9 +30,9 @@ import styles from './Header.module.scss';
 
 const Header: React.FC = () => {
   const token = getCookieFromBrowser('token');
-  const {pathname, query} = useRouter();
   const {expanded} = useContext(ToggleContext);
   const {isDesktop} = useWindowSize();
+  const {pathname, query} = useRouter();
 
   const {data} = CategoryService.useCategories();
   const categories = data?.categories;
@@ -126,13 +126,16 @@ const Header: React.FC = () => {
     );
   };
 
-  const headerTable = routes.map(({id, routeName, pageName}) => {
+  const headerTable = routes.map(({id, routeName, pageName, queryValue}) => {
     return pageName === NavigationConstants.Categories ? (
       renderCategory()
     ) : (
       <Link
         key={id}
         to={routeName}
+        queryKey="name"
+        queryValue={queryValue && queryValue}
+        onClick={() => setQueryParams({...query, page: 0})}
         className={styles.wrapper__content_menu__link}
         activeClassName={styles.wrapper__content_menu__link_active}>
         <Typography className={styles.wrapper__content_menu__link__typo}>
@@ -142,33 +145,38 @@ const Header: React.FC = () => {
     );
   });
 
-  const renderMobileMenu = routesBurger.map(({id, routeName, pageName}) => {
-    return pageName === NavigationConstants.Categories ? (
-      renderCategory()
-    ) : !token && pageName === NavigationConstants.Favorites ? (
-      <Typography
-        key={id}
-        className={styles.wrapper__content__burger__container__nav__items}
-        onClick={openLikeItPopup}>
-        {pageName}
-      </Typography>
-    ) : (
-      <Link
-        key={id}
-        to={routeName}
-        className={styles.wrapper__content__burger__container__nav__items}
-        activeClassName={
-          styles.wrapper__content__burger__container__nav__items_active
-        }>
+  const renderMobileMenu = routesBurger.map(
+    ({id, routeName, pageName, queryValue}) => {
+      return pageName === NavigationConstants.Categories ? (
+        renderCategory()
+      ) : !token && pageName === NavigationConstants.Favorites ? (
         <Typography
-          className={
-            styles.wrapper__content__burger__container__nav__items__typo
-          }>
+          key={id}
+          className={styles.wrapper__content__burger__container__nav__items}
+          onClick={openLikeItPopup}>
           {pageName}
         </Typography>
-      </Link>
-    );
-  });
+      ) : (
+        <Link
+          key={id}
+          to={routeName}
+          queryKey="name"
+          queryValue={queryValue && queryValue}
+          onClick={() => setQueryParams({...query, page: 0})}
+          className={styles.wrapper__content__burger__container__nav__items}
+          activeClassName={
+            styles.wrapper__content__burger__container__nav__items_active
+          }>
+          <Typography
+            className={
+              styles.wrapper__content__burger__container__nav__items__typo
+            }>
+            {pageName}
+          </Typography>
+        </Link>
+      );
+    },
+  );
 
   return (
     <header className={styles.wrapper}>
