@@ -4,7 +4,7 @@ import emojiList from 'emojis-list';
 import classNames from 'classnames';
 import usePortal from 'react-useportal';
 
-import {useOnClickOutside} from '~/hooks';
+import {useLocales, useOnClickOutside} from '~/hooks';
 
 import Typography from '../Typography';
 import inputStyles from '../Input/Input.module.scss';
@@ -66,6 +66,8 @@ const EmojisInput = forwardRef<any, InputProps>(
       setCurrentEmoji(emojiList[Math.floor(Math.random() * emojiList.length)]);
     };
 
+    const {translatedTypo: translatedPlaceholder} = useLocales(placeholder);
+
     return (
       <label htmlFor={name} className={labelClasses}>
         {label}
@@ -79,7 +81,7 @@ const EmojisInput = forwardRef<any, InputProps>(
             autoComplete="off"
             disabled={disabled}
             className={inputClasses}
-            placeholder={placeholder}
+            placeholder={translatedPlaceholder || placeholder}
             onMouseOver={onMouseOver}
           />
           <div

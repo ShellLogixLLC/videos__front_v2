@@ -5,7 +5,7 @@ import {BaseEmoji} from 'emoji-mart';
 import {useRouter} from 'next/router';
 
 import {videoActions} from '~/store/video';
-import {useAppDispatch} from '~/hooks';
+import {useAppDispatch, useLocales} from '~/hooks';
 import {Button, EmojisInput, Typography} from '~/components';
 
 import styles from './Comments.module.scss';
@@ -39,11 +39,14 @@ const CommentForm: React.FC<ICommentForm> = ({addNewComment}) => {
     setValue('comment', getValues('comment') + emoji.native);
   };
 
+  const {translatedTypo: translatedPlaceholder} =
+    useLocales('typeYourTextHere');
+
   return (
     <form className={styles.block__form__box} onSubmit={handleSubmit(onSubmit)}>
       <EmojisInput
         {...register('comment')}
-        placeholder="Type your text here..."
+        placeholder={translatedPlaceholder || ''}
         addEmoji={addEmoji}
       />
       <Button disabled={!formState.isValid} type="submit">
