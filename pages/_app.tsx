@@ -27,19 +27,18 @@ const ProdApp: React.FC<AppProps> = ({Component, pageProps}) => {
   const token = getCookieFromBrowser('token');
 
   const {userInfo, accessToken} = useAppSelector(authSelect);
-  const isVerified = userInfo?.isVerified;
 
   useEffect(() => {
-    if (accessToken && isVerified) {
+    if (accessToken) {
       dispatch(wishlistActions.getWishlistIds());
     }
-  }, [accessToken, isVerified, dispatch]);
+  }, [accessToken, dispatch]);
 
   useEffect(() => {
     if (!userInfo && token) {
       dispatch(authActions.loginWithToken({token: token as string}));
     }
-  }, [dispatch, token, userInfo]);
+  }, []);
 
   return (
     <Provider store={store}>
