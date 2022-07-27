@@ -20,8 +20,7 @@ export type ApiServiceOptionsTypes = {
 };
 
 export type Name = {
-  en: string;
-  ru: string;
+  [key: string]: string;
 };
 
 export type VideosData = {

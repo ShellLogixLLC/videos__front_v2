@@ -65,9 +65,9 @@ const CategoryContent: React.FC<CategoryContentTypes> = ({
 
   const renderLoaderCards = Array.from(
     Array(skeletonsCount),
-    (index: number) => (
+    (_, index: number) => (
       <FilmCardSkeletons
-        key={index}
+        key={`categoryContent${index}`}
         cardClasses={styles.favorites__content__card}
       />
     ),

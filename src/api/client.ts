@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, {AxiosRequestConfig} from 'axios';
 
 import {getCookieFromBrowser} from '~/libraries';
 
@@ -8,9 +8,11 @@ export const defaultOptions = {
 
 const api = axios.create(defaultOptions);
 
-api.interceptors.request.use((config) => {
+api.interceptors.request.use((config: AxiosRequestConfig) => {
+  const lng = getCookieFromBrowser('activeLang');
   const token = getCookieFromBrowser('token');
 
+  config.params = {lng, ...config.params};
   config.headers['Authorization'] = `Bearer ${token}`;
 
   return config;
