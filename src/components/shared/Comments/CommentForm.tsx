@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import shortid from 'shortid';
 import {useForm} from 'react-hook-form';
 import {BaseEmoji} from 'emoji-mart';
@@ -15,28 +15,35 @@ const CommentForm: React.FC<ICommentForm> = ({addNewComment}) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const {id: activeVideoId} = router.query;
+  const [hasError, setError] = useState<boolean>(false);
 
   const {handleSubmit, register, formState, setValue, getValues} = useForm({
     mode: 'onChange',
   });
 
   const onSubmit = ({comment}: {[key: string]: string}): void => {
-    dispatch(
-      videoActions.sendComment({
+    if (getValues('comment').trim().length === 0) {
+      // setError(true);
+      return;
+    } else {
+      dispatch(
+        videoActions.sendComment({
+          videoId: activeVideoId,
+          message: comment,
+        }),
+      );
+      setValue('comment', '');
+      addNewComment({
+        id: shortid.generate(),
         videoId: activeVideoId,
         message: comment,
-      }),
-    );
-    setValue('comment', '');
-    addNewComment({
-      id: shortid.generate(),
-      videoId: activeVideoId,
-      message: comment,
-    });
+      });
+      setError(false);
+    }
   };
 
   const addEmoji = (emoji: BaseEmoji): void => {
-    setValue('comment', getValues('comment') + emoji.native);
+    setValue('comment', getValues('comment'.trim()) + emoji.native);
   };
 
   const {translatedTypo: translatedPlaceholder} =
@@ -49,7 +56,10 @@ const CommentForm: React.FC<ICommentForm> = ({addNewComment}) => {
         placeholder={translatedPlaceholder || ''}
         addEmoji={addEmoji}
       />
-      <Button disabled={!formState.isValid} type="submit">
+      <Button
+        className={styles.block__form__button}
+        disabled={!formState.isValid || hasError}
+        type="submit">
         <Typography>comment</Typography>
       </Button>
     </form>

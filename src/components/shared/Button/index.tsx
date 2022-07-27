@@ -29,6 +29,9 @@ const Button: React.FC<IButtonProps> = ({
       [containerLeftClasses]: !!LeftIcon,
       [containerRightClasses]: !!RightIcon,
     },
+    {
+      [styles.container__disabled]: disabled,
+    },
   );
 
   return (
