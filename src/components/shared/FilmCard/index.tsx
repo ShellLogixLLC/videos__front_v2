@@ -70,7 +70,10 @@ const FilmCard: React.FC<FilmCardProps> = ({
 
   return (
     <div className={`${styles.wrapper} ${cardClasses}`}>
-      <Link to="video/[id]" as={`video/${id}`} className={styles.wrapper__film}>
+      <Link
+        to="/video/[id]"
+        as={`/video/${id}`}
+        className={styles.wrapper__film}>
         <div className={styles.wrapper__film__absolute}>
           <Button className={isLikedClasses} onClick={toggleIsLiked}>
             <HeartLikesIcon />
@@ -83,8 +86,8 @@ const FilmCard: React.FC<FilmCardProps> = ({
       </Link>
       <div className={styles.wrapper__other}>
         <Link
-          to="video/[id]"
-          as={`video/${id}`}
+          to="/video/[id]"
+          as={`/video/${id}`}
           className={styles.wrapper__other_name}>
           {title[lng]}
         </Link>
