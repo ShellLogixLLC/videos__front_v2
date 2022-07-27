@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import classNames from 'classnames';
 
 import {createDate} from '~/utils';
@@ -45,6 +45,10 @@ const FilmCard: React.FC<FilmCardProps> = ({
 
   const [isLiked, setIsLiked] = useState<boolean>(isVideoFavorite);
 
+  useEffect(() => {
+    setIsLiked(isVideoFavorite);
+  }, [isVideoFavorite]);
+
   const dispatch = useAppDispatch();
 
   const createdDate = createDate(createdAt);
@@ -54,7 +58,7 @@ const FilmCard: React.FC<FilmCardProps> = ({
   const durationMinutes = Math.floor(duration / 60);
 
   const isLikedClasses = classNames(styles.wrapper__film_not_like_it, {
-    [styles.wrapper__film_like_it]: isVideoFavorite,
+    [styles.wrapper__film_like_it]: isLiked,
   });
 
   const toggleIsLiked = async (e: React.MouseEvent) => {
