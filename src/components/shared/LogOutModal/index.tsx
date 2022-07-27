@@ -6,8 +6,8 @@ import {Typography} from '~/components';
 import {removeCookie} from '~/libraries';
 import {RouterService} from '~/services';
 import Button from '~/components/shared/Button';
-import {useAppDispatch, useLockBodyScroll, useOnClickOutside} from '~/hooks';
 import {wishlistActions} from '~/store/wishlist';
+import {useAppDispatch, useLockBodyScroll, useOnClickOutside} from '~/hooks';
 
 import {LogOutModalProps} from './types';
 import styles from './LogOutModal.module.scss';

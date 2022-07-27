@@ -7,22 +7,21 @@
   height: 100%;
   min-height: 100vh;
   touch-action: none;
-  background: $logout-modal-background;
-  z-index: 1111!important;
   transition: all .5s;
+  z-index: 1111!important;
+  background: $logout-modal-background;
 
   &__container{
     width: 100%;
+    padding: 24px;
     max-width: 535px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
     position: relative;
+    @extend %flex-align;
+    flex-direction: column;
     color: rgba(0,0,0,.65);
     background: rgba(0,0,0,0.91);
     box-shadow: $red 2px 2px 4px;
     border-radius: 8px;
-    padding: 24px;
 
     @include breakpoint(wide){
       max-width: 405px;
@@ -59,10 +58,10 @@
     flex-direction: column;
 
     &__title{
+      text-align: center;
+      padding: 8px 0 24px;
       @extend %heading_extra;
       color: $white !important;
-      padding: 8px 0 24px;
-      text-align: center;
 
       @include breakpoint(tablet){
         padding: 8px 0 16px;
@@ -82,8 +81,7 @@
     }
 
     &__buttons{
-      @extend %flex-center;
-      justify-content: space-between;
+      @extend %flex-between;
       width: 100%;
 
       &__cancel{
