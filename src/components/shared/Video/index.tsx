@@ -11,6 +11,8 @@ import {VideoSkeleton} from '~/components';
 import MutedVolumeIcon from '~/assets/icons/muted-volume.svg';
 import {useWindowSize, useEventListener} from '~/hooks/index';
 import {
+  VIDEO_LOAD,
+  VIDEO_ERROR,
   SKIP_SECONDS,
   AHEAD_SECONDS,
   SPACE_KEY_CODE,
@@ -34,6 +36,8 @@ const Video: React.FC<IVideoProps> = ({
   const {isMaxTablet} = useWindowSize();
 
   const [muted, setMuted] = useState<boolean>(false);
+  const [isLoad, setIsLoad] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
   const [keyStatus, setKeyStatus] = useState({
     backward: false,
     forward: false,
@@ -236,6 +240,27 @@ const Video: React.FC<IVideoProps> = ({
     [styles.video__forward]: keyStatus.forward,
   });
 
+  useEffect(() => {
+    if (videoRef?.current) {
+      if (isLoad) {
+        videoRef.current.poster = VIDEO_LOAD;
+      } else {
+        videoRef.current.poster = posterSrc;
+      }
+
+      if (isError) {
+        videoRef.current.poster = VIDEO_ERROR;
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoad, isError]);
+
+  const handleError = () => setIsError(true);
+
+  const handleLoadStart = () => setIsLoad(true);
+
+  const handleLoadedData = () => setIsLoad(false);
+
   return (
     <React.Fragment>
       {loading ? (
@@ -320,13 +345,15 @@ const Video: React.FC<IVideoProps> = ({
             onMouseLeave={handleMouseOut}
             ref={videoRef}
             muted={muted}
-            poster={posterSrc}
             onClick={handleVideoClick}
+            onLoadedData={handleLoadedData}
+            onLoadStart={handleLoadStart}
+            onError={handleError}
             controls={!isMaxTablet}>
             <source src={videoSrc} type="video/mp4" />
             <track kind="captions" />
           </video>
-          {videoElement?.paused && !isMouseOver && (
+          {videoElement?.paused && !isMouseOver && !isLoad && !isError && (
             <button onClick={handlePlayPauseClick}>
               <PlayIcon />
             </button>
