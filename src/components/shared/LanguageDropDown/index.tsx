@@ -3,6 +3,7 @@ import {i18n} from 'next-i18next';
 import {useRouter} from 'next/router';
 
 import {langData} from '~/utils';
+import {setCookie} from '~/libraries';
 
 import Link from '../Link';
 
@@ -10,6 +11,7 @@ import styles from './LanguageDropDown.module.scss';
 
 const LanguageDropDown: React.FC = () => {
   const {asPath, locale} = useRouter();
+
   const [activeLang, setActiveLang] = useState<string>(locale as string);
 
   const filterRef = useRef<HTMLDivElement | null>(null);
@@ -19,6 +21,7 @@ const LanguageDropDown: React.FC = () => {
   };
 
   useEffect(() => {
+    setCookie('activeLang', activeLang);
     i18n?.addResourceBundle(activeLang, 'Lang-name', {key: activeLang});
   }, [activeLang]);
 

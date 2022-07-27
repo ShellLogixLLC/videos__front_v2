@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import {createDate} from '~/utils';
 import {VideosProps} from '~/types';
 import {useAppDispatch} from '~/hooks';
+import {getCookieFromBrowser} from '~/libraries';
 import {addToWishlist, deleteFromWishlist} from '~/store/wishlist/thunks';
 import {
   HeartLikesIcon,
@@ -27,6 +28,8 @@ const FilmCard: React.FC<FilmCardProps> = ({
   wishlist,
   isFavorite = false,
 }) => {
+  const lng = getCookieFromBrowser('activeLang');
+
   const {
     id,
     duration,
@@ -80,11 +83,11 @@ const FilmCard: React.FC<FilmCardProps> = ({
           to="video/[id]"
           as={`video/${id}`}
           className={styles.wrapper__other_name}>
-          {title?.en}
+          {title[lng]}
         </Link>
         <span className={styles.wrapper__other__dw_date}>{createdDate}</span>
       </div>
-      <p className={styles.wrapper__pr_description}>{description?.en}</p>
+      <p className={styles.wrapper__pr_description}>{description[lng]}</p>
       <div className={styles.wrapper__card_footer}>
         <div className={styles.wrapper__card_footer_item}>
           <p>{likesCount}</p>

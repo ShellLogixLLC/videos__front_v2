@@ -2,6 +2,7 @@ import React from 'react';
 
 import {CategoryImage} from '~/assets';
 import {CategoriesProps} from '~/types';
+import {getCookieFromBrowser} from '~/libraries';
 import {CategoryCardSkeleton, Link, Typography} from '~/components';
 
 import Image from '../Image';
@@ -10,6 +11,8 @@ import {CategoryCardProps} from './types';
 import styles from './CategoryCard.module.scss';
 
 const CategoryCard: React.FC<CategoryCardProps> = ({item, isLoading}) => {
+  const lng = getCookieFromBrowser('activeLang');
+
   const {name, id} = item as CategoriesProps;
 
   return isLoading ? (
@@ -25,7 +28,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({item, isLoading}) => {
         className={styles.container__content}
       />
       <Typography tagName="span" className={styles.container__name}>
-        {name?.en}
+        {name[lng]}
       </Typography>
     </Link>
   );
