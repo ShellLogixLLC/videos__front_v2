@@ -1,8 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 import shortid from 'shortid';
 import {useForm} from 'react-hook-form';
 import {BaseEmoji} from 'emoji-mart';
 import {useRouter} from 'next/router';
+import {yupResolver} from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import classNames from 'classnames';
 
 import {videoActions} from '~/store/video';
 import {useAppDispatch, useLocales} from '~/hooks';
@@ -15,36 +18,38 @@ const CommentForm: React.FC<ICommentForm> = ({addNewComment}) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const {id: activeVideoId} = router.query;
-  const [hasError, setError] = useState<boolean>(false);
 
-  const {handleSubmit, register, formState, setValue, getValues} = useForm({
-    mode: 'onChange',
+  const schema = yup.object({
+    comment: yup.string().trim().required(),
   });
 
-  const onSubmit = ({comment}: {[key: string]: string}): void => {
-    if (getValues('comment').trim().length === 0) {
-      // setError(true);
-      return;
-    } else {
-      dispatch(
-        videoActions.sendComment({
-          videoId: activeVideoId,
-          message: comment,
-        }),
-      );
-      setValue('comment', '');
-      addNewComment({
-        id: shortid.generate(),
+  const {handleSubmit, register, formState, setValue, getValues} = useForm({
+    mode: 'all',
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit = ({comment}: {[key: string]: string}): void | any => {
+    dispatch(
+      videoActions.sendComment({
         videoId: activeVideoId,
         message: comment,
-      });
-      setError(false);
-    }
+      }),
+    );
+    setValue('comment', '');
+    addNewComment({
+      id: shortid.generate(),
+      videoId: activeVideoId,
+      message: comment,
+    });
   };
 
   const addEmoji = (emoji: BaseEmoji): void => {
     setValue('comment', getValues('comment'.trim()) + emoji.native);
   };
+
+  const typoClassName = classNames(styles.block__form__button__text, {
+    [styles.block__form__button__text__disabled]: !formState.isValid,
+  });
 
   const {translatedTypo: translatedPlaceholder} =
     useLocales('typeYourTextHere');
@@ -58,9 +63,9 @@ const CommentForm: React.FC<ICommentForm> = ({addNewComment}) => {
       />
       <Button
         className={styles.block__form__button}
-        disabled={!formState.isValid || hasError}
+        disabled={!formState.isValid}
         type="submit">
-        <Typography>comment</Typography>
+        <Typography className={typoClassName}>comment</Typography>
       </Button>
     </form>
   );
