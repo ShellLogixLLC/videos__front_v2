@@ -6,14 +6,18 @@ import {Typography} from '~/components';
 import {removeCookie} from '~/libraries';
 import {RouterService} from '~/services';
 import Button from '~/components/shared/Button';
-import {useLockBodyScroll, useOnClickOutside} from '~/hooks';
+import {wishlistActions} from '~/store/wishlist';
+import {useAppDispatch, useLockBodyScroll, useOnClickOutside} from '~/hooks';
 
 import {LogOutModalProps} from './types';
 import styles from './LogOutModal.module.scss';
 
 const LogoutModal: React.FC<LogOutModalProps> = ({show, close}) => {
+  const dispatch = useAppDispatch();
+
   const handleLogoutSubmit = (): void => {
     removeCookie('token');
+    dispatch(wishlistActions.deleteVideoIds());
     RouterService.push(Route.Home);
     close();
   };

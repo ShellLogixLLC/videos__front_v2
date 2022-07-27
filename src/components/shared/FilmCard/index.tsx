@@ -54,7 +54,7 @@ const FilmCard: React.FC<FilmCardProps> = ({
   const durationMinutes = Math.floor(duration / 60);
 
   const isLikedClasses = classNames(styles.wrapper__film_not_like_it, {
-    [styles.wrapper__film_like_it]: isLiked,
+    [styles.wrapper__film_like_it]: isVideoFavorite,
   });
 
   const toggleIsLiked = async (e: React.MouseEvent) => {

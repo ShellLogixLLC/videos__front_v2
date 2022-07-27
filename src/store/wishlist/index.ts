@@ -17,7 +17,11 @@ const internalInitialState: WishlistSliceState = {
 const wishlistSlice = createSlice({
   name: wishlistReducer,
   initialState: internalInitialState,
-  reducers: {},
+  reducers: {
+    deleteVideoIds(state: WishlistSliceState) {
+      state.wishlistIds = [];
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(wishlistThunks.addToWishlist.pending, (state) => {
       state.loading = LoadingStates.LOADING;

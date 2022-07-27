@@ -15,7 +15,8 @@ import styles from './SignIn.module.scss';
 
 const SignIn: React.FC = () => {
   const dispatch = useAppDispatch();
-  const {userInfo, error} = useAppSelector(authSelect);
+
+  const {userInfo, accessToken, error} = useAppSelector(authSelect);
 
   const [isLoading, toggleIsLoading] = useToggle(false);
 
@@ -24,7 +25,7 @@ const SignIn: React.FC = () => {
       dispatch(authActions.login(values));
       toggleIsLoading();
     },
-    [dispatch, toggleIsLoading],
+    [dispatch, toggleIsLoading, accessToken],
   );
 
   useEffect(() => {
