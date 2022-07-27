@@ -1,7 +1,7 @@
 import {MouseEvent} from 'react';
 import {BaseEmoji} from 'emoji-mart';
 
-import {SVGIconProp} from '~/types/common/index';
+import {SVGIconProp} from '~/types';
 
 export type InputType =
   | 'button'

@@ -41,6 +41,7 @@ const EmojisInput = forwardRef<any, InputProps>(
     );
 
     const [currentEmoji, setCurrentEmoji] = useState(emojiList[0]);
+
     const inputClasses = classNames(styles.container, inputStyles.container, {
       [className]: className,
       [inputStyles.container__error]: !!error,
