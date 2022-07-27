@@ -71,7 +71,7 @@ const DatePicker: FC = () => {
   return (
     <div className={togglerClasses}>
       <div role="button" onClick={toggleIsOpen} className={styles.header}>
-        <Typography className={styles.header__text}>Calendar</Typography>
+        <Typography className={styles.header__text}>calendar</Typography>
         <CalendarOneIcon className={styles.header__icon} />
       </div>
       <div className={`${contentClasses} calendar__trip`}>

@@ -57,22 +57,25 @@ const FilmCard: React.FC<FilmCardProps> = ({
     [styles.wrapper__film_like_it]: isLiked,
   });
 
-  const toggleIsLiked = async () => {
+  const toggleIsLiked = async (e: React.MouseEvent) => {
+    e.preventDefault();
     setIsLiked(!isLiked);
 
     if (!isLiked) {
-      dispatch(addToWishlist({videoId: id}));
+      await dispatch(addToWishlist({videoId: id}));
     } else {
-      dispatch(deleteFromWishlist({videoId: id}));
+      await dispatch(deleteFromWishlist({videoId: id}));
     }
   };
 
   return (
     <div className={`${styles.wrapper} ${cardClasses}`}>
       <Link to="video/[id]" as={`video/${id}`} className={styles.wrapper__film}>
-        <Button className={isLikedClasses} onClick={toggleIsLiked}>
-          <HeartLikesIcon />
-        </Button>
+        <div className={styles.wrapper__film__absolute}>
+          <Button className={isLikedClasses} onClick={toggleIsLiked}>
+            <HeartLikesIcon />
+          </Button>
+        </div>
         <Image src={CategoryImage} alt={'Category Image'} />
         <Typography tagName="span" className={styles.wrapper__film__time}>
           {durationMinutes} : {durationSec}

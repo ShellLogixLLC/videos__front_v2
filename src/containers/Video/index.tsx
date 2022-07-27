@@ -20,7 +20,7 @@ const VideoContainer: React.FC = () => (
       <div className={styles.content}>
         <Link to="/" className={styles.content__back}>
           <LeftArrowIcon />
-          <Typography className={styles.content__back_text}>Back</Typography>
+          <Typography className={styles.content__back_text}>back</Typography>
         </Link>
         <VideoWrapper />
         <Comments />

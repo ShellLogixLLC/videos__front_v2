@@ -3,7 +3,7 @@ import {isEqual} from 'lodash';
 import {useRouter} from 'next/router';
 
 import {LeftArrowIcon} from '~/assets';
-import {useWindowSize} from '~/hooks';
+import {useLocales, useWindowSize} from '~/hooks';
 import {setQueryParams} from '~/utils';
 import {QueryParamsTypes} from '~/types';
 import {DatePicker, Pagination, BackButton} from '~/components';
@@ -60,13 +60,15 @@ const Category: React.FC = () => {
     setNewQueryParams({page});
   };
 
+  const {translatedTypo: translatedBackText} = useLocales('back');
+
   return (
     <article>
       <div className={styles.wrapper}>
         <div className={styles.content}>
           <div className={styles.content__backRoute}>
             <BackButton
-              text="Back"
+              text={translatedBackText || ''}
               LeftIcon={LeftArrowIcon}
               className={styles.content__backRoute__button}
             />

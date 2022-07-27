@@ -54,7 +54,7 @@ const VideoLikeThis: React.FC = () => {
   return (
     <div className={styles.similar}>
       <Typography tagName="h3" className={styles.similar__title}>
-        Videos like this
+        videosLikeThis
       </Typography>
       <InfiniteScroll
         dataLength={likeThisList.length}
