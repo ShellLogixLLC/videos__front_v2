@@ -6,4 +6,9 @@
   padding: 13px 0;
   @extend %search-styling;
   color: $white;
+
+  &__disabled{
+    cursor: not-allowed;
+    background: $white;
+  }
 }

@@ -3,9 +3,12 @@ import shortid from 'shortid';
 import {useForm} from 'react-hook-form';
 import {BaseEmoji} from 'emoji-mart';
 import {useRouter} from 'next/router';
+import {yupResolver} from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import classNames from 'classnames';
 
 import {videoActions} from '~/store/video';
-import {useAppDispatch} from '~/hooks';
+import {useAppDispatch, useLocales} from '~/hooks';
 import {Button, EmojisInput, Typography} from '~/components';
 
 import styles from './Comments.module.scss';
@@ -16,11 +19,16 @@ const CommentForm: React.FC<ICommentForm> = ({addNewComment}) => {
   const router = useRouter();
   const {id: activeVideoId} = router.query;
 
-  const {handleSubmit, register, formState, setValue, getValues} = useForm({
-    mode: 'onChange',
+  const schema = yup.object({
+    comment: yup.string().trim().required(),
   });
 
-  const onSubmit = ({comment}: {[key: string]: string}): void => {
+  const {handleSubmit, register, formState, setValue, getValues} = useForm({
+    mode: 'all',
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit = ({comment}: {[key: string]: string}): void | any => {
     dispatch(
       videoActions.sendComment({
         videoId: activeVideoId,
@@ -36,18 +44,28 @@ const CommentForm: React.FC<ICommentForm> = ({addNewComment}) => {
   };
 
   const addEmoji = (emoji: BaseEmoji): void => {
-    setValue('comment', getValues('comment') + emoji.native);
+    setValue('comment', getValues('comment'.trim()) + emoji.native);
   };
+
+  const typoClassName = classNames(styles.block__form__button__text, {
+    [styles.block__form__button__text__disabled]: !formState.isValid,
+  });
+
+  const {translatedTypo: translatedPlaceholder} =
+    useLocales('typeYourTextHere');
 
   return (
     <form className={styles.block__form__box} onSubmit={handleSubmit(onSubmit)}>
       <EmojisInput
         {...register('comment')}
-        placeholder="Type your text here..."
+        placeholder={translatedPlaceholder || ''}
         addEmoji={addEmoji}
       />
-      <Button disabled={!formState.isValid} type="submit">
-        <Typography>comment</Typography>
+      <Button
+        className={styles.block__form__button}
+        disabled={!formState.isValid}
+        type="submit">
+        <Typography className={typoClassName}>comment</Typography>
       </Button>
     </form>
   );
