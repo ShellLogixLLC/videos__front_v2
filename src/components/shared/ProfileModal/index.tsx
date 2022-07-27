@@ -61,6 +61,10 @@ const ProfileModal = forwardRef<any, PopupProps>(
       },
     );
 
+    const verifiedIconClassName = classNames(
+      styles.wrapper__content__userIcon__verifyIcon,
+    );
+
     useEffect(() => {
       inputRef.current?.focus();
     }, [isUsernameEdited]);
@@ -110,17 +114,9 @@ const ProfileModal = forwardRef<any, PopupProps>(
                     />
                     <div className={styles.wrapper__content__userIcon__child}>
                       {isVerified ? (
-                        <VerifiedIcon
-                          className={
-                            styles.wrapper__content__userIcon__verifyIcon
-                          }
-                        />
+                        <VerifiedIcon className={verifiedIconClassName} />
                       ) : (
-                        <UnverifiedIcon
-                          className={
-                            styles.wrapper__content__userIcon__verifyIcon
-                          }
-                        />
+                        <UnverifiedIcon className={verifiedIconClassName} />
                       )}
                     </div>
                   </div>
