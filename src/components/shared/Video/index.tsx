@@ -242,9 +242,7 @@ const Video: React.FC<IVideoProps> = ({
 
   useEffect(() => {
     if (videoRef?.current) {
-      if (isLoad) {
-        videoRef.current.poster = VIDEO_LOAD;
-      } else {
+      if (isLoad && !isError) {
         videoRef.current.poster = posterSrc;
       }
 
@@ -257,9 +255,7 @@ const Video: React.FC<IVideoProps> = ({
 
   const handleError = () => setIsError(true);
 
-  const handleLoadStart = () => setIsLoad(true);
-
-  const handleLoadedData = () => setIsLoad(false);
+  const handleLoadedData = () => setIsLoad(true);
 
   return (
     <React.Fragment>
@@ -345,15 +341,15 @@ const Video: React.FC<IVideoProps> = ({
             onMouseLeave={handleMouseOut}
             ref={videoRef}
             muted={muted}
+            poster={VIDEO_LOAD}
             onClick={handleVideoClick}
             onLoadedData={handleLoadedData}
-            onLoadStart={handleLoadStart}
             onError={handleError}
             controls={!isMaxTablet}>
             <source src={videoSrc} type="video/mp4" />
             <track kind="captions" />
           </video>
-          {videoElement?.paused && !isMouseOver && !isLoad && !isError && (
+          {videoElement?.paused && !isMouseOver && isLoad && !isError && (
             <button onClick={handlePlayPauseClick}>
               <PlayIcon />
             </button>
