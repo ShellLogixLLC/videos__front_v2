@@ -3,11 +3,11 @@ import {useRouter} from 'next/router';
 
 import {useWindowSize} from '~/hooks';
 import {CategoryService} from '~/api';
-import {CategoryContentTypes} from '~/types';
+import {CategoryContentTypes, VideosProps} from '~/types';
 import {FilmCard, FilmCardSkeletons, Typography} from '~/components';
 import {
-  INITIAL_WISHLIST_LIMIT,
   INITIAL_PAGINATION_MORE_COUNT,
+  INITIAL_PAGINATION_ROWS_PER_PAGE,
 } from '~/constants';
 
 import styles from '../Category.module.scss';
@@ -22,7 +22,7 @@ const CategoryContent: React.FC<CategoryContentTypes> = ({
   const {query} = useRouter();
   const {isMinTablet} = useWindowSize();
 
-  const [videosList, setVideosList] = useState<any>([]);
+  const [videosList, setVideosList] = useState<VideosProps[]>([]);
 
   const queryEndDate = query?.endDate;
   const queryStartDate = query?.startDate;
@@ -33,8 +33,10 @@ const CategoryContent: React.FC<CategoryContentTypes> = ({
   const viewsSort = Number(query?.viewsSort) || '';
   const durationSort = Number(query?.durationSort) || '';
 
-  const limit = isMinTablet ? rowsPerPage : INITIAL_WISHLIST_LIMIT;
-  const offset = !isMinTablet ? activePage * INITIAL_WISHLIST_LIMIT : 0;
+  const limit = isMinTablet ? rowsPerPage : INITIAL_PAGINATION_ROWS_PER_PAGE;
+  const offset = !isMinTablet
+    ? activePage * INITIAL_PAGINATION_ROWS_PER_PAGE
+    : 0;
 
   const {data, isLoading} = CategoryService.useVideosByCategoryId(
     limit,
@@ -52,23 +54,32 @@ const CategoryContent: React.FC<CategoryContentTypes> = ({
       ? totalCount && totalCount % INITIAL_PAGINATION_MORE_COUNT
       : INITIAL_PAGINATION_MORE_COUNT;
 
+  const desktopSkeletonsCount =
+    (activePage + 1) * INITIAL_PAGINATION_ROWS_PER_PAGE > totalCount
+      ? totalCount % INITIAL_PAGINATION_ROWS_PER_PAGE
+      : INITIAL_PAGINATION_ROWS_PER_PAGE;
+
   const skeletonsCount = !isMinTablet
-    ? totalCount < INITIAL_WISHLIST_LIMIT * activePage
-      ? totalCount && totalCount % INITIAL_WISHLIST_LIMIT
-      : INITIAL_WISHLIST_LIMIT
+    ? desktopSkeletonsCount
     : tabletSkeletonsCount;
 
+  const dataVideos = data?.videos;
+  const dataTotalCount = data?.totalCount;
+
   useEffect(() => {
-    setTotalCount(data?.totalCount);
-    setVideosList(data?.videos);
-  }, [data, setTotalCount]);
+    setTotalCount(dataTotalCount);
+    if (dataVideos) {
+      setVideosList(dataVideos);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
 
   const renderLoaderCards = Array.from(
     Array(skeletonsCount),
     (_, index: number) => (
       <FilmCardSkeletons
         key={`categoryContent${index}`}
-        cardClasses={styles.favorites__content__card}
+        cardClasses={styles.content__wrapper_item}
       />
     ),
   );
@@ -77,7 +88,7 @@ const CategoryContent: React.FC<CategoryContentTypes> = ({
     return <div className={styles.content__wrapper}>{renderLoaderCards}</div>;
   }
 
-  const renderVideosList = videosList?.map((item: any) => (
+  const renderVideosList = videosList?.map((item: VideosProps) => (
     <FilmCard
       key={item.id}
       item={item}
@@ -85,18 +96,21 @@ const CategoryContent: React.FC<CategoryContentTypes> = ({
     />
   ));
 
-  return (
-    <>
+  const renderContent =
+    isLoading && !isMinTablet ? (
+      <div className={styles.content__wrapper}>{renderLoaderCards}</div>
+    ) : (
       <div className={styles.content__wrapper}>
-        {totalCount
-          ? renderVideosList
-          : !isLoading && <Typography>sorryWeCouldNotFindAnyResult</Typography>}
+        {dataTotalCount ? (
+          renderVideosList
+        ) : (
+          <Typography>sorryWeCouldNotFindAnyResult</Typography>
+        )}
+        {isLoading && isMinTablet && <>{renderLoaderCards}</>}
       </div>
-      {isLoading && (
-        <div className={styles.content__wrapper}>{renderLoaderCards}</div>
-      )}
-    </>
-  );
+    );
+
+  return <>{renderContent}</>;
 };
 
 export default CategoryContent;

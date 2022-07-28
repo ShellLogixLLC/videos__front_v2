@@ -24,11 +24,10 @@
 
   &__active {
     @extend %box-shadow;
-    height: 391px;
+    height: 420px;
     transition: all 0.3s;
 
     @include breakpoint(desktop) {
-      height: 391px;
       min-height: 391px;
     }
   }

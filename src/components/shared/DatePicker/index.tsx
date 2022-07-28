@@ -48,6 +48,7 @@ const DatePicker: FC = () => {
           ...router.query,
           startDate: rangeValues.from,
           endDate: rangeValues.to,
+          page: 0,
         },
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
