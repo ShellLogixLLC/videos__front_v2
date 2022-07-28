@@ -78,11 +78,7 @@ const CategoryContent: React.FC<CategoryContentTypes> = ({
   }
 
   const renderVideosList = videosList?.map((item: any) => (
-    <FilmCard
-      key={item.id}
-      item={item}
-      cardClasses={styles.content__wrapper_item}
-    />
+    <FilmCard key={item.id} item={item} />
   ));
 
   return (

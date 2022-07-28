@@ -9,6 +9,16 @@
     height: auto;
   }
 
+  &__item {
+    min-width: 433px;
+    margin-right: 20px;
+
+    @include breakpoint(tablet) {
+      min-width: unset;
+      margin: 0;
+    }
+  }
+
   &__content {
     @extend %flex-between;
     width: auto;
