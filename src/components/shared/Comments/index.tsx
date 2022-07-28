@@ -8,7 +8,6 @@ import {CommentType} from '~/api/videos/types';
 import {VideosService} from '~/api';
 import {COMMENTS_LIMIT} from '~/constants';
 import {LanguageArrowTop} from '~/assets';
-import {getCookieFromBrowser} from '~/libraries';
 import {CommentsBlockSkeleton} from '~/components';
 
 import Typography from '../Typography';
@@ -19,7 +18,6 @@ import CommentBlock from './CommentBlock';
 
 const Comments: React.FC = () => {
   const {userInfo} = useSelector(authState);
-  const token = getCookieFromBrowser('token');
 
   const [limit, setLimit] = useState<number>(COMMENTS_LIMIT);
   const [expanded, toggleExpanded] = useToggle(false);
@@ -30,12 +28,10 @@ const Comments: React.FC = () => {
   const boolInverse = totalCount > data?.totalCount;
 
   const blockClassNames = classNames(styles.block, {
-    [styles.block_small]: !token && expanded,
     [styles.block_hidden]: !expanded,
   });
 
   const containerClassNames = classNames(styles.container, {
-    [styles.container_small]: !token && expanded,
     [styles.container_close]: !expanded,
   });
 
@@ -82,11 +78,9 @@ const Comments: React.FC = () => {
           boolInverse={boolInverse}
           totalCount={totalCount}
         />
-        {token && (
-          <div className={styles.block__form}>
-            <CommentForm addNewComment={addNewComment} />
-          </div>
-        )}
+        <div className={styles.block__form}>
+          <CommentForm addNewComment={addNewComment} />
+        </div>
       </div>
     </div>
   );
