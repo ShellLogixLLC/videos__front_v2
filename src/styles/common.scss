@@ -203,9 +203,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  min-width: 200px;
 
   &_description{
-    color: $white !important;
+    color: $black !important;
     flex: 1;
 
     &:first-letter {
@@ -215,7 +216,8 @@
 
   &_button{
     background: $yellow !important;
-    width: unset;
+    width: unset !important;
+    padding: 8px 26px !important;
     border-radius: 6px;
     transition: opacity 0.4s ease;
 

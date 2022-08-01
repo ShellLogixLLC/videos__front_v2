@@ -58,6 +58,9 @@ const MyFavorites: React.FC = () => {
 
   const {translatedTypo} = useLocales('back');
 
+  console.log(data, 'data');
+  console.log(totalCount, 'count');
+
   useEffect(() => {
     if (!isLoading) {
       setVideosList(data.videos);
