@@ -93,5 +93,8 @@
   "sorryWeCouldNotFindAnyResult": "Sorry, we could not find any result",
   "searchResults": "Search Results",
   "videosLikeThis": "Videos like this",
-  "pageNotFound": "OOPS !!! Page not found"
+  "pageNotFound": "OOPS !!! Page not found",
+  "forSignIn": "For Sign in",
+  "clickHere": "click here.",
+  "youShouldBeSignInToAddVideosInYourFavorites":"You should sign in to add videos to your favorites."
 }

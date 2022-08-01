@@ -23,12 +23,12 @@
   "signUp": "Зарегистрироваться",
   "sortBy": "Сортировать по",
   "topRated": "Самые популярные",
-  "topViews": "Самый просмотров",
+  "topViews": "Самые просматриваемые",
   "random": "Случайный",
   "favorites": "Избранное",
   "wishlist": "Избранное",
   "calendar": "Календарь",
-  "duration": "Длительность",
+  "duration": "Продолжительность",
   "mostLiked": "Больше всего понравилось",
   "newVideos": "Новые видео",
   "categories": "Категории",
@@ -93,5 +93,8 @@
   "sorryWeCouldNotFindAnyResult": "Извините, мы не смогли найти ни одного результата",
   "searchResults": "Результаты поиска",
   "videosLikeThis": "Похожие видео",
-  "pageNotFound": "Ой!!! Страница не найдена"
+  "pageNotFound": "Ой!!! Страница не найдена",
+  "forSignIn": "Для войти",
+  "clickHere": "нажмите здесь.",
+  "youShouldBeSignInToAddVideosInYourFavorites":"Вы должны войти в систему, чтобы добавить видео в избранное."
 }

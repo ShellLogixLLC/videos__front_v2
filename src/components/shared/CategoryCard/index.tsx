@@ -11,7 +11,7 @@ import {CategoryCardProps} from './types';
 import styles from './CategoryCard.module.scss';
 
 const CategoryCard: React.FC<CategoryCardProps> = ({item, isLoading}) => {
-  const lng = getCookieFromBrowser('activeLang');
+  const lng = getCookieFromBrowser('activeLang') || 'en';
 
   const {name, id} = item as CategoriesProps;
 

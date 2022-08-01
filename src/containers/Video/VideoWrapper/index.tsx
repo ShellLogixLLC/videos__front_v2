@@ -12,7 +12,7 @@ import {
 import styles from '../Video.module.scss';
 
 const VideoWrapper: React.FC = () => {
-  const lng = getCookieFromBrowser('activeLang');
+  const lng = getCookieFromBrowser('activeLang') || 'en';
 
   const {data, isLoading} = VideosService.useVideoById();
 

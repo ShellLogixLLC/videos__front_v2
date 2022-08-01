@@ -28,7 +28,7 @@ const FilmCard: React.FC<FilmCardProps> = ({
   wishlist,
   isFavorite = false,
 }) => {
-  const lng = getCookieFromBrowser('activeLang');
+  const lng = getCookieFromBrowser('activeLang') || 'en';
 
   const {
     id,

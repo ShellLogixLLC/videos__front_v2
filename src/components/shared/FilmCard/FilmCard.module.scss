@@ -40,7 +40,7 @@
     margin-bottom: 16px;
     background-color: $dark-white;
 
-    &__absolute{
+    &__absolute {
       position: absolute;
       top: 0;
       left: 0;
@@ -48,7 +48,7 @@
       bottom: 0;
       width: 100%;
       height: 100%;
-      z-index: 4324322;
+      z-index: 9;
     }
 
     @include breakpoint(tablet-m) {

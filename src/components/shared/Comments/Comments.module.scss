@@ -121,14 +121,14 @@
     width: 100%;
     margin-top: 24px;
 
-    &__button{
+    &__button {
       margin-top: 24px;
       display: block;
 
-      &__text{
+      &__text {
         color: $white;
 
-        &__disabled{
+        &__disabled {
           color: $red;
         }
       }
@@ -153,7 +153,6 @@
           color: $white;
         }
       }
-
     }
   }
 }
