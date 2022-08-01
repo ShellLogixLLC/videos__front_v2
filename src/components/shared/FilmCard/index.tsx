@@ -3,15 +3,16 @@ import classNames from 'classnames';
 
 import {createDate} from '~/utils';
 import {VideosProps} from '~/types';
+import {WishlistModal} from '~/components';
 import {useAppDispatch} from '~/hooks';
 import {getCookieFromBrowser} from '~/libraries';
 import {addToWishlist, deleteFromWishlist} from '~/store/wishlist/thunks';
 import {
-  HeartLikesIcon,
   FilmLikeIcon,
-  ViewsCountIcon,
   CommentsCount,
   CategoryImage,
+  HeartLikesIcon,
+  ViewsCountIcon,
 } from '~/assets';
 
 import Link from '../Link';
@@ -24,26 +25,28 @@ import styles from './FilmCard.module.scss';
 
 const FilmCard: React.FC<FilmCardProps> = ({
   item,
-  cardClasses = '',
   wishlist,
   isFavorite = false,
+  cardClasses = '',
 }) => {
   const lng = getCookieFromBrowser('activeLang') || 'en';
+  const token = getCookieFromBrowser('token');
 
   const {
     id,
-    duration,
     title,
-    description,
+    views,
+    duration,
     createdAt,
     likesCount,
-    views,
+    description,
     commentsCount,
   } = item as VideosProps;
 
   const isVideoFavorite = isFavorite || wishlist?.includes(id) || false;
 
   const [isLiked, setIsLiked] = useState<boolean>(isVideoFavorite);
+  const [isLikeItPopup, setIsLikeItPopup] = useState<boolean>(false);
 
   useEffect(() => {
     setIsLiked(isVideoFavorite);
@@ -72,47 +75,58 @@ const FilmCard: React.FC<FilmCardProps> = ({
     }
   };
 
+  const handleLoggedOutHeartIcon = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsLikeItPopup(true);
+  };
+
+  const handleHeartIcon = (e: React.MouseEvent) =>
+    token ? toggleIsLiked(e) : handleLoggedOutHeartIcon(e);
+
   return (
-    <div className={`${styles.wrapper} ${cardClasses}`}>
-      <Link
-        to="/video/[id]"
-        as={`/video/${id}`}
-        className={styles.wrapper__film}>
-        <div className={styles.wrapper__film__absolute}>
-          <Button className={isLikedClasses} onClick={toggleIsLiked}>
-            <HeartLikesIcon />
-          </Button>
-        </div>
-        <Image src={CategoryImage} alt={'Category Image'} />
-        <Typography tagName="span" className={styles.wrapper__film__time}>
-          {durationMinutes} : {durationSec}
-        </Typography>
-      </Link>
-      <div className={styles.wrapper__other}>
+    <>
+      <div className={`${styles.wrapper} ${cardClasses}`}>
         <Link
           to="/video/[id]"
           as={`/video/${id}`}
-          className={styles.wrapper__other_name}>
-          {title[lng]}
+          className={styles.wrapper__film}>
+          <div className={styles.wrapper__film__absolute}>
+            <Button className={isLikedClasses} onClick={handleHeartIcon}>
+              <HeartLikesIcon />
+            </Button>
+          </div>
+          <Image src={CategoryImage} alt={'Category Image'} />
+          <Typography tagName="span" className={styles.wrapper__film__time}>
+            {durationMinutes} : {durationSec}
+          </Typography>
         </Link>
-        <span className={styles.wrapper__other__dw_date}>{createdDate}</span>
+        <div className={styles.wrapper__other}>
+          <Link
+            to="/video/[id]"
+            as={`/video/${id}`}
+            className={styles.wrapper__other_name}>
+            {title[lng]}
+          </Link>
+          <span className={styles.wrapper__other__dw_date}>{createdDate}</span>
+        </div>
+        <p className={styles.wrapper__pr_description}>{description[lng]}</p>
+        <div className={styles.wrapper__card_footer}>
+          <div className={styles.wrapper__card_footer_item}>
+            <p>{likesCount}</p>
+            <FilmLikeIcon />
+          </div>
+          <div className={styles.wrapper__card_footer_item}>
+            <p>{views}</p>
+            <ViewsCountIcon />
+          </div>
+          <div className={styles.wrapper__card_footer_item}>
+            <p>{commentsCount}</p>
+            <CommentsCount />
+          </div>
+        </div>
       </div>
-      <p className={styles.wrapper__pr_description}>{description[lng]}</p>
-      <div className={styles.wrapper__card_footer}>
-        <div className={styles.wrapper__card_footer_item}>
-          <p>{likesCount}</p>
-          <FilmLikeIcon />
-        </div>
-        <div className={styles.wrapper__card_footer_item}>
-          <p>{views}</p>
-          <ViewsCountIcon />
-        </div>
-        <div className={styles.wrapper__card_footer_item}>
-          <p>{commentsCount}</p>
-          <CommentsCount />
-        </div>
-      </div>
-    </div>
+      <WishlistModal expanded={isLikeItPopup} setExpanded={setIsLikeItPopup} />
+    </>
   );
 };
 
