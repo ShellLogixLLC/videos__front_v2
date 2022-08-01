@@ -103,6 +103,7 @@ const MyFavorites: React.FC = () => {
       item={item}
       cardClasses={styles.favorites__content__card}
       isFavorite={true}
+      isWishlistPage={true}
     />
   ));
 

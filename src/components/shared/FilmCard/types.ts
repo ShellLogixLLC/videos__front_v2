@@ -5,4 +5,5 @@ export type FilmCardProps = {
   cardClasses?: string;
   wishlist?: string[];
   isFavorite?: boolean;
+  isWishlistPage?: boolean;
 };

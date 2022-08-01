@@ -14,6 +14,8 @@ import {
   HeartLikesIcon,
   ViewsCountIcon,
 } from '~/assets';
+import warnToast from '~/utils/warnToast';
+import {wishlistActions} from '~/store/wishlist';
 
 import Link from '../Link';
 import Image from '../Image';
@@ -28,6 +30,7 @@ const FilmCard: React.FC<FilmCardProps> = ({
   wishlist,
   isFavorite = false,
   cardClasses = '',
+  isWishlistPage,
 }) => {
   const lng = getCookieFromBrowser('activeLang');
   const token = getCookieFromBrowser('token');
@@ -64,6 +67,11 @@ const FilmCard: React.FC<FilmCardProps> = ({
     [styles.wrapper__film_like_it]: isLiked,
   });
 
+  const handleUndoDelete = (): void => {
+    dispatch(addToWishlist({videoId: id}));
+    dispatch(wishlistActions.getWishlistIds());
+  };
+
   const toggleIsLiked = async (e: React.MouseEvent) => {
     e.preventDefault();
     setIsLiked(!isLiked);
@@ -71,6 +79,10 @@ const FilmCard: React.FC<FilmCardProps> = ({
     if (!isLiked) {
       await dispatch(addToWishlist({videoId: id}));
     } else {
+      if (isWishlistPage) {
+        warnToast(id, handleUndoDelete);
+        console.log(id, 'id');
+      }
       await dispatch(deleteFromWishlist({videoId: id}));
     }
   };

@@ -8,6 +8,7 @@ export * from './types';
 
 export {default as langData} from './langData';
 export {default as filmsBase} from './filmsBase';
+export {default as WarnToast} from './warnToast';
 export {default as errorToast} from './errorToast';
 export {default as createDate} from './createDate';
 export {default as formatTimer} from './formatTimer';

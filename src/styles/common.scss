@@ -199,6 +199,33 @@
   }
 }
 
+.warn_toast{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &_description{
+    color: $black !important;
+
+    &:first-letter {
+      text-transform: capitalize;
+    }
+  }
+
+  &_button{
+    background: $red;
+
+    &_title{
+      color: $black !important;
+
+      &:first-letter {
+        text-transform: capitalize;
+      }
+    }
+  }
+
+}
+
 .container_without-header {
   width: 100%;
 
