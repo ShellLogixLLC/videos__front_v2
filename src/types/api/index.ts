@@ -20,7 +20,7 @@ export type ApiServiceOptionsTypes = {
 };
 
 export type Name = {
-  [key: string]: string | string[];
+  [key: string]: string;
 };
 
 export type MonthAndWeekDay = {
