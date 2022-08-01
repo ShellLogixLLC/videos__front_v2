@@ -28,7 +28,7 @@ const HorizontalSliderSkeleton: React.FC<ISkeletonDataTypes> = ({
       </React.Fragment>
     ) : (
       <React.Fragment key={index}>
-        <FilmCardSkeleton />
+        <FilmCardSkeleton cardClasses={styles.wrapper__item} />
       </React.Fragment>
     ),
   );
