@@ -1,11 +1,11 @@
-import {Name} from '~/types';
+import {MonthAndWeekDay} from '~/types';
 
-export const WEEKDAYS_SHORT: Name = {
+export const WEEKDAYS_SHORT: MonthAndWeekDay = {
   en: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
   ru: ['По', 'Вт', 'Ср', 'Че', 'Пя', 'Су', 'Во'],
 };
 
-export const MONTHS: Name = {
+export const MONTHS: MonthAndWeekDay = {
   en: [
     'January',
     'February',
