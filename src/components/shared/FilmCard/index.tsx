@@ -81,7 +81,6 @@ const FilmCard: React.FC<FilmCardProps> = ({
     } else {
       if (isWishlistPage) {
         warnToast(id, handleUndoDelete);
-        console.log(id, 'id');
       }
       await dispatch(deleteFromWishlist({videoId: id}));
     }

@@ -10,6 +10,10 @@ const WarnToast = (id: string, handler: () => void): void => {
         <Typography className="warn_toast_button_title">undo</Typography>
       </Button>
     </div>,
+    {
+      position: 'bottom-right',
+      autoClose: 150000,
+    },
   );
 };
 

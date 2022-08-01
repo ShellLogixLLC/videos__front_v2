@@ -10,6 +10,7 @@ import {
   INITIAL_WISHLIST_LIMIT,
   INITIAL_PAGINATION_MORE_COUNT,
   INITIAL_PAGINATION_ACTIVE_PAGE,
+  Route,
 } from '~/constants';
 import {
   FilmCard,
@@ -17,6 +18,7 @@ import {
   Pagination,
   Typography,
   FilmCardSkeletons,
+  Link,
 } from '~/components';
 
 import styles from './Wishlist.module.scss';
@@ -107,6 +109,26 @@ const MyFavorites: React.FC = () => {
     />
   ));
 
+  const renderEmptyText = (
+    <div className={styles.favorites__empty}>
+      <Typography tagName="span" className={styles.favorites__empty__title}>
+        yourWishlistIsEmpty
+      </Typography>
+      <div className={styles.favorites__empty__wrapper}>
+        <Typography tagName="span" className={styles.favorites__empty__title}>
+          butDontWorryYouCanStillAdd
+        </Typography>
+        <Link className={styles.favorites__empty__link} to={Route.Home}>
+          <Typography
+            tagName="span"
+            className={styles.favorites__empty__link__text}>
+            here
+          </Typography>
+        </Link>
+      </div>
+    </div>
+  );
+
   const setNewQueryParams = (newQueryParams: QueryParamsTypes): void => {
     setQueryParams({...query, ...newQueryParams});
   };
@@ -133,7 +155,7 @@ const MyFavorites: React.FC = () => {
       </div>
 
       <div className={styles.favorites__content__wrapper}>
-        {renderWishlistVideos}
+        {totalCount > 0 ? renderWishlistVideos : renderEmptyText}
       </div>
 
       {isLoading && (

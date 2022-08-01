@@ -205,7 +205,8 @@
   justify-content: space-between;
 
   &_description{
-    color: $black !important;
+    color: $white !important;
+    flex: 1;
 
     &:first-letter {
       text-transform: capitalize;
@@ -213,10 +214,17 @@
   }
 
   &_button{
-    background: $red;
+    background: $yellow !important;
+    width: unset;
+    border-radius: 6px;
+    transition: opacity 0.4s ease;
+
+    &:hover{
+      opacity: 0.8;
+    }
 
     &_title{
-      color: $black !important;
+      color: $white !important;
 
       &:first-letter {
         text-transform: capitalize;

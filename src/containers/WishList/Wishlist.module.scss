@@ -2,6 +2,37 @@
   @extend %flex-justify-between;
   flex-direction: column;
 
+  &__empty{
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    background: $red_opacity_color;
+    padding: 16px;
+
+    &__wrapper{
+      padding-top: 8px;
+    }
+
+    &__title{
+      font-size: 18px;
+    }
+
+    &__link{
+      padding-left: 6px;
+      &__text{
+        color: $white;
+        font-size: 20px;
+        text-decoration: underline;
+        transition: all 0.4s ease;
+      }
+      &:hover{
+
+      }
+    }
+  }
+
   &__backRoute {
     @extend %flex-align;
 
