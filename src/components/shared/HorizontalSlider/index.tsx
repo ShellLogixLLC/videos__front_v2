@@ -49,7 +49,12 @@ const HorizontalSlider: React.FC<HorizontalSliderProps> = ({
     isCategory ? (
       <CategoryCard key={index} item={item} isLoading={isLoading} />
     ) : (
-      <FilmCard key={index} item={item} wishlist={wishlist} />
+      <FilmCard
+        key={index}
+        cardClasses={styles.wrapper__item}
+        item={item}
+        wishlist={wishlist}
+      />
     ),
   );
 
