@@ -5,8 +5,8 @@ import classNames from 'classnames';
 import usePortal from 'react-useportal';
 
 import {CommentPopup} from '~/components';
-import {useLocales, useOnClickOutside} from '~/hooks';
 import {getCookieFromBrowser} from '~/libraries';
+import {useLocales, useOnClickOutside} from '~/hooks';
 
 import Typography from '../Typography';
 import inputStyles from '../Input/Input.module.scss';

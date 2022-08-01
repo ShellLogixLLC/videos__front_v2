@@ -31,10 +31,6 @@ const Comments: React.FC = () => {
     [styles.block_hidden]: !expanded,
   });
 
-  const containerClassNames = classNames(styles.container, {
-    [styles.container_close]: !expanded,
-  });
-
   const arrowIconClasses = classNames(styles.container__content__icon, {
     [styles.container__content__icon__open]: expanded,
   });
@@ -57,7 +53,7 @@ const Comments: React.FC = () => {
   };
 
   return (
-    <div className={containerClassNames}>
+    <div className={styles.container}>
       <div onClick={toggleExpanded} className={styles.container__content}>
         <div className={styles.container__content__title}>
           <Typography className={styles.container__content__title__text}>
