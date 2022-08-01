@@ -12,7 +12,7 @@ const WarnToast = (id: string, handler: () => void): void => {
     </div>,
     {
       position: 'bottom-right',
-      autoClose: 150000,
+      autoClose: 15000,
     },
   );
 };
