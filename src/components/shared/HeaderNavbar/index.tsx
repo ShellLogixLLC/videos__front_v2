@@ -8,9 +8,9 @@ import {getCookieFromBrowser} from '~/libraries';
 import {
   Link,
   Search,
-  WishlistModal,
   SigninDropdown,
   ProfileSettings,
+  UnRegisterPopup,
 } from '~/components';
 
 import styles from '../../layouts/Header/Header.module.scss';
@@ -56,7 +56,7 @@ const HeaderNavbar: React.FC<HeaderNavbarProps> = ({children}) => {
         {renderUserIcons}
       </div>
       {isLikeItPopup && (
-        <WishlistModal
+        <UnRegisterPopup
           expanded={isLikeItPopup}
           setExpanded={setIsLikeItPopup}
         />

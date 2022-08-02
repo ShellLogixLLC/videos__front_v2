@@ -3,8 +3,8 @@ import moment from 'moment';
 import classNames from 'classnames';
 import {useRouter} from 'next/router';
 
-import {WishlistModal} from '~/components';
 import {wishlistSelect} from '~/store/wishlist';
+import {UnRegisterPopup} from '~/components';
 import {getCookieFromBrowser} from '~/libraries';
 import {useAppDispatch, useAppSelector} from '~/hooks';
 import {addToWishlist, deleteFromWishlist} from '~/store/wishlist/thunks';
@@ -93,7 +93,10 @@ const VideDescription: React.FC<VideDescriptionTypes> = ({
         <p className={styles.wrapper__date}>{formatCreatedDate}</p>
         <p className={styles.wrapper__description}>{description}</p>
       </div>
-      <WishlistModal expanded={isLikeItPopup} setExpanded={setIsLikeItPopup} />
+      <UnRegisterPopup
+        expanded={isLikeItPopup}
+        setExpanded={setIsLikeItPopup}
+      />
     </>
   );
 };

@@ -3,8 +3,8 @@ import classNames from 'classnames';
 
 import {createDate} from '~/utils';
 import {VideosProps} from '~/types';
-import {WishlistModal} from '~/components';
 import {useAppDispatch} from '~/hooks';
+import {UnRegisterPopup} from '~/components';
 import {getCookieFromBrowser} from '~/libraries';
 import {addToWishlist, deleteFromWishlist} from '~/store/wishlist/thunks';
 import {
@@ -125,7 +125,10 @@ const FilmCard: React.FC<FilmCardProps> = ({
           </div>
         </div>
       </div>
-      <WishlistModal expanded={isLikeItPopup} setExpanded={setIsLikeItPopup} />
+      <UnRegisterPopup
+        expanded={isLikeItPopup}
+        setExpanded={setIsLikeItPopup}
+      />
     </>
   );
 };
