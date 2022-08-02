@@ -29,7 +29,7 @@ const FilmCard: React.FC<FilmCardProps> = ({
   isFavorite = false,
   cardClasses = '',
 }) => {
-  const lng = getCookieFromBrowser('activeLang');
+  const lng = getCookieFromBrowser('activeLang') || 'en';
   const token = getCookieFromBrowser('token');
 
   const {

@@ -23,6 +23,10 @@ export type Name = {
   [key: string]: string;
 };
 
+export type MonthAndWeekDay = {
+  [key: string]: string[];
+};
+
 export type VideosData = {
   videos: VideosProps[];
   totalCount: number;
