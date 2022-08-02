@@ -8,7 +8,13 @@ import {useLockBodyScroll, useOnClickOutside} from '~/hooks';
 
 import styles from './Popup.module.scss';
 
-const Popup: React.FC<PopupProps> = ({expanded, setExpanded, children}) => {
+const Popup: React.FC<PopupProps> = ({
+  isClose,
+  expanded,
+  children,
+  className = '',
+  setExpanded,
+}) => {
   const {Portal} = usePortal();
 
   const modalRef = useRef<HTMLDivElement | null>(null);
@@ -26,11 +32,15 @@ const Popup: React.FC<PopupProps> = ({expanded, setExpanded, children}) => {
   return (
     <Portal>
       <div className={wrapperClasses}>
-        <div ref={modalRef} className={styles.wrapper__content}>
-          <CloseIcon
-            className={styles.wrapper__content__close_icon}
-            onClick={handleClose}
-          />
+        <div
+          ref={modalRef}
+          className={`${styles.wrapper__content} ${className}`}>
+          {isClose && (
+            <CloseIcon
+              className={styles.wrapper__content__close_icon}
+              onClick={handleClose}
+            />
+          )}
           <div className={styles.wrapper__content__child}>{children}</div>
         </div>
       </div>

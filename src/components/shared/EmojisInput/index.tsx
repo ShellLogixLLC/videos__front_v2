@@ -4,6 +4,8 @@ import emojiList from 'emojis-list';
 import classNames from 'classnames';
 import usePortal from 'react-useportal';
 
+import {CommentPopup} from '~/components';
+import {getCookieFromBrowser} from '~/libraries';
 import {useLocales, useOnClickOutside} from '~/hooks';
 
 import Typography from '../Typography';
@@ -31,6 +33,10 @@ const EmojisInput = forwardRef<any, InputProps>(
   ) => {
     const modalRef = useRef(null);
     const emojiPickerRef = useRef(null);
+
+    const token = getCookieFromBrowser('token');
+
+    const [expanded, setExpanded] = useState<boolean>(false);
 
     const {Portal, openPortal, closePortal, isOpen} = usePortal(
       modalRef.current
@@ -67,57 +73,67 @@ const EmojisInput = forwardRef<any, InputProps>(
       setCurrentEmoji(emojiList[Math.floor(Math.random() * emojiList.length)]);
     };
 
+    const handleFocus = () => {
+      if (!token) {
+        setExpanded(true);
+      }
+    };
+
     const {translatedTypo: translatedPlaceholder} = useLocales(placeholder);
 
     return (
-      <label htmlFor={name} className={labelClasses}>
-        {label}
-        <div className={inputInnerClasses}>
-          <input
-            {...rest}
-            id={name}
-            ref={ref}
-            type="text"
-            name={name}
-            autoComplete="off"
-            disabled={disabled}
-            className={inputClasses}
-            placeholder={translatedPlaceholder || placeholder}
-            onMouseOver={onMouseOver}
-          />
-          <div
-            onClick={openPortal}
-            onMouseOver={mouseOver}
-            className={styles.random_emojis}>
-            {currentEmoji}
-          </div>
+      <>
+        <label htmlFor={name} className={labelClasses}>
+          {label}
+          <div className={inputInnerClasses}>
+            <input
+              {...rest}
+              id={name}
+              ref={ref}
+              type="text"
+              name={name}
+              onFocus={handleFocus}
+              autoComplete="off"
+              disabled={disabled}
+              className={inputClasses}
+              placeholder={translatedPlaceholder || placeholder}
+              onMouseOver={onMouseOver}
+            />
+            <div
+              onClick={openPortal}
+              onMouseOver={mouseOver}
+              className={styles.random_emojis}>
+              {currentEmoji}
+            </div>
 
-          <div ref={modalRef} className={styles.container__modal}>
-            <Portal>
-              {isOpen && (
-                <div
-                  className={styles.container__modal__picker}
-                  ref={emojiPickerRef}>
-                  <Picker
-                    set="apple"
-                    onSelect={addEmoji}
-                    theme="light"
-                    title="Heart <3"
-                    emoji="green_heart"
-                  />
-                </div>
-              )}
-            </Portal>
+            <div ref={modalRef} className={styles.container__modal}>
+              <Portal>
+                {isOpen && (
+                  <div
+                    className={styles.container__modal__picker}
+                    ref={emojiPickerRef}>
+                    <Picker
+                      set="apple"
+                      onSelect={addEmoji}
+                      theme="light"
+                      title="Heart <3"
+                      emoji="green_heart"
+                    />
+                  </div>
+                )}
+              </Portal>
+            </div>
           </div>
-        </div>
-        {error && (
-          <Typography
-            type="Small"
-            className={inputStyles.container__error__text}>
-            {error}
-          </Typography>
-        )}
-      </label>
+          {error && (
+            <Typography
+              type="Small"
+              className={inputStyles.container__error__text}>
+              {error}
+            </Typography>
+          )}
+        </label>
+        <CommentPopup expanded={expanded} setExpanded={setExpanded} />
+      </>
     );
   },
 );
