@@ -30,8 +30,8 @@ const Category: React.FC = () => {
   const [totalCount, setTotalCount] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(currentPerPageCount);
 
-  const queryName = query.name;
-  const queryPage = query.page;
+  const queryName = query?.name;
+  const queryPage = query?.page;
 
   useEffect(() => {
     if (isEqual(queryName, queryName)) {
@@ -50,9 +50,9 @@ const Category: React.FC = () => {
 
   useEffect(() => {
     if (isMinTablet) {
-      setRowsPerPage(INITIAL_PAGINATION_ROWS_PER_PAGE);
       setActivePage(0);
     }
+    setRowsPerPage(INITIAL_PAGINATION_ROWS_PER_PAGE);
   }, [isMinTablet]);
 
   const changeActivePage = (page: number): void => {
