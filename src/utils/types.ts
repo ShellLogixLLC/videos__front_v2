@@ -1,7 +1,8 @@
 export type RoutesProps = {
-  routeName: string;
-  pageName: string;
   id: number;
+  pageName: string;
+  routeName: string;
+  queryValue?: string;
 };
 
 export type FilteredProp = {

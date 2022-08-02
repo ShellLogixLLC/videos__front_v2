@@ -6,6 +6,8 @@ import {useRouter} from 'next/router';
 import {RangePicker} from 'react-trip-date';
 import {RangePickerSelectedDays} from 'react-trip-date/dist/rangePicker/rangePicker.type';
 
+import {WEEKDAYS_SHORT} from '~/utils';
+import {getCookieFromBrowser} from '~/libraries';
 import {CalendarOneIcon, LeftArrowIcon, RightArrowIcon} from '~/assets';
 
 import Typography from '../Typography';
@@ -13,6 +15,8 @@ import Typography from '../Typography';
 import styles from './DatePicker.module.scss';
 
 const DatePicker: FC = () => {
+  const lng = getCookieFromBrowser('activeLang') || 'en';
+
   const router = useRouter();
   const {query} = router;
 
@@ -48,6 +52,7 @@ const DatePicker: FC = () => {
           ...router.query,
           startDate: rangeValues.from,
           endDate: rangeValues.to,
+          page: 0,
         },
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -59,6 +64,7 @@ const DatePicker: FC = () => {
     disabledBeforeToday: false,
     selectedDays: rangeValues,
     components: {
+      titleOfWeek: {titles: WEEKDAYS_SHORT[lng]},
       header: {
         monthIcons: {
           right: <RightArrowIcon />,

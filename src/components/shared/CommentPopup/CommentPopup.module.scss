@@ -1,0 +1,40 @@
+.wrapper {
+  max-width: 512px;
+  width: 100%;
+  padding: 48px 45px 28px;
+  background: $rgba-blak-8;
+  border: 1px solid $rgba-dark-red;
+  border-radius: 8px;
+
+  &__title {
+    @extend %heading_three;
+    color: $white;
+    max-width: 312px;
+    width: 100%;
+    text-align: center;
+  }
+
+  &__content {
+    @extend %flex-between;
+    width: 100%;
+    margin-top: 59px;
+
+    &__btn {
+      @extend %language_sizes;
+      max-width: 135px;
+      width: 100%;
+      padding: 7px 0;
+      background-color: transparent;
+    }
+
+    &__link {
+      @extend %language_sizes;
+      max-width: 135px;
+      width: 100%;
+      padding: 7px 0;
+      border-radius: 8px;
+      background: $dark-red-two;
+      text-align: center;
+    }
+  }
+}

@@ -1,14 +1,14 @@
 enum Route {
   Home = '/',
-  New = '/new',
+  New = '/active-category/new',
   Error = '/404',
   Terms = '/terms-of-service',
-  Privacy = '/privacy-policy',
-  TopRated = '/top-rated',
-  Favorites = '/favorites',
-  MostLiked = '/most-liked',
-  Categories = '/categories',
   Search = '/search-result',
+  Privacy = '/privacy-policy',
+  Favorites = '/favorites',
+  MostLiked = '/active-category/most-liked',
+  Categories = '/categories',
+  MostViewed = '/active-category/most-viewed',
 
   // Contract manager routes
   Vault = '/vault',

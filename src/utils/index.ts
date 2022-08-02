@@ -1,5 +1,6 @@
 export * from './routes';
 export * from './staticFilterBase';
+export * from './montsAndWeekDays';
 
 // type static base
 export * from './types';

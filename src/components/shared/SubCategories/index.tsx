@@ -16,7 +16,7 @@ const SubCategories: React.FC<SubCategoriesProps> = ({
   wrapperClass,
   subCategoriesList,
 }) => {
-  const lng = getCookieFromBrowser('activeLang');
+  const lng = getCookieFromBrowser('activeLang') || 'en';
 
   const router = useRouter();
   const {query} = router;

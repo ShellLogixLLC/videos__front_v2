@@ -24,6 +24,7 @@ export {default as HeaderNavbar} from './HeaderNavbar';
 export {default as MobileFilter} from './MobileFilter';
 export {default as CategoryCard} from './CategoryCard';
 export {default as ProfileModal} from './ProfileModal';
+export {default as CommentPopup} from './CommentPopup';
 export {default as WishlistModal} from './WishlistModal';
 export {default as SubCategories} from './SubCategories';
 export {default as SigninDropdown} from './SigninDropdown';
