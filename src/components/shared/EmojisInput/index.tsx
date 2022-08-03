@@ -4,7 +4,7 @@ import emojiList from 'emojis-list';
 import classNames from 'classnames';
 import usePortal from 'react-useportal';
 
-import {CommentPopup} from '~/components';
+import {UnRegisterPopup} from '~/components';
 import {getCookieFromBrowser} from '~/libraries';
 import {useLocales, useOnClickOutside} from '~/hooks';
 
@@ -132,7 +132,11 @@ const EmojisInput = forwardRef<any, InputProps>(
             </Typography>
           )}
         </label>
-        <CommentPopup expanded={expanded} setExpanded={setExpanded} />
+        <UnRegisterPopup
+          title="toCommentYouHaveToBeSignedIn"
+          expanded={expanded}
+          setExpanded={setExpanded}
+        />
       </>
     );
   },
