@@ -1,4 +1,7 @@
+import React from 'react';
+
 export type PopupProps = {
+  title?: string;
   isClose?: boolean;
   expanded: boolean;
   className?: string;

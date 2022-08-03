@@ -23,7 +23,7 @@ import {
   MobileFilter,
   HeaderNavbar,
   SubCategories,
-  WishlistModal,
+  UnRegisterPopup,
 } from '~/components';
 
 import styles from './Header.module.scss';
@@ -208,7 +208,10 @@ const Header: React.FC = () => {
         </MobileMenu>
       </div>
       <MobileFilter isFilter={isFilter} toggleFilter={toggleFilter} />
-      <WishlistModal expanded={isLikeItPopup} setExpanded={setIsLikeItPopup} />
+      <UnRegisterPopup
+        expanded={isLikeItPopup}
+        setExpanded={setIsLikeItPopup}
+      />
     </header>
   );
 };
