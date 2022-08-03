@@ -2,15 +2,15 @@ import React, {useEffect, useState} from 'react';
 import classNames from 'classnames';
 
 import {createDate} from '~/utils';
-import {VideosProps} from '~/types';
+import {VideosProps, WishlistActions} from '~/types';
 import {WishlistModal} from '~/components';
 import {useAppDispatch} from '~/hooks';
 import {getCookieFromBrowser} from '~/libraries';
 import {addToWishlist, deleteFromWishlist} from '~/store/wishlist/thunks';
 import {
-  FilmLikeIcon,
-  CommentsCount,
   CategoryImage,
+  CommentsCount,
+  FilmLikeIcon,
   HeartLikesIcon,
   ViewsCountIcon,
 } from '~/assets';
@@ -31,6 +31,7 @@ const FilmCard: React.FC<FilmCardProps> = ({
   isFavorite = false,
   cardClasses = '',
   isWishlistPage,
+  refreshVideos,
 }) => {
   const lng = getCookieFromBrowser('activeLang') || 'en';
   const token = getCookieFromBrowser('token');
@@ -63,12 +64,15 @@ const FilmCard: React.FC<FilmCardProps> = ({
 
   const durationMinutes = Math.floor(duration / 60);
 
-  const isLikedClasses = classNames(styles.wrapper__film_not_like_it, {
-    [styles.wrapper__film_like_it]: isLiked,
+  const isLikedClasses = classNames(styles.wrapper__film_notLiked, {
+    [styles.wrapper__film_liked]: isLiked,
   });
 
   const handleUndoDelete = (): void => {
     dispatch(addToWishlist({videoId: id}));
+    if (isWishlistPage && refreshVideos) {
+      refreshVideos(WishlistActions.ADD, item);
+    }
     dispatch(wishlistActions.getWishlistIds());
   };
 
@@ -79,11 +83,13 @@ const FilmCard: React.FC<FilmCardProps> = ({
     if (!isLiked) {
       await dispatch(addToWishlist({videoId: id}));
     } else {
-      if (isWishlistPage) {
+      if (isWishlistPage && refreshVideos) {
         warnToast(id, handleUndoDelete);
+        refreshVideos(WishlistActions.DELETE, item);
       }
       await dispatch(deleteFromWishlist({videoId: id}));
     }
+    dispatch(wishlistActions.getWishlistIds());
   };
 
   const handleLoggedOutHeartIcon = (e: React.MouseEvent) => {

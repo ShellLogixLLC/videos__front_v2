@@ -1,4 +1,4 @@
-import {VideosProps, CategoriesProps} from '~/types';
+import {VideosProps, CategoriesProps, WishlistActions} from '~/types';
 
 export type FilmCardProps = {
   item: CategoriesProps | VideosProps;
@@ -6,4 +6,8 @@ export type FilmCardProps = {
   isFavorite?: boolean;
   isWishlistPage?: boolean;
   cardClasses?: string;
+  refreshVideos?: (
+    type: WishlistActions,
+    item: VideosProps | CategoriesProps,
+  ) => void;
 };

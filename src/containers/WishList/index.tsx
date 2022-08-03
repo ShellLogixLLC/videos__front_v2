@@ -4,21 +4,26 @@ import {useRouter} from 'next/router';
 import {LeftArrowIcon} from '~/assets';
 import {setQueryParams} from '~/utils';
 import WishlistSearchService from '~/api/wishlist';
-import {useWindowSize, useLocales} from '~/hooks';
-import {QueryParamsTypes, VideosProps} from '~/types';
+import {useLocales, useWindowSize} from '~/hooks';
 import {
-  INITIAL_WISHLIST_LIMIT,
-  INITIAL_PAGINATION_MORE_COUNT,
+  CategoriesProps,
+  QueryParamsTypes,
+  VideosProps,
+  WishlistActions,
+} from '~/types';
+import {
   INITIAL_PAGINATION_ACTIVE_PAGE,
+  INITIAL_PAGINATION_MORE_COUNT,
+  INITIAL_WISHLIST_LIMIT,
   Route,
 } from '~/constants';
 import {
-  FilmCard,
   BackButton,
-  Pagination,
-  Typography,
+  FilmCard,
   FilmCardSkeletons,
   Link,
+  Pagination,
+  Typography,
 } from '~/components';
 
 import styles from './Wishlist.module.scss';
@@ -44,6 +49,21 @@ const MyFavorites: React.FC = () => {
     limit,
     offset,
   );
+
+  const refreshVideos = (
+    type: WishlistActions,
+    item: VideosProps | CategoriesProps,
+  ) => {
+    if (type === WishlistActions.ADD) {
+      const updatedVideos = videosList.filter((video) => video.id !== item.id);
+      setVideosList([...updatedVideos, item as VideosProps]);
+      setTotalCount(totalCount + 1);
+    } else {
+      const updatedVideos = videosList.filter((video) => video.id !== item.id);
+      setVideosList(updatedVideos);
+      setTotalCount(totalCount - 1);
+    }
+  };
 
   const tabletSkeletonsCount =
     rowsPerPage + INITIAL_PAGINATION_MORE_COUNT > totalCount
@@ -106,6 +126,7 @@ const MyFavorites: React.FC = () => {
       cardClasses={styles.favorites__content__card}
       isFavorite={true}
       isWishlistPage={true}
+      refreshVideos={refreshVideos}
     />
   ));
 
@@ -116,18 +137,22 @@ const MyFavorites: React.FC = () => {
       </Typography>
       <div className={styles.favorites__empty__wrapper}>
         <Typography tagName="span" className={styles.favorites__empty__title}>
-          butDontWorryYouCanStillAdd
+          exploreMoreAndShortlist
         </Typography>
         <Link className={styles.favorites__empty__link} to={Route.Home}>
           <Typography
             tagName="span"
             className={styles.favorites__empty__link__text}>
-            here
+            startExploring
           </Typography>
         </Link>
       </div>
     </div>
   );
+
+  console.log(totalCount, 'count');
+  console.log(videosList, 'videoList');
+  console.log(data, 'data');
 
   const setNewQueryParams = (newQueryParams: QueryParamsTypes): void => {
     setQueryParams({...query, ...newQueryParams});
