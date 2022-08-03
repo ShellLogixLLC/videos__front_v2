@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useRouter} from 'next/router';
 
 import {LeftArrowIcon} from '~/assets';
-import {useWindowSize} from '~/hooks';
+import {useLocales, useWindowSize} from '~/hooks';
 import {CategoryService} from '~/api';
 import {filteredMass, setQueryParams} from '~/utils';
 import {QueryParamsTypes, VideosProps} from '~/types';
@@ -149,13 +149,15 @@ const ActiveCategory: React.FC = () => {
       </div>
     );
 
+  const {translatedTypo: translatedBackText} = useLocales('back');
+
   return (
     <article>
       <div className={styles.wrapper}>
         <div className={styles.content}>
           <div className={styles.content__backRoute}>
             <BackButton
-              text="Back"
+              text={translatedBackText || ''}
               LeftIcon={LeftArrowIcon}
               className={styles.content__backRoute__button}
             />
