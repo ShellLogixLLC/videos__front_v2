@@ -3,7 +3,6 @@ import {useRouter} from 'next/router';
 
 import {LeftArrowIcon} from '~/assets';
 import {setQueryParams} from '~/utils';
-import WishlistSearchService from '~/api/wishlist';
 import {useLocales, useWindowSize} from '~/hooks';
 import {
   CategoriesProps,
@@ -25,6 +24,7 @@ import {
   Pagination,
   Typography,
 } from '~/components';
+import WishlistSearchService from '~/api/wishlist';
 
 import styles from './Wishlist.module.scss';
 
@@ -50,16 +50,24 @@ const MyFavorites: React.FC = () => {
     offset,
   );
 
+  // const dispatch = useAppDispatch();
+  //
+  // useEffect(() => {
+  //   dispatch(wishlistActions.getWishlistVideos({limit, offset}));
+  // }, [limit, offset, dispatch]);
+
+  // const {wishlistVideos: data, loading: isLoading} =
+  //   useAppSelector(wishlistSelect);
+
   const refreshVideos = (
     type: WishlistActions,
     item: VideosProps | CategoriesProps,
   ) => {
+    const updatedVideos = videosList.filter((video) => video.id !== item.id);
     if (type === WishlistActions.ADD) {
-      const updatedVideos = videosList.filter((video) => video.id !== item.id);
       setVideosList([...updatedVideos, item as VideosProps]);
       setTotalCount(totalCount + 1);
     } else {
-      const updatedVideos = videosList.filter((video) => video.id !== item.id);
       setVideosList(updatedVideos);
       setTotalCount(totalCount - 1);
     }
@@ -149,10 +157,6 @@ const MyFavorites: React.FC = () => {
       </div>
     </div>
   );
-
-  console.log(totalCount, 'count');
-  console.log(videosList, 'videoList');
-  console.log(data, 'data');
 
   const setNewQueryParams = (newQueryParams: QueryParamsTypes): void => {
     setQueryParams({...query, ...newQueryParams});

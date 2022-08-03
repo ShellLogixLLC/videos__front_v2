@@ -64,11 +64,9 @@ const wishlistSlice = createSlice({
       state.loading = LoadingStates.REJECTED;
       state.error = action.error;
     });
-
     builder.addCase(wishlistThunks.getWishlistVideos.pending, (state) => {
       state.loading = LoadingStates.LOADING;
     });
-
     builder.addCase(
       wishlistThunks.getWishlistVideos.fulfilled,
       (state, action) => {
@@ -77,7 +75,6 @@ const wishlistSlice = createSlice({
         state.wishlistVideos = action.payload;
       },
     );
-
     builder.addCase(
       wishlistThunks.getWishlistVideos.rejected,
       (state, action) => {

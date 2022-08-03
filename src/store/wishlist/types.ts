@@ -7,5 +7,8 @@ export type WishlistSliceState = {
   loading: LoadingStates;
   error?: SerializedError | any;
   wishlistIds?: string[];
-  wishlistVideos?: VideosProps[] | CategoriesProps[];
+  wishlistVideos?: {
+    videos: VideosProps[] | CategoriesProps[];
+    totalCount: number;
+  };
 };

@@ -208,6 +208,7 @@
   &_description{
     color: $black !important;
     flex: 1;
+    padding-right: 6px;
 
     &:first-letter {
       text-transform: capitalize;
