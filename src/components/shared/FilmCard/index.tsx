@@ -32,6 +32,7 @@ const FilmCard: React.FC<FilmCardProps> = ({
   cardClasses = '',
   isWishlistPage,
   refreshVideos,
+  mutate,
 }) => {
   const lng = getCookieFromBrowser('activeLang') || 'en';
   const token = getCookieFromBrowser('token');
@@ -74,6 +75,7 @@ const FilmCard: React.FC<FilmCardProps> = ({
       refreshVideos(WishlistActions.ADD, item);
     }
     dispatch(wishlistActions.getWishlistIds());
+    mutate && mutate();
   };
 
   const toggleIsLiked = async (e: React.MouseEvent) => {
@@ -88,6 +90,7 @@ const FilmCard: React.FC<FilmCardProps> = ({
         refreshVideos(WishlistActions.DELETE, item);
       }
       await dispatch(deleteFromWishlist({videoId: id}));
+      mutate && mutate();
     }
     dispatch(wishlistActions.getWishlistIds());
   };

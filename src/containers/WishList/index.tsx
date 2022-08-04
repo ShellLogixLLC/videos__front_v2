@@ -45,7 +45,7 @@ const MyFavorites: React.FC = () => {
   const limit = !isMinTablet ? INITIAL_WISHLIST_LIMIT : rowsPerPage;
   const offset = !isMinTablet ? activePage * INITIAL_WISHLIST_LIMIT : 0;
 
-  const {data, isLoading} = WishlistSearchService.useVideoWishlist(
+  const {data, mutate, isLoading} = WishlistSearchService.useVideoWishlist(
     limit,
     offset,
   );
@@ -92,7 +92,7 @@ const MyFavorites: React.FC = () => {
       setTotalCount(data.totalCount);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+  }, [data, isLoading, totalCount]);
 
   useEffect(() => {
     if (query?.page) {
@@ -135,6 +135,7 @@ const MyFavorites: React.FC = () => {
       isFavorite={true}
       isWishlistPage={true}
       refreshVideos={refreshVideos}
+      mutate={mutate}
     />
   ));
 
@@ -166,6 +167,11 @@ const MyFavorites: React.FC = () => {
     setActivePage(page);
     setNewQueryParams({page});
   };
+
+  console.log(isLoading, 'loading');
+  console.log(totalCount, 'count');
+  console.log(videosList, 'list');
+  console.log(data, 'data');
 
   return (
     <div className={styles.favorites}>

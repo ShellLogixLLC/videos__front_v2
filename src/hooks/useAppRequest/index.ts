@@ -1,5 +1,4 @@
 import useSWR from 'swr';
-import {useSWRConfig} from 'swr';
 import {AxiosResponse, AxiosError} from 'axios';
 
 import {client} from '~/api';
