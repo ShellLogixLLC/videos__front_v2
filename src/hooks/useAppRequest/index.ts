@@ -22,7 +22,6 @@ const useRequest = <Data = any, Error = unknown>(
       ...config,
       revalidateIfStale: false,
       revalidateOnFocus: false,
-      revalidateOnMount: true,
       revalidateOnReconnect: false,
       fallbackData: fallbackData && {
         status: 200,

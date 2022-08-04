@@ -50,8 +50,10 @@ const MyFavorites: React.FC = () => {
     offset,
   );
 
-  // const dispatch = useAppDispatch();
-  //
+  // useEffect(() => {
+  //   mutate();
+  // }, []);
+
   // useEffect(() => {
   //   dispatch(wishlistActions.getWishlistVideos({limit, offset}));
   // }, [limit, offset, dispatch]);
@@ -90,9 +92,10 @@ const MyFavorites: React.FC = () => {
     if (!isLoading) {
       setVideosList(data.videos);
       setTotalCount(data.totalCount);
+      mutate();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data, isLoading, totalCount]);
+  }, [data]);
 
   useEffect(() => {
     if (query?.page) {
@@ -127,7 +130,7 @@ const MyFavorites: React.FC = () => {
     );
   }
 
-  const renderWishlistVideos = videosList?.map((item: VideosProps) => (
+  const renderWishlistVideos = data?.videos?.map((item: VideosProps) => (
     <FilmCard
       key={item.id}
       item={item}
@@ -135,7 +138,6 @@ const MyFavorites: React.FC = () => {
       isFavorite={true}
       isWishlistPage={true}
       refreshVideos={refreshVideos}
-      mutate={mutate}
     />
   ));
 
@@ -168,11 +170,6 @@ const MyFavorites: React.FC = () => {
     setNewQueryParams({page});
   };
 
-  console.log(isLoading, 'loading');
-  console.log(totalCount, 'count');
-  console.log(videosList, 'list');
-  console.log(data, 'data');
-
   return (
     <div className={styles.favorites}>
       <div className={styles.favorites__backRoute}>
@@ -193,11 +190,11 @@ const MyFavorites: React.FC = () => {
         {totalCount > 0 ? renderWishlistVideos : renderEmptyText}
       </div>
 
-      {isLoading && (
-        <div className={styles.favorites__content__wrapper}>
-          {renderLoaderCards}
-        </div>
-      )}
+      {/*{isLoading && (*/}
+      {/*  <div className={styles.favorites__content__wrapper}>*/}
+      {/*    {renderLoaderCards}*/}
+      {/*  </div>*/}
+      {/*)}*/}
 
       {!!totalCount && (
         <div className={styles.favorites__pagination}>
