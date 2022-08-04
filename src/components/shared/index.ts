@@ -13,6 +13,7 @@ export {default as FilmCard} from './FilmCard';
 export {default as BackButton} from './BackButton';
 export {default as Pagination} from './Pagination';
 export {default as DatePicker} from './DatePicker';
+export {default as VideoLikes} from './VideoLikes';
 export {default as Typography} from './Typography';
 export {default as MobileMenu} from './MobileMenu';
 export {default as CategoryNav} from './CategoryNav';

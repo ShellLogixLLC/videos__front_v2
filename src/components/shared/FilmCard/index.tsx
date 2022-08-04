@@ -3,12 +3,11 @@ import classNames from 'classnames';
 
 import {createDate} from '~/utils';
 import {VideosProps} from '~/types';
-import {WishlistModal} from '~/components';
 import {useAppDispatch} from '~/hooks';
 import {getCookieFromBrowser} from '~/libraries';
+import {VideoLikes, WishlistModal} from '~/components';
 import {addToWishlist, deleteFromWishlist} from '~/store/wishlist/thunks';
 import {
-  FilmLikeIcon,
   CommentsCount,
   CategoryImage,
   HeartLikesIcon,
@@ -112,16 +111,15 @@ const FilmCard: React.FC<FilmCardProps> = ({
         <p className={styles.wrapper__pr_description}>{description[lng]}</p>
         <div className={styles.wrapper__card_footer}>
           <div className={styles.wrapper__card_footer_item}>
-            <p>{likesCount}</p>
-            <FilmLikeIcon />
+            <VideoLikes likesCount={likesCount || 0} id={id} />
           </div>
           <div className={styles.wrapper__card_footer_item}>
-            <p>{views}</p>
             <ViewsCountIcon />
+            <p>{views}</p>
           </div>
           <div className={styles.wrapper__card_footer_item}>
-            <p>{commentsCount}</p>
             <CommentsCount />
+            <p>{commentsCount}</p>
           </div>
         </div>
       </div>

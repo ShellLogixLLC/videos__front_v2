@@ -3,18 +3,13 @@ import moment from 'moment';
 import classNames from 'classnames';
 import {useRouter} from 'next/router';
 
-import {WishlistModal} from '~/components';
 import {wishlistSelect} from '~/store/wishlist';
+import {VIDEO_INITIAL_NAME} from '~/constants';
 import {getCookieFromBrowser} from '~/libraries';
+import {VideoLikes, WishlistModal} from '~/components';
+import {HeartLikesIcon, ViewsCountIcon} from '~/assets/index';
 import {useAppDispatch, useAppSelector} from '~/hooks';
 import {addToWishlist, deleteFromWishlist} from '~/store/wishlist/thunks';
-import {HeartLikesIcon, FilmLikeIcon, ViewsCountIcon} from '~/assets/index';
-import {
-  VIDEO_CREATED_AT,
-  VIDEO_INITIAL_NAME,
-  VIDEO_INITIAL_LIKE_COUNT,
-  VIDEO_INITIAL_VIEW_COUNT,
-} from '~/constants';
 
 import {VideDescriptionTypes} from './types';
 import styles from './VideDescription.module.scss';
@@ -22,10 +17,10 @@ import styles from './VideDescription.module.scss';
 const videDescriptionTextDefault = 'Have problems with the internet !';
 
 const VideDescription: React.FC<VideDescriptionTypes> = ({
-  createdAt = VIDEO_CREATED_AT,
+  createdAt,
   videoName = VIDEO_INITIAL_NAME,
-  likeCount = VIDEO_INITIAL_LIKE_COUNT,
-  viewCount = VIDEO_INITIAL_VIEW_COUNT,
+  likeCount,
+  viewCount,
   description = videDescriptionTextDefault,
 }) => {
   const dispatch = useAppDispatch();
@@ -77,11 +72,11 @@ const VideDescription: React.FC<VideDescriptionTypes> = ({
       <div className={styles.wrapper}>
         <div className={styles.wrapper__options}>
           <div className={styles.wrapper__views_liked}>
-            <span className={styles.wrapper__views_liked__like}>
-              {likeCount} <FilmLikeIcon />
-            </span>
-            <span className={styles.wrapper__views_liked__view}>
-              {viewCount} <ViewsCountIcon />
+            <div className={styles.wrapper__views_liked__block}>
+              <VideoLikes likesCount={likeCount || 0} id={id} />
+            </div>
+            <span className={styles.wrapper__views_liked__block}>
+              <ViewsCountIcon /> {viewCount}
             </span>
           </div>
           <HeartLikesIcon

@@ -32,6 +32,7 @@ export {default as ClockIcon} from './icons/clock.svg';
 export {default as BugIcon} from './icons/bugIcon.svg';
 export {default as KeyIcon} from './icons/keyIcon.svg';
 export {default as MinusIcon} from './icons/minus.svg';
+export {default as LikedIcon} from './icons/liked.svg';
 
 export {default as MoveIcon} from './icons/moveIcon.svg';
 export {default as FileIcon} from './icons/fileIcon.svg';
