@@ -1,5 +1,4 @@
 import {VideosProps, CategoriesProps, WishlistActions} from '~/types';
-import {MutateData} from '~/types';
 
 export type FilmCardProps = {
   item: CategoriesProps | VideosProps;
@@ -11,5 +10,4 @@ export type FilmCardProps = {
     type: WishlistActions,
     item: VideosProps | CategoriesProps,
   ) => void;
-  mutate?: MutateData;
 };

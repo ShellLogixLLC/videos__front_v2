@@ -86,7 +86,6 @@ const FilmCard: React.FC<FilmCardProps> = ({
       if (isWishlistPage && refreshVideos) {
         warnToast(id, handleUndoDelete);
         refreshVideos(WishlistActions.DELETE, item);
-        // mutate && mutate();
       }
       await dispatch(deleteFromWishlist({videoId: id}));
     }

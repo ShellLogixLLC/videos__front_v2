@@ -50,16 +50,11 @@ const MyFavorites: React.FC = () => {
     offset,
   );
 
-  // useEffect(() => {
-  //   mutate();
-  // }, []);
-
-  // useEffect(() => {
-  //   dispatch(wishlistActions.getWishlistVideos({limit, offset}));
-  // }, [limit, offset, dispatch]);
-
-  // const {wishlistVideos: data, loading: isLoading} =
-  //   useAppSelector(wishlistSelect);
+  useEffect(() => {
+    if (!isLoading) {
+      mutate();
+    }
+  }, [isLoading]);
 
   const refreshVideos = (
     type: WishlistActions,
@@ -75,27 +70,29 @@ const MyFavorites: React.FC = () => {
     }
   };
 
-  const tabletSkeletonsCount =
-    rowsPerPage + INITIAL_PAGINATION_MORE_COUNT > totalCount
-      ? totalCount && totalCount % INITIAL_PAGINATION_MORE_COUNT
-      : INITIAL_PAGINATION_MORE_COUNT;
+  // const tabletSkeletonsCount =
+  //   rowsPerPage + INITIAL_PAGINATION_MORE_COUNT > totalCount
+  //     ? totalCount && totalCount % INITIAL_PAGINATION_MORE_COUNT
+  //     : INITIAL_PAGINATION_MORE_COUNT;
 
-  const skeletonsCount = !isMinTablet
-    ? totalCount < INITIAL_WISHLIST_LIMIT * (activePage + 1)
-      ? totalCount && totalCount % INITIAL_WISHLIST_LIMIT
-      : INITIAL_WISHLIST_LIMIT
-    : tabletSkeletonsCount;
+  // const skeletonsCount = !isMinTablet
+  //   ? totalCount < INITIAL_WISHLIST_LIMIT * (activePage + 1)
+  //     ? totalCount && totalCount % INITIAL_WISHLIST_LIMIT
+  //     : INITIAL_WISHLIST_LIMIT
+  //   : tabletSkeletonsCount;
+
+  //This should be discussed
 
   const {translatedTypo} = useLocales('back');
 
   useEffect(() => {
     if (!isLoading) {
       setVideosList(data.videos);
-      setTotalCount(data.totalCount);
       mutate();
+      setTotalCount(data.totalCount);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+  }, [totalCount]);
 
   useEffect(() => {
     if (query?.page) {
@@ -112,15 +109,12 @@ const MyFavorites: React.FC = () => {
     setActivePage(0);
   }, [isMinTablet]);
 
-  const renderLoaderCards = Array.from(
-    Array(skeletonsCount),
-    (index: number) => (
-      <FilmCardSkeletons
-        key={index}
-        cardClasses={styles.favorites__content__card}
-      />
-    ),
-  );
+  const renderLoaderCards = Array.from(Array(3), (index: number) => (
+    <FilmCardSkeletons
+      key={index}
+      cardClasses={styles.favorites__content__card}
+    />
+  ));
 
   if (isLoading && !isMinTablet) {
     return (
@@ -187,19 +181,19 @@ const MyFavorites: React.FC = () => {
       </div>
 
       <div className={styles.favorites__content__wrapper}>
-        {totalCount > 0 ? renderWishlistVideos : renderEmptyText}
+        {data.totalCount > 0 ? renderWishlistVideos : renderEmptyText}
       </div>
 
-      {/*{isLoading && (*/}
-      {/*  <div className={styles.favorites__content__wrapper}>*/}
-      {/*    {renderLoaderCards}*/}
-      {/*  </div>*/}
-      {/*)}*/}
+      {isLoading && (
+        <div className={styles.favorites__content__wrapper}>
+          {renderLoaderCards}
+        </div>
+      )}
 
-      {!!totalCount && (
+      {data.totalCount > limit && (
         <div className={styles.favorites__pagination}>
           <Pagination
-            dataLength={totalCount}
+            dataLength={data.totalCount}
             rowsPerPage={rowsPerPage}
             setRowsPerPage={setRowsPerPage}
             activePage={activePage}
