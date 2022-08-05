@@ -14,13 +14,12 @@ import {
   INITIAL_PAGINATION_ACTIVE_PAGE,
   INITIAL_PAGINATION_MORE_COUNT,
   INITIAL_WISHLIST_LIMIT,
-  Route,
 } from '~/constants';
 import {
   BackButton,
+  EmptyWishlist,
   FilmCard,
   FilmCardSkeletons,
-  Link,
   Pagination,
   Typography,
 } from '~/components';
@@ -81,15 +80,15 @@ const MyFavorites: React.FC = () => {
   //     : INITIAL_WISHLIST_LIMIT
   //   : tabletSkeletonsCount;
 
-  //This should be discussed
+  //THIS SHOULD BE DISCUSSED !!!
 
   const {translatedTypo} = useLocales('back');
 
   useEffect(() => {
     if (!isLoading) {
-      setVideosList(data.videos);
+      setVideosList(data?.videos);
       mutate();
-      setTotalCount(data.totalCount);
+      setTotalCount(data?.totalCount);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [totalCount]);
@@ -135,26 +134,6 @@ const MyFavorites: React.FC = () => {
     />
   ));
 
-  const renderEmptyText = (
-    <div className={styles.favorites__empty}>
-      <Typography tagName="span" className={styles.favorites__empty__title}>
-        yourWishlistIsEmpty
-      </Typography>
-      <div className={styles.favorites__empty__wrapper}>
-        <Typography tagName="span" className={styles.favorites__empty__title}>
-          exploreMoreAndShortlist
-        </Typography>
-        <Link className={styles.favorites__empty__link} to={Route.Home}>
-          <Typography
-            tagName="span"
-            className={styles.favorites__empty__link__text}>
-            startExploring
-          </Typography>
-        </Link>
-      </div>
-    </div>
-  );
-
   const setNewQueryParams = (newQueryParams: QueryParamsTypes): void => {
     setQueryParams({...query, ...newQueryParams});
   };
@@ -181,7 +160,7 @@ const MyFavorites: React.FC = () => {
       </div>
 
       <div className={styles.favorites__content__wrapper}>
-        {data.totalCount > 0 ? renderWishlistVideos : renderEmptyText}
+        {data?.totalCount > 0 ? renderWishlistVideos : <EmptyWishlist />}
       </div>
 
       {isLoading && (
@@ -190,10 +169,10 @@ const MyFavorites: React.FC = () => {
         </div>
       )}
 
-      {data.totalCount > limit && (
+      {data?.totalCount > limit && (
         <div className={styles.favorites__pagination}>
           <Pagination
-            dataLength={data.totalCount}
+            dataLength={data?.totalCount}
             rowsPerPage={rowsPerPage}
             setRowsPerPage={setRowsPerPage}
             activePage={activePage}
