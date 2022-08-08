@@ -12,7 +12,8 @@ const internalInitialState: WishlistSliceState = {
   loading: LoadingStates.IDLE,
   error: null,
   wishlistIds: [],
-  wishlistVideos: [],
+  wishlistVideos: null,
+  wishlistVideosLoading: LoadingStates.IDLE,
 };
 
 const wishlistSlice = createSlice({
@@ -65,20 +66,20 @@ const wishlistSlice = createSlice({
       state.error = action.error;
     });
     builder.addCase(wishlistThunks.getWishlistVideos.pending, (state) => {
-      state.loading = LoadingStates.LOADING;
+      state.wishlistVideosLoading = LoadingStates.LOADING;
     });
     builder.addCase(
       wishlistThunks.getWishlistVideos.fulfilled,
       (state, action) => {
         state.error = null;
-        state.loading = LoadingStates.IDLE;
+        state.wishlistVideosLoading = LoadingStates.IDLE;
         state.wishlistVideos = action.payload;
       },
     );
     builder.addCase(
       wishlistThunks.getWishlistVideos.rejected,
       (state, action) => {
-        state.loading = LoadingStates.REJECTED;
+        state.wishlistVideosLoading = LoadingStates.REJECTED;
         state.error = action.error;
       },
     );
