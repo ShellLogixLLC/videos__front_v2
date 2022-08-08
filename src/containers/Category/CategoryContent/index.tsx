@@ -101,7 +101,7 @@ const CategoryContent: React.FC<CategoryContentTypes> = ({
       <div className={styles.content__wrapper}>{renderLoaderCards}</div>
     ) : (
       <div className={styles.content__wrapper}>
-        {dataTotalCount ? (
+        {videosList.length ? (
           renderVideosList
         ) : (
           <Typography>sorryWeCouldNotFindAnyResult</Typography>

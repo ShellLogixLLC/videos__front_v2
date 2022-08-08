@@ -142,7 +142,7 @@ const ActiveCategory: React.FC = () => {
       <div className={styles.content__wrapper}>{renderLoaderCards}</div>
     ) : (
       <div className={styles.content__wrapper}>
-        {dataTotalCount
+        {videosList.length
           ? renderVideosList
           : !isLoading && <Typography>sorryWeCouldNotFindAnyResult</Typography>}
         {isLoading && isMinTablet && <>{renderLoaderCards}</>}
