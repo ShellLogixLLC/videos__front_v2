@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useRouter} from 'next/router';
 
 import {LeftArrowIcon} from '~/assets';
-import {useWindowSize} from '~/hooks';
+import {useAppSelector, useWindowSize} from '~/hooks';
 import {CategoryService} from '~/api';
 import {filteredMass, setQueryParams} from '~/utils';
 import {QueryParamsTypes, VideosProps} from '~/types';
@@ -21,6 +21,7 @@ import {
   FilterBySort,
   FilmCardSkeletons,
 } from '~/components';
+import {wishlistSelect} from '~/store/wishlist';
 
 import styles from './ActiveCategory.module.scss';
 
@@ -46,6 +47,8 @@ const ActiveCategory: React.FC = () => {
   const [activePage, setActivePage] = useState<number>(0);
   const [totalCount, setTotalCount] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(currentPerPageCount);
+
+  const {wishlistIds: wishlist} = useAppSelector(wishlistSelect);
 
   const queryPage = query?.page;
   const mostLiked = query?.name === ActiveCategoryPathname.Most_Liked ? -1 : '';
@@ -134,6 +137,7 @@ const ActiveCategory: React.FC = () => {
       key={item.id}
       item={item}
       cardClasses={styles.content__wrapper_item}
+      wishlist={wishlist}
     />
   ));
 

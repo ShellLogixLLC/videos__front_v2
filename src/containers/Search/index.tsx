@@ -18,12 +18,15 @@ import {
   INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE,
 } from '~/constants';
 import FilmCardSkeleton from '~/components/skeletons/FilmCard';
-import {useLocales} from '~/hooks';
+import {useAppSelector, useLocales} from '~/hooks';
+import {wishlistSelect} from '~/store/wishlist';
 
 import styles from './Search.module.scss';
 
 const Search: React.FC = () => {
   const {query} = useRouter();
+
+  const {wishlistIds: wishlist} = useAppSelector(wishlistSelect);
 
   const [activePage, setActivePage] = useState<number>(
     INITIAL_PAGINATION_ACTIVE_PAGE,
@@ -66,6 +69,7 @@ const Search: React.FC = () => {
             item={item}
             key={item.id}
             cardClasses={styles.wrapper__content__result__card}
+            wishlist={wishlist}
           />
         );
       })
