@@ -1,11 +1,11 @@
-import React, {useEffect} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import {useToggle} from 'react-use';
 
 import {LogoIcon} from '~/assets';
 import {Link, Loader} from '~/components';
 import {changePasswordForm, Route} from '~/constants';
-import {useAppSelector} from '~/hooks';
-import {authSelect} from '~/store/auth';
+import {useAppDispatch, useAppSelector} from '~/hooks';
+import {authActions, authSelect} from '~/store/auth';
 
 import Typography from '../../shared/Typography';
 import Form from '../../shared/forms/Form';
@@ -16,13 +16,19 @@ const ChangePassword: React.FC = () => {
   const {isVerified, error} = useAppSelector(authSelect);
   const [isLoading, toggleIsLoading] = useToggle(false);
 
+  const dispatch = useAppDispatch();
+
   useEffect(() => {
     if (isLoading && (isVerified || error)) toggleIsLoading();
   }, [isLoading, isVerified, error]);
 
-  const handleChangePasswordSubmit = (): void => {
-    console.log('password changed');
-  };
+  const handleChangePasswordSubmit = useCallback(
+    (values) => {
+      dispatch(authActions.changePassword(values));
+      toggleIsLoading();
+    },
+    [dispatch, isLoading],
+  );
 
   return (
     <div className={`container_without-header ${styles.container}`}>
@@ -37,10 +43,10 @@ const ChangePassword: React.FC = () => {
       </Typography>
       <Form
         form={changePasswordForm}
-        className={styles.reset}
-        inputClassName={styles.reset__block__input__inp}
-        labelClassName={styles.reset__block}
-        innerClassName={styles.reset__block__input}
+        className={styles.change}
+        inputClassName={styles.change__block__input__inp}
+        labelClassName={styles.change__block}
+        innerClassName={styles.change__block__input}
         submitText="confirm"
         onSubmit={handleChangePasswordSubmit}
       />
