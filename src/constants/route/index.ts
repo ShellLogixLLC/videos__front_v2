@@ -25,6 +25,7 @@ enum Route {
   Settings = '/settings',
   HelpSupport = '/help-support',
   ForgotPassword = '/forgot-password',
+  ChangePassword = '/change-password',
 
   // Registration steps
   RegistrationSetupPassword = '/registration/2',

@@ -5,7 +5,7 @@ import {LeftArrowIcon} from '~/assets';
 import {CategoryService} from '~/api';
 import {filteredMass, setQueryParams} from '~/utils';
 import {QueryParamsTypes, VideosProps} from '~/types';
-import {useActiveCategoryParams, useWindowSize} from '~/hooks';
+import {useActiveCategoryParams, useAppSelector, useWindowSize} from '~/hooks';
 import {
   CategoryFilters,
   ActiveCategoryPathname,
@@ -19,8 +19,9 @@ import {
   DatePicker,
   Typography,
   FilterBySort,
-  FilmCardSkeletons,
+  FilmCardSkeleton,
 } from '~/components';
+import {wishlistSelect} from '~/store/wishlist';
 
 import styles from './ActiveCategory.module.scss';
 
@@ -48,6 +49,7 @@ const ActiveCategory: React.FC = () => {
   const [rowsPerPage, setRowsPerPage] = useState<number>(currentPerPageCount);
 
   const {params} = useActiveCategoryParams(rowsPerPage);
+  const {wishlistIds: wishlist} = useAppSelector(wishlistSelect);
 
   const queryPage = query?.page;
 
@@ -105,7 +107,7 @@ const ActiveCategory: React.FC = () => {
   const renderLoaderCards = Array.from(
     Array(skeletonsCount),
     (index: number) => (
-      <FilmCardSkeletons
+      <FilmCardSkeleton
         key={index}
         cardClasses={styles.content__wrapper_item}
       />
@@ -117,6 +119,7 @@ const ActiveCategory: React.FC = () => {
       key={item.id}
       item={item}
       cardClasses={styles.content__wrapper_item}
+      wishlist={wishlist}
     />
   ));
 
