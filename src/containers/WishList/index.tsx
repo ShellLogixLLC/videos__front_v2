@@ -3,21 +3,33 @@ import {useRouter} from 'next/router';
 
 import {LeftArrowIcon} from '~/assets';
 import {setQueryParams} from '~/utils';
-import {useWindowSize, useLocales} from '~/hooks';
-import WishlistSearchService from '~/api/wishlist';
-import {QueryParamsTypes, VideosProps} from '~/types';
 import {
-  INITIAL_WISHLIST_LIMIT,
-  INITIAL_PAGINATION_MORE_COUNT,
+  useAppDispatch,
+  useAppSelector,
+  useLocales,
+  useWindowSize,
+} from '~/hooks';
+import {
+  CategoriesProps,
+  QueryParamsTypes,
+  VideosProps,
+  WishlistActions,
+} from '~/types';
+import {
   INITIAL_PAGINATION_ACTIVE_PAGE,
+  INITIAL_PAGINATION_MORE_COUNT,
+  INITIAL_WISHLIST_LIMIT,
 } from '~/constants';
 import {
-  FilmCard,
   BackButton,
+  EmptyWishlist,
+  FilmCard,
+  FilmCardSkeleton,
   Pagination,
   Typography,
-  FilmCardSkeleton,
 } from '~/components';
+import {wishlistActions, wishlistSelect} from '~/store/wishlist';
+import {LoadingStates} from '~/store/types';
 
 import styles from './Wishlist.module.scss';
 
@@ -38,31 +50,51 @@ const MyFavorites: React.FC = () => {
   const limit = !isMinTablet ? INITIAL_WISHLIST_LIMIT : rowsPerPage;
   const offset = !isMinTablet ? activePage * INITIAL_WISHLIST_LIMIT : 0;
 
-  const {data, isLoading} = WishlistSearchService.useVideoWishlist(
-    limit,
-    offset,
-  );
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(wishlistActions.getWishlistVideos({limit, offset}));
+  }, [dispatch, limit, offset]);
+
+  const {wishlistVideos: data, wishlistVideosLoading: isLoading} =
+    useAppSelector(wishlistSelect);
+
+  useEffect(() => {
+    if (data) {
+      setVideosList(data.videos);
+      setTotalCount(data.totalCount);
+    }
+  }, [data]);
+
+  const refreshVideos = (
+    type: WishlistActions,
+    item: VideosProps | CategoriesProps,
+  ) => {
+    const updatedVideos = videosList.filter((video) => video.id !== item.id);
+    if (type === WishlistActions.ADD) {
+      setVideosList([...updatedVideos, item as VideosProps]);
+      setTotalCount(totalCount + 1);
+    } else {
+      setVideosList(updatedVideos);
+      setTotalCount(totalCount - 1);
+    }
+  };
 
   const tabletSkeletonsCount =
     rowsPerPage + INITIAL_PAGINATION_MORE_COUNT > totalCount
       ? totalCount && totalCount % INITIAL_PAGINATION_MORE_COUNT
       : INITIAL_PAGINATION_MORE_COUNT;
 
+  const desktopSkeletonsCount =
+    totalCount < INITIAL_WISHLIST_LIMIT * (activePage + 1)
+      ? totalCount % INITIAL_WISHLIST_LIMIT
+      : INITIAL_WISHLIST_LIMIT;
+
   const skeletonsCount = !isMinTablet
-    ? totalCount < INITIAL_WISHLIST_LIMIT * (activePage + 1)
-      ? totalCount && totalCount % INITIAL_WISHLIST_LIMIT
-      : INITIAL_WISHLIST_LIMIT
+    ? desktopSkeletonsCount
     : tabletSkeletonsCount;
 
   const {translatedTypo} = useLocales('back');
-
-  useEffect(() => {
-    if (!isLoading) {
-      setVideosList(data.videos);
-      setTotalCount(data.totalCount);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
 
   useEffect(() => {
     if (query?.page) {
@@ -89,7 +121,7 @@ const MyFavorites: React.FC = () => {
     ),
   );
 
-  if (isLoading && !isMinTablet) {
+  if (isLoading === LoadingStates.LOADING && !isMinTablet) {
     return (
       <div className={styles.favorites__content__wrapper}>
         {renderLoaderCards}
@@ -97,12 +129,14 @@ const MyFavorites: React.FC = () => {
     );
   }
 
-  const renderWishlistVideos = videosList?.map((item: VideosProps) => (
+  const renderWishlistVideos = videosList.map((item: VideosProps) => (
     <FilmCard
       key={item.id}
       item={item}
       cardClasses={styles.favorites__content__card}
       isFavorite={true}
+      isWishlistPage={true}
+      refreshVideos={refreshVideos}
     />
   ));
 
@@ -132,16 +166,31 @@ const MyFavorites: React.FC = () => {
       </div>
 
       <div className={styles.favorites__content__wrapper}>
-        {renderWishlistVideos}
+        {totalCount > 0 ? renderWishlistVideos : <EmptyWishlist />}
       </div>
 
-      {isLoading && (
+      <div className={styles.favorites__content__wrapper}>
+        {activePage > 0 && videosList && videosList.length < 1 ? (
+          <div className={styles.favorites__content__wrapper__noVideo}>
+            <Typography
+              className={styles.favorites__content__wrapper__noVideo__first}>
+              youHaveDeletedAllTheVideosOnThisPage
+            </Typography>
+            <Typography
+              className={styles.favorites__content__wrapper__noVideo__second}>
+              goToThePreviousPageToSeeVideos
+            </Typography>
+          </div>
+        ) : null}
+      </div>
+
+      {isLoading === LoadingStates.LOADING && (
         <div className={styles.favorites__content__wrapper}>
           {renderLoaderCards}
         </div>
       )}
 
-      {!!totalCount && (
+      {(activePage > 0 || totalCount > limit) && (
         <div className={styles.favorites__pagination}>
           <Pagination
             dataLength={totalCount}

@@ -43,3 +43,21 @@ export const getWishlistIds = createAsyncThunk(
     }
   },
 );
+
+export const getWishlistVideos = createAsyncThunk(
+  `${wishlistReducer}/videos`,
+  async ({limit, offset}: {limit: number; offset: number}, thunkAPI) => {
+    try {
+      const res = await client.get(`/favorites/videos`, {
+        params: {
+          limit,
+          offset,
+        },
+      });
+      return thunkAPI.fulfillWithValue(res.data);
+    } catch (error) {
+      const {message} = error as Error;
+      return thunkAPI.rejectWithValue({error: message});
+    }
+  },
+);

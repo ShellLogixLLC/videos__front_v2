@@ -63,6 +63,22 @@
       grid-gap: 16px;
       grid-template-columns: 1fr;
     }
+
+    &__noVideo{
+      display: flex;
+      flex-direction: column;
+
+      &__first{
+        @extend %heading_large;
+        padding-bottom: 8px;
+      }
+
+      &__second{
+        @extend %heading_large;
+        font-size: 18px;
+        color: $red;
+      }
+    }
   }
 
   &__pagination {

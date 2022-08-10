@@ -12,6 +12,8 @@ const internalInitialState: WishlistSliceState = {
   loading: LoadingStates.IDLE,
   error: null,
   wishlistIds: [],
+  wishlistVideos: null,
+  wishlistVideosLoading: LoadingStates.IDLE,
 };
 
 const wishlistSlice = createSlice({
@@ -31,7 +33,7 @@ const wishlistSlice = createSlice({
       state.loading = LoadingStates.IDLE;
     });
     builder.addCase(wishlistThunks.addToWishlist.rejected, (state, action) => {
-      state.loading = LoadingStates.LOADING;
+      state.loading = LoadingStates.REJECTED;
       state.error = action.error;
     });
     builder.addCase(wishlistThunks.deleteFromWishlist.pending, (state) => {
@@ -44,7 +46,7 @@ const wishlistSlice = createSlice({
     builder.addCase(
       wishlistThunks.deleteFromWishlist.rejected,
       (state, action) => {
-        state.loading = LoadingStates.IDLE;
+        state.loading = LoadingStates.REJECTED;
         state.error = action.error;
       },
     );
@@ -60,9 +62,27 @@ const wishlistSlice = createSlice({
       },
     );
     builder.addCase(wishlistThunks.getWishlistIds.rejected, (state, action) => {
-      state.loading = LoadingStates.IDLE;
+      state.loading = LoadingStates.REJECTED;
       state.error = action.error;
     });
+    builder.addCase(wishlistThunks.getWishlistVideos.pending, (state) => {
+      state.wishlistVideosLoading = LoadingStates.LOADING;
+    });
+    builder.addCase(
+      wishlistThunks.getWishlistVideos.fulfilled,
+      (state, action) => {
+        state.error = null;
+        state.wishlistVideosLoading = LoadingStates.IDLE;
+        state.wishlistVideos = action.payload;
+      },
+    );
+    builder.addCase(
+      wishlistThunks.getWishlistVideos.rejected,
+      (state, action) => {
+        state.wishlistVideosLoading = LoadingStates.REJECTED;
+        state.error = action.error;
+      },
+    );
   },
 });
 

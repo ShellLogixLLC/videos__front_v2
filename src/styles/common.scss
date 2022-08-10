@@ -199,6 +199,42 @@
   }
 }
 
+.warn_toast{
+  @extend %flex-justify-between-align-center;
+  min-width: 200px;
+
+  &_description{
+    flex: 1;
+    padding-right: 6px;
+    color: $black !important;
+
+    &:first-letter {
+      text-transform: capitalize;
+    }
+  }
+
+  &_button{
+    background: $yellow !important;
+    width: unset !important;
+    padding: 8px 26px !important;
+    border-radius: 6px;
+    transition: opacity 0.4s ease;
+
+    &:hover{
+      opacity: 0.8;
+    }
+
+    &_title{
+      color: $white !important;
+
+      &:first-letter {
+        text-transform: capitalize;
+      }
+    }
+  }
+
+}
+
 .container_without-header {
   width: 100%;
 
