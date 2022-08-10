@@ -33,7 +33,11 @@ const Search: React.FC = () => {
   };
 
   const searchChangeHandle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.target.value);
+    if (searchValue.length < 1) {
+      setSearchValue(e.target.value.trim());
+    } else {
+      setSearchValue(e.target.value);
+    }
   };
 
   const {translatedTypo: translatedPlaceholder} = useLocales('search');
