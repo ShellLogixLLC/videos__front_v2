@@ -25,8 +25,9 @@ const Category: React.FC = () => {
     : INITIAL_PAGINATION_ROWS_PER_PAGE;
 
   const [activePage, setActivePage] = useState<number>(
-    query?.page ? Number(query?.page || 0) : 0,
+    query?.page ? Number(query?.page) : 0,
   );
+
   const [totalCount, setTotalCount] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(currentPerPageCount);
 
