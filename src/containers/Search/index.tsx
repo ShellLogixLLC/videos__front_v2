@@ -17,9 +17,9 @@ import {
   INITIAL_PAGINATION_ACTIVE_PAGE,
   INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE,
 } from '~/constants';
-import FilmCardSkeleton from '~/components/skeletons/FilmCard';
-import {useAppSelector, useLocales} from '~/hooks';
 import {wishlistSelect} from '~/store/wishlist';
+import {useAppSelector, useLocales} from '~/hooks';
+import FilmCardSkeleton from '~/components/skeletons/FilmCard';
 
 import styles from './Search.module.scss';
 

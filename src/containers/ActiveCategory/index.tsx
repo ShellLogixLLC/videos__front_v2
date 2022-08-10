@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {useRouter} from 'next/router';
 
+import {CategoryService} from '~/api';
 import {LeftArrowIcon} from '~/assets';
 import {useAppSelector, useWindowSize} from '~/hooks';
-import {CategoryService} from '~/api';
 import {filteredMass, setQueryParams} from '~/utils';
 import {QueryParamsTypes, VideosProps} from '~/types';
 import {
@@ -19,7 +19,7 @@ import {
   DatePicker,
   Typography,
   FilterBySort,
-  FilmCardSkeletons,
+  FilmCardSkeleton,
 } from '~/components';
 import {wishlistSelect} from '~/store/wishlist';
 
@@ -125,7 +125,7 @@ const ActiveCategory: React.FC = () => {
   const renderLoaderCards = Array.from(
     Array(skeletonsCount),
     (index: number) => (
-      <FilmCardSkeletons
+      <FilmCardSkeleton
         key={index}
         cardClasses={styles.content__wrapper_item}
       />

@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {useRouter} from 'next/router';
 
-import {useAppSelector, useWindowSize} from '~/hooks';
 import {CategoryService} from '~/api';
+import {useAppSelector, useWindowSize} from '~/hooks';
 import {CategoryContentTypes, VideosProps} from '~/types';
-import {FilmCard, FilmCardSkeletons, Typography} from '~/components';
+import {FilmCard, FilmCardSkeleton, Typography} from '~/components';
 import {
   INITIAL_PAGINATION_MORE_COUNT,
   INITIAL_PAGINATION_ROWS_PER_PAGE,
@@ -80,7 +80,7 @@ const CategoryContent: React.FC<CategoryContentTypes> = ({
   const renderLoaderCards = Array.from(
     Array(skeletonsCount),
     (_, index: number) => (
-      <FilmCardSkeletons
+      <FilmCardSkeleton
         key={`categoryContent${index}`}
         cardClasses={styles.content__wrapper_item}
       />

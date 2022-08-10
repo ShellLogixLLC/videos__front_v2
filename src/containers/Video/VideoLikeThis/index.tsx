@@ -3,10 +3,10 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 
 import {VideosProps} from '~/types';
 import {VideosService} from '~/api';
-import {VIDEOS_LIMIT, SIMILAR_VIDEOS_COUNT} from '~/constants';
-import {Typography, FilmCard, FilmCardSkeletons} from '~/components';
 import {useAppSelector} from '~/hooks';
 import {wishlistSelect} from '~/store/wishlist';
+import {VIDEOS_LIMIT, SIMILAR_VIDEOS_COUNT} from '~/constants';
+import {Typography, FilmCard, FilmCardSkeleton} from '~/components';
 
 import styles from '../Video.module.scss';
 
@@ -50,7 +50,7 @@ const VideoLikeThis: React.FC = () => {
     limit < SIMILAR_VIDEOS_COUNT &&
     skeletonsArray.map((_item, index) => (
       <React.Fragment key={`skeleton${index}`}>
-        <FilmCardSkeletons
+        <FilmCardSkeleton
           cardClasses={styles.similar__wrapper__skeleton_item}
         />
       </React.Fragment>
