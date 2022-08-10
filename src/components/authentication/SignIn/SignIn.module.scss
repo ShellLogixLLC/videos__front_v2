@@ -2,13 +2,13 @@
   @extend %flex-center-direction;
   max-width: 376px;
   width: 100%;
-  margin-top: 0;
-  margin-bottom: 0;
+  margin: 0 auto;
   padding-bottom: 0;
 
   @include breakpoint(tablet-m) {
     padding-top: 80px;
   }
+
   &__route {
     position: absolute;
     right: 2vh;
@@ -26,10 +26,7 @@
 
     &__title {
       color: $white;
-      margin: {
-        top: 54px;
-        bottom: 24px;
-      }
+      margin: 54px 0 24px;
 
       @include breakpoint(tablet) {
         margin-top: 40px;
@@ -51,12 +48,6 @@
       font-weight: 700;
       margin: 0 auto;
 
-      // @include breakpoint(tablet) {
-      //   margin: {
-      //     top: 40px;
-      //     bottom: 40px;
-      //   }
-      // }
     }
   }
 

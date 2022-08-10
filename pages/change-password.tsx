@@ -5,7 +5,7 @@ import {getCookie} from '~/libraries';
 import {Seo, ChangePassword} from '~/components';
 import {EmptyProps, getProtectedPageRedirect, LocaleKeys} from '~/constants';
 
-const ResetPasswordPage: NextPage = () => (
+const ChangePasswordPage: NextPage = () => (
   <Seo
     showHeaderFooter={false}
     title="Reset password page"
@@ -23,4 +23,4 @@ export const getServerSideProps: GetServerSideProps = async (
   return !token ? getProtectedPageRedirect(locale as LocaleKeys) : EmptyProps;
 };
 
-export default ResetPasswordPage;
+export default ChangePasswordPage;

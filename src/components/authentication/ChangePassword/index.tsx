@@ -2,13 +2,14 @@ import React, {useCallback, useEffect} from 'react';
 import {useToggle} from 'react-use';
 
 import {LogoIcon} from '~/assets';
-import {Link, Loader} from '~/components';
+import {authActions, authSelect} from '~/store/auth';
 import {changePasswordForm, Route} from '~/constants';
 import {useAppDispatch, useAppSelector} from '~/hooks';
-import {authActions, authSelect} from '~/store/auth';
 
-import Typography from '../../shared/Typography';
+import Link from '../../shared/Link';
+import Loader from '../../shared/Loader/';
 import Form from '../../shared/forms/Form';
+import Typography from '../../shared/Typography';
 
 import styles from './ChangePassword.module.scss';
 
