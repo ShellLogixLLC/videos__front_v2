@@ -92,10 +92,10 @@ const EmojisInput = forwardRef<any, InputProps>(
               ref={ref}
               type="text"
               name={name}
-              onFocus={handleFocus}
               autoComplete="off"
-              disabled={disabled}
+              onFocus={handleFocus}
               className={inputClasses}
+              disabled={disabled || expanded}
               placeholder={translatedPlaceholder || placeholder}
               onMouseOver={onMouseOver}
             />
