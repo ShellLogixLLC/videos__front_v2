@@ -27,12 +27,13 @@ const schema = yup.object().shape({
     .string()
     .matches(/^[^\s]+(\s+[^\s]+)*$/, `passwordCantStartOrEndWwithABlankSpace`)
     .required('thePasswordIsRequired')
-    .min(6, 'newPassword'),
+    .min(6, 'passwordIsTooShortShouldBe6CharsMinimum'),
   allow_password: yup
     .string()
     .matches(/^[^\s]+(\s+[^\s]+)*$/, `passwordCantStartOrEndWwithABlankSpace`)
     .required('thePasswordIsRequired')
-    .min(6, 'Password is too short - should be 6 chars minimum.'),
+    .min(6, 'passwordIsTooShortShouldBe6CharsMinimum')
+    .oneOf([yup.ref('new_password'), null], 'passwordIsTooShortOrDoesNotMatch'),
 });
 
 const resetForm: Form = {
