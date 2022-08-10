@@ -6,7 +6,6 @@ export type CategoryTitleTypes = {
 
 export type CategoryContentTypes = {
   activePage: number;
-  categoryId?: string | string[];
   totalCount: number;
   setTotalCount: (value: number) => void;
   rowsPerPage: number;
@@ -19,6 +18,31 @@ export type QueryParamsTypes = {
   viewsSort?: number | string;
   durationSort?: number | string;
   activeCategory?: string;
+};
+
+export type ActiveCategoryParams = {
+  limit: number;
+  offset: number;
+  startDate?: string;
+  endDate?: string;
+  likesSort?: number | string;
+  viewsSort?: number | string;
+};
+
+export type Params = {
+  limit: number;
+  offset: number;
+  activeVCategoryId?: string | string[];
+  startDate?: string;
+  endDate?: string;
+  likesSort?: number | string;
+  viewsSort?: number | string;
+  durationSort?: number | string;
+};
+
+export type SetParams = {
+  params: Params;
+  setParams: React.Dispatch<React.SetStateAction<Params>>;
 };
 
 export enum LocaleType {

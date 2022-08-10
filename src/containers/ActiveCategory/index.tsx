@@ -2,10 +2,10 @@ import React, {useEffect, useState} from 'react';
 import {useRouter} from 'next/router';
 
 import {LeftArrowIcon} from '~/assets';
-import {useWindowSize} from '~/hooks';
 import {CategoryService} from '~/api';
 import {filteredMass, setQueryParams} from '~/utils';
 import {QueryParamsTypes, VideosProps} from '~/types';
+import {useActiveCategoryParams, useWindowSize} from '~/hooks';
 import {
   CategoryFilters,
   ActiveCategoryPathname,
@@ -47,28 +47,11 @@ const ActiveCategory: React.FC = () => {
   const [totalCount, setTotalCount] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(currentPerPageCount);
 
+  const {params} = useActiveCategoryParams(rowsPerPage);
+
   const queryPage = query?.page;
-  const mostLiked = query?.name === ActiveCategoryPathname.Most_Liked ? -1 : '';
-  const mostViewed =
-    query?.name === ActiveCategoryPathname.Most_Viewed ? -1 : '';
-  const queryEndDate = query?.endDate;
-  const queryStartDate = query?.startDate;
 
-  const limit = isMinTablet ? rowsPerPage : INITIAL_PAGINATION_ROWS_PER_PAGE;
-  const offset = !isMinTablet
-    ? activePage * INITIAL_PAGINATION_ROWS_PER_PAGE
-    : 0;
-  const endDate = queryEndDate ? String(queryEndDate) : '';
-  const startDate = queryStartDate ? String(queryStartDate) : '';
-
-  const {data, isLoading} = CategoryService.useActiveCategory(
-    limit,
-    offset,
-    startDate,
-    endDate,
-    mostLiked,
-    mostViewed,
-  );
+  const {data, isLoading} = CategoryService.useActiveCategory(params);
 
   const tabletSkeletonsCount =
     rowsPerPage + INITIAL_PAGINATION_MORE_COUNT > totalCount
@@ -142,7 +125,7 @@ const ActiveCategory: React.FC = () => {
       <div className={styles.content__wrapper}>{renderLoaderCards}</div>
     ) : (
       <div className={styles.content__wrapper}>
-        {dataTotalCount
+        {totalCount
           ? renderVideosList
           : !isLoading && <Typography>sorryWeCouldNotFindAnyResult</Typography>}
         {isLoading && isMinTablet && <>{renderLoaderCards}</>}

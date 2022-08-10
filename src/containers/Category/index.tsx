@@ -3,46 +3,38 @@ import {isEqual} from 'lodash';
 import {useRouter} from 'next/router';
 
 import {LeftArrowIcon} from '~/assets';
-import {useLocales, useWindowSize} from '~/hooks';
 import {setQueryParams} from '~/utils';
 import {QueryParamsTypes} from '~/types';
+import {useLocales, useWindowSize} from '~/hooks';
+import {INITIAL_PAGINATION_ROWS_PER_PAGE} from '~/constants';
 import {DatePicker, Pagination, BackButton} from '~/components';
-import {
-  INITIAL_PAGINATION_MORE_COUNT,
-  INITIAL_PAGINATION_ROWS_PER_PAGE,
-} from '~/constants';
 
 import styles from './Category.module.scss';
 import CategoryTitle from './CategoryTitle';
 import CategoryContent from './CategoryContent';
 
 const Category: React.FC = () => {
-  const {query} = useRouter();
+  const {query, asPath} = useRouter();
   const {isMinTablet} = useWindowSize();
 
-  const currentPerPageCount = isMinTablet
-    ? INITIAL_PAGINATION_MORE_COUNT
-    : INITIAL_PAGINATION_ROWS_PER_PAGE;
-
-  const [activePage, setActivePage] = useState<number>(
-    query?.page ? Number(query?.page || 0) : 0,
-  );
-  const [totalCount, setTotalCount] = useState<number>(0);
-  const [rowsPerPage, setRowsPerPage] = useState<number>(currentPerPageCount);
-
-  const queryName = query?.name;
   const queryPage = query?.page;
+  const currentPgae =
+    asPath.includes('page=0') || !queryPage ? 0 : Number(queryPage);
+
+  const [activePage, setActivePage] = useState<number>(currentPgae);
+  const [totalCount, setTotalCount] = useState<number>(0);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(
+    INITIAL_PAGINATION_ROWS_PER_PAGE,
+  );
 
   useEffect(() => {
-    if (isEqual(queryName, queryName)) {
+    if (!isEqual(INITIAL_PAGINATION_ROWS_PER_PAGE, rowsPerPage)) {
       setRowsPerPage(INITIAL_PAGINATION_ROWS_PER_PAGE);
     }
 
-    if (isEqual(queryPage, queryPage)) {
-      setActivePage(Number(queryPage));
-    }
+    setActivePage(currentPgae);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query]);
+  }, [currentPgae]);
 
   const setNewQueryParams = (newQueryParams: QueryParamsTypes): void => {
     setQueryParams({...query, ...newQueryParams});
@@ -76,7 +68,6 @@ const Category: React.FC = () => {
           <CategoryTitle categoryId={query?.name} />
           <CategoryContent
             activePage={activePage}
-            categoryId={query?.name}
             setTotalCount={setTotalCount}
             totalCount={totalCount}
             rowsPerPage={rowsPerPage}

@@ -5,7 +5,7 @@ import {useRouter} from 'next/router';
 import {useWindowSize} from '~/hooks';
 import {SearchBackArrowIcon} from '~/assets';
 import {getCookieFromBrowser} from '~/libraries';
-import {CategoryFilters, INITIAL_SUB_CATEGORY_TRANSFORM} from '~/constants';
+import {INITIAL_SUB_CATEGORY_TRANSFORM} from '~/constants';
 
 import Link from '../Link';
 
@@ -75,16 +75,8 @@ const SubCategories: React.FC<SubCategoriesProps> = ({
     return (
       <Link
         key={id}
-        to={{
-          pathname: '/category/[name]',
-          query: {
-            activeCategory: CategoryFilters.All,
-            likesSort: '',
-            viewsSort: '',
-            durationSort: '',
-          },
-        }}
-        as={`/category/${id}`}
+        to="/category/[name]"
+        as={`/category/${id}?page=0`}
         className={itemClasses}>
         {name[lng]}
       </Link>

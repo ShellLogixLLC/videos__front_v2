@@ -1,5 +1,6 @@
 import {useEffect} from 'react';
 
+import {Params} from '~/types';
 import {useAppRequest} from '~/hooks';
 import {RouterService} from '~/services';
 
@@ -7,28 +8,10 @@ import endpoints from '../endpoints';
 
 import {IVideoByCategory} from './types';
 
-const useVideosByCategoryId = (
-  limit: number,
-  offset: number,
-  activeVCategoryId?: string | string[],
-  startDate?: string,
-  endDate?: string,
-  likesSort?: number | string,
-  viewsSort?: number | string,
-  durationSort?: number | string,
-): IVideoByCategory => {
+const useVideosByCategoryId = (params: Params): IVideoByCategory => {
   const {data, mutate, error} = useAppRequest({
     url: endpoints.CategoryService.getVideoByCategoryId(),
-    params: {
-      limit,
-      offset,
-      categoryIds: [activeVCategoryId],
-      startDate,
-      endDate,
-      likesSort,
-      viewsSort,
-      durationSort,
-    },
+    params,
   });
 
   useEffect(() => {

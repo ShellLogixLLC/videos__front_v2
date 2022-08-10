@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {useRouter} from 'next/router';
 
-import {useWindowSize} from '~/hooks';
 import {CategoryService} from '~/api';
+import {useCategotyParams, useWindowSize} from '~/hooks';
 import {CategoryContentTypes, VideosProps} from '~/types';
 import {FilmCard, FilmCardSkeletons, Typography} from '~/components';
 import {
@@ -15,39 +14,15 @@ import styles from '../Category.module.scss';
 const CategoryContent: React.FC<CategoryContentTypes> = ({
   activePage,
   totalCount,
-  categoryId,
   rowsPerPage,
   setTotalCount,
 }) => {
-  const {query} = useRouter();
+  const {params} = useCategotyParams(rowsPerPage);
   const {isMinTablet} = useWindowSize();
 
   const [videosList, setVideosList] = useState<VideosProps[]>([]);
 
-  const queryEndDate = query?.endDate;
-  const queryStartDate = query?.startDate;
-
-  const endDate = queryEndDate ? String(queryEndDate) : '';
-  const startDate = queryStartDate ? String(queryStartDate) : '';
-  const likesSort = Number(query?.likesSort) || '';
-  const viewsSort = Number(query?.viewsSort) || '';
-  const durationSort = Number(query?.durationSort) || '';
-
-  const limit = isMinTablet ? rowsPerPage : INITIAL_PAGINATION_ROWS_PER_PAGE;
-  const offset = !isMinTablet
-    ? activePage * INITIAL_PAGINATION_ROWS_PER_PAGE
-    : 0;
-
-  const {data, isLoading} = CategoryService.useVideosByCategoryId(
-    limit,
-    offset,
-    categoryId,
-    startDate,
-    endDate,
-    likesSort,
-    viewsSort,
-    durationSort,
-  );
+  const {data, isLoading} = CategoryService.useVideosByCategoryId(params);
 
   const tabletSkeletonsCount =
     rowsPerPage + INITIAL_PAGINATION_MORE_COUNT > totalCount
@@ -84,10 +59,6 @@ const CategoryContent: React.FC<CategoryContentTypes> = ({
     ),
   );
 
-  if (isLoading && !isMinTablet) {
-    return <div className={styles.content__wrapper}>{renderLoaderCards}</div>;
-  }
-
   const renderVideosList = videosList?.map((item: VideosProps) => (
     <FilmCard
       key={item.id}
@@ -101,7 +72,7 @@ const CategoryContent: React.FC<CategoryContentTypes> = ({
       <div className={styles.content__wrapper}>{renderLoaderCards}</div>
     ) : (
       <div className={styles.content__wrapper}>
-        {dataTotalCount ? (
+        {videosList.length ? (
           renderVideosList
         ) : (
           <Typography>sorryWeCouldNotFindAnyResult</Typography>
