@@ -2,10 +2,10 @@ import React, {useEffect, useState} from 'react';
 import classNames from 'classnames';
 
 import {createDate} from '~/utils';
-import {VideosProps, WishlistActions} from '~/types';
 import {useAppDispatch} from '~/hooks';
 import {UnRegisterPopup} from '~/components';
 import {getCookieFromBrowser} from '~/libraries';
+import {VideosProps, WishlistActions} from '~/types';
 import {addToWishlist, deleteFromWishlist} from '~/store/wishlist/thunks';
 import {
   CategoryImage,

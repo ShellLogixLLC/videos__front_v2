@@ -1,12 +1,12 @@
 .container{
   width: 100%;
   max-width: 400px;
-  justify-content: space-between;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  padding: 16px;
   border-radius: 8px;
   background: $red_opacity_color;
-  padding: 16px;
 
   &__title{
     font-size: 18px;
@@ -15,9 +15,8 @@
 }
 
 .wrapper{
-  display: flex;
+  @extend %flex-justify-between;
   flex-direction: column;
-  justify-content: space-between;
 
   &__title{
     font-size: 18px;
@@ -32,9 +31,7 @@
       font-weight: 600;
       text-decoration: underline;
       transition: all 0.4s ease;
-      text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
-      0px 8px 13px rgba(0,0,0,0.1),
-      0px 18px 23px rgba(0,0,0,0.1);
+      text-shadow: $text-shadow-white;
 
       &:hover{
         color: $red;

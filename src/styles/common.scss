@@ -200,15 +200,13 @@
 }
 
 .warn_toast{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  @extend %flex-justify-between-align-center;
   min-width: 200px;
 
   &_description{
-    color: $black !important;
     flex: 1;
     padding-right: 6px;
+    color: $black !important;
 
     &:first-letter {
       text-transform: capitalize;
