@@ -1,6 +1,5 @@
 .wrapper {
   @extend %flex-justify-between;
-  display: none;
 
   &__content {
     max-width: calc(100% - 340px);
@@ -75,17 +74,6 @@
         margin-bottom: 24px;
       }
 
-      &__card {
-        min-width: 288px !important;
-        max-width: 433px !important;
-        margin: 0 auto !important;
-        margin-bottom: 12px !important;
-
-        @include breakpoint(wide-l) {
-          margin-bottom: 0 !important;
-        }
-      }
-
       &__pagination {
         margin: 0 auto;
       }
@@ -95,7 +83,7 @@
           color: $red;
           @extend %film_name;
         }
-        &__search_result{
+        &__search_result {
           color: $red;
           margin-left: 6px;
           @extend %film_name;
