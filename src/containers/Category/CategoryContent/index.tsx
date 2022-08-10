@@ -1,14 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import {useRouter} from 'next/router';
 
-import {useWindowSize} from '~/hooks';
 import {CategoryService} from '~/api';
+import {useAppSelector, useWindowSize} from '~/hooks';
 import {CategoryContentTypes, VideosProps} from '~/types';
-import {FilmCard, FilmCardSkeletons, Typography} from '~/components';
+import {FilmCard, FilmCardSkeleton, Typography} from '~/components';
 import {
   INITIAL_PAGINATION_MORE_COUNT,
   INITIAL_PAGINATION_ROWS_PER_PAGE,
 } from '~/constants';
+import {wishlistSelect} from '~/store/wishlist';
 
 import styles from '../Category.module.scss';
 
@@ -23,6 +24,8 @@ const CategoryContent: React.FC<CategoryContentTypes> = ({
   const {isMinTablet} = useWindowSize();
 
   const [videosList, setVideosList] = useState<VideosProps[]>([]);
+
+  const {wishlistIds: wishlist} = useAppSelector(wishlistSelect);
 
   const queryEndDate = query?.endDate;
   const queryStartDate = query?.startDate;
@@ -77,7 +80,7 @@ const CategoryContent: React.FC<CategoryContentTypes> = ({
   const renderLoaderCards = Array.from(
     Array(skeletonsCount),
     (_, index: number) => (
-      <FilmCardSkeletons
+      <FilmCardSkeleton
         key={`categoryContent${index}`}
         cardClasses={styles.content__wrapper_item}
       />
@@ -93,6 +96,7 @@ const CategoryContent: React.FC<CategoryContentTypes> = ({
       key={item.id}
       item={item}
       cardClasses={styles.content__wrapper_item}
+      wishlist={wishlist}
     />
   ));
 

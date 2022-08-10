@@ -3,8 +3,8 @@ import {useRouter} from 'next/router';
 
 import {LeftArrowIcon} from '~/assets';
 import {setQueryParams} from '~/utils';
-import WishlistSearchService from '~/api/wishlist';
 import {useWindowSize, useLocales} from '~/hooks';
+import WishlistSearchService from '~/api/wishlist';
 import {QueryParamsTypes, VideosProps} from '~/types';
 import {
   INITIAL_WISHLIST_LIMIT,
@@ -16,7 +16,7 @@ import {
   BackButton,
   Pagination,
   Typography,
-  FilmCardSkeletons,
+  FilmCardSkeleton,
 } from '~/components';
 
 import styles from './Wishlist.module.scss';
@@ -82,7 +82,7 @@ const MyFavorites: React.FC = () => {
   const renderLoaderCards = Array.from(
     Array(skeletonsCount),
     (index: number) => (
-      <FilmCardSkeletons
+      <FilmCardSkeleton
         key={index}
         cardClasses={styles.favorites__content__card}
       />
