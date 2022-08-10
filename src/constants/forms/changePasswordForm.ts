@@ -5,7 +5,15 @@ import {EyeShowIcon, EyeHideIcon} from '~/assets';
 
 const fields: Field[] = [
   {
-    name: 'new_password',
+    name: 'currentPassword',
+    label: 'enterOldPassword',
+    type: 'password',
+    placeholder: 'enterOldPassword',
+    RightIcon: EyeShowIcon,
+    RightToggledIcon: EyeHideIcon,
+  },
+  {
+    name: 'newPassword',
     label: 'enterNewPassword',
     type: 'password',
     placeholder: 'enterNewPassword',
@@ -13,7 +21,7 @@ const fields: Field[] = [
     RightToggledIcon: EyeHideIcon,
   },
   {
-    name: 'allow_password',
+    name: 'passwordConfirmation',
     label: 'confirmPassword',
     type: 'password',
     placeholder: 'confirmPassword',
@@ -23,22 +31,27 @@ const fields: Field[] = [
 ];
 
 const schema = yup.object().shape({
-  new_password: yup
+  currentPassword: yup
     .string()
     .matches(/^[^\s]+(\s+[^\s]+)*$/, `passwordCantStartOrEndWwithABlankSpace`)
     .required('thePasswordIsRequired')
     .min(6, 'passwordIsTooShortShouldBe6CharsMinimum'),
-  allow_password: yup
+  newPassword: yup
     .string()
     .matches(/^[^\s]+(\s+[^\s]+)*$/, `passwordCantStartOrEndWwithABlankSpace`)
     .required('thePasswordIsRequired')
-    .min(6, 'passwordIsTooShortShouldBe6CharsMinimum')
-    .oneOf([yup.ref('new_password'), null], 'passwordIsTooShortOrDoesNotMatch'),
+    .min(6, 'passwordIsTooShortShouldBe6CharsMinimum'),
+  passwordConfirmation: yup
+    .string()
+    .matches(/^[^\s]+(\s+[^\s]+)*$/, `passwordCantStartOrEndWwithABlankSpace`)
+    .oneOf([yup.ref('newPassword'), null], 'passwordIsTooShortOrDoesNotMatch')
+    .required('thePasswordIsRequired')
+    .min(6, 'passwordIsTooShortShouldBe6CharsMinimum'),
 });
 
-const resetForm: Form = {
+const changePasswordForm: Form = {
   fields,
   schema,
 };
 
-export default resetForm;
+export default changePasswordForm;

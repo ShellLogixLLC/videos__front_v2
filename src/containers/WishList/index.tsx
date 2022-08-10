@@ -24,7 +24,7 @@ import {
   BackButton,
   EmptyWishlist,
   FilmCard,
-  FilmCardSkeletons,
+  FilmCardSkeleton,
   Pagination,
   Typography,
 } from '~/components';
@@ -114,7 +114,7 @@ const MyFavorites: React.FC = () => {
   const renderLoaderCards = Array.from(
     Array(skeletonsCount),
     (index: number) => (
-      <FilmCardSkeletons
+      <FilmCardSkeleton
         key={index}
         cardClasses={styles.favorites__content__card}
       />

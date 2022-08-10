@@ -92,7 +92,7 @@ const ProfileModal = forwardRef<any, PopupProps>(
     };
 
     const handleChangePasswordRoute = (): void => {
-      RouterService.push(Route.RegistrationContactInformation);
+      RouterService.push(Route.ChangePassword);
     };
 
     useOnClickOutside(modalRef, handleClose);

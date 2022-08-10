@@ -5,9 +5,10 @@ export {default as Route} from './route';
 export {default as resetForm} from './forms/resetForm';
 export {default as signInForm} from './forms/signInForm';
 export {default as setEmailForm} from './forms/setMailForm';
-export {default as editUsernameForm} from './forms/editUsername';
 export {default as setPasswordForm} from './forms/setPasswordForm';
 export {default as registrationForm} from './forms/registrationForm';
+export {default as editUsernameForm} from './forms/editUsernameForm';
+export {default as changePasswordForm} from './forms/changePasswordForm';
 export {default as forgotPasswordForm} from './forms/forgotPasswordForm';
 
 export {default as FontStyles} from './fontStyles';

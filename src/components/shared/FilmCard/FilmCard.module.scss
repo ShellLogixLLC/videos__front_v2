@@ -122,8 +122,9 @@
   }
 
   &__other {
-    @extend %flex-between;
+    user-select: text;
     margin-bottom: 8px;
+    @extend %flex-between;
 
     &_name {
       @extend %film_name;

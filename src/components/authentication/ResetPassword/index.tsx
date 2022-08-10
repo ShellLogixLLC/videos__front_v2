@@ -3,8 +3,8 @@ import {useRouter} from 'next/router';
 import {useToggle} from 'react-use';
 
 import {LogoIcon} from '~/assets';
-import {Loader} from '~/components';
-import {resetForm} from '~/constants';
+import {Link, Loader} from '~/components';
+import {resetForm, Route} from '~/constants';
 import {authActions, authSelect} from '~/store/auth';
 import {useAppDispatch, useAppSelector} from '~/hooks';
 
@@ -43,7 +43,9 @@ const ResetPassword: React.FC = () => {
 
   return (
     <div className={`container_without-header ${styles.container}`}>
-      <LogoIcon className={styles.container__top_img} />
+      <Link to={Route.Home}>
+        <LogoIcon className={styles.container__top_img} />
+      </Link>
       <Typography
         type="Extra"
         variant="Heading"
