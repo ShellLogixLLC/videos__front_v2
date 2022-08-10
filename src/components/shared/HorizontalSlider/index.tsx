@@ -45,12 +45,12 @@ const HorizontalSlider: React.FC<HorizontalSliderProps> = ({
 
   const data = !isMaxTablet ? dataList?.slice(0, rowsPerPage) : dataList;
 
-  const renderVideoList = data?.map((item, index) =>
+  const renderVideoList = data?.map((item) =>
     isCategory ? (
-      <CategoryCard key={index} item={item} isLoading={isLoading} />
+      <CategoryCard key={item.id} item={item} isLoading={isLoading} />
     ) : (
       <FilmCard
-        key={index}
+        key={item.id}
         cardClasses={styles.wrapper__item}
         item={item}
         wishlist={wishlist}

@@ -1,22 +1,22 @@
 import React from 'react';
+import * as yup from 'yup';
 import shortid from 'shortid';
-import {useForm} from 'react-hook-form';
+import classNames from 'classnames';
 import {BaseEmoji} from 'emoji-mart';
 import {useRouter} from 'next/router';
+import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import classNames from 'classnames';
 
 import {videoActions} from '~/store/video';
 import {useAppDispatch, useLocales} from '~/hooks';
 import {Button, EmojisInput, Typography} from '~/components';
 
-import styles from './Comments.module.scss';
 import {ICommentForm} from './types';
+import styles from './Comments.module.scss';
 
 const CommentForm: React.FC<ICommentForm> = ({addNewComment}) => {
-  const dispatch = useAppDispatch();
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const {id: activeVideoId} = router.query;
 
   const schema = yup.object({
@@ -28,7 +28,7 @@ const CommentForm: React.FC<ICommentForm> = ({addNewComment}) => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = ({comment}: {[key: string]: string}): void | any => {
+  const onSubmit = ({comment}: {[key: string]: string}): void => {
     dispatch(
       videoActions.sendComment({
         videoId: activeVideoId,
