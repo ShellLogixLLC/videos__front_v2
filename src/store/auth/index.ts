@@ -11,6 +11,11 @@ import {AuthSliceState, UpdateAccessTokenAction} from './types';
 const internalInitialState: AuthSliceState = {
   error: null,
   loading: LoadingStates.IDLE,
+  registerLoading: LoadingStates.IDLE,
+  updateUserLoading: LoadingStates.IDLE,
+  resetPasswordLoading: LoadingStates.IDLE,
+  changePasswordLoading: LoadingStates.IDLE,
+  forgotPasswordLoading: LoadingStates.IDLE,
   userInfo: null,
   accessToken: '',
   emailVerify: '',
@@ -65,15 +70,15 @@ const authSlice = createSlice({
     });
     builder.addCase(authThunks.logout.fulfilled, () => internalInitialState);
     builder.addCase(authThunks.register.pending, (state) => {
-      state.loading = LoadingStates.LOADING;
+      state.registerLoading = LoadingStates.LOADING;
     });
     builder.addCase(authThunks.register.fulfilled, (state, action) => {
       state.emailVerify = action.payload.emailVerify;
       state.error = null;
-      state.loading = LoadingStates.IDLE;
+      state.registerLoading = LoadingStates.IDLE;
     });
     builder.addCase(authThunks.register.rejected, (state, action) => {
-      state.loading = LoadingStates.REJECTED;
+      state.registerLoading = LoadingStates.REJECTED;
       state.error = action.payload;
     });
 
@@ -102,50 +107,50 @@ const authSlice = createSlice({
       },
     );
     builder.addCase(authThunks.forgotPassword.pending, (state) => {
-      state.loading = LoadingStates.LOADING;
+      state.forgotPasswordLoading = LoadingStates.LOADING;
     });
     builder.addCase(authThunks.forgotPassword.fulfilled, (state, action) => {
       state.isVerified = action.payload.isVerified;
-      state.loading = LoadingStates.IDLE;
+      state.forgotPasswordLoading = LoadingStates.IDLE;
     });
     builder.addCase(authThunks.forgotPassword.rejected, (state, action) => {
-      state.loading = LoadingStates.REJECTED;
+      state.forgotPasswordLoading = LoadingStates.REJECTED;
       state.error = action.error;
     });
     builder.addCase(authThunks.resetPassword.pending, (state) => {
-      state.loading = LoadingStates.LOADING;
+      state.resetPasswordLoading = LoadingStates.LOADING;
     });
     builder.addCase(authThunks.resetPassword.fulfilled, (state, action) => {
       state.error = null;
       state.isVerified = action.payload.isVerified;
-      state.loading = LoadingStates.IDLE;
+      state.resetPasswordLoading = LoadingStates.IDLE;
     });
     builder.addCase(authThunks.resetPassword.rejected, (state, action) => {
-      state.loading = LoadingStates.REJECTED;
+      state.resetPasswordLoading = LoadingStates.REJECTED;
       state.error = action.error;
     });
     builder.addCase(authThunks.changePassword.pending, (state) => {
-      state.loading = LoadingStates.LOADING;
+      state.changePasswordLoading = LoadingStates.LOADING;
     });
     builder.addCase(authThunks.changePassword.fulfilled, (state, action) => {
       state.error = null;
       state.isVerified = action.payload.isVerified;
-      state.loading = LoadingStates.IDLE;
+      state.changePasswordLoading = LoadingStates.IDLE;
     });
     builder.addCase(authThunks.changePassword.rejected, (state, action) => {
-      state.loading = LoadingStates.REJECTED;
+      state.changePasswordLoading = LoadingStates.REJECTED;
       state.error = action.error;
     });
     builder.addCase(authThunks.updateUser.pending, (state) => {
-      state.loading = LoadingStates.LOADING;
+      state.updateUserLoading = LoadingStates.LOADING;
     });
     builder.addCase(authThunks.updateUser.rejected, (state, action) => {
-      state.loading = LoadingStates.REJECTED;
+      state.updateUserLoading = LoadingStates.REJECTED;
       state.error = action.error;
     });
     builder.addCase(authThunks.updateUser.fulfilled, (state) => {
       state.error = null;
-      state.loading = LoadingStates.IDLE;
+      state.updateUserLoading = LoadingStates.IDLE;
     });
   },
 });

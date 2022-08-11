@@ -1,12 +1,12 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useCallback} from 'react';
 import {useRouter} from 'next/router';
-import {useToggle} from 'react-use';
 
 import {LogoIcon} from '~/assets';
 import {Link, Loader} from '~/components';
 import {resetForm, Route} from '~/constants';
 import {authActions, authSelect} from '~/store/auth';
 import {useAppDispatch, useAppSelector} from '~/hooks';
+import {LoadingStates} from '~/store/types';
 
 import Form from '../../shared/forms/Form';
 import Typography from '../../shared/Typography';
@@ -16,13 +16,7 @@ import styles from './ResetPassword.module.scss';
 const ResetPassword: React.FC = () => {
   const {query} = useRouter();
   const dispatch = useAppDispatch();
-  const {isVerified, error} = useAppSelector(authSelect);
-
-  const [isLoading, toggleIsLoading] = useToggle(false);
-
-  useEffect(() => {
-    if (isLoading && (isVerified || error)) toggleIsLoading();
-  }, [isVerified, error, isLoading]);
+  const {resetPasswordLoading} = useAppSelector(authSelect);
 
   const handleResetPassFormSubmit = useCallback(
     (values) => {
@@ -36,7 +30,6 @@ const ResetPassword: React.FC = () => {
 
       dispatch(authActions.updateErrorAndIsVerified);
       dispatch(authActions.resetPassword(newPasswordData));
-      toggleIsLoading();
     },
     [dispatch, query],
   );
@@ -67,7 +60,7 @@ const ResetPassword: React.FC = () => {
         submitText="resetPassword"
         onSubmit={handleResetPassFormSubmit}
       />
-      {isLoading && <Loader isVertical />}
+      {resetPasswordLoading === LoadingStates.LOADING && <Loader isVertical />}
     </div>
   );
 };

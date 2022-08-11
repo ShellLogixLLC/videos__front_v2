@@ -1,11 +1,11 @@
-import React, {useCallback, useEffect} from 'react';
-import {useToggle} from 'react-use';
+import React, {useCallback} from 'react';
 
 import {LogoIcon} from '~/assets';
 import {Loader} from '~/components';
 import {registrationForm} from '~/constants';
 import {authActions, authSelect} from '~/store/auth';
 import {useAppDispatch, useAppSelector, useLocales} from '~/hooks';
+import {LoadingStates} from '~/store/types';
 
 import Form from '../../shared/forms/Form';
 import BackButton from '../../shared/BackButton';
@@ -15,9 +15,7 @@ import styles from './Registration.module.scss';
 
 const Registration: React.FC = () => {
   const dispatch = useAppDispatch();
-  const {error} = useAppSelector(authSelect);
-
-  const [isLoading, toggleIsLoading] = useToggle(false);
+  const {registerLoading} = useAppSelector(authSelect);
 
   const {translatedTypo} = useLocales('cancelRegistration');
 
@@ -35,14 +33,9 @@ const Registration: React.FC = () => {
       };
 
       dispatch(authActions.register(userInfo));
-      toggleIsLoading();
     },
     [dispatch],
   );
-
-  useEffect(() => {
-    if (error) toggleIsLoading();
-  }, [isLoading, error]);
 
   return (
     <div className={`container_without-header ${styles.container}`}>
@@ -65,7 +58,7 @@ const Registration: React.FC = () => {
         innerClassName={styles.container__registration__block__input}
         inputClassName={styles.container__registration__block__input__inp}
       />
-      {isLoading && <Loader isVertical />}
+      {registerLoading === LoadingStates.LOADING && <Loader isVertical />}
     </div>
   );
 };
