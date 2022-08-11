@@ -5,7 +5,7 @@ import {LeftArrowIcon} from '~/assets';
 import {CategoryService} from '~/api';
 import {filteredMass, setQueryParams} from '~/utils';
 import {QueryParamsTypes, VideosProps} from '~/types';
-import {useAppSelector, useWindowSize,useLocales} from '~/hooks';
+import {useAppSelector, useWindowSize, useLocales} from '~/hooks';
 import {
   CategoryFilters,
   ActiveCategoryPathname,
