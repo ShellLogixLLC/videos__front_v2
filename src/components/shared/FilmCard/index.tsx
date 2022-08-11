@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import classNames from 'classnames';
 
-import {createDate} from '~/utils';
 import {useAppDispatch} from '~/hooks';
 import {UnRegisterPopup} from '~/components';
+import {createDate, WarnToast} from '~/utils';
 import {getCookieFromBrowser} from '~/libraries';
 import {VideosProps, WishlistActions} from '~/types';
 import {addToWishlist, deleteFromWishlist} from '~/store/wishlist/thunks';
@@ -14,7 +14,6 @@ import {
   HeartLikesIcon,
   ViewsCountIcon,
 } from '~/assets';
-import warnToast from '~/utils/warnToast';
 import {wishlistActions} from '~/store/wishlist';
 
 import Link from '../Link';
@@ -84,7 +83,7 @@ const FilmCard: React.FC<FilmCardProps> = ({
       await dispatch(addToWishlist({videoId: id}));
     } else {
       if (isWishlistPage && refreshVideos) {
-        warnToast(id, handleUndoDelete);
+        WarnToast(id, handleUndoDelete);
         refreshVideos(WishlistActions.DELETE, item);
       }
       await dispatch(deleteFromWishlist({videoId: id}));
