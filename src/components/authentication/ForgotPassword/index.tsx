@@ -60,7 +60,7 @@ const ForgotPassword: React.FC = () => {
     if (error || isVerified) {
       toggleIsLoading();
     }
-  }, [error, isVerified]);
+  }, [error, isVerified, isLoading]);
 
   return (
     <div className={`container_without-header ${styles.container}`}>

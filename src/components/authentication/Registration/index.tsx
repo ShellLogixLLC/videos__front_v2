@@ -42,7 +42,7 @@ const Registration: React.FC = () => {
 
   useEffect(() => {
     if (error) toggleIsLoading();
-  }, [error]);
+  }, [isLoading, error]);
 
   return (
     <div className={`container_without-header ${styles.container}`}>

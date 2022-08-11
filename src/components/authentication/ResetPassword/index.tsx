@@ -22,7 +22,7 @@ const ResetPassword: React.FC = () => {
 
   useEffect(() => {
     if (isLoading && (isVerified || error)) toggleIsLoading();
-  }, [isVerified, error]);
+  }, [isVerified, error, isLoading]);
 
   const handleResetPassFormSubmit = useCallback(
     (values) => {

@@ -14,14 +14,14 @@ import Typography from '../../shared/Typography';
 import styles from './ChangePassword.module.scss';
 
 const ChangePassword: React.FC = () => {
-  const {isVerified, error} = useAppSelector(authSelect);
+  const {error, loading} = useAppSelector(authSelect);
   const [isLoading, toggleIsLoading] = useToggle(false);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (isLoading && (isVerified || error)) toggleIsLoading();
-  }, [isLoading, isVerified, error]);
+    if (isLoading && error) toggleIsLoading();
+  }, [error, isLoading]);
 
   const handleChangePasswordSubmit = useCallback(
     (values) => {
