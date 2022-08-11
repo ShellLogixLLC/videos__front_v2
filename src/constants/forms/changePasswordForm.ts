@@ -39,6 +39,10 @@ const schema = yup.object().shape({
   newPassword: yup
     .string()
     .matches(/^[^\s]+(\s+[^\s]+)*$/, `passwordCantStartOrEndWwithABlankSpace`)
+    .notOneOf(
+      [yup.ref('currentPassword'), null],
+      'yourNewPasswordMatchesThePreviousOne',
+    )
     .required('thePasswordIsRequired')
     .min(6, 'passwordIsTooShortShouldBe6CharsMinimum'),
   passwordConfirmation: yup
