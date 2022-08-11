@@ -4,8 +4,9 @@ import classNames from 'classnames';
 import {createDate} from '~/utils';
 import {VideosProps} from '~/types';
 import {useAppDispatch} from '~/hooks';
+import {UnRegisterPopup} from '~/components';
 import {getCookieFromBrowser} from '~/libraries';
-import {VideoLikes, WishlistModal} from '~/components';
+import {VideoLikes} from '~/components';
 import {addToWishlist, deleteFromWishlist} from '~/store/wishlist/thunks';
 import {
   CommentsCount,
@@ -28,7 +29,7 @@ const FilmCard: React.FC<FilmCardProps> = ({
   isFavorite = false,
   cardClasses = '',
 }) => {
-  const lng = getCookieFromBrowser('activeLang') || 'en';
+  const lng = (getCookieFromBrowser('activeLang') as string) || 'en';
   const token = getCookieFromBrowser('token');
 
   const {
@@ -123,7 +124,10 @@ const FilmCard: React.FC<FilmCardProps> = ({
           </div>
         </div>
       </div>
-      <WishlistModal expanded={isLikeItPopup} setExpanded={setIsLikeItPopup} />
+      <UnRegisterPopup
+        expanded={isLikeItPopup}
+        setExpanded={setIsLikeItPopup}
+      />
     </>
   );
 };

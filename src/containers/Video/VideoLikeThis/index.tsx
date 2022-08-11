@@ -3,14 +3,18 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 
 import {VideosProps} from '~/types';
 import {VideosService} from '~/api';
+import {useAppSelector} from '~/hooks';
+import {wishlistSelect} from '~/store/wishlist';
 import {VIDEOS_LIMIT, SIMILAR_VIDEOS_COUNT} from '~/constants';
-import {Typography, FilmCard, FilmCardSkeletons} from '~/components';
+import {Typography, FilmCard, FilmCardSkeleton} from '~/components';
 
 import styles from '../Video.module.scss';
 
 const VideoLikeThis: React.FC = () => {
   const [limit, setLimit] = useState<number>(VIDEOS_LIMIT);
   const [likeThisList, setLikeThisList] = useState<VideosProps[]>([]);
+
+  const {wishlistIds: wishlist} = useAppSelector(wishlistSelect);
 
   const {data} = VideosService.useVideoSimilar(limit, 0);
   const skeletonsArray = new Array(VIDEOS_LIMIT).fill({});
@@ -37,6 +41,7 @@ const VideoLikeThis: React.FC = () => {
         key={similar.id}
         item={similar}
         cardClasses={styles.similar__wrapper_card}
+        wishlist={wishlist}
       />
     ),
   );
@@ -45,7 +50,7 @@ const VideoLikeThis: React.FC = () => {
     limit < SIMILAR_VIDEOS_COUNT &&
     skeletonsArray.map((_item, index) => (
       <React.Fragment key={`skeleton${index}`}>
-        <FilmCardSkeletons
+        <FilmCardSkeleton
           cardClasses={styles.similar__wrapper__skeleton_item}
         />
       </React.Fragment>

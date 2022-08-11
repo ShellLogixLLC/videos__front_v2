@@ -182,10 +182,13 @@ export const changePassword = createAsyncThunk(
       newPassword: string;
       passwordConfirmation: string;
     },
-    thunkAPI,
+    {dispatch, rejectWithValue},
   ) => {
     try {
+      const token = getCookieFromBrowser('token');
+
       const {data} = await client.post('user/change-password', credentials);
+      dispatch(loginWithToken({token: token as string}));
 
       await RouterService.push(Route.Home);
 
@@ -200,7 +203,7 @@ export const changePassword = createAsyncThunk(
       const {errors} = error.response.data;
       if (errors) errorToast(errors);
 
-      return thunkAPI.rejectWithValue(error.response.data.errors);
+      return rejectWithValue(error.response.data.errors);
     }
   },
 );

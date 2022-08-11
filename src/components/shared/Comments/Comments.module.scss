@@ -1,10 +1,14 @@
 .container {
   width: 100%;
   padding: 0 16px;
+  margin: 16px 0 0;
   @extend %border-rad_10;
   background-color: $light-black;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
-  margin: 16px 0 0;
+
+  &_open {
+    padding-bottom: 20px;
+  }
 
   &__content {
     padding: 18px 0;

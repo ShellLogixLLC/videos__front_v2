@@ -1,4 +1,5 @@
 export type PopupProps = {
+  title?: string;
   isClose?: boolean;
   expanded: boolean;
   className?: string;

@@ -1,5 +1,9 @@
-.dislike {
-  path {
-    fill: $Like-color;
+.icon {
+  cursor: pointer;
+
+  &__dislike {
+    path {
+      fill: $Like-color;
+    }
   }
 }

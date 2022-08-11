@@ -3,25 +3,25 @@ import classNames from 'classnames';
 import {useToggle} from 'react-use';
 import {useSelector} from 'react-redux';
 
-import {authState} from '~/store/auth';
-import {CommentType} from '~/api/videos/types';
 import {VideosService} from '~/api';
-import {COMMENTS_LIMIT} from '~/constants';
+import {authState} from '~/store/auth';
 import {LanguageArrowTop} from '~/assets';
+import {COMMENTS_LIMIT} from '~/constants';
+import {CommentType} from '~/api/videos/types';
 import {CommentsBlockSkeleton} from '~/components';
 
 import Typography from '../Typography';
 
-import styles from './Comments.module.scss';
 import CommentForm from './CommentForm';
 import CommentBlock from './CommentBlock';
+import styles from './Comments.module.scss';
 
 const Comments: React.FC = () => {
   const {userInfo} = useSelector(authState);
 
-  const [limit, setLimit] = useState<number>(COMMENTS_LIMIT);
   const [expanded, toggleExpanded] = useToggle(false);
   const [totalCount, setTotalCount] = useState<number>(0);
+  const [limit, setLimit] = useState<number>(COMMENTS_LIMIT);
   const [commentsList, setCommentsList] = useState<CommentType[]>([]);
 
   const {data, isLoading} = VideosService.useVideoComments(limit, 0);
@@ -53,7 +53,10 @@ const Comments: React.FC = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div
+      className={classNames(styles.container, {
+        [styles.container_open]: expanded,
+      })}>
       <div onClick={toggleExpanded} className={styles.container__content}>
         <div className={styles.container__content__title}>
           <Typography className={styles.container__content__title__text}>

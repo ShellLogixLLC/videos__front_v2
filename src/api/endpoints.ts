@@ -21,7 +21,7 @@ const endpoints = {
       id?: string | string[],
     ): string => `/videos/${id}/similar?offset=${offset}&limit=${limit}`,
     getVideoLiked: (id?: string | string[]): string =>
-      `/videos-likes?videoId=${id}`,
+      `/video-likes?videoId=${id}`,
   },
 
   VideosSearchService: {

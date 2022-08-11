@@ -6,7 +6,7 @@ import {useRouter} from 'next/router';
 import {wishlistSelect} from '~/store/wishlist';
 import {VIDEO_INITIAL_NAME} from '~/constants';
 import {getCookieFromBrowser} from '~/libraries';
-import {VideoLikes, WishlistModal} from '~/components';
+import {VideoLikes, UnRegisterPopup} from '~/components';
 import {HeartLikesIcon, ViewsCountIcon} from '~/assets/index';
 import {useAppDispatch, useAppSelector} from '~/hooks';
 import {addToWishlist, deleteFromWishlist} from '~/store/wishlist/thunks';
@@ -88,7 +88,10 @@ const VideDescription: React.FC<VideDescriptionTypes> = ({
         <p className={styles.wrapper__date}>{formatCreatedDate}</p>
         <p className={styles.wrapper__description}>{description}</p>
       </div>
-      <WishlistModal expanded={isLikeItPopup} setExpanded={setIsLikeItPopup} />
+      <UnRegisterPopup
+        expanded={isLikeItPopup}
+        setExpanded={setIsLikeItPopup}
+      />
     </>
   );
 };

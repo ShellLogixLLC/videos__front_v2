@@ -15,6 +15,13 @@ export type CommentType = {
   updatedAt?: string;
 };
 
+export type VideoLikedProps = {
+  isLiked: boolean;
+  isDisliked: boolean;
+  likesCount: number;
+  dislikesCount: number;
+};
+
 export interface IComments {
   comments: CommentType[];
   totalCount: number;
@@ -26,7 +33,7 @@ export interface IVideosReturn extends ICommonRequestReturn {
 }
 
 export interface IVideoById extends ICommonRequestReturn {
-  data: VideosProps;
+  data: VideoLikedProps;
   mutate: MutateData;
 }
 

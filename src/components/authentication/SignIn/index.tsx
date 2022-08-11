@@ -29,8 +29,8 @@ const SignIn: React.FC = () => {
   );
 
   useEffect(() => {
-    if (userInfo || error) toggleIsLoading();
-  }, [isLoading, userInfo, error, toggleIsLoading]);
+    if (isLoading && (userInfo || error)) toggleIsLoading();
+  }, [isLoading, userInfo, error]);
 
   const {translatedTypo} = useLocales('signIn');
 
