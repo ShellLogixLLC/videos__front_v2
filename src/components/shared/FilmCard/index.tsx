@@ -1,16 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import classNames from 'classnames';
 
-import {createDate} from '~/utils';
-import {VideosProps} from '~/types';
+import {VideoLikes} from '~/components';
 import {useAppDispatch} from '~/hooks';
 import {UnRegisterPopup} from '~/components';
+import {wishlistActions} from '~/store/wishlist';
 import {getCookieFromBrowser} from '~/libraries';
-import {VideoLikes} from '~/components';
+import {createDate, WarnToast} from '~/utils';
+import {VideosProps, WishlistActions} from '~/types';
 import {addToWishlist, deleteFromWishlist} from '~/store/wishlist/thunks';
 import {
-  CommentsCount,
   CategoryImage,
+  CommentsCount,
   HeartLikesIcon,
   ViewsCountIcon,
 } from '~/assets';
@@ -28,6 +29,8 @@ const FilmCard: React.FC<FilmCardProps> = ({
   wishlist,
   isFavorite = false,
   cardClasses = '',
+  isWishlistPage,
+  refreshVideos,
 }) => {
   const lng = (getCookieFromBrowser('activeLang') as string) || 'en';
   const token = getCookieFromBrowser('token');
@@ -60,9 +63,17 @@ const FilmCard: React.FC<FilmCardProps> = ({
 
   const durationMinutes = Math.floor(duration / 60);
 
-  const isLikedClasses = classNames(styles.wrapper__film_not_like_it, {
-    [styles.wrapper__film_like_it]: isLiked,
+  const isLikedClasses = classNames(styles.wrapper__film_notLiked, {
+    [styles.wrapper__film_liked]: isLiked,
   });
+
+  const handleUndoDelete = (): void => {
+    dispatch(addToWishlist({videoId: id}));
+    if (isWishlistPage && refreshVideos) {
+      refreshVideos(WishlistActions.ADD, item);
+    }
+    dispatch(wishlistActions.getWishlistIds());
+  };
 
   const toggleIsLiked = async (e: React.MouseEvent) => {
     e.preventDefault();
@@ -71,8 +82,13 @@ const FilmCard: React.FC<FilmCardProps> = ({
     if (!isLiked) {
       await dispatch(addToWishlist({videoId: id}));
     } else {
+      if (isWishlistPage && refreshVideos) {
+        WarnToast(id, handleUndoDelete);
+        refreshVideos(WishlistActions.DELETE, item);
+      }
       await dispatch(deleteFromWishlist({videoId: id}));
     }
+    dispatch(wishlistActions.getWishlistIds());
   };
 
   const handleLoggedOutHeartIcon = (e: React.MouseEvent) => {
