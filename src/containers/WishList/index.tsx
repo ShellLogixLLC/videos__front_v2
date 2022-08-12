@@ -74,7 +74,7 @@ const MyFavorites: React.FC = () => {
     if (type === WishlistActions.ADD) {
       setVideosList([...updatedVideos, item as VideosProps]);
       setTotalCount(totalCount + 1);
-    } else {
+    } else if (type === WishlistActions.DELETE) {
       setVideosList(updatedVideos);
       setTotalCount(totalCount - 1);
     }
