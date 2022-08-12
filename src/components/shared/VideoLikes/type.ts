@@ -1,4 +1,4 @@
 export type VideoLikesProps = {
   id: string;
-  likesCount?: number;
+  likesCount: number;
 };

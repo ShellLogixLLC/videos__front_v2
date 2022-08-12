@@ -8,7 +8,7 @@ import {CategoryNav, CategoryNavSkeleton, Typography} from '~/components';
 import styles from '../Category.module.scss';
 
 const CategoryTitle: React.FC<CategoryTitleTypes> = ({categoryId}) => {
-  const lng = getCookieFromBrowser('activeLang') || 'en';
+  const lng = (getCookieFromBrowser('activeLang') as string) || 'en';
 
   const {data, isLoading} = CategoryService.useCategoryById(categoryId);
 

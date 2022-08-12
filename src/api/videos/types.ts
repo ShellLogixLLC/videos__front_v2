@@ -33,6 +33,11 @@ export interface IVideosReturn extends ICommonRequestReturn {
 }
 
 export interface IVideoById extends ICommonRequestReturn {
+  data: VideosProps;
+  mutate: MutateData;
+}
+
+export interface IVideoLiked extends ICommonRequestReturn {
   data: VideoLikedProps;
   mutate: MutateData;
 }

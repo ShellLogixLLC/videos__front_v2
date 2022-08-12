@@ -1,17 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import classNames from 'classnames';
 import {useDispatch} from 'react-redux';
-import {isEqual} from 'lodash';
 
 import {LikedIcon} from '~/assets';
 import {videoActions} from '~/store/video';
-import {getCookieFromBrowser, setCookie} from '~/libraries';
 import {VideosService} from '~/api';
+import {getCookieFromBrowser, setCookie} from '~/libraries';
 
 import {VideoLikesProps} from './type';
 import styles from './VideoLikes.module.scss';
 
-const VideoLikes: React.FC<VideoLikesProps> = ({id}) => {
+const VideoLikes: React.FC<VideoLikesProps> = ({id, likesCount}) => {
   const dispatch = useDispatch();
   const token = getCookieFromBrowser('token');
 
@@ -26,41 +25,40 @@ const VideoLikes: React.FC<VideoLikesProps> = ({id}) => {
   const isCookiesLiked = currentList.includes(id);
   const currentLiked = token ? dataIsLiked : isCookiesLiked;
 
-  const [islike, setIslike] = useState(currentLiked);
-  const [likeCount, setLikeCount] = useState<number>(dataLikeCount || 0);
+  const [islike, setIslike] = useState<boolean>(currentLiked);
+  const [likedCount, setLikedCount] = useState<number>(likesCount || 0);
 
   useEffect(() => {
-    if (!isEqual(dataLikeCount, likeCount)) {
-      setLikeCount(dataLikeCount);
-    }
+    setIslike(currentLiked);
+    setLikedCount(dataLikeCount);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dataLikeCount]);
+  }, [dataLikeCount, currentLiked]);
 
   const iconClass = classNames(styles.icon, {
-    [styles.icon__dislike]: currentLiked,
+    [styles.icon__dislike]: islike,
   });
 
   const handleChangeLiked = async () => {
-    await dispatch(
-      videoActions.likedVideo({
-        videoId: id,
-        dislike: !islike,
-      }),
-    );
+    setIslike(!islike);
     if (!islike) {
       setCookie('videoLikesIds', JSON.stringify([...currentList, id]));
     } else {
       const filteretedArr = currentList.filter((el: string) => el !== id);
       setCookie('videoLikesIds', JSON.stringify(filteretedArr));
     }
-    setIslike(!islike);
-    mutate();
+    await dispatch(
+      videoActions.likedVideo({
+        videoId: id,
+        dislike: islike,
+      }),
+    );
+    await mutate();
   };
 
   return (
     <>
       <LikedIcon className={iconClass} onClick={handleChangeLiked} />
-      <p>{likeCount}</p>
+      <p>{likedCount}</p>
     </>
   );
 };

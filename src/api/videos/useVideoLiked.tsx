@@ -5,9 +5,9 @@ import {RouterService} from '~/services';
 
 import endpoints from '../endpoints';
 
-import {IVideoById} from './types';
+import {IVideoLiked} from './types';
 
-const useVideoLiked = (videoId?: string | string[]): IVideoById => {
+const useVideoLiked = (videoId?: string | string[]): IVideoLiked => {
   const {data, mutate, error} = useAppRequest({
     url: endpoints.VideosService.getVideoLiked(videoId),
   });
