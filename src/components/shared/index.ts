@@ -25,6 +25,7 @@ export {default as MobileFilter} from './MobileFilter';
 export {default as CategoryCard} from './CategoryCard';
 export {default as ProfileModal} from './ProfileModal';
 export {default as SubCategories} from './SubCategories';
+export {default as EmptyWishlist} from './EmptyWishlist';
 export {default as SigninDropdown} from './SigninDropdown';
 export {default as ProfileSettings} from './ProfileSettings';
 export {default as UnRegisterPopup} from './UnRegisterPopup';

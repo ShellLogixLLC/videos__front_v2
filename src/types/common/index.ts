@@ -1,3 +1,5 @@
+import React from 'react';
+
 export type SVGIconProp = React.FC<React.SVGProps<SVGSVGElement>>;
 
 export type CategoryTitleTypes = {
@@ -48,4 +50,9 @@ export type SetParams = {
 export enum LocaleType {
   En = 'en',
   Ru = 'ru',
+}
+
+export enum WishlistActions {
+  ADD = 'add',
+  DELETE = 'delete',
 }
