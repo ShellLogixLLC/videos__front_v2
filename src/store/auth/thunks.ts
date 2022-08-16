@@ -2,9 +2,9 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 
 import {Route} from '~/constants';
 import {client} from '~/api';
-import {getCookieFromBrowser, setCookie} from '~/libraries';
 import {errorToast} from '~/utils';
 import {RouterService} from '~/services';
+import {getCookieFromBrowser, setCookie} from '~/libraries';
 
 import {authReducer} from '../constants';
 

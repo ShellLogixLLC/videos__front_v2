@@ -15,7 +15,7 @@ import Typography from '../Typography';
 import styles from './DatePicker.module.scss';
 
 const DatePicker: FC = () => {
-  const lng = getCookieFromBrowser('activeLang') || 'en';
+  const lng = (getCookieFromBrowser('activeLang') as string) || 'en';
 
   const router = useRouter();
   const {query} = router;

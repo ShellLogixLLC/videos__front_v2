@@ -73,23 +73,13 @@
     @extend %flex-align;
     @extend %film_name;
 
-    &__like {
+    &__block {
       @extend %flex-between;
       max-width: 60px;
       width: 100%;
 
       svg {
-        margin-left: 16px;
-      }
-    }
-
-    &__view {
-      @extend %flex-between;
-      max-width: 60px;
-      width: 100%;
-
-      svg {
-        margin-left: 16px;
+        margin-right: 16px;
       }
     }
   }
