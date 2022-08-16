@@ -2,10 +2,10 @@ import React, {useCallback} from 'react';
 
 import {LogoIcon} from '~/assets';
 import {Loader} from '~/components';
+import {LoadingStates} from '~/store/types';
 import {Route, signInForm} from '~/constants';
 import {authActions, authSelect} from '~/store/auth';
 import {useAppDispatch, useAppSelector, useLocales} from '~/hooks';
-import {LoadingStates} from '~/store/types';
 
 import Form from '../../shared/forms/Form';
 import Link from '../../shared/Link';

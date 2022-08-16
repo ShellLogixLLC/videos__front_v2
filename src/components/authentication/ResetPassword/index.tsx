@@ -3,10 +3,10 @@ import {useRouter} from 'next/router';
 
 import {LogoIcon} from '~/assets';
 import {Link, Loader} from '~/components';
+import {LoadingStates} from '~/store/types';
 import {resetForm, Route} from '~/constants';
 import {authActions, authSelect} from '~/store/auth';
 import {useAppDispatch, useAppSelector} from '~/hooks';
-import {LoadingStates} from '~/store/types';
 
 import Form from '../../shared/forms/Form';
 import Typography from '../../shared/Typography';
