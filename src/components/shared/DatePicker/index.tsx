@@ -27,6 +27,11 @@ const DatePicker: FC = () => {
   const [isChange, setIsChange] = useState<boolean>(false);
   const [rangeValues, setRangeValues] = useState<RangePickerSelectedDays>();
 
+  const queryName = query?.name;
+  const queryEndDate = query?.endDate;
+  const queryStartDate = query?.startDate;
+  const qurryActiveCategory = query?.activeCategory;
+
   const togglerClasses = classNames(styles.wrapper, {
     [styles.wrapper__active]: isOpen,
   });
@@ -38,16 +43,15 @@ const DatePicker: FC = () => {
 
   useEffect(() => {
     if (
-      query?.startDate ||
-      query?.endDate ||
-      isEqual(query.activeCategory, query.activeCategory)
-    ) {
+      !isEqual(queryEndDate, rangeValues?.to) &&
+      !isEqual(queryStartDate, rangeValues?.from)
+    )
       setRangeValues({
-        from: query.startDate ? String(query.startDate) : '',
-        to: query.endDate ? String(query.endDate) : '',
+        from: queryStartDate ? String(queryStartDate) : '',
+        to: queryEndDate ? String(queryEndDate) : '',
       });
-    }
-  }, [query.startDate, query.endDate, query.activeCategory]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [queryStartDate, queryEndDate, queryName, qurryActiveCategory]);
 
   useEffect(() => {
     if (rangeValues?.from && rangeValues.to)

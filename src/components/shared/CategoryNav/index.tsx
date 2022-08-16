@@ -18,11 +18,13 @@ const CategoryNav: React.FC<CategoryTitleTypes> = () => {
     query?.activeCategory || CategoryFilters.All,
   );
 
+  const queryActiveCategory = query?.activeCategory;
+
   useEffect(() => {
-    if (query?.activeCategory) {
-      setActiveCategory(query?.activeCategory);
+    if (queryActiveCategory) {
+      setActiveCategory(queryActiveCategory);
     }
-  }, [query]);
+  }, [queryActiveCategory]);
 
   const buttonClasses = (nameCategory: string) =>
     classNames(styles.wrapper__buttons, {

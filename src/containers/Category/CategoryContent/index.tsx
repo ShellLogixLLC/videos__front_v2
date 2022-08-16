@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {useRouter} from 'next/router';
 
 import {CategoryService} from '~/api';
-import {useAppSelector, useWindowSize} from '~/hooks';
 import {CategoryContentTypes, VideosProps} from '~/types';
 import {FilmCard, FilmCardSkeleton, Typography} from '~/components';
+import {useAppSelector, useCategotyParams, useWindowSize} from '~/hooks';
 import {
   INITIAL_PAGINATION_MORE_COUNT,
   INITIAL_PAGINATION_ROWS_PER_PAGE,
@@ -16,41 +15,16 @@ import styles from '../Category.module.scss';
 const CategoryContent: React.FC<CategoryContentTypes> = ({
   activePage,
   totalCount,
-  categoryId,
   rowsPerPage,
   setTotalCount,
 }) => {
-  const {query} = useRouter();
+  const {params} = useCategotyParams(rowsPerPage);
   const {isMinTablet} = useWindowSize();
 
   const [videosList, setVideosList] = useState<VideosProps[]>([]);
 
+  const {data, isLoading} = CategoryService.useVideosByCategoryId(params);
   const {wishlistIds: wishlist} = useAppSelector(wishlistSelect);
-
-  const queryEndDate = query?.endDate;
-  const queryStartDate = query?.startDate;
-
-  const endDate = queryEndDate ? String(queryEndDate) : '';
-  const startDate = queryStartDate ? String(queryStartDate) : '';
-  const likesSort = Number(query?.likesSort) || '';
-  const viewsSort = Number(query?.viewsSort) || '';
-  const durationSort = Number(query?.durationSort) || '';
-
-  const limit = isMinTablet ? rowsPerPage : INITIAL_PAGINATION_ROWS_PER_PAGE;
-  const offset = !isMinTablet
-    ? activePage * INITIAL_PAGINATION_ROWS_PER_PAGE
-    : 0;
-
-  const {data, isLoading} = CategoryService.useVideosByCategoryId(
-    limit,
-    offset,
-    categoryId,
-    startDate,
-    endDate,
-    likesSort,
-    viewsSort,
-    durationSort,
-  );
 
   const tabletSkeletonsCount =
     rowsPerPage + INITIAL_PAGINATION_MORE_COUNT > totalCount
@@ -86,10 +60,6 @@ const CategoryContent: React.FC<CategoryContentTypes> = ({
       />
     ),
   );
-
-  if (isLoading && !isMinTablet) {
-    return <div className={styles.content__wrapper}>{renderLoaderCards}</div>;
-  }
 
   const renderVideosList = videosList?.map((item: VideosProps) => (
     <FilmCard
