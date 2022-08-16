@@ -1,5 +1,4 @@
-import {toast} from 'react-toastify';
-import {Zoom} from 'react-toastify';
+import {toast, Zoom} from 'react-toastify';
 
 import {Button, Typography} from '~/components';
 
@@ -13,7 +12,7 @@ const WarnToast = (id: string, handler: () => void): void => {
     </div>,
     {
       position: 'bottom-right',
-      autoClose: 4000,
+      autoClose: 5000,
       transition: Zoom,
     },
   );

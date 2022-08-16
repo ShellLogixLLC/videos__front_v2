@@ -52,19 +52,20 @@ const MyFavorites: React.FC = () => {
 
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    dispatch(wishlistActions.getWishlistVideos({limit, offset}));
-  }, [dispatch, limit, offset]);
-
   const {wishlistVideos: data, wishlistVideosLoading: isLoading} =
     useAppSelector(wishlistSelect);
 
   useEffect(() => {
+    dispatch(wishlistActions.getWishlistVideos({limit, offset}));
+  }, [dispatch, limit, offset]);
+
+  useEffect(() => {
     if (data) {
       setVideosList(data.videos);
+      // dispatch(wishlistActions.setVideosList(data.videos));
       setTotalCount(data.totalCount);
     }
-  }, [data]);
+  }, [data?.videos]);
 
   const refreshVideos = (
     type: WishlistActions,
@@ -73,6 +74,7 @@ const MyFavorites: React.FC = () => {
     const updatedVideos = videosList.filter((video) => video.id !== item.id);
     if (type === WishlistActions.ADD) {
       setVideosList([...updatedVideos, item as VideosProps]);
+
       setTotalCount(totalCount + 1);
     } else if (type === WishlistActions.DELETE) {
       setVideosList(updatedVideos);
