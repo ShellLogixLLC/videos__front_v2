@@ -8,4 +8,6 @@ export {default as useAppSelector} from './useAppSelector';
 export {default as useEventListener} from './useEventListener';
 export {default as useOnClickOutside} from './useOnClickOutside';
 export {default as useLockBodyScroll} from './ useLockBodyScroll';
+export {default as useCategotyParams} from './useCategotyParams';
+export {default as useActiveCategoryParams} from './useActiveCategoryParams';
 export {default as useIsomorphicLayoutEffect} from './useIsomorphicLayoutEffect';

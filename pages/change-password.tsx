@@ -8,8 +8,8 @@ import {EmptyProps, getProtectedPageRedirect, LocaleKeys} from '~/constants';
 const ChangePasswordPage: NextPage = () => (
   <Seo
     showHeaderFooter={false}
-    title="Reset password page"
-    metaDescription="Reset password page description">
+    title="Change password page"
+    metaDescription="Change password page description">
     <ChangePassword />
   </Seo>
 );

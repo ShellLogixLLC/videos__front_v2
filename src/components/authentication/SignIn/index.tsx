@@ -1,8 +1,8 @@
-import React, {useCallback, useEffect} from 'react';
-import {useToggle} from 'react-use';
+import React, {useCallback} from 'react';
 
 import {LogoIcon} from '~/assets';
 import {Loader} from '~/components';
+import {LoadingStates} from '~/store/types';
 import {Route, signInForm} from '~/constants';
 import {authActions, authSelect} from '~/store/auth';
 import {useAppDispatch, useAppSelector, useLocales} from '~/hooks';
@@ -16,21 +16,14 @@ import styles from './SignIn.module.scss';
 const SignIn: React.FC = () => {
   const dispatch = useAppDispatch();
 
-  const {userInfo, accessToken, error} = useAppSelector(authSelect);
-
-  const [isLoading, toggleIsLoading] = useToggle(false);
+  const {loading} = useAppSelector(authSelect);
 
   const handleSignInFormSubmit = useCallback(
     (values) => {
       dispatch(authActions.login(values));
-      toggleIsLoading();
     },
-    [dispatch, toggleIsLoading, accessToken],
+    [dispatch],
   );
-
-  useEffect(() => {
-    if (isLoading && (userInfo || error)) toggleIsLoading();
-  }, [isLoading, userInfo, error]);
 
   const {translatedTypo} = useLocales('signIn');
 
@@ -82,7 +75,7 @@ const SignIn: React.FC = () => {
       <Link to={Route.Home} className={styles.container__route}>
         <Typography>backToHome</Typography>
       </Link>
-      {isLoading && <Loader isVertical />}
+      {loading === LoadingStates.LOADING && <Loader isVertical />}
     </div>
   );
 };

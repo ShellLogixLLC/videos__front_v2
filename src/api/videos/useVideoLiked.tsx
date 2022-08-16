@@ -1,17 +1,15 @@
 import {useEffect} from 'react';
 
-import {Params} from '~/types';
 import {useAppRequest} from '~/hooks';
 import {RouterService} from '~/services';
 
 import endpoints from '../endpoints';
 
-import {IVideoByCategory} from './types';
+import {IVideoLiked} from './types';
 
-const useVideosByCategoryId = (params: Params): IVideoByCategory => {
+const useVideoLiked = (videoId?: string | string[]): IVideoLiked => {
   const {data, mutate, error} = useAppRequest({
-    url: endpoints.CategoryService.getVideoByCategoryId(),
-    params,
+    url: endpoints.VideosService.getVideoLiked(videoId),
   });
 
   useEffect(() => {
@@ -22,10 +20,10 @@ const useVideosByCategoryId = (params: Params): IVideoByCategory => {
 
   return {
     isError: !!error,
-    data,
-    mutate,
+    data: data,
+    mutate: mutate,
     isLoading: !error && !data,
   };
 };
 
-export default useVideosByCategoryId;
+export default useVideoLiked;

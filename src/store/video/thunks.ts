@@ -19,3 +19,22 @@ export const sendComment = createAsyncThunk(
     }
   },
 );
+
+export const likedVideo = createAsyncThunk(
+  `${videoReducer}/video-likes`,
+  async (
+    credentials: {
+      videoId: string;
+      dislike: boolean;
+    },
+    thunkAPI,
+  ) => {
+    try {
+      await client.post(`/video-likes`, credentials);
+    } catch (error) {
+      const {message} = error as Error;
+
+      return thunkAPI.rejectWithValue({error: message});
+    }
+  },
+);

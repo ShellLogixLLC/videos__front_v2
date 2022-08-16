@@ -28,6 +28,17 @@ const videoSlice = createSlice({
     builder.addCase(videoThunks.sendComment.fulfilled, (state) => {
       state.loading = LoadingStates.IDLE;
     });
+
+    builder.addCase(videoThunks.likedVideo.pending, (state) => {
+      state.loading = LoadingStates.LOADING;
+    });
+    builder.addCase(videoThunks.likedVideo.rejected, (state, action) => {
+      state.loading = LoadingStates.REJECTED;
+      state.error = action.error;
+    });
+    builder.addCase(videoThunks.likedVideo.fulfilled, (state) => {
+      state.loading = LoadingStates.IDLE;
+    });
   },
 });
 

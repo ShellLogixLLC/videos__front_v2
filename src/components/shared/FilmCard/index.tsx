@@ -1,20 +1,20 @@
 import React, {useEffect, useState} from 'react';
 import classNames from 'classnames';
 
+import {VideoLikes} from '~/components';
 import {useAppDispatch} from '~/hooks';
 import {UnRegisterPopup} from '~/components';
-import {createDate, WarnToast} from '~/utils';
+import {wishlistActions} from '~/store/wishlist';
 import {getCookieFromBrowser} from '~/libraries';
+import {createDate, WarnToast} from '~/utils';
 import {VideosProps, WishlistActions} from '~/types';
 import {addToWishlist, deleteFromWishlist} from '~/store/wishlist/thunks';
 import {
   CategoryImage,
   CommentsCount,
-  FilmLikeIcon,
   HeartLikesIcon,
   ViewsCountIcon,
 } from '~/assets';
-import {wishlistActions} from '~/store/wishlist';
 
 import Link from '../Link';
 import Image from '../Image';
@@ -32,7 +32,7 @@ const FilmCard: React.FC<FilmCardProps> = ({
   isWishlistPage,
   refreshVideos,
 }) => {
-  const lng = getCookieFromBrowser('activeLang') || 'en';
+  const lng = (getCookieFromBrowser('activeLang') as string) || 'en';
   const token = getCookieFromBrowser('token');
 
   const {
@@ -128,16 +128,15 @@ const FilmCard: React.FC<FilmCardProps> = ({
         <p className={styles.wrapper__pr_description}>{description[lng]}</p>
         <div className={styles.wrapper__card_footer}>
           <div className={styles.wrapper__card_footer_item}>
-            <p>{likesCount}</p>
-            <FilmLikeIcon />
+            <VideoLikes likesCount={likesCount} id={id} />
           </div>
           <div className={styles.wrapper__card_footer_item}>
-            <p>{views}</p>
             <ViewsCountIcon />
+            <p>{views}</p>
           </div>
           <div className={styles.wrapper__card_footer_item}>
-            <p>{commentsCount}</p>
             <CommentsCount />
+            <p>{commentsCount}</p>
           </div>
         </div>
       </div>

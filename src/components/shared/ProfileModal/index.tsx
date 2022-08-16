@@ -33,7 +33,7 @@ import styles from './ProfileModal.module.scss';
 const ProfileModal = forwardRef<any, PopupProps>(
   ({expanded, setExpanded}, ref) => {
     const {Portal} = usePortal();
-    const {userInfo, loading} = useAppSelector(authSelect);
+    const {userInfo, updateUserLoading} = useAppSelector(authSelect);
 
     const dispatch = useAppDispatch();
 
@@ -102,7 +102,7 @@ const ProfileModal = forwardRef<any, PopupProps>(
     return (
       <Portal>
         <div ref={ref} className={wrapperClasses}>
-          {loading === LoadingStates.LOADING ? (
+          {updateUserLoading === LoadingStates.LOADING ? (
             <HorizontalLoader />
           ) : (
             <div ref={modalRef} className={styles.wrapper__content}>

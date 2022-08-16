@@ -1,12 +1,11 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useCallback} from 'react';
 import classNames from 'classnames';
-import {useToggle} from 'react-use';
 
 import {LogoIcon} from '~/assets';
-import {Route} from '~/constants';
 import {Loader} from '~/components';
-import {forgotPasswordForm} from '~/constants';
+import {LoadingStates} from '~/store/types';
 import {authActions, authSelect} from '~/store/auth';
+import {forgotPasswordForm, Route} from '~/constants';
 import {useAppDispatch, useAppSelector, useLocales} from '~/hooks';
 
 import Link from '../../shared/Link';
@@ -17,9 +16,7 @@ import styles from './ForgotPassword.module.scss';
 
 const ForgotPassword: React.FC = () => {
   const dispatch = useAppDispatch();
-  const {error, isVerified} = useAppSelector(authSelect);
-
-  const [isLoading, toggleIsLoading] = useToggle(false);
+  const {forgotPasswordLoading, isVerified} = useAppSelector(authSelect);
 
   const ifResetButton = isVerified ? 'resendLink' : 'resetPassword';
 
@@ -51,16 +48,9 @@ const ForgotPassword: React.FC = () => {
     (values) => {
       dispatch(authActions.updateErrorAndIsVerified);
       dispatch(authActions.forgotPassword(values));
-      toggleIsLoading();
     },
     [dispatch],
   );
-
-  useEffect(() => {
-    if (error || isVerified) {
-      toggleIsLoading();
-    }
-  }, [error, isVerified, isLoading]);
 
   return (
     <div className={`container_without-header ${styles.container}`}>
@@ -98,7 +88,7 @@ const ForgotPassword: React.FC = () => {
           onSubmit={handleForgotPasswordSubmit}
         />
       </div>
-      {isLoading && <Loader isVertical />}
+      {forgotPasswordLoading === LoadingStates.LOADING && <Loader isVertical />}
     </div>
   );
 };

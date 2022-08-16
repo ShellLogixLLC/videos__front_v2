@@ -105,6 +105,7 @@
   "termsAndConditionsMustBeAccepted": "The terms and conditions must be accepted",
   "theEmailMustBeAValidEmailAddress": "The Email must be a valid email address",
   "thisFieldCannotContainBlankspaces": "This field can not contain blank spaces",
+  "yourNewPasswordMatchesThePreviousOne":"Your new password matches the previous one",
   "youHaveDeletedAllTheVideosOnThisPage": "You have deleted all the videos on this page",
   "passwordCantStartOrEndWwithABlankSpace": "Password can't start or end with a blank space",
   "passwordIsTooShortShouldBe6CharsMinimum": "Password is too short - should be 6 chars minimum.",

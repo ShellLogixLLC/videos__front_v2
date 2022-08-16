@@ -1,7 +1,7 @@
-import React, {useCallback, useEffect} from 'react';
-import {useToggle} from 'react-use';
+import React, {useCallback} from 'react';
 
 import {LogoIcon} from '~/assets';
+import {LoadingStates} from '~/store/types';
 import {authActions, authSelect} from '~/store/auth';
 import {changePasswordForm, Route} from '~/constants';
 import {useAppDispatch, useAppSelector} from '~/hooks';
@@ -14,21 +14,15 @@ import Typography from '../../shared/Typography';
 import styles from './ChangePassword.module.scss';
 
 const ChangePassword: React.FC = () => {
-  const {isVerified, error} = useAppSelector(authSelect);
-  const [isLoading, toggleIsLoading] = useToggle(false);
+  const {changePasswordLoading} = useAppSelector(authSelect);
 
   const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    if (isLoading && (isVerified || error)) toggleIsLoading();
-  }, [isLoading, isVerified, error]);
 
   const handleChangePasswordSubmit = useCallback(
     (values) => {
       dispatch(authActions.changePassword(values));
-      toggleIsLoading();
     },
-    [dispatch, isLoading],
+    [dispatch],
   );
 
   return (
@@ -51,7 +45,7 @@ const ChangePassword: React.FC = () => {
         submitText="confirm"
         onSubmit={handleChangePasswordSubmit}
       />
-      {isLoading && <Loader isVertical />}
+      {changePasswordLoading === LoadingStates.LOADING && <Loader isVertical />}
     </div>
   );
 };
