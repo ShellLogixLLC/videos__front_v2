@@ -130,7 +130,7 @@
 
         @include breakpoint(desktop) {
           flex-direction: column;
-          justify-content: none;
+          justify-content: unset;
           align-items: flex-start;
           margin-left: 32px;
           min-height: unset;
@@ -290,7 +290,7 @@
 
         &__nav {
           @extend %flex-column;
-          margin-top: 48px;
+          margin-top: 88px;
 
           &__items {
             @extend %flex-align;

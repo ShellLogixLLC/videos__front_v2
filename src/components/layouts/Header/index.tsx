@@ -154,7 +154,7 @@ const Header: React.FC = () => {
       ) : !token && pageName === NavigationConstants.Favorites ? (
         <div
           key={id}
-          // className={styles.wrapper__content__burger__container__nav__items}
+          className={styles.wrapper__content__burger__container__nav__items}
           onClick={openLikeItPopup}>
           <Typography
             className={styles.wrapper__content__burger__container__nav__items}>
