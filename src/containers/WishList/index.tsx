@@ -62,7 +62,6 @@ const MyFavorites: React.FC = () => {
   useEffect(() => {
     if (data) {
       setVideosList(data.videos);
-      // dispatch(wishlistActions.setVideosList(data.videos));
       setTotalCount(data.totalCount);
     }
   }, [data?.videos]);
