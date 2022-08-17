@@ -2,9 +2,8 @@ import React, {useRef} from 'react';
 import classNames from 'classnames';
 
 import {CloseIcon} from '~/assets';
+import {MobileAuth} from '~/components';
 import {useOnClickOutside, useLockBodyScroll} from '~/hooks';
-import {getCookieFromBrowser} from '~/libraries';
-import {ProfileSettings, SigninDropdown} from '~/components';
 
 import styles from '../../layouts/Header/Header.module.scss';
 import LanguageDropDown from '../LanguageDropDown';
@@ -21,10 +20,6 @@ const MobileMenu: React.FC<IMobileMenuProps> = ({
   const burgerClassNames = classNames(styles.wrapper__content__burger, {
     [styles.wrapper__content__burger_anima]: isOpen,
   });
-
-  const token = getCookieFromBrowser('token');
-
-  const renderUserIcons = !token ? <SigninDropdown /> : <ProfileSettings />;
 
   const handleCloseMenu = () => setIsOpen(false);
 
@@ -44,6 +39,9 @@ const MobileMenu: React.FC<IMobileMenuProps> = ({
           {children}
         </div>
         <LanguageDropDown />
+        <div className={styles.wrapper__content__absolute}>
+          <MobileAuth />
+        </div>
       </div>
     </div>
   );
