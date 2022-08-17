@@ -41,7 +41,6 @@ const MobileMenu: React.FC<IMobileMenuProps> = ({
         ref={burgerContainerRef}
         className={styles.wrapper__content__burger__container}>
         <div className={styles.wrapper__content__burger__container__nav}>
-          {renderUserIcons}
           {children}
         </div>
         <LanguageDropDown />
