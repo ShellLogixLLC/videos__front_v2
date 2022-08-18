@@ -24,7 +24,7 @@ const MobileAuth: React.FC = () => {
     <div className={styles.wrapper__withToken}>
       <Link to={Route.SignIn} className={styles.wrapper__withToken__signin}>
         <Typography className={styles.wrapper__withToken__signin__typo}>
-          signin
+          signIn
         </Typography>
       </Link>
       <Link

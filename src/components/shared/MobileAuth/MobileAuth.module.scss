@@ -1,23 +1,46 @@
 .wrapper{
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  display: flex;
 
   &__withToken{
+     max-width: 944px;
+     width: 100%;
+     margin: 0 40px;
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     gap: 24px;
+
+    @include breakpoint(tablet-m){
+      margin: 0 25px;
+    }
 
     &__signin{
+      background: $dark-red;
+      @extend %flex-center;
+      border-radius: 8px;
 
       &__typo{
-
+      color: $white;
+      padding: 18px 0;
+      font-size: 20px;
       }
     }
     &__register{
+      background: $white;
+      @extend %flex-center;
+      border-radius: 8px;
 
       &__typo{
-
+      color: $dark-red;
+      font-size: 20px;
+        padding: 18px 0;
       }
     }
   }
 
   &__withoutToken{
-
     &__container{
 
       &__typo{
