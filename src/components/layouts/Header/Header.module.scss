@@ -12,6 +12,12 @@
     position: relative;
     height: 100%;
 
+    &__absolute{
+
+    }
+
+
+
     &__container {
       display: none;
       @extend %flex-between;
@@ -327,6 +333,10 @@
     height: 100%;
     z-index: 4;
     background-color: $rgba-black;
+  }
+
+  &__unactive_bg{
+    background-color: unset !important;
   }
 
   &__popup {

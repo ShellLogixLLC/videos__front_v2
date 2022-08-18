@@ -50,6 +50,7 @@ const Header: React.FC = () => {
 
   const bgClassName = classNames({
     [styles.wrapper__active_bg]: isOpen,
+    [styles.wrapper__unactive_bg]: isDesktop,
   });
 
   const handleOpenMenu = () => setIsOpen(true);

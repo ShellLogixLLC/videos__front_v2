@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 
-import {getCookieFromBrowser} from '~/libraries';
-import {Link, LogoutModal, Typography} from '~/components';
 import {Route} from '~/constants';
 import {LogoutIcon} from '~/assets';
+import {getCookieFromBrowser} from '~/libraries';
+import {Link, LogoutModal, Typography} from '~/components';
 
 import styles from './MobileAuth.module.scss';
 
@@ -51,7 +51,7 @@ const MobileAuth: React.FC = () => {
     </div>
   );
 
-  const renderMobileAuthcomponent = token
+  const renderMobileAuthcomponent = !token
     ? renderMobileSignin
     : renderMobileLogout;
 
