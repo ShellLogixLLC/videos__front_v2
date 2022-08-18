@@ -48,9 +48,6 @@ export const likeVideo = createAsyncThunk(
   ) => {
     try {
       await client.post(`/video-likes`, credentials);
-      thunkAPI.dispatch(
-        getVideoLikesAndDislikes({videoId: credentials.videoId}),
-      );
     } catch (error) {
       const {message} = error as Error;
 
@@ -64,7 +61,6 @@ export const dislikeVideo = createAsyncThunk(
   async (params: {videoId: string}, thunkAPI) => {
     try {
       await client.delete(`/video-likes`, {params});
-      thunkAPI.dispatch(getVideoLikesAndDislikes({videoId: params.videoId}));
     } catch (error) {
       const {message} = error as Error;
       return thunkAPI.rejectWithValue({error: message});
