@@ -41,12 +41,12 @@ const VideoLikes: React.FC<VideoLikesProps> = ({id, likesCount}) => {
   const handleChangeLiked = async () => {
     setIsLiked(!isLiked);
     if (!isLiked) {
-      setCookie('videoLikesIds', JSON.stringify([...currentList, id]));
       await dispatch(videoActions.likeVideo({videoId: id, dislike: false}));
+      setCookie('videoLikesIds', JSON.stringify([...currentList, id]));
     } else {
       const filteretedArr = currentList.filter((el: string) => el !== id);
-      setCookie('videoLikesIds', JSON.stringify(filteretedArr));
       await dispatch(videoActions.dislikeVideo({videoId: id}));
+      setCookie('videoLikesIds', JSON.stringify(filteretedArr));
     }
     await mutate();
   };

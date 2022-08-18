@@ -127,9 +127,11 @@ const FilmCard: React.FC<FilmCardProps> = ({
         </div>
         <p className={styles.wrapper__pr_description}>{description[lng]}</p>
         <div className={styles.wrapper__card_footer}>
-          <div className={styles.wrapper__card_footer_item}>
-            <VideoLikes likesCount={likesCount} id={id} />
-          </div>
+          {token && (
+            <div className={styles.wrapper__card_footer_item}>
+              <VideoLikes likesCount={likesCount} id={id} />
+            </div>
+          )}
           <div className={styles.wrapper__card_footer_item}>
             <ViewsCountIcon />
             <p>{views}</p>
