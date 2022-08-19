@@ -56,11 +56,13 @@ const MobileMenu: React.FC<IMobileMenuProps> = ({
       <div
         ref={burgerContainerRef}
         className={styles.wrapper__content__burger__container}>
-        <div className={styles.wrapper__content__burger__container__nav}>
-          {children}
-          {renderProfileSettings}
+        <div className={styles.wrapper__content__parent}>
+          <div className={styles.wrapper__content__burger__container__nav}>
+            {children}
+            {renderProfileSettings}
+          </div>
+          <LanguageDropDown />
         </div>
-        <LanguageDropDown />
         <div className={styles.wrapper__content__absolute}>
           <MobileAuth />
         </div>

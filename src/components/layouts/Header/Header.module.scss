@@ -12,6 +12,12 @@
     position: relative;
     height: 100%;
 
+    &__parent{
+      margin-top: 60px;
+      height: calc(100vh - 143px);
+      overflow-y: scroll;
+    }
+
     &__userSettings{
       padding-left: 32px;
       max-width: 250px;
@@ -310,7 +316,6 @@
 
         &__nav {
           @extend %flex-column;
-          margin-top: 60px;
 
           &__items {
             @extend %flex-align;
