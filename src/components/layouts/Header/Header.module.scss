@@ -12,11 +12,17 @@
     position: relative;
     height: 100%;
 
+    &__userSettings{
+      padding: 0 0 25px 32px;
+      &__typo{
+        color: $dark-white;
+        font-size: 16px;
+      }
+    }
+
     &__absolute{
 
     }
-
-
 
     &__container {
       display: none;
@@ -308,9 +314,15 @@
             font-size: 18px;
             height: 50px;
 
-            &__typo{
-            color: $gray;
+            &__typography{
+              color: $gray;
+              cursor: pointer;
           }
+
+            &__typo{
+              color: $gray;
+              cursor: pointer;
+            }
 
             &_active {
               p{

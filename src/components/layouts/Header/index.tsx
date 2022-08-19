@@ -158,7 +158,9 @@ const Header: React.FC = () => {
           className={styles.wrapper__content__burger__container__nav__items}
           onClick={openLikeItPopup}>
           <Typography
-            className={styles.wrapper__content__burger__container__nav__items}>
+            className={
+              styles.wrapper__content__burger__container__nav__items__typography
+            }>
             {pageName}
           </Typography>
         </div>

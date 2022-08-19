@@ -31,10 +31,6 @@ const MobileMenu: React.FC<IMobileMenuProps> = ({
     setProfileSettingsOpen(!isProfileSettingsOpen);
   };
 
-  // const closeProfileSettings = (): void => {
-  //   setProfileSettingsOpen(false);
-  // };
-
   const token = getCookieFromBrowser('token');
 
   const renderProfileSettings = token && (
