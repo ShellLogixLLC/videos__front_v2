@@ -7,7 +7,7 @@ import {VideosService} from '~/api';
 import {videoActions} from '~/store/video';
 import {getCookieFromBrowser, setCookie} from '~/libraries';
 
-import {VideoLikesProps} from './type';
+import {VideoLikesProps} from './types';
 import styles from './VideoLikes.module.scss';
 
 const VideoLikes: React.FC<VideoLikesProps> = ({id, likesCount}) => {

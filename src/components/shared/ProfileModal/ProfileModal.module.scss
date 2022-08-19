@@ -59,9 +59,6 @@
         @include breakpoint(tablet){
           font-size: 14px;
         }
-        @include breakpoint(tablet-m){
-          font-size: 12px;
-        }
       }
 
       @include breakpoint(tablet){
@@ -69,7 +66,7 @@
       }
 
       @include breakpoint(tablet-m){
-        font-size: 12px;
+        font-size: 16px;
       }
     }
 
@@ -148,7 +145,7 @@
       }
 
       @include breakpoint(tablet-m){
-        font-size: 12px;
+        font-size: 16px;
       }
 
       &__wrapper{
@@ -206,7 +203,7 @@
         }
 
         @include breakpoint(tablet-m){
-          font-size: 12px;
+          font-size: 16px;
         }
 
         &__wrapper{

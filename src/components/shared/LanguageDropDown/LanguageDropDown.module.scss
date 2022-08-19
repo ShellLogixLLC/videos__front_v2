@@ -46,12 +46,18 @@
       width: 100%;
       max-width: 100px;
       justify-content: space-between;
-      align-items:center;
+      align-items: unset;
       padding-left: 32px;
     }
 
     &__item {
       @extend %flex-align;
+
+      &:last-child{
+        @include breakpoint(desktop){
+          margin-left: 24px;
+        }
+      }
 
       &:first-child{
         margin-right: 20px;
@@ -62,11 +68,12 @@
       }
 
       &__active{
-        border-bottom: 2px solid $dark-red;
+          border: 3px solid $orange;
+          border-radius: 50%;
       }
 
       svg {
-        width: 23px;
+        width: 30px;
       }
     }
   }
