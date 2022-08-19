@@ -13,6 +13,7 @@
     height: 100%;
 
     &__parent{
+      z-index: 11;
       margin-top: 60px;
       height: calc(100vh - 143px);
       overflow-y: scroll;
