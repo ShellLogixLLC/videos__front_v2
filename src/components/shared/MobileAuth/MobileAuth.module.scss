@@ -1,0 +1,68 @@
+.wrapper{
+  width: 100%;
+  display: flex;
+
+  &__withToken{
+     max-width: 944px;
+     width: 100%;
+     margin: 0 40px;
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     gap: 24px;
+
+    @include breakpoint(tablet-m){
+      margin: 0 25px;
+    }
+
+    &__signin{
+      background: $dark-red;
+      @extend %flex-center;
+      border-radius: 8px;
+
+      &__typo{
+        color: $white;
+        padding: 17px 0;
+        font-size: 20px;
+        cursor: pointer;
+      }
+    }
+    &__register{
+      background: $white;
+      @extend %flex-center;
+      border-radius: 8px;
+
+      &__typo{
+        color: $dark-red;
+        font-size: 20px;
+        padding: 17px 0;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__withoutToken{
+    max-width: 944px;
+    width: 100%;
+    margin: 0 40px;
+    background: $dark-red;
+    border-radius: 8px;
+
+    @include breakpoint(tablet-m){
+      margin: 0 25px;
+    }
+
+    &__container{
+      @extend %flex-center;
+      padding: 17px 0;
+      cursor: pointer;
+      &__typo{
+        color: $white;
+        font-size: 20px;
+      }
+      &__icon{
+          position: absolute;
+          right: 15%;
+      }
+    }
+  }
+}

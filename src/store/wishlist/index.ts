@@ -9,8 +9,8 @@ import * as wishlistThunks from './thunks';
 import {WishlistSliceState} from './types';
 
 const internalInitialState: WishlistSliceState = {
-  loading: LoadingStates.IDLE,
   error: null,
+  loading: LoadingStates.IDLE,
   wishlistIds: [],
   wishlistVideos: null,
   localVideos: [],

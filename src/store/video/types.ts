@@ -3,6 +3,7 @@ import {SerializedError} from '@reduxjs/toolkit';
 import {LoadingStates} from '../types';
 
 export type VideoSliceState = {
-  loading: LoadingStates;
+  commentsLoading: LoadingStates;
+  videoLikesLoading: LoadingStates;
   error: SerializedError | any;
 };

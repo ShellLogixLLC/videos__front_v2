@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import {VideoLikes} from '~/components';
 import {useAppDispatch} from '~/hooks';
 import {UnRegisterPopup} from '~/components';
-import {wishlistActions} from '~/store/wishlist';
 import {getCookieFromBrowser} from '~/libraries';
 import {createDate, WarnToast} from '~/utils';
 import {VideosProps, WishlistActions} from '~/types';
@@ -72,7 +71,6 @@ const FilmCard: React.FC<FilmCardProps> = ({
     if (isWishlistPage && refreshVideos) {
       refreshVideos(WishlistActions.ADD, item);
     }
-    dispatch(wishlistActions.getWishlistIds());
   };
 
   const toggleIsLiked = async (e: React.MouseEvent) => {
@@ -88,7 +86,6 @@ const FilmCard: React.FC<FilmCardProps> = ({
       }
       await dispatch(deleteFromWishlist({videoId: id}));
     }
-    dispatch(wishlistActions.getWishlistIds());
   };
 
   const handleLoggedOutHeartIcon = (e: React.MouseEvent) => {
@@ -127,9 +124,11 @@ const FilmCard: React.FC<FilmCardProps> = ({
         </div>
         <p className={styles.wrapper__pr_description}>{description[lng]}</p>
         <div className={styles.wrapper__card_footer}>
-          <div className={styles.wrapper__card_footer_item}>
-            <VideoLikes likesCount={likesCount} id={id} />
-          </div>
+          {token && (
+            <div className={styles.wrapper__card_footer_item}>
+              <VideoLikes likesCount={likesCount} id={id} />
+            </div>
+          )}
           <div className={styles.wrapper__card_footer_item}>
             <ViewsCountIcon />
             <p>{views}</p>

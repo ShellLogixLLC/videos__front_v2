@@ -1,8 +1,8 @@
 import React, {useCallback} from 'react';
 import classNames from 'classnames';
 
-import {LogoIcon} from '~/assets';
 import {Loader} from '~/components';
+import {LogoIcon} from '~/assets';
 import {LoadingStates} from '~/store/types';
 import {authActions, authSelect} from '~/store/auth';
 import {forgotPasswordForm, Route} from '~/constants';

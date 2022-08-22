@@ -20,7 +20,24 @@ export const sendComment = createAsyncThunk(
   },
 );
 
-export const likedVideo = createAsyncThunk(
+export const getVideoLikesAndDislikes = createAsyncThunk(
+  `${videoReducer}/get-likes-dislikes`,
+  async ({videoId}: {videoId: string}, thunkAPI) => {
+    try {
+      const res = await client.get(`/video-likes`, {
+        params: {
+          videoId,
+        },
+      });
+      return thunkAPI.fulfillWithValue(res.data);
+    } catch (error) {
+      const {message} = error as Error;
+      return thunkAPI.rejectWithValue({error: message});
+    }
+  },
+);
+
+export const likeVideo = createAsyncThunk(
   `${videoReducer}/video-likes`,
   async (
     credentials: {
@@ -34,6 +51,18 @@ export const likedVideo = createAsyncThunk(
     } catch (error) {
       const {message} = error as Error;
 
+      return thunkAPI.rejectWithValue({error: message});
+    }
+  },
+);
+
+export const dislikeVideo = createAsyncThunk(
+  `${videoReducer}/video-dislikes`,
+  async (params: {videoId: string}, thunkAPI) => {
+    try {
+      await client.delete(`/video-likes`, {params});
+    } catch (error) {
+      const {message} = error as Error;
       return thunkAPI.rejectWithValue({error: message});
     }
   },

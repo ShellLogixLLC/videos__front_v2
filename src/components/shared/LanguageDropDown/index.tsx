@@ -1,6 +1,7 @@
 import React, {useState, useRef, useEffect} from 'react';
 import {i18n} from 'next-i18next';
 import {useRouter} from 'next/router';
+import classnames from 'classnames';
 
 import {langData} from '~/utils';
 import {setCookie} from '~/libraries';
@@ -25,21 +26,23 @@ const LanguageDropDown: React.FC = () => {
     i18n?.addResourceBundle(activeLang, 'Lang-name', {key: activeLang});
   }, [activeLang]);
 
-  const renderLangData = langData.map(({locale, Icon: LangIcon}) => (
-    <Link
-      key={locale}
-      onClick={() => changeLang(locale)}
-      className={styles.wrapper__languages__item}
-      activeClassName={
-        locale === activeLang
-          ? styles.wrapper__languages__item__active
-          : undefined
-      }
-      to={asPath}
-      locale={locale}>
-      <LangIcon />
-    </Link>
-  ));
+  const renderLangData = langData.map(({locale, Icon: LangIcon}) => {
+    const iconsClassname = classnames({
+      [styles.wrapper__languages__item__active]: locale === activeLang,
+    });
+
+    return (
+      <Link
+        key={locale}
+        onClick={() => changeLang(locale)}
+        className={styles.wrapper__languages__item}
+        activeClassName={iconsClassname}
+        to={asPath}
+        locale={locale}>
+        <LangIcon />
+      </Link>
+    );
+  });
 
   const expandedData = (
     <div className={styles.wrapper__languages}>{renderLangData}</div>
