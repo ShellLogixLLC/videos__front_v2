@@ -1,7 +1,7 @@
 import React, {useCallback} from 'react';
 
-import {LogoIcon} from '~/assets';
 import {Loader} from '~/components';
+import {LogoIcon} from '~/assets';
 import {LoadingStates} from '~/store/types';
 import {registrationForm} from '~/constants';
 import {authActions, authSelect} from '~/store/auth';
