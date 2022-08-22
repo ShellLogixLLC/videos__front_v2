@@ -16,15 +16,15 @@ export type UserInfo = {
 export type AuthSliceState = {
   error?: SerializedError | any;
   loading: LoadingStates;
+  userInfo?: UserInfo | null;
+  isVerified: boolean;
+  accessToken: string;
+  emailVerify: string;
   registerLoading: LoadingStates;
   updateUserLoading: LoadingStates;
   resetPasswordLoading: LoadingStates;
   changePasswordLoading: LoadingStates;
   forgotPasswordLoading: LoadingStates;
-  userInfo?: UserInfo | null;
-  isVerified: boolean;
-  accessToken: string;
-  emailVerify: string;
 };
 
 export type UpdateAccessTokenAction = {

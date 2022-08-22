@@ -72,12 +72,19 @@ const MyFavorites: React.FC = () => {
   ) => {
     const updatedVideos = videosList.filter((video) => video.id !== item.id);
     if (type === WishlistActions.ADD) {
-      setVideosList([...updatedVideos, item as VideosProps]);
-
-      setTotalCount(totalCount + 1);
+      if (updatedVideos.length) {
+        setVideosList([...updatedVideos, item as VideosProps]);
+        setTotalCount(totalCount + 1);
+      } else if (data?.videos?.length) {
+        setActivePage(activePage + 1);
+      }
     } else if (type === WishlistActions.DELETE) {
-      setVideosList(updatedVideos);
-      setTotalCount(totalCount - 1);
+      if (data?.videos?.length && !updatedVideos.length && activePage > 0) {
+        setActivePage(activePage - 1);
+      } else {
+        setVideosList(updatedVideos);
+        setTotalCount(totalCount - 1);
+      }
     }
   };
 

@@ -1,9 +1,9 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 
-import {RootState, VideosProps} from '~/types';
+import {RootState} from '~/types';
 
-import {wishlistReducer} from '../constants';
 import {LoadingStates} from '../types';
+import {wishlistReducer} from '../constants';
 
 import * as wishlistThunks from './thunks';
 import {WishlistSliceState} from './types';
@@ -13,7 +13,6 @@ const internalInitialState: WishlistSliceState = {
   loading: LoadingStates.IDLE,
   wishlistIds: [],
   wishlistVideos: null,
-  localVideos: [],
   wishlistVideosLoading: LoadingStates.IDLE,
 };
 
@@ -23,12 +22,6 @@ const wishlistSlice = createSlice({
   reducers: {
     deleteVideoIds(state: WishlistSliceState) {
       state.wishlistIds = [];
-    },
-    setVideosList(
-      state: WishlistSliceState,
-      action: PayloadAction<VideosProps[]>,
-    ) {
-      state.localVideos = action.payload;
     },
   },
   extraReducers: (builder) => {
