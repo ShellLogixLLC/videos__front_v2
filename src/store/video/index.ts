@@ -2,15 +2,16 @@ import {createSlice} from '@reduxjs/toolkit';
 
 import {RootState} from '~/types';
 
-import {videoReducer} from '../constants';
 import {LoadingStates} from '../types';
+import {videoReducer} from '../constants';
 
 import * as videoThunks from './thunks';
 import {VideoSliceState} from './types';
 
 const internalInitialState: VideoSliceState = {
   error: null,
-  loading: LoadingStates.IDLE,
+  commentsLoading: LoadingStates.IDLE,
+  videoLikesLoading: LoadingStates.IDLE,
 };
 
 const videoSlice = createSlice({
@@ -19,25 +20,35 @@ const videoSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(videoThunks.sendComment.pending, (state) => {
-      state.loading = LoadingStates.LOADING;
+      state.commentsLoading = LoadingStates.LOADING;
     });
     builder.addCase(videoThunks.sendComment.rejected, (state, action) => {
-      state.loading = LoadingStates.REJECTED;
+      state.commentsLoading = LoadingStates.REJECTED;
       state.error = action.error;
     });
     builder.addCase(videoThunks.sendComment.fulfilled, (state) => {
-      state.loading = LoadingStates.IDLE;
+      state.commentsLoading = LoadingStates.IDLE;
     });
 
-    builder.addCase(videoThunks.likedVideo.pending, (state) => {
-      state.loading = LoadingStates.LOADING;
+    builder.addCase(videoThunks.likeVideo.pending, (state) => {
+      state.videoLikesLoading = LoadingStates.LOADING;
     });
-    builder.addCase(videoThunks.likedVideo.rejected, (state, action) => {
-      state.loading = LoadingStates.REJECTED;
+    builder.addCase(videoThunks.likeVideo.rejected, (state, action) => {
+      state.videoLikesLoading = LoadingStates.REJECTED;
       state.error = action.error;
     });
-    builder.addCase(videoThunks.likedVideo.fulfilled, (state) => {
-      state.loading = LoadingStates.IDLE;
+    builder.addCase(videoThunks.likeVideo.fulfilled, (state) => {
+      state.videoLikesLoading = LoadingStates.IDLE;
+    });
+    builder.addCase(videoThunks.dislikeVideo.pending, (state) => {
+      state.videoLikesLoading = LoadingStates.LOADING;
+    });
+    builder.addCase(videoThunks.dislikeVideo.rejected, (state, action) => {
+      state.videoLikesLoading = LoadingStates.REJECTED;
+      state.error = action.error;
+    });
+    builder.addCase(videoThunks.dislikeVideo.fulfilled, (state) => {
+      state.videoLikesLoading = LoadingStates.IDLE;
     });
   },
 });

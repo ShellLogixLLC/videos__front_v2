@@ -50,6 +50,7 @@ const Header: React.FC = () => {
 
   const bgClassName = classNames({
     [styles.wrapper__active_bg]: isOpen,
+    [styles.wrapper__unactive_bg]: isDesktop,
   });
 
   const handleOpenMenu = () => setIsOpen(true);
@@ -154,10 +155,12 @@ const Header: React.FC = () => {
       ) : !token && pageName === NavigationConstants.Favorites ? (
         <div
           key={id}
-          // className={styles.wrapper__content__burger__container__nav__items}
+          className={styles.wrapper__content__burger__container__nav__items}
           onClick={openLikeItPopup}>
           <Typography
-            className={styles.wrapper__content__burger__container__nav__items}>
+            className={
+              styles.wrapper__content__burger__container__nav__items__typography
+            }>
             {pageName}
           </Typography>
         </div>

@@ -3,11 +3,11 @@ import classNames from 'classnames';
 import {useDispatch} from 'react-redux';
 
 import {LikedIcon} from '~/assets';
-import {videoActions} from '~/store/video';
 import {VideosService} from '~/api';
+import {videoActions} from '~/store/video';
 import {getCookieFromBrowser, setCookie} from '~/libraries';
 
-import {VideoLikesProps} from './type';
+import {VideoLikesProps} from './types';
 import styles from './VideoLikes.module.scss';
 
 const VideoLikes: React.FC<VideoLikesProps> = ({id, likesCount}) => {
@@ -25,33 +25,29 @@ const VideoLikes: React.FC<VideoLikesProps> = ({id, likesCount}) => {
   const isCookiesLiked = currentList.includes(id);
   const currentLiked = token ? dataIsLiked : isCookiesLiked;
 
-  const [islike, setIslike] = useState<boolean>(currentLiked);
+  const [isLiked, setIsLiked] = useState<boolean>(currentLiked);
   const [likedCount, setLikedCount] = useState<number>(likesCount || 0);
 
   useEffect(() => {
-    setIslike(currentLiked);
+    setIsLiked(currentLiked);
     setLikedCount(dataLikeCount);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataLikeCount, currentLiked]);
 
   const iconClass = classNames(styles.icon, {
-    [styles.icon__dislike]: islike,
+    [styles.icon__dislike]: isLiked,
   });
 
   const handleChangeLiked = async () => {
-    setIslike(!islike);
-    if (!islike) {
+    setIsLiked(!isLiked);
+    if (!isLiked) {
+      await dispatch(videoActions.likeVideo({videoId: id, dislike: false}));
       setCookie('videoLikesIds', JSON.stringify([...currentList, id]));
     } else {
       const filteretedArr = currentList.filter((el: string) => el !== id);
+      await dispatch(videoActions.dislikeVideo({videoId: id}));
       setCookie('videoLikesIds', JSON.stringify(filteretedArr));
     }
-    await dispatch(
-      videoActions.likedVideo({
-        videoId: id,
-        dislike: islike,
-      }),
-    );
     await mutate();
   };
 

@@ -11,15 +11,15 @@ import {AuthSliceState, UpdateAccessTokenAction} from './types';
 const internalInitialState: AuthSliceState = {
   error: null,
   loading: LoadingStates.IDLE,
+  userInfo: null,
+  isVerified: false,
+  accessToken: '',
+  emailVerify: '',
   registerLoading: LoadingStates.IDLE,
   updateUserLoading: LoadingStates.IDLE,
   resetPasswordLoading: LoadingStates.IDLE,
   changePasswordLoading: LoadingStates.IDLE,
   forgotPasswordLoading: LoadingStates.IDLE,
-  userInfo: null,
-  accessToken: '',
-  emailVerify: '',
-  isVerified: false,
 };
 
 const authSlice = createSlice({
