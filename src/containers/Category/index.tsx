@@ -21,6 +21,8 @@ const Category: React.FC = () => {
   const currentPgae =
     asPath.includes('page=0') || !queryPage ? 0 : Number(queryPage);
 
+  console.log(currentPgae, 'curr');
+
   const [activePage, setActivePage] = useState<number>(currentPgae);
   const [totalCount, setTotalCount] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(
