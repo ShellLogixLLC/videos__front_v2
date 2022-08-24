@@ -68,7 +68,7 @@ const FilmCard: React.FC<FilmCardProps> = ({
 
   const handleUndoDelete = async (): Promise<void> => {
     dispatch(addToWishlist({videoId: id}));
-    await new Promise((resolve) => setTimeout(resolve, 400));
+    await new Promise((resolve) => setTimeout(resolve, 600));
     if (isWishlistPage && refreshVideos) {
       refreshVideos(WishlistActions.ADD, item);
     }

@@ -13,7 +13,7 @@ const WarnToast = (id: string, handler: () => void): void => {
       </Button>
     </div>,
     {
-      position: 'bottom-right',
+      position: 'top-right',
       autoClose: 6000,
       transition: Zoom,
     },

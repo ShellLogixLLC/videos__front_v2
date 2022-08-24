@@ -177,21 +177,6 @@ const MyFavorites: React.FC = () => {
         {totalCount > 0 ? renderWishlistVideos : <EmptyWishlist />}
       </div>
 
-      <div className={styles.favorites__content__wrapper}>
-        {activePage > 0 && videosList && videosList.length < 1 ? (
-          <div className={styles.favorites__content__wrapper__noVideo}>
-            <Typography
-              className={styles.favorites__content__wrapper__noVideo__first}>
-              youHaveDeletedAllTheVideosOnThisPage
-            </Typography>
-            <Typography
-              className={styles.favorites__content__wrapper__noVideo__second}>
-              goToThePreviousPageToSeeVideos
-            </Typography>
-          </div>
-        ) : null}
-      </div>
-
       {isLoading === LoadingStates.LOADING && (
         <div className={styles.favorites__content__wrapper}>
           {renderLoaderCards}
