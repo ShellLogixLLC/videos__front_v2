@@ -161,7 +161,7 @@ const ActiveCategory: React.FC = () => {
             </Typography>
           )}
           {renderContent}
-          {!!dataTotalCount && (
+          {totalCount > currentPerPageCount && (
             <div className={styles.content__pagination}>
               <Pagination
                 dataLength={dataTotalCount}

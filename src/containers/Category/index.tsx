@@ -18,10 +18,10 @@ const Category: React.FC = () => {
   const {isMinTablet} = useWindowSize();
 
   const queryPage = query?.page;
-  const currentPage =
+  const currentPgae =
     asPath.includes('page=0') || !queryPage ? 0 : Number(queryPage);
 
-  const [activePage, setActivePage] = useState<number>(currentPage);
+  const [activePage, setActivePage] = useState<number>(currentPgae);
   const [totalCount, setTotalCount] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(
     INITIAL_PAGINATION_ROWS_PER_PAGE,
@@ -32,9 +32,9 @@ const Category: React.FC = () => {
       setRowsPerPage(INITIAL_PAGINATION_ROWS_PER_PAGE);
     }
 
-    setActivePage(currentPage);
+    setActivePage(currentPgae);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPage]);
+  }, [currentPgae]);
 
   const setNewQueryParams = (newQueryParams: QueryParamsTypes): void => {
     setQueryParams({...query, ...newQueryParams});
@@ -72,7 +72,7 @@ const Category: React.FC = () => {
             totalCount={totalCount}
             rowsPerPage={rowsPerPage}
           />
-          {!!totalCount && (
+          {totalCount > rowsPerPage && (
             <div className={styles.content__pagination}>
               <Pagination
                 dataLength={totalCount}
