@@ -1,11 +1,11 @@
 import {SerializedError} from '@reduxjs/toolkit';
 
-import {LoadingStates} from '~/store/types';
 import {VideosData} from '~/types';
+import {LoadingStates} from '~/store/types';
 
 export type WishlistSliceState = {
-  loading: LoadingStates;
   error: SerializedError | any;
+  loading: LoadingStates;
   wishlistIds: string[];
   wishlistVideos: VideosData | null;
   wishlistVideosLoading: LoadingStates;

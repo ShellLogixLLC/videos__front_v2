@@ -4,6 +4,32 @@ import {client} from '~/api';
 
 import {videoReducer} from '../constants';
 
+export const getVideoComments = createAsyncThunk(
+  `${videoReducer}/get-comments`,
+  async (
+    {
+      videoId,
+      limit,
+      offset,
+    }: {videoId: string; limit?: number; offset?: number},
+    thunkAPI,
+  ) => {
+    try {
+      const res = await client.get(`/comments`, {
+        params: {
+          videoId,
+          limit,
+          offset,
+        },
+      });
+      return thunkAPI.fulfillWithValue(res.data);
+    } catch (error) {
+      const {message} = error as Error;
+      return thunkAPI.rejectWithValue({error: message});
+    }
+  },
+);
+
 export const sendComment = createAsyncThunk(
   `${videoReducer}/send-comment`,
   async (

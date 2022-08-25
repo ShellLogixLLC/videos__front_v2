@@ -35,6 +35,7 @@ const CommentForm: React.FC<ICommentForm> = ({addNewComment}) => {
         message: comment,
       }),
     );
+    dispatch(videoActions.getVideoComments({videoId: activeVideoId as string}));
     setValue('comment', '');
     addNewComment({
       id: shortid.generate(),

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useRouter} from 'next/router';
 
-import {filteredMass} from '~/utils';
+import {filteredMass, setQueryParams} from '~/utils';
 import {VideosSearchService} from '~/api';
 import {
   BackButton,
@@ -18,8 +18,9 @@ import {
   INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE,
 } from '~/constants';
 import {wishlistSelect} from '~/store/wishlist';
-import {useAppSelector, useLocales} from '~/hooks';
 import FilmCardSkeleton from '~/components/skeletons/FilmCard';
+import {QueryParamsTypes} from '~/types';
+import {useAppSelector, useLocales} from '~/hooks';
 
 import styles from './Search.module.scss';
 
@@ -42,6 +43,15 @@ const Search: React.FC = () => {
     INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE,
     offset,
   );
+
+  const setNewQueryParams = (newQueryParams: QueryParamsTypes): void => {
+    setQueryParams({...query, ...newQueryParams});
+  };
+
+  const changeActivePage = (page: number) => {
+    setActivePage(page);
+    setNewQueryParams({page});
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -109,11 +119,11 @@ const Search: React.FC = () => {
           )}
         </section>
         <section>
-          {videos?.length > 0 && (
+          {totalCount > INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE && (
             <Pagination
               dataLength={totalCount}
               isPerPageNeeded={false}
-              setActivePage={setActivePage}
+              setActivePage={changeActivePage}
               activePage={activePage}
               isMoreButtonNeeded={false}
               rowsPerPage={INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE}
