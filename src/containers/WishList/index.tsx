@@ -183,7 +183,7 @@ const MyFavorites: React.FC = () => {
         </div>
       )}
 
-      {(activePage > 0 || totalCount > limit) && (
+      {totalCount > limit && (
         <div className={styles.favorites__pagination}>
           <Pagination
             dataLength={totalCount}
