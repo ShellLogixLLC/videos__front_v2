@@ -5,7 +5,7 @@ import {useDispatch} from 'react-redux';
 import {LikedIcon} from '~/assets';
 import {VideosService} from '~/api';
 import {videoActions} from '~/store/video';
-import {getCookieFromBrowser, setCookie} from '~/libraries';
+import {getCookieFromBrowser} from '~/libraries';
 
 import {VideoLikesProps} from './types';
 import styles from './VideoLikes.module.scss';
@@ -19,11 +19,13 @@ const VideoLikes: React.FC<VideoLikesProps> = ({id, likesCount}) => {
   const dataIsLiked = data?.isLiked;
   const dataLikeCount = data?.likesCount;
 
-  const videoLikesIds = getCookieFromBrowser('videoLikesIds') as string;
-  const currentList = videoLikesIds ? JSON.parse(videoLikesIds) : [];
+  // const videoLikesIds = getCookieFromBrowser('videoLikesIds') as string;
+  // const currentList = videoLikesIds ? JSON.parse(videoLikesIds) : [];
 
-  const isCookiesLiked = currentList.includes(id);
-  const currentLiked = token ? dataIsLiked : isCookiesLiked;
+  // const isCookiesLiked = currentList.includes(id);
+
+  //I HAVE COMMENTED THESE LINES BECAUSE IT COULD BE USED IN THE FUTURE--MKO
+  const currentLiked = token ? dataIsLiked : false;
 
   const [isLiked, setIsLiked] = useState<boolean>(currentLiked);
   const [likedCount, setLikedCount] = useState<number>(likesCount || 0);
@@ -42,11 +44,11 @@ const VideoLikes: React.FC<VideoLikesProps> = ({id, likesCount}) => {
     setIsLiked(!isLiked);
     if (!isLiked) {
       await dispatch(videoActions.likeVideo({videoId: id, dislike: false}));
-      setCookie('videoLikesIds', JSON.stringify([...currentList, id]));
+      // setCookie('videoLikesIds', JSON.stringify([...currentList, id]));
     } else {
-      const filteretedArr = currentList.filter((el: string) => el !== id);
+      // const filteretedArr = currentList.filter((el: string) => el !== id);
       await dispatch(videoActions.dislikeVideo({videoId: id}));
-      setCookie('videoLikesIds', JSON.stringify(filteretedArr));
+      // setCookie('videoLikesIds', JSON.stringify(filteretedArr));
     }
     await mutate();
   };
