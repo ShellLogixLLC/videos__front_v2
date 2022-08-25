@@ -12,6 +12,7 @@ const internalInitialState: VideoSliceState = {
   error: null,
   commentsLoading: LoadingStates.IDLE,
   videoLikesLoading: LoadingStates.IDLE,
+  getCommentsLoading: LoadingStates.IDLE,
 };
 
 const videoSlice = createSlice({
@@ -19,6 +20,17 @@ const videoSlice = createSlice({
   initialState: internalInitialState,
   reducers: {},
   extraReducers: (builder) => {
+    builder.addCase(videoThunks.getVideoComments.pending, (state) => {
+      state.getCommentsLoading = LoadingStates.LOADING;
+    });
+    builder.addCase(videoThunks.getVideoComments.rejected, (state, action) => {
+      state.getCommentsLoading = LoadingStates.REJECTED;
+      state.error = action.error;
+    });
+    builder.addCase(videoThunks.getVideoComments.fulfilled, (state) => {
+      state.getCommentsLoading = LoadingStates.IDLE;
+    });
+
     builder.addCase(videoThunks.sendComment.pending, (state) => {
       state.commentsLoading = LoadingStates.LOADING;
     });

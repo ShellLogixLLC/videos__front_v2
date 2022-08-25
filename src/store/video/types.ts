@@ -6,4 +6,5 @@ export type VideoSliceState = {
   error: SerializedError | any;
   commentsLoading: LoadingStates;
   videoLikesLoading: LoadingStates;
+  getCommentsLoading: LoadingStates;
 };
