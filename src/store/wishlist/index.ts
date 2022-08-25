@@ -2,8 +2,8 @@ import {createSlice} from '@reduxjs/toolkit';
 
 import {RootState} from '~/types';
 
-import {wishlistReducer} from '../constants';
 import {LoadingStates} from '../types';
+import {wishlistReducer} from '../constants';
 
 import * as wishlistThunks from './thunks';
 import {WishlistSliceState} from './types';

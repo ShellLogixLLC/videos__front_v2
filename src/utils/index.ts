@@ -6,7 +6,7 @@ export * from './montsAndWeekDays';
 export * from './types';
 
 // static base
-
+export {default as sleep} from './sleep';
 export {default as langData} from './langData';
 export {default as filmsBase} from './filmsBase';
 export {default as WarnToast} from './warnToast';

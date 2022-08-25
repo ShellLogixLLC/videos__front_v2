@@ -5,7 +5,7 @@ import {VideoLikes} from '~/components';
 import {useAppDispatch} from '~/hooks';
 import {UnRegisterPopup} from '~/components';
 import {getCookieFromBrowser} from '~/libraries';
-import {createDate, WarnToast} from '~/utils';
+import {createDate, sleep, WarnToast} from '~/utils';
 import {VideosProps, WishlistActions} from '~/types';
 import {addToWishlist, deleteFromWishlist} from '~/store/wishlist/thunks';
 import {
@@ -66,8 +66,9 @@ const FilmCard: React.FC<FilmCardProps> = ({
     [styles.wrapper__film_liked]: isLiked,
   });
 
-  const handleUndoDelete = (): void => {
+  const handleUndoDelete = async (): Promise<void> => {
     dispatch(addToWishlist({videoId: id}));
+    await sleep(600);
     if (isWishlistPage && refreshVideos) {
       refreshVideos(WishlistActions.ADD, item);
     }

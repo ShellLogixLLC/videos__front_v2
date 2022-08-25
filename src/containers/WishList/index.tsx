@@ -52,12 +52,12 @@ const MyFavorites: React.FC = () => {
 
   const dispatch = useAppDispatch();
 
+  const {wishlistVideos: data, wishlistVideosLoading: isLoading} =
+    useAppSelector(wishlistSelect);
+
   useEffect(() => {
     dispatch(wishlistActions.getWishlistVideos({limit, offset}));
   }, [dispatch, limit, offset]);
-
-  const {wishlistVideos: data, wishlistVideosLoading: isLoading} =
-    useAppSelector(wishlistSelect);
 
   useEffect(() => {
     if (data) {
@@ -72,11 +72,19 @@ const MyFavorites: React.FC = () => {
   ) => {
     const updatedVideos = videosList.filter((video) => video.id !== item.id);
     if (type === WishlistActions.ADD) {
-      setVideosList([...updatedVideos, item as VideosProps]);
-      setTotalCount(totalCount + 1);
-    } else {
-      setVideosList(updatedVideos);
-      setTotalCount(totalCount - 1);
+      if (updatedVideos.length) {
+        setVideosList([...updatedVideos, item as VideosProps]);
+        setTotalCount(totalCount + 1);
+      } else if (data?.videos?.length) {
+        setActivePage(activePage);
+      }
+    } else if (type === WishlistActions.DELETE) {
+      if (data?.videos?.length && !updatedVideos.length && activePage > 0) {
+        setActivePage(activePage - 1);
+      } else {
+        setVideosList(updatedVideos);
+        setTotalCount(totalCount - 1);
+      }
     }
   };
 
@@ -167,21 +175,6 @@ const MyFavorites: React.FC = () => {
 
       <div className={styles.favorites__content__wrapper}>
         {totalCount > 0 ? renderWishlistVideos : <EmptyWishlist />}
-      </div>
-
-      <div className={styles.favorites__content__wrapper}>
-        {activePage > 0 && videosList && videosList.length < 1 ? (
-          <div className={styles.favorites__content__wrapper__noVideo}>
-            <Typography
-              className={styles.favorites__content__wrapper__noVideo__first}>
-              youHaveDeletedAllTheVideosOnThisPage
-            </Typography>
-            <Typography
-              className={styles.favorites__content__wrapper__noVideo__second}>
-              goToThePreviousPageToSeeVideos
-            </Typography>
-          </div>
-        ) : null}
       </div>
 
       {isLoading === LoadingStates.LOADING && (
