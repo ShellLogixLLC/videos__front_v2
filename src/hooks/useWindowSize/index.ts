@@ -27,15 +27,24 @@ const useWindowSize = (): UseWindowSizeReturn => {
     resizeHandler();
   }, []);
 
-  const isMobile = windowSize.width < 577;
-  const isTablet = windowSize.width >= 577 && windowSize.width <= 768;
-  const isTabletMid = windowSize.width <= 992;
-  const isMaxTablet = windowSize.width > 768;
-  const isMinTablet = windowSize.width < 769;
-  const isLargeTablet = windowSize.width > 768 && windowSize.width <= 1024;
-  const isDesktop = windowSize.width > 1024;
-  const isLaptop = windowSize.width <= 1024;
-  const isWide = windowSize.width > 1024 && windowSize.width < 1200;
+  const isMobile = windowSize.width !== 0 && windowSize.width < 577;
+  const isTablet =
+    windowSize.width !== 0 &&
+    windowSize.width >= 577 &&
+    windowSize.width <= 768;
+  const isTabletMid = windowSize.width !== 0 && windowSize.width <= 992;
+  const isMaxTablet = windowSize.width !== 0 && windowSize.width > 768;
+  const isMinTablet = windowSize.width !== 0 && windowSize.width < 769;
+  const isLargeTablet =
+    windowSize.width !== 0 &&
+    windowSize.width > 768 &&
+    windowSize.width <= 1024;
+  const isDesktop = windowSize.width !== 0 && windowSize.width > 1024;
+  const isLaptop = windowSize.width !== 0 && windowSize.width <= 1024;
+  const isWide =
+    windowSize.width !== 0 &&
+    windowSize.width > 1024 &&
+    windowSize.width < 1200;
   const windowWidth = windowSize.width;
   const windowHeight = windowSize.height;
 

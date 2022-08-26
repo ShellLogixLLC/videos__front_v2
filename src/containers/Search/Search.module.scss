@@ -78,14 +78,13 @@
         margin: 0 auto;
       }
       &__wrapper {
-        @extend %flex-align;
         &__null {
           color: $red;
           @extend %film_name;
+          padding-bottom: 6px;
         }
         &__search_result {
           color: $red;
-          margin-left: 6px;
           @extend %film_name;
           text-decoration: underline;
         }

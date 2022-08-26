@@ -210,7 +210,11 @@ const Header: React.FC = () => {
           {renderMobileMenu}
         </MobileMenu>
       </div>
-      <MobileFilter isFilter={isFilter} toggleFilter={toggleFilter} />
+      <MobileFilter
+        isNotActive={false}
+        isFilter={isFilter}
+        toggleFilter={toggleFilter}
+      />
       <UnRegisterPopup
         expanded={isLikeItPopup}
         setExpanded={setIsLikeItPopup}

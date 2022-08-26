@@ -16,6 +16,10 @@
     display: block;
   }
 
+  &_unactive{
+    display: none;
+  }
+
   &_open {
     left: 0;
     z-index: 10;

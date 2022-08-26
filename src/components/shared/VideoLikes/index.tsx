@@ -19,10 +19,6 @@ const VideoLikes: React.FC<VideoLikesProps> = ({id, likesCount}) => {
   const dataIsLiked = data?.isLiked;
   const dataLikeCount = data?.likesCount;
 
-  useEffect(() => {
-    mutate();
-  }, [token]);
-
   // const videoLikesIds = getCookieFromBrowser('videoLikesIds') as string;
   // const currentList = videoLikesIds ? JSON.parse(videoLikesIds) : [];
 
