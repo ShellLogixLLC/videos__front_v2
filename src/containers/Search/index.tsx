@@ -105,7 +105,7 @@ const Search: React.FC = () => {
               LeftIcon={LeftArrowIcon}
               className={styles.wrapper__content__header__route}
             />
-            <CategoryNav />
+            <CategoryNav isNotActive={totalCount <= 0} />
             <Typography className={styles.wrapper__content__header__title}>
               searchResults
             </Typography>

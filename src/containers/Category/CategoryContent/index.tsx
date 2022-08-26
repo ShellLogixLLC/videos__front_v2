@@ -2,7 +2,12 @@ import React, {useEffect, useState} from 'react';
 
 import {CategoryService} from '~/api';
 import {CategoryContentTypes, VideosProps} from '~/types';
-import {FilmCard, FilmCardSkeleton, Typography} from '~/components';
+import {
+  FilmCard,
+  Typography,
+  CategoryNav,
+  FilmCardSkeleton,
+} from '~/components';
 import {useAppSelector, useCategotyParams, useWindowSize} from '~/hooks';
 import {
   INITIAL_PAGINATION_MORE_COUNT,
@@ -78,13 +83,20 @@ const CategoryContent: React.FC<CategoryContentTypes> = ({
         {videosList.length ? (
           renderVideosList
         ) : (
-          <Typography>sorryWeCouldNotFindAnyResult</Typography>
+          <Typography className={styles.content__wrapper__emptyText}>
+            sorryWeCouldNotFindAnyResult
+          </Typography>
         )}
         {isLoading && isMinTablet && <>{renderLoaderCards}</>}
       </div>
     );
 
-  return <>{renderContent}</>;
+  return (
+    <>
+      <CategoryNav isNotActive={dataTotalCount <= 0} />
+      {renderContent}
+    </>
+  );
 };
 
 export default CategoryContent;

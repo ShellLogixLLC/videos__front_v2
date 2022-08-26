@@ -11,14 +11,17 @@ import Typography from '../Typography';
 
 import styles from './CategoryNav.module.scss';
 
-const CategoryNav: React.FC<CategoryTitleTypes> = () => {
+const CategoryNav: React.FC<CategoryTitleTypes> = ({isNotActive}) => {
   const {query} = useRouter();
-
   const [activeCategory, setActiveCategory] = useState<string | string[]>(
     query?.activeCategory || CategoryFilters.All,
   );
 
   const queryActiveCategory = query?.activeCategory;
+
+  const wrapperClassnames = classNames(styles.wrapper, {
+    [styles.wrapper__unactive]: isNotActive,
+  });
 
   useEffect(() => {
     if (queryActiveCategory) {
@@ -49,7 +52,7 @@ const CategoryNav: React.FC<CategoryTitleTypes> = () => {
     ),
   );
 
-  return <nav className={styles.wrapper}>{renderCategoryNavigation}</nav>;
+  return <nav className={wrapperClassnames}>{renderCategoryNavigation}</nav>;
 };
 
 export default CategoryNav;

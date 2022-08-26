@@ -97,7 +97,7 @@
   "enterYourEmailAddress": "Enter your email address",
   "theFirstNameIsRequired": "The First name is required",
   "areYouSureYouWantLogout": "Are you sure you want to log out?",
-  "sorryWeCouldNotFindAnyResult": "Sorry,We could not find any result",
+  "sorryWeCouldNotFindAnyResult": "Sorry,We could not find any results matching:",
   "goToThePreviousPageToSeeVideos": "Go to the previous page to see videos",
   "firstNameIsTooShort": "The name is too short - must be at least 6 characters long.",
   "weHaveSentPasswordResetLink": "We’ve sent a password reset link to your email. Email should be received within 5 minutes.",
