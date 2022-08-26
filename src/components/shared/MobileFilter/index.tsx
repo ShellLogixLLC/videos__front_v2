@@ -15,9 +15,11 @@ import styles from './MobileFilter.module.scss';
 const MobileFilter: React.FC<IMobileFilterProps> = ({
   isFilter,
   toggleFilter,
+  isNotActive,
 }) => {
   const wrapperClasses = classNames(styles.wrapper, {
     [styles.wrapper_open]: isFilter,
+    [styles.wrapper_unactive]: isNotActive,
   });
 
   useLockBodyScroll(isFilter);
