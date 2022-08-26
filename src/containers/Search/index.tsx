@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {useRouter} from 'next/router';
 
-import {filteredMass, setQueryParams} from '~/utils';
 import {VideosSearchService} from '~/api';
+import {filteredMass, setQueryParams} from '~/utils';
 import {
   BackButton,
   CategoryNav,
@@ -20,22 +20,26 @@ import {
 import {wishlistSelect} from '~/store/wishlist';
 import FilmCardSkeleton from '~/components/skeletons/FilmCard';
 import {QueryParamsTypes} from '~/types';
-import {useAppSelector, useLocales} from '~/hooks';
+import {useAppSelector, useLocales, useWindowSize} from '~/hooks';
 
 import styles from './Search.module.scss';
 
 const Search: React.FC = () => {
-  const {query} = useRouter();
+  const {query, asPath} = useRouter();
+
+  const queryPage = query?.page;
+  const currentPage =
+    asPath.includes('page=0') || !queryPage ? 0 : Number(queryPage);
+
+  const {isMinTablet} = useWindowSize();
 
   const {wishlistIds: wishlist} = useAppSelector(wishlistSelect);
 
-  const [activePage, setActivePage] = useState<number>(
-    INITIAL_PAGINATION_ACTIVE_PAGE,
-  );
+  const [activePage, setActivePage] = useState<number>(currentPage);
 
   const offset =
     activePage > INITIAL_PAGINATION_ACTIVE_PAGE
-      ? activePage * INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE + 1
+      ? activePage * INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE
       : INITIAL_PAGINATION_ACTIVE_PAGE;
 
   const {videosData, isLoading} = VideosSearchService.useVideosSearch(
@@ -56,6 +60,12 @@ const Search: React.FC = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [activePage]);
+
+  useEffect(() => {
+    if (isMinTablet) {
+      setActivePage(0);
+    }
+  }, [isMinTablet]);
 
   const videos = videosData?.videos;
   const totalCount = videosData?.totalCount;
