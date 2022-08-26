@@ -15,7 +15,6 @@ import {
 import {
   CategoryFilters,
   ActiveCategoryPathname,
-  INITIAL_PAGINATION_MORE_COUNT,
   INITIAL_PAGINATION_ROWS_PER_PAGE,
 } from '~/constants';
 import {
@@ -34,9 +33,7 @@ const ActiveCategory: React.FC = () => {
   const {query} = useRouter();
   const {isMinTablet} = useWindowSize();
 
-  const currentPerPageCount = isMinTablet
-    ? INITIAL_PAGINATION_MORE_COUNT
-    : INITIAL_PAGINATION_ROWS_PER_PAGE;
+  const currentPerPageCount = INITIAL_PAGINATION_ROWS_PER_PAGE;
 
   const currentActiveCategory =
     query.name === ActiveCategoryPathname.Most_Liked
@@ -61,9 +58,9 @@ const ActiveCategory: React.FC = () => {
   const {data, isLoading} = CategoryService.useActiveCategory(params);
 
   const tabletSkeletonsCount =
-    rowsPerPage + INITIAL_PAGINATION_MORE_COUNT > totalCount
-      ? totalCount && totalCount % INITIAL_PAGINATION_MORE_COUNT
-      : INITIAL_PAGINATION_MORE_COUNT;
+    rowsPerPage + INITIAL_PAGINATION_ROWS_PER_PAGE > totalCount
+      ? totalCount && totalCount % INITIAL_PAGINATION_ROWS_PER_PAGE
+      : INITIAL_PAGINATION_ROWS_PER_PAGE;
 
   const desktopSkeletonsCount =
     (activePage + 1) * INITIAL_PAGINATION_ROWS_PER_PAGE > totalCount

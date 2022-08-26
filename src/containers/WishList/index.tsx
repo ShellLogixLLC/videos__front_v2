@@ -16,7 +16,6 @@ import {
   WishlistActions,
 } from '~/types';
 import {
-  INITIAL_PAGINATION_ACTIVE_PAGE,
   INITIAL_PAGINATION_MORE_COUNT,
   INITIAL_WISHLIST_LIMIT,
 } from '~/constants';
@@ -28,23 +27,25 @@ import {
   Pagination,
   Typography,
 } from '~/components';
-import {wishlistActions, wishlistSelect} from '~/store/wishlist';
 import {LoadingStates} from '~/store/types';
+import {wishlistActions, wishlistSelect} from '~/store/wishlist';
 
 import styles from './Wishlist.module.scss';
 
 const MyFavorites: React.FC = () => {
-  const {query} = useRouter();
+  const {query, asPath} = useRouter();
   const {isMinTablet} = useWindowSize();
   const currentPerPageCount = !isMinTablet
     ? INITIAL_WISHLIST_LIMIT
     : INITIAL_PAGINATION_MORE_COUNT;
 
+  const queryPage = query?.page;
+  const currentPage =
+    asPath.includes('page=0') || !queryPage ? 0 : Number(queryPage);
+
   const [videosList, setVideosList] = useState<VideosProps[]>([]);
   const [totalCount, setTotalCount] = useState<number>(0);
-  const [activePage, setActivePage] = useState<number>(
-    INITIAL_PAGINATION_ACTIVE_PAGE,
-  );
+  const [activePage, setActivePage] = useState<number>(currentPage);
   const [rowsPerPage, setRowsPerPage] = useState<number>(currentPerPageCount);
 
   const limit = !isMinTablet ? INITIAL_WISHLIST_LIMIT : rowsPerPage;
@@ -58,6 +59,12 @@ const MyFavorites: React.FC = () => {
   useEffect(() => {
     dispatch(wishlistActions.getWishlistVideos({limit, offset}));
   }, [dispatch, limit, offset]);
+
+  useEffect(() => {
+    if (isMinTablet) {
+      setActivePage(0);
+    }
+  }, [isMinTablet]);
 
   useEffect(() => {
     if (data) {
@@ -105,7 +112,7 @@ const MyFavorites: React.FC = () => {
   const {translatedTypo} = useLocales('back');
 
   useEffect(() => {
-    if (query?.page) {
+    if (queryPage) {
       setActivePage(Number(query.page));
       window.scrollTo({
         top: 80,
@@ -113,11 +120,6 @@ const MyFavorites: React.FC = () => {
       });
     }
   }, [query.page]);
-
-  useEffect(() => {
-    setRowsPerPage(INITIAL_WISHLIST_LIMIT);
-    setActivePage(0);
-  }, [isMinTablet]);
 
   const renderLoaderCards = Array.from(
     Array(skeletonsCount),
