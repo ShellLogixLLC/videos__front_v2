@@ -23,10 +23,11 @@ const CommentForm: React.FC<ICommentForm> = ({addNewComment}) => {
     comment: yup.string().trim().required(),
   });
 
-  const {handleSubmit, register, formState, setValue, getValues} = useForm({
-    mode: 'all',
-    resolver: yupResolver(schema),
-  });
+  const {handleSubmit, register, formState, setValue, getValues, trigger} =
+    useForm({
+      mode: 'all',
+      resolver: yupResolver(schema),
+    });
 
   const onSubmit = ({comment}: {[key: string]: string}): void => {
     dispatch(
@@ -46,6 +47,7 @@ const CommentForm: React.FC<ICommentForm> = ({addNewComment}) => {
 
   const addEmoji = (emoji: BaseEmoji): void => {
     setValue('comment', getValues('comment'.trim()) + emoji.native);
+    trigger();
   };
 
   const typoClassName = classNames(styles.block__form__button__text, {

@@ -8,8 +8,6 @@ const endpoints = {
   VideosService: {
     getVideos: (): string => '/videos?offset=0&limit=20',
     getVideoById: (id?: string | string[]): string => `/videos/${id}`,
-    getVideosSearch: (arg: string): string =>
-      `/videos?offset=0&limit=20&search=${arg}`,
     getVideoComments: (
       offset: number,
       limit: number,
