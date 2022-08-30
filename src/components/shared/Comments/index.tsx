@@ -27,6 +27,10 @@ const Comments: React.FC = () => {
   const {data, isLoading} = VideosService.useVideoComments(limit, 0);
   const boolInverse = totalCount > data?.totalCount;
 
+  const containerClassNames = classNames(styles.container, {
+    [styles.container_open]: expanded,
+  });
+
   const blockClassNames = classNames(styles.block, {
     [styles.block_hidden]: !expanded,
   });
@@ -53,10 +57,7 @@ const Comments: React.FC = () => {
   };
 
   return (
-    <div
-      className={classNames(styles.container, {
-        [styles.container_open]: expanded,
-      })}>
+    <div className={containerClassNames}>
       <div onClick={toggleExpanded} className={styles.container__content}>
         <div className={styles.container__content__title}>
           <Typography className={styles.container__content__title__text}>
