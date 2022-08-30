@@ -12,6 +12,7 @@ export {default as filmsBase} from './filmsBase';
 export {default as WarnToast} from './warnToast';
 export {default as errorToast} from './errorToast';
 export {default as createDate} from './createDate';
+export {default as getFullDay} from './getFullDay';
 export {default as formatTimer} from './formatTimer';
 export {default as commentBlock} from './commentBlock';
 export {default as downloadFile} from './downloadFile';

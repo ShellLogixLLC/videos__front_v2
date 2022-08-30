@@ -7,7 +7,7 @@ import {RangePicker} from 'react-trip-date';
 import {RangePickerSelectedDays} from 'react-trip-date/dist/rangePicker/rangePicker.type';
 
 import {getCookieFromBrowser} from '~/libraries';
-import {MONTHS, WEEKDAYS_SHORT} from '~/utils';
+import {MONTHS, WEEKDAYS_SHORT, getFullDay} from '~/utils';
 import {CalendarOneIcon, LeftArrowIcon, RightArrowIcon} from '~/assets';
 
 import Typography from '../Typography';
@@ -54,15 +54,19 @@ const DatePicker: FC = () => {
   }, [queryStartDate, queryEndDate, queryName, qurryActiveCategory]);
 
   useEffect(() => {
-    if (rangeValues?.from && rangeValues.to)
+    if (
+      rangeValues?.from &&
+      !isEqual(rangeValues, {from: queryStartDate, to: queryEndDate})
+    ) {
       router.push({
         query: {
           ...router.query,
-          startDate: rangeValues.from,
-          endDate: rangeValues.to,
+          startDate: rangeValues?.from || '',
+          endDate: rangeValues?.to || getFullDay(),
           page: 0,
         },
       });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rangeValues]);
 
@@ -102,6 +106,17 @@ const DatePicker: FC = () => {
 
   const handleClickRangePicker = () => setIsChange(!isChange);
 
+  const handleChangeRangeValue = (data: RangePickerSelectedDays) => {
+    if (
+      (data.from === rangeValues?.from || data.from === rangeValues?.to) &&
+      rangeValues.to !== ''
+    ) {
+      setRangeValues({from: '', to: ''});
+    } else {
+      setRangeValues(data);
+    }
+  };
+
   return (
     <div className={togglerClasses}>
       <div role="button" onClick={toggleIsOpen} className={styles.header}>
@@ -112,7 +127,7 @@ const DatePicker: FC = () => {
         ref={rangePickerRef}
         onClick={handleClickRangePicker}
         className={`${contentClasses} calendar__trip`}>
-        <RangePicker {...rangePickerProps} onChange={setRangeValues} />
+        <RangePicker {...rangePickerProps} onChange={handleChangeRangeValue} />
       </div>
     </div>
   );
