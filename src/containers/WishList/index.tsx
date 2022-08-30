@@ -131,7 +131,7 @@ const MyFavorites: React.FC = () => {
     ),
   );
 
-  if (isLoading === LoadingStates.LOADING && !isMinTablet) {
+  if (isLoading === LoadingStates.LOADING && data?.videos.length !== 0) {
     return (
       <div className={styles.favorites__content__wrapper}>
         {renderLoaderCards}
@@ -178,12 +178,6 @@ const MyFavorites: React.FC = () => {
       <div className={styles.favorites__content__wrapper}>
         {totalCount > 0 ? renderWishlistVideos : <EmptyWishlist />}
       </div>
-
-      {isLoading === LoadingStates.LOADING && (
-        <div className={styles.favorites__content__wrapper}>
-          {renderLoaderCards}
-        </div>
-      )}
 
       {totalCount > limit && (
         <div className={styles.favorites__pagination}>
