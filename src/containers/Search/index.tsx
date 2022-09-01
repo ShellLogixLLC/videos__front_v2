@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useRouter} from 'next/router';
+import {isEqual} from 'lodash';
 
 import {VideosSearchService} from '~/api';
 import {filteredMass, setQueryParams} from '~/utils';
@@ -13,14 +14,16 @@ import {
   Typography,
 } from '~/components';
 import {LeftArrowIcon} from '~/assets';
-import {
-  INITIAL_PAGINATION_ACTIVE_PAGE,
-  INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE,
-} from '~/constants';
+import {INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE} from '~/constants';
 import {wishlistSelect} from '~/store/wishlist';
 import FilmCardSkeleton from '~/components/skeletons/FilmCard';
 import {QueryParamsTypes} from '~/types';
-import {useAppSelector, useLocales, useWindowSize} from '~/hooks';
+import {
+  useAppSelector,
+  useLocales,
+  useSearchParams,
+  useWindowSize,
+} from '~/hooks';
 
 import styles from './Search.module.scss';
 
@@ -31,22 +34,31 @@ const Search: React.FC = () => {
   const currentPage =
     asPath.includes('page=0') || !queryPage ? 0 : Number(queryPage);
 
+  const [rowsPerPage, setRowsPerPage] = useState<number>(
+    INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE,
+  );
+
   const {isMinTablet} = useWindowSize();
 
   const {wishlistIds: wishlist} = useAppSelector(wishlistSelect);
 
   const [activePage, setActivePage] = useState<number>(currentPage);
 
-  const offset =
-    activePage > INITIAL_PAGINATION_ACTIVE_PAGE
-      ? activePage * INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE
-      : INITIAL_PAGINATION_ACTIVE_PAGE;
+  const {params} = useSearchParams(INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE);
 
-  const {videosData, isLoading} = VideosSearchService.useVideosSearch(
-    query.param,
-    INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE,
-    offset,
+  const {data, isLoading} = VideosSearchService.useVideosSearch(
+    query.param as string,
+    params,
   );
+
+  useEffect(() => {
+    if (!isEqual(INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE, rowsPerPage)) {
+      setRowsPerPage(INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE);
+    }
+
+    setActivePage(currentPage);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentPage]);
 
   const setNewQueryParams = (newQueryParams: QueryParamsTypes): void => {
     setQueryParams({...query, ...newQueryParams});
@@ -67,8 +79,8 @@ const Search: React.FC = () => {
     }
   }, [isMinTablet]);
 
-  const videos = videosData?.videos;
-  const totalCount = videosData?.totalCount;
+  const videos = data?.videos;
+  const totalCount = data?.totalCount;
   const skeletonsArray = new Array(
     INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE,
   ).fill({});
