@@ -14,10 +14,7 @@ import {
   Typography,
 } from '~/components';
 import {LeftArrowIcon} from '~/assets';
-import {
-  INITIAL_PAGINATION_ROWS_PER_PAGE,
-  INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE,
-} from '~/constants';
+import {INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE} from '~/constants';
 import {wishlistSelect} from '~/store/wishlist';
 import FilmCardSkeleton from '~/components/skeletons/FilmCard';
 import {QueryParamsTypes} from '~/types';
@@ -38,7 +35,7 @@ const Search: React.FC = () => {
     asPath.includes('page=0') || !queryPage ? 0 : Number(queryPage);
 
   const [rowsPerPage, setRowsPerPage] = useState<number>(
-    INITIAL_PAGINATION_ROWS_PER_PAGE,
+    INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE,
   );
 
   const {isMinTablet} = useWindowSize();
@@ -50,7 +47,7 @@ const Search: React.FC = () => {
   const {params} = useSearchParams(INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE);
 
   const {data, isLoading} = VideosSearchService.useVideosSearch(
-    query.param,
+    query.param as string,
     params,
   );
 

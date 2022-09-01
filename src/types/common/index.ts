@@ -32,7 +32,7 @@ export type ActiveCategoryParams = {
   viewsSort?: number | string;
 };
 
-export type Params = {
+export type SortingParamsType = {
   limit: number;
   offset: number;
   activeVCategoryId?: string | string[];
@@ -43,9 +43,9 @@ export type Params = {
   durationSort?: number | string;
 };
 
-export type SetParams = {
-  params: Params;
-  setParams: React.Dispatch<React.SetStateAction<Params>>;
+export type SetSortingParamsType = {
+  params: SortingParamsType;
+  setParams: React.Dispatch<React.SetStateAction<SortingParamsType>>;
 };
 
 export enum LocaleType {

@@ -1,6 +1,6 @@
 import {useEffect} from 'react';
 
-import {Params} from '~/types';
+import {SortingParamsType} from '~/types';
 import {useAppRequest} from '~/hooks';
 import {RouterService} from '~/services';
 
@@ -8,7 +8,7 @@ import endpoints from '../endpoints';
 
 import {IVideoByCategory} from './types';
 
-const useVideosByCategoryId = (params: Params): IVideoByCategory => {
+const useVideosByCategoryId = (params: SortingParamsType): IVideoByCategory => {
   const {data, mutate, error} = useAppRequest({
     url: endpoints.CategoryService.getVideoByCategoryId(),
     params,

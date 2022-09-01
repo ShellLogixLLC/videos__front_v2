@@ -3,10 +3,10 @@ import {isEqual} from 'lodash';
 import {useRouter} from 'next/router';
 
 import {useWindowSize} from '~/hooks';
-import {Params, SetParams} from '~/types';
+import {SortingParamsType, SetSortingParamsType} from '~/types';
 import {INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE} from '~/constants';
 
-const useSearchParams = (rowsPerPage: number): SetParams => {
+const useSearchParams = (rowsPerPage: number): SetSortingParamsType => {
   const {query} = useRouter();
   const {isMinTablet} = useWindowSize();
 
@@ -42,7 +42,7 @@ const useSearchParams = (rowsPerPage: number): SetParams => {
     durationSort,
   };
 
-  const [params, setParams] = useState<Params>(initialParams);
+  const [params, setParams] = useState<SortingParamsType>(initialParams);
 
   useEffect(() => {
     if (!isEqual(initialParams, params)) {

@@ -3,13 +3,13 @@ import {isEqual} from 'lodash';
 import {useRouter} from 'next/router';
 
 import {useWindowSize} from '~/hooks';
-import {Params, SetParams} from '~/types';
+import {SortingParamsType, SetSortingParamsType} from '~/types';
 import {
   ActiveCategoryPathname,
   INITIAL_PAGINATION_ROWS_PER_PAGE,
 } from '~/constants';
 
-const useActiveCategoryParams = (rowsPerPage: number): SetParams => {
+const useActiveCategoryParams = (rowsPerPage: number): SetSortingParamsType => {
   const {query} = useRouter();
   const {isMinTablet} = useWindowSize();
 
@@ -39,7 +39,7 @@ const useActiveCategoryParams = (rowsPerPage: number): SetParams => {
     viewsSort,
   };
 
-  const [params, setParams] = useState<Params>(initialParams);
+  const [params, setParams] = useState<SortingParamsType>(initialParams);
 
   useEffect(() => {
     if (!isEqual(initialParams, params)) {
