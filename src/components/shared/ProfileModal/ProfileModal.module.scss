@@ -131,7 +131,6 @@
       width: 100%;
       @extend %flex-center;
       flex-direction: column;
-      padding-bottom: 20px;
     }
 
     &__title {
@@ -221,14 +220,5 @@
       }
     }
   }
-}
-
-.image{
-  max-height: 200px;
-  max-width: 200px;
-  width: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-  margin: 15px 0;
 }
 
