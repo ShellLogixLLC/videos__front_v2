@@ -20,8 +20,8 @@ const useActiveCategoryParams = (rowsPerPage: number): SetParams => {
 
   const activePage = Number(queryPage) || 0;
 
-  const mostLiked = queryname === ActiveCategoryPathname.Most_Liked ? -1 : '';
-  const mostViewed = queryname === ActiveCategoryPathname.Most_Viewed ? -1 : '';
+  const likesSort = queryname === ActiveCategoryPathname.Most_Liked ? -1 : '';
+  const viewsSort = queryname === ActiveCategoryPathname.Most_Viewed ? -1 : '';
 
   const limit = isMinTablet ? rowsPerPage : INITIAL_PAGINATION_ROWS_PER_PAGE;
   const offset = !isMinTablet
@@ -35,8 +35,8 @@ const useActiveCategoryParams = (rowsPerPage: number): SetParams => {
     offset,
     startDate,
     endDate,
-    mostLiked,
-    mostViewed,
+    likesSort,
+    viewsSort,
   };
 
   const [params, setParams] = useState<Params>(initialParams);

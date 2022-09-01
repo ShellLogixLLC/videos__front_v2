@@ -5,7 +5,7 @@ import usePortal from 'react-useportal';
 import {PopupProps} from '~/types';
 import {authSelect} from '~/store/auth';
 import {Route, editUsernameForm} from '~/constants';
-import {Button, Form, Typography} from '~/components';
+import {Button, Form, Image, Typography} from '~/components';
 import {
   useAppDispatch,
   useAppSelector,
@@ -27,6 +27,7 @@ import {RouterService} from '~/services';
 import {LoadingStates} from '~/store/types';
 import {updateUser, userSentVerifyAgain} from '~/store/auth/thunks';
 import HorizontalLoader from '~/components/shared/Loader/HorizontalLoader';
+import image from '~/components/shared/Image';
 
 import styles from './ProfileModal.module.scss';
 
@@ -34,6 +35,7 @@ const ProfileModal = forwardRef<any, PopupProps>(
   ({expanded, setExpanded}, ref) => {
     const {Portal} = usePortal();
     const {userInfo, updateUserLoading} = useAppSelector(authSelect);
+    const image = userInfo?.imagePath;
 
     const dispatch = useAppDispatch();
 
@@ -107,6 +109,16 @@ const ProfileModal = forwardRef<any, PopupProps>(
           ) : (
             <div ref={modalRef} className={styles.wrapper__content}>
               <div className={styles.wrapper__content__child}>
+                {/*<Image*/}
+                {/*  src={`http://localhost:5000/public/uploads/2022-08-31%2017.52.39.jpeg`}*/}
+                {/*  className={styles.image}*/}
+                {/*/>*/}
+                <img
+                  src={
+                    'http://localhost:5000/public/uploads/2022-08-31%2017.52.39.jpeg'
+                  }
+                  className={styles.image}
+                />
                 <div className={styles.wrapper__content__block}>
                   <div className={styles.wrapper__content__userIcon__wrapper}>
                     <UserRoundIcon
