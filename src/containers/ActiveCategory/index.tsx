@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {isEqual} from 'lodash';
 import {useRouter} from 'next/router';
 
 import {LeftArrowIcon} from '~/assets';
@@ -75,7 +76,7 @@ const ActiveCategory: React.FC = () => {
   const dataTotalCount = data?.totalCount;
 
   useEffect(() => {
-    if (dataTotalCount) {
+    if (!isEqual(totalCount, dataTotalCount)) {
       setTotalCount(dataTotalCount);
     }
     if (dataVideos) {
@@ -161,7 +162,7 @@ const ActiveCategory: React.FC = () => {
           {totalCount > currentPerPageCount && (
             <div className={styles.content__pagination}>
               <Pagination
-                dataLength={dataTotalCount}
+                dataLength={totalCount}
                 rowsPerPage={rowsPerPage}
                 activePage={activePage}
                 setRowsPerPage={setRowsPerPage}

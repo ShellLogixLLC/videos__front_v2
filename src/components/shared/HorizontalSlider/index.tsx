@@ -79,7 +79,7 @@ const HorizontalSlider: React.FC<HorizontalSliderProps> = ({
     if (!isMaxTablet && transformXValue !== 0) {
       setTransformXValue(0);
     }
-  }, [isMaxTablet, dataList, transformXValue, transformMaxWeight]);
+  }, [isMaxTablet, dataList, transformXValue, transformMaxWeight, isLoading]);
 
   return isLoading ? (
     <HorizontalSliderSkeleton
