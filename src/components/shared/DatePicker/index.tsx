@@ -1,4 +1,5 @@
 import React, {FC, useState, useEffect, useRef} from 'react';
+import moment from 'moment';
 import {isEqual} from 'lodash';
 import classNames from 'classnames';
 import {useToggle} from 'react-use';
@@ -7,7 +8,7 @@ import {RangePicker} from 'react-trip-date';
 import {RangePickerSelectedDays} from 'react-trip-date/dist/rangePicker/rangePicker.type';
 
 import {getCookieFromBrowser} from '~/libraries';
-import {MONTHS, WEEKDAYS_SHORT, getFullDay} from '~/utils';
+import {MONTHS, WEEKDAYS_SHORT} from '~/utils';
 import {CalendarOneIcon, LeftArrowIcon, RightArrowIcon} from '~/assets';
 
 import Typography from '../Typography';
@@ -16,7 +17,6 @@ import styles from './DatePicker.module.scss';
 
 const DatePicker: FC = () => {
   const lng = (getCookieFromBrowser('activeLang') as string) || 'en';
-
   const router = useRouter();
   const {query} = router;
 
@@ -27,6 +27,7 @@ const DatePicker: FC = () => {
   const [isChange, setIsChange] = useState<boolean>(false);
   const [rangeValues, setRangeValues] = useState<RangePickerSelectedDays>();
 
+  const today = moment().format('L');
   const queryName = query?.name;
   const queryEndDate = query?.endDate;
   const queryStartDate = query?.startDate;
@@ -62,7 +63,7 @@ const DatePicker: FC = () => {
         query: {
           ...router.query,
           startDate: rangeValues?.from || '',
-          endDate: rangeValues?.to || getFullDay(),
+          endDate: rangeValues?.to || today,
           page: 0,
         },
       });
