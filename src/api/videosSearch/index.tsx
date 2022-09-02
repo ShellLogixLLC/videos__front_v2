@@ -1,5 +1,6 @@
 import {useEffect} from 'react';
 
+import {SortingParamsType} from '~/types';
 import {useAppRequest} from '~/hooks';
 import {RouterService} from '~/services';
 
@@ -8,12 +9,12 @@ import endpoints from '../endpoints';
 import {IVideosReturn} from './types';
 
 const useVideosSearch = (
-  arg: any,
-  limit: number,
-  offset: number,
+  search: string,
+  params: SortingParamsType,
 ): IVideosReturn => {
   const {data, mutate, error} = useAppRequest({
-    url: endpoints.VideosSearchService.getVideosSearch(arg, limit, offset),
+    url: endpoints.VideosSearchService.getVideosSearch(search),
+    params,
   });
 
   useEffect(() => {
@@ -24,8 +25,8 @@ const useVideosSearch = (
 
   return {
     isError: !!error,
-    videosData: data,
-    mutateVideo: mutate,
+    data,
+    mutate,
     isLoading: !error && !data,
   };
 };

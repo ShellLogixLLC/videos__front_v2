@@ -73,6 +73,11 @@
       margin: 0;
       height: unset;
     }
+
+    &__emptyText{
+      color: $red;
+      @extend %film_name;
+    }
   }
 
   &__pagination {

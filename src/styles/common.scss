@@ -199,11 +199,11 @@
   }
 }
 
-.warn_toast{
+.warn_toast {
   @extend %flex-justify-between-align-center;
   min-width: 200px;
 
-  &_description{
+  &_description {
     flex: 1;
     padding-right: 6px;
     color: $black !important;
@@ -213,18 +213,18 @@
     }
   }
 
-  &_button{
+  &_button {
     background: $yellow !important;
     width: unset !important;
     padding: 8px 26px !important;
     border-radius: 6px;
     transition: opacity 0.4s ease;
 
-    &:hover{
+    &:hover {
       opacity: 0.8;
     }
 
-    &_title{
+    &_title {
       color: $white !important;
 
       &:first-letter {
@@ -232,7 +232,6 @@
       }
     }
   }
-
 }
 
 .container_without-header {
@@ -259,6 +258,10 @@
       bottom: 24px;
     }
   }
+}
+
+.today {
+  background-color: $light-rgba;
 }
 
 input {
