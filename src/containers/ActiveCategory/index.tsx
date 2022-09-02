@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {isEqual} from 'lodash';
 import {useRouter} from 'next/router';
 
 import {LeftArrowIcon} from '~/assets';
@@ -75,7 +76,9 @@ const ActiveCategory: React.FC = () => {
   const dataTotalCount = data?.totalCount;
 
   useEffect(() => {
-    setTotalCount(dataTotalCount);
+    if (!isEqual(totalCount, dataTotalCount)) {
+      setTotalCount(dataTotalCount);
+    }
     if (dataVideos) {
       setVideosList(dataVideos);
     }
