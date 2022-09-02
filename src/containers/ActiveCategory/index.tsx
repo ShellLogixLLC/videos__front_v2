@@ -75,14 +75,12 @@ const ActiveCategory: React.FC = () => {
   const dataTotalCount = data?.totalCount;
 
   useEffect(() => {
-    if (dataTotalCount) {
-      setTotalCount(dataTotalCount);
-    }
+    setTotalCount(dataTotalCount);
     if (dataVideos) {
       setVideosList(dataVideos);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dataVideos, dataTotalCount]);
+  }, [data]);
 
   useEffect(() => {
     if (queryPage) {
@@ -132,7 +130,11 @@ const ActiveCategory: React.FC = () => {
       <div className={styles.content__wrapper}>
         {totalCount
           ? renderVideosList
-          : !isLoading && <Typography>sorryWeCouldNotFindAnyResult</Typography>}
+          : !isLoading && (
+              <Typography className={styles.content__wrapper__emptyText}>
+                sorryWeCouldNotFindAnyResult
+              </Typography>
+            )}
         {isLoading && isMinTablet && <>{renderLoaderCards}</>}
       </div>
     );
@@ -158,10 +160,10 @@ const ActiveCategory: React.FC = () => {
             </Typography>
           )}
           {renderContent}
-          {totalCount > currentPerPageCount && (
+          {dataTotalCount > currentPerPageCount && (
             <div className={styles.content__pagination}>
               <Pagination
-                dataLength={dataTotalCount}
+                dataLength={totalCount}
                 rowsPerPage={rowsPerPage}
                 activePage={activePage}
                 setRowsPerPage={setRowsPerPage}
