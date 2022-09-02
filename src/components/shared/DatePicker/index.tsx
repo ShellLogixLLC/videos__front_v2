@@ -1,4 +1,5 @@
 import React, {FC, useState, useEffect, useRef} from 'react';
+import moment from 'moment';
 import {isEqual} from 'lodash';
 import classNames from 'classnames';
 import {useToggle} from 'react-use';
@@ -16,7 +17,6 @@ import styles from './DatePicker.module.scss';
 
 const DatePicker: FC = () => {
   const lng = (getCookieFromBrowser('activeLang') as string) || 'en';
-
   const router = useRouter();
   const {query} = router;
 
@@ -27,6 +27,7 @@ const DatePicker: FC = () => {
   const [isChange, setIsChange] = useState<boolean>(false);
   const [rangeValues, setRangeValues] = useState<RangePickerSelectedDays>();
 
+  const today = moment().format('L');
   const queryName = query?.name;
   const queryEndDate = query?.endDate;
   const queryStartDate = query?.startDate;
@@ -54,15 +55,19 @@ const DatePicker: FC = () => {
   }, [queryStartDate, queryEndDate, queryName, qurryActiveCategory]);
 
   useEffect(() => {
-    if (rangeValues?.from && rangeValues.to)
+    if (
+      rangeValues?.from &&
+      !isEqual(rangeValues, {from: queryStartDate, to: queryEndDate})
+    ) {
       router.push({
         query: {
           ...router.query,
-          startDate: rangeValues.from,
-          endDate: rangeValues.to,
+          startDate: rangeValues?.from || '',
+          endDate: rangeValues?.to || today,
           page: 0,
         },
       });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rangeValues]);
 
@@ -102,6 +107,17 @@ const DatePicker: FC = () => {
 
   const handleClickRangePicker = () => setIsChange(!isChange);
 
+  const handleChangeRangeValue = (data: RangePickerSelectedDays) => {
+    if (
+      (data.from === rangeValues?.from || data.from === rangeValues?.to) &&
+      rangeValues.to !== ''
+    ) {
+      setRangeValues({from: '', to: ''});
+    } else {
+      setRangeValues(data);
+    }
+  };
+
   return (
     <div className={togglerClasses}>
       <div role="button" onClick={toggleIsOpen} className={styles.header}>
@@ -112,7 +128,7 @@ const DatePicker: FC = () => {
         ref={rangePickerRef}
         onClick={handleClickRangePicker}
         className={`${contentClasses} calendar__trip`}>
-        <RangePicker {...rangePickerProps} onChange={setRangeValues} />
+        <RangePicker {...rangePickerProps} onChange={handleChangeRangeValue} />
       </div>
     </div>
   );
