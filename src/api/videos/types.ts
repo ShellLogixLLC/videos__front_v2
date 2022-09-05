@@ -15,12 +15,12 @@ export type CommentType = {
   updatedAt?: string;
 };
 
-export type VideoLikedProps = {
-  isLiked: boolean;
-  isDisliked: boolean;
-  likesCount: number;
-  dislikesCount: number;
-};
+// export type VideoLikedProps = {
+//   isLiked: boolean;
+//   isDisliked: boolean;
+//   likesCount: number;
+//   dislikesCount: number;
+// };
 
 export interface IComments {
   comments: CommentType[];
@@ -37,10 +37,10 @@ export interface IVideoById extends ICommonRequestReturn {
   mutate: MutateData;
 }
 
-export interface IVideoLiked extends ICommonRequestReturn {
-  data: VideoLikedProps;
-  mutate: MutateData;
-}
+// export interface IVideoLiked extends ICommonRequestReturn {
+//   data: VideoLikedProps;
+//   mutate: MutateData;
+// }
 
 export interface IVideoSimilar extends ICommonRequestReturn {
   data: VideosProps[];

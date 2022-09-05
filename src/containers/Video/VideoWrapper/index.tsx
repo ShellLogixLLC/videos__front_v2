@@ -40,7 +40,9 @@ const VideoWrapper: React.FC = () => {
     <>
       <div className={styles.content__video}>
         <Video
-          videoSrc={filePath}
+          videoSrc={
+            'http://localhost:5000/api/videos/6312555c2db88a1a69a98e28/file'
+          }
           posterSrc={thumbnailPath}
           videoDuration={duration}
         />

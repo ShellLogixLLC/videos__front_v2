@@ -5,11 +5,11 @@ import {RouterService} from '~/services';
 
 import endpoints from '../endpoints';
 
-import {IVideoLiked} from './types';
+// import {IVideoLiked} from './types';
 
-const useVideoLiked = (videoId?: string | string[]): IVideoLiked => {
+const useVideoLiked = () => {
   const {data, mutate, error} = useAppRequest({
-    url: endpoints.VideosService.getVideoLiked(videoId),
+    url: endpoints.VideosService.getVideoLikesIds(),
   });
 
   useEffect(() => {

@@ -48,13 +48,9 @@ export const sendComment = createAsyncThunk(
 
 export const getVideoLikesAndDislikes = createAsyncThunk(
   `${videoReducer}/get-likes-dislikes`,
-  async ({videoId}: {videoId: string}, thunkAPI) => {
+  async (_, thunkAPI) => {
     try {
-      const res = await client.get(`/video-likes`, {
-        params: {
-          videoId,
-        },
-      });
+      const res = await client.get(`/video-likes/video-ids`);
       return thunkAPI.fulfillWithValue(res.data);
     } catch (error) {
       const {message} = error as Error;

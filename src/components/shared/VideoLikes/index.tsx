@@ -14,7 +14,9 @@ const VideoLikes: React.FC<VideoLikesProps> = ({id, likesCount}) => {
   const dispatch = useDispatch();
   const token = getCookieFromBrowser('token');
 
-  const {data, mutate} = VideosService.useVideoLiked(id);
+  const {data, mutate} = VideosService.useVideoLiked();
+
+  console.log(data, 'data');
 
   const dataIsLiked = data?.isLiked;
   const dataLikeCount = data?.likesCount;
