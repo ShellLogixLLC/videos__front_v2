@@ -72,11 +72,10 @@ const VideDescription: React.FC<VideDescriptionTypes> = ({
       <div className={styles.wrapper}>
         <div className={styles.wrapper__options}>
           <div className={styles.wrapper__views_liked}>
-            {token && (
-              <div className={styles.wrapper__views_liked__block}>
-                <VideoLikes likesCount={likeCount || 0} id={id} />
-              </div>
-            )}
+            <div className={styles.wrapper__views_liked__block}>
+              <VideoLikes likesCount={likeCount || 0} id={id} />
+            </div>
+
             <span className={styles.wrapper__views_liked__block}>
               <ViewsCountIcon /> {viewCount}
             </span>

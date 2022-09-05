@@ -19,6 +19,7 @@ import {
   ModalContextProvider,
   ToastContextProvider,
 } from '~/context';
+import {videoActions} from '~/store/video';
 
 import nextI18nConfig from '../next-i18next.config';
 
@@ -38,6 +39,10 @@ const ProdApp: React.FC<AppProps> = ({Component, pageProps}) => {
     if (!userInfo && token) {
       dispatch(authActions.loginWithToken({token: token as string}));
     }
+  }, []);
+
+  useEffect(() => {
+    dispatch(videoActions.getLikedVideoIds());
   }, []);
 
   return (

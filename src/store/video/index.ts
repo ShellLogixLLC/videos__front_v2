@@ -10,6 +10,7 @@ import {VideoSliceState} from './types';
 
 const internalInitialState: VideoSliceState = {
   error: null,
+  likedVideoIds: [],
   commentsLoading: LoadingStates.IDLE,
   videoLikesLoading: LoadingStates.IDLE,
   getCommentsLoading: LoadingStates.IDLE,
@@ -18,7 +19,11 @@ const internalInitialState: VideoSliceState = {
 const videoSlice = createSlice({
   name: videoReducer,
   initialState: internalInitialState,
-  reducers: {},
+  reducers: {
+    deleteVideoLikes(state: VideoSliceState) {
+      state.likedVideoIds = [];
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(videoThunks.getVideoComments.pending, (state) => {
       state.getCommentsLoading = LoadingStates.LOADING;
@@ -27,10 +32,20 @@ const videoSlice = createSlice({
       state.getCommentsLoading = LoadingStates.REJECTED;
       state.error = action.error;
     });
-    builder.addCase(videoThunks.getVideoComments.fulfilled, (state) => {
+    builder.addCase(videoThunks.getVideoComments.fulfilled, (state, action) => {
+      state.getCommentsLoading = LoadingStates.IDLE;
+      state.likedVideoIds = action.payload;
+    });
+    builder.addCase(videoThunks.getLikedVideoIds.pending, (state) => {
+      state.getCommentsLoading = LoadingStates.LOADING;
+    });
+    builder.addCase(videoThunks.getLikedVideoIds.rejected, (state, action) => {
+      state.getCommentsLoading = LoadingStates.REJECTED;
+      state.error = action.error;
+    });
+    builder.addCase(videoThunks.getLikedVideoIds.fulfilled, (state) => {
       state.getCommentsLoading = LoadingStates.IDLE;
     });
-
     builder.addCase(videoThunks.sendComment.pending, (state) => {
       state.commentsLoading = LoadingStates.LOADING;
     });

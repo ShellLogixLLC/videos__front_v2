@@ -8,6 +8,7 @@ import {RouterService} from '~/services';
 import Button from '~/components/shared/Button';
 import {wishlistActions} from '~/store/wishlist';
 import {useAppDispatch, useLockBodyScroll, useOnClickOutside} from '~/hooks';
+import {videoActions} from '~/store/video';
 
 import {LogOutModalProps} from './types';
 import styles from './LogOutModal.module.scss';
@@ -18,6 +19,7 @@ const LogoutModal: React.FC<LogOutModalProps> = ({show, close}) => {
   const handleLogoutSubmit = (): void => {
     removeCookie('token');
     dispatch(wishlistActions.deleteVideoIds());
+    dispatch(videoActions.deleteVideoLikes());
     RouterService.push(Route.Home);
     close();
   };
