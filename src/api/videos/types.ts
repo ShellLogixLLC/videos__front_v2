@@ -38,7 +38,7 @@ export interface IVideoById extends ICommonRequestReturn {
 }
 
 export interface IVideoLiked extends ICommonRequestReturn {
-  data: VideoLikedProps;
+  data: string[];
   mutate: MutateData;
 }
 

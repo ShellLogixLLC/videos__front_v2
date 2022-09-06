@@ -10,8 +10,8 @@ import '~/styles/index.scss';
 import React, {useEffect} from 'react';
 
 import store, {wrapper} from '~/store';
-import {getCookieFromBrowser} from '~/libraries';
 import {wishlistActions} from '~/store/wishlist';
+import {getCookieFromBrowser} from '~/libraries';
 import {authActions, authSelect} from '~/store/auth';
 import {useAppDispatch, useAppSelector} from '~/hooks';
 import {
@@ -19,6 +19,7 @@ import {
   ModalContextProvider,
   ToastContextProvider,
 } from '~/context';
+import {videoActions} from '~/store/video';
 
 import nextI18nConfig from '../next-i18next.config';
 
@@ -31,6 +32,7 @@ const ProdApp: React.FC<AppProps> = ({Component, pageProps}) => {
   useEffect(() => {
     if (accessToken) {
       dispatch(wishlistActions.getWishlistIds());
+      dispatch(videoActions.getLikedVideoIds());
     }
   }, [accessToken, dispatch]);
 

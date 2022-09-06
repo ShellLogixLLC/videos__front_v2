@@ -110,6 +110,7 @@
   "youHaveDeletedAllTheVideosOnThisPage": "You have deleted all the videos on this page",
   "passwordCantStartOrEndWwithABlankSpace": "Password can't start or end with a blank space",
   "passwordIsTooShortShouldBe6CharsMinimum": "Password is too short - should be 6 chars minimum.",
+  "youShouldBeSignInToBeAbleToLikeVideo": "You should sign in to be able to like the video",
   "youShouldBeSignInToAddVideosInYourFavorites":"You should sign in to add videos to your favorites.",
   "enterYourEmailAddressAndWeWillSendInstructions": "Enter your email address and we’ll send you instructions to reset your password."
 }
