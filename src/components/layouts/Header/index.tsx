@@ -196,10 +196,12 @@ const Header: React.FC = () => {
 
         <HeaderNavbar>{headerTable}</HeaderNavbar>
         <div className={styles.wrapper__content__container}>
-          <MobileFilterIcon
-            onClick={toggleFilter}
-            className={styles.wrapper__content__filter_icon}
-          />
+          {pathname !== Route.Home && (
+            <MobileFilterIcon
+              onClick={toggleFilter}
+              className={styles.wrapper__content__filter_icon}
+            />
+          )}
           <Button
             onClick={handleOpenMenu}
             className={styles.wrapper__content__burger_btn}>
@@ -210,11 +212,13 @@ const Header: React.FC = () => {
           {renderMobileMenu}
         </MobileMenu>
       </div>
-      <MobileFilter
-        isNotActive={false}
-        isFilter={isFilter}
-        toggleFilter={toggleFilter}
-      />
+      {pathname !== Route.Home && (
+        <MobileFilter
+          isNotActive={false}
+          isFilter={isFilter}
+          toggleFilter={toggleFilter}
+        />
+      )}
       <UnRegisterPopup
         expanded={isLikeItPopup}
         setExpanded={setIsLikeItPopup}

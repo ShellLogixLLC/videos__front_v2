@@ -25,11 +25,16 @@ export const getServerSideProps = async (): Promise<
     endpoints.CategoryService.getCategories(),
   );
 
+  // const resActiveCatrgory = await ApiService.get(
+  //   endpoints.CategoryService.getVideoByCategoryId(),
+  // );
+
   return {
     props: {
       fallback: {
-        [endpoints.CategoryService.getCategories()]: resCategories,
         [endpoints.VideosService.getVideos()]: resVideos,
+        [endpoints.CategoryService.getCategories()]: resCategories,
+        // [endpoints.CategoryService.getVideoByCategoryId()]: resActiveCatrgory,
       },
     },
   };
