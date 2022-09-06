@@ -3,10 +3,10 @@ import classNames from 'classnames';
 import {useDispatch} from 'react-redux';
 
 import {LikedIcon} from '~/assets';
-import {VideosService} from '~/api';
-import {videoActions} from '~/store/video';
-import {getCookieFromBrowser} from '~/libraries';
+import {useAppSelector} from '~/hooks';
 import {UnRegisterPopup} from '~/components';
+import {getCookieFromBrowser} from '~/libraries';
+import {videoActions, videoSelect} from '~/store/video';
 
 import {VideoLikesProps} from './types';
 import styles from './VideoLikes.module.scss';
@@ -17,7 +17,7 @@ const VideoLikes: React.FC<VideoLikesProps> = ({id, likesCount}) => {
 
   const [isPopupOpen, setPopupOpen] = useState<boolean>(false);
 
-  const {data, mutate} = VideosService.useVideoLiked();
+  const {likedVideoIds: data} = useAppSelector(videoSelect);
 
   const isVideoLiked = data?.includes(id) || false;
 
@@ -54,8 +54,7 @@ const VideoLikes: React.FC<VideoLikesProps> = ({id, likesCount}) => {
       await dispatch(videoActions.dislikeVideo({videoId: id}));
       // setCookie('videoLikesIds', JSON.stringify(filteretedArr));
     }
-    // await dispatch(videoActions.getLikedVideoIds());
-    await mutate();
+    await dispatch(videoActions.getLikedVideoIds());
   };
 
   const handleIconClick = () => {

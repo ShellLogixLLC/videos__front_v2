@@ -32,9 +32,8 @@ const videoSlice = createSlice({
       state.getCommentsLoading = LoadingStates.REJECTED;
       state.error = action.error;
     });
-    builder.addCase(videoThunks.getVideoComments.fulfilled, (state, action) => {
+    builder.addCase(videoThunks.getVideoComments.fulfilled, (state) => {
       state.getCommentsLoading = LoadingStates.IDLE;
-      state.likedVideoIds = action.payload;
     });
     builder.addCase(videoThunks.getLikedVideoIds.pending, (state) => {
       state.getCommentsLoading = LoadingStates.LOADING;
@@ -43,8 +42,9 @@ const videoSlice = createSlice({
       state.getCommentsLoading = LoadingStates.REJECTED;
       state.error = action.error;
     });
-    builder.addCase(videoThunks.getLikedVideoIds.fulfilled, (state) => {
+    builder.addCase(videoThunks.getLikedVideoIds.fulfilled, (state, action) => {
       state.getCommentsLoading = LoadingStates.IDLE;
+      state.likedVideoIds = action.payload;
     });
     builder.addCase(videoThunks.sendComment.pending, (state) => {
       state.commentsLoading = LoadingStates.LOADING;

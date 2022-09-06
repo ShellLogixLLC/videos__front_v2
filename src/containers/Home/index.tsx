@@ -18,6 +18,7 @@ const Home: React.FC = () => {
   const categories = data?.categories;
 
   const {videosData} = VideosService.useVideos();
+
   const videos = videosData?.videos;
 
   const {wishlistIds: wishlistData} = useAppSelector(wishlistSelect);

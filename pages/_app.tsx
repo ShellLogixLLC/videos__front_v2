@@ -32,6 +32,7 @@ const ProdApp: React.FC<AppProps> = ({Component, pageProps}) => {
   useEffect(() => {
     if (accessToken) {
       dispatch(wishlistActions.getWishlistIds());
+      dispatch(videoActions.getLikedVideoIds());
     }
   }, [accessToken, dispatch]);
 
