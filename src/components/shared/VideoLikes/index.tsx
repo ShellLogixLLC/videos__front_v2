@@ -16,6 +16,7 @@ const VideoLikes: React.FC<VideoLikesProps> = ({id, likesCount}) => {
   const token = getCookieFromBrowser('token');
 
   const [isPopupOpen, setPopupOpen] = useState<boolean>(false);
+  const [localLikeCount, setLocalLikeCount] = useState(likesCount);
 
   const {likedVideoIds: data} = useAppSelector(videoSelect);
 
@@ -48,10 +49,12 @@ const VideoLikes: React.FC<VideoLikesProps> = ({id, likesCount}) => {
     setIsLiked(!isLiked);
     if (!isLiked) {
       await dispatch(videoActions.likeVideo({videoId: id, dislike: false}));
+      setLocalLikeCount(localLikeCount + 1);
       // setCookie('videoLikesIds', JSON.stringify([...currentList, id]));
     } else {
       // const filteretedArr = currentList.filter((el: string) => el !== id);
       await dispatch(videoActions.dislikeVideo({videoId: id}));
+      setLocalLikeCount(localLikeCount - 1);
       // setCookie('videoLikesIds', JSON.stringify(filteretedArr));
     }
     await dispatch(videoActions.getLikedVideoIds());
@@ -64,7 +67,7 @@ const VideoLikes: React.FC<VideoLikesProps> = ({id, likesCount}) => {
   return (
     <>
       <LikedIcon className={iconClass} onClick={handleIconClick} />
-      <p>{likesCount}</p>
+      <p>{localLikeCount}</p>
       <UnRegisterPopup
         title="youShouldBeSignInToBeAbleToLikeVideo"
         expanded={isPopupOpen}

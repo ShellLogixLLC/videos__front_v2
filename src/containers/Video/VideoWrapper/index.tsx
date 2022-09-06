@@ -36,8 +36,6 @@ const VideoWrapper: React.FC = () => {
     thumbnailPath,
   } = data;
 
-  console.log(likesCount, 'like');
-
   return (
     <>
       <div className={styles.content__video}>
