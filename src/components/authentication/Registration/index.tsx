@@ -25,14 +25,13 @@ const Registration: React.FC = () => {
         values;
 
       const userInfo = {
-        email,
         username,
         password: create_password,
         passwordConfirmation: confirm_password,
         verification,
       };
 
-      dispatch(authActions.register(userInfo));
+      dispatch(authActions.register(email ? {...userInfo, email} : userInfo));
     },
     [dispatch],
   );

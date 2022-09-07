@@ -18,9 +18,7 @@ import {
   EditPenIcon,
   ExitRedIcon,
   MessageIcon,
-  VerifiedIcon,
   UserRoundIcon,
-  UnverifiedIcon,
   SaveChangesIcon,
 } from '~/assets';
 import {RouterService} from '~/services';
@@ -59,10 +57,6 @@ const ProfileModal = forwardRef<any, PopupProps>(
       {
         [styles.wrapper__content__messageIcon__button__disabled]: isVerified,
       },
-    );
-
-    const verifiedIconClassName = classNames(
-      styles.wrapper__content__userIcon__verifyIcon,
     );
 
     useEffect(() => {
@@ -112,13 +106,6 @@ const ProfileModal = forwardRef<any, PopupProps>(
                     <UserRoundIcon
                       className={styles.wrapper__content__userIcon}
                     />
-                    <div className={styles.wrapper__content__userIcon__child}>
-                      {isVerified ? (
-                        <VerifiedIcon className={verifiedIconClassName} />
-                      ) : (
-                        <UnverifiedIcon className={verifiedIconClassName} />
-                      )}
-                    </div>
                   </div>
                   <div
                     className={firstBlockClassName}
@@ -157,25 +144,27 @@ const ProfileModal = forwardRef<any, PopupProps>(
                     />
                   )}
                 </div>
-                <div className={styles.wrapper__content__block}>
-                  <EmailIcon className={styles.wrapper__content__emailIcon} />
-                  <div
-                    className={styles.wrapper__content__block__text__wrapper}>
-                    <Typography
-                      tagName="span"
-                      className={styles.wrapper__content__block__text}>
-                      {userInfo?.email}
-                    </Typography>
+                {userInfo?.email && (
+                  <div className={styles.wrapper__content__block}>
+                    <EmailIcon className={styles.wrapper__content__emailIcon} />
+                    <div
+                      className={styles.wrapper__content__block__text__wrapper}>
+                      <Typography
+                        tagName="span"
+                        className={styles.wrapper__content__block__text}>
+                        {userInfo?.email}
+                      </Typography>
+                    </div>
+                    <Button
+                      onClick={handleSendEmail}
+                      className={mailSenderButtonClassName}
+                      disabled={isVerified || false}>
+                      <MessageIcon
+                        className={styles.wrapper__content__messageIcon}
+                      />
+                    </Button>
                   </div>
-                  <Button
-                    onClick={handleSendEmail}
-                    className={mailSenderButtonClassName}
-                    disabled={isVerified || false}>
-                    <MessageIcon
-                      className={styles.wrapper__content__messageIcon}
-                    />
-                  </Button>
-                </div>
+                )}
                 <div className={styles.wrapper__content__block}>
                   <LockIcon className={styles.wrapper__content__lockIcon} />
                   <div
