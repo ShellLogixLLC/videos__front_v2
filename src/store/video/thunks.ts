@@ -9,7 +9,6 @@ export const getLikedVideoIds = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const res = await client.get(`/video-likes/video-ids`);
-      console.log(res.data, 'data');
       return thunkAPI.fulfillWithValue(res.data);
     } catch (error) {
       const {message} = error as Error;
