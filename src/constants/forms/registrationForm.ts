@@ -62,7 +62,7 @@ const schema = yup.object().shape({
     .min(6, 'firstNameIsTooShort'),
   email: yup
     .string()
-    .required('theEmailIsRequired')
+    // .required('theEmailIsRequired')
     .email('theEmailMustBeAValidEmailAddress'),
   create_password: yup
     .string()

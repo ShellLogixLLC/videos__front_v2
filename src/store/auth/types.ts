@@ -4,7 +4,7 @@ import {LoadingStates} from '../types';
 
 export type UserInfo = {
   id: string;
-  email: string;
+  email?: string;
   isAdmin: boolean;
   username: string;
   imagePath: string;

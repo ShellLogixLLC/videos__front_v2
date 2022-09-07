@@ -60,7 +60,7 @@ export const register = createAsyncThunk(
   `${authReducer}/user/signup`,
   async (
     credentials: {
-      email: string;
+      email?: string;
       username: string;
       password: string;
       verification: boolean;
