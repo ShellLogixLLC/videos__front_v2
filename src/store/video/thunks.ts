@@ -4,6 +4,19 @@ import {client} from '~/api';
 
 import {videoReducer} from '../constants';
 
+export const getLikedVideoIds = createAsyncThunk(
+  `${videoReducer}/get-liked-ids`,
+  async (_, thunkAPI) => {
+    try {
+      const res = await client.get(`/video-likes/video-ids`);
+      return thunkAPI.fulfillWithValue(res.data);
+    } catch (error) {
+      const {message} = error as Error;
+      return thunkAPI.rejectWithValue({error: message});
+    }
+  },
+);
+
 export const getVideoComments = createAsyncThunk(
   `${videoReducer}/get-comments`,
   async (
@@ -46,19 +59,6 @@ export const sendComment = createAsyncThunk(
   },
 );
 
-export const getVideoLikesAndDislikes = createAsyncThunk(
-  `${videoReducer}/get-likes-dislikes`,
-  async (_, thunkAPI) => {
-    try {
-      const res = await client.get(`/video-likes/video-ids`);
-      return thunkAPI.fulfillWithValue(res.data);
-    } catch (error) {
-      const {message} = error as Error;
-      return thunkAPI.rejectWithValue({error: message});
-    }
-  },
-);
-
 export const likeVideo = createAsyncThunk(
   `${videoReducer}/video-likes`,
   async (
@@ -70,6 +70,7 @@ export const likeVideo = createAsyncThunk(
   ) => {
     try {
       await client.post(`/video-likes`, credentials);
+      thunkAPI.dispatch(getLikedVideoIds());
     } catch (error) {
       const {message} = error as Error;
 

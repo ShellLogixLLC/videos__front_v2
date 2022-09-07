@@ -3,9 +3,10 @@ import classNames from 'classnames';
 import {useDispatch} from 'react-redux';
 
 import {LikedIcon} from '~/assets';
-import {VideosService} from '~/api';
-import {videoActions} from '~/store/video';
+import {useAppSelector} from '~/hooks';
+import {UnRegisterPopup} from '~/components';
 import {getCookieFromBrowser} from '~/libraries';
+import {videoActions, videoSelect} from '~/store/video';
 
 import {VideoLikesProps} from './types';
 import styles from './VideoLikes.module.scss';
@@ -14,12 +15,12 @@ const VideoLikes: React.FC<VideoLikesProps> = ({id, likesCount}) => {
   const dispatch = useDispatch();
   const token = getCookieFromBrowser('token');
 
-  const {data, mutate} = VideosService.useVideoLiked();
+  const [isPopupOpen, setPopupOpen] = useState<boolean>(false);
+  const [localLikeCount, setLocalLikeCount] = useState(likesCount);
 
-  console.log(data, 'data');
+  const {likedVideoIds: data} = useAppSelector(videoSelect);
 
-  const dataIsLiked = data?.isLiked;
-  const dataLikeCount = data?.likesCount;
+  const isVideoLiked = data?.includes(id) || false;
 
   // const videoLikesIds = getCookieFromBrowser('videoLikesIds') as string;
   // const currentList = videoLikesIds ? JSON.parse(videoLikesIds) : [];
@@ -27,16 +28,18 @@ const VideoLikes: React.FC<VideoLikesProps> = ({id, likesCount}) => {
   // const isCookiesLiked = currentList.includes(id);
 
   //I HAVE COMMENTED THESE LINES BECAUSE IT COULD BE USED IN THE FUTURE--MKO
-  const currentLiked = token ? dataIsLiked : false;
 
-  const [isLiked, setIsLiked] = useState<boolean>(currentLiked);
-  const [likedCount, setLikedCount] = useState<number>(likesCount || 0);
+  const [isLiked, setIsLiked] = useState<boolean>(isVideoLiked);
+
+  const handleOpenPopup = () => {
+    setPopupOpen(true);
+  };
 
   useEffect(() => {
-    setIsLiked(currentLiked);
-    setLikedCount(dataLikeCount);
+    setIsLiked(isVideoLiked);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dataLikeCount, currentLiked]);
+  }, [isVideoLiked]);
 
   const iconClass = classNames(styles.icon, {
     [styles.icon__dislike]: isLiked,
@@ -46,19 +49,30 @@ const VideoLikes: React.FC<VideoLikesProps> = ({id, likesCount}) => {
     setIsLiked(!isLiked);
     if (!isLiked) {
       await dispatch(videoActions.likeVideo({videoId: id, dislike: false}));
+      setLocalLikeCount(localLikeCount + 1);
       // setCookie('videoLikesIds', JSON.stringify([...currentList, id]));
     } else {
       // const filteretedArr = currentList.filter((el: string) => el !== id);
       await dispatch(videoActions.dislikeVideo({videoId: id}));
+      setLocalLikeCount(localLikeCount - 1);
       // setCookie('videoLikesIds', JSON.stringify(filteretedArr));
     }
-    await mutate();
+    await dispatch(videoActions.getLikedVideoIds());
+  };
+
+  const handleIconClick = () => {
+    token ? handleChangeLiked() : handleOpenPopup();
   };
 
   return (
     <>
-      <LikedIcon className={iconClass} onClick={handleChangeLiked} />
-      <p>{likedCount}</p>
+      <LikedIcon className={iconClass} onClick={handleIconClick} />
+      <p>{localLikeCount}</p>
+      <UnRegisterPopup
+        title="youShouldBeSignInToBeAbleToLikeVideo"
+        expanded={isPopupOpen}
+        setExpanded={setPopupOpen}
+      />
     </>
   );
 };
