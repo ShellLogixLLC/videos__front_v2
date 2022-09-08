@@ -34,8 +34,6 @@ const ProfileModal = forwardRef<any, PopupProps>(
 
     const dispatch = useAppDispatch();
 
-    const isVerified = userInfo && userInfo.isVerified;
-
     const [isUsernameEdited, setUsernameEdited] = useState<boolean>(false);
     const modalRef = useRef<HTMLDivElement | null>(null);
     const inputRef = useRef<HTMLInputElement | null>(null);
@@ -129,19 +127,6 @@ const ProfileModal = forwardRef<any, PopupProps>(
                     />
                   )}
                 </div>
-                {userInfo?.email && (
-                  <div className={styles.wrapper__content__block}>
-                    <EmailIcon className={styles.wrapper__content__emailIcon} />
-                    <div
-                      className={styles.wrapper__content__block__text__wrapper}>
-                      <Typography
-                        tagName="span"
-                        className={styles.wrapper__content__block__text}>
-                        {userInfo?.email}
-                      </Typography>
-                    </div>
-                  </div>
-                )}
                 <div className={styles.wrapper__content__block}>
                   <LockIcon className={styles.wrapper__content__lockIcon} />
                   <div
@@ -160,6 +145,19 @@ const ProfileModal = forwardRef<any, PopupProps>(
                     />
                   </Button>
                 </div>
+                {userInfo?.email && (
+                  <div className={styles.wrapper__content__block}>
+                    <EmailIcon className={styles.wrapper__content__emailIcon} />
+                    <div
+                      className={styles.wrapper__content__block__text__wrapper}>
+                      <Typography
+                        tagName="span"
+                        className={styles.wrapper__content__block__text}>
+                        {userInfo?.email}
+                      </Typography>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           )}

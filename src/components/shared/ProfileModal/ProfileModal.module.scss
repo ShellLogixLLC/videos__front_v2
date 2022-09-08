@@ -134,6 +134,7 @@
       width: 100%;
       @extend %flex-center;
       flex-direction: column;
+      padding: 0 24px;
     }
 
     &__title {
@@ -153,14 +154,6 @@
 
       &__wrapper {
         @extend %profile_modal_wrapper;
-
-        @include breakpoint(tablet) {
-          max-width: 250px;
-        }
-
-        @include breakpoint(tablet-m) {
-          max-width: 200px;
-        }
 
         &__edited {
           width: 100%;
@@ -186,13 +179,6 @@
         &__wrapper {
           @extend %profile_modal_wrapper;
 
-          @include breakpoint(tablet) {
-            max-width: 250px;
-          }
-
-          @include breakpoint(tablet-m) {
-            max-width: 200px;
-          }
         }
       }
 
@@ -212,13 +198,6 @@
         &__wrapper {
           @extend %profile_modal_wrapper;
 
-          @include breakpoint(tablet) {
-            max-width: 250px;
-          }
-
-          @include breakpoint(tablet-m) {
-            max-width: 200px;
-          }
         }
       }
     }
