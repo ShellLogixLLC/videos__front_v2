@@ -78,13 +78,6 @@ const ProfileModal = forwardRef<any, PopupProps>(
       setUsernameEdited(false);
     };
 
-    const handleSendEmail = (): void => {
-      if (userInfo && userInfo.email) {
-        dispatch(userSentVerifyAgain({email: userInfo.email}));
-        RouterService.push(Route.RegistrationSetupPassword);
-      }
-    };
-
     const handleChangePasswordRoute = (): void => {
       RouterService.push(Route.ChangePassword);
     };
@@ -155,14 +148,6 @@ const ProfileModal = forwardRef<any, PopupProps>(
                         {userInfo?.email}
                       </Typography>
                     </div>
-                    <Button
-                      onClick={handleSendEmail}
-                      className={mailSenderButtonClassName}
-                      disabled={isVerified || false}>
-                      <MessageIcon
-                        className={styles.wrapper__content__messageIcon}
-                      />
-                    </Button>
                   </div>
                 )}
                 <div className={styles.wrapper__content__block}>

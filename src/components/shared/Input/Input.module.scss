@@ -33,6 +33,10 @@
   &__label {
     font-weight: 600;
     color: $grey_color;
+
+    &__small{
+      font-size: 10px;
+    }
   }
 
   &__error {

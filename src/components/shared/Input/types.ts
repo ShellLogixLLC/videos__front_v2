@@ -31,6 +31,7 @@ export type InputProps = {
   name?: string;
   type?: InputType;
   label?: string;
+  smallLabel?: string;
   error?: string;
   value?: string | number;
   onFocus?: () => void;

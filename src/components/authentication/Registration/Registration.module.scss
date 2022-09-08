@@ -6,6 +6,10 @@
   padding-bottom: 0px;
   margin: 0 auto;
 
+  &:last-child{
+    margin-bottom: 12px;
+  }
+
 
   @include breakpoint(tablet-m) {
     padding-top: 80px;
@@ -62,6 +66,8 @@
       @extend %text_small;
       font-weight: 600;
       margin-bottom: 6px;
+
+
 
       &__input {
         padding: 0;

@@ -11,6 +11,7 @@ import styles from './Input.module.scss';
 const Input = forwardRef<any, InputProps>(
   (
     {
+      smallLabel,
       type = 'text',
       name,
       label,
@@ -83,10 +84,16 @@ const Input = forwardRef<any, InputProps>(
 
     const {translatedTypo: translatedLabel} = useLocales(label);
     const {translatedTypo: translatedPlaceholder} = useLocales(placeholder);
+    const {translatedTypo: translatedSmallLabel} = useLocales(smallLabel);
 
     return (
       <label htmlFor={name} className={labelClasses}>
         <span className={labelTextClasses}>{translatedLabel || label}</span>
+        {smallLabel && (
+          <span className={styles.container__label__small}>
+            {translatedSmallLabel || label}
+          </span>
+        )}
         <div ref={wrapperRef} className={inputInnerClasses}>
           <input
             {...rest}

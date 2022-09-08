@@ -36,6 +36,7 @@
   "verified": "Verified",
   "step1Of3": " Step 1 of 3",
   "passWord": "Password",
+  "optional": " (Optional)",
   "forSignIn": "For Sign in",
   "clickHere": "click here.",
   "resendOTP": "Resend OTP",
@@ -112,6 +113,6 @@
   "passwordIsTooShortShouldBe6CharsMinimum": "Password is too short - should be 6 chars minimum.",
   "youShouldBeSignInToBeAbleToLikeVideo": "You should sign in to be able to like the video",
   "youShouldBeSignInToAddVideosInYourFavorites":"You should sign in to add videos to your favorites.",
-  "ifYouDoNotFillEmailYouCantChangeYourPassword": "If you do not fill email, you can't change your password",
+  "ifYouDoNotFillEmailYouCantChangeYourPassword": "If you do not fill email, you can't reset your password",
   "enterYourEmailAddressAndWeWillSendInstructions": "Enter your email address and we’ll send you instructions to reset your password."
 }

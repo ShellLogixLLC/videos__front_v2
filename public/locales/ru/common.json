@@ -36,6 +36,7 @@
   "verified": "Подтверждено",
   "step1Of3": " Шаг 1 из 3",
   "passWord": "Пароль",
+  "optional": " (По желанию)",
   "forSignIn": "Для войти",
   "clickHere": "нажмите здесь.",
   "resendOTP": "Отправить повторно",
@@ -112,6 +113,6 @@
   "passwordIsTooShortShouldBe6CharsMinimum": "Пароль слишком короткий - должно быть не менее 6 символов.",
   "youShouldBeSignInToBeAbleToLikeVideo": "Вы должны войти в систему, чтобы иметь возможность лайкнуть видео",
   "youShouldBeSignInToAddVideosInYourFavorites":"Вы должны войти в систему, чтобы добавить видео в избранное.",
-  "ifYouDoNotFillEmailYouCantChangeYourPassword": "Если вы не заполните электронную почту, вы не сможете изменить свой пароль",
+  "ifYouDoNotFillEmailYouCantChangeYourPassword": "Если вы не заполните электронную почту, вы не сможете сбросить свой пароль",
   "enterYourEmailAddressAndWeWillSendInstructions": "Введите свой адрес электронной почты, и мы вышлем вам инструкции по сбросу пароля"
 }

@@ -13,14 +13,6 @@ const fields: Field[] = [
   },
 
   {
-    name: 'email',
-    type: 'email',
-    label: 'email',
-    placeholder: 'enterYourEmailAddress',
-    warningText: 'ifYouDoNotFillEmailYouCantChangeYourPassword',
-  },
-
-  {
     name: 'create_password',
     type: 'password',
     label: 'createPassword',
@@ -37,6 +29,16 @@ const fields: Field[] = [
     RightIcon: EyeHideIcon,
     RightToggledIcon: EyeShowIcon,
   },
+
+  {
+    name: 'email',
+    type: 'email',
+    label: 'email',
+    smallLabel: 'optional',
+    placeholder: 'enterYourEmailAddress',
+    warningText: 'ifYouDoNotFillEmailYouCantChangeYourPassword',
+  },
+
   {
     name: 'agreed',
     type: 'checkbox',
