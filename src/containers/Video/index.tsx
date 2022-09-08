@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {filteredMass} from '~/utils';
 import {LeftArrowIcon} from '~/assets';
+import {categoryNavigation} from '~/utils';
 import {
   Link,
   Comments,
@@ -27,7 +27,7 @@ const VideoContainer: React.FC = () => (
       </div>
       <aside className={styles.filter_block}>
         <DatePicker />
-        <FilterBySort options={filteredMass} />
+        <FilterBySort options={categoryNavigation} />
       </aside>
     </div>
     <VideoLikeThis />

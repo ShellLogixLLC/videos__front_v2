@@ -5,8 +5,8 @@ import {useRouter} from 'next/router';
 import {LeftArrowIcon} from '~/assets';
 import {wishlistSelect} from '~/store/wishlist';
 import {CategoryService} from '~/api';
-import {filteredMass, setQueryParams} from '~/utils';
 import {QueryParamsTypes, VideosProps} from '~/types';
+import {categoryNavigation, setQueryParams} from '~/utils';
 import {
   useLocales,
   useWindowSize,
@@ -178,7 +178,7 @@ const ActiveCategory: React.FC = () => {
         </div>
         <div className={styles.filters}>
           <DatePicker />
-          <FilterBySort options={filteredMass} />
+          <FilterBySort options={categoryNavigation} />
         </div>
       </div>
     </article>

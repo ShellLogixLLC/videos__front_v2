@@ -26,6 +26,7 @@ const Category: React.FC = () => {
   const [rowsPerPage, setRowsPerPage] = useState<number>(
     INITIAL_PAGINATION_ROWS_PER_PAGE,
   );
+  const [subCategoryLoading, setSubCategoryLoading] = useState(false);
 
   useEffect(() => {
     if (!isEqual(INITIAL_PAGINATION_ROWS_PER_PAGE, rowsPerPage)) {
@@ -65,8 +66,12 @@ const Category: React.FC = () => {
               className={styles.content__backRoute__button}
             />
           </div>
-          <CategoryTitle categoryId={query?.name} />
+          <CategoryTitle
+            setSubCategoryLoading={setSubCategoryLoading}
+            categoryId={query?.name}
+          />
           <CategoryContent
+            subCategoryLoading={subCategoryLoading}
             activePage={activePage}
             setTotalCount={setTotalCount}
             totalCount={totalCount}

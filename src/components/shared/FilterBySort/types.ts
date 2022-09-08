@@ -1,7 +1,7 @@
 export type IFilterType = {
   id: number;
   routes?: string;
-  nameRoute: string;
+  nameCategory: string;
 };
 
 export type IFilterBySortProps = {

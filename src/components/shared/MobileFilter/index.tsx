@@ -2,8 +2,8 @@ import React from 'react';
 import classNames from 'classnames';
 
 import {CloseIcon} from '~/assets';
-import {filteredMass} from '~/utils';
 import {useLockBodyScroll} from '~/hooks';
+import {categoryNavigation} from '~/utils';
 import {Button, Typography} from '~/components';
 
 import DatePicker from '../DatePicker';
@@ -34,8 +34,8 @@ const MobileFilter: React.FC<IMobileFilterProps> = ({
       </div>
       <div className={styles.wrapper__content}>
         <DatePicker />
-        <FilterBySort options={filteredMass} />
-        <Button className={styles.wrapper__content__btn}>
+        <FilterBySort options={categoryNavigation} />
+        <Button onClick={toggleFilter} className={styles.wrapper__content__btn}>
           <Typography tagName="span">filter</Typography>
         </Button>
       </div>

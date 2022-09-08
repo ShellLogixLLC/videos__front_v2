@@ -1,8 +1,11 @@
-import React, {useMemo} from 'react';
-import {useToggle} from 'react-use';
+import React, {useMemo, useState} from 'react';
 import classNames from 'classnames';
+import {useToggle} from 'react-use';
+import {useRouter} from 'next/router';
 
 import {FilterLampIcon} from '~/assets';
+import {CategoryFilters} from '~/constants';
+import {chooseCategorySort} from '~/utils';
 
 import Link from '../Link';
 import Typography from '../Typography';
@@ -11,7 +14,12 @@ import {IFilterBySortProps} from './types';
 import styles from './FilterBySort.module.scss';
 
 const FilterBySort: React.FC<IFilterBySortProps> = ({options}) => {
+  const {query} = useRouter();
+
   const [expanded, toggleExpanded] = useToggle(false);
+  const [activeCategory, setActiveCategory] = useState<string | string[]>(
+    query?.activeCategory || CategoryFilters.All,
+  );
 
   const containerClasses = classNames(styles.container, {
     [styles.container__expand]: expanded,
@@ -23,14 +31,24 @@ const FilterBySort: React.FC<IFilterBySortProps> = ({options}) => {
 
   const renderFilteredTable = useMemo(
     () =>
-      options.map(({routes, nameRoute, id}) => {
+      options.map(({routes, nameCategory, id}) => {
         return routes ? (
           <Link key={id} to={routes} className={styles.container__content__box}>
-            {nameRoute}
+            {nameCategory}
           </Link>
         ) : (
-          <Typography key={id} className={styles.container__content__box}>
-            {nameRoute}
+          <Typography
+            key={id}
+            onClick={() =>
+              chooseCategorySort(
+                nameCategory,
+                query,
+                activeCategory,
+                setActiveCategory,
+              )
+            }
+            className={styles.container__content__box}>
+            {nameCategory}
           </Typography>
         );
       }),

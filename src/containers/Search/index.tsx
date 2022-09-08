@@ -3,7 +3,7 @@ import {useRouter} from 'next/router';
 import {isEqual} from 'lodash';
 
 import {VideosSearchService} from '~/api';
-import {filteredMass, setQueryParams} from '~/utils';
+import {categoryNavigation, setQueryParams} from '~/utils';
 import {
   BackButton,
   CategoryNav,
@@ -156,7 +156,7 @@ const Search: React.FC = () => {
 
       <aside className={styles.filter_block}>
         <DatePicker />
-        <FilterBySort options={filteredMass} />
+        <FilterBySort options={categoryNavigation} />
       </aside>
     </article>
   );

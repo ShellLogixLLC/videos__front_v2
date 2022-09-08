@@ -1,8 +1,8 @@
 import React from 'react';
 
-import {filteredMass} from '~/utils';
 import {useAppSelector} from '~/hooks';
 import {wishlistSelect} from '~/store/wishlist';
+import {categoryNavigation} from '~/utils';
 import {CategoryService, VideosService} from '~/api';
 import {
   DatePicker,
@@ -70,7 +70,7 @@ const Home: React.FC = () => {
       </div>
       <aside className={styles.filter_block}>
         <DatePicker />
-        <FilterBySort options={filteredMass} />
+        <FilterBySort options={categoryNavigation} />
       </aside>
     </article>
   );
