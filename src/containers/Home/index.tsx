@@ -1,15 +1,14 @@
 import React from 'react';
 
-import {filteredMass} from '~/utils';
 import {useAppSelector} from '~/hooks';
 import {wishlistSelect} from '~/store/wishlist';
+import {HorizontalSlider, Typography} from '~/components';
 import {CategoryService, VideosService} from '~/api';
 import {
-  DatePicker,
-  FilterBySort,
-  HorizontalSlider,
-  Typography,
-} from '~/components';
+  SLIDER_COUNT,
+  VIDEO_INITIAL_OFFSET,
+  SORT_BY_VIEWED_AND_LIKED,
+} from '~/constants';
 
 import styles from './Home.module.scss';
 
@@ -20,6 +19,20 @@ const Home: React.FC = () => {
   const {videosData} = VideosService.useVideos();
 
   const videos = videosData?.videos;
+
+  const {data: mostViewedData, isLoading: mostViewedLoading} =
+    CategoryService.useActiveCategory({
+      limit: SLIDER_COUNT,
+      offset: VIDEO_INITIAL_OFFSET,
+      viewsSort: SORT_BY_VIEWED_AND_LIKED,
+    });
+
+  const {data: mostLikedData, isLoading: mostLikedLoading} =
+    CategoryService.useActiveCategory({
+      limit: SLIDER_COUNT,
+      offset: VIDEO_INITIAL_OFFSET,
+      likesSort: SORT_BY_VIEWED_AND_LIKED,
+    });
 
   const {wishlistIds: wishlistData} = useAppSelector(wishlistSelect);
 
@@ -49,11 +62,11 @@ const Home: React.FC = () => {
         </section>
         <section className={styles.wrapper__content__one_section}>
           <Typography className={styles.wrapper__content__title}>
-            topRated
+            mostViewed
           </Typography>
           <HorizontalSlider
-            isLoading={isLoading}
-            dataList={videos}
+            isLoading={mostViewedLoading}
+            dataList={mostViewedData?.videos}
             wishlist={wishlistData}
           />
         </section>
@@ -62,16 +75,12 @@ const Home: React.FC = () => {
             mostLiked
           </Typography>
           <HorizontalSlider
-            isLoading={isLoading}
-            dataList={videos}
+            isLoading={mostLikedLoading}
+            dataList={mostLikedData?.videos}
             wishlist={wishlistData}
           />
         </section>
       </div>
-      <aside className={styles.filter_block}>
-        <DatePicker />
-        <FilterBySort options={filteredMass} />
-      </aside>
     </article>
   );
 };
