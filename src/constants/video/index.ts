@@ -1,4 +1,5 @@
 export const VIEWS_COUNT = 1200;
+export const SLIDER_COUNT = 20;
 export const SKIP_SECONDS = 5;
 export const VIDEOS_LIMIT = 8;
 export const AHEAD_SECONDS = 5;
@@ -14,3 +15,4 @@ export const SIMILAR_VIDEOS_COUNT = 40;
 export const ARROW_RIGHT_KEY_CODE = 39;
 export const VIDEO_INITIAL_LIKE_COUNT = 0;
 export const VIDEO_INITIAL_VIEW_COUNT = 0;
+export const SORT_BY_VIEWED_AND_LIKED = -1;

@@ -16,8 +16,8 @@
 
   &__content {
     width: 100%;
-    max-width: 409px;
-    min-height: 213px;
+    max-width: 440px;
+    padding: 48px 0;
     position: relative;
     border-radius: 13px;
     @extend %flex-center;
@@ -25,19 +25,19 @@
     background-color: $black;
     box-shadow: $red 0px 0px 6px;
 
-    @include breakpoint(tablet){
+    @include breakpoint(tablet) {
       max-width: 369px;
     }
 
-    @include breakpoint(tablet-m){
+    @include breakpoint(tablet-m) {
       max-width: 309px;
     }
 
-    &__form{
+    &__form {
       flex-direction: column;
     }
 
-    &__input{
+    &__input {
       border: none;
       border-bottom: 1px solid #ffffff;
       color: $white;
@@ -45,82 +45,85 @@
       font-weight: 500;
       background: transparent;
 
-      &:focus{
+      &:focus {
         border-bottom: 1px solid $white !important;
       }
 
-      &:hover{
+      &:hover {
         border-bottom: 1px solid $white !important;
       }
 
-      &::placeholder{
+      &::placeholder {
         font-size: 15px;
 
-        @include breakpoint(tablet){
+        @include breakpoint(tablet) {
           font-size: 14px;
         }
       }
 
-      @include breakpoint(tablet){
+      @include breakpoint(tablet) {
         font-size: 18px;
       }
 
-      @include breakpoint(tablet-m){
+      @include breakpoint(tablet-m) {
         font-size: 16px;
       }
     }
 
-    &__icons{
+    &__icons {
       gap: 6px;
       margin-left: 8px;
       @extend %flex-align;
     }
 
-    &__userIcon, &__emailIcon ,&__lockIcon{
+    &__userIcon,
+    &__emailIcon,
+    &__lockIcon {
       margin-right: 16px;
       height: 24px !important;
       width: 24px !important;
 
-      &__verifyIcon{
+      &__verifyIcon {
         z-index: 20;
         height: 15px !important;
         width: 15px !important;
       }
 
-      &__wrapper{
+      &__wrapper {
         position: relative;
       }
 
-      &__child{
+      &__child {
         position: absolute;
         right: 25%;
         bottom: -25%;
-
       }
     }
 
-    &__saveIcon,&__deleteIcon{
+    &__saveIcon,
+    &__deleteIcon {
       cursor: pointer;
       height: 18px !important;
       width: 18px !important;
     }
 
-    &__editIcon{
+    &__editIcon {
       cursor: pointer;
     }
 
-    &__editIcon,&__messageIcon{
+    &__editIcon,
+    &__messageIcon {
       margin-left: 8px;
       height: 24px !important;
       width: 24px !important;
 
-      &__button{
+      &__button {
         width: unset;
         padding: unset;
         background: transparent;
         transition: opacity 0.4s ease;
 
-        &__disabled{
+        &__disabled {
           opacity: 0.7;
           cursor: not-allowed !important;
         }
@@ -131,35 +134,28 @@
       width: 100%;
       @extend %flex-center;
       flex-direction: column;
+      padding: 0 24px;
     }
 
     &__title {
       @extend %heading_extra;
-      font-size:20px;
+      font-size: 20px;
       color: $white;
       cursor: pointer;
       line-break: anywhere;
 
-      @include breakpoint(tablet){
+      @include breakpoint(tablet) {
         font-size: 18px;
       }
 
-      @include breakpoint(tablet-m){
+      @include breakpoint(tablet-m) {
         font-size: 16px;
       }
 
-      &__wrapper{
+      &__wrapper {
         @extend %profile_modal_wrapper;
 
-        @include breakpoint(tablet){
-          max-width: 250px;
-        }
-
-        @include breakpoint(tablet-m){
-          max-width: 200px;
-        }
-
-        &__edited{
+        &__edited {
           width: 100%;
           border-bottom: 0;
           margin-bottom: 0;
@@ -171,25 +167,18 @@
       @extend %flex-center;
       width: 100%;
 
-      &:not(:last-child){
+      &:not(:last-child) {
         margin-bottom: 24px;
       }
 
-      &__star{
+      &__star {
         font-size: 20px;
         color: $white;
         line-break: anywhere;
 
-        &__wrapper{
-         @extend %profile_modal_wrapper;
+        &__wrapper {
+          @extend %profile_modal_wrapper;
 
-          @include breakpoint(tablet){
-            max-width: 250px;
-          }
-
-          @include breakpoint(tablet-m){
-            max-width: 200px;
-          }
         }
       }
 
@@ -198,27 +187,19 @@
         color: $white;
         line-break: anywhere;
 
-        @include breakpoint(tablet){
+        @include breakpoint(tablet) {
           font-size: 18px;
         }
 
-        @include breakpoint(tablet-m){
+        @include breakpoint(tablet-m) {
           font-size: 16px;
         }
 
-        &__wrapper{
-         @extend %profile_modal_wrapper;
+        &__wrapper {
+          @extend %profile_modal_wrapper;
 
-          @include breakpoint(tablet){
-            max-width: 250px;
-          }
-
-          @include breakpoint(tablet-m){
-            max-width: 200px;
-          }
         }
       }
     }
   }
 }
-

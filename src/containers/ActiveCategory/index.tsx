@@ -4,9 +4,9 @@ import {useRouter} from 'next/router';
 
 import {LeftArrowIcon} from '~/assets';
 import {wishlistSelect} from '~/store/wishlist';
+import {setQueryParams} from '~/utils';
 import {CategoryService} from '~/api';
 import {QueryParamsTypes, VideosProps} from '~/types';
-import {categoryNavigation, setQueryParams} from '~/utils';
 import {
   useLocales,
   useWindowSize,
@@ -24,7 +24,6 @@ import {
   Pagination,
   DatePicker,
   Typography,
-  FilterBySort,
   FilmCardSkeleton,
 } from '~/components';
 
@@ -178,7 +177,6 @@ const ActiveCategory: React.FC = () => {
         </div>
         <div className={styles.filters}>
           <DatePicker />
-          <FilterBySort options={categoryNavigation} />
         </div>
       </div>
     </article>

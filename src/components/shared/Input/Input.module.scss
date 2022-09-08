@@ -4,6 +4,11 @@
   transition: all 0.1s;
   border: 1px solid #e4e6eb;
 
+  &__fields{
+    display: flex;
+    align-items: center;
+  }
+
   &_right_icon {
     padding-right: 42px !important;
   }
@@ -33,6 +38,11 @@
   &__label {
     font-weight: 600;
     color: $grey_color;
+
+    &__small{
+      font-size: 10px;
+      margin-left: 3px;
+    }
   }
 
   &__error {
@@ -40,6 +50,11 @@
       color: $dark-red;
       margin-top: 5px;
     }
+  }
+
+  &__warning_text {
+    color: $yellow;
+    margin-top: 5px;
   }
 
   &__right_icon {

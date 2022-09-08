@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import {useRouter} from 'next/router';
 
 import {CloseIcon} from '~/assets';
 import {useLockBodyScroll} from '~/hooks';
@@ -17,6 +18,10 @@ const MobileFilter: React.FC<IMobileFilterProps> = ({
   toggleFilter,
   isNotActive,
 }) => {
+  const {pathname} = useRouter();
+
+  const isActiveCategory = pathname.includes('active-category');
+
   const wrapperClasses = classNames(styles.wrapper, {
     [styles.wrapper_open]: isFilter,
     [styles.wrapper_unactive]: isNotActive,
@@ -34,7 +39,7 @@ const MobileFilter: React.FC<IMobileFilterProps> = ({
       </div>
       <div className={styles.wrapper__content}>
         <DatePicker />
-        <FilterBySort options={categoryNavigation} />
+        {!isActiveCategory && <FilterBySort options={categoryNavigation} />}
         <Button onClick={toggleFilter} className={styles.wrapper__content__btn}>
           <Typography tagName="span">filter</Typography>
         </Button>

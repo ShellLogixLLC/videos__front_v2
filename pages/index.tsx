@@ -28,8 +28,8 @@ export const getServerSideProps = async (): Promise<
   return {
     props: {
       fallback: {
-        [endpoints.CategoryService.getCategories()]: resCategories,
         [endpoints.VideosService.getVideos()]: resVideos,
+        [endpoints.CategoryService.getCategories()]: resCategories,
       },
     },
   };

@@ -11,6 +11,8 @@ import styles from './Input.module.scss';
 const Input = forwardRef<any, InputProps>(
   (
     {
+      smallLabel,
+      type = 'text',
       name,
       label,
       error,
@@ -21,21 +23,21 @@ const Input = forwardRef<any, InputProps>(
       disabled,
       onChange,
       readOnly,
+      labelText = '',
+      className = '',
       RightIcon,
       maxLength,
       autoFocus,
       onKeyDown,
       wrapperRef,
       placeholder,
+      warningText,
       onMouseOver,
-      type = 'text',
-      labelText = '',
-      className = '',
       toggleHandle,
-      RightToggledIcon,
       rightIconStyle = '',
       innerClassName = '',
       labelClassName = '',
+      RightToggledIcon,
       ...rest
     },
     ref,
@@ -82,10 +84,19 @@ const Input = forwardRef<any, InputProps>(
 
     const {translatedTypo: translatedLabel} = useLocales(label);
     const {translatedTypo: translatedPlaceholder} = useLocales(placeholder);
+    const {translatedTypo: translatedSmallLabel} = useLocales(smallLabel);
 
     return (
       <label htmlFor={name} className={labelClasses}>
-        <span className={labelTextClasses}>{translatedLabel || label}</span>
+        <div className={styles.container__fields}>
+          <span className={labelTextClasses}>{translatedLabel || label}</span>
+          {smallLabel && (
+            <span className={styles.container__label__small}>
+              {translatedSmallLabel || label}
+            </span>
+          )}
+        </div>
+
         <div ref={wrapperRef} className={inputInnerClasses}>
           <input
             {...rest}
@@ -124,6 +135,11 @@ const Input = forwardRef<any, InputProps>(
             />
           )}
         </div>
+        {warningText && !error && (
+          <Typography type="Small" className={styles.container__warning_text}>
+            {warningText}
+          </Typography>
+        )}
         {error && (
           <Typography type="Small" className={styles.container__error__text}>
             {error}

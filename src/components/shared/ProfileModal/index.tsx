@@ -17,15 +17,12 @@ import {
   LockIcon,
   EditPenIcon,
   ExitRedIcon,
-  MessageIcon,
-  VerifiedIcon,
   UserRoundIcon,
-  UnverifiedIcon,
   SaveChangesIcon,
 } from '~/assets';
 import {RouterService} from '~/services';
 import {LoadingStates} from '~/store/types';
-import {updateUser, userSentVerifyAgain} from '~/store/auth/thunks';
+import {updateUser} from '~/store/auth/thunks';
 import HorizontalLoader from '~/components/shared/Loader/HorizontalLoader';
 
 import styles from './ProfileModal.module.scss';
@@ -36,8 +33,6 @@ const ProfileModal = forwardRef<any, PopupProps>(
     const {userInfo, updateUserLoading} = useAppSelector(authSelect);
 
     const dispatch = useAppDispatch();
-
-    const isVerified = userInfo && userInfo.isVerified;
 
     const [isUsernameEdited, setUsernameEdited] = useState<boolean>(false);
     const modalRef = useRef<HTMLDivElement | null>(null);
@@ -52,17 +47,6 @@ const ProfileModal = forwardRef<any, PopupProps>(
       {
         [styles.wrapper__content__title__wrapper__edited]: isUsernameEdited,
       },
-    );
-
-    const mailSenderButtonClassName = classNames(
-      styles.wrapper__content__messageIcon__button,
-      {
-        [styles.wrapper__content__messageIcon__button__disabled]: isVerified,
-      },
-    );
-
-    const verifiedIconClassName = classNames(
-      styles.wrapper__content__userIcon__verifyIcon,
     );
 
     useEffect(() => {
@@ -82,13 +66,6 @@ const ProfileModal = forwardRef<any, PopupProps>(
 
     const handleDeleteChanges = () => {
       setUsernameEdited(false);
-    };
-
-    const handleSendEmail = (): void => {
-      if (userInfo && userInfo.email) {
-        dispatch(userSentVerifyAgain({email: userInfo.email}));
-        RouterService.push(Route.RegistrationSetupPassword);
-      }
     };
 
     const handleChangePasswordRoute = (): void => {
@@ -112,13 +89,6 @@ const ProfileModal = forwardRef<any, PopupProps>(
                     <UserRoundIcon
                       className={styles.wrapper__content__userIcon}
                     />
-                    <div className={styles.wrapper__content__userIcon__child}>
-                      {isVerified ? (
-                        <VerifiedIcon className={verifiedIconClassName} />
-                      ) : (
-                        <UnverifiedIcon className={verifiedIconClassName} />
-                      )}
-                    </div>
                   </div>
                   <div
                     className={firstBlockClassName}
@@ -158,25 +128,6 @@ const ProfileModal = forwardRef<any, PopupProps>(
                   )}
                 </div>
                 <div className={styles.wrapper__content__block}>
-                  <EmailIcon className={styles.wrapper__content__emailIcon} />
-                  <div
-                    className={styles.wrapper__content__block__text__wrapper}>
-                    <Typography
-                      tagName="span"
-                      className={styles.wrapper__content__block__text}>
-                      {userInfo?.email}
-                    </Typography>
-                  </div>
-                  <Button
-                    onClick={handleSendEmail}
-                    className={mailSenderButtonClassName}
-                    disabled={isVerified || false}>
-                    <MessageIcon
-                      className={styles.wrapper__content__messageIcon}
-                    />
-                  </Button>
-                </div>
-                <div className={styles.wrapper__content__block}>
                   <LockIcon className={styles.wrapper__content__lockIcon} />
                   <div
                     className={styles.wrapper__content__block__star__wrapper}>
@@ -194,6 +145,19 @@ const ProfileModal = forwardRef<any, PopupProps>(
                     />
                   </Button>
                 </div>
+                {userInfo?.email && (
+                  <div className={styles.wrapper__content__block}>
+                    <EmailIcon className={styles.wrapper__content__emailIcon} />
+                    <div
+                      className={styles.wrapper__content__block__text__wrapper}>
+                      <Typography
+                        tagName="span"
+                        className={styles.wrapper__content__block__text}>
+                        {userInfo?.email}
+                      </Typography>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           )}
