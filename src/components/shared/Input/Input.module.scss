@@ -42,6 +42,11 @@
     }
   }
 
+  &__warning_text {
+    color: $yellow;
+    margin-top: 5px;
+  }
+
   &__right_icon {
     cursor: pointer;
     position: absolute;

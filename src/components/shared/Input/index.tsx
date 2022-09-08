@@ -11,6 +11,7 @@ import styles from './Input.module.scss';
 const Input = forwardRef<any, InputProps>(
   (
     {
+      type = 'text',
       name,
       label,
       error,
@@ -21,21 +22,21 @@ const Input = forwardRef<any, InputProps>(
       disabled,
       onChange,
       readOnly,
+      labelText = '',
+      className = '',
       RightIcon,
       maxLength,
       autoFocus,
       onKeyDown,
       wrapperRef,
       placeholder,
+      warningText,
       onMouseOver,
-      type = 'text',
-      labelText = '',
-      className = '',
       toggleHandle,
-      RightToggledIcon,
       rightIconStyle = '',
       innerClassName = '',
       labelClassName = '',
+      RightToggledIcon,
       ...rest
     },
     ref,
@@ -124,6 +125,11 @@ const Input = forwardRef<any, InputProps>(
             />
           )}
         </div>
+        {warningText && !error && (
+          <Typography type="Small" className={styles.container__warning_text}>
+            {warningText}
+          </Typography>
+        )}
         {error && (
           <Typography type="Small" className={styles.container__error__text}>
             {error}

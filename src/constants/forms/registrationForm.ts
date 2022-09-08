@@ -17,6 +17,7 @@ const fields: Field[] = [
     type: 'email',
     label: 'email',
     placeholder: 'enterYourEmailAddress',
+    warningText: 'ifYouDoNotFillEmailYouCantChangeYourPassword',
   },
 
   {
@@ -37,12 +38,6 @@ const fields: Field[] = [
     RightToggledIcon: EyeShowIcon,
   },
   {
-    name: 'verification',
-    type: 'verification',
-    label: 'Verification account',
-    defaultValue: true,
-  },
-  {
     name: 'agreed',
     type: 'checkbox',
     label: 'agreeToThe',
@@ -60,10 +55,7 @@ const schema = yup.object().shape({
     .string()
     .required('theFirstNameIsRequired')
     .min(6, 'firstNameIsTooShort'),
-  email: yup
-    .string()
-    .required('theEmailIsRequired')
-    .email('theEmailMustBeAValidEmailAddress'),
+  email: yup.string().email('theEmailMustBeAValidEmailAddress'),
   create_password: yup
     .string()
     .matches(/^[^\s]+(\s+[^\s]+)*$/, `passwordCantStartOrEndWwithABlankSpace`)
