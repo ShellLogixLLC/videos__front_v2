@@ -88,12 +88,15 @@ const Input = forwardRef<any, InputProps>(
 
     return (
       <label htmlFor={name} className={labelClasses}>
-        <span className={labelTextClasses}>{translatedLabel || label}</span>
-        {smallLabel && (
-          <span className={styles.container__label__small}>
-            {translatedSmallLabel || label}
-          </span>
-        )}
+        <div className={styles.container__fields}>
+          <span className={labelTextClasses}>{translatedLabel || label}</span>
+          {smallLabel && (
+            <span className={styles.container__label__small}>
+              {translatedSmallLabel || label}
+            </span>
+          )}
+        </div>
+
         <div ref={wrapperRef} className={inputInnerClasses}>
           <input
             {...rest}

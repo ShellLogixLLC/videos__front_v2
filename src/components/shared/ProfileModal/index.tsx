@@ -17,13 +17,12 @@ import {
   LockIcon,
   EditPenIcon,
   ExitRedIcon,
-  MessageIcon,
   UserRoundIcon,
   SaveChangesIcon,
 } from '~/assets';
 import {RouterService} from '~/services';
 import {LoadingStates} from '~/store/types';
-import {updateUser, userSentVerifyAgain} from '~/store/auth/thunks';
+import {updateUser} from '~/store/auth/thunks';
 import HorizontalLoader from '~/components/shared/Loader/HorizontalLoader';
 
 import styles from './ProfileModal.module.scss';
@@ -49,13 +48,6 @@ const ProfileModal = forwardRef<any, PopupProps>(
       styles.wrapper__content__title__wrapper,
       {
         [styles.wrapper__content__title__wrapper__edited]: isUsernameEdited,
-      },
-    );
-
-    const mailSenderButtonClassName = classNames(
-      styles.wrapper__content__messageIcon__button,
-      {
-        [styles.wrapper__content__messageIcon__button__disabled]: isVerified,
       },
     );
 

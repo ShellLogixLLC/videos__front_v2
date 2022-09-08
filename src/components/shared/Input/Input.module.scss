@@ -4,6 +4,11 @@
   transition: all 0.1s;
   border: 1px solid #e4e6eb;
 
+  &__fields{
+    display: flex;
+    align-items: center;
+  }
+
   &_right_icon {
     padding-right: 42px !important;
   }
@@ -36,6 +41,7 @@
 
     &__small{
       font-size: 10px;
+      margin-left: 3px;
     }
   }
 
