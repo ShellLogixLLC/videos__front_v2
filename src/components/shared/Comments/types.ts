@@ -1,3 +1,5 @@
+import React from 'react';
+
 import {CommentType} from '~/api/videos/types';
 export interface ICommentBlock {
   comments: CommentType[];
@@ -9,6 +11,7 @@ export interface ICommentBlock {
 
 export interface ICommentForm {
   addNewComment: (newComment: CommentType) => void;
+  setEmojiOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface IComment {

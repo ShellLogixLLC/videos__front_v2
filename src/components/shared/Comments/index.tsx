@@ -20,6 +20,7 @@ const Comments: React.FC = () => {
   const {userInfo} = useSelector(authState);
 
   const [expanded, toggleExpanded] = useToggle(false);
+  const [isEmojiOpen, setEmojiOpen] = useState<boolean>(false);
   const [totalCount, setTotalCount] = useState<number>(0);
   const [limit, setLimit] = useState<number>(COMMENTS_LIMIT);
   const [commentsList, setCommentsList] = useState<CommentType[]>([]);
@@ -33,11 +34,14 @@ const Comments: React.FC = () => {
 
   const blockClassNames = classNames(styles.block, {
     [styles.block_hidden]: !expanded,
+    [styles.block_emojiOpen]: isEmojiOpen,
   });
 
   const arrowIconClasses = classNames(styles.container__content__icon, {
     [styles.container__content__icon__open]: expanded,
   });
+
+  console.log(isEmojiOpen, 'isopen');
 
   useEffect(() => {
     if (!isLoading && data?.comments) {
@@ -79,7 +83,11 @@ const Comments: React.FC = () => {
           totalCount={totalCount}
         />
         <div className={styles.block__form}>
-          <CommentForm addNewComment={addNewComment} />
+          <CommentForm
+            isEmojiOpen={isEmojiOpen}
+            setEmojiOpen={setEmojiOpen}
+            addNewComment={addNewComment}
+          />
         </div>
       </div>
     </div>

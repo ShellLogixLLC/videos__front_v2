@@ -14,7 +14,7 @@ import {Button, EmojisInput, Typography} from '~/components';
 import {ICommentForm} from './types';
 import styles from './Comments.module.scss';
 
-const CommentForm: React.FC<ICommentForm> = ({addNewComment}) => {
+const CommentForm: React.FC<ICommentForm> = ({addNewComment, setEmojiOpen}) => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const {id: activeVideoId} = router.query;
@@ -60,6 +60,7 @@ const CommentForm: React.FC<ICommentForm> = ({addNewComment}) => {
   return (
     <form className={styles.block__form__box} onSubmit={handleSubmit(onSubmit)}>
       <EmojisInput
+        setEmojiOpen={setEmojiOpen}
         {...register('comment')}
         placeholder={translatedPlaceholder || ''}
         addEmoji={addEmoji}

@@ -1,4 +1,4 @@
-import {MouseEvent} from 'react';
+import React, {MouseEvent} from 'react';
 import {BaseEmoji} from 'emoji-mart';
 
 import {SVGIconProp} from '~/types';
@@ -45,4 +45,5 @@ export type InputProps = {
   addEmoji: (e: BaseEmoji) => void;
   RightToggledIcon?: SVGIconProp;
   onMouseOver?: (e: MouseEvent<HTMLInputElement>) => void;
+  setEmojiOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };

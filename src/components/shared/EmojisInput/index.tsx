@@ -1,4 +1,4 @@
-import React, {forwardRef, useRef, useState} from 'react';
+import React, {forwardRef, useEffect, useRef, useState} from 'react';
 import {Picker} from 'emoji-mart';
 import emojiList from 'emojis-list';
 import classNames from 'classnames';
@@ -27,6 +27,7 @@ const EmojisInput = forwardRef<any, InputProps>(
       innerClassName = '',
       labelClassName = '',
       addEmoji,
+      setEmojiOpen,
       ...rest
     },
     ref,
@@ -45,6 +46,10 @@ const EmojisInput = forwardRef<any, InputProps>(
           }
         : {},
     );
+
+    useEffect(() => {
+      setEmojiOpen(isOpen);
+    }, [isOpen]);
 
     const [currentEmoji, setCurrentEmoji] = useState(emojiList[0]);
 
