@@ -163,8 +163,6 @@ const MyFavorites: React.FC = () => {
     setNewQueryParams({page});
   };
 
-  console.log(totalCount, data?.totalCount, 'count');
-
   return (
     <div className={styles.favorites}>
       <div className={styles.favorites__backRoute}>
