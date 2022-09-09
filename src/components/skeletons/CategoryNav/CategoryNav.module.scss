@@ -13,6 +13,10 @@
     display: flex;
     gap: 24px;
 
+    @include breakpoint(desktop) {
+      display: none;
+    }
+
     &_item {
       color: transparent;
       padding: 0 34px;

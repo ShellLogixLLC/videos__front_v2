@@ -22,6 +22,7 @@ const CategoryContent: React.FC<CategoryContentTypes> = ({
   totalCount,
   rowsPerPage,
   setTotalCount,
+  subCategoryLoading,
 }) => {
   const {params} = useCategotyParams(rowsPerPage);
   const {isMinTablet} = useWindowSize();
@@ -93,7 +94,7 @@ const CategoryContent: React.FC<CategoryContentTypes> = ({
 
   return (
     <>
-      <CategoryNav isNotActive={dataTotalCount <= 0} />
+      {subCategoryLoading && <CategoryNav isNotActive={dataTotalCount <= 0} />}
       {renderContent}
     </>
   );

@@ -5,13 +5,15 @@ export type SVGIconProp = React.FC<React.SVGProps<SVGSVGElement>>;
 export type CategoryTitleTypes = {
   categoryId?: string | string[];
   isNotActive?: boolean;
+  setSubCategoryLoading?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export type CategoryContentTypes = {
   activePage: number;
   totalCount: number;
-  setTotalCount: (value: number) => void;
   rowsPerPage: number;
+  setTotalCount: (value: number) => void;
+  subCategoryLoading: boolean;
 };
 
 export type QueryParamsTypes = {
