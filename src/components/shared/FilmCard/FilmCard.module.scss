@@ -161,10 +161,12 @@
     @extend %film_info_text;
     @extend %text-elypsis;
     cursor: text;
-    width: 200px;
+    width: 100%;
     height: 44px;
     margin-bottom: 28px;
     user-select: text;
+    max-width: 100%;
+    white-space: normal;
 
     @include breakpoint(tablet-m) {
       font-size: 14px;
