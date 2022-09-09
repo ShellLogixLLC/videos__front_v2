@@ -83,6 +83,10 @@ const MyFavorites: React.FC = () => {
         setVideosList([...updatedVideos, item as VideosProps]);
         setTotalCount(totalCount);
       } else if (data?.videos?.length) {
+        if (activePage === 0) {
+          setVideosList([...updatedVideos, item as VideosProps]);
+          setTotalCount(totalCount);
+        }
         setActivePage(activePage);
       }
     } else if (type === WishlistActions.DELETE) {
@@ -158,6 +162,8 @@ const MyFavorites: React.FC = () => {
     setActivePage(page);
     setNewQueryParams({page});
   };
+
+  console.log(totalCount, data?.totalCount, 'count');
 
   return (
     <div className={styles.favorites}>
