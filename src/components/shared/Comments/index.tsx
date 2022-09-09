@@ -8,6 +8,7 @@ import {authState} from '~/store/auth';
 import {LanguageArrowTop} from '~/assets';
 import {COMMENTS_LIMIT} from '~/constants';
 import {CommentType} from '~/api/videos/types';
+import {getCookieFromBrowser} from '~/libraries';
 import {CommentsBlockSkeleton} from '~/components';
 
 import Typography from '../Typography';
@@ -18,6 +19,8 @@ import styles from './Comments.module.scss';
 
 const Comments: React.FC = () => {
   const {userInfo} = useSelector(authState);
+
+  const token = getCookieFromBrowser('token');
 
   const [expanded, toggleExpanded] = useToggle(false);
   const [isEmojiOpen, setEmojiOpen] = useState<boolean>(false);
@@ -34,7 +37,7 @@ const Comments: React.FC = () => {
 
   const blockClassNames = classNames(styles.block, {
     [styles.block_hidden]: !expanded,
-    [styles.block_emojiOpen]: isEmojiOpen,
+    [styles.block_emojiOpen]: isEmojiOpen && token,
   });
 
   const arrowIconClasses = classNames(styles.container__content__icon, {
