@@ -41,8 +41,6 @@ const Comments: React.FC = () => {
     [styles.container__content__icon__open]: expanded,
   });
 
-  console.log(isEmojiOpen, 'isopen');
-
   useEffect(() => {
     if (!isLoading && data?.comments) {
       setCommentsList(data?.comments);
@@ -84,7 +82,6 @@ const Comments: React.FC = () => {
         />
         <div className={styles.block__form}>
           <CommentForm
-            isEmojiOpen={isEmojiOpen}
             setEmojiOpen={setEmojiOpen}
             addNewComment={addNewComment}
           />
