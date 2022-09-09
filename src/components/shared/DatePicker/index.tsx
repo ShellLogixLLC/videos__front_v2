@@ -46,30 +46,14 @@ const DatePicker: FC = () => {
     if (
       !isEqual(queryEndDate, rangeValues?.to) &&
       !isEqual(queryStartDate, rangeValues?.from)
-    )
+    ) {
       setRangeValues({
         from: queryStartDate ? String(queryStartDate) : '',
         to: queryEndDate ? String(queryEndDate) : '',
       });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [queryStartDate, queryEndDate, queryName, qurryActiveCategory]);
-
-  useEffect(() => {
-    if (
-      rangeValues?.from &&
-      !isEqual(rangeValues, {from: queryStartDate, to: queryEndDate})
-    ) {
-      router.push({
-        query: {
-          ...router.query,
-          startDate: rangeValues?.from || '',
-          endDate: rangeValues?.to || today,
-          page: 0,
-        },
-      });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [rangeValues]);
+  }, [queryStartDate, queryEndDate, queryName, qurryActiveCategory]);
 
   const rangePickerProps = {
     numberOfMonths: 1,
@@ -113,8 +97,24 @@ const DatePicker: FC = () => {
       rangeValues.to !== ''
     ) {
       setRangeValues({from: '', to: ''});
+      router.push({
+        query: {
+          ...router.query,
+          startDate: '',
+          endDate: today,
+          page: 0,
+        },
+      });
     } else {
       setRangeValues(data);
+      router.push({
+        query: {
+          ...router.query,
+          startDate: data?.from,
+          endDate: data?.to || today,
+          page: 0,
+        },
+      });
     }
   };
 
