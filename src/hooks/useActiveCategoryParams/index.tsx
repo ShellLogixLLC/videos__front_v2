@@ -22,6 +22,7 @@ const useActiveCategoryParams = (rowsPerPage: number): SetSortingParamsType => {
 
   const likesSort = queryname === ActiveCategoryPathname.Most_Liked ? -1 : '';
   const viewsSort = queryname === ActiveCategoryPathname.Most_Viewed ? -1 : '';
+  const dateSort = queryname === ActiveCategoryPathname.New ? 1 : '';
 
   const limit = isMinTablet ? rowsPerPage : INITIAL_PAGINATION_ROWS_PER_PAGE;
   const offset = !isMinTablet
@@ -37,6 +38,7 @@ const useActiveCategoryParams = (rowsPerPage: number): SetSortingParamsType => {
     endDate,
     likesSort,
     viewsSort,
+    dateSort,
   };
 
   const [params, setParams] = useState<SortingParamsType>(initialParams);

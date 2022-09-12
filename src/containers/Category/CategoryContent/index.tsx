@@ -30,6 +30,7 @@ const CategoryContent: React.FC<CategoryContentTypes> = ({
   const [videosList, setVideosList] = useState<VideosProps[]>([]);
 
   const {data, isLoading} = CategoryService.useVideosByCategoryId(params);
+
   const {wishlistIds: wishlist} = useAppSelector(wishlistSelect);
 
   const tabletSkeletonsCount =

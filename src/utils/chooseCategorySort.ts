@@ -18,6 +18,7 @@ const chooseCategory = (
         page: 0,
         likesSort: -1,
         viewsSort: '',
+        dateSort: '',
         durationSort: '',
       });
     } else if (CategoryFilters.TopViews === nameCategory) {
@@ -27,6 +28,7 @@ const chooseCategory = (
         page: 0,
         likesSort: '',
         viewsSort: -1,
+        dateSort: '',
         durationSort: '',
       });
     } else if (CategoryFilters.Duration === nameCategory) {
@@ -36,7 +38,18 @@ const chooseCategory = (
         page: 0,
         likesSort: '',
         viewsSort: '',
+        dateSort: '',
         durationSort: -1,
+      });
+    } else if (CategoryFilters.New === nameCategory) {
+      setQueryParams({
+        ...query,
+        activeCategory: nameCategory,
+        page: 0,
+        likesSort: '',
+        viewsSort: '',
+        durationSort: '',
+        dateSort: -1,
       });
     } else {
       setQueryParams({
@@ -46,6 +59,7 @@ const chooseCategory = (
         likesSort: '',
         viewsSort: '',
         durationSort: '',
+        dateSort: '',
       });
     }
   }

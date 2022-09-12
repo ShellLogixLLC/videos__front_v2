@@ -19,6 +19,7 @@ export type CategoryContentTypes = {
 export type QueryParamsTypes = {
   page?: number;
   name?: string;
+  dateSort?: number | string;
   likesSort?: number | string;
   viewsSort?: number | string;
   durationSort?: number | string;

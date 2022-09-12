@@ -13,6 +13,7 @@ const useCategoryParams = (rowsPerPage: number): SetSortingParamsType => {
   const queryname = query?.name;
   const queryPage = query?.page;
   const queryEndDate = query?.endDate;
+  const queryDateSort = query?.dateSort;
   const queryLikeSort = query?.likesSort;
   const queryViewSort = query.viewsSort;
   const queryStartDate = query?.startDate;
@@ -27,6 +28,7 @@ const useCategoryParams = (rowsPerPage: number): SetSortingParamsType => {
   const endDate = queryEndDate ? String(queryEndDate) : '';
   const startDate = queryStartDate ? String(queryStartDate) : '';
   const likesSort = Number(queryLikeSort) || '';
+  const dateSort = Number(queryDateSort) || '';
   const viewsSort = Number(queryViewSort) || '';
   const categoryIds = [queryname] || [];
   const durationSort = Number(queryDuratonSort) || '';
@@ -37,6 +39,7 @@ const useCategoryParams = (rowsPerPage: number): SetSortingParamsType => {
     categoryIds: categoryIds,
     startDate,
     endDate,
+    dateSort,
     likesSort,
     viewsSort,
     durationSort,
@@ -58,6 +61,7 @@ const useCategoryParams = (rowsPerPage: number): SetSortingParamsType => {
     queryViewSort,
     queryStartDate,
     queryDuratonSort,
+    queryDateSort,
   ]);
 
   return {
