@@ -2,14 +2,13 @@ import React, {useState, useEffect} from 'react';
 import {useRouter} from 'next/router';
 import {isEqual} from 'lodash';
 
+import {setQueryParams} from '~/utils';
 import {VideosSearchService} from '~/api';
-import {categoryNavigation, setQueryParams} from '~/utils';
 import {
   BackButton,
   CategoryNav,
   DatePicker,
   FilmCard,
-  FilterBySort,
   Pagination,
   Typography,
 } from '~/components';
@@ -156,7 +155,6 @@ const Search: React.FC = () => {
 
       <aside className={styles.filter_block}>
         <DatePicker />
-        <FilterBySort options={categoryNavigation} />
       </aside>
     </article>
   );
