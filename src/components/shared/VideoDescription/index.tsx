@@ -77,7 +77,10 @@ const VideDescription: React.FC<VideDescriptionTypes> = ({
             </div>
 
             <span className={styles.wrapper__views_liked__block}>
-              <ViewsCountIcon /> {viewCount}
+              <ViewsCountIcon
+                className={styles.wrapper__views_liked__block__icon}
+              />
+              {viewCount}
             </span>
           </div>
           <HeartLikesIcon
