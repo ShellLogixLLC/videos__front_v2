@@ -27,7 +27,7 @@ const MobileMenu: React.FC<IMobileMenuProps> = ({
 
   const handleCloseMenu = () => setIsOpen(false);
 
-  const openProfileSettings = (): void => {
+  const openProfileSettings = (e: React.MouseEvent): void => {
     setProfileSettingsOpen(!isProfileSettingsOpen);
   };
 
