@@ -1,4 +1,5 @@
 import React from 'react';
+import {number} from 'yup';
 
 export type SVGIconProp = React.FC<React.SVGProps<SVGSVGElement>>;
 
@@ -43,6 +44,17 @@ export type SortingParamsType = {
   likesSort?: number | string;
   viewsSort?: number | string;
   durationSort?: number | string;
+};
+
+export type RandomSortingParamsType = {
+  limit: number;
+  startDate?: number;
+  endDate?: number;
+};
+
+export type SetRandomSortingParamsType = {
+  params: RandomSortingParamsType;
+  setParams: React.Dispatch<React.SetStateAction<RandomSortingParamsType>>;
 };
 
 export type SetSortingParamsType = {
