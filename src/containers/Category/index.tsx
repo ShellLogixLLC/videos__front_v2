@@ -8,6 +8,7 @@ import {QueryParamsTypes} from '~/types';
 import {useLocales, useWindowSize} from '~/hooks';
 import {INITIAL_PAGINATION_ROWS_PER_PAGE} from '~/constants';
 import {DatePicker, Pagination, BackButton} from '~/components';
+import RandomCategoryContent from '~/containers/Category/RandomCategoryContent';
 
 import styles from './Category.module.scss';
 import CategoryTitle from './CategoryTitle';
@@ -70,12 +71,19 @@ const Category: React.FC = () => {
             setSubCategoryLoading={setSubCategoryLoading}
             categoryId={query?.name}
           />
-          <CategoryContent
-            subCategoryLoading={subCategoryLoading}
+          {/*<CategoryContent*/}
+          {/*  subCategoryLoading={subCategoryLoading}*/}
+          {/*  activePage={activePage}*/}
+          {/*  setTotalCount={setTotalCount}*/}
+          {/*  totalCount={totalCount}*/}
+          {/*  rowsPerPage={rowsPerPage}*/}
+          {/*/>*/}
+          <RandomCategoryContent
             activePage={activePage}
-            setTotalCount={setTotalCount}
             totalCount={totalCount}
             rowsPerPage={rowsPerPage}
+            setTotalCount={setTotalCount}
+            subCategoryLoading={subCategoryLoading}
           />
           {totalCount > rowsPerPage && (
             <div className={styles.content__pagination}>

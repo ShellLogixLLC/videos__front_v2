@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 
-import {CategoryService} from '~/api';
+import {VideosService} from '~/api';
 import {CategoryContentTypes, VideosProps} from '~/types';
 import {
   FilmCard,
@@ -8,7 +8,7 @@ import {
   CategoryNav,
   FilmCardSkeleton,
 } from '~/components';
-import {useAppSelector, useCategotyParams, useWindowSize} from '~/hooks';
+import {useAppSelector, useRandomCategoryParams, useWindowSize} from '~/hooks';
 import {
   INITIAL_PAGINATION_MORE_COUNT,
   INITIAL_PAGINATION_ROWS_PER_PAGE,
@@ -17,19 +17,19 @@ import {wishlistSelect} from '~/store/wishlist';
 
 import styles from '../Category.module.scss';
 
-const CategoryContent: React.FC<CategoryContentTypes> = ({
+const RandomCategoryContent: React.FC<CategoryContentTypes> = ({
   activePage,
   totalCount,
   rowsPerPage,
   setTotalCount,
   subCategoryLoading,
 }) => {
-  const {params} = useCategotyParams(rowsPerPage);
+  const {params} = useRandomCategoryParams(rowsPerPage);
   const {isMinTablet} = useWindowSize();
 
   const [videosList, setVideosList] = useState<VideosProps[]>([]);
 
-  const {data, isLoading} = CategoryService.useVideosByCategoryId(params);
+  const {videosData: data, isLoading} = VideosService.useRandomVideos(params);
 
   const {wishlistIds: wishlist} = useAppSelector(wishlistSelect);
 
@@ -103,4 +103,4 @@ const CategoryContent: React.FC<CategoryContentTypes> = ({
   );
 };
 
-export default CategoryContent;
+export default RandomCategoryContent;

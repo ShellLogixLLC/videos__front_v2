@@ -48,8 +48,8 @@ export type SortingParamsType = {
 
 export type RandomSortingParamsType = {
   limit: number;
-  startDate?: number;
-  endDate?: number;
+  startDate?: string;
+  endDate?: string;
 };
 
 export type SetRandomSortingParamsType = {

@@ -7,7 +7,7 @@ const endpoints = {
 
   VideosService: {
     getVideos: (): string => '/videos?offset=0&limit=20',
-    getRandomVideos: (limit: number): string => `/videos/random?limit=${limit}`,
+    getRandomVideos: (): string => `/videos/random`,
     getVideoById: (id?: string | string[]): string => `/videos/${id}`,
     getVideoComments: (
       offset: number,
