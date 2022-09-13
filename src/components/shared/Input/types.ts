@@ -33,7 +33,7 @@ export type InputProps = {
   type?: InputType;
   label?: string;
   smallLabel?: string;
-  setValue: UseFormSetValue<any>;
+  setValue?: UseFormSetValue<any>;
   error?: string;
   value?: string | number;
   onFocus?: () => void;
