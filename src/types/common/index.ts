@@ -1,5 +1,4 @@
 import React from 'react';
-import {number} from 'yup';
 
 export type SVGIconProp = React.FC<React.SVGProps<SVGSVGElement>>;
 
