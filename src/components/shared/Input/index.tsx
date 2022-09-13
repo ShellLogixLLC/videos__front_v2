@@ -11,7 +11,6 @@ import styles from './Input.module.scss';
 const Input = forwardRef<any, InputProps>(
   (
     {
-      smallLabel,
       type = 'text',
       name,
       label,
@@ -22,6 +21,7 @@ const Input = forwardRef<any, InputProps>(
       onKeyUp,
       disabled,
       onChange,
+      setValue,
       readOnly,
       labelText = '',
       className = '',
@@ -29,6 +29,7 @@ const Input = forwardRef<any, InputProps>(
       maxLength,
       autoFocus,
       onKeyDown,
+      smallLabel,
       wrapperRef,
       placeholder,
       warningText,
@@ -86,6 +87,14 @@ const Input = forwardRef<any, InputProps>(
     const {translatedTypo: translatedPlaceholder} = useLocales(placeholder);
     const {translatedTypo: translatedSmallLabel} = useLocales(smallLabel);
 
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const val = e.target.value;
+      if (name) {
+        setValue(name, val.trim(), {shouldValidate: true});
+      }
+      onChange;
+    };
+
     return (
       <label htmlFor={name} className={labelClasses}>
         <div className={styles.container__fields}>
@@ -109,7 +118,7 @@ const Input = forwardRef<any, InputProps>(
             onFocus={onFocus}
             autoComplete="off"
             readOnly={readOnly}
-            onChange={onChange}
+            onChange={handleChange}
             disabled={disabled}
             onKeyDown={onKeyDown}
             autoFocus={autoFocus}
