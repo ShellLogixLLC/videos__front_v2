@@ -129,7 +129,6 @@
     &_name {
       @extend %film_name;
       @extend %text-elypsis;
-      max-width: 150px;
       width: 100%;
       cursor: pointer;
       user-select: text;
@@ -140,9 +139,21 @@
         color: $red;
       }
 
+      @include breakpoint(desktop){
+        max-width: 250px;
+      }
+
+      @include breakpoint(tablet){
+        max-width: 150px;
+      }
+
       @include breakpoint(tablet-m) {
         font-size: 18px;
         line-height: 22px;
+        max-width: 320px;
+      }
+      @include breakpoint(mobile-m){
+        max-width: 150px;
       }
     }
 
