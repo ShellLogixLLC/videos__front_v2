@@ -11,8 +11,10 @@ export type CategoryTitleTypes = {
 export type CategoryContentTypes = {
   activePage: number;
   totalCount: number;
+  // randomTotalCount: number;
   rowsPerPage: number;
   setTotalCount: (value: number) => void;
+  // setRandomTotalCount: (value: number) => void;
   subCategoryLoading: boolean;
 };
 
@@ -47,6 +49,7 @@ export type SortingParamsType = {
 
 export type RandomSortingParamsType = {
   limit: number;
+  categoryIds: string[];
   startDate?: string;
   endDate?: string;
 };

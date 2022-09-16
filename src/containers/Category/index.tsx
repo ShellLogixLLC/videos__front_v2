@@ -24,9 +24,9 @@ const Category: React.FC = () => {
 
   const [activePage, setActivePage] = useState<number>(currentPage);
   const [totalCount, setTotalCount] = useState<number>(0);
-  const [activeCategory, setActiveCategory] = useState(
-    CategoryFilters.Duration,
-  );
+  // const [randomTotalCount, setRandomTotalCount] = useState<number>(0);
+  // const [activeCategory, setActiveCategory] = useState(CategoryFilters.All);
+
   const [rowsPerPage, setRowsPerPage] = useState<number>(
     INITIAL_PAGINATION_ROWS_PER_PAGE,
   );
@@ -74,23 +74,25 @@ const Category: React.FC = () => {
             setSubCategoryLoading={setSubCategoryLoading}
             categoryId={query?.name}
           />
-          {activeCategory === CategoryFilters.New ? (
-            <CategoryContent
-              subCategoryLoading={subCategoryLoading}
-              activePage={activePage}
-              setTotalCount={setTotalCount}
-              totalCount={totalCount}
-              rowsPerPage={rowsPerPage}
-            />
-          ) : (
-            <RandomCategoryContent
-              activePage={activePage}
-              totalCount={totalCount}
-              rowsPerPage={rowsPerPage}
-              setTotalCount={setTotalCount}
-              subCategoryLoading={subCategoryLoading}
-            />
-          )}
+          {/*{activeCategory !== CategoryFilters.MostViewed ? (*/}
+          {/*  <RandomCategoryContent*/}
+          {/*    activePage={activePage}*/}
+          {/*    totalCount={totalCount}*/}
+          {/*    rowsPerPage={rowsPerPage}*/}
+          {/*    setTotalCount={setTotalCount}*/}
+          {/*    subCategoryLoading={subCategoryLoading}*/}
+          {/*  />*/}
+          {/*) : (*/}
+          <CategoryContent
+            // randomTotalCount={randomTotalCount}
+            // setRandomTotalCount={setRandomTotalCount}
+            subCategoryLoading={subCategoryLoading}
+            activePage={activePage}
+            setTotalCount={setTotalCount}
+            totalCount={totalCount}
+            rowsPerPage={rowsPerPage}
+          />
+          {/*)}*/}
 
           {totalCount > rowsPerPage && (
             <div className={styles.content__pagination}>

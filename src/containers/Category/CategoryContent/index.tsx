@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 
-import {CategoryService} from '~/api';
+import {CategoryService, VideosService} from '~/api';
 import {CategoryContentTypes, VideosProps} from '~/types';
 import {
   FilmCard,
@@ -8,7 +8,12 @@ import {
   CategoryNav,
   FilmCardSkeleton,
 } from '~/components';
-import {useAppSelector, useCategotyParams, useWindowSize} from '~/hooks';
+import {
+  useAppSelector,
+  useCategotyParams,
+  useRandomCategoryParams,
+  useWindowSize,
+} from '~/hooks';
 import {
   INITIAL_PAGINATION_MORE_COUNT,
   INITIAL_PAGINATION_ROWS_PER_PAGE,
@@ -28,7 +33,6 @@ const CategoryContent: React.FC<CategoryContentTypes> = ({
   const {isMinTablet} = useWindowSize();
 
   const [videosList, setVideosList] = useState<VideosProps[]>([]);
-
   const {data, isLoading} = CategoryService.useVideosByCategoryId(params);
 
   const {wishlistIds: wishlist} = useAppSelector(wishlistSelect);
@@ -49,6 +53,8 @@ const CategoryContent: React.FC<CategoryContentTypes> = ({
 
   const dataVideos = data?.videos;
   const dataTotalCount = data?.totalCount;
+  // const randomVideos = randomVideosData?.videos;
+  // const randomVideosCount = randomVideosData?.totalCount;
 
   useEffect(() => {
     setTotalCount(dataTotalCount);
@@ -58,7 +64,7 @@ const CategoryContent: React.FC<CategoryContentTypes> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
-  useEffect(() => {});
+  useEffect(() => {}, []);
 
   const renderLoaderCards = Array.from(
     Array(skeletonsCount),

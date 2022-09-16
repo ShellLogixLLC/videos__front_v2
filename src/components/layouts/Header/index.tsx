@@ -44,6 +44,8 @@ const Header: React.FC = () => {
   const [isCategoriesHoverable, setCategoriesHoverable] =
     useState<boolean>(false);
 
+  const isMobileFilterOpen = pathname !== Route.Home;
+
   const logoClassNames = classNames(styles.wrapper__content_logo, {
     [styles.wrapper__content_logo_hidden]: expanded && !isDesktop,
   });
@@ -196,7 +198,7 @@ const Header: React.FC = () => {
 
         <HeaderNavbar>{headerTable}</HeaderNavbar>
         <div className={styles.wrapper__content__container}>
-          {pathname !== Route.Home && (
+          {isMobileFilterOpen && (
             <MobileFilterIcon
               onClick={toggleFilter}
               className={styles.wrapper__content__filter_icon}
@@ -212,7 +214,7 @@ const Header: React.FC = () => {
           {renderMobileMenu}
         </MobileMenu>
       </div>
-      {pathname !== Route.Home && (
+      {isMobileFilterOpen && (
         <MobileFilter
           isNotActive={false}
           isFilter={isFilter}

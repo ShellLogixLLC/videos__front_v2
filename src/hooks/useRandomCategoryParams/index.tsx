@@ -6,7 +6,9 @@ import {useWindowSize} from '~/hooks';
 import {RandomSortingParamsType, SetRandomSortingParamsType} from '~/types';
 import {INITIAL_PAGINATION_ROWS_PER_PAGE} from '~/constants';
 
-const useCategoryParams = (rowsPerPage: number): SetRandomSortingParamsType => {
+const useRandomCategoryParams = (
+  rowsPerPage: number,
+): SetRandomSortingParamsType => {
   const {query} = useRouter();
   const {isMinTablet} = useWindowSize();
 
@@ -18,13 +20,13 @@ const useCategoryParams = (rowsPerPage: number): SetRandomSortingParamsType => {
   const limit = isMinTablet ? rowsPerPage : INITIAL_PAGINATION_ROWS_PER_PAGE;
   const endDate = queryEndDate ? String(queryEndDate) : '';
   const startDate = queryStartDate ? String(queryStartDate) : '';
-  const categoryIds = [queryname];
+  const categoryIds = queryname ? [queryname as string] : [];
 
   const initialParams = {
     limit,
-    categoryIds: categoryIds,
     startDate,
     endDate,
+    categoryIds,
   };
 
   const [params, setParams] = useState<RandomSortingParamsType>(initialParams);
@@ -42,4 +44,4 @@ const useCategoryParams = (rowsPerPage: number): SetRandomSortingParamsType => {
   };
 };
 
-export default useCategoryParams;
+export default useRandomCategoryParams;
