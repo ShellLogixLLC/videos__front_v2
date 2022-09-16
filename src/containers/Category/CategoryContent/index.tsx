@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 
-import {CategoryService, VideosService} from '~/api';
+import {CategoryService} from '~/api';
 import {CategoryContentTypes, VideosProps} from '~/types';
 import {
   FilmCard,
@@ -8,12 +8,7 @@ import {
   CategoryNav,
   FilmCardSkeleton,
 } from '~/components';
-import {
-  useAppSelector,
-  useCategotyParams,
-  useRandomCategoryParams,
-  useWindowSize,
-} from '~/hooks';
+import {useAppSelector, useCategotyParams, useWindowSize} from '~/hooks';
 import {
   INITIAL_PAGINATION_MORE_COUNT,
   INITIAL_PAGINATION_ROWS_PER_PAGE,
@@ -53,8 +48,6 @@ const CategoryContent: React.FC<CategoryContentTypes> = ({
 
   const dataVideos = data?.videos;
   const dataTotalCount = data?.totalCount;
-  // const randomVideos = randomVideosData?.videos;
-  // const randomVideosCount = randomVideosData?.totalCount;
 
   useEffect(() => {
     setTotalCount(dataTotalCount);
@@ -63,8 +56,6 @@ const CategoryContent: React.FC<CategoryContentTypes> = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
-
-  useEffect(() => {}, []);
 
   const renderLoaderCards = Array.from(
     Array(skeletonsCount),
