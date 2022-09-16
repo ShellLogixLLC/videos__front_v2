@@ -55,6 +55,7 @@ const Form = forwardRef<any, IFormProps>(
       control,
       register,
       setFocus,
+      setValue,
       handleSubmit,
       formState: {errors, isValid},
     } = useForm({
@@ -114,6 +115,7 @@ const Form = forwardRef<any, IFormProps>(
           default:
             return (
               <Input
+                setValue={setValue}
                 labelText={labelText}
                 className={inputClassName}
                 labelClassName={labelClassName}
@@ -127,6 +129,7 @@ const Form = forwardRef<any, IFormProps>(
         errors,
         control,
         register,
+        setValue,
         labelText,
         inputClassName,
         labelClassName,
