@@ -13,6 +13,7 @@ import styles from './CategoryNav.module.scss';
 
 const CategoryNav: React.FC<CategoryTitleTypes> = ({isNotActive}) => {
   const {query} = useRouter();
+
   const [activeCategory, setActiveCategory] = useState<string | string[]>(
     query?.activeCategory || CategoryFilters.All,
   );

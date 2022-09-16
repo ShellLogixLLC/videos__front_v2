@@ -11,10 +11,8 @@ export type CategoryTitleTypes = {
 export type CategoryContentTypes = {
   activePage: number;
   totalCount: number;
-  // randomTotalCount: number;
   rowsPerPage: number;
   setTotalCount: (value: number) => void;
-  // setRandomTotalCount: (value: number) => void;
   subCategoryLoading: boolean;
 };
 

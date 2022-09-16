@@ -58,8 +58,6 @@ const RandomCategoryContent: React.FC<CategoryContentTypes> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
-  useEffect(() => {});
-
   const renderLoaderCards = Array.from(
     Array(skeletonsCount),
     (_, index: number) => (
