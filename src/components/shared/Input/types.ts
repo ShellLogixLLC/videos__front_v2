@@ -1,4 +1,5 @@
 import {KeyboardEvent, MouseEvent} from 'react';
+import {UseFormSetValue} from 'react-hook-form';
 
 import {SVGIconProp} from '~/types/common';
 
@@ -32,6 +33,7 @@ export type InputProps = {
   type?: InputType;
   label?: string;
   smallLabel?: string;
+  setValue?: UseFormSetValue<any>;
   error?: string;
   value?: string | number;
   onFocus?: () => void;
@@ -40,7 +42,7 @@ export type InputProps = {
   inpValue?: string | number;
   disabled?: boolean;
   readOnly?: boolean;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>, name: string) => void;
   maxLength?: number;
   labelText?: string;
   className?: string;
