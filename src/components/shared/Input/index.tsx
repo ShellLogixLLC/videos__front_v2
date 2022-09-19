@@ -87,13 +87,13 @@ const Input = forwardRef<any, InputProps>(
     const {translatedTypo: translatedPlaceholder} = useLocales(placeholder);
     const {translatedTypo: translatedSmallLabel} = useLocales(smallLabel);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const val = e.target.value;
-      if (name && setValue) {
-        setValue(name, val.trim(), {shouldValidate: true});
-      }
-      onChange;
-    };
+    // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //   const val = e.target.value;
+    //   if (name && setValue) {
+    //     setValue(name, val.trim(), {shouldValidate: true});
+    //   }
+    //   onChange;
+    // };
 
     return (
       <label htmlFor={name} className={labelClasses}>
@@ -118,7 +118,7 @@ const Input = forwardRef<any, InputProps>(
             onFocus={onFocus}
             autoComplete="off"
             readOnly={readOnly}
-            onChange={handleChange}
+            onChange={onChange}
             disabled={disabled}
             onKeyDown={onKeyDown}
             autoFocus={autoFocus}

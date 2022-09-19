@@ -1,6 +1,7 @@
 import React, {useRef, useState, useContext} from 'react';
 import classNames from 'classnames';
 import {useRouter} from 'next/router';
+import {values} from 'lodash';
 
 import {ToggleContext} from '~/context';
 import {useOnClickOutside} from '~/hooks';
@@ -72,6 +73,7 @@ const Search: React.FC = () => {
           type="text"
           name="globalSearch"
           value={searchValue}
+          // setValue={values}
           onChange={searchChangeHandle}
           className={inputClasses}
           RightIcon={SearchIcon}
