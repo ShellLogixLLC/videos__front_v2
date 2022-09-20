@@ -1,12 +1,10 @@
 import React, {useRef, useState, useContext} from 'react';
 import classNames from 'classnames';
 import {useRouter} from 'next/router';
-import {values} from 'lodash';
 
 import {ToggleContext} from '~/context';
-import {useOnClickOutside} from '~/hooks';
+import {useOnClickOutside, useLocales} from '~/hooks';
 import {SearchBackArrowIcon, SearchIcon} from '~/assets';
-import {useLocales} from '~/hooks';
 
 import Input from '../Input';
 
@@ -73,7 +71,6 @@ const Search: React.FC = () => {
           type="text"
           name="globalSearch"
           value={searchValue}
-          // setValue={values}
           onChange={searchChangeHandle}
           className={inputClasses}
           RightIcon={SearchIcon}

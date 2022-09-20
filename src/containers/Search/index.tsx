@@ -32,6 +32,7 @@ const Search: React.FC = () => {
 
   const queryPage = query?.page;
   const queryActiveCategory = query?.activeCategory;
+
   const currentPage =
     asPath.includes('page=0') || !queryPage ? 0 : Number(queryPage);
 
