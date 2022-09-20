@@ -13,6 +13,7 @@
     &__name {
       @extend %separate_page_film_name;
       margin-bottom: 16px;
+      line-break: anywhere;
 
       @include breakpoint(desktop) {
         font-size: 24px;
@@ -60,6 +61,7 @@
 
   &__description {
     min-height: 110px;
+    line-break: anywhere;
     margin-bottom: 24px;
     @extend %film_info_text;
 

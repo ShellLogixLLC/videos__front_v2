@@ -45,6 +45,18 @@ export type SortingParamsType = {
   durationSort?: number | string;
 };
 
+export type RandomSortingParamsType = {
+  limit: number;
+  categoryIds: string[];
+  startDate?: string;
+  endDate?: string;
+};
+
+export type SetRandomSortingParamsType = {
+  params: RandomSortingParamsType;
+  setParams: React.Dispatch<React.SetStateAction<RandomSortingParamsType>>;
+};
+
 export type SetSortingParamsType = {
   params: SortingParamsType;
   setParams: React.Dispatch<React.SetStateAction<SortingParamsType>>;

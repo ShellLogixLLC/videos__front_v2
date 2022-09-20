@@ -7,6 +7,7 @@ const endpoints = {
 
   VideosService: {
     getVideos: (): string => '/videos?offset=0&limit=20',
+    getRandomVideos: (): string => `/videos/random`,
     getVideoById: (id?: string | string[]): string => `/videos/${id}`,
     getVideoComments: (
       offset: number,
@@ -23,6 +24,8 @@ const endpoints = {
 
   VideosSearchService: {
     getVideosSearch: (search: string): string => `/videos?search=${search}`,
+    getRandomVideosSearch: (search: string): string =>
+      `/videos/random?search=${search}`,
   },
 
   WishlistService: {

@@ -92,7 +92,9 @@ const Input = forwardRef<any, InputProps>(
       if (name && setValue) {
         setValue(name, val.trim(), {shouldValidate: true});
       }
-      onChange;
+      if (onChange) {
+        onChange(e, name as string);
+      }
     };
 
     return (

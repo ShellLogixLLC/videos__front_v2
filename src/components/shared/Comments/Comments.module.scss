@@ -103,6 +103,8 @@
 
       &__description {
         @extend %film_info_text;
+        line-height: unset;
+        letter-spacing: 0.125px;
       }
     }
   }

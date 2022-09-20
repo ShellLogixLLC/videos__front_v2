@@ -11,4 +11,5 @@ export {default as useOnClickOutside} from './useOnClickOutside';
 export {default as useLockBodyScroll} from './ useLockBodyScroll';
 export {default as useCategotyParams} from './useCategoryParams';
 export {default as useActiveCategoryParams} from './useActiveCategoryParams';
+export {default as useRandomCategoryParams} from './useRandomCategoryParams';
 export {default as useIsomorphicLayoutEffect} from './useIsomorphicLayoutEffect';
