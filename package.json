@@ -9,7 +9,6 @@
     "test": "jest --watch",
     "test:ci": "jest --ci",
     "cypress": "cypress open",
-    "prepare": "husky install",
     "format": "prettier --write .",
     "cypress:headless": "cypress run",
     "check-format": "prettier --check .",
