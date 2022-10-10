@@ -1,0 +1,28 @@
+name: Pull request to the dev branch
+
+on:
+  pull_request:
+    branches: [dev]
+
+jobs:
+  check-branch:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.15.1]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          # cache: yarn       # fix for https://github.com/bahmutov/npm-install/issues/80#issuecomment-1153608979
+
+      - name: Install dependencies
+        run: yarn install --prefer-offline --frozen-lockfile --non-interactive --silent
+
+      - name: Lint code
+        run: yarn run ci:lint
