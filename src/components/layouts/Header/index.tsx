@@ -46,6 +46,8 @@ const Header: React.FC = () => {
 
   const isMobileFilterOpen = pathname !== Route.Home;
 
+  const isFavorite = pathname === Route.Favorites;
+
   const logoClassNames = classNames(styles.wrapper__content_logo, {
     [styles.wrapper__content_logo_hidden]: expanded && !isDesktop,
   });
@@ -198,7 +200,7 @@ const Header: React.FC = () => {
 
         <HeaderNavbar>{headerTable}</HeaderNavbar>
         <div className={styles.wrapper__content__container}>
-          {isMobileFilterOpen && (
+          {isMobileFilterOpen && !isFavorite && (
             <MobileFilterIcon
               onClick={toggleFilter}
               className={styles.wrapper__content__filter_icon}
