@@ -124,7 +124,7 @@ const Search: React.FC = () => {
           </section>
         </div>
         <aside className={styles.filter_block}>
-          <DatePicker />
+          {totalCount !== 0 && totalCount !== undefined && <DatePicker />}
         </aside>
       </div>
     </article>
