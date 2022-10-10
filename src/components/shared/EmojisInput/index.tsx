@@ -113,7 +113,7 @@ const EmojisInput = forwardRef<any, InputProps>(
 
             <div ref={modalRef} className={styles.container__modal}>
               <Portal>
-                {isOpen && (
+                {isOpen && token !== undefined && (
                   <div
                     className={styles.container__modal__picker}
                     ref={emojiPickerRef}>
