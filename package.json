@@ -17,7 +17,9 @@
     "lint": "tsc && eslint 'src/**/*.{js,jsx,ts,tsx,json}'",
     "e2e": "start-server-and-test dev http://localhost:3000 cypress",
     "e2e:headless": "start-server-and-test dev http://localhost:3000 cypress:headless",
-    "test-all": "npm run check-format && npm run check-lint && npm run check-types && npm run build"
+    "test-all": "npm run check-format && npm run check-lint && npm run check-types && npm run build",
+    "prepare": "husky install",
+    "scriptname": "cmd"
   },
   "dependencies": {
     "@emotion/react": "11.7.1",
