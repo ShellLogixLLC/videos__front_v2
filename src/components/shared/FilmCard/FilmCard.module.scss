@@ -4,6 +4,10 @@
   padding: 16px 16px 28px 16px;
   background-color: $light-black;
 
+  &:hover &__other_name{
+    color: $red;
+  }
+
   @include breakpoint(tablet-m) {
     padding: 16px 16px 19px 16px;
   }
@@ -135,9 +139,6 @@
       text-transform: capitalize;
       transition: color ease-in-out 0.2s;
 
-      &:hover {
-        color: $red;
-      }
 
       @include breakpoint(desktop){
         max-width: 250px;
