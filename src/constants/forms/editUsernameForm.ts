@@ -14,7 +14,7 @@ const fields: Field[] = [
 const schema = yup.object().shape({
   username: yup
     .string()
-    .required('theFirstNameIsRequired')
+    .required('theUserNameIsRequired')
     .min(6, 'firstNameIsTooShort')
     .max(18, 'firstNameIsTooLong')
     .matches(/^(\S+$)/g, 'thisFieldCannotContainBlankspaces'),

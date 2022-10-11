@@ -96,7 +96,7 @@
   "thePasswordIsRequired": "Требуется пароль",
   "theLastNameIsRequired": "The Last name is required",
   "enterYourEmailAddress": "Введите адрес электронной почты",
-  "theFirstNameIsRequired": "Имя обязательно",
+  "theUserNameIsRequired": "Имя обязательно",
   "areYouSureYouWantLogout": "Вы действительно хотите выйти?",
   "sorryWeCouldNotFindAnyResult": "Извините, мы не смогли найти ни одного результата",
   "goToThePreviousPageToSeeVideos": "Перейдите на предыдущую страницу, чтобы посмотреть видео",

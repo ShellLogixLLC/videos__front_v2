@@ -96,7 +96,7 @@
   "thePasswordIsRequired": "The Password is required",
   "theLastNameIsRequired": "The Last name is required",
   "enterYourEmailAddress": "Enter your email address",
-  "theFirstNameIsRequired": "The First name is required",
+  "theUserNameIsRequired": "Username is required",
   "areYouSureYouWantLogout": "Are you sure you want to log out?",
   "sorryWeCouldNotFindAnyResult": "Sorry,We could not find any results matching:",
   "goToThePreviousPageToSeeVideos": "Go to the previous page to see videos",
