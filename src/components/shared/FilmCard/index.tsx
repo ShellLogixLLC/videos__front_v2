@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import classNames from 'classnames';
 
 import {VideoLikes} from '~/components';
-import {useAppDispatch} from '~/hooks';
+import {useAppDispatch, useAppSelector} from '~/hooks';
 import {UnRegisterPopup} from '~/components';
 import {getCookieFromBrowser} from '~/libraries';
 import {createDate, sleep, WarnToast} from '~/utils';

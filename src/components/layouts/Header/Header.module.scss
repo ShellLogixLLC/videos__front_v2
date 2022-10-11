@@ -213,6 +213,7 @@
 
       &__wishlist {
         cursor: pointer;
+
       }
 
       &__empty__block {
@@ -417,4 +418,16 @@
       margin: 16px 0;
     }
   }
+}
+
+.wrapper__content__wishlist__parent{
+  position: relative;
+}
+
+.wrapper__content__wishlist__count{
+  position: absolute;
+  top: -22px;
+  right: -15px;
+  letter-spacing: 1.1px;
+  font-size: 13px;
 }
