@@ -111,7 +111,7 @@ const FilmCard: React.FC<FilmCardProps> = ({
           </div>
           <Image src={CategoryImage} alt={'Category Image'} />
           <Typography tagName="span" className={styles.wrapper__film__time}>
-            {durationMinutes} : {durationSec}
+            {durationMinutes}:{durationSec}
           </Typography>
         </Link>
         <div className={styles.wrapper__other}>

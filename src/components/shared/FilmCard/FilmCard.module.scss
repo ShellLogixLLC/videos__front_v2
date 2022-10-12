@@ -117,6 +117,7 @@
       bottom: 16px;
       left: 16px;
       z-index: 2;
+      letter-spacing: 1.1px;
 
       @include breakpoint(tablet-m) {
         bottom: 3px;

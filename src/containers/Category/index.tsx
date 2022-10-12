@@ -113,9 +113,7 @@ const Category: React.FC = () => {
             </div>
           )}
         </div>
-        <div className={styles.filters}>
-          <DatePicker />
-        </div>
+        <div className={styles.filters}>{totalCount > 0 && <DatePicker />}</div>
       </div>
     </article>
   );
