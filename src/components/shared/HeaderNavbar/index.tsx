@@ -11,7 +11,10 @@ import {
   SigninDropdown,
   ProfileSettings,
   UnRegisterPopup,
+  Typography,
 } from '~/components';
+import {useAppSelector} from '~/hooks';
+import {wishlistSelect} from '~/store/wishlist';
 
 import styles from '../../layouts/Header/Header.module.scss';
 
@@ -31,6 +34,8 @@ const HeaderNavbar: React.FC<HeaderNavbarProps> = ({children}) => {
     [styles.wrapper__content__other__withToken]: token,
   });
 
+  const {wishlistIds} = useAppSelector(wishlistSelect);
+
   const openLikeItPopup = () => setIsLikeItPopup(true);
 
   const renderUserIcons = !token ? <SigninDropdown /> : <ProfileSettings />;
@@ -42,11 +47,22 @@ const HeaderNavbar: React.FC<HeaderNavbarProps> = ({children}) => {
       <div className={wrapperClassName}>
         <div className={styles.wrapper__content__other__skeleton} />
         {token ? (
-          <Link
-            to={Route.Favorites}
-            className={styles.wrapper__content__other__link}>
-            <LikeItIcon className={styles.wrapper__content__other__wishlist} />
-          </Link>
+          <div className={styles.wrapper__content__wishlist__parent}>
+            <Link
+              to={Route.Favorites}
+              className={styles.wrapper__content__other__link}>
+              <LikeItIcon
+                className={styles.wrapper__content__other__wishlist}
+              />
+            </Link>
+            {wishlistIds.length > 0 && (
+              <Typography
+                className={styles.wrapper__content__wishlist__count}
+                tagName="p">
+                ({wishlistIds.length})
+              </Typography>
+            )}
+          </div>
         ) : (
           <LikeItIcon
             onClick={openLikeItPopup}
