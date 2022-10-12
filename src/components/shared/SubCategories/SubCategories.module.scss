@@ -11,6 +11,7 @@
   background-color: $black;
   box-shadow: $header-box-shadow;
 
+
   @include breakpoint(desktop) {
     position: static;
     height: auto;
@@ -23,6 +24,11 @@
     padding: 16px 0;
     overflow: hidden;
     width: 100%;
+    overflow-x: scroll !important;
+
+    &::-webkit-scrollbar {
+      display: none !important;
+    }
 
     @include breakpoint(desktop) {
       overflow: visible;
