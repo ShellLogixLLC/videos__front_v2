@@ -23,7 +23,7 @@ export type QueryParamsTypes = {
   viewsSort?: number | string;
   durationSort?: number | string;
   activeCategory?: string;
-  isCommentVisible:boolean;
+  isCommentVisible?: boolean;
 };
 
 export type ActiveCategoryParams = {

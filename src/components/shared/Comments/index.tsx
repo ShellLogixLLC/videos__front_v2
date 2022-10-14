@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
 import classNames from 'classnames';
 import {useToggle} from 'react-use';
 import {useSelector} from 'react-redux';
@@ -16,7 +16,7 @@ import Typography from '../Typography';
 import CommentForm from './CommentForm';
 import CommentBlock from './CommentBlock';
 import styles from './Comments.module.scss';
-import { useRouter } from 'next/router';
+import {useRouter} from 'next/router';
 
 const Comments: React.FC = () => {
   const router = useRouter();
@@ -48,11 +48,9 @@ const Comments: React.FC = () => {
     [styles.container__content__icon__open]: expanded,
   });
 
-
   const handleScroll = () => {
-    ref.current?.scrollIntoView({block: "center",behavior: "smooth"});
+    ref.current?.scrollIntoView({block: 'center', behavior: 'smooth'});
   };
-
 
   useEffect(() => {
     if (!isLoading && data?.comments) {
@@ -62,14 +60,14 @@ const Comments: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data?.comments]);
 
-  useEffect(()=>{
-    if(isCommentVisible){
+  useEffect(() => {
+    if (isCommentVisible) {
       setTimeout(() => {
-        handleScroll()
+        handleScroll();
       }, 1000);
-      toggleExpanded(true)
+      toggleExpanded(true);
     }
-  })
+  });
 
   if (!commentsList.length && isLoading) {
     return <CommentsBlockSkeleton />;
