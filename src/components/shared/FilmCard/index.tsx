@@ -132,9 +132,16 @@ const FilmCard: React.FC<FilmCardProps> = ({
             <ViewsCountIcon />
             <p>{views}</p>
           </div>
-          <div className={styles.wrapper__card_footer_item}>
-            <CommentsCount />
-            <p>{commentsCount}</p>
+          <div className={styles.wrapper__card_footer_item} >
+          <Link 
+          className={styles.wrapper__card_footer_item_link}
+          to={{pathname:"/video/[id]",
+          query:{isCommentVisible:true}}}
+          as={`/video/${id}`}
+         >
+          <CommentsCount />
+          <p>{commentsCount}</p>
+          </Link>
           </div>
         </div>
       </div>

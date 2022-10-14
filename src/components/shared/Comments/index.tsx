@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import classNames from 'classnames';
 import {useToggle} from 'react-use';
 import {useSelector} from 'react-redux';
@@ -16,9 +16,13 @@ import Typography from '../Typography';
 import CommentForm from './CommentForm';
 import CommentBlock from './CommentBlock';
 import styles from './Comments.module.scss';
+import { useRouter } from 'next/router';
 
 const Comments: React.FC = () => {
+  const router = useRouter();
   const {userInfo} = useSelector(authState);
+  const {isCommentVisible} = router.query;
+  const ref = React.useRef<HTMLInputElement>(null);
 
   const token = getCookieFromBrowser('token');
 
@@ -44,6 +48,12 @@ const Comments: React.FC = () => {
     [styles.container__content__icon__open]: expanded,
   });
 
+
+  const handleScroll = () => {
+    ref.current?.scrollIntoView({block: "center",behavior: "smooth"});
+  };
+
+
   useEffect(() => {
     if (!isLoading && data?.comments) {
       setCommentsList(data?.comments);
@@ -51,6 +61,15 @@ const Comments: React.FC = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data?.comments]);
+
+  useEffect(()=>{
+    if(isCommentVisible){
+      setTimeout(() => {
+        handleScroll()
+      }, 1000);
+      toggleExpanded(true)
+    }
+  })
 
   if (!commentsList.length && isLoading) {
     return <CommentsBlockSkeleton />;
@@ -62,7 +81,7 @@ const Comments: React.FC = () => {
   };
 
   return (
-    <div className={containerClassNames}>
+    <div className={containerClassNames} ref={ref}>
       <div onClick={toggleExpanded} className={styles.container__content}>
         <div className={styles.container__content__title}>
           <Typography className={styles.container__content__title__text}>
