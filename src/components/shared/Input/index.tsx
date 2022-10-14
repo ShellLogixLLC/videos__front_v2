@@ -90,7 +90,7 @@ const Input = forwardRef<any, InputProps>(
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const val = e.target.value;
       if (name && setValue) {
-        setValue(name, val.trim(), {shouldValidate: true});
+        setValue(name, val, {shouldValidate: true});
       }
       if (onChange) {
         onChange(e, name as string);
