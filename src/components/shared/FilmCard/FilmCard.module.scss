@@ -4,7 +4,7 @@
   padding: 16px 16px 28px 16px;
   background-color: $light-black;
 
-  &:hover &__other_name{
+  &:hover &__other_name {
     color: $red;
   }
 
@@ -141,11 +141,11 @@
       transition: color ease-in-out 0.2s;
 
 
-      @include breakpoint(desktop){
+      @include breakpoint(desktop) {
         max-width: 250px;
       }
 
-      @include breakpoint(tablet){
+      @include breakpoint(tablet) {
         max-width: 150px;
       }
 
@@ -154,7 +154,8 @@
         line-height: 22px;
         max-width: 320px;
       }
-      @include breakpoint(mobile-m){
+
+      @include breakpoint(mobile-m) {
         max-width: 150px;
       }
     }
@@ -181,7 +182,7 @@
     user-select: text;
     white-space: normal;
 
-    @include breakpoint(tablet){
+    @include breakpoint(tablet) {
       max-width: 200px;
     }
 
@@ -192,7 +193,7 @@
       max-width: 350px;
     }
 
-    @include breakpoint(mobile-l){
+    @include breakpoint(mobile-l) {
       max-width: 200px;
     }
   }
@@ -215,6 +216,13 @@
 
       &:last-of-type {
         margin-right: 0;
+      }
+
+      &_link {
+        @extend %film_name;
+        @extend %flex-align;
+        margin-right: 24px;
+
       }
     }
   }
