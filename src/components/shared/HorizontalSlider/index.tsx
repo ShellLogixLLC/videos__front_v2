@@ -97,17 +97,19 @@ const HorizontalSlider: React.FC<HorizontalSliderProps> = ({
         }}>
         {renderVideoList}
       </div>
-      <Pagination
-        isRight
-        isCategory={isCategory}
-        rowsPerPage={rowsPerPage}
-        setRowsPerPage={setRowsPerPage}
-        dataLength={dataList?.length}
-        handleClickLeftArrow={handleClickLeftArrow}
-        handleClickRightArrow={handleClickRightArrow}
-        transformXValue={transformXValue}
-        transformMaxWeight={transformMaxWeight}
-      />
+      {!isCategory && (
+        <Pagination
+          isRight
+          isCategory={isCategory}
+          rowsPerPage={rowsPerPage}
+          setRowsPerPage={setRowsPerPage}
+          dataLength={dataList?.length}
+          handleClickLeftArrow={handleClickLeftArrow}
+          handleClickRightArrow={handleClickRightArrow}
+          transformXValue={transformXValue}
+          transformMaxWeight={transformMaxWeight}
+        />
+      )}
     </div>
   );
 };

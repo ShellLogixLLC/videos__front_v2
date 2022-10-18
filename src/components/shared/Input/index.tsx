@@ -36,6 +36,7 @@ const Input = forwardRef<any, InputProps>(
       onMouseOver,
       toggleHandle,
       rightIconStyle = '',
+      errorClassName = '',
       innerClassName = '',
       labelClassName = '',
       RightToggledIcon,
@@ -146,16 +147,18 @@ const Input = forwardRef<any, InputProps>(
             />
           )}
         </div>
-        {warningText && !error && (
-          <Typography type="Small" className={styles.container__warning_text}>
-            {warningText}
-          </Typography>
-        )}
-        {error && (
-          <Typography type="Small" className={styles.container__error__text}>
-            {error}
-          </Typography>
-        )}
+        <div className={errorClassName}>
+          {warningText && !error && (
+            <Typography type="Small" className={styles.container__warning_text}>
+              {warningText}
+            </Typography>
+          )}
+          {error && (
+            <Typography type="Small" className={styles.container__error__text}>
+              {error}
+            </Typography>
+          )}
+        </div>
       </label>
     );
   },

@@ -57,5 +57,6 @@ export type InputProps = {
   rightIconStyle?: string;
   innerClassName?: string;
   labelClassName?: string;
+  errorClassName?: string;
   RightToggledIcon?: SVGIconProp;
 };

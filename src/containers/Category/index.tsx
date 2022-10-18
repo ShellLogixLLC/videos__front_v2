@@ -17,6 +17,7 @@ import RandomCategoryContent from './RandomCategoryContent';
 const Category: React.FC = () => {
   const {query, asPath} = useRouter();
   const {isMinTablet} = useWindowSize();
+  const isResultWithParams = query?.startDate;
 
   const queryPage = query?.page;
   const queryActiveCategory = query?.activeCategory;
@@ -113,7 +114,9 @@ const Category: React.FC = () => {
             </div>
           )}
         </div>
-        <div className={styles.filters}>{totalCount > 0 && <DatePicker />}</div>
+        <div className={styles.filters}>
+          {(isResultWithParams || totalCount > 0) && <DatePicker />}
+        </div>
       </div>
     </article>
   );
