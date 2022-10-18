@@ -16,7 +16,7 @@
 
   &__content {
     width: 100%;
-    max-width: 440px;
+    max-width: 540px;
     padding: 48px 0;
     position: relative;
     border-radius: 13px;
@@ -67,6 +67,12 @@
 
       @include breakpoint(tablet-m) {
         font-size: 16px;
+      }
+
+      &__error {
+        position: absolute;
+        top: 21px;
+        left: 0;
       }
     }
 
@@ -135,6 +141,7 @@
       @extend %flex-center;
       flex-direction: column;
       padding: 0 24px;
+      gap: 40px;
     }
 
     &__title {
@@ -154,7 +161,7 @@
 
       &__wrapper {
         @extend %profile_modal_wrapper;
-
+        position: relative;
         &__edited {
           width: 100%;
           border-bottom: 0;
@@ -164,12 +171,8 @@
     }
 
     &__block {
-      @extend %flex-center;
       width: 100%;
-
-      &:not(:last-child) {
-        margin-bottom: 24px;
-      }
+      @extend %flex-center;
 
       &__star {
         font-size: 20px;
@@ -178,7 +181,6 @@
 
         &__wrapper {
           @extend %profile_modal_wrapper;
-
         }
       }
 
@@ -197,7 +199,6 @@
 
         &__wrapper {
           @extend %profile_modal_wrapper;
-
         }
       }
     }

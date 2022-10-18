@@ -33,6 +33,7 @@ const Form = forwardRef<any, IFormProps>(
       innerClassName = '',
       isEditedMode = false,
       addFormBtnClasses = '',
+      errorClassName = '',
       RightIcon,
     },
     ref,
@@ -120,6 +121,7 @@ const Form = forwardRef<any, IFormProps>(
                 className={inputClassName}
                 labelClassName={labelClassName}
                 innerClassName={innerClassName}
+                errorClassName={errorClassName}
                 {...commonProps}
               />
             );

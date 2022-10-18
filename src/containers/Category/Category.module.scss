@@ -56,8 +56,9 @@
     justify-content: space-between;
     grid-template-columns: repeat(3, minmax(320px, 1fr));
 
-    &__emptyText{
+    &__emptyText {
       color: $red;
+      max-width: 450px;
       @extend %film_name;
     }
 

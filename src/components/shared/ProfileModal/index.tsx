@@ -102,6 +102,7 @@ const ProfileModal = forwardRef<any, PopupProps>(
                         form={editUsernameForm}
                         onSubmit={handleSaveChanges}
                         inputClassName={styles.wrapper__content__input}
+                        errorClassName={styles.wrapper__content__input__error}
                       />
                     ) : (
                       <Typography
