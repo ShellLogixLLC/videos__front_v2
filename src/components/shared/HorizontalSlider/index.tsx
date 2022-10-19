@@ -79,7 +79,7 @@ const HorizontalSlider: React.FC<HorizontalSliderProps> = ({
     isScrollable && setIsTransformMadeWithButton(true);
   };
 
-  const handleScroll = (e: any) => {
+  const handleScroll = () => {
     if (isScrollable) {
       const scrollLeft = contentRef.current?.scrollLeft;
       setTransformXValue(Number(scrollLeft));
