@@ -55,6 +55,7 @@ const Home: React.FC = () => {
           </Typography>
           <HorizontalSlider
             isCategory
+            isScrollable={true}
             isLoading={isLoading}
             dataList={categories}
             className={styles.wrapper__content__two_section_slider}

@@ -50,20 +50,19 @@
   }
 
   &__wrapper {
-    margin-top: 32px;
     gap: 20px;
     display: grid;
+    margin-top: 32px;
     justify-content: space-between;
     grid-template-columns: repeat(3, minmax(320px, 1fr));
 
     &__emptyText {
       color: $red;
-      max-width: 450px;
       @extend %film_name;
     }
 
-    @include breakpoint(wide-l) {
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    @include breakpoint(wide) {
+      grid-template-columns: repeat(auto-fill, minmax(320px, 460px));
     }
   }
 

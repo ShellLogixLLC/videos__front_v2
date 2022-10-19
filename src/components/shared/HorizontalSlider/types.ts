@@ -6,4 +6,5 @@ export type HorizontalSliderProps = {
   isCategory?: boolean;
   isLoading: boolean;
   wishlist?: string[];
+  isScrollable?: boolean;
 };
