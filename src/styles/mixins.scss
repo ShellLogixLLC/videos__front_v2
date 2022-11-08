@@ -23,7 +23,13 @@
     @media (max-width: $tablet-m) {
       @content;
     }
-  } @else if $devices == tablet {
+  }
+  @else if $devices == tablet-medium {
+    @media (max-width: $tablet-medium) {
+      @content;
+    }
+  }
+  @else if $devices == tablet {
     @media (max-width: $tablet) {
       @content;
     }
