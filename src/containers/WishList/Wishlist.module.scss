@@ -49,11 +49,20 @@
     padding: 32px 0 40px;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
 
+    @include breakpoint(wide-l){
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
 
     @include breakpoint(desktop){
       padding: 24px 0 32px;
       grid-gap: 20px;
     }
+
+    @include breakpoint(desktop-s){
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    }
+
 
     @include breakpoint(tablet-medium){
       grid-template-columns: repeat(2, minmax(0, 1fr));

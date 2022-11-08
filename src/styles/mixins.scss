@@ -33,7 +33,13 @@
     @media (max-width: $tablet) {
       @content;
     }
-  } @else if $devices == desktop {
+  }
+  @else if $devices == desktop-s {
+    @media (max-width: $desktop-s) {
+      @content;
+    }
+  }
+  @else if $devices == desktop {
     @media (max-width: $desktop) {
       @content;
     }
