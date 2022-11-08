@@ -35,6 +35,7 @@ const HorizontalSlider: React.FC<HorizontalSliderProps> = ({
   const [rowsPerPage, setRowsPerPage] = useState<number>(
     INITIAL_PAGINATION_MORE_COUNT,
   );
+
   const [transformXValue, setTransformXValue] = useState<number>(0);
   const [isTransformMadeWithButton, setIsTransformMadeWithButton] =
     useState<boolean>(false);
@@ -47,6 +48,12 @@ const HorizontalSlider: React.FC<HorizontalSliderProps> = ({
     [styles.wrapper__content__category]: isCategory,
     [styles.wrapper__content__category__isScrollable]: isScrollable,
   });
+
+  const contentTranslate = !isScrollable
+    ? {
+        transform: `translate3d(-${transformXValue}px, 0px, 0px)`,
+      }
+    : {};
 
   const data = !isMaxTablet ? dataList?.slice(0, rowsPerPage) : dataList;
 
@@ -116,13 +123,7 @@ const HorizontalSlider: React.FC<HorizontalSliderProps> = ({
         ref={contentRef}
         onScroll={handleScroll}
         className={contentClasses}
-        style={
-          !isScrollable
-            ? {
-                transform: `translate3d(-${transformXValue}px, 0px, 0px)`,
-              }
-            : {}
-        }>
+        style={contentTranslate}>
         {renderVideoList}
       </div>
       <Pagination
