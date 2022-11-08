@@ -21,6 +21,7 @@ const HorizontalSlider: React.FC<HorizontalSliderProps> = ({
   dataList,
   wishlist,
   isLoading,
+  isScrollable = false,
   className = '',
   isCategory = false,
 }) => {
@@ -34,14 +35,25 @@ const HorizontalSlider: React.FC<HorizontalSliderProps> = ({
   const [rowsPerPage, setRowsPerPage] = useState<number>(
     INITIAL_PAGINATION_MORE_COUNT,
   );
+
   const [transformXValue, setTransformXValue] = useState<number>(0);
+  const [isTransformMadeWithButton, setIsTransformMadeWithButton] =
+    useState<boolean>(false);
+
   const [transformMaxWeight, setTransformMaxWeight] = useState<number>(0);
 
   const wrapperClasses = classNames(styles.wrapper, className);
 
   const contentClasses = classNames(styles.wrapper__content, {
     [styles.wrapper__content__category]: isCategory,
+    [styles.wrapper__content__category__isScrollable]: isScrollable,
   });
+
+  const contentTranslate = !isScrollable
+    ? {
+        transform: `translate3d(-${transformXValue}px, 0px, 0px)`,
+      }
+    : {};
 
   const data = !isMaxTablet ? dataList?.slice(0, rowsPerPage) : dataList;
 
@@ -63,12 +75,24 @@ const HorizontalSlider: React.FC<HorizontalSliderProps> = ({
       transformXValue < transformMaxWeight - paginationValue
         ? setTransformXValue(transformXValue + paginationValue)
         : setTransformXValue(transformMaxWeight);
+
+    isScrollable && setIsTransformMadeWithButton(true);
   };
 
-  const handleClickLeftArrow = () =>
+  const handleClickLeftArrow = () => {
     transformXValue > 0
       ? setTransformXValue(transformXValue - paginationValue)
       : setTransformXValue(0);
+    isScrollable && setIsTransformMadeWithButton(true);
+  };
+
+  const handleScroll = () => {
+    if (isScrollable) {
+      const scrollLeft = contentRef.current?.scrollLeft;
+      setTransformXValue(Number(scrollLeft));
+      setIsTransformMadeWithButton(false);
+    }
+  };
 
   useEffect(() => {
     if (contentRef?.current) {
@@ -81,6 +105,12 @@ const HorizontalSlider: React.FC<HorizontalSliderProps> = ({
     }
   }, [isMaxTablet, dataList, transformXValue, transformMaxWeight, isLoading]);
 
+  useEffect(() => {
+    if (isScrollable && isTransformMadeWithButton) {
+      contentRef.current?.scroll({left: transformXValue});
+    }
+  }, [transformXValue]);
+
   return isLoading ? (
     <HorizontalSliderSkeleton
       isCategory={isCategory}
@@ -91,25 +121,22 @@ const HorizontalSlider: React.FC<HorizontalSliderProps> = ({
     <div className={wrapperClasses}>
       <div
         ref={contentRef}
+        onScroll={handleScroll}
         className={contentClasses}
-        style={{
-          transform: `translate3d(-${transformXValue}px, 0px, 0px)`,
-        }}>
+        style={contentTranslate}>
         {renderVideoList}
       </div>
-      {!isCategory && (
-        <Pagination
-          isRight
-          isCategory={isCategory}
-          rowsPerPage={rowsPerPage}
-          setRowsPerPage={setRowsPerPage}
-          dataLength={dataList?.length}
-          handleClickLeftArrow={handleClickLeftArrow}
-          handleClickRightArrow={handleClickRightArrow}
-          transformXValue={transformXValue}
-          transformMaxWeight={transformMaxWeight}
-        />
-      )}
+      <Pagination
+        isRight
+        isCategory={isCategory}
+        rowsPerPage={rowsPerPage}
+        setRowsPerPage={setRowsPerPage}
+        dataLength={dataList?.length}
+        handleClickLeftArrow={handleClickLeftArrow}
+        handleClickRightArrow={handleClickRightArrow}
+        transformXValue={transformXValue}
+        transformMaxWeight={transformMaxWeight}
+      />
     </div>
   );
 };
