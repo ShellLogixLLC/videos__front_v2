@@ -19,7 +19,7 @@
   right: 80px;
   z-index: 3;
 
-  @include breakpoint(desktop){
+  @include breakpoint(desktop) {
     right: 72px;
   }
 
@@ -60,18 +60,19 @@
     }
 
     &__search {
-      @extend %search-styling;
-      width: 100%;
-      color: $red !important;
+      display: block;
+      width: 0;
+      box-sizing: border-box;
       border: 1px solid transparent;
-      opacity: 0;
-      padding: 0 !important;
-      max-width: 24px;
-      visibility: hidden;
-      transition: 0.2s all ease;
-      caret-color: transparent;
       border-radius: 16px !important;
       background-color: transparent;
+      padding: 0 !important;
+      color: $red !important;
+      -webkit-transition: width 0.4s ease-in-out;
+      transition: width 0.4s ease-in-out;
+      margin: 0 0 0 auto;
+      caret-color: transparent;
+      @extend %search-styling;
 
       &:hover {
         border-color: transparent !important;
@@ -83,12 +84,10 @@
 
       &_expanded {
         border: 1px solid $white;
-        opacity: 1;
         padding: 13px 58px 13px 24px !important;
-        max-width: 130%;
-        visibility: visible;
-        transition: 0.2s all ease;
         caret-color: $red;
+        width: 100%;
+        max-width: 130%;
 
         @include breakpoint(desktop) {
           padding-right: 66px;
