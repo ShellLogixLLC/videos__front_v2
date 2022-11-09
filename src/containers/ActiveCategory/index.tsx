@@ -53,17 +53,17 @@ const ActiveCategory: React.FC = () => {
   const queryPage = query?.page;
 
   const {data, isLoading} = CategoryService.useActiveCategory(params);
-  const dataVideos = data?.videos;
-  const dataTotalCount = data?.totalCount;
+  const videos = data?.videos;
+  const videosCount = data?.totalCount;
 
   const tabletSkeletonsCount =
-    rowsPerPage + INITIAL_PAGINATION_ROWS_PER_PAGE > dataTotalCount
-      ? dataTotalCount && dataTotalCount % INITIAL_PAGINATION_ROWS_PER_PAGE
+    rowsPerPage + INITIAL_PAGINATION_ROWS_PER_PAGE > videosCount
+      ? videosCount && videosCount % INITIAL_PAGINATION_ROWS_PER_PAGE
       : INITIAL_PAGINATION_ROWS_PER_PAGE;
 
   const desktopSkeletonsCount =
-    (activePage + 1) * INITIAL_PAGINATION_ROWS_PER_PAGE > dataTotalCount
-      ? dataTotalCount % INITIAL_PAGINATION_ROWS_PER_PAGE
+    (activePage + 1) * INITIAL_PAGINATION_ROWS_PER_PAGE > videosCount
+      ? videosCount % INITIAL_PAGINATION_ROWS_PER_PAGE
       : INITIAL_PAGINATION_ROWS_PER_PAGE;
 
   const skeletonsCount = !isMinTablet
@@ -102,7 +102,7 @@ const ActiveCategory: React.FC = () => {
     ),
   );
 
-  const renderVideosList = dataVideos?.map((item: VideosProps) => (
+  const renderVideosList = videos?.map((item: VideosProps) => (
     <FilmCard
       key={item.id}
       item={item}
@@ -116,7 +116,7 @@ const ActiveCategory: React.FC = () => {
       <div className={styles.content__wrapper}>{renderLoaderCards}</div>
     ) : (
       <div className={styles.content__wrapper}>
-        {dataTotalCount
+        {videosCount
           ? renderVideosList
           : !isLoading && (
               <Typography className={styles.content__wrapper__emptyText}>
@@ -148,10 +148,10 @@ const ActiveCategory: React.FC = () => {
             </Typography>
           )}
           {renderContent}
-          {dataTotalCount > currentPerPageCount && (
+          {videosCount > currentPerPageCount && (
             <div className={styles.content__pagination}>
               <Pagination
-                dataLength={dataTotalCount}
+                dataLength={videosCount}
                 rowsPerPage={rowsPerPage}
                 activePage={activePage}
                 setRowsPerPage={setRowsPerPage}
