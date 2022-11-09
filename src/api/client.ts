@@ -3,7 +3,7 @@ import axios, {AxiosRequestConfig} from 'axios';
 import {getCookieFromBrowser} from '~/libraries';
 
 export const defaultOptions = {
-  baseURL: 'https://afternoon-plains-03331.herokuapp.com/api',
+  baseURL: 'http://localhost:5000/api',
 };
 
 const api = axios.create(defaultOptions);

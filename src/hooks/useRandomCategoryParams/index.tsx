@@ -18,6 +18,7 @@ const useRandomCategoryParams = (
   const queryStartDate = query?.startDate;
 
   const limit = isMinTablet ? rowsPerPage : INITIAL_PAGINATION_ROWS_PER_PAGE;
+  const page = queryPage ? Number(queryPage) : 0;
   const endDate = queryEndDate ? String(queryEndDate) : '';
   const startDate = queryStartDate ? String(queryStartDate) : '';
   const categoryIds = queryname ? [queryname as string] : [];
@@ -27,6 +28,7 @@ const useRandomCategoryParams = (
     startDate,
     endDate,
     categoryIds,
+    page,
   };
 
   const [params, setParams] = useState<RandomSortingParamsType>(initialParams);

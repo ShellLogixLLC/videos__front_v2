@@ -47,6 +47,7 @@ export type SortingParamsType = {
 };
 
 export type RandomSortingParamsType = {
+  page: number;
   limit: number;
   categoryIds: string[];
   startDate?: string;
