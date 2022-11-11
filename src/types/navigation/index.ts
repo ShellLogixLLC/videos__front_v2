@@ -4,12 +4,6 @@ import React from 'react';
 
 import {Route} from '~/constants';
 
-export interface IPhoneItem {
-  name: string;
-  number: string;
-  CountryIcon: React.ComponentType;
-}
-
 export interface ICommonNavigationItem {
   name: string;
   route: Route;

@@ -8,7 +8,7 @@ import {
   CategoryNav,
   FilmCardSkeleton,
 } from '~/components';
-import {useAppSelector, useCategotyParams, useWindowSize} from '~/hooks';
+import {useAppSelector, useCategoryParams, useWindowSize} from '~/hooks';
 import {
   INITIAL_PAGINATION_MORE_COUNT,
   INITIAL_PAGINATION_ROWS_PER_PAGE,
@@ -24,7 +24,7 @@ const CategoryContent: React.FC<CategoryContentTypes> = ({
   setTotalCount,
   subCategoryLoading,
 }) => {
-  const {params} = useCategotyParams(rowsPerPage);
+  const {params} = useCategoryParams(rowsPerPage);
   const {isMinTablet} = useWindowSize();
 
   const [videosList, setVideosList] = useState<VideosProps[]>([]);
