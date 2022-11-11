@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {isEqual} from 'lodash';
 import {useRouter} from 'next/router';
 
 import {LeftArrowIcon} from '~/assets';
@@ -45,9 +44,7 @@ const ActiveCategory: React.FC = () => {
       ? CategoryFilters.MostViewed
       : currentActiveCategory;
 
-  const [videosList, setVideosList] = useState<VideosProps[]>([]);
   const [activePage, setActivePage] = useState<number>(0);
-  const [totalCount, setTotalCount] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(currentPerPageCount);
 
   const {params} = useActiveCategoryParams(rowsPerPage);
@@ -56,33 +53,22 @@ const ActiveCategory: React.FC = () => {
   const queryPage = query?.page;
 
   const {data, isLoading} = CategoryService.useActiveCategory(params);
+  const videos = data?.videos;
+  const videosCount = data?.totalCount;
 
   const tabletSkeletonsCount =
-    rowsPerPage + INITIAL_PAGINATION_ROWS_PER_PAGE > totalCount
-      ? totalCount && totalCount % INITIAL_PAGINATION_ROWS_PER_PAGE
+    rowsPerPage + INITIAL_PAGINATION_ROWS_PER_PAGE > videosCount
+      ? videosCount && videosCount % INITIAL_PAGINATION_ROWS_PER_PAGE
       : INITIAL_PAGINATION_ROWS_PER_PAGE;
 
   const desktopSkeletonsCount =
-    (activePage + 1) * INITIAL_PAGINATION_ROWS_PER_PAGE > totalCount
-      ? totalCount % INITIAL_PAGINATION_ROWS_PER_PAGE
+    (activePage + 1) * INITIAL_PAGINATION_ROWS_PER_PAGE > videosCount
+      ? videosCount % INITIAL_PAGINATION_ROWS_PER_PAGE
       : INITIAL_PAGINATION_ROWS_PER_PAGE;
 
   const skeletonsCount = !isMinTablet
     ? desktopSkeletonsCount
     : tabletSkeletonsCount;
-
-  const dataVideos = data?.videos;
-  const dataTotalCount = data?.totalCount;
-
-  useEffect(() => {
-    if (!isEqual(totalCount, dataTotalCount)) {
-      setTotalCount(dataTotalCount);
-    }
-    if (dataVideos) {
-      setVideosList(dataVideos);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
 
   useEffect(() => {
     if (queryPage) {
@@ -116,7 +102,7 @@ const ActiveCategory: React.FC = () => {
     ),
   );
 
-  const renderVideosList = videosList?.map((item: VideosProps) => (
+  const renderVideosList = videos?.map((item: VideosProps) => (
     <FilmCard
       key={item.id}
       item={item}
@@ -130,7 +116,7 @@ const ActiveCategory: React.FC = () => {
       <div className={styles.content__wrapper}>{renderLoaderCards}</div>
     ) : (
       <div className={styles.content__wrapper}>
-        {totalCount
+        {videosCount
           ? renderVideosList
           : !isLoading && (
               <Typography className={styles.content__wrapper__emptyText}>
@@ -162,10 +148,10 @@ const ActiveCategory: React.FC = () => {
             </Typography>
           )}
           {renderContent}
-          {dataTotalCount > currentPerPageCount && (
+          {videosCount > currentPerPageCount && (
             <div className={styles.content__pagination}>
               <Pagination
-                dataLength={totalCount}
+                dataLength={videosCount}
                 rowsPerPage={rowsPerPage}
                 activePage={activePage}
                 setRowsPerPage={setRowsPerPage}
