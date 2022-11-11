@@ -62,23 +62,6 @@ export type VideosProps = {
   commentsCount: number;
 };
 
-export type WishlistProps = {
-  id: string;
-  title: Name;
-  description: Name;
-  userId: string;
-  filePath: string;
-  thumbnailPath: string;
-  duration: number;
-  likesCount: number;
-  commentsCount: number;
-  categoryIds: string[];
-  tags: string[];
-  views: number;
-  createdAt: string;
-  updatedAt: string;
-};
-
 export type SwrPageProps = {
   fallback: {[p: string]: unknown} | undefined;
 };
