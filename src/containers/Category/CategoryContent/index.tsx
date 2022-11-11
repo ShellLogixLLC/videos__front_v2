@@ -1,12 +1,15 @@
 import React, {useEffect, useState} from 'react';
+import {isEqual} from 'lodash';
+import {useRouter} from 'next/router';
 
 import {CategoryService} from '~/api';
-import {CategoryContentTypes, VideosProps} from '~/types';
+import {CategoryContentTypes, QueryParamsTypes, VideosProps} from '~/types';
 import {
   FilmCard,
   Typography,
   CategoryNav,
   FilmCardSkeleton,
+  Pagination,
 } from '~/components';
 import {useAppSelector, useCategoryParams, useWindowSize} from '~/hooks';
 import {
@@ -14,48 +17,71 @@ import {
   INITIAL_PAGINATION_ROWS_PER_PAGE,
 } from '~/constants';
 import {wishlistSelect} from '~/store/wishlist';
+import {setQueryParams} from '~/utils';
 
 import styles from '../Category.module.scss';
 
 const CategoryContent: React.FC<CategoryContentTypes> = ({
-  activePage,
-  totalCount,
-  rowsPerPage,
-  setTotalCount,
   subCategoryLoading,
+  setTotalCount,
 }) => {
+  const {query, asPath} = useRouter();
+
+  const queryPage = query?.page;
+  const currentPage =
+    asPath.includes('page=0') || !queryPage ? 0 : Number(queryPage);
+
+  const [rowsPerPage, setRowsPerPage] = useState<number>(
+    INITIAL_PAGINATION_ROWS_PER_PAGE,
+  );
+
   const {params} = useCategoryParams(rowsPerPage);
   const {isMinTablet} = useWindowSize();
 
-  const [videosList, setVideosList] = useState<VideosProps[]>([]);
+  const [activePage, setActivePage] = useState<number>(currentPage);
+
   const {data, isLoading} = CategoryService.useVideosByCategoryId(params);
+
+  const videos = data?.videos;
+  const videosCount = data?.totalCount;
+
+  const setNewQueryParams = (newQueryParams: QueryParamsTypes): void => {
+    setQueryParams({...query, ...newQueryParams});
+  };
+
+  const changeActivePage = (page: number): void => {
+    setActivePage(page);
+    setNewQueryParams({page});
+  };
+
+  useEffect(() => {
+    setTotalCount(videosCount);
+  }, [videosCount]);
+
+  useEffect(() => {
+    if (!isEqual(INITIAL_PAGINATION_ROWS_PER_PAGE, rowsPerPage)) {
+      setRowsPerPage(INITIAL_PAGINATION_ROWS_PER_PAGE);
+    }
+
+    setActivePage(currentPage);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentPage]);
 
   const {wishlistIds: wishlist} = useAppSelector(wishlistSelect);
 
   const tabletSkeletonsCount =
-    rowsPerPage + INITIAL_PAGINATION_MORE_COUNT > totalCount
-      ? totalCount && totalCount % INITIAL_PAGINATION_MORE_COUNT
+    rowsPerPage + INITIAL_PAGINATION_MORE_COUNT > videosCount
+      ? videosCount && videosCount % INITIAL_PAGINATION_MORE_COUNT
       : INITIAL_PAGINATION_MORE_COUNT;
 
   const desktopSkeletonsCount =
-    (activePage + 1) * INITIAL_PAGINATION_ROWS_PER_PAGE > totalCount
-      ? totalCount % INITIAL_PAGINATION_ROWS_PER_PAGE
+    (activePage + 1) * INITIAL_PAGINATION_ROWS_PER_PAGE > videosCount
+      ? videosCount % INITIAL_PAGINATION_ROWS_PER_PAGE
       : INITIAL_PAGINATION_ROWS_PER_PAGE;
 
   const skeletonsCount = !isMinTablet
     ? desktopSkeletonsCount
     : tabletSkeletonsCount;
-
-  const dataVideos = data?.videos;
-  const dataTotalCount = data?.totalCount;
-
-  useEffect(() => {
-    setTotalCount(dataTotalCount);
-    if (dataVideos) {
-      setVideosList(dataVideos);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
 
   const renderLoaderCards = Array.from(
     Array(skeletonsCount),
@@ -67,7 +93,7 @@ const CategoryContent: React.FC<CategoryContentTypes> = ({
     ),
   );
 
-  const renderVideosList = videosList?.map((item: VideosProps) => (
+  const renderVideosList = videos?.map((item: VideosProps) => (
     <FilmCard
       key={item.id}
       item={item}
@@ -81,7 +107,7 @@ const CategoryContent: React.FC<CategoryContentTypes> = ({
       <div className={styles.content__wrapper}>{renderLoaderCards}</div>
     ) : (
       <div className={styles.content__wrapper}>
-        {videosList.length ? (
+        {videos.length ? (
           renderVideosList
         ) : (
           <Typography className={styles.content__wrapper__emptyText}>
@@ -94,8 +120,20 @@ const CategoryContent: React.FC<CategoryContentTypes> = ({
 
   return (
     <>
-      {subCategoryLoading && <CategoryNav isNotActive={dataTotalCount <= 0} />}
+      {subCategoryLoading && <CategoryNav isNotActive={videosCount <= 0} />}
       {renderContent}
+      {videosCount > rowsPerPage && (
+        <div className={styles.content__pagination}>
+          <Pagination
+            dataLength={videosCount}
+            rowsPerPage={rowsPerPage}
+            activePage={activePage}
+            setRowsPerPage={setRowsPerPage}
+            setActivePage={changeActivePage}
+            isPerPageNeeded={false}
+          />
+        </div>
+      )}
     </>
   );
 };

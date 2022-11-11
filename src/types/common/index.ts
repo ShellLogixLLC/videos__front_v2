@@ -9,11 +9,8 @@ export type CategoryTitleTypes = {
 };
 
 export type CategoryContentTypes = {
-  activePage: number;
-  totalCount: number;
-  rowsPerPage: number;
-  setTotalCount: (value: number) => void;
   subCategoryLoading: boolean;
+  setTotalCount: React.Dispatch<React.SetStateAction<number>>;
 };
 
 export type QueryParamsTypes = {
