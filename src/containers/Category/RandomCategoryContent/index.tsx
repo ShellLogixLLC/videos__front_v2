@@ -108,7 +108,7 @@ const RandomCategoryContent: React.FC<CategoryContentTypes> = ({
       <div className={styles.content__wrapper}>{renderLoaderCards}</div>
     ) : (
       <div className={styles.content__wrapper}>
-        {videos.length ? (
+        {videos?.length ? (
           renderVideosList
         ) : (
           <Typography className={styles.content__wrapper__emptyText}>

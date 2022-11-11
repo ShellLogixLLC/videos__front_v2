@@ -1,32 +1,27 @@
 import React, {useState, useEffect} from 'react';
 import {useRouter} from 'next/router';
+import {isEqual} from 'lodash';
 
 import {VideosSearchService} from '~/api';
-import {FilmCard, Typography} from '~/components';
+import {FilmCard, Pagination, Typography} from '~/components';
 import {
   INITIAL_PAGINATION_MORE_COUNT,
   INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE,
 } from '~/constants';
-import {VideosProps} from '~/types';
 import {wishlistSelect} from '~/store/wishlist';
 import FilmCardSkeleton from '~/components/skeletons/FilmCard';
 import {useAppSelector, useRandomCategoryParams, useWindowSize} from '~/hooks';
+import {QueryParamsTypes} from '~/types';
+import {setQueryParams} from '~/utils';
 
 import styles from '../Search.module.scss';
 import {SearchPropsTypes} from '../types';
 
-const RandomSearchContent: React.FC<SearchPropsTypes> = ({
-  activePage,
-  totalCount,
-  setTotalCount,
-  rowsPerPage,
-}) => {
-  const {query} = useRouter();
+const RandomSearchContent: React.FC<SearchPropsTypes> = ({setTotalCount}) => {
+  const {query, asPath} = useRouter();
   const {isMinTablet} = useWindowSize();
 
   const {wishlistIds: wishlist} = useAppSelector(wishlistSelect);
-
-  const [videosList, setVideosList] = useState<VideosProps[]>([]);
 
   const {params} = useRandomCategoryParams(
     INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE,
@@ -37,29 +32,58 @@ const RandomSearchContent: React.FC<SearchPropsTypes> = ({
     params,
   );
 
-  const dataVideos = data?.videos;
-  const dataTotalCount = data?.totalCount;
+  const videos = data?.videos;
+  const videosCount = data?.totalCount;
+
+  const queryPage = query?.page;
+  const currentPage =
+    asPath.includes('page=0') || !queryPage ? 0 : Number(queryPage);
+
+  const [activePage, setActivePage] = useState<number>(currentPage);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(
+    INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE,
+  );
 
   useEffect(() => {
-    setTotalCount(dataTotalCount);
-    if (dataVideos) {
-      setVideosList(dataVideos);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+    setTotalCount(videosCount);
+  }, [videosCount]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [activePage]);
 
+  useEffect(() => {
+    if (isMinTablet) {
+      setActivePage(0);
+    }
+  }, [isMinTablet]);
+
+  useEffect(() => {
+    if (!isEqual(INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE, rowsPerPage)) {
+      setRowsPerPage(INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE);
+    }
+
+    setActivePage(currentPage);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentPage]);
+
+  const setNewQueryParams = (newQueryParams: QueryParamsTypes): void => {
+    setQueryParams({...query, ...newQueryParams});
+  };
+
+  const changeActivePage = (page: number) => {
+    setActivePage(page);
+    setNewQueryParams({page});
+  };
+
   const tabletSkeletonsCount =
-    rowsPerPage + INITIAL_PAGINATION_MORE_COUNT > totalCount
-      ? totalCount && totalCount % INITIAL_PAGINATION_MORE_COUNT
+    rowsPerPage + INITIAL_PAGINATION_MORE_COUNT > videosCount
+      ? videosCount && videosCount % INITIAL_PAGINATION_MORE_COUNT
       : INITIAL_PAGINATION_MORE_COUNT;
 
   const desktopSkeletonsCount =
-    (activePage + 1) * INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE > totalCount
-      ? totalCount % INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE
+    (activePage + 1) * INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE > videosCount
+      ? videosCount % INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE
       : INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE;
 
   const skeletonsCount = !isMinTablet
@@ -77,7 +101,7 @@ const RandomSearchContent: React.FC<SearchPropsTypes> = ({
   );
 
   const renderResultList = !isLoading
-    ? videosList?.map((item) => {
+    ? videos?.map((item) => {
         return (
           <FilmCard
             item={item}
@@ -93,7 +117,7 @@ const RandomSearchContent: React.FC<SearchPropsTypes> = ({
     <div className={styles.wrapper__content}>
       <section className={styles.wrapper__content__result}>
         {renderResultList}
-        {videosList?.length === 0 && (
+        {videos?.length === 0 && (
           <div className={styles.wrapper__content__result__wrapper}>
             <Typography
               className={styles.wrapper__content__result__wrapper__null}>
@@ -106,6 +130,18 @@ const RandomSearchContent: React.FC<SearchPropsTypes> = ({
               {query.param}
             </p>
           </div>
+        )}
+      </section>
+      <section>
+        {videosCount > INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE && (
+          <Pagination
+            dataLength={videosCount}
+            isPerPageNeeded={false}
+            setActivePage={changeActivePage}
+            activePage={activePage}
+            isMoreButtonNeeded={false}
+            rowsPerPage={INITIAL_SEARCH_PAGINATION_ROWS_PER_PAGE}
+          />
         )}
       </section>
     </div>
