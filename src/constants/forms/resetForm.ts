@@ -25,12 +25,12 @@ const fields: Field[] = [
 const schema = yup.object().shape({
   new_password: yup
     .string()
-    .matches(/^[^\s]+(\s+[^\s]+)*$/, `passwordCantStartOrEndWwithABlankSpace`)
+    .matches(/^[^\s]+(\s+[^\s]+)*$/, `passwordCantStartOrEndWithABlankSpace`)
     .required('thePasswordIsRequired')
     .min(6, 'passwordIsTooShortShouldBe6CharsMinimum'),
   allow_password: yup
     .string()
-    .matches(/^[^\s]+(\s+[^\s]+)*$/, `passwordCantStartOrEndWwithABlankSpace`)
+    .matches(/^[^\s]+(\s+[^\s]+)*$/, `passwordCantStartOrEndWithABlankSpace`)
     .required('thePasswordIsRequired')
     .min(6, 'passwordIsTooShortShouldBe6CharsMinimum')
     .oneOf([yup.ref('new_password'), null], 'passwordIsTooShortOrDoesNotMatch'),

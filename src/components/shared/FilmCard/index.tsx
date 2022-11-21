@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import classNames from 'classnames';
 
+import {Route} from '~/constants';
 import {VideoLikes} from '~/components';
 import {useAppDispatch} from '~/hooks';
 import {UnRegisterPopup} from '~/components';
@@ -101,7 +102,7 @@ const FilmCard: React.FC<FilmCardProps> = ({
     <>
       <div className={`${styles.wrapper} ${cardClasses}`}>
         <Link
-          to="/video/[id]"
+          to={`${Route.Video}/[id]`}
           as={`/video/${id}`}
           className={styles.wrapper__film}>
           <div className={styles.wrapper__film__absolute}>
@@ -116,8 +117,8 @@ const FilmCard: React.FC<FilmCardProps> = ({
         </Link>
         <div className={styles.wrapper__other}>
           <Link
-            to="/video/[id]"
-            as={`/video/${id}`}
+            to={`${Route.Video}/[id]`}
+            as={`${Route.Video}/${id}`}
             className={styles.wrapper__other_name}>
             {title[lng]}
           </Link>
@@ -135,8 +136,11 @@ const FilmCard: React.FC<FilmCardProps> = ({
           <div className={styles.wrapper__card_footer_item}>
             <Link
               className={styles.wrapper__card_footer_item_link}
-              to={{pathname: '/video/[id]', query: {isCommentVisible: true}}}
-              as={`/video/${id}`}>
+              to={{
+                pathname: `${Route.Video}/[id]`,
+                query: {isCommentVisible: true},
+              }}
+              as={`${Route.Video}/${id}`}>
               <CommentsCount />
               <p>{commentsCount}</p>
             </Link>

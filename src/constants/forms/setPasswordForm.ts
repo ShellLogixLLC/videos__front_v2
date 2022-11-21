@@ -29,7 +29,7 @@ const schema = yup.object().shape({
     .min(6, 'passwordIsTooShortShouldBe6CharsMinimum'),
   passwordConfirmation: yup
     .string()
-    .matches(/^[^\s]+(\s+[^\s]+)*$/, `passwordCantStartOrEndWwithABlankSpace`)
+    .matches(/^[^\s]+(\s+[^\s]+)*$/, `passwordCantStartOrEndWithABlankSpace`)
     .oneOf([yup.ref('password'), null], 'passwordsMustMatch'),
 });
 

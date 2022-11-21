@@ -27,7 +27,7 @@ const schema = yup.object().shape({
     .min(6, 'firstNameIsTooShort'),
   password: yup
     .string()
-    .matches(/^[^\s]+(\s+[^\s]+)*$/, `passwordCantStartOrEndWwithABlankSpace`)
+    .matches(/^[^\s]+(\s+[^\s]+)*$/, `passwordCantStartOrEndWithABlankSpace`)
     .required('The Password is required')
     .min(6, 'passwordIsTooShortShouldBe6CharsMinimum'),
 });

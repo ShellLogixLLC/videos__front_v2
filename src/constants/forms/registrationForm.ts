@@ -60,12 +60,12 @@ const schema = yup.object().shape({
   email: yup.string().email('theEmailMustBeAValidEmailAddress'),
   create_password: yup
     .string()
-    .matches(/^[^\s]+(\s+[^\s]+)*$/, `passwordCantStartOrEndWwithABlankSpace`)
+    .matches(/^[^\s]+(\s+[^\s]+)*$/, `passwordCantStartOrEndWithABlankSpace`)
     .required('theLastNameIsRequired')
     .min(6, 'passwordIsTooShortShouldBe6CharsMinimum'),
   confirm_password: yup
     .string()
-    .matches(/^[^\s]+(\s+[^\s]+)*$/, `passwordCantStartOrEndWwithABlankSpace`)
+    .matches(/^[^\s]+(\s+[^\s]+)*$/, `passwordCantStartOrEndWithABlankSpace`)
     .oneOf(
       [yup.ref('create_password'), null],
       'passwordIsTooShortOrDoesNotMatch',
