@@ -109,7 +109,7 @@
   "thisFieldCannotContainBlankspaces": "This field can not contain blank spaces",
   "yourNewPasswordMatchesThePreviousOne":"Your new password matches the previous one",
   "youHaveDeletedAllTheVideosOnThisPage": "You have deleted all the videos on this page",
-  "passwordCantStartOrEndWwithABlankSpace": "Password can't start or end with a blank space",
+  "passwordCantStartOrEndWithABlankSpace": "Password can't start or end with a blank space",
   "passwordIsTooShortShouldBe6CharsMinimum": "Password is too short - should be 6 chars minimum.",
   "youShouldBeSignInToBeAbleToLikeVideo": "You should sign in to be able to like the video",
   "youShouldBeSignInToAddVideosInYourFavorites":"You should sign in to add videos to your favorites.",

@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import classNames from 'classnames';
 import {useToggle} from 'react-use';
 import {useSelector} from 'react-redux';
+import {useRouter} from 'next/router';
 
 import {VideosService} from '~/api';
 import {authState} from '~/store/auth';
@@ -16,13 +17,12 @@ import Typography from '../Typography';
 import CommentForm from './CommentForm';
 import CommentBlock from './CommentBlock';
 import styles from './Comments.module.scss';
-import {useRouter} from 'next/router';
 
 const Comments: React.FC = () => {
   const router = useRouter();
   const {userInfo} = useSelector(authState);
   const {isCommentVisible} = router.query;
-  const ref = React.useRef<HTMLInputElement>(null);
+  const commentBlockRef = React.useRef<HTMLInputElement>(null);
 
   const token = getCookieFromBrowser('token');
 
@@ -49,7 +49,10 @@ const Comments: React.FC = () => {
   });
 
   const handleScroll = () => {
-    ref.current?.scrollIntoView({block: 'center', behavior: 'smooth'});
+    commentBlockRef.current?.scrollIntoView({
+      block: 'center',
+      behavior: 'smooth',
+    });
   };
 
   useEffect(() => {
@@ -65,7 +68,6 @@ const Comments: React.FC = () => {
       setTimeout(() => {
         handleScroll();
       }, 1000);
-      toggleExpanded(true);
     }
   });
 
@@ -79,7 +81,7 @@ const Comments: React.FC = () => {
   };
 
   return (
-    <div className={containerClassNames} ref={ref}>
+    <div className={containerClassNames} ref={commentBlockRef}>
       <div onClick={toggleExpanded} className={styles.container__content}>
         <div className={styles.container__content__title}>
           <Typography className={styles.container__content__title__text}>

@@ -48,6 +48,10 @@ const Header: React.FC = () => {
 
   const isFavoritePage = pathname === Route.Favorites;
 
+  const isVideoPage = pathname.includes(Route.Video);
+
+  const isMobileFilterVisible = !isHomePage && !isVideoPage && !isFavoritePage;
+
   const logoClassNames = classNames(styles.wrapper__content_logo, {
     [styles.wrapper__content_logo_hidden]: expanded && !isDesktop,
   });
@@ -200,7 +204,7 @@ const Header: React.FC = () => {
 
         <HeaderNavbar>{headerTable}</HeaderNavbar>
         <div className={styles.wrapper__content__container}>
-          {!isHomePage && !isFavoritePage && (
+          {isMobileFilterVisible && (
             <MobileFilterIcon
               onClick={toggleFilter}
               className={styles.wrapper__content__filter_icon}
@@ -216,7 +220,7 @@ const Header: React.FC = () => {
           {renderMobileMenu}
         </MobileMenu>
       </div>
-      {!isHomePage && !isFavoritePage && (
+      {isMobileFilterVisible && (
         <MobileFilter
           isNotActive={false}
           isFilter={isFilter}

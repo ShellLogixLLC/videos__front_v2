@@ -2,6 +2,7 @@ enum Route {
   Home = '/',
   New = '/active-category/new',
   Error = '/404',
+  Video = '/video',
   Terms = '/terms-of-service',
   Search = '/search-result',
   Privacy = '/privacy-policy',

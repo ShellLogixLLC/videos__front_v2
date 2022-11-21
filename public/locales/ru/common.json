@@ -109,7 +109,7 @@
   "thisFieldCannotContainBlankspaces": "Этот поле не может содержать пробелов",
   "yourNewPasswordMatchesThePreviousOne":"Ваш новый пароль совпадает с предыдущим",
   "youHaveDeletedAllTheVideosOnThisPage": "Вы удалили все видео на этой странице",
-  "passwordCantStartOrEndWwithABlankSpace": "Пароль не может начинаться или заканчиваться пробелом",
+  "passwordCantStartOrEndWithABlankSpace": "Пароль не может начинаться или заканчиваться пробелом",
   "passwordIsTooShortShouldBe6CharsMinimum": "Пароль слишком короткий - должно быть не менее 6 символов.",
   "youShouldBeSignInToBeAbleToLikeVideo": "Вы должны войти в систему, чтобы иметь возможность лайкнуть видео",
   "youShouldBeSignInToAddVideosInYourFavorites":"Вы должны войти в систему, чтобы добавить видео в избранное.",
