@@ -52,7 +52,7 @@ const FilterBySort: React.FC<IFilterBySortProps> = ({options}) => {
           </Typography>
         );
       }),
-    [options],
+    [options, query, activeCategory],
   );
 
   return (

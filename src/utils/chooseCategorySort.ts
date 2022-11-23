@@ -1,3 +1,5 @@
+import React from 'react';
+
 import {CategoryFilters} from '~/constants';
 import {QueryParamsTypes} from '~/types';
 
@@ -11,7 +13,7 @@ const chooseCategory = (
 ) => {
   if (nameCategory !== activeCategory) {
     setActiveCategory(nameCategory);
-    if (CategoryFilters.TopRated === nameCategory) {
+    if ((nameCategory = CategoryFilters.TopRated)) {
       setQueryParams({
         ...query,
         activeCategory: nameCategory,
@@ -20,7 +22,7 @@ const chooseCategory = (
         viewsSort: '',
         durationSort: '',
       });
-    } else if (CategoryFilters.TopViews === nameCategory) {
+    } else if (nameCategory === CategoryFilters.TopViews) {
       setQueryParams({
         ...query,
         activeCategory: nameCategory,
@@ -29,7 +31,7 @@ const chooseCategory = (
         viewsSort: -1,
         durationSort: '',
       });
-    } else if (CategoryFilters.Duration === nameCategory) {
+    } else if (nameCategory === CategoryFilters.Duration) {
       setQueryParams({
         ...query,
         activeCategory: nameCategory,
