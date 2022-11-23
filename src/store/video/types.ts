@@ -8,4 +8,5 @@ export type VideoSliceState = {
   commentsLoading: LoadingStates;
   videoLikesLoading: LoadingStates;
   getCommentsLoading: LoadingStates;
+  addVideoViewLoading: LoadingStates;
 };

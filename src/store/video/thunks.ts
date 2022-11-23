@@ -90,3 +90,15 @@ export const dislikeVideo = createAsyncThunk(
     }
   },
 );
+
+export const addVideoViews = createAsyncThunk(
+  `${videoReducer}/add-view`,
+  async (id: string, thunkAPI) => {
+    try {
+      await client.post(`/videos/${id}/views`);
+    } catch (error) {
+      const {message} = error as Error;
+      return thunkAPI.rejectWithValue({error: message});
+    }
+  },
+);

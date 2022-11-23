@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import moment from 'moment';
 import classNames from 'classnames';
+import {useRouter} from 'next/router';
 
 import PlayIcon from '~/assets/icons/play-video.svg';
 import PauseIcon from '~/assets/icons/pause.svg';
@@ -9,7 +10,6 @@ import NextVideoIcon from '~/assets/icons/next-video.svg';
 import FullScreenIcon from '~/assets/icons/full-screen.svg';
 import {VideoSkeleton} from '~/components';
 import MutedVolumeIcon from '~/assets/icons/muted-volume.svg';
-import {useWindowSize, useEventListener} from '~/hooks/index';
 import {
   VIDEO_LOAD,
   VIDEO_ERROR,
@@ -19,6 +19,8 @@ import {
   ARROW_LEFT_KEY_CODE,
   ARROW_RIGHT_KEY_CODE,
 } from '~/constants';
+import {addVideoViews} from '~/store/video/thunks';
+import {useAppDispatch, useWindowSize, useEventListener} from '~/hooks';
 
 import VideoSlider from './VideoSlider';
 import VolumeSlider from './VolumeSlider';
@@ -51,6 +53,11 @@ const Video: React.FC<IVideoProps> = ({
   );
 
   const video = videoRef?.current;
+
+  const {query} = useRouter();
+  const queryId = query?.id;
+
+  const dispatch = useAppDispatch();
 
   const handleSpace = (event: any) => {
     if (event.keyCode === SPACE_KEY_CODE) {
@@ -143,6 +150,7 @@ const Video: React.FC<IVideoProps> = ({
     if (videoElement) {
       if (videoElement.paused) {
         videoElement.play();
+        dispatch(addVideoViews(queryId as string));
       } else {
         videoElement.pause();
       }
